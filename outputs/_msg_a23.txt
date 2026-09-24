@@ -1,0 +1,48 @@
+A23 -> IEEE JOE: cover letter retargeted, mandatory prior-rejection disclosure, Guide rules verified
+
+Files in this commit (3):
+  docs/A23_JOE_MIGRATION.md   - new
+  docs/A23_JOE_INQUIRY.md     - new to git (file existed on disk, untracked)
+  paper_a2/cover_letter.tex   - new to git (file existed on disk, untracked)
+
+cover_letter.tex
+  - Retargeted from Ocean Engineering to the IEEE Journal of Oceanic
+    Engineering (Prof. Karl von Ellenrieder; PaperCept portal).
+  - The OE-specific in-scope sentence was replaced by JOE field-of-interest
+    framing, anchored on the Journal's own sonar deep-learning survey
+    (Aubard et al. 2025, DOI 10.1109/JOE.2025.3531933).
+  - NEW section "Prior submission history (disclosure)". The JOE Guide for
+    Authors requires prior rejection history to be disclosed AT SUBMISSION,
+    together with a copy of the earlier decision letter and a response.
+    It discloses OE-D-26-11643 (desk rejected 2026-09-16, no reviewer
+    comments). It states only verified facts and claims no change that has
+    not been made.
+  - NEW section "Supplementary material": per the Editor-in-Chief's reply,
+    copies of both companion manuscripts under review elsewhere are enclosed.
+  - Compiles clean: 3 pages, 0 errors.
+
+docs/A23_JOE_MIGRATION.md
+  - JOE Guide for Authors requirements verified from the official page; the
+    text extraction used as evidence is at outputs/_joe_guide.txt (local only,
+    outputs/ is gitignored).
+  - Decisive findings: NO page limit at JOE ("there is no specific limit"), so
+    the Ocean Engineering <=40 double-spaced page concern is void; abstract
+    must be 150-250 words (currently ~195, compliant); the bibliography now
+    requires a resolvable DOI for every online source.
+  - Migration cost COUNTED, not estimated: 2 frontmatter envs, 1 affiliation,
+    1 \journal, 34 \citet/\citep, 29 manual \bibitem, 0 BibTeX, 0 two-column
+    floats. The work is in the 29-entry bibliography (IEEE numeric + DOIs) and
+    the 34 citation commands, not in the template swap.
+  - Records that the Technical Communication definition is absent from the
+    Guide text, leaving the EIC's reply as the controlling statement.
+
+docs/A23_JOE_INQUIRY.md
+  - The old note "do not mention the OE desk rejection" is marked SUPERSEDED.
+    It was written before the Guide was read; the Guide makes disclosure
+    mandatory at submission, and concealment would be an ethics issue.
+
+NOT in this commit, deliberately:
+  - SUBMISSION/A23_JOE/supplementary/ (companion PDFs + README) and
+    paper_a2/cover_letter.pdf are local-only: SUBMISSION/ and *.pdf are
+    gitignored by repository policy. An earlier draft of this message wrongly
+    claimed they were committed.

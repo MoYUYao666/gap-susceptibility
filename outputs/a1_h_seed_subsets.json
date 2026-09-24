@@ -1,0 +1,848 @@
+{
+ "meta": {
+  "script": "a1_h_seed_subsets.py",
+  "script_path": "tools/a1_h_seed_subsets.py",
+  "purpose": "item P6 -- provenance for two seed-sweep statistics quoted in the merged manuscript (drop-DTD reversal, and the 27 one-seed-per-dataset subsets)",
+  "inputs": {
+   "outputs/a1_h_seed_summary.json": "d96d76da1539917af27017a6d07180bb39a3de32"
+  },
+  "datasets": [
+   "coco",
+   "food101",
+   "dtd"
+  ],
+  "seeds": [
+   42,
+   43,
+   44
+  ],
+  "correlation_variant": "spearman (kendall and pearson also recorded)",
+  "tau_definition": "Kendall order preservation on the frozen top-5 class sets, 5000-image sample (runs[*].tau5)",
+  "accuracy_definition": "top-1 on the full 50000-image validation set (runs[*].top1_50k)",
+  "provenance": "pure arithmetic over runs[*] of the input; no model is re-evaluated",
+  "timestamp_utc": "2026-09-15T12:31:32.535376+00:00"
+ },
+ "run_set": [
+  {
+   "dataset": "coco",
+   "seed": 42,
+   "tau5": 0.575433,
+   "top1_50k": 58.052,
+   "top1_5k": 58.14,
+   "CG": 0.777682,
+   "n_steps": 320
+  },
+  {
+   "dataset": "coco",
+   "seed": 43,
+   "tau5": 0.575651,
+   "top1_50k": 56.922,
+   "top1_5k": 56.94,
+   "CG": 0.766421,
+   "n_steps": 320
+  },
+  {
+   "dataset": "coco",
+   "seed": 44,
+   "tau5": 0.575929,
+   "top1_50k": 57.298,
+   "top1_5k": 57.56,
+   "CG": 0.768462,
+   "n_steps": 320
+  },
+  {
+   "dataset": "food101",
+   "seed": 42,
+   "tau5": 0.593573,
+   "top1_50k": 58.212,
+   "top1_5k": 58.22,
+   "CG": 0.820528,
+   "n_steps": 320
+  },
+  {
+   "dataset": "food101",
+   "seed": 43,
+   "tau5": 0.580987,
+   "top1_50k": 58.716,
+   "top1_5k": 59.78,
+   "CG": 0.826939,
+   "n_steps": 320
+  },
+  {
+   "dataset": "food101",
+   "seed": 44,
+   "tau5": 0.564444,
+   "top1_50k": 57.766,
+   "top1_5k": 58.34,
+   "CG": 0.837577,
+   "n_steps": 320
+  },
+  {
+   "dataset": "dtd",
+   "seed": 42,
+   "tau5": 0.540227,
+   "top1_50k": 55.0,
+   "top1_5k": 55.42,
+   "CG": 0.831478,
+   "n_steps": 300
+  },
+  {
+   "dataset": "dtd",
+   "seed": 43,
+   "tau5": 0.541102,
+   "top1_50k": 55.102,
+   "top1_5k": 55.74,
+   "CG": 0.835832,
+   "n_steps": 300
+  },
+  {
+   "dataset": "dtd",
+   "seed": 44,
+   "tau5": 0.514949,
+   "top1_50k": 53.92,
+   "top1_5k": 53.5,
+   "CG": 0.833206,
+   "n_steps": 300
+  }
+ ],
+ "drop_dtd_n6": {
+  "label": "coco+food101, seeds 42/43/44 (DTD dropped)",
+  "dropped_family": "dtd",
+  "n": 6,
+  "members": [
+   "coco_seed42",
+   "coco_seed43",
+   "coco_seed44",
+   "food101_seed42",
+   "food101_seed43",
+   "food101_seed44"
+  ],
+  "tau5": [
+   0.575433,
+   0.575651,
+   0.575929,
+   0.593573,
+   0.580987,
+   0.564444
+  ],
+  "top1_50k": [
+   58.052,
+   56.922,
+   57.298,
+   58.212,
+   58.716,
+   57.766
+  ],
+  "CG": [
+   0.777682,
+   0.766421,
+   0.768462,
+   0.820528,
+   0.826939,
+   0.837577
+  ],
+  "tau5_vs_top1_50k": {
+   "n": 6,
+   "spearman_r": 0.4857142857,
+   "spearman_p": 0.3287230320699708,
+   "kendall_r": 0.3333333333,
+   "kendall_p": 0.46944444444444444,
+   "pearson_r": 0.3947264529,
+   "pearson_p": 0.43866128220169875
+  },
+  "CG_vs_top1_50k": {
+   "n": 6,
+   "spearman_r": 0.6571428571,
+   "spearman_p": 0.1561749271137024,
+   "kendall_r": 0.6,
+   "kendall_p": 0.1361111111111111,
+   "pearson_r": 0.6880697171,
+   "pearson_p": 0.1307752655902046
+  },
+  "manuscript_claim": {
+   "tau_spearman_r": 0.486,
+   "tau_p": 0.33,
+   "cg_spearman_r": 0.657,
+   "cg_p": 0.16
+  },
+  "agrees_with_manuscript": true,
+  "rounds_to_manuscript": {
+   "tau_spearman_r": 0.486,
+   "tau_p": 0.33,
+   "cg_spearman_r": 0.657,
+   "cg_p": 0.16
+  }
+ },
+ "one_seed_per_dataset_subsets": {
+  "definition": "every way of picking exactly one seed per dataset (3^3 = 27 subsets of three runs); Spearman(tau5, top1_50k) computed within each subset",
+  "n_subsets": 27,
+  "distribution_spearman_r": {
+   "1.00": 21,
+   "0.50": 6
+  },
+  "n_with_rho_plus_1": 21,
+  "n_with_rho_plus_half": 6,
+  "other_rho_values": [],
+  "manuscript_claim": {
+   "n_subsets": 27,
+   "rho_plus_1": 21,
+   "rho_plus_half": 6
+  },
+  "agrees_with_manuscript": true,
+  "subsets": [
+   {
+    "seeds": {
+     "coco": 42,
+     "food101": 42,
+     "dtd": 42
+    },
+    "members": [
+     "coco_seed42",
+     "food101_seed42",
+     "dtd_seed42"
+    ],
+    "tau5": [
+     0.575433,
+     0.593573,
+     0.540227
+    ],
+    "top1_50k": [
+     58.052,
+     58.212,
+     55.0
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 42,
+     "food101": 42,
+     "dtd": 43
+    },
+    "members": [
+     "coco_seed42",
+     "food101_seed42",
+     "dtd_seed43"
+    ],
+    "tau5": [
+     0.575433,
+     0.593573,
+     0.541102
+    ],
+    "top1_50k": [
+     58.052,
+     58.212,
+     55.102
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 42,
+     "food101": 42,
+     "dtd": 44
+    },
+    "members": [
+     "coco_seed42",
+     "food101_seed42",
+     "dtd_seed44"
+    ],
+    "tau5": [
+     0.575433,
+     0.593573,
+     0.514949
+    ],
+    "top1_50k": [
+     58.052,
+     58.212,
+     53.92
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 42,
+     "food101": 43,
+     "dtd": 42
+    },
+    "members": [
+     "coco_seed42",
+     "food101_seed43",
+     "dtd_seed42"
+    ],
+    "tau5": [
+     0.575433,
+     0.580987,
+     0.540227
+    ],
+    "top1_50k": [
+     58.052,
+     58.716,
+     55.0
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 42,
+     "food101": 43,
+     "dtd": 43
+    },
+    "members": [
+     "coco_seed42",
+     "food101_seed43",
+     "dtd_seed43"
+    ],
+    "tau5": [
+     0.575433,
+     0.580987,
+     0.541102
+    ],
+    "top1_50k": [
+     58.052,
+     58.716,
+     55.102
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 42,
+     "food101": 43,
+     "dtd": 44
+    },
+    "members": [
+     "coco_seed42",
+     "food101_seed43",
+     "dtd_seed44"
+    ],
+    "tau5": [
+     0.575433,
+     0.580987,
+     0.514949
+    ],
+    "top1_50k": [
+     58.052,
+     58.716,
+     53.92
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 42,
+     "food101": 44,
+     "dtd": 42
+    },
+    "members": [
+     "coco_seed42",
+     "food101_seed44",
+     "dtd_seed42"
+    ],
+    "tau5": [
+     0.575433,
+     0.564444,
+     0.540227
+    ],
+    "top1_50k": [
+     58.052,
+     57.766,
+     55.0
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 42,
+     "food101": 44,
+     "dtd": 43
+    },
+    "members": [
+     "coco_seed42",
+     "food101_seed44",
+     "dtd_seed43"
+    ],
+    "tau5": [
+     0.575433,
+     0.564444,
+     0.541102
+    ],
+    "top1_50k": [
+     58.052,
+     57.766,
+     55.102
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 42,
+     "food101": 44,
+     "dtd": 44
+    },
+    "members": [
+     "coco_seed42",
+     "food101_seed44",
+     "dtd_seed44"
+    ],
+    "tau5": [
+     0.575433,
+     0.564444,
+     0.514949
+    ],
+    "top1_50k": [
+     58.052,
+     57.766,
+     53.92
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 43,
+     "food101": 42,
+     "dtd": 42
+    },
+    "members": [
+     "coco_seed43",
+     "food101_seed42",
+     "dtd_seed42"
+    ],
+    "tau5": [
+     0.575651,
+     0.593573,
+     0.540227
+    ],
+    "top1_50k": [
+     56.922,
+     58.212,
+     55.0
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 43,
+     "food101": 42,
+     "dtd": 43
+    },
+    "members": [
+     "coco_seed43",
+     "food101_seed42",
+     "dtd_seed43"
+    ],
+    "tau5": [
+     0.575651,
+     0.593573,
+     0.541102
+    ],
+    "top1_50k": [
+     56.922,
+     58.212,
+     55.102
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 43,
+     "food101": 42,
+     "dtd": 44
+    },
+    "members": [
+     "coco_seed43",
+     "food101_seed42",
+     "dtd_seed44"
+    ],
+    "tau5": [
+     0.575651,
+     0.593573,
+     0.514949
+    ],
+    "top1_50k": [
+     56.922,
+     58.212,
+     53.92
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 43,
+     "food101": 43,
+     "dtd": 42
+    },
+    "members": [
+     "coco_seed43",
+     "food101_seed43",
+     "dtd_seed42"
+    ],
+    "tau5": [
+     0.575651,
+     0.580987,
+     0.540227
+    ],
+    "top1_50k": [
+     56.922,
+     58.716,
+     55.0
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 43,
+     "food101": 43,
+     "dtd": 43
+    },
+    "members": [
+     "coco_seed43",
+     "food101_seed43",
+     "dtd_seed43"
+    ],
+    "tau5": [
+     0.575651,
+     0.580987,
+     0.541102
+    ],
+    "top1_50k": [
+     56.922,
+     58.716,
+     55.102
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 43,
+     "food101": 43,
+     "dtd": 44
+    },
+    "members": [
+     "coco_seed43",
+     "food101_seed43",
+     "dtd_seed44"
+    ],
+    "tau5": [
+     0.575651,
+     0.580987,
+     0.514949
+    ],
+    "top1_50k": [
+     56.922,
+     58.716,
+     53.92
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 43,
+     "food101": 44,
+     "dtd": 42
+    },
+    "members": [
+     "coco_seed43",
+     "food101_seed44",
+     "dtd_seed42"
+    ],
+    "tau5": [
+     0.575651,
+     0.564444,
+     0.540227
+    ],
+    "top1_50k": [
+     56.922,
+     57.766,
+     55.0
+    ],
+    "spearman_r": 0.5,
+    "spearman_p": 0.6666666666666666
+   },
+   {
+    "seeds": {
+     "coco": 43,
+     "food101": 44,
+     "dtd": 43
+    },
+    "members": [
+     "coco_seed43",
+     "food101_seed44",
+     "dtd_seed43"
+    ],
+    "tau5": [
+     0.575651,
+     0.564444,
+     0.541102
+    ],
+    "top1_50k": [
+     56.922,
+     57.766,
+     55.102
+    ],
+    "spearman_r": 0.5,
+    "spearman_p": 0.6666666666666666
+   },
+   {
+    "seeds": {
+     "coco": 43,
+     "food101": 44,
+     "dtd": 44
+    },
+    "members": [
+     "coco_seed43",
+     "food101_seed44",
+     "dtd_seed44"
+    ],
+    "tau5": [
+     0.575651,
+     0.564444,
+     0.514949
+    ],
+    "top1_50k": [
+     56.922,
+     57.766,
+     53.92
+    ],
+    "spearman_r": 0.5,
+    "spearman_p": 0.6666666666666666
+   },
+   {
+    "seeds": {
+     "coco": 44,
+     "food101": 42,
+     "dtd": 42
+    },
+    "members": [
+     "coco_seed44",
+     "food101_seed42",
+     "dtd_seed42"
+    ],
+    "tau5": [
+     0.575929,
+     0.593573,
+     0.540227
+    ],
+    "top1_50k": [
+     57.298,
+     58.212,
+     55.0
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 44,
+     "food101": 42,
+     "dtd": 43
+    },
+    "members": [
+     "coco_seed44",
+     "food101_seed42",
+     "dtd_seed43"
+    ],
+    "tau5": [
+     0.575929,
+     0.593573,
+     0.541102
+    ],
+    "top1_50k": [
+     57.298,
+     58.212,
+     55.102
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 44,
+     "food101": 42,
+     "dtd": 44
+    },
+    "members": [
+     "coco_seed44",
+     "food101_seed42",
+     "dtd_seed44"
+    ],
+    "tau5": [
+     0.575929,
+     0.593573,
+     0.514949
+    ],
+    "top1_50k": [
+     57.298,
+     58.212,
+     53.92
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 44,
+     "food101": 43,
+     "dtd": 42
+    },
+    "members": [
+     "coco_seed44",
+     "food101_seed43",
+     "dtd_seed42"
+    ],
+    "tau5": [
+     0.575929,
+     0.580987,
+     0.540227
+    ],
+    "top1_50k": [
+     57.298,
+     58.716,
+     55.0
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 44,
+     "food101": 43,
+     "dtd": 43
+    },
+    "members": [
+     "coco_seed44",
+     "food101_seed43",
+     "dtd_seed43"
+    ],
+    "tau5": [
+     0.575929,
+     0.580987,
+     0.541102
+    ],
+    "top1_50k": [
+     57.298,
+     58.716,
+     55.102
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 44,
+     "food101": 43,
+     "dtd": 44
+    },
+    "members": [
+     "coco_seed44",
+     "food101_seed43",
+     "dtd_seed44"
+    ],
+    "tau5": [
+     0.575929,
+     0.580987,
+     0.514949
+    ],
+    "top1_50k": [
+     57.298,
+     58.716,
+     53.92
+    ],
+    "spearman_r": 1.0,
+    "spearman_p": 0.0
+   },
+   {
+    "seeds": {
+     "coco": 44,
+     "food101": 44,
+     "dtd": 42
+    },
+    "members": [
+     "coco_seed44",
+     "food101_seed44",
+     "dtd_seed42"
+    ],
+    "tau5": [
+     0.575929,
+     0.564444,
+     0.540227
+    ],
+    "top1_50k": [
+     57.298,
+     57.766,
+     55.0
+    ],
+    "spearman_r": 0.5,
+    "spearman_p": 0.6666666666666666
+   },
+   {
+    "seeds": {
+     "coco": 44,
+     "food101": 44,
+     "dtd": 43
+    },
+    "members": [
+     "coco_seed44",
+     "food101_seed44",
+     "dtd_seed43"
+    ],
+    "tau5": [
+     0.575929,
+     0.564444,
+     0.541102
+    ],
+    "top1_50k": [
+     57.298,
+     57.766,
+     55.102
+    ],
+    "spearman_r": 0.5,
+    "spearman_p": 0.6666666666666666
+   },
+   {
+    "seeds": {
+     "coco": 44,
+     "food101": 44,
+     "dtd": 44
+    },
+    "members": [
+     "coco_seed44",
+     "food101_seed44",
+     "dtd_seed44"
+    ],
+    "tau5": [
+     0.575929,
+     0.564444,
+     0.514949
+    ],
+    "top1_50k": [
+     57.298,
+     57.766,
+     53.92
+    ],
+    "spearman_r": 0.5,
+    "spearman_p": 0.6666666666666666
+   }
+  ]
+ },
+ "verdict": {
+  "drop_dtd_reproduces": true,
+  "subset_split_reproduces": true,
+  "manuscript_text_needs_correction": false
+ }
+}

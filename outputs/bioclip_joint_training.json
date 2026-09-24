@@ -1,0 +1,57 @@
+{
+ "meta": {
+  "model": "BioCLIP dual-tower LoRA, joint objective (taxonomy + natural QA per batch)",
+  "epochs": 10,
+  "nA": 1368,
+  "nB": 3440,
+  "losses": [
+   2.0087,
+   1.2155,
+   0.9828,
+   0.801,
+   0.6521,
+   0.5296,
+   0.4399,
+   0.3657,
+   0.324,
+   0.2896
+  ]
+ },
+ "marine": {
+  "sigma_m": 0.0555,
+  "top1_0": 83.52,
+  "top1_heldout": 9.583,
+  "tau_l1": 0.3918,
+  "tau_text1": 0.5823
+ },
+ "retrieval": {
+  "q_ans": {
+   "n": 3440,
+   "video_R1": 13.052,
+   "video_R5": 37.297,
+   "frame_R1": 11.221,
+   "frame_R5": 29.273
+  },
+  "q_only": {
+   "n": 3440,
+   "video_R1": 5.407,
+   "video_R5": 15.523,
+   "frame_R1": 4.273,
+   "frame_R5": 12.151
+  },
+  "obj": {
+   "n": 3440,
+   "video_R1": 7.326,
+   "video_R5": 22.936,
+   "frame_R1": 4.942,
+   "frame_R5": 18.285
+  },
+  "ans": {
+   "n": 3440,
+   "video_R1": 9.506,
+   "video_R5": 27.965,
+   "frame_R1": 7.645,
+   "frame_R5": 21.831
+  }
+ }
+}

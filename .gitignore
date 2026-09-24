@@ -1,72 +1,71 @@
-# Large data files �?do not commit raw datasets
-flickr30k/
-coco/
+# 本仓库只放"代码 + 结果"。以下为大件/可再生成/无关内容。
+#
+# 说明（2026-09-24 重建）：旧 .gitignore 编码已损坏且写法有陷阱——
+# `outputs/` 直接忽略后，`!outputs/**/*.json` 之类的 negation 无法把文件加回来
+# （git 不会重新遍历被忽略的目录），导致"只放 JSON 结果"实际从未生效。
+# 现改为：**只按后缀排除大件**，不忽略 outputs/ 目录本身。
+
+# 原始数据集（体积巨大，可再下载）
 data/
-
-# Model checkpoints (too large for git)
-*.pt
 models/
+coco/
+flickr30k/
 
-# Generated PDFs
+# 权重与检查点（大件，且 GitHub 单文件上限 100 MB）
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.onnx
+
+# 数据集分片
+*.parquet
+
+# 生成的 PDF（多为编译产物；稿件本体也不发布）
 *.pdf
 
-# LaTeX temp files
+# LaTeX 中间文件
 *.aux
 *.log
 *.out
 *.blg
 *.bbl
 *.toc
-*.synctex.gz
-*.fdb_latexmk
 *.fls
+*.fdb_latexmk
+*.synctex.gz
 *.synctex(busy)
-
-# Experimental outputs (except analysis summaries)
-# Experiment outputs �?track JSON analysis, exclude checkpoints
-outputs/
-!outputs/**/*.json
-!outputs/**/*.txt
-!outputs/**/*.csv
+*.spl
 
 # Python
 __pycache__/
 *.pyc
 *.pyo
 
-# IDE
+# IDE / 编辑器
 .vscode/
 .idea/
 .codegraph/
 *.swp
 *~
 
-# OS
+# 系统
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Claude
+# 交接文档（本地工作记录，不发布）
 CLAUDE.md
 
-# Git worktrees
+# git worktree 与历史重写产物
 .worktrees/
-
-# Temp/recovery files
-check_env.py
-recover_siglip.py
-
-# HuggingFace dataset shards / parquet artifacts
-*.parquet
-
-# git filter-repo history-rewrite artifacts
 .git-rewrite/
 
-*.spl
-main.log
-main_zh.log
-SUBMISSION/
-abstract.log
-
-# Local archive of unused scratch (91 MB of check residue) - never commit
+# 本地归档与备份
 备选/
+backups/
+publish_clean/
+
+# 投稿包
+SUBMISSION/

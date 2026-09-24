@@ -1,0 +1,133 @@
+{
+ "meta": {
+  "model": "Qwen2-VL-2B-Instruct + LoRA (vision-conditioned instruction tuning)",
+  "n_pairs": 3440,
+  "epochs": 10,
+  "lr": 0.0001,
+  "note": "full budget (10 epochs x full 3440 pairs); no gradient checkpointing (0.44s/step, 6GB); simplified LM objective (user segment not masked); max_pixels 19600; templates + frames pre-cached"
+ },
+ "frozen": {
+  "sigma_m": 0.0578,
+  "mean_cos": 0.3716,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "tau_meas": 0.9164,
+    "tau_pred": 0.9194
+   },
+   {
+    "lambda": -0.5,
+    "tau_meas": 0.9566,
+    "tau_pred": 0.9582
+   },
+   {
+    "lambda": 0.0,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0
+   },
+   {
+    "lambda": 0.5,
+    "tau_meas": 0.9755,
+    "tau_pred": 0.9761
+   },
+   {
+    "lambda": 1.0,
+    "tau_meas": 0.9605,
+    "tau_pred": 0.9612
+   },
+   {
+    "lambda": 2.0,
+    "tau_meas": 0.9144,
+    "tau_pred": 0.9164
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.9605
+   }
+  ],
+  "tau_l1": 0.9605,
+  "tau_text1": 0.9605
+ },
+ "traj": [
+  {
+   "epoch": 1,
+   "loss": 2.4411,
+   "sigma_m": 0.1413,
+   "mean_cos": 0.3485,
+   "tau_l1": 0.8823,
+   "tau_text1": 0.9373
+  },
+  {
+   "epoch": 2,
+   "loss": 2.2839,
+   "sigma_m": 0.1256,
+   "mean_cos": 0.305,
+   "tau_l1": 0.9201,
+   "tau_text1": 0.9559
+  },
+  {
+   "epoch": 3,
+   "loss": 2.2515,
+   "sigma_m": 0.11,
+   "mean_cos": 0.2538,
+   "tau_l1": 0.8945,
+   "tau_text1": 0.9486
+  },
+  {
+   "epoch": 4,
+   "loss": 2.2297,
+   "sigma_m": 0.1005,
+   "mean_cos": 0.2428,
+   "tau_l1": 0.9171,
+   "tau_text1": 0.9585
+  },
+  {
+   "epoch": 5,
+   "loss": 2.2112,
+   "sigma_m": 0.0996,
+   "mean_cos": 0.2193,
+   "tau_l1": 0.9018,
+   "tau_text1": 0.9274
+  },
+  {
+   "epoch": 6,
+   "loss": 2.1913,
+   "sigma_m": 0.094,
+   "mean_cos": 0.2106,
+   "tau_l1": 0.8786,
+   "tau_text1": 0.936
+  },
+  {
+   "epoch": 7,
+   "loss": 2.1758,
+   "sigma_m": 0.0907,
+   "mean_cos": 0.2023,
+   "tau_l1": 0.8965,
+   "tau_text1": 0.9662
+  },
+  {
+   "epoch": 8,
+   "loss": 2.169,
+   "sigma_m": 0.0867,
+   "mean_cos": 0.1976,
+   "tau_l1": 0.8587,
+   "tau_text1": 0.9426
+  },
+  {
+   "epoch": 9,
+   "loss": 2.1646,
+   "sigma_m": 0.083,
+   "mean_cos": 0.1904,
+   "tau_l1": 0.8872,
+   "tau_text1": 0.9629
+  },
+  {
+   "epoch": 10,
+   "loss": 2.1609,
+   "sigma_m": 0.0823,
+   "mean_cos": 0.1886,
+   "tau_l1": 0.8813,
+   "tau_text1": 0.9662
+  }
+ ]
+}

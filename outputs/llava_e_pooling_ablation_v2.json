@@ -1,0 +1,109 @@
+{
+ "orderings": {
+  "vis_mean_lang_mean": [
+   "vis",
+   "llm_other",
+   "llm_deep",
+   "llm_shallow",
+   "llm_mid",
+   "proj"
+  ],
+  "vis_max_lang_mean": [
+   "vis",
+   "llm_deep",
+   "llm_other",
+   "llm_mid",
+   "llm_shallow",
+   "proj"
+  ],
+  "vis_last_lang_mean": [
+   "vis",
+   "llm_other",
+   "llm_deep",
+   "llm_shallow",
+   "llm_mid",
+   "proj"
+  ],
+  "vis_mean_lang_max": [
+   "vis",
+   "llm_other",
+   "llm_deep",
+   "llm_mid",
+   "llm_shallow",
+   "proj"
+  ]
+ },
+ "kendall_consistency": {
+  "vis_mean_lang_mean_vs_vis_max_lang_mean": {
+   "spearman": 0.029,
+   "p": 0.9572
+  },
+  "vis_mean_lang_mean_vs_vis_last_lang_mean": {
+   "spearman": -0.6,
+   "p": 0.208
+  },
+  "vis_mean_lang_mean_vs_vis_mean_lang_max": {
+   "spearman": 0.371,
+   "p": 0.4685
+  },
+  "vis_max_lang_mean_vs_vis_last_lang_mean": {
+   "spearman": 0.6,
+   "p": 0.208
+  },
+  "vis_max_lang_mean_vs_vis_mean_lang_max": {
+   "spearman": -0.2,
+   "p": 0.704
+  },
+  "vis_last_lang_mean_vs_vis_mean_lang_max": {
+   "spearman": 0.086,
+   "p": 0.8717
+  }
+ },
+ "gamma": {
+  "vis_mean_lang_mean": {
+   "gamma": {
+    "vis": 23210.8,
+    "proj": 0.4,
+    "llm_other": 101.8,
+    "llm_shallow": 3.2,
+    "llm_mid": 2.2,
+    "llm_deep": 38.4
+   },
+   "E": 0.62
+  },
+  "vis_max_lang_mean": {
+   "gamma": {
+    "vis": -198880.5,
+    "proj": -0.4,
+    "llm_other": 248.2,
+    "llm_shallow": 9.5,
+    "llm_mid": 12.4,
+    "llm_deep": 268.7
+   },
+   "E": 9.7
+  },
+  "vis_last_lang_mean": {
+   "gamma": {
+    "vis": -1550.9,
+    "proj": 0.1,
+    "llm_other": -546.3,
+    "llm_shallow": -6.3,
+    "llm_mid": 0.4,
+    "llm_deep": 28.9
+   },
+   "E": 1.54
+  },
+  "vis_mean_lang_max": {
+   "gamma": {
+    "vis": 181598.5,
+    "proj": 2.2,
+    "llm_other": -1371.6,
+    "llm_shallow": 5.6,
+    "llm_mid": 16.7,
+    "llm_deep": 510.6
+   },
+   "E": 10.56
+  }
+ },
+ "bucketing": "canonical 8/16/8 prefix-aware v2"
+}

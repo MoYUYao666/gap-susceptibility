@@ -1,0 +1,25 @@
+{
+  "experiment": "imagenet_zs_full_ft_rerun_2026-08",
+  "config": {
+    "dataset": "flickr30k subset (captions 0..1999, batch64 -> 32 steps/epoch)",
+    "num_epochs": 10, "lr": 1e-4, "weight_decay": 0.01, "scheduler": "cosine",
+    "seed": 42, "amp": "fp16", "grad_clip": 1.0,
+    "reconstruction_note": "超参从 8/3 存档 results.json (epoch=10, step=320) 与 src/config.py 默认值重建；原脚本已丢失"
+  },
+  "final_train_loss": 2.7167,
+  "final_val_loss": 7.8772,
+  "best_val_loss": 4.1094,
+  "final_R1": 0.002,
+  "train_losses": [3.8584, 4.1158, 4.1292, 3.8752, 3.6458, 3.3793, 3.1755, 3.0431, 2.8162, 2.7167],
+  "val_losses": [4.1296, 4.1295, 4.1267, 4.1094, 4.3051, 5.1586, 5.5889, 6.5767, 7.6121, 7.8772],
+  "r1_history": [0.001, 0.001, 0.001, 0.001, 0.001, 0.003, 0.002, 0.004, 0.003, 0.002],
+  "n_trainable_params": 151277313,
+  "zero_shot_imagenet1k": {
+    "synset_single_template": 0.13,
+    "plain_single_template": 0.13,
+    "n_images": 14288,
+    "detail": "见 zero_shot_eval.json（last 0.13/0.13；best 0.13/0.07）"
+  },
+  "paper_value": 7.38,
+  "note": "训练脚本在结尾零样本评测处崩溃（get_text_features 返回类型问题），本 JSON 从训练日志输出的逐 epoch 值补写；模型权重 model_state_last/best.pt 均已保存"
+}

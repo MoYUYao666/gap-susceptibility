@@ -1,0 +1,132 @@
+{
+ "frozen": {
+  "sigma_m": 0.0578,
+  "mean_cos": 0.3716,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "tau_meas": 0.9164,
+    "tau_pred": 0.9194
+   },
+   {
+    "lambda": -0.5,
+    "tau_meas": 0.9566,
+    "tau_pred": 0.9582
+   },
+   {
+    "lambda": 0.0,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0
+   },
+   {
+    "lambda": 0.5,
+    "tau_meas": 0.9755,
+    "tau_pred": 0.9761
+   },
+   {
+    "lambda": 1.0,
+    "tau_meas": 0.9605,
+    "tau_pred": 0.9612
+   },
+   {
+    "lambda": 2.0,
+    "tau_meas": 0.9144,
+    "tau_pred": 0.9164
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.9605
+   }
+  ],
+  "tau_l1": 0.9605,
+  "tau_text1": 0.9605
+ },
+ "traj": [
+  {
+   "epoch": 1,
+   "loss": 0.8371,
+   "sigma_m": 0.0839,
+   "mean_cos": 0.3817,
+   "tau_l1": 0.926,
+   "tau_text1": 0.9393
+  },
+  {
+   "epoch": 2,
+   "loss": 0.5032,
+   "sigma_m": 0.0789,
+   "mean_cos": 0.3276,
+   "tau_l1": 0.9436,
+   "tau_text1": 0.9725
+  },
+  {
+   "epoch": 3,
+   "loss": 0.384,
+   "sigma_m": 0.0816,
+   "mean_cos": 0.3139,
+   "tau_l1": 0.9499,
+   "tau_text1": 0.9692
+  },
+  {
+   "epoch": 4,
+   "loss": 0.3194,
+   "sigma_m": 0.0776,
+   "mean_cos": 0.2852,
+   "tau_l1": 0.9436,
+   "tau_text1": 0.9665
+  },
+  {
+   "epoch": 5,
+   "loss": 0.2811,
+   "sigma_m": 0.0709,
+   "mean_cos": 0.2653,
+   "tau_l1": 0.9496,
+   "tau_text1": 0.9718
+  },
+  {
+   "epoch": 6,
+   "loss": 0.2548,
+   "sigma_m": 0.0737,
+   "mean_cos": 0.2635,
+   "tau_l1": 0.9536,
+   "tau_text1": 0.9791
+  },
+  {
+   "epoch": 7,
+   "loss": 0.2291,
+   "sigma_m": 0.0758,
+   "mean_cos": 0.2452,
+   "tau_l1": 0.9682,
+   "tau_text1": 0.9837
+  },
+  {
+   "epoch": 8,
+   "loss": 0.2127,
+   "sigma_m": 0.0736,
+   "mean_cos": 0.2511,
+   "tau_l1": 0.9413,
+   "tau_text1": 0.9821
+  },
+  {
+   "epoch": 9,
+   "loss": 0.2029,
+   "sigma_m": 0.0742,
+   "mean_cos": 0.2394,
+   "tau_l1": 0.9363,
+   "tau_text1": 0.9718
+  },
+  {
+   "epoch": 10,
+   "loss": 0.1958,
+   "sigma_m": 0.0755,
+   "mean_cos": 0.2338,
+   "tau_l1": 0.9436,
+   "tau_text1": 0.9851
+  }
+ ],
+ "meta": {
+  "model": "Qwen2-VL-2B-Instruct + LoRA (text-only instruction tuning)",
+  "n_pairs": 3440,
+  "epochs": 10,
+  "lr": 0.0001
+ }
+}
