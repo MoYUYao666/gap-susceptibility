@@ -1,0 +1,72 @@
+# Large data files â€?do not commit raw datasets
+flickr30k/
+coco/
+data/
+
+# Model checkpoints (too large for git)
+*.pt
+models/
+
+# Generated PDFs
+*.pdf
+
+# LaTeX temp files
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.synctex(busy)
+
+# Experimental outputs (except analysis summaries)
+# Experiment outputs â€?track JSON analysis, exclude checkpoints
+outputs/
+!outputs/**/*.json
+!outputs/**/*.txt
+!outputs/**/*.csv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+.codegraph/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude
+CLAUDE.md
+
+# Git worktrees
+.worktrees/
+
+# Temp/recovery files
+check_env.py
+recover_siglip.py
+
+# HuggingFace dataset shards / parquet artifacts
+*.parquet
+
+# git filter-repo history-rewrite artifacts
+.git-rewrite/
+
+*.spl
+main.log
+main_zh.log
+SUBMISSION/
+abstract.log
+
+# Local archive of unused scratch (91 MB of check residue) - never commit
+å¤‡é€‰/
