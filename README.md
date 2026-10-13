@@ -101,8 +101,12 @@ What this repository adds is **derived data**: the per-run result JSON files und
 configurations. The per-run records are **append-only** and each carries its own
 hyper-parameters, so a rewritten aggregate file cannot silently change a cited number.
 
-A versioned snapshot of this repository is archived on Zenodo; the DOI is minted from the
-`v1.0-prl-revision` release.
+A versioned snapshot of this repository is archived on Zenodo:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23341083.svg)](https://doi.org/10.5281/zenodo.23341083)
+
+**DOI: [10.5281/zenodo.23341083](https://doi.org/10.5281/zenodo.23341083)** — this is the persistent identifier to cite for the code and
+results. It resolves to the `v1.0-prl-revision` release.
 
 ## Reproducing a reported number
 
