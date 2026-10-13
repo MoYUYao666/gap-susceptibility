@@ -3,30 +3,6 @@
 Understanding and predicting how parameter-efficient fine-tuning reshapes cross-modal alignment in vision-language models.
 
 
----
-
-## Papers
-
-### Paper 1: Protect, Don't Perturb
-**An Empirical Study of Cross-Modal Alignment under PEFT of Vision-Language Models**
-
-- 116 experiments, 14 figures, 43 references
-- Key finding: text-only fine-tuning overwhelmingly preserves alignment across 5 architectures
-- Distribution Gap predicts retrieval ($r = -0.827$, partial $r = -0.807$)
-- Visual Fragility: causal evidence via noise sensitivity, gradient contribution, effective rank
-- **Submitted to Pattern Recognition** (transferred from Neurocomputing, 2026-07)
-
-### Paper 2: Gap Susceptibility
-**A Dynamical Theory of Cross-Modal Alignment under PEFT**
-
-- 224 experiments, 5 random seeds, 2 datasets (Flickr30k, MS-COCO), 3 PEFT methods
-- Introduces Gap Susceptibility $\Gamma_m = \|\nabla_m DG^*\| \cdot \cos\phi_m$
-- First-order ODE $d(DG^*)/dt = \alpha - \beta(DG^*-DG_0)$ with $R^2 = 0.984 \pm 0.009$
-- Effective Rank Saturation: $\|g_v\|$ flat across ranks ($k = 0.09$)
-- Cross-dataset validation on MS-COCO ($R^2 = 0.973 \pm 0.018$)
-- **Ready for submission**
-
-### Paper 3: Predictive PEFT Allocation
 **Gradient Structure Laws as Predictors of PEFT Design**
 
 - 126 runs on the present protocol plus a 57-run capacity-matched allocation study; 2 architectures (LLaVA-1.5-7B, Qwen2-VL-7B)
