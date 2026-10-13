@@ -1,7 +1,7 @@
-"""A1 提升实验 2b：逐 epoch 的 τ/零样本轨迹 + fig4。
-对 a1_retrain/{text_only,both}/epoch{N}.pt 逐个评估（5000 抽样）：
-top-1、τ（vs frozen）、CG（Flickr30k val）。结果存 outputs/a1_tau_trajectory.json，
-图存 paper_a1/figures/fig4_trajectory.png。
+"""A1 enhancement experiment 2b: per-epoch τ/zero-shot trajectory + fig4.
+Evaluate a1_retrain/{text_only,both}/epoch{N}.pt one by one (5000 sampled):
+top-1, τ (vs frozen), CG (Flickr30k val). Results saved to outputs/a1_tau_trajectory.json,
+figure saved to paper_a1/figures/fig4_trajectory.png.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -74,7 +74,7 @@ def evaluate(m):
     return base, tf, S, top1, cg
 
 
-# frozen 基准
+# frozen baseline
 mf, _ = build(False, False)
 base_f, tf_f, S_f, _, cg_f = evaluate(mf)
 base_np = S_f.cpu().numpy()

@@ -1,25 +1,25 @@
-"""A1 #7：DINOv2 阴性对照——非对比式视觉模型的 gap surgery（云端脚本，未执行）。
+"""A1 #7: DINOv2 negative control — gap surgery for a non-contrastive vision model (cloud script, not executed).
 
-问题：τ 剂量-响应 + CG 非单调这个"签名"是 CLIP 对比式训练特有，还是分类几何通用？
-协议（DINOv2 无文本塔，做 vision-only 适配）：
-  - 类表示 = 类质心原型（5k 样本上按真实标签求 mean，L2 归一化；自参照但 λ 间一致）；
-  - 冻结分数 s_c = x_i · c_c（近质心分类），top-5 集与 τ 定义同 A1；
-  - 手术：x' = norm(x + λ‖g‖ d̂)，d̂ = normalize(mean(原型) − mean(图像))（"原型-图像鸿沟"方向），
-    另加正交方向与随机方向两个对照；
-  - 指标：τ(λ)、top1(λ)（近质心）、CG(λ) = ‖mean(原型) − mean(x')‖。
-判定：
-  - 若 τ 单调崩塌 + CG 非单调 + 方向依赖都出现 → 签名与对比式训练无关（强化 A1 普适性）；
-  - 若不存在 → 签名是 CLIP 类模型特有（划定 A1 主张边界）。两种结果都有价值。
+Question: is the “signature” of τ dose-response + non-monotonic CG specific to CLIP contrastive training, or generic to classification geometry?
+Protocol (DINOv2 has no text tower, so we do a vision-only adaptation):
+  - class representation = class centroid prototypes (mean over 5k samples by true labels, L2-normalized; self-referential but consistent across λ);
+  - frozen score s_c = x_i · c_c (nearest-centroid classification), top-5 set and τ definition as in A1;
+  - surgery: x' = norm(x + λ‖g‖ d̂), d̂ = normalize(mean(prototypes) − mean(images)) (the “prototype-image gap” direction),
+    plus an orthogonal direction and a random direction as two controls;
+  - metrics: τ(λ), top1(λ) (nearest-centroid), CG(λ) = ‖mean(prototypes) − mean(x')‖.
+Decision:
+  - if monotonic τ collapse + non-monotonic CG + direction dependence all appear → the signature is unrelated to contrastive training (strengthens the generality of A1);
+  - if not → the signature is specific to CLIP-like models (delimits the boundary of the A1 claim). Both outcomes are valuable.
 
-⚠️ 模型权重规则（CLAUDE.md）：在服务器下载，禁止本地下载上传。
-  HF 镜像：HF_ENDPOINT=https://hf-mirror.com HF_HUB_DISABLE_XET=1 python -c "from huggingface_hub import snapshot_download; snapshot_download('facebook/dinov2-base', local_dir='/autodl-fs/data/models/dinov2-base')"
-  ModelScope：python -c "from modelscope import snapshot_download; snapshot_download('tiansz/dinov2-base', local_dir='/autodl-fs/data/models/dinov2-base')"  # 或对应官方镜像名
+⚠️ Model weight rule (CLAUDE.md): download on the server; local download-then-upload is forbidden.
+  HF mirror: HF_ENDPOINT=https://hf-mirror.com HF_HUB_DISABLE_XET=1 python -c "from huggingface_hub import snapshot_download; snapshot_download('facebook/dinov2-base', local_dir='/autodl-fs/data/models/dinov2-base')"
+  ModelScope: python -c "from modelscope import snapshot_download; snapshot_download('tiansz/dinov2-base', local_dir='/autodl-fs/data/models/dinov2-base')"  # or the corresponding official mirror name
 
-用法（服务器）：
+Usage (on the server):
   python dinov2_gap_surgery.py --model /autodl-fs/data/models/dinov2-base --local-only \
       --parquet-dir /autodl-fs/data/imagenet_hf/data --sample 5000 \
       --out /autodl-fs/data/a1_dinov2_surgery.json
-预计：dinov2-base 在 4080 上 5000 张 × 10 λ ≈ 15–25 分钟。
+Estimated: dinov2-base on a 4080, 5000 images × 10 λ ≈ 15–25 minutes.
 """
 import argparse
 import glob
@@ -86,7 +86,7 @@ def main():
     model = AutoModel.from_pretrained(args.model, local_files_only=args.local_only).eval().cuda()
     processor = AutoImageProcessor.from_pretrained(args.model, local_files_only=args.local_only)
 
-    x = encode(model, processor, imgs)                       # [N, D] 归一化
+    x = encode(model, processor, imgs)                       # [N, D] normalized
     cls_ids = sorted(set(labels.tolist()))
     protos = torch.stack([x[labels == c].mean(0) for c in cls_ids])
     protos = norm(protos)                                    # [K, D]
@@ -99,7 +99,7 @@ def main():
     topk5 = np.argsort(-S0, axis=1)[:, :5]
     frozen_top1 = (S0.argmax(1) == labels).mean() * 100
 
-    # 正交与随机对照方向
+    # orthogonal and random control directions
     D = x.shape[1]
     rng2 = np.random.RandomState(7)
     r_vec = torch.tensor(rng2.randn(D), dtype=torch.float32, device=x.device)

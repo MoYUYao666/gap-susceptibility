@@ -1,12 +1,12 @@
-"""Qwen2-VL-7B 的两个 vintage 对照：noise（按 seed 播撒噪声图）vs blank（确定化全黑图）。
+"""Two vintage comparisons for Qwen2-VL-7B: noise (noise image seeded per seed) vs blank (deterministic all-black image).
 
-noise vintage：2026-09-13 14:2x，autodl RTX 4080 SUPER 32GB，驱动 580.142
-blank vintage：2026-09-13 16:5x，autodl RTX 4080（非 SUPER）32GB，驱动 595.71.05
-→ 两套 vintage 在**图像协议与设备上同时不同**，因此：
-   * 每个 vintage 内部的臂间比较是干净的（同种 seed 内共用一张图、同一台设备）；
-   * vintage 之间只能比"每 seed 的臂序/符号"，不能比 ΔE 绝对值。
+noise vintage: 2026-09-13 14:2x, autodl RTX 4080 SUPER 32GB, driver 580.142
+blank vintage: 2026-09-13 16:5x, autodl RTX 4080 (non-SUPER) 32GB, driver 595.71.05
+→ the two vintages differ in **both the image protocol and the device**, therefore:
+   * comparisons between arms within a vintage are clean (the same image is shared within a seed, on the same device);
+   * across vintages we can only compare the "per-seed arm order/signs", not absolute ΔE values.
 
-产出：outputs/c1_qwen_vintages.json
+Output: outputs/c1_qwen_vintages.json
 """
 import json
 import math
@@ -22,7 +22,7 @@ except Exception:  # noqa: BLE001
 EXP = 'paper3/scripts/outputs/experiments'
 OUT = 'outputs/c1_qwen_vintages.json'
 SEEDS = (42, 123, 456, 999)
-# 每个臂有两个 vintage 的文件名后缀（--tag 追加在 pr/lr 之后，所以位置不同）
+# each arm has two filename suffixes, one per vintage (--tag is appended after pr/lr, hence the different positions)
 ARMS = {
     'projonly': {'label': 'projector r=4 only (LLM frozen)',
                  'noise': 'tnone_pr4_projonly',
@@ -77,19 +77,19 @@ def vintage(which):
 def report(name, v, note=''):
     print(f'===== {name} =====   {note}')
     e0s = sorted({round(r[k]['E0']) for r in v.values() for k in r})
-    print(f'  E0 取值集合（应只有 1 个 → 图与 seed 无关）: {e0s}')
+    print(f'  set of E0 values (should have only 1 → image independent of seed): {e0s}')
     print(f'  {"seed":>5} ' + ' '.join(f'{k:>16}' for k in ARMS))
     for s in sorted(v):
         print(f'  {s:>5} ' + ' '.join(f'{v[s][k]["delta_E"]:>+16.0f}' if k in v[s] else f'{"-":>16}'
                                      for k in ARMS))
-    print(f'  {"均值":>5} ' + ' '.join(
+    print(f'  {"mean":>5} ' + ' '.join(
         f'{mean([v[s][k]["delta_E"] for s in v if k in v[s]]):>+16.0f}' for k in ARMS))
     print(f'  {"sd":>5} ' + ' '.join(
         f'{pstdev([v[s][k]["delta_E"] for s in v if k in v[s]]):>16.0f}' for k in ARMS))
-    print(f'  {"正号":>5} ' + ' '.join(
+    print(f'  {"pos":>5} ' + ' '.join(
         f'{sum(1 for s in v if k in v[s] and v[s][k]["delta_E"] > 0)}/{len([s for s in v if k in v[s]])}'
         .rjust(16) for k in ARMS))
-    # 臂序一致性
+    # arm-order consistency
     order_ok = 0
     n = 0
     detail = []
@@ -101,7 +101,7 @@ def report(name, v, note=''):
         ok = vals['projonly'] > vals['prlo2_llmhi16'] > vals['prhi16_llmlo2']
         order_ok += ok
         detail.append(f'{s}:' + ('ok' if ok else 'NO'))
-    print(f'  臂序 projonly > pr2/lr16 > pr16/lr2 一致的 seed 数: {order_ok}/{n}  [{" ".join(detail)}]')
+    print(f'  seeds where the arm order projonly > pr2/lr16 > pr16/lr2 holds: {order_ok}/{n}  [{" ".join(detail)}]')
     tests = {}
     for k in ('prhi16_llmlo2', 'prlo2_llmhi16'):
         a = [v[s]['projonly']['delta_E'] for s in v if 'projonly' in v[s] and k in v[s]]
@@ -121,11 +121,11 @@ def report(name, v, note=''):
 def main():
     noise = vintage('noise')
     blank = vintage('blank')
-    a = report('noise vintage (RTX 4080 SUPER, 噪声图)', noise)
+    a = report('noise vintage (RTX 4080 SUPER, noise image)', noise)
     print()
-    b = report('blank vintage (RTX 4080, 全黑图)', blank)
+    b = report('blank vintage (RTX 4080, all-black image)', blank)
     print()
-    print('===== 跨 vintage：每 seed 的臂序是否一致 =====')
+    print('===== cross-vintage: does the arm order agree for each seed =====')
     both = sorted(set(noise) & set(blank))
     for s in both:
         on = {k: noise[s][k]['delta_E'] for k in ARMS if k in noise[s]}
@@ -134,13 +134,13 @@ def main():
             continue
         rn = sorted(on, key=lambda k: -on[k])
         rb = sorted(ob, key=lambda k: -ob[k])
-        print(f'  seed {s}: noise 序 {rn}')
-        print(f'           blank 序 {rb}   {"一致" if rn == rb else "不一致"}')
+        print(f'  seed {s}: noise order {rn}')
+        print(f'           blank order {rb}   {"same" if rn == rb else "different"}')
         print(f'           noise ΔE {[on[k] for k in rn]}')
         print(f'           blank ΔE {[ob[k] for k in rb]}')
 
     print()
-    print('===== 块策略：blank vs noise(v2) vs 旧存档 的符号 =====')
+    print('===== block strategy: signs of blank vs noise(v2) vs old archive =====')
     block = {'blank': {}, 'noise_v2': {}, 'archive': {}}
     for s in (42, 123, 456):
         for bc in BLOCK_CFGS:
@@ -155,16 +155,16 @@ def main():
         for s in sorted(block[tag]):
             row = block[tag][s]
             print(f'    seed {s}: ' + '  '.join(f'{bc} {row[bc]:+.0f}' for bc in BLOCK_CFGS if bc in row)
-                  + f'   → 符号 {sorted({"+" if row[bc] > 0 else "-" for bc in row if bc in row})}')
-    # 符号稳定性判定
+                  + f'   → signs {sorted({"+" if row[bc] > 0 else "-" for bc in row if bc in row})}')
+    # sign-stability decision
     signs = {tag: sorted({('+' if v > 0 else '-') for s in block[tag] for v in block[tag][s].values()})
              for tag in block}
-    print(f'  各 vintage 出现的符号集合: {signs}')
+    print(f'  sign sets observed in each vintage: {signs}')
 
     json.dump({'provenance': {
         'noise_vintage': 'autodl RTX 4080 SUPER 32760MiB, driver 580.142 (seeded noise image per seed)',
         'blank_vintage': 'autodl RTX 4080 (non-SUPER) 32760MiB, driver 595.71.05 (deterministic black image)',
-        'caveat': '两套 vintage 在图像协议与设备上同时不同；vintage 内臂间比较干净，跨 vintage 只比臂序/符号。',
+        'caveat': 'the two vintages differ in both the image protocol and the device; comparisons between arms within a vintage are clean, while cross-vintage comparisons only use arm order/signs.',
     }, 'noise': a, 'blank': b, 'block_signs': block, 'sign_sets': signs},
         open(OUT, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     print(f'\nDONE -> {OUT}')

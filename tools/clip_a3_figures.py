@@ -1,6 +1,6 @@
-"""A3 图生成: fig1 (λ 曲线: τ + top-1 保留率) / fig2 (σ_m 2×2 判别 + 域/陆地比值跨模态对照)。
-数据: outputs/sonar_protocol.json
-输出: paper_a3/figures/fig1_lambda.png, fig2_sigma.png @300dpi (Times New Roman)
+"""A3 figure generation: fig1 (λ curve: τ + top-1 retention) / fig2 (σ_m 2×2 discrimination + domain/terrestrial ratio cross-modality comparison).
+Data: outputs/sonar_protocol.json
+Output: paper_a3/figures/fig1_lambda.png, fig2_sigma.png @300dpi (Times New Roman)
 """
 import os, json
 import matplotlib
@@ -17,7 +17,7 @@ D = json.load(open('outputs/sonar_protocol.json', encoding='utf-8'))
 MOD = {'clip_frozen': 'CLIP (frozen)', 'sonar_ft': 'SonarCLIP (10ep)', 'clip_flickrft': 'CLIP+Flickr (10ep)'}
 COL = {'clip_frozen': '#4C72B0', 'sonar_ft': '#C44E52', 'clip_flickrft': '#55A868'}
 
-# ---------------- fig1: λ 曲线 (两面板: τ 与 top-1 保留率) ----------------
+# ---------------- fig1: λ curves (two panels: τ and top-1 retention) ----------------
 fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.9))
 ax = axes[0]
 for tag, lab in MOD.items():
@@ -38,7 +38,7 @@ ax.set_xlabel(r'$\lambda$')
 ax.set_ylabel('zero-shot top-1 (%)')
 ax.set_ylim(0, 106)
 ax.set_title('(b) Zero-shot top-1 (absolute)', fontsize=9)
-# 共用图例（置底、三列）
+# shared legend (bottom, three columns)
 h, l = axes[0].get_legend_handles_labels()
 fig.legend(h, l, fontsize=7, frameon=True, framealpha=0.95, loc='lower center',
            bbox_to_anchor=(0.5, -0.04), ncol=3)
@@ -46,7 +46,7 @@ fig.tight_layout(rect=[0, 0.06, 1, 1])
 fig.savefig(os.path.join(OUTDIR, 'fig1_lambda.png'), bbox_inches='tight')
 plt.close(fig)
 
-# ---------------- fig2: σ_m 判别 + 跨模态比值 ----------------
+# ---------------- fig2: σ_m discrimination + cross-modality ratio ----------------
 fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.7))
 ax = axes[0]
 vals = [D['clip_frozen']['sigma_m'], D['clip_flickrft']['sigma_m'], D['sonar_ft']['sigma_m']]

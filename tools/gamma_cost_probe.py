@@ -1,16 +1,16 @@
-"""Γ 测量成本探针（局限 10：>7B 的绝对成本）。
+"""Γ measurement cost probe (limitation 10: absolute cost of >7B).
 
-论文的 Γ 需要在初始化点做一次全模型反向传播（无 Hessian）。本脚本在一台机器上实测：
-  - 模型加载时间与加载后显存；
-  - 单次 E 前向、单次 E 反向（Γ 估计所需的两次传播之一）的墙钟与显存峰值；
-  - 一次训练步（loss 前向+反向）的成本，作为"Γ 测量 vs 一步训练"的比值。
-支持 LLaVA 与 Qwen2-VL（4-bit QLoRA 加载，与训练脚本同款量化配置），
-并自适应 transformers 4.x/5.x（Qwen 在 5.x 需要 mm_token_type_ids）。
+The paper's Γ needs one full-model backward pass at the initialization point (no Hessian). This script measures on a single machine:
+  - model load time and VRAM after loading;
+  - wall-clock and peak VRAM of a single E forward pass and a single E backward pass (one of the two passes a Γ estimate needs);
+  - the cost of one training step (loss forward + backward), as the ratio "Γ measurement vs one training step".
+Supports LLaVA and Qwen2-VL (4-bit QLoRA loading, same quantization config as the training scripts),
+and adapts to transformers 4.x/5.x (Qwen needs mm_token_type_ids on 5.x).
 
-用法（云端）:
+Usage (cloud):
   python tools/gamma_cost_probe.py --arch qwen  --model-path /root/Qwen2-VL-7B-Instruct --n-samples 4
   python tools/gamma_cost_probe.py --arch llava --model-path /root/llava-1.5-7b-hf     --n-samples 4
-输出: outputs/gamma_cost_<arch>_<basename>.json
+Output: outputs/gamma_cost_<arch>_<basename>.json
 """
 import argparse
 import json
@@ -26,7 +26,7 @@ from PIL import Image  # noqa: E402
 
 
 def build_batch(arch, processor, seed=42, size=336):
-    """与训练脚本同款输入：blank/噪声图像 + 一条指令，返回 (batch_dict, img_tok_id)。"""
+    """Same input as the training scripts: blank/noise image + one instruction; returns (batch_dict, img_tok_id)."""
     rng = np.random.RandomState(seed)
     img = Image.fromarray(rng.randint(0, 255, (size, size, 3), dtype=np.uint8))
     if arch == 'llava':
@@ -58,7 +58,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--arch', choices=['llava', 'qwen'], required=True)
     ap.add_argument('--model-path', required=True)
-    ap.add_argument('--n-samples', type=int, default=4, help='Γ 的 E 平均样本数（参考协议为 4 个 eval 样本）')
+    ap.add_argument('--n-samples', type=int, default=4, help='number of eval samples averaged for the Γ E (the reference protocol uses 4 eval samples)')
     ap.add_argument('--out', default=None)
     args = ap.parse_args()
 
@@ -77,7 +77,7 @@ def main():
     torch.cuda.reset_peak_memory_stats()
 
     b, img_tok, _ = build_batch(args.arch, processor)
-    # 4-bit 基座: 只对可训练/浮点参数打开梯度路径(E 需要二阶? 不需要——一阶即可)
+    # 4-bit base model: open the gradient path only for trainable/float parameters (does E need second order? No -- first order suffices)
     for p in model.parameters():
         if p.is_floating_point():
             p.requires_grad = True
@@ -92,7 +92,7 @@ def main():
         hv, hl = h[v].mean(0), h[l].mean(0)
         return ((hv - hl) ** 2).mean()
 
-    # 预热一次(排除首次 kernel 编译)
+    # warm up once (to exclude first-time kernel compilation)
     try:
         e_measure()
     except Exception as ex:  # noqa: BLE001
@@ -112,7 +112,7 @@ def main():
     bwd_s = time.time() - t2
     peak_gamma = torch.cuda.max_memory_allocated() / 1e9
 
-    # 一次训练步(loss 前向+反向)作为对照
+    # one training step (loss forward + backward) as the comparison
     labels = b['input_ids'].clone()
     labels[labels == processor.tokenizer.pad_token_id] = -100
     model.zero_grad()

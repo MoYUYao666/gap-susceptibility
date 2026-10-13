@@ -1,29 +1,29 @@
-"""ImageNet-1K zero-shot 协议评测 — 采用协议：单模板 'a photo of a {}' + 完整 synset 类名
-（类名取自 HF ILSVRC/imagenet-1k 的 ClassLabel names 原文，不做逗号截断）。
-14288 张 val 子集（4 个分片）。对 frozen / text_only_r8 / both_r8 三个 checkpoint 评测，
-结果落盘 outputs/imagenet1k_zs_synset_single.json（不覆盖其他协议文件）。
-补充参考协议（plain 名 + 单模板）见 outputs/imagenet1k_ckpt_check.json。
+"""ImageNet-1K zero-shot protocol evaluation — adopted protocol: single template 'a photo of a {}' + full synset class names
+(class names taken verbatim from the ClassLabel names of HF ILSVRC/imagenet-1k, with no comma truncation).
+A 14288-image val subset (4 shards). Evaluates the three checkpoints frozen / text_only_r8 / both_r8,
+and the results are written to outputs/imagenet1k_zs_synset_single.json (other protocol files are not overwritten).
+The supplementary reference protocol (plain names + single template) is in outputs/imagenet1k_ckpt_check.json.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
 
-# ---------- 1. parquet 先行（datasets 必须在 torch 前导入，避免 pyarrow 段错误）----------
+# ---------- 1. parquet first (datasets must be imported before torch to avoid a pyarrow segfault) ----------
 from glob import glob
 from datasets import Dataset
 PARQ = sorted(glob('data/imagenet_hf/*.parquet'))
-assert PARQ, 'data/imagenet_hf/ 下没有 parquet 分片'
+assert PARQ, 'no parquet shards under data/imagenet_hf/'
 ds = Dataset.from_parquet(PARQ)
-print('ImageNet-1K 分片已加载:', len(ds), '张', flush=True)
+print('ImageNet-1K shards loaded:', len(ds), 'images', flush=True)
 
 labs = ds['label']
 uniq = sorted(set(labs))
 if uniq == [-1]:
-    sys.exit('!! 标签全为 -1：这是 ILSVRC test 集。请用 validation 分片。')
+    sys.exit('!! all labels are -1: this is the ILSVRC test set. Use the validation shards.')
 
-# 完整类名（保留逗号后 synset 短语），即 dataset 的原始 label names
+# full class names (keeping the synset phrase after the comma), i.e. the dataset's original label names
 CLASS_NAMES_FULL = ds.features['label'].names
 assert len(CLASS_NAMES_FULL) == 1000
-print('首 3 类名(full):', CLASS_NAMES_FULL[:3], flush=True)
+print('first 3 class names (full):', CLASS_NAMES_FULL[:3], flush=True)
 
 # ---------- 2. CLIP + LoRA ----------
 import sys, os
@@ -109,4 +109,4 @@ out = {
 os.makedirs('outputs', exist_ok=True)
 json.dump(out, open('outputs/imagenet1k_zs_synset_single.json', 'w', encoding='utf-8'),
           ensure_ascii=False, indent=2)
-print('结果已存 outputs/imagenet1k_zs_synset_single.json')
+print('Results saved to outputs/imagenet1k_zs_synset_single.json')

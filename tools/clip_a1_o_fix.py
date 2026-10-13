@@ -1,8 +1,8 @@
-"""补测 O 族 λ=-0.25 实测点（2026-08-22）。
+"""Additional measurement of the O-family λ=-0.25 point (2026-08-22).
 
-a1_full_results.json 的 O 族缺 λ=-0.25（原批未跑）；为让 figT4 九点完整，
-按 clip_a1_full.py 同口径（seed 42 五万张抽样、RandomState(7) 的 r_hat、
-Flickr30k 2000-3000 鸿沟、top-5 kendalltau）补测该点，追加到 outputs/a1_theory_verify.json。
+The O family in a1_full_results.json is missing λ=-0.25 (not run in the original batch); to make the nine points of figT4 complete,
+this point is measured under the same protocol as clip_a1_full.py (seed 42 50k-image sampling, r_hat from RandomState(7),
+Flickr30k 2000-3000 gap, top-5 kendalltau), and appended to outputs/a1_theory_verify.json.
 """
 import os
 os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')

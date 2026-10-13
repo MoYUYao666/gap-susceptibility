@@ -1,6 +1,6 @@
-"""A3 增强①: 声呐任务敏感性谱系（对应 A2-B: NCC / top-1 / R@1 同 λ 网格）。
-模型: clip_frozen / sonar_ft(加载 sonar_clip_ft.pt) / clip_flickrft(加载 ocean_clip_flickrft.pt + 声呐探针)
-输出: outputs/sonar_spectrum.json
+"""A3 enhancement ①: sonar-task sensitivity spectrum (corresponds to A2-B: NCC / top-1 / R@1 on the same λ grid).
+Models: clip_frozen / sonar_ft (loads sonar_clip_ft.pt) / clip_flickrft (loads ocean_clip_flickrft.pt + sonar probe)
+Output: outputs/sonar_spectrum.json
 """
 import os, sys, json
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'

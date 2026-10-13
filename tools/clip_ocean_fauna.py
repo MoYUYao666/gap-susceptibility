@@ -1,7 +1,7 @@
-"""补强实验 ④: rare-species 单来源"海洋动物"扩展类集（鱼+鲸豚+鳍足类+海鸟+珊瑚+海参）。
-同一协议（margins 全量分析: m_c/σ_m/margins/精确预测/实测 τ/top1/逐类 Pearson）在更大 N 上复验,
-并把 N-sweep 延伸到 N≈120（跨类群, 比 67 类鱼更代表"海洋视觉"）。
-输出: outputs/ocean_subset_fauna.json + outputs/ocean_fauna_margins.json
+"""Reinforcement experiment ④: rare-species single-source "marine animal" extended class set (fish + cetaceans + pinnipeds + seabirds + corals + sea cucumbers).
+Same protocol (full margins analysis: m_c/σ_m/margins/exact prediction/measured τ/top1/per-class Pearson) re-verified at larger N,
+and N-sweep extended to N≈120 (cross-taxon, more representative of "marine vision" than 67 fish classes).
+Output: outputs/ocean_subset_fauna.json + outputs/ocean_fauna_margins.json
 """
 import os, sys, json, importlib.util
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -12,7 +12,7 @@ import numpy as np
 import torch
 from datasets import load_dataset
 
-# 复用 clip_ocean_margins 的 embed / analyze（open_clip 模型路径）
+# reuse embed / analyze from clip_ocean_margins (open_clip model path)
 spec = importlib.util.spec_from_file_location('ocm', 'tools/clip_ocean_margins.py')
 ocm = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ocm)
@@ -41,14 +41,14 @@ def build():
     ds = load_dataset('parquet', data_files=sorted(
         os.path.join('data/rare-species/data', f) for f in os.listdir('data/rare-species/data')), split='train')
     idx = [i for i, r in enumerate(ds) if marine_mask(r)]
-    print('海洋动物行数', len(idx), flush=True)
+    print('marine animal rows', len(idx), flush=True)
     sub = ds.select(idx)
     import collections
     per = collections.defaultdict(list)
     for i, r in enumerate(sub):
         per[r['sciName']].append(idx[i])
     keep = {c: v for c, v in per.items() if len(v) >= MIN_PER_CLASS}
-    print('≥8 图类目: %d' % len(keep), flush=True)
+    print('≥8 image categories: %d' % len(keep), flush=True)
     rng = np.random.RandomState(SEED)
     chosen = []
     for c, v in sorted(keep.items()):
@@ -85,7 +85,7 @@ def main():
     idx = sub['subset_idx']
     texts = [ocm.TEMPLATE.format(c) for c in classes]
     labels = np.array([classes.index(r['sciName']) for r in ds.select(idx)])
-    print('类目 %d / 图像 %d / 分组 %s' % (len(classes), len(idx), sub['groups']), flush=True)
+    print('classes %d / images %d / groups %s' % (len(classes), len(idx), sub['groups']), flush=True)
     res = {}
     for tag in ['bioclip', 'oceanclip']:
         print('== %s ==' % tag, flush=True)

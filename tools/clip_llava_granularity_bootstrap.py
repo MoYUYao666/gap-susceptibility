@@ -1,6 +1,6 @@
-"""(完整版) 层粒度消融 + Γ 逐样本 bootstrap + E 样本量敏感性(解码器)。
-一次运行产出: 逐层 gdot、逐样本 4 块 gdot(bootstrap)、E 每样本。
-输出: outputs/llava_granularity_bootstrap.json
+"""(Full version) layer-granularity ablation + Γ per-sample bootstrap + E sample-size sensitivity (decoder).
+One run produces: per-layer gdot, per-sample 4-block gdot (bootstrap), E per sample.
+Output: outputs/llava_granularity_bootstrap.json
 """
 import os, sys, json, glob
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -169,17 +169,17 @@ agg = defaultdict(float)
 for li, v in layer_full.items():
     agg['llm_shallow' if li < 11 else ('llm_mid' if li < 22 else 'llm_deep')] += v
 agg_order = order_of(agg)
-# 粒度一致性: 仅在"真正由层构成"的 3 块上比较 (排除 llm_other, 它由 lm_head/embed 主导)
+# granularity consistency: compare only on the 3 blocks that are "genuinely made of layers" (excluding llm_other, dominated by lm_head/embed)
 llm_blocks = ['llm_shallow', 'llm_mid', 'llm_deep']
 consistency = stats.spearmanr([blk_mean[k] for k in llm_blocks], [agg.get(k, 0.0) for k in llm_blocks])
-# 层剖面 U 形诊断
+# layer-profile U-shape diagnosis
 depths_arr = np.array(sorted(layer_full))
 gabs = np.array([abs(layer_full[d]) for d in depths_arr])
 argmax_l = int(depths_arr[int(np.argmax(gabs))])
 u_spec = stats.spearmanr(np.abs(depths_arr - argmax_l), gabs)
 argmin_l = int(depths_arr[int(np.argmin(gabs))])
 middle = int(np.argmin(np.abs(depths_arr - 15.5)))
-# 前缀稳定性: n=4/8/16 的层序 Top-3 与全量 Top-3 的一致性 (用逐样本累计)
+# prefix stability: agreement of the Top-3 layer order at n=4/8/16 with the full Top-3 (using per-sample accumulation)
 layer_by_n = {}
 for n in (4, 8, 16):
     acc = defaultdict(float)

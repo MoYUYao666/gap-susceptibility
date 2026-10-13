@@ -1,8 +1,8 @@
-"""海洋微调逐 epoch τ 轨迹（对接 A1 的"τ 最早侵蚀信号"协议，海洋域验证）。
-对 bioclip 分别做 {marine, flickr} 10ep FullFT（与 A2 判别实验同配置、每模式从冻结基座重载），
-每 epoch 后测量：marine top-1(t)、τ(t)（冻结 top-5 集上冻结 vs 当前模型分数序 Kendall）、CG(t)。
-用法: python tools/clip_ocean_tautraj.py [marine|flickr|both]   (默认 both)
-输出: outputs/ocean_tautraj.json
+"""Per-epoch τ trajectory of marine fine-tuning (following A1's "τ as the earliest erosion signal" protocol, validated in the marine domain).
+For bioclip, run 10ep FullFT on {marine, flickr} separately (same configuration as the A2 discriminative experiment, each mode reloaded from the frozen base),
+after each epoch measure: marine top-1(t), τ(t) (Kendall between frozen and current model score order on the frozen top-5 set), CG(t).
+Usage: python tools/clip_ocean_tautraj.py [marine|flickr|both]   (default both)
+Output: outputs/ocean_tautraj.json
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'

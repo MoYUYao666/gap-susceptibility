@@ -1,27 +1,27 @@
-"""A1 #1 v3：首 token logprob 零样本 + 权重/表示空间手术（云端，未执行）。
+"""A1 #1 v3: first-token logprob zero-shot + weight/representation-space surgery (cloud, not executed).
 
-诊断结论（qwen_v2_diag）：
-  - h_p（图+分类提示的末层隐藏态）的信息量很好：贪婪下一 token 对 8/8 张图给出
-    'bird/dog/mount/mitt/en/...' 等合理词；
-  - v2 的续写评分有结构性 bug（把末层隐藏态当输入嵌入重进 LM → 垃圾 logits）。
-v3 因此改用全部已验证的组件：
-  1. 零样本得分 = h_p 经 lm_head 的**首 token logit**：
-        score_c = (h_p · w_{c})，w_c = lm_head 权重矩阵中类别名首 token 对应行；
-  2. 手术在 h 空间 / 权重空间，且**保持 A1 的非对称结构**：
-        图像侧  h_p' = norm(h_p + λ‖g‖ d̂)  → score_c = h_p'·w_c   （逐类偏置场）
-        文本侧  w_c'  = norm(w_c + λ‖g‖ d̂)  → score_c = h_p·w_c'   （逐图像缩放，一阶零重排）
-  3. τ：冻结 top-5 类集上冻结 vs 扰动 score 排序的 Kendall 系数（与 A1 同定义）；
-  4. CG 与鸿沟方向沿用 h 空间文本表示（text_h）与 h_p。
+Diagnostic conclusions (qwen_v2_diag):
+  - h_p (the last-layer hidden state of image + classification prompt) carries good information: the greedy next token gives
+    reasonable words such as 'bird/dog/mount/mitt/en/...' for 8/8 images;
+  - the continuation scoring of v2 has a structural bug (feeding the last-layer hidden state back into the LM as an input embedding → garbage logits).
+v3 therefore switches to fully validated components:
+  1. Zero-shot score = the **first-token logit** of h_p through lm_head:
+        score_c = (h_p · w_{c}), w_c = the row of the lm_head weight matrix corresponding to the first token of class name c;
+  2. the surgery is in h space / weight space and **preserves the asymmetric structure of A1**:
+        image side  h_p' = norm(h_p + λ‖g‖ d̂)  → score_c = h_p'·w_c   (per-class bias field)
+        text side  w_c'  = norm(w_c + λ‖g‖ d̂)  → score_c = h_p·w_c'   (per-image scaling, first-order zero reordering)
+  3. τ: on the frozen top-5 class set, the Kendall coefficient between the frozen and perturbed score rankings (same definition as A1);
+  4. CG and the gap direction follow the h-space text representation (text_h) and h_p.
 
-已知限制（诚实披露）：首 token 评分忽略多 token 类别名的后续 token，
-"tiger cat/shark" 这类同首词类别会并列——top-1 会低于完整 logprob 协议，
-但足够给出剂量-响应曲线与 τ 结构。
+Known limitations (honest disclosure): first-token scoring ignores the subsequent tokens of multi-token class names,
+so classes sharing the first word such as "tiger cat/shark" tie — top-1 will be lower than under the full logprob protocol,
+but this suffices to give a dose-response curve and the τ structure.
 
-用法（服务器）：
+Usage (server):
   python qwen_gap_surgery_v3.py --model /autodl-fs/data/models/qwen2vl-2b --local-only \
       --parquet-dir /autodl-fs/data/imagenet_hf/data --sample 64 \
       --out /autodl-fs/data/a1_qwen_v3_smoke.json
-  正式：--sample 5000（约 1–1.5 小时）。
+  Full run: --sample 5000 (about 1–1.5 hours).
 """
 import argparse
 import glob
@@ -52,7 +52,7 @@ def get_lm(model):
 
 
 def text_h(model, processor, texts, batch=16):
-    """文本表示：LM 末 token 末层 hidden。"""
+    """Text representation: last-layer hidden state of the LM's last token."""
     tok = processor.tokenizer
     lm = get_lm(model)
     outs = []
@@ -69,8 +69,8 @@ def text_h(model, processor, texts, batch=16):
 
 
 def img_h_p(model, processor, img):
-    """图像表示：图 + PREFIX 完整前向，取末真实 token 的末层 hidden。"""
-    if max(img.size) > 640:           # 保险缩图：640 上限，注意力安全（≤2116 分片）
+    """Image representation: full forward pass over image + PREFIX, take the last-layer hidden state of the last real token."""
+    if max(img.size) > 640:           # safety downscale: 640 cap, attention-safe (≤2116 patches)
         img = img.copy()
         img.thumbnail((640, 640))
     msgs = [{'role': 'user', 'content': [
@@ -95,7 +95,7 @@ def first_token_ids(tokenizer, names):
 
 
 def scores_from_h(h_p, W_first, vocab_logits=False):
-    """score_c = h_p · w_c（原始 logit，排序即类别排序）。W_first: [K, D]。"""
+    """score_c = h_p · w_c (raw logit, the ranking is the class ranking). W_first: [K, D]."""
     return (h_p[None, :] @ W_first.T)[0]          # [K]
 
 
@@ -141,7 +141,7 @@ def main():
     tok = processor.tokenizer
 
     ft_ids = first_token_ids(tok, names).to(model.device)      # [K]
-    W = model.lm_head.weight.detach().float()                  # [V, D]（去梯度，float32 便于扰动）
+    W = model.lm_head.weight.detach().float()                  # [V, D] (detached, float32 to ease perturbation)
     W_first = W[ft_ids]                                        # [K, D]
 
     t_h = norm(text_h(model, processor, names))                # [K, D]
@@ -175,15 +175,15 @@ def main():
     results = []
     for lam in [float(x) for x in args.lambdas.split(',')]:
         rec = {'lambda': lam}
-        # 图像侧：平移 h_p（逐类偏置场）
+        # image side: shift h_p (per-class bias field)
         hp_s = norm(hps + lam * gap_norm * d_hat)
         sc_i = np.stack([scores_from_h(hp_s[i], W_first).cpu().numpy()
                          for i in range(args.sample)])
         t1_i, tau_i = top1_tau(sc_i, labels, frozen_scores, topk5, args.sample)
         cg_i = (t_h.mean(0) - hp_s.mean(0)).norm().item()
         rec['image_side'] = {'top1': t1_i, 'tau': tau_i, 'CG': cg_i}
-        # 文本侧：平移类别首 token 的权重行（不归一化：unembedding 无单位范数约束
-        # ⟹ 一阶精确零重排；CLIP 的文本侧轻微退化正来自其归一化——见分析）
+        # text side: shift the weight row of the first class token (no normalization: unembedding has no unit-norm constraint
+        # ⟹ exact first-order zero reordering; the slight degradation of the CLIP text side comes precisely from its normalization — see the analysis)
         W_t = W_first + lam * gap_norm * d_hat[None, :]
         sc_t = np.stack([scores_from_h(hps[i], W_t).cpu().numpy()
                          for i in range(args.sample)])

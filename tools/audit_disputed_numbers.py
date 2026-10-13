@@ -1,10 +1,10 @@
-"""复核数值审计提出的争议点: 跨批 Spearman / 秩线性 / COCO β / BLIP 模型 / SigLIP / +0.079 / 聚类 bootstrap。"""
+"""Recheck the disputed points raised by the number audit: cross-batch Spearman / rank linearity / COCO β / BLIP model / SigLIP / +0.079 / clustering bootstrap."""
 import json
 import glob
 import numpy as np
 from scipy import stats
 
-print('=== 1) 跨批 Spearman(绝对值 vs 有符号) ===')
+print('=== 1) Cross-batch Spearman (absolute value vs signed) ===')
 bl = {}
 for tag, f in [('b0', 'outputs/llava_granularity_bootstrap_v2.json'),
                ('b32', 'outputs/llava_granularity_bootstrap_v2_b32.json'),
@@ -25,7 +25,7 @@ for a, b in itertools.combinations(['b0', 'b32', 'b64'], 2):
     print('   %s-%s  |G|: rho=%.3f p=%.4f   signed: rho=%.3f p=%.4f' % (a, b, r_abs.statistic, r_abs.pvalue, r_sgn.statistic, r_sgn.pvalue))
 
 print()
-print('=== 2) 秩线性拟合(相位表均值 |dE|, 7 个有限秩) ===')
+print('=== 2) Rank linearity fit (phase-table mean |dE|, 7 finite ranks) ===')
 ranks = np.array([4, 5, 6, 7, 8, 16, 20], dtype=float)
 dE = np.array([-105.2, -21.0, 62.3, 191.5, 311.3, 1571.5, 2859.7])
 y = np.abs(dE)
@@ -38,7 +38,7 @@ old = json.load(open('outputs/llava_rank_linearity.json', encoding='utf-8'))
 print('   old llava_rank_linearity.json:', old)
 
 print()
-print('=== 3) COCO/Flickr ODE 表 (tab:generalization) ===')
+print('=== 3) COCO/Flickr ODE table (tab:generalization) ===')
 for f in ['outputs/theory/v1_coco/v1_all_results.json', 'outputs/theory/v1_flickr/v1_all_results.json']:
     try:
         d = json.load(open(f, encoding='utf-8'))
@@ -52,7 +52,7 @@ for f in ['outputs/theory/v1_coco/v1_all_results.json', 'outputs/theory/v1_flick
             f, len(betas), np.mean(betas), np.mean(r2s), np.std(r2s), np.std(r2s, ddof=1)))
 
 print()
-print('=== 4) BLIP 模型名(输出目录/脚本) ===')
+print('=== 4) BLIP model name (output dir/script) ===')
 for f in glob.glob('outputs/blip2/*/results.json')[:2] + glob.glob('experiments/blip2*.py')[:1]:
     t = open(f, encoding='utf-8', errors='ignore').read()
     import re
@@ -60,7 +60,7 @@ for f in glob.glob('outputs/blip2/*/results.json')[:2] + glob.glob('experiments/
     print('   ', f, '->', sorted(set(m))[:6])
 
 print()
-print('=== 5) SigLIP / text-only CG 值 ===')
+print('=== 5) SigLIP / text-only CG values ===')
 for f in ['outputs/mechanism_summary.json', 'outputs/domain_matrix.json']:
     try:
         t = open(f, encoding='utf-8', errors='ignore').read()

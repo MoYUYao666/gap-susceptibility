@@ -1,7 +1,7 @@
-"""判别实验 A-②: 陆地域对照——bioclip + Flickr30k FullFT 后，海洋类集上的 σ_m。
-与 oceanclip（生物域海洋微调）同协议比较，判别"σ_m 压平"是海洋域特异还是微调通用效应。
-训练配置与 clip_ocean_peft.py 的 fullft 完全一致（1000 对 / 10 epoch / lr 5e-5 / cosine / seed 42）。
-输出: outputs/ocean_flickrft_bioclip.pt（权重）+ outputs/ocean_flickrft_sigma.json
+"""Discriminative experiment A-②: land-domain control -- after bioclip + Flickr30k FullFT, σ_m on the marine class set.
+Compared under the same protocol against oceanclip (biological-domain marine fine-tuning), to decide whether the "σ_m flattening" is specific to the marine domain or a generic fine-tuning effect.
+Training configuration is identical to the fullft setting in clip_ocean_peft.py (1000 pairs / 10 epochs / lr 5e-5 / cosine / seed 42).
+Output: outputs/ocean_flickrft_bioclip.pt (weights) + outputs/ocean_flickrft_sigma.json
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -75,7 +75,7 @@ def main():
     torch.save(m.state_dict(), OUT_W)
     print('saved', OUT_W, flush=True)
 
-    # 海洋协议测量
+    # Marine-protocol measurement
     ds = load_dataset('parquet', data_files=sorted(
         os.path.join('data/rare-species/data', f) for f in os.listdir('data/rare-species/data')), split='train')
     sub = json.load(open(SUB, encoding='utf-8'))

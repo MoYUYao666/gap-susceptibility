@@ -1,12 +1,12 @@
-"""L6-B / 批次3: 第三声呐数据集 (mvaldenegro watertank, ARIS 3000, 10 类) 全景复刻。
-协议与 clip_sonar_protocol_full.py 完全一致 (冻结 → FT 10ep → 陆地对照 flickrft),
-加退化子集 (speckle20/blur_r2/shadow)。
-- 数据: data/second_sonar/watertank96.hdf5 (x_train/val/test, y, class_names; 10 类 + background[10])
-- 评测集: x_test (仅 10 类目); 训练集: x_train (10 类目)
-- 冻结基座: CLIP ViT-B/32 (models/clip-vit-base-patch32), 与声呐协议同基座
-- 陆地对照: outputs/ocean_clip_flickrft.pt (同日剂量 Flickr30k FT)
-输出: outputs/watertank_protocol.json
-运行: conda run -n pytorch python tools/clip_watertank_protocol.py
+"""L6-B / batch 3: full replication on the third sonar dataset (mvaldenegro watertank, ARIS 3000, 10 classes).
+Protocol identical to clip_sonar_protocol_full.py (frozen -> FT 10ep -> terrestrial control flickrft),
+plus degradation subsets (speckle20/blur_r2/shadow).
+- Data: data/second_sonar/watertank96.hdf5 (x_train/val/test, y, class_names; 10 classes + background[10])
+- Eval set: x_test (10 classes only); train set: x_train (10 classes)
+- Frozen backbone: CLIP ViT-B/32 (models/clip-vit-base-patch32), same backbone as the sonar protocol
+- Terrestrial control: outputs/ocean_clip_flickrft.pt (same-day dose Flickr30k FT)
+Output: outputs/watertank_protocol.json
+Run: conda run -n pytorch python tools/clip_watertank_protocol.py
 """
 import os, sys, json
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -37,7 +37,7 @@ def load_h5():
     x = np.concatenate([f['x_train'][:], f['x_val'][:], f['x_test'][:]], 0)
     y = np.concatenate([f['y_train'][:], f['y_val'][:], f['y_test'][:]], 0)
     n_tr, n_va, n_te = len(f['x_train']), len(f['x_val']), len(f['x_test'])
-    # 10 类 (排除 background=10)
+    # 10 classes (excluding background=10)
     keep = y < 10
     i_tr = np.where((np.arange(len(y)) < n_tr) & keep)[0]
     i_te = np.where((np.arange(len(y)) >= n_tr + n_va) & keep)[0]
@@ -203,14 +203,14 @@ def main():
     topk5, S0, tf, base = protocol('frozen', m0, p, imgs_te, texts, cls_idx_te, outd)
     degradation('frozen', m0, p, imgs_te, texts, cls_idx_te, topk5, S0, tf, outd)
 
-    # 陆地对照 (flickrft)
+    # terrestrial control (flickrft)
     print('== flickrft (terrestrial) ==', flush=True)
     fr = CLIPModel.from_pretrained(MDIR, local_files_only=True)
     fr.load_state_dict(torch.load(FR, map_location='cpu'))
     fr = fr.cuda().eval()
     protocol('flickrft', fr, p, imgs_te, texts, cls_idx_te, outd)
 
-    # 域微调 (watertank FT)
+    # domain fine-tuning (watertank FT)
     print('== domain FT ==', flush=True)
     m = CLIPModel.from_pretrained(MDIR, local_files_only=True).cuda().train()
     for pp in m.parameters():

@@ -1,6 +1,6 @@
-"""A1 立项探针（最小版）：受控 gap 平移对任务敏感度的分离效应。
-λ 网格 × 三指标（ImageNet top-1、Flickr30k R@1、CG）。
-预测：CG 线性增长；R@1 单调退化；top-1 保持平坦（直到错序）。
+"""A1 kickoff probe (minimal version): separation effect of a controlled gap shift on task sensitivity.
+λ grid × three metrics (ImageNet top-1, Flickr30k R@1, CG).
+Prediction: CG grows linearly; R@1 degrades monotonically; top-1 stays flat (until misordering).
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -18,7 +18,7 @@ from src.dataset import Flickr30kDataset, _collate_fn
 TEMPLATE = 'a photo of a {}'
 LAMBDAS = [-1.0, 0.0, 0.5, 1.0, 2.0]
 
-# ---------- 1. 模型与数据 ----------
+# ---------- 1. Model and data ----------
 model = CLIPModel.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True).cuda().eval()
 processor = CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True)
 
@@ -44,7 +44,7 @@ with torch.no_grad():
     in_labels = torch.tensor(ds_in['label'])
 print('ImageNet: %d imgs, %d classes' % (in_img_feats.shape[0], in_text_feats.shape[0]), flush=True)
 
-# Flickr30k val 子集（与既有评测一致：captions 2000:3000）
+# Flickr30k val subset (consistent with the existing evaluation: captions 2000:3000)
 ds_f = Flickr30kDataset('flickr30k', split='train', max_samples=None, pre_tokenize=True)
 val_ds = torch.utils.data.Subset(ds_f, range(2000, 3000))
 loader = DataLoader(val_ds, batch_size=64, shuffle=False, num_workers=0, collate_fn=_collate_fn)
@@ -59,14 +59,14 @@ with torch.no_grad():
 f_img = torch.cat(f_img); f_txt = torch.cat(f_txt)
 print('Flickr30k val: %d pairs' % f_img.shape[0], flush=True)
 
-# ---------- 2. Gap 方向 ----------
+# ---------- 2. Gap direction ----------
 mu_i = f_img.mean(0); mu_t = f_txt.mean(0)
 gap_vec = mu_t - mu_i
 gap_norm = gap_vec.norm().item()
 d_hat = gap_vec / gap_norm
 print('frozen CG = %.4f' % gap_norm, flush=True)
 
-# ---------- 3. 手术评测 ----------
+# ---------- 3. Surgery evaluation ----------
 def shift(feats, lam):
     delta = lam * gap_norm * d_hat
     return F.normalize(feats + delta, dim=-1)

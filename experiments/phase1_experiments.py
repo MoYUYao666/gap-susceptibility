@@ -1,4 +1,4 @@
-"""Phase 1: Adapter + Prefix Tuning 对比实验 — 可续跑"""
+"""Phase 1: Adapter + Prefix Tuning comparison experiments — resumable"""
 import os, json, time, sys
 os.environ["HF_HUB_OFFLINE"] = "1"
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -15,7 +15,7 @@ BS, EPOCHS, SAMPLES = 128, 10, 5000
 
 
 def load_master():
-    """加载 master_results.json"""
+    """Load master_results.json"""
     if MASTER_FILE.exists():
         with open(MASTER_FILE, 'r') as f:
             return json.load(f)
@@ -23,7 +23,7 @@ def load_master():
 
 
 def is_experiment_done(exp_name: str, master: dict) -> bool:
-    """检查实验是否已完成（cg_delta 有值 = 完整）"""
+    """Check whether an experiment is already done (cg_delta present = complete)"""
     exps = master.get("experiments", {})
     for key, exp in exps.items():
         if exp.get("experiment") == exp_name and exp.get("cg_delta") is not None:
@@ -34,7 +34,7 @@ def is_experiment_done(exp_name: str, master: dict) -> bool:
 
 
 def sync_master():
-    """调用 sync_results.py 更新 master_results.json"""
+    """Call sync_results.py to update master_results.json"""
     import subprocess
     sync_script = PROJECT_ROOT / "analysis" / "sync_results.py"
     result = subprocess.run(
@@ -42,7 +42,7 @@ def sync_master():
         capture_output=True, text=True, cwd=str(PROJECT_ROOT),
     )
     if result.returncode != 0:
-        print(f"⚠️ sync_results 失败: {result.stderr[:200]}")
+        print(f"⚠️ sync_results failed: {result.stderr[:200]}")
     return load_master()
 
 
@@ -73,7 +73,7 @@ def main():
         ("prefix_l16_vis",  "prefix", None, PrefixConfig(prefix_length=16, apply_to_vision=True, apply_to_text=False)),
     ]
 
-    # 加载 master 判重
+    # load master for duplicate checking
     master = load_master()
 
     total = len(experiments)
@@ -82,9 +82,9 @@ def main():
         save_dir = OUTPUT_DIR / name
         res_file = save_dir / "results.json"
 
-        # 双重检查：master_results.json 或本地 results.json
+        # double check: master_results.json or the local results.json
         if is_experiment_done(name, master) or (res_file.exists() and _has_cg_delta(res_file)):
-            print(f"⏭ [{idx+1}/{total}] {name} — 已完成，跳过")
+            print(f"⏭ [{idx+1}/{total}] {name} — already done, skipping")
             completed += 1
             continue
 
@@ -108,14 +108,14 @@ def main():
         r1 = result.get("final_task_metrics", {}).get("R@1", "N/A")
         print(f"   ✅ CG Δ={delta:+.4f}, R@1={r1}, {elapsed/60:.0f}min")
 
-        # 每完成一个实验就更新 master
+        # update master after each completed experiment
         master = sync_master()
 
-    print(f"\n🎉 Phase 1 完成 ({completed} 跳过, {total - completed} 新跑)")
+    print(f"\n🎉 Phase 1 done ({completed} skipped, {total - completed} newly run)")
 
 
 def _has_cg_delta(res_file: Path) -> bool:
-    """检查本地 results.json 是否有有效的 cg_delta"""
+    """Check whether the local results.json has a valid cg_delta"""
     try:
         with open(res_file) as f:
             data = json.load(f)

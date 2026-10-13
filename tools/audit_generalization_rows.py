@@ -1,4 +1,4 @@
-"""重算 tab:generalization 两行(Flickr/COCO, 统一口径: 全部 81 runs)。"""
+"""Recompute the two rows of tab:generalization (Flickr/COCO, unified protocol: all 81 runs)."""
 import json
 import numpy as np
 
@@ -15,7 +15,7 @@ for label, f in [('Flickr30k', 'outputs/theory/v1_trajectory/v1_all_results.json
     print('   beta  mean = %.4f (n=%d)   sd=%.4f' % (np.mean(betas), len(betas), np.std(betas)))
     print('   R2    mean = %.4f (n=%d)   sd(pop)=%.4f sd(sample)=%.4f' % (
         np.mean(r2s), len(r2s), np.std(r2s), np.std(r2s, ddof=1)))
-    # config 级(按 name 前缀聚合)
+    # config level (aggregated by name prefix)
     from collections import defaultdict
     byc = defaultdict(list)
     for r in rs:

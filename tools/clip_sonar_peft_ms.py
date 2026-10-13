@@ -1,6 +1,6 @@
-"""A3 增强②: 声呐 PEFT/FullFT 3-seed（{1,42,99}; 42 复用已有 sonar_peft.json/sonar_protocol.json）。
-重跑 {lora_both, fullft} × {1,99}（seed42 已在档）, 探针同 clip_sonar_peft。
-输出: outputs/sonar_peft_ms.json
+"""A3 enhancement ②: sonar PEFT/FullFT 3-seed ({1,42,99}; seed 42 reuses the existing sonar_peft.json/sonar_protocol.json).
+Rerun {lora_both, fullft} × {1,99} (seed 42 already on file); probes same as clip_sonar_peft.
+Output: outputs/sonar_peft_ms.json
 """
 import os, sys, json
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

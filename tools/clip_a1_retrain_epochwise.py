@@ -1,7 +1,7 @@
-"""A1 提升实验 2a：重训 text_only_r8 / both_r8（LoRA），每 epoch 保存权重。
-配置与 imagenet_zs 原始 run 一致：Flickr30k captions 0..1999、batch 64、10 epoch、
-lr 1e-4、AdamW wd 0.01、cosine、seed 42、LoRA rank 8 alpha 16。
-权重存 outputs/a1_retrain/{mode}/epoch{N}.pt（lora_state_dict + 训练曲线）。
+"""A1 enhancement experiment 2a: retrain text_only_r8 / both_r8 (LoRA), saving weights every epoch.
+Configuration matches the original imagenet_zs run: Flickr30k captions 0..1999, batch 64, 10 epochs,
+lr 1e-4, AdamW wd 0.01, cosine, seed 42, LoRA rank 8 alpha 16.
+Weights saved to outputs/a1_retrain/{mode}/epoch{N}.pt (lora_state_dict + training curves).
 """
 import os, sys, json, argparse, time
 os.environ['HF_HUB_OFFLINE'] = '1'

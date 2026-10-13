@@ -1,16 +1,16 @@
-"""Tier A8: 用二阶(阻尼振荡)模型刻画解码器对齐能量的 rebound 轨迹。
+"""Tier A8: model the rebound trajectory of the decoder alignment energy with a second-order (damped oscillation) model.
 
-背景(论文局限 16 后半): §3b 的一阶 ODE dE/dt = -α(E-E*) 只在单调双塔轨迹上拟合;
-解码器轨迹是非单调(先降后升), 需要二阶/过冲项, 但该修正此前未建模。
+Background (second half of limitation 16 in the paper): the first-order ODE dE/dt = -α(E-E*) of §3b was only fitted on monotonic two-tower trajectories;
+the decoder trajectory is non-monotonic (first falls, then rises) and needs a second-order / overshoot term, but that correction had not been modeled before.
 
-本脚本在同一批 10-epoch 轨迹上比较三个模型(最小二乘, scipy curve_fit):
-  M0 一阶(论文形式)      : E(t) = E* + (E0-E*) exp(-a t)                (3 参)
-  M1 一阶 + 线性漂移     : E(t) = E* + (E0-E*) exp(-a t) + g t          (4 参)
-  M2 阻尼二阶(振荡)     : E(t) = Einf + A exp(-l t) cos(w t + phi)      (5 参)
-报告每 rank 的 R^2、AICc、参数与阻尼比 zeta = l / sqrt(l^2 + w^2),
-以及一阶模型在 rebound 段的最大残差。
-输入: paper3/scripts/outputs/experiments/verify_r{4,5,6,8}_s42_e10.json
-输出: outputs/llava_second_order_ode.json
+This script compares three models on the same batch of 10-epoch trajectories (least squares, scipy curve_fit):
+  M0 first order (paper form)      : E(t) = E* + (E0-E*) exp(-a t)                (3 params)
+  M1 first order + linear drift     : E(t) = E* + (E0-E*) exp(-a t) + g t          (4 params)
+  M2 damped second order (oscillation)     : E(t) = Einf + A exp(-l t) cos(w t + phi)      (5 params)
+Report R^2, AICc, the parameters and the damping ratio zeta = l / sqrt(l^2 + w^2) for each rank,
+as well as the maximum residual of the first-order model on the rebound segment.
+Input: paper3/scripts/outputs/experiments/verify_r{4,5,6,8}_s42_e10.json
+Output: outputs/llava_second_order_ode.json
 """
 import glob
 import json
@@ -60,7 +60,7 @@ def fit_one(t, y, model, p0, bounds, k):
 
 
 def find_traj(rank):
-    """定位该 rank 的 10-epoch 轨迹(兼容两种命名: verify_rN_s42_e10.json 与带完整标签的版本)。"""
+    """Locate the 10-epoch trajectory of this rank (compatible with both namings: verify_rN_s42_e10.json and the fully tagged version)."""
     pats = [os.path.join(SRC, f'verify_r{rank}_s42_e10.json'),
             os.path.join(SRC, f'verify_r{rank}_s42_*e10*.json')]
     for p in pats:
@@ -79,7 +79,7 @@ def main():
             continue
         d = json.load(open(p, encoding='utf-8'))
         E = d['E']
-        # 只保留数值段(NaN 之前)
+        # keep only the numeric segment (before the NaN)
         vals = []
         for i, v in enumerate(E):
             if v is None or (isinstance(v, float) and np.isnan(v)):
@@ -101,10 +101,10 @@ def main():
                      bounds=([-1e5, -1e6, 1e-4, -1e5], [1e6, 1e6, 20.0, 1e5]), k=4)
         f2 = fit_one(t, y, m2, p0=[y.min(), y[0] - y.min(), 0.15, 0.6, 0.0],
                      bounds=([-1e5, -1e6, -5.0, 0.0, -np.pi], [1e6, 1e6, 5.0, 6.28, np.pi]), k=5)
-        # 阻尼比: zeta = lambda / sqrt(lambda^2 + omega^2)
+        # damping ratio: zeta = lambda / sqrt(lambda^2 + omega^2)
         Einf, A, l, w, phi = f2['params']
         zeta = l / np.sqrt(l ** 2 + w ** 2) if (l ** 2 + w ** 2) > 0 else float('nan')
-        # 一阶模型在 rebound 段(观测最小值之后的点)的最大残差
+        # maximum residual of the first-order model on the rebound segment (points after the observed minimum)
         y0 = m0(t, *f0['params'])
         imin = int(np.argmin(y))
         tail_res = float(np.max(np.abs(y[imin:] - y0[imin:]))) if imin < len(y) - 1 else 0.0

@@ -38,10 +38,10 @@ for label, bib in papers:
         else:
             n_err += 1
     results[label] = {'found': n_found, 'missing': n_miss, 'error': n_err, 'missing_keys': missing}
-    print('%s: 找到=%d 未找到=%d 查询失败=%d' % (label, n_found, n_miss, n_err))
+    print('%s: found=%d missing=%d error=%d' % (label, n_found, n_miss, n_err))
     if missing:
-        print('  未找到: %s' % missing)
+        print('  missing: %s' % missing)
 
 with open('citation_verify_results.json', 'w', encoding='utf-8') as f:
     json.dump(results, f, indent=2, ensure_ascii=False)
-print('结果已存 citation_verify_results.json')
+print('results saved to citation_verify_results.json')

@@ -1,10 +1,10 @@
-"""A1 实验 2：扰动子空间谱系（5000 张抽样）。
-扰动家族：
-- G：各向同性高斯噪声 σ∈{0.25,0.5,1,2}（σ×gap_norm 幅度）
-- L：低秩结构化扰动 k∈{1,4,16,64}（随机 k 维子空间内单位向量 × gap_norm）
-- P：保序正对照——向自身类质心收缩 a∈{0.25,0.5}（类内对齐加强，预期保 τ 升 top-1）
-- T：全局平移 λ=+1（从 full 实验复用做基线）
-指标：top-1、top-5、τ_top5（vs frozen 排序）。结果存 outputs/a1_subspace_results.json。
+"""A1 experiment 2: perturbation subspace spectrum (5000-image sample).
+Perturbation families:
+- G: isotropic Gaussian noise σ∈{0.25,0.5,1,2} (σ×gap_norm magnitude)
+- L: low-rank structured perturbation k∈{1,4,16,64} (unit vector inside a random k-dimensional subspace × gap_norm)
+- P: order-preserving positive control---contraction toward the class's own centroid a∈{0.25,0.5} (stronger within-class alignment, expected to preserve τ and raise top-1)
+- T: global translation λ=+1 (reused from the full experiment as a baseline)
+Metrics: top-1, top-5, τ_top5 (vs the frozen ranking). Results are stored in outputs/a1_subspace_results.json.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -50,9 +50,9 @@ with torch.no_grad():
         vpooled = vout[1] if isinstance(vout, tuple) else vout.pooler_output
         imgs.append(F.normalize(model.visual_projection(vpooled), dim=-1))
     base = torch.cat(imgs)  # (N, D)
-print('frozen 嵌入提取完成: %d x %d' % base.shape, flush=True)
+print('frozen embedding extraction done: %d x %d' % base.shape, flush=True)
 
-# gap 方向
+# gap direction
 ds_f = Flickr30kDataset('flickr30k', split='train', max_samples=None, pre_tokenize=True)
 val_ds = torch.utils.data.Subset(ds_f, range(2000, 3000))
 loader = DataLoader(val_ds, batch_size=64, shuffle=False, num_workers=0, collate_fn=_collate_fn)
@@ -74,7 +74,7 @@ base_sims = base @ tf.T
 base_sims_np = base_sims.cpu().numpy()
 topk5 = np.argsort(-base_sims_np, axis=1)[:, :5]
 
-# 类质心（正对照用）
+# class centroids (for the positive control)
 cls_ids = torch.tensor(sorted(set(ds_in['label'])))
 cents = torch.stack([base[labels == c].mean(0) for c in cls_ids])
 cents = F.normalize(cents, dim=-1)
@@ -104,14 +104,14 @@ rows = []
 rng2 = np.random.RandomState(7)
 D = base.shape[1]
 
-# 全局平移基线 λ=+1
+# global translation baseline λ=+1
 with torch.no_grad():
     img2 = F.normalize(base + gap_norm * d_hat, dim=-1)
 t1, t5, tau = evaluate(img2)
 rows.append({'family': 'translation', 'param': 1.0, 'top1': round(t1, 2), 'top5': round(t5, 2), 'tau_top5': round(tau, 4)})
 print('T λ=1: top1=%.2f top5=%.2f tau=%.4f' % (t1, t5, tau), flush=True)
 
-# 高斯噪声
+# Gaussian noise
 for sig in [0.25, 0.5, 1.0, 2.0]:
     noise = torch.tensor(rng2.randn(N, D), dtype=torch.float32, device='cuda')
     noise = noise / noise.norm(dim=-1, keepdim=True)
@@ -121,10 +121,10 @@ for sig in [0.25, 0.5, 1.0, 2.0]:
     rows.append({'family': 'gaussian', 'param': sig, 'top1': round(t1, 2), 'top5': round(t5, 2), 'tau_top5': round(tau, 4)})
     print('G σ=%.2f: top1=%.2f top5=%.2f tau=%.4f' % (sig, t1, t5, tau), flush=True)
 
-# 低秩结构化扰动
+# low-rank structured perturbation
 Q, _ = torch.linalg.qr(torch.tensor(rng2.randn(D, D), dtype=torch.float32, device='cuda'))
 for k in [1, 4, 16, 64]:
-    Pk = Q[:, :k] @ Q[:, :k].T  # rank-k 投影
+    Pk = Q[:, :k] @ Q[:, :k].T  # rank-k projection
     v = torch.tensor(rng2.randn(D), dtype=torch.float32, device='cuda')
     v = Pk @ v
     v = v / v.norm()
@@ -134,7 +134,7 @@ for k in [1, 4, 16, 64]:
     rows.append({'family': 'lowrank', 'param': k, 'top1': round(t1, 2), 'top5': round(t5, 2), 'tau_top5': round(tau, 4)})
     print('L k=%d: top1=%.2f top5=%.2f tau=%.4f' % (k, t1, t5, tau), flush=True)
 
-# 保序正对照：向自身类质心收缩
+# order-preserving positive control: contraction toward the class's own centroid
 for a in [0.25, 0.5]:
     with torch.no_grad():
         c_own = cents[torch.tensor([lab_map[int(x)] for x in labels], device='cuda')]

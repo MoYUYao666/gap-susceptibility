@@ -3,7 +3,7 @@ set -u
 cd /root/autodl-tmp/work
 M=https://hf-mirror.com
 
-# ① 杀干净（单一进程铁律）
+# (1) kill everything cleanly (single-process iron rule)
 for pat in _cloud_par _cloud_bin _cloud_redl _cloud_ms _cloud_wget; do
   pkill -f "$pat" 2>/dev/null || true
 done
@@ -12,7 +12,7 @@ pkill -f "curl.*hf-mirror" 2>/dev/null || true
 sleep 3
 echo "cleaned; procs=$(pgrep -fc 'curl|wget' 2>/dev/null || echo 0)"
 
-# ② 期望字节数：用 GET 首字节 + size_download 跟随重定向（不是 HEAD）
+# (2) expected byte count: use a GET first byte + size_download following redirects (not HEAD)
 expect() {
   curl -sL -o /dev/null --max-time 40 -w '%{size_download}' -r 0-0 "$1"
 }
@@ -31,10 +31,10 @@ safe_dl() {  # safe_dl <url> <dest>
   t1=$(date +%s)
   echo "  rc=$rc got=$sz in $((t1-t0))s ($(( sz/(t1-t0+1) )) B/s)"
   if [ "$sz" -lt 500000000 ]; then
-    echo "  ❌ TOO SMALL — 保留原文件不动"; rm -f "$tmp"; return 1
+    echo "  ❌ TOO SMALL — keeping the original file untouched"; rm -f "$tmp"; return 1
   fi
   mv -f "$tmp" "$dest"
-  echo "  ✅ 已覆盖 $dest ($sz B)"
+  echo "  ✅ overwrote $dest ($sz B)"
   return 0
 }
 
@@ -44,7 +44,7 @@ safe_dl "$M/openai/clip-vit-base-patch16/resolve/main/pytorch_model.bin" \
         models/clip-vit-base-patch16/pytorch_model.bin
 echo SAFEDONE
 
-# ③ 校验
+# (3) verification
 /root/miniconda3/bin/python - <<'PY'
 import os
 os.chdir("/root/autodl-tmp/work")

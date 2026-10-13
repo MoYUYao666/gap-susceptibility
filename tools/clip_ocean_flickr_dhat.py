@@ -1,6 +1,6 @@
-"""Flickr d̂ 一致性复核：用 Flickr30k（陆地自然对，A1 同款口径）估计 d̂，
-重跑海洋子集 λ∈{0.5,1.0} 图像侧/文本侧手术，检验发现③（非对称性消失）是否 d̂ 口径 artifact。
-输出: outputs/ocean_flickr_dhat.json
+"""Flickr d̂ consistency check: estimate d̂ with Flickr30k (terrestrial natural pairs, same protocol as A1),
+rerun the λ∈{0.5,1.0} image-side/text-side surgery on the marine subset, and test whether finding ③ (asymmetry vanishes) is an artifact of the d̂ protocol.
+Output: outputs/ocean_flickr_dhat.json
 """
 import os, sys, json, io
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -61,7 +61,7 @@ def main():
     res = {}
     for tag in ['bioclip', 'oceanclip']:
         m, pre = load_base(tag)
-        # Flickr d̂（A1 口径：自然图文对质心差）
+        # Flickr d̂ (A1 protocol: centroid difference of natural image-text pairs)
         fi, ft = [], []
         with torch.no_grad():
             for i in range(0, len(pairs), 64):
@@ -74,7 +74,7 @@ def main():
         gap = ft.mean(0) - fi.mean(0)
         gnorm = gap.norm().item()
         dH = gap / gnorm
-        # 海洋特征
+        # marine features
         with torch.no_grad():
             tf = F.normalize(m.encode_text(tok(texts).to('cuda')), dim=-1)
             feats = []

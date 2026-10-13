@@ -1,5 +1,5 @@
-"""对重训的 full FT 权重补测 Centroid Gap（与 frozen 在同一个 Flickr30k val 子集上对比）。
-用法: python tools/clip_fullft_cg.py --ckpt-dir outputs/imagenet_zs_rerun/full_ft_s123
+"""Measure Centroid Gap on the retrained full FT weights (compared with frozen on the same Flickr30k val subset).
+Usage: python tools/clip_fullft_cg.py --ckpt-dir outputs/imagenet_zs_rerun/full_ft_s123
 """
 import os, sys, argparse, json
 os.environ['HF_HUB_OFFLINE'] = '1'

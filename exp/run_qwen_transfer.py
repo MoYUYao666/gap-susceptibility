@@ -1,12 +1,12 @@
-"""CLIP→Qwen 零样本迁移验证 — 验证 Corollary 4（分配预测）
+"""CLIP→Qwen zero-shot transfer validation — validates Corollary 4 (the allocation prediction)
 
-背景：Qwen 只验证了 C3（无相变），未验证 C4（Γ 分配预测）。
-本实验：
-1. Qwen2-VL 上测 per-block Γ（Qwen 版 modality groups）
-2. 指数分配（β 用 CLIP 先验 0.137）
-3. Counterfactual 验证（theory vs random vs violation，调 run_training_qwen.py）
+Background: Qwen validated only C3 (no phase transition), not C4 (the Γ allocation prediction).
+This experiment:
+1. measure per-block Γ on Qwen2-VL (the Qwen version of modality groups)
+2. exponential allocation (β using the CLIP prior 0.137)
+3. Counterfactual validation (theory vs random vs violation, calling run_training_qwen.py)
 
-产出：qwen_transfer_results.json
+Output: qwen_transfer_results.json
 """
 import os, sys, json, torch, gc, subprocess, argparse
 import numpy as np
@@ -20,16 +20,16 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--budget', type=int, default=64)
 parser.add_argument('--seeds', type=int, default=5)
 parser.add_argument('--model-path', type=str, default='/root/qwen2vl',
-                    help='本地 Qwen2-VL 目录（ModelScope 下载的）')
+                    help='local Qwen2-VL directory (downloaded from ModelScope)')
 args = parser.parse_args()
 
-BETA_CLIP = 0.137  # Paper 2: CLIP 学到的 β
+BETA_CLIP = 0.137  # Paper 2: the β learned by CLIP
 
 
 def get_qwen_modality_groups(model, fine_grained=True):
-    """Qwen2-VL 参数分区：visual / merger / llm_shallow / llm_mid / llm_deep / head。
+    """Qwen2-VL parameter partition: visual / merger / llm_shallow / llm_mid / llm_deep / head.
 
-    Qwen2-VL 结构：
+    Qwen2-VL structure:
       model.visual           → vision tower (CLIP-ViT-like)
       model.merger           → vision-language MLP
       model.language_model   → Qwen2 LLM (28 layers for 7B)
@@ -40,7 +40,7 @@ def get_qwen_modality_groups(model, fine_grained=True):
     if vis:
         groups['vis'] = vis
 
-    # Qwen2-VL: vision-language fusion is visual.patch_merger (LLaVA 是 model.merger)
+    # Qwen2-VL: vision-language fusion is visual.patch_merger (in LLaVA it is model.merger)
     merger = [p for n, p in model.visual.patch_merger.named_parameters() if p.requires_grad]
     if merger:
         groups['merger'] = merger
@@ -61,20 +61,20 @@ def get_qwen_modality_groups(model, fine_grained=True):
     else:
         groups['llm'] = [p for n, p in llm.named_parameters()
                          if p.requires_grad and 'lm_head' not in n]
-    # 空组剔除
+    # drop empty groups
     return {k: v for k, v in groups.items() if v}
 
 
 def compute_gamma_qwen(model, input_ids, pixel_values, image_grid_thw,
                        vis_mask, lang_mask, label_ids, fine_grained=True):
-    """Γ_k = ⟨∇_{M_k}E, u_{M_k}⟩ for Qwen2-VL（两个 backward pass）。"""
+    """Γ_k = ⟨∇_{M_k}E, u_{M_k}⟩ for Qwen2-VL (two backward passes)."""
     # Pass 1: ∇E
     outputs = model(input_ids=input_ids, pixel_values=pixel_values,
                     image_grid_thw=image_grid_thw,
                     output_hidden_states=True)
     hidden = outputs.hidden_states[-1]
 
-    # E = mean ||h_vis - h_lang||^2（与 Paper 3 的 alignment energy 一致）
+    # E = mean ||h_vis - h_lang||^2 (consistent with the alignment energy of Paper 3)
     h_vis = hidden[vis_mask]
     h_lang = hidden[lang_mask]
     E = torch.mean(torch.sum((h_vis.mean(0) - h_lang.mean(0)) ** 2))
@@ -93,7 +93,7 @@ def compute_gamma_qwen(model, input_ids, pixel_values, image_grid_thw,
               if p.requires_grad and p.grad is not None}
     model.zero_grad()
 
-    # 按 block 聚合
+    # aggregate by block
     groups = get_qwen_modality_groups(model, fine_grained=fine_grained)
     gamma, norm_grad_E, norm_u, cos_phi, sign = {}, {}, {}, {}, {}
     for block, params in groups.items():
@@ -147,7 +147,7 @@ def main():
     pixel_values = inputs['pixel_values'].to(model.device, dtype=torch.float16)
     image_grid_thw = inputs['image_grid_thw'].to(model.device)
 
-    # vis/lang masks: <|image_pad|> 位置
+    # vis/lang masks: <|image_pad|> positions
     pad_id = processor.tokenizer.convert_tokens_to_ids("<|image_pad|>")
     vis_mask = (input_ids == pad_id)
     lang_mask = (input_ids != pad_id) & (input_ids != processor.tokenizer.pad_token_id)
@@ -165,8 +165,8 @@ def main():
                   for k, v in abs_g.items()}
     print(f"  Allocation: { {k: round(v,1) for k,v in allocation.items()} }")
 
-    print("[4] Counterfactual: 需单独跑 run_training_qwen.py", flush=True)
-    # theory rank = 分配中最小的 rank（或 CLIP 预测的 r=4）
+    print("[4] Counterfactual: run_training_qwen.py must be run separately", flush=True)
+    # theory rank = the smallest rank in the allocation (or r=4 as predicted by CLIP)
     theory_rank = min(allocation.values())
     counterfactual = {
         "theory_rank": round(theory_rank),
@@ -177,7 +177,7 @@ def main():
             "python scripts/run_training_qwen.py --rank 16 --epochs 3 --seed 42  # violation",
             "python scripts/run_training_qwen.py --rank 32 --epochs 3 --seed 42  # violation",
         ],
-        "note": "每个 rank 跑 3 seeds（42/123/456），收集 E(t) 后算 ΔE",
+        "note": "run 3 seeds per rank (42/123/456), collect E(t) then compute ΔE",
     }
 
     out = {

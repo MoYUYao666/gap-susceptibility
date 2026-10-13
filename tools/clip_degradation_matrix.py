@@ -1,6 +1,6 @@
-"""A2 扩展 E3: 退化鲁棒性矩阵 —— 域(marine/sonar/imagenet) × 退化类型 × 强度档。
-输出: outputs/degradation_matrix.json
-运行: conda run -n pytorch python tools/clip_degradation_matrix.py
+"""A2 extended E3: degradation robustness matrix -- domain (marine/sonar/imagenet) x degradation type x intensity level.
+Output: outputs/degradation_matrix.json
+Run: conda run -n pytorch python tools/clip_degradation_matrix.py
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'

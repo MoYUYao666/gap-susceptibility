@@ -1,9 +1,9 @@
-"""补充实验 B: 海洋域任务敏感性谱系（对接 A1 的 NCC < zero-shot < retrieval）。
-对 fish-67 子集, 图像侧 λ 网格 {0,0.5,1,2}, 三个探针:
-  NCC  = 最近类质心分类精度（质心只由冻结嵌入构建, 冻结不变）
-  top1 = 零样本分类精度
-  R1   = 检索 R@1（i2t+t2i 平均; t2i 为非退化探针）
-输出: outputs/ocean_spectrum.json
+"""Supplementary experiment B: marine-domain task-sensitivity spectrum (matching A1's NCC < zero-shot < retrieval).
+On the fish-67 subset, image side λ grid {0,0.5,1,2}, three probes:
+  NCC  = nearest class centroid classification accuracy (centroids built only from frozen embeddings, frozen unchanged)
+  top1 = zero-shot classification accuracy
+  R1   = retrieval R@1 (i2t+t2i average; t2i is the non-degenerate probe)
+Output: outputs/ocean_spectrum.json
 """
 import os, sys, json, importlib.util
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -39,7 +39,7 @@ def main():
         gap = tf.mean(0) - base.mean(0)
         gnorm = gap.norm().item()
         dH = gap / gnorm
-        # 类质心（冻结嵌入）
+        # class centroids (frozen embeddings)
         centroids = torch.zeros(len(classes), base.shape[1], device='cuda')
         for c in range(len(classes)):
             cc = base[labels == c]
@@ -50,7 +50,7 @@ def main():
                 sh = F.normalize(base + l * gnorm * dH, dim=-1)
             S = (sh @ tf.T).cpu().numpy()
             top1 = float((S.argmax(1) == labels).mean() * 100)
-            # 检索 R@1: i2t (argmax over texts, 与 top1 同) + t2i (argmax over images per text)
+            # retrieval R@1: i2t (argmax over texts, same as top1) + t2i (argmax over images per text)
             sims = torch.tensor(S)
             i2t = (sims.argmax(1).cpu().numpy() == labels).mean()
             t2i = np.zeros(len(classes))
@@ -61,7 +61,7 @@ def main():
                 g = sims[:, c].argmax().item()
                 t2i[c] = 1.0 if labels[g] == c else 0.0
             r1 = float((i2t + t2i[t2i > -1].mean()) / 2)
-            # NCC 质心分类
+            # NCC centroid classification
             Sn = (sh @ centroids.T).cpu().numpy()
             ncc = float((Sn.argmax(1) == labels).mean() * 100)
             cg = (sh.mean(0) - tf.mean(0)).norm().item()

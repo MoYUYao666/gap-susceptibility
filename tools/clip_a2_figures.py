@@ -1,9 +1,9 @@
-"""A2 图 1-4 生成脚本（数字全部来自 outputs/ocean_*.json）。
-fig1: λ 曲线族（τ + top-1，图像侧；插图文本侧 τ）
-fig2: σ_m 结构（4 模型 + 2×2 判别双家族 + 饱和点）
-fig3: Theorem 1 预测 vs 实测（全部条件散点 + y=x）
-fig4: PEFT 保护（任务 R@1 vs 零样本相对保持，误差棒 3-seed sd）
-输出 paper_a2/figures/*.png @300dpi
+"""A2 figures 1-4 generation script (all numbers come from outputs/ocean_*.json).
+fig1: λ curve family (τ + top-1, image side; inset text side τ)
+fig2: σ_m structure (4 models + 2×2 discriminative dual family + saturation point)
+fig3: Theorem 1 predicted vs measured (all conditions scatter + y=x)
+fig4: PEFT protection (task R@1 vs zero-shot relative retention, error bars = 3-seed sd)
+Output paper_a2/figures/*.png @300dpi
 """
 import os, json
 import numpy as np
@@ -43,7 +43,7 @@ MODELS = ['bioclip', 'oceanclip', 'openclip_tf', 'siglip']
 LBL = {'bioclip': 'BioCLIP', 'oceanclip': 'OceanCLIP', 'openclip_tf': 'OpenCLIP', 'siglip': 'SigLIP'}
 COL = {'bioclip': '#4C72B0', 'oceanclip': '#C44E52', 'openclip_tf': '#55A868', 'siglip': '#8172B3'}
 
-# ---------------- fig1: λ 曲线族（三面板, 无内嵌插图） ----------------
+# ---------------- fig1: λ curve family (three panels, no inset) ----------------
 fig, axes = plt.subplots(1, 3, figsize=(7.4, 2.9),
                          gridspec_kw={'width_ratios': [1, 1, 0.78]})
 ax = axes[0]
@@ -83,7 +83,7 @@ fig.tight_layout()
 fig.savefig(os.path.join(OUTDIR, 'fig1_lambda.png'), bbox_inches='tight')
 plt.close(fig)
 
-# ---------------- fig2: σ_m 结构 ----------------
+# ---------------- fig2: σ_m structure ----------------
 labels = ['BioCLIP', 'OceanCLIP', 'OpenCLIP', 'SigLIP']
 sigs = [MA['bioclip']['sigma_m'], MA['oceanclip']['sigma_m'], SO['openclip_tf']['sigma_m'], SO['siglip']['sigma_m']]
 fig, axes = plt.subplots(1, 2, figsize=(7.4, 2.7))
@@ -117,7 +117,7 @@ fig.tight_layout()
 fig.savefig(os.path.join(OUTDIR, 'fig2_sigma.png'), bbox_inches='tight')
 plt.close(fig)
 
-# ---------------- fig3: τ 预测 vs 实测 ----------------
+# ---------------- fig3: τ predicted vs measured ----------------
 pts = []
 for tag, d in [('bioclip', MA['bioclip']), ('oceanclip', MA['oceanclip']),
                ('openclip_tf', MX['openclip_tf']), ('siglip', MX['siglip'])]:
@@ -171,7 +171,7 @@ for (tag, method), rows in sorted(g.items()):
         dx, dy, ha = 6, -13, 'left'
     else:
         dx, dy, ha = 6, 6, 'left'
-    if r1 > 0.55:            # 右侧点: 标签放点左侧同高, 避免互相堆叠/超出右边
+    if r1 > 0.55:            # right-side point: label to the left of the point at the same height, to avoid stacking/overflow
         dx, dy, ha = -8, 0, 'right'
     ax.annotate('%s/%s' % (tag[:3], method.replace('_', ' ')), (r1, keep),
                 textcoords='offset points', xytext=(dx, dy), fontsize=7,
@@ -185,7 +185,7 @@ fig.tight_layout()
 fig.savefig(os.path.join(OUTDIR, 'fig4_peft.png'), bbox_inches='tight', pad_inches=0.15)
 plt.close(fig)
 
-# ---------------- fig5: 退化-手术边界 ----------------
+# ---------------- fig5: degradation-surgery boundary ----------------
 DG = load('outputs/ocean_degradation.json')
 fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.8))
 ax = axes[0]

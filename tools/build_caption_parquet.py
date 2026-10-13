@@ -1,4 +1,4 @@
-"""构建 captioning 任务族 parquet(真实图像 + 真实字幕, 20 样本, 与参考协议同构)。"""
+"""Build the captioning task-family parquet (real images + real captions, 20 samples, isomorphic to the reference protocol)."""
 import json
 import pandas as pd
 

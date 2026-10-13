@@ -1,7 +1,7 @@
-"""A2 扩展 E1: 域-模型基阵法 —— ImageNet-5k / DTD / Food101 × 4 模型 冻结 λ 手术。
-协议与海洋/声呐一致: τ 手术 (6λ) + σ_m + NCC 谱系 + 非对称(文本侧 λ=1)。
-输出: outputs/domain_matrix.json
-运行: conda run -n pytorch python tools/clip_domain_matrix.py
+"""A2 extension E1: domain-model matrix —— ImageNet-5k / DTD / Food101 × 4 models, frozen λ surgery.
+Protocol identical to marine/sonar: τ surgery (6λ) + σ_m + NCC lineage + asymmetry (text side λ=1).
+Output: outputs/domain_matrix.json
+Run: conda run -n pytorch python tools/clip_domain_matrix.py
 """
 import os, sys, json, io, glob, collections
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -31,10 +31,10 @@ def load(path):
 
 
 def load_domain(name, cap=5000):
-    """返回 (image_paths, class_labels, class_names)。"""
+    """Return (image_paths, class_labels, class_names)."""
     rng = np.random.RandomState(SEED)
     if name == 'imagenet5k':
-        # A1 的 ImageNet-1K 验证集(14288 张, 1000 类) → 采样 5000
+        # A1's ImageNet-1K validation set (14288 images, 1000 classes) → sample 5000
         from datasets import load_dataset as ld
         ds = ld('parquet', data_files=sorted(
             os.path.join('data/imagenet_hf', f) for f in os.listdir('data/imagenet_hf')
@@ -168,7 +168,7 @@ def protocol(tag, tf, enc, imgs, texts, labels, res):
                      'tau_meas': round(float(np.mean(taus)), 4),
                      'tau_pred': round(float(np.mean(preds)), 4),
                      'CG': round((sh.mean(0) - tf.mean(0)).norm().item(), 4)})
-    # 文本侧
+    # text side
     with torch.no_grad():
         tf2 = F.normalize(tf - 1.0 * gnorm * dH, dim=-1)
     S2 = (f0 @ tf2.T).cpu().numpy()
@@ -180,7 +180,7 @@ def protocol(tag, tf, enc, imgs, texts, labels, res):
         t, _ = stats.kendalltau(r1, r2)
         if np.isfinite(t):
             taus2.append(t)
-    # NCC 谱系
+    # NCC lineage
     centroids = []
     for c in range(len(set(labels.tolist()))):
         idxc = np.where(labels == c)[0]

@@ -1,7 +1,7 @@
-"""判别实验 A-①: 无微调对照——openclip / siglip 在海洋类集上的 σ_m。
-同一协议（海洋 67 类子集 + 类文本质心 d̂）测量 m_c 分布，检验 0.0078（oceanclip）是
-"预训练族差异"还是"微调效应"。
-输出: outputs/ocean_sigma_other.json
+"""Discriminative experiment A-①: no-fine-tuning control — σ_m of openclip / siglip on the marine class set.
+Same protocol (marine 67-class subset + class text centroid d̂) measuring the m_c distribution, testing whether 0.0078 (oceanclip) is
+a "pretraining-family difference" or a "fine-tuning effect".
+Output: outputs/ocean_sigma_other.json
 """
 import os, sys, json, io
 os.environ['HF_HUB_OFFLINE'] = '1'

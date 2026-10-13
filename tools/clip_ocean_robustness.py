@@ -1,7 +1,7 @@
-"""补强 ⑦+⑧: 多 seed（子集抽样稳健性）与多模板（3/7 套，A1 同款）。
-⑦: 用 seed∈{1,42,99} 重建鱼类子集（每类 ≤24 图抽样），重跑 λ 手术 τ/top1，给 mean±sd。
-⑧: seed42 子集上，模板集 3tpl/7tpl 关键 λ 点 τ/top1（d̂ 固定为默认模板协议）。
-输出: outputs/ocean_multiseed.json + ocean_multitemplate.json
+"""Strengthen ⑦+⑧: multi-seed (subset sampling robustness) and multi-template (3/7 sets, same as A1).
+⑦: rebuild the fish subset with seed∈{1,42,99} (≤24 images per class sampled), rerun the λ surgery τ/top1, report mean±sd.
+⑧: on the seed42 subset, τ/top1 at key λ points for the 3tpl/7tpl template sets (d̂ fixed to the default template protocol).
+Output: outputs/ocean_multiseed.json + ocean_multitemplate.json
 """
 import os, sys, json, importlib.util
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -88,7 +88,7 @@ def main_seed():
             r['n_classes'] = len(classes)
             r['n_images'] = len(idx)
             out[tag]['seed%d' % seed] = r
-            print('  seed%d: %d类/%d图 top1@0=%.2f tau@1=%.4f top1@1=%.2f' %
+            print('  seed%d: %d classes/%d images top1@0=%.2f tau@1=%.4f top1@1=%.2f' %
                   (seed, len(classes), len(idx), r['0.0']['top1'], r['1.0']['tau'], r['1.0']['top1']), flush=True)
             json.dump(out, open('outputs/ocean_multiseed.json', 'w', encoding='utf-8'), indent=1)
 
@@ -103,7 +103,7 @@ def main_tpl():
     out = {}
     for tag in ['bioclip', 'oceanclip']:
         print('== %s ==' % tag, flush=True)
-        # d̂ 固定: 默认模板协议
+        # d̂ fixed: default template protocol
         tf0, base = ocm.embed(tag, ds, idx, [ocm.TEMPLATE.format(c) for c in classes])
         gap = tf0.mean(0) - base.mean(0)
         gnorm = gap.norm().item()

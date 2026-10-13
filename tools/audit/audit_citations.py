@@ -20,10 +20,10 @@ for label, texdir, bib in papers:
     keys = set(re.findall(r'@\w+\{([^,]+),', bibsrc))
     miss = cites - keys
     unused = keys - cites
-    print('%-8s cites=%d bib=%d 缺失=%s 未使用=%s' % (label, len(cites), len(keys), miss or '无', unused or '无'))
+    print('%-8s cites=%d bib=%d missing=%s unused=%s' % (label, len(cites), len(keys), miss or 'none', unused or 'none'))
 
-# 互引检查：三篇互相引用（wan2026protect/wan2026gap）
-print('\n=== 互引检查（under-review 标注）===')
+# cross-citation check: the three papers cite each other (wan2026protect/wan2026gap)
+print('\n=== cross-citation check (under-review notation) ===')
 for label, texdir, bib in papers:
     alltex = ''
     for root, dirs, files in os.walk(texdir):
@@ -36,5 +36,5 @@ for label, texdir, bib in papers:
         if n:
             bibsrc = open(bib, encoding='utf-8').read()
             entry = re.search(r'@\w+\{%s,([^@]*?)\n\}' % k, bibsrc, re.S)
-            note = 'under review' if entry and 'under review' in entry.group(1).lower() else ('无标注!' if entry else 'bib 缺失!')
-            print('%-8s 引用 %-14s %d 次 | %s' % (label, k, n, note))
+            note = 'under review' if entry and 'under review' in entry.group(1).lower() else ('no notation!' if entry else 'missing from bib!')
+            print('%-8s cites %-14s %d times | %s' % (label, k, n, note))

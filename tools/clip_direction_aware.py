@@ -1,9 +1,9 @@
-"""A3 增强③: 方向感知(逐图 λ)理论测试 —— 检验离轴退化的损伤可否用逐图间隙轴分解闭合预测。
-对 {海洋(bioclip/oceanclip), 声呐(frozen CLIP)} 的退化集合:
-  计 δ_i（每图退化位移) → λ_i = (δ_i·d̂)/||g|| → 精确反转条件逐图代入 λ_i → τ_pred_dir
-  对照: τ_pred_gap(均值 λ, 原预测器) 与 τ_meas。
-若 |τ_pred_dir − τ_meas| 显著小于 |τ_pred_gap − τ_meas| → 方向感知扩展成立。
-输出: outputs/direction_aware.json
+"""A3 enhancement ③: direction-aware (per-image λ) theory test -- check whether the damage from off-axis degradation can be predicted in closed form by a per-image gap-axis decomposition.
+For the degradation sets of {marine (bioclip/oceanclip), sonar (frozen CLIP)}:
+  compute δ_i (per-image degradation displacement) → λ_i = (δ_i·d̂)/||g|| → substitute λ_i per image into the exact inversion condition → τ_pred_dir
+  comparison: τ_pred_gap (mean λ, the original predictor) and τ_meas.
+If |τ_pred_dir − τ_meas| is significantly smaller than |τ_pred_gap − τ_meas| → the direction-aware extension holds.
+Output: outputs/direction_aware.json
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -59,7 +59,7 @@ def sonar_deg(im, kind, arg):
 
 
 def eval_domain(name, imgs, texts, labels, m, p, deg_list, match='tf'):
-    """对给定模型与图像集, 逐图 λ_i 分解。match: tf=transformer CLIP; tf='oc'=open_clip(tag)。"""
+    """Per-image λ_i decomposition for a given model and image set. match: tf=transformer CLIP; tf='oc'=open_clip(tag)."""
     def enc(lst):
         out = []
         with torch.no_grad():
@@ -120,16 +120,16 @@ def eval_domain(name, imgs, texts, labels, m, p, deg_list, match='tf'):
     for dname, kind, arg in deg_list:
         deg = [sonar_deg(im, kind, arg) if match != 'oc' else im for im in imgs] if False else \
               [sonar_deg(im, kind, arg) for im in imgs]
-        # 海洋退化使用 clip_ocean_degradation 的封装(雾化/色偏), 声呐用本地 sonar_degrade —— 此处通过 deg_src 定制
+        # marine degradation uses the clip_ocean_degradation wrapper (haze/color cast), sonar uses the local sonar_degrade -- customized here via deg_src
         rows.append({'degrade': dname, 'placeholder': True})
     return tf, f0, S0, topk5, m_c, gnorm, dH, enc, enc_text
 
 
 def main():
     res = {}
-    # -------- A) 海洋域 (bioclip/oceanclip, 退化=雾化/色偏; 复用 clip_ocean_degradation 逻辑代理: 直接调用其 deg 函数) --------
-    # 简化: 海洋退化逐图 λ 用已存档的聚合? 需要 δ_i → 需重算; 采用快速路径: 仅计算 sonar(完整路径) + marine 以 bioclip 一组
-    # 海洋: 重算
+    # -------- A) marine domain (bioclip/oceanclip, degradation = haze/color cast; reuse the clip_ocean_degradation logic as a proxy: call its deg function directly) --------
+    # simplification: use the archived aggregate for the per-image λ of marine degradation? that needs δ_i → must recompute; take the fast path: compute only sonar (full path) + marine with one bioclip group
+    # marine: recompute
     from clip_ocean_degradation import degrade as m_deg
     ds = load_dataset('parquet', data_files=sorted(
         os.path.join('data/rare-species/data', f) for f in os.listdir('data/rare-species/data')), split='train')
@@ -207,7 +207,7 @@ def main():
               (dname, tm, tp_mean, tp_dir, abs(tm - tp_mean), abs(tm - tp_dir)), flush=True)
     json.dump(res, open(OUT, 'w', encoding='utf-8'), indent=1)
 
-    # -------- B) 声呐域 (frozen CLIP) --------
+    # -------- B) sonar domain (frozen CLIP) --------
     man = sonar_manifest()
     slabels = np.array([SONAR_CLASSES.index(c) for _, c in man])
     stexts = [TEMPLATE.format(c) for c in SONAR_CLASSES]

@@ -1,7 +1,7 @@
-"""(合并稿提升) 解码器 E 位置聚合消融: E=mean||h_vis-h_lang||² 的聚合方式
-(mean/max/last-token × vis/lang) 是否改变 |Γ| 块排序。
-块=vision_tower / projector / llm_shallow(0-10) / llm_mid(11-21) / llm_deep(22-31);
-Γ_k=⟨∇_kE, ∇_kL⟩(同批 LM loss); 输出 outputs/llava_e_pooling_ablation.json
+"""(merged-manuscript upgrade) decoder-E position-pooling ablation: whether the pooling mode of E=mean||h_vis-h_lang||²
+(mean/max/last-token × vis/lang) changes the |Γ| block ordering.
+blocks = vision_tower / projector / llm_shallow(0-10) / llm_mid(11-21) / llm_deep(22-31);
+Γ_k=⟨∇_kE, ∇_kL⟩ (same-batch LM loss); output outputs/llava_e_pooling_ablation.json
 """
 import os, sys, json, glob, random
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -54,7 +54,7 @@ POS = ['vis_mean_lang_mean', 'vis_max_lang_mean', 'vis_last_lang_mean', 'vis_mea
 
 
 def pos_feats(h, ids, mode):
-    """h: (B,T,HD); 返回 vis 与 lang 两个 (B,HD) 聚合特征。"""
+    """h: (B,T,HD); returns two (B,HD) pooled features, vis and lang."""
     B, T = ids.shape
     vis = ids == IMGID
     lang = (ids != IMGID) & (ids != proc.tokenizer.pad_token_id)
@@ -74,7 +74,7 @@ def pos_feats(h, ids, mode):
 
 
 def E_of(m, ids, mask, pv, mode):
-    # 完整前向(视觉注入): 取 LLM 最后一层隐状态
+    # full forward pass (with visual injection): take the LLM's last hidden state
     out = m(pixel_values=pv, input_ids=ids, attention_mask=mask, output_hidden_states=True)
     h = out.hidden_states[-1].float()
     vf, lf = pos_feats(h, ids, mode)
@@ -95,11 +95,11 @@ def block_gdot(grad_dict):
             continue
         b = BLK[nm]
         gd[b] = gd.get(b, 0.0) + float(gr.double().pow(2).sum())
-    return gd  # 已平方和(尺度)
+    return gd  # sum of squares (scale)
 
 
 def gamma_order(m, ids, mask, pv, mode):
-    """逐样本双 backward 累计(8GB 限批=1); 返回平均 gdot 与 E。"""
+    """per-sample dual-backward accumulation (8GB limits batch to 1); returns mean gdot and E."""
     B = ids.shape[0]
     gd = {}
     e_acc = 0.0

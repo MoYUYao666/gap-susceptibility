@@ -1,4 +1,4 @@
-"""按论文口径(仅 LoRA rank sweep 配置, 排除 frozen/full-FT)重算 tab:generalization 两行。"""
+"""Recompute the two rows of tab:generalization by the paper convention (LoRA rank sweep configs only, excluding frozen/full-FT)."""
 import json
 import numpy as np
 from collections import defaultdict
@@ -16,7 +16,7 @@ for label, f in [('Flickr30k', 'outputs/theory/v1_trajectory/v1_all_results.json
     r2 = [r['r_squared'] for r in peft if r.get('r_squared') is not None]
     print('   alpha %.4f | beta %.4f | R2 %.4f  sd(pop)=%.4f sd(sample)=%.4f' % (
         np.mean(a), np.mean(b), np.mean(r2), np.std(r2), np.std(r2, ddof=1)))
-    # config 级(每配置先平均)
+    # config level (average each config first)
     byc = defaultdict(list)
     for r in peft:
         byc[str(r.get('name'))].append(r)

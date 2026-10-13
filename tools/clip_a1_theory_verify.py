@@ -1,11 +1,11 @@
-"""A1 理论三剩余项统一验证（2026-08-22）。
+"""Unified verification of the three remaining theory items of A1 (2026-08-22).
 
-① 经验分布 F̂_m 版相关结构界（消高斯保守差）
-② O 正交族：复现 RandomState(7) 的 r_hat → σ̃=std(r·t_c) + Theorem 1 逐点预测 τ_O(λ) vs 实测
-③ Theorem 5 类收缩逐图微验证：同 5k 样本质心 + 精确仿射序 → 预测 top-1/τ vs 实测(70.32/78.58)
+① Correlation-structure bound with the empirical distribution F̂_m (removes the Gaussian conservatism gap)
+② O orthogonal family: reproduce r_hat of RandomState(7) → σ̃=std(r·t_c) + pointwise prediction τ_O(λ) of Theorem 1 vs measured
+③ Theorem 5 class-contraction per-image micro-verification: centroids from the same 5k samples + exact affine ordering → predicted top-1/τ vs measured (70.32/78.58)
 
-所有口径与 tools/clip_a1_{margins,full,subspace}.py 一致（seed 42 五万张抽样、
-Flickr30k 验证子集 2000-3000 算鸿沟、同 CLIP 权重）。输出 outputs/a1_theory_verify.json。
+All conventions are identical to tools/clip_a1_{margins,full,subspace}.py (seed 42, fifty-thousand-image sampling,
+Flickr30k validation subset 2000-3000 for the gap, same CLIP weights). Output outputs/a1_theory_verify.json.
 """
 import os
 os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')
@@ -66,7 +66,7 @@ def main():
         base = torch.cat(imgs)
         base = base / base.norm(dim=-1, keepdim=True)
 
-    # 鸿沟方向（与 margins/full/subspace 同口径）
+    # gap direction (same convention as margins/full/subspace)
     ds_f = Flickr30kDataset('flickr30k', split='train', max_samples=None, pre_tokenize=True)
     val_ds = torch.utils.data.Subset(ds_f, range(2000, 3000))
     loader = DataLoader(val_ds, batch_size=64, shuffle=False, num_workers=0,
@@ -86,18 +86,18 @@ def main():
     gap_norm = gap_vec.norm().item()
     d_hat = gap_vec / gap_norm
 
-    m = (d_hat @ tf.T).cpu().numpy()           # 1000 类 m_c（原始单位）
+    m = (d_hat @ tf.T).cpu().numpy()           # m_c for the 1000 classes (raw units)
     mean_m = float(np.mean(m))
     m0 = m - mean_m
     sigma_m = float(np.std(m0))
-    S = (base @ tf.T).cpu().numpy()            # 5000×1000 冻结分数
+    S = (base @ tf.T).cpu().numpy()            # 5000×1000 frozen scores
     topk5 = np.argsort(-S, axis=1)[:, :5]
     out = {'meta': {'n_images': N, 'gap_norm': gap_norm, 'mean_m': mean_m,
                     'sigma_m': sigma_m, 'sigma_b': float(np.sqrt(2) * sigma_m)}}
 
-    # ============ ① 经验分布 F̂_m 相关结构界 ============
-    # 条件化 m_1 = u（该图实际值），竞争者从除该类外的 999 个 m 中经验抽样
-    # λ>0: P_j = F̂_m(u + d/(λ‖g‖))；λ<0: P_j = 1 − F̂_m(u − d/(|λ|‖g‖))
+    # ============ ① correlation-structure bound with the empirical distribution F̂_m ============
+    # condition on m_1 = u (the actual value for this image); competitors are sampled empirically from the 999 other m values
+    # λ>0: P_j = F̂_m(u + d/(λ‖g‖)); λ<0: P_j = 1 − F̂_m(u − d/(|λ|‖g‖))
     res_emp = {}
     for l in LAMBDAS:
         losses = []
@@ -105,11 +105,11 @@ def main():
             k5 = topk5[i]
             c1 = k5[0]
             u = m[c1]
-            dc = S[i][c1] - S[i][k5[1:]]              # 4 个 d_{1j}
+            dc = S[i][c1] - S[i][k5[1:]]              # the 4 d_{1j}
             ps = []
             for t in (u + dc / (l * gap_norm)) if l > 0 else (u - dc / (abs(l) * gap_norm)):
                 sgn_keep = 1.0 if l > 0 else -1.0
-                # F̂_m(t) over other classes（排除 c1 的类）
+                # F̂_m(t) over the other classes (excluding class c1)
                 others = np.delete(m, c1)
                 frac = float(np.mean(others <= t))
                 prob = frac if l > 0 else 1.0 - frac
@@ -118,15 +118,15 @@ def main():
         res_emp[str(l)] = float(np.mean(losses))
     out['predicted_rank1_loss_emp'] = res_emp
 
-    # ============ ② O 正交族（Corollary 1 验证） ============
+    # ============ ② O orthogonal family (verification of Corollary 1) ============
     rng2 = np.random.RandomState(7)
     rv = torch.tensor(rng2.randn(512), dtype=torch.float32)
     rv = rv - (rv @ d_hat.cpu()) * d_hat.cpu()
     r_hat = (rv / rv.norm()).numpy()
-    mO = r_hat @ tf.cpu().numpy().T               # 1000 类 m^O_c
+    mO = r_hat @ tf.cpu().numpy().T               # m^O_c for the 1000 classes
     sigma_O = float(np.std(mO))
     out['orthogonal'] = {'sigma_mO': sigma_O, 'ratio_sigmaO_over_sigmaM': sigma_O / sigma_m}
-    # Theorem 1 算子：同一 top-5 结构与 margin，仅换偏置场 b^O（向量化版）
+    # Theorem 1 operator: same top-5 structure and margins, only the bias field b^O is replaced (vectorized version)
     mO_t = torch.tensor(mO)
     pred_tau_O = {}
     for l in LAMBDAS:
@@ -135,7 +135,7 @@ def main():
             k5 = topk5[i]
             s5 = S[i][k5]
             dmat = s5[:, None] - s5[None, :]
-            bmat = mO_t[k5][None, :] - mO_t[k5][:, None]   # m_i − m_j（需要 j−i）
+            bmat = mO_t[k5][None, :] - mO_t[k5][:, None]   # m_i − m_j (we need j−i)
             bmat = -bmat
             upper = np.triu(np.ones((5, 5)), k=1).astype(bool)
             inv.append(int(((l * gap_norm * bmat.numpy()[upper]) > dmat[upper]).sum()))
@@ -148,13 +148,13 @@ def main():
             meas_tau_O[str(r['lambda'])] = r.get('tau_top5')
     out['measured_tau_orthogonal'] = meas_tau_O
 
-    # ============ ③ Theorem 5：类收缩逐图微验证 ============
+    # ============ ③ Theorem 5: per-image micro-verification of class contraction ============
     cents = torch.stack([base[labels == c].mean(0) for c in sorted(set(labels.numpy().tolist()))])
     cents = cents / cents.norm(dim=-1, keepdim=True)
     cidx = torch.tensor([sorted(set(labels.numpy().tolist())).index(int(li)) for li in labels],
                         device='cuda')
     c_own = cents[cidx]
-    e = (c_own - base)                           # 5000×512（不归一化；序由分子决定）
+    e = (c_own - base)                           # 5000×512 (not normalized; the ordering is determined by the numerator)
     Delta = (e @ tf.T).cpu().numpy()             # ⟨e, t_c⟩ 5000×1000
     resP = {}
     self_field = []
@@ -178,7 +178,7 @@ def main():
     out['class_contraction'] = resP
     out['class_contraction']['self_field_mean_a1'] = float(np.mean(self_field))
     out['class_contraction']['self_field_std_a1'] = float(np.std(self_field))
-    # 对照实测（a1_subspace_results.json P 行）
+    # compare against the measurements (P rows of a1_subspace_results.json)
     sp = json.load(open('outputs/a1_subspace_results.json', encoding='utf-8'))
     measP = {}
     for r in sp['results']:

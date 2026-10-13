@@ -1,12 +1,12 @@
-"""A2 提升⑥: MarineLife-16K 真实自然文本检索实验（D 升级版: 自然 QA 文本替代 BLIP 生成字幕）。
-数据: HF MarineLife-16K/MarineLife-16K（实际发布 = 251 视频组/2012 帧/qa.jsonl; README 声称的 2000 caption 未完整发布）
-协议:
-  - query = QA 文本（question + answer_text 拼接, 自然句）
-  - 图像库 = 全部帧; 视频级检索 = 每视频 8 帧平均嵌入
-  - 若干句变体（q_ans / q_only / central_object）对照
-  - 模型: openclip / oceanclip / bioclip（与 D 实验同加载器）
-输出: outputs/ocean_ml16k_retrieval.json
-运行: conda run -n pytorch python tools/clip_ocean_ml16k_retrieval.py
+"""A2 upgrade ⑥: MarineLife-16K real natural-text retrieval experiment (upgraded version of D: natural QA text instead of BLIP-generated captions).
+data: HF MarineLife-16K/MarineLife-16K (actual release = 251 video groups / 2012 frames / qa.jsonl; the 2000 captions claimed in the README were not fully released)
+protocol:
+  - query = QA text (question + answer_text concatenated, natural sentences)
+  - image gallery = all frames; video-level retrieval = mean embedding over the 8 frames per video
+  - comparison against several text variants (q_ans / q_only / central_object)
+  - models: openclip / oceanclip / bioclip (same loaders as experiment D)
+output: outputs/ocean_ml16k_retrieval.json
+run: conda run -n pytorch python tools/clip_ocean_ml16k_retrieval.py
 """
 import os, sys, json, glob, collections
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -29,7 +29,7 @@ ROOT = 'data/marinelife16k/data/selected_frames'
 
 
 def build_queries(root):
-    """遍历 qa.jsonl → (vid, q_txt, ans_txt, obj)。vid = site/video 组合(目录名跨 site 重复)。"""
+    """Walk qa.jsonl → (vid, q_txt, ans_txt, obj). vid = site/video combination (directory names repeat across sites)."""
     qlist = []
     for qf in sorted(glob.glob(os.path.join(root, '*', '*', 'qa.jsonl'))):
         vdir = os.path.dirname(qf)
@@ -72,7 +72,7 @@ def encode_img_openclip(m, pre, imgs, batch=32):
 
 def run(tag, m, pre, tok, queries, frames, vids):
     vid2idx = {v: i for i, v in enumerate(vids)}
-    # 变体
+    # variants
     variants = {
         'q_ans': [q['q'] + ' ' + q['a'] for q in queries],
         'q_only': [q['q'] for q in queries],
@@ -84,24 +84,24 @@ def run(tag, m, pre, tok, queries, frames, vids):
         imgs = [Image.open(fp).convert('RGB') for fp, _ in frames]
         fv = encode_img_openclip(m, pre, imgs)
         fv = F.normalize(fv, dim=-1)
-        # 视频级表示
+        # video-level representation
         fvi = []
         for v in vids:
             idx = [i for i, (_, vv) in enumerate(frames) if vv == v]
             fvi.append(fv[idx].mean(0))
         fvi = F.normalize(torch.stack(fvi), dim=-1)
-        # 帧级: 视频组标签
+        # frame level: video-group labels
         frames_vid = np.array([vid2idx[v] for _, v in frames])
         for vname, texts in variants.items():
             if not texts:
                 continue
             tf = encode_text_openclip(m, tok, texts)
-            # 视频级检索 (查询→视频平均嵌入)
+            # video-level retrieval (query → mean video embedding)
             sim = tf @ fvi.T
             vid_gt = np.array([vid2idx[q['vid']] for q in queries if (q['obj'] if vname == 'obj' else True)])[:len(texts)]
             r1_v = float((sim.argmax(1).cpu().numpy() == vid_gt).mean() * 100)
             r5_v = float(sum(1 for i, g in enumerate(vid_gt) if g in sim[i].topk(5).indices.cpu().numpy()) / len(vid_gt) * 100)
-            # 帧级检索: 命中同视频任何帧
+            # frame-level retrieval: hit any frame of the same video
             simf = tf @ fv.T
             q_gt = np.array([vid2idx[q['vid']] for q in queries])[:len(texts)]
             hit = (frames_vid[simf.argmax(1).cpu().numpy()] == q_gt)
@@ -134,7 +134,7 @@ def main():
         json.dump(res, open(OUT, 'w', encoding='utf-8'), indent=1)
         del m
         torch.cuda.empty_cache()
-    # openclip 通用对照（复用 models/openclip transformer 无法直接做 open_clip 编码; 用官方 open_clip 权重下载版? 采用本地 CLIP transformer 版作对照）
+    # generic openclip control (the models/openclip transformer cannot encode directly with open_clip; use the official open_clip weight download? the local CLIP transformer version is used as the control)
     print('== openclip_tf ==', flush=True)
     from transformers import CLIPModel, CLIPProcessor
     m = CLIPModel.from_pretrained('models/openclip', local_files_only=True).cuda().eval()

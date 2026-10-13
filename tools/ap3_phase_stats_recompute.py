@@ -1,24 +1,24 @@
-"""(A4 + 统计审计) 相变章节统计检验的可复现复算, 两套数据族:
+"""(A4 + statistics audit) Reproducible recomputation of the statistical tests in the phase-transition chapter, two data families:
 
-族 A("论文族", 复现用): 论文 §6 报告的 7 项检验, 数据来自 tab:phase 的三个批次
-  - E2_results.json :: E2     (r4, r16 各 3 seeds; E0=3930.5)
-  - E2_results.json :: extra  (r5,r6,r7,r8 各 3 seeds, E0=3927.0)
-  - E2_results.json :: sweep  (r20, r≥24; 旧环境密集扫描, 论文仅用于 r20 与 collapse)
-  检验定义(全部写死):
-   1 pooled_45_vs_67 : {E2 r4} ∪ {extra r5} vs {extra r6} ∪ {extra r7}, Welch t(各 n=6)
-   2 welch_56_ds2    : 第二数据集(vqa_phase_results.json) r5 vs r6, Welch t(n=3+3)
-   3 ds2_r6_vs0      : 第二数据集 r6 单样本双尾 t(n=3)
-   4 ds2_r5_vs0      : 第二数据集 r5 单样本双尾 t(n=3)
-   5 llava_r5_vs0    : LLaVA(extra) r5 单样本双尾 t(n=3)
-   6 llava_r6_vs0    : LLaVA(extra) r6 单样本双尾 t(n=3)
-   7 config_ordering : 配置级 ΔE(r6)>ΔE(r5)(样本量 n∈{16,64,128,256} + tab:phase 均值 + 第二数据集均值),
-                       精确双尾二项
+Family A ("paper family", for reproduction): the 7 tests reported in §6 of the paper, data from the three batches of tab:phase
+  - E2_results.json :: E2     (r4, r16 with 3 seeds each; E0=3930.5)
+  - E2_results.json :: extra  (r5,r6,r7,r8 with 3 seeds each, E0=3927.0)
+  - E2_results.json :: sweep  (r20, r≥24; dense sweep in the old environment, the paper uses it only for r20 and collapse)
+  Test definitions (all hard-coded):
+   1 pooled_45_vs_67 : {E2 r4} ∪ {extra r5} vs {extra r6} ∪ {extra r7}, Welch t (n=6 each)
+   2 welch_56_ds2    : second dataset (vqa_phase_results.json) r5 vs r6, Welch t (n=3+3)
+   3 ds2_r6_vs0      : second dataset r6 one-sample two-sided t (n=3)
+   4 ds2_r5_vs0      : second dataset r5 one-sample two-sided t (n=3)
+   5 llava_r5_vs0    : LLaVA (extra) r5 one-sample two-sided t (n=3)
+   6 llava_r6_vs0    : LLaVA (extra) r6 one-sample two-sided t (n=3)
+   7 config_ordering : config-level ΔE(r6)>ΔE(r5) (sample sizes n∈{16,64,128,256} + tab:phase means + second-dataset means),
+                       exact two-sided binomial
 
-族 B("独立复现族", Tier A4 新增): 当前环境参考协议的独立种子批次
-  paper3/scripts/outputs/experiments/verify_r{N}_s{M}.json(默认协议, 无标签; 含 A4 新种子)
-  → r=5 / r=6 的 mean±CI、单样本 t、Welch、以及 {5} vs {6} 的排序计数
+Family B ("independent replication family", new in Tier A4): independent seed batches of the reference protocol in the current environment
+  paper3/scripts/outputs/experiments/verify_r{N}_s{M}.json (default protocol, no labels; includes the new A4 seeds)
+  → mean±CI, one-sample t and Welch for r=5 / r=6, plus the ordering count for {5} vs {6}
 
-输出: outputs/phase_stats_recompute.json
+Output: outputs/phase_stats_recompute.json
 """
 import glob
 import json
@@ -66,7 +66,7 @@ def load_paper_batches():
 
 
 def load_replication():
-    """当前环境参考协议的默认协议运行(含 A4 新种子)。"""
+    """Default-protocol runs of the reference protocol in the current environment (including the new A4 seeds)."""
     out = {}
     for p in glob.glob(os.path.join(EXP, 'verify_r*_s*.json')):
         if not re.match(r'^verify_r\d+_s\d+\.json$', os.path.basename(p)):
@@ -97,10 +97,10 @@ def main():
                       'family': family, 'paper_p': paper})
 
     def pick(rank, batches):
-        """按 tab:phase 的批次选择返回 ΔE 列表(r4/r16←E2, r5-r8←extra, r20←sweep)。"""
+        """Return the ΔE list for the batch selection of tab:phase (r4/r16←E2, r5-r8←extra, r20←sweep)."""
         return [x['dE'] for x in pb.get(rank, []) if x['batch'] in batches]
 
-    # --- 族 A ---
+    # --- family A ---
     lo = pick(4, ('E2',)) + pick(5, ('extra',))
     hi = pick(6, ('extra',)) + pick(7, ('extra',))
     if lo and hi:
@@ -144,7 +144,7 @@ def main():
         f'config-level ΔE(r6)>ΔE(r5) in {k}/{len(configs)} configs, exact two-sided binomial',
         len(configs), paper=PAPER_P['config_ordering'])
 
-    # --- 族 B: 独立复现族 ---
+    # --- family B: independent replication family ---
     rep_stats = {}
     for r in (5, 6):
         vals = np.array(list(rep.get(r, {}).values()), dtype=float)
@@ -169,7 +169,7 @@ def main():
         n_hold = sum(1 for d in rep_stats['ordering_r6_gt_r5']['per_seed_pairs'] if d['holds'])
         rep_stats['ordering_r6_gt_r5']['n_hold'] = n_hold
         rep_stats['ordering_r6_gt_r5']['binom_two_sided_p'] = round(binom_two_sided(n_hold, n_pairs), 5)
-        # 独立复现族自身的 BH-FDR(4 项: r5 vs 0 / r6 vs 0 / Welch 5-6 / 逐种子排序)
+        # BH-FDR for the independent replication family itself (4 items: r5 vs 0 / r6 vs 0 / Welch 5-6 / per-seed ordering)
         rep_tests = [('r5_vs0', rep_stats['r5']['p_vs0']), ('r6_vs0', rep_stats['r6']['p_vs0']),
                      ('welch_56', rep_stats['welch_56']['p']),
                      ('per_seed_ordering', rep_stats['ordering_r6_gt_r5']['binom_two_sided_p'])]
@@ -183,7 +183,7 @@ def main():
                                 'survives_010': bool(q_r[rank - 1] <= 0.10)}
                                for rank, i in enumerate(order_r, 1)]
 
-    # --- BH-FDR (族 A, 与论文 7 项族对齐) ---
+    # --- BH-FDR (family A, aligned with the paper's 7-test family) ---
     def bh_over(fam):
         sub = [t for t in tests if t['family'] == fam]
         ps = np.array([t['p'] for t in sub])

@@ -1,7 +1,7 @@
-# ⚠️ 复现实验请用 requirements-lock.txt（精确锁版本），不要用本文件。
-#    原因：本文件的 >= 约束会装到 transformers>=5.19，而该版本实测会
-#    使严格冻结实验失效（R@1=0.002 vs 5.16.1 的 0.685）。
-#    详见 docs/ENVIRONMENT.md
+# ⚠️ To reproduce experiments use requirements-lock.txt (exact pinned versions), not this file.
+#    Reason: the >= constraints in this file install transformers>=5.19, and that version was measured to
+#    break the strictly frozen experiments (R@1=0.002 vs 0.685 for 5.16.1).
+#    See docs/ENVIRONMENT.md for details
 
 # Core
 torch>=2.0.0

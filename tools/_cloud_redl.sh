@@ -3,20 +3,20 @@ set -u
 cd /root/autodl-tmp/work
 M=https://hf-mirror.com
 
-# ① 杀干净所有下载，避免并发写
+# ① Kill every download cleanly to avoid concurrent writes
 pkill -f _cloud_par 2>/dev/null || true
 pkill -f _cloud_bin 2>/dev/null || true
 pkill -f "wget.*hf-mirror" 2>/dev/null || true
 pkill -f "curl.*hf-mirror" 2>/dev/null || true
 sleep 3
 
-# ② 清掉损坏/残缺文件
+# ② Remove corrupted / incomplete files
 rm -f models/*/model.safetensors models/*/*.incomplete models/*/*.p[0-9]* \
       models/*/*.part* 2>/dev/null || true
 find models -name "pytorch_model.bin" -size -100M -delete 2>/dev/null || true
 echo "cleaned: $(ls models/clip-vit-base-patch32/ | tr '\n' ' ')"
 
-# ③ 串行下载 + 立即校验
+# ③ Serial download + immediate verification
 dl_one() {  # dl_one <repo> <file> <dest>
   repo="$1"; file="$2"; dest="$3"
   url="$M/$repo/resolve/main/$file"

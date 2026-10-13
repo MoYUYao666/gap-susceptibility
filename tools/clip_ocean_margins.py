@@ -1,13 +1,13 @@
-"""海洋域 Theorem 5 / 偏置场检验 + 精确 τ(λ) 预测 + 类目数扫描。
-移植自 tools/clip_a1_margins.py（A1, ImageNet 协议），子集/口径同 clip_ocean_gap_surgery.py。
+"""Ocean-domain Theorem 5 / bias-field test + exact τ(λ) prediction + class-count sweep.
+Ported from tools/clip_a1_margins.py (A1, ImageNet protocol); subset/conventions same as clip_ocean_gap_surgery.py.
 
-输出 outputs/ocean_margins.json：
+Output outputs/ocean_margins.json:
   per_model:
     m_values(67), sigma_m, mean_m, margin_bias_independence(pearson/spearman),
-    margins 统计, predicted_tau_exact / predicted_rank1_loss_exact per λ,
-    measured {top1, tau} per λ (同相位1a), 偏置场检验: per_class_pearson[λ] (实测逐类位移 vs λ‖g‖m_c)
-  nsweep (oceanclip & bioclip): N∈{20,40,67} → gap_norm, τ/predicted, top1@λ∈{0.5,1} 保留率
-运行: conda run -n pytorch python tools/clip_ocean_margins.py
+    margins statistics, predicted_tau_exact / predicted_rank1_loss_exact per λ,
+    measured {top1, tau} per λ (same as phase 1a), bias-field test: per_class_pearson[λ] (measured per-class shift vs λ‖g‖m_c)
+  nsweep (oceanclip & bioclip): N∈{20,40,67} → gap_norm, τ/predicted, top1@λ∈{0.5,1} retention rate
+Run: conda run -n pytorch python tools/clip_ocean_margins.py
 """
 import os, sys, json, io
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -68,7 +68,7 @@ def embed(tag, ds, idx, texts, batch=32):
 
 
 def analyze(tf, base, labels_c, m, gap_norm, d_hat):
-    """对给定类集/图像集做完整分析（margins 预测 + 实测）。"""
+    """Full analysis for a given class set / image set (margins prediction + measurement)."""
     S = (base @ tf.T).cpu().numpy()
     topk5 = np.argsort(-S, axis=1)[:, :5]
     margins, all_d, all_b, rank1 = [], [], [], []
@@ -95,7 +95,7 @@ def analyze(tf, base, labels_c, m, gap_norm, d_hat):
     r1_all = np.concatenate(rank1)
     r_dm, p_dm = stats.pearsonr(d_all, np.concatenate(all_b))
     rho_dm, p_rho = stats.spearmanr(d_all, np.concatenate(all_b))
-    # 实测（图像侧平移，同相位1a）
+    # measured (image-side translation, same as phase 1a)
     measured, class_pearson = {}, {}
     for l in LAMBDAS:
         with torch.no_grad():
@@ -111,7 +111,7 @@ def analyze(tf, base, labels_c, m, gap_norm, d_hat):
             if np.isfinite(t):
                 taus.append(t)
         measured[str(l)] = {'top1': top1, 'tau': float(np.mean(taus))}
-        # 偏置场检验：逐类实测位移 vs λ‖g‖m_c
+        # bias-field test: measured per-class shift vs λ‖g‖m_c
         disp = []
         for c in range(len(m)):
             idxc = np.where(labels_c == c)[0]
@@ -119,7 +119,7 @@ def analyze(tf, base, labels_c, m, gap_norm, d_hat):
                 continue
             disp.append(float(np.mean(Sl[idxc, c] - S[idxc, c])))
         pred = [l * gap_norm * float(m[c]) for c in range(len(m))]
-        # 只对实测非空类
+        # only for classes that are non-empty in the measurement
         keep = np.array([len(np.where(labels_c == c)[0]) > 0 for c in range(len(m))])
         if keep.sum() >= 6:
             r_p, p_p = stats.pearsonr(np.array(disp)[keep], np.array(pred)[keep])
@@ -161,7 +161,7 @@ def main():
         m = (d_hat @ tf.T).cpu().numpy()
         result[tag] = analyze(tf, base, labels, m, gap_norm, d_hat)
         json.dump(result, open(OUT, 'w', encoding='utf-8'), indent=1)
-    # 类目数扫描（oceanclip & bioclip）
+    # class-count sweep (oceanclip & bioclip)
     counts = {c: sub['class_counts'][c] for c in classes}
     order = sorted(classes, key=lambda c: (-counts[c], c))
     nsweep = {}

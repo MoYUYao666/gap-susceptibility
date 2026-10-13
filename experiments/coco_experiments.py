@@ -1,14 +1,14 @@
 """
-COCO 交叉验证实验 — 直接调用项目模块，不依赖 CLI
+COCO cross-validation experiments — call project modules directly, no CLI dependency
 ===================================================
-在 COCO 上复现 Flickr30k 的核心发现，验证跨数据集泛化。
+Reproduce the core findings of Flickr30k on COCO and verify cross-dataset generalization.
 
-实验配置（7个）：
-  - RQ1: rank=4, 8, 16  (3个)
-  - RQ2: text_only, both, vision_only (3个)
-  - Baseline: full_ft (1个)
+Experiment configurations (7):
+  - RQ1: rank=4, 8, 16  (3)
+  - RQ2: text_only, both, vision_only (3)
+  - Baseline: full_ft (1)
 
-用法:
+Usage:
     python coco_experiments.py --data_dir ./data --max_samples 20000 --epochs 10
 """
 
@@ -23,11 +23,11 @@ from src.dataset import create_dataloaders
 from src.visualize import generate_report
 
 # ============================================================
-# 实验定义
+# experiment definitions
 # ============================================================
 
 COCO_EXPERIMENTS = [
-    # (name, LoRAConfig 或 None=full_ft)
+    # (name, LoRAConfig or None=full_ft)
     # RQ1+RQ2 + baselines — 8 experiments, 10 epochs
     ("rq1_rank4_coco",  LoRAConfig(rank=4,  alpha=8,   apply_to_vision=True,  apply_to_text=True)),
     ("rq1_rank8_coco",  LoRAConfig(rank=8,  alpha=16,  apply_to_vision=True,  apply_to_text=True)),
@@ -41,7 +41,7 @@ COCO_EXPERIMENTS = [
 
 
 def run_one(args, name, lora_cfg):
-    """运行单个实验"""
+    """Run a single experiment"""
     print(f"\n{'='*60}")
     print(f"🔬 COCO: {name}")
     print(f"{'='*60}")
@@ -73,7 +73,7 @@ def run_one(args, name, lora_cfg):
     test_metrics = trainer._compute_retrieval_metrics(test_loader)
     result["test_metrics"] = test_metrics
 
-    # 保存
+    # save
     save_path = f"{args.outputs_dir}/{name}/results.json"
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
     with open(save_path, 'w', encoding='utf-8') as f:
@@ -85,21 +85,21 @@ def run_one(args, name, lora_cfg):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_dir", type=str, default=".",
-                       help="数据根目录（包含 coco/ 子目录）")
+                       help="data root directory (containing the coco/ subdirectory)")
     parser.add_argument("--outputs_dir", type=str, default="./outputs")
     parser.add_argument("--batch_size", type=int, default=128)
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--max_samples", type=int, default=20000)
     parser.add_argument("--skip_full_ft", action="store_true",
-                       help="跳过全量微调（省时间）")
+                       help="skip full fine-tuning (saves time)")
     args = parser.parse_args()
 
-    # 检查 COCO
+    # check COCO
     coco_dir = f"{args.data_dir}/coco"
     if not os.path.exists(f"{coco_dir}/train2014"):
-        print(f"❌ COCO 数据集未找到: {coco_dir}/train2014/")
-        print("   请下载: http://images.cocodataset.org/zips/train2014.zip")
-        print("   并解压到上面的路径")
+        print(f"❌ COCO dataset not found: {coco_dir}/train2014/")
+        print("   please download: http://images.cocodataset.org/zips/train2014.zip")
+        print("   and extract it to the path above")
         return
 
     total_start = time.time()
@@ -107,7 +107,7 @@ def main():
 
     for name, lora_cfg in COCO_EXPERIMENTS:
         if args.skip_full_ft and "full_ft" in name:
-            print(f"⏭ 跳过 {name}")
+            print(f"⏭ skipping {name}")
             continue
 
         start = time.time()
@@ -118,14 +118,14 @@ def main():
         print(f"   ✅ {name}: R@1={r1}, time={elapsed:.0f}s")
 
     total = time.time() - total_start
-    print(f"\n🎉 COCO实验完成！总耗时: {total/60:.0f} 分钟")
+    print(f"\n🎉 COCO experiments done! total time: {total/60:.0f} min")
 
-    # 生成报告
+    # generate report
     from analyze_gaps import scan_experiments, extract_metrics
     all_data = scan_experiments(args.outputs_dir)
     rows = extract_metrics(all_data)
 
-    # 保存 COCO 指标
+    # save COCO metrics
     coco_rows = [r for r in rows if "_coco" in r.get("name", "")]
     if coco_rows:
         save_dir = f"{args.outputs_dir}/coco_analysis"
@@ -136,21 +136,21 @@ def main():
                 f.write(",".join(headers) + "\n")
                 for r in coco_rows:
                     f.write(",".join(str(r.get(h, "")) for h in headers) + "\n")
-        print(f"📁 COCO 指标: {save_dir}/coco_metrics.csv")
+        print(f"📁 COCO metrics: {save_dir}/coco_metrics.csv")
 
-    # 对比 Flickr30k vs COCO
+    # compare Flickr30k vs COCO
     flickr_rows = [r for r in rows if "_coco" not in r.get("name", "")
                    and r.get("R@1") is not None]
     coco_rows = [r for r in rows if "_coco" in r.get("name", "")
                  and r.get("R@1") is not None]
 
     print("\n" + "=" * 60)
-    print("📊 Flickr30k vs COCO 核心发现验证")
+    print("📊 Flickr30k vs COCO core-findings validation")
     print("=" * 60)
 
     checks = []
 
-    # Check 1: rank越低gap缩小越多？
+    # Check 1: does a lower rank shrink the gap more?
     for label, data in [("Flickr30k", flickr_rows), ("COCO", coco_rows)]:
         rank_data = [(r.get("lora_rank"), r["cg_delta"]) for r in data
                      if r.get("lora_rank") and r["lora_rank"] > 0]
@@ -159,11 +159,11 @@ def main():
             low_rank_delta = rank_data[0][1]
             high_rank_delta = rank_data[-1][1]
             ok = low_rank_delta < high_rank_delta
-            checks.append(f"  Rank越低Gap越小 [{label}]: {'✅' if ok else '❌'} "
+            checks.append(f"  lower rank -> smaller gap [{label}]: {'✅' if ok else '❌'} "
                          f"(r={rank_data[0][0]}:{low_rank_delta:+.3f} vs "
                          f"r={rank_data[-1][0]}:{high_rank_delta:+.3f})")
 
-    # Check 2: text_only 优于 both
+    # Check 2: text_only beats both
     for label, data in [("Flickr30k", flickr_rows), ("COCO", coco_rows)]:
         to = [r for r in data if "text_only" in r.get("name", "")]
         both = [r for r in data if "_both" in r.get("name", "")]
@@ -172,18 +172,18 @@ def main():
             checks.append(f"  text_only > both [{label}]: {'✅' if ok else '❌'} "
                          f"(text:{to[0]['cg_delta']:+.3f} vs both:{both[0]['cg_delta']:+.3f})")
 
-    # Check 3: full_ft 破坏对齐
+    # Check 3: full_ft breaks alignment
     for label, data in [("Flickr30k", flickr_rows), ("COCO", coco_rows)]:
         ft = [r for r in data if "full_ft" in r.get("name", "")]
         if ft:
             ok = ft[0]["cg_delta"] > 0
-            checks.append(f"  full_ft扩大Gap [{label}]: {'✅' if ok else '❌'} "
+            checks.append(f"  full_ft enlarges the gap [{label}]: {'✅' if ok else '❌'} "
                          f"(Δ={ft[0]['cg_delta']:+.3f})")
 
     for c in checks:
         print(c)
 
-    # 保存验证报告
+    # save validation report
     with open(f"{args.outputs_dir}/cross_validation.json", 'w') as f:
         json.dump({
             "checks": checks,
@@ -192,7 +192,7 @@ def main():
             "coco_experiments": len(coco_rows),
         }, f, indent=2, ensure_ascii=False)
 
-    print(f"\n📁 交叉验证报告: {args.outputs_dir}/cross_validation.json")
+    print(f"\n📁 cross-validation report: {args.outputs_dir}/cross_validation.json")
 
 
 if __name__ == "__main__":

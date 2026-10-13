@@ -1,9 +1,9 @@
-"""(c) MarineGPT 级规模(7B+)原生多模态指令微调——LLaVA-1.5-7B(本地完整权重)
-4-bit 量化 + LoRA(LLM 层), ML16K QA 全预算(10ep × 3440 对), 视觉条件。
-监控=67 类双模板文本嵌入 + 间隙手术(与 Qwen2V 探针完全同协议)。
-v2 优化: 批=2(累积=2), 文本模板/图像预处理一次性缓存, 进度写日志文件
-(conda run 管道缓冲导致 stdout 不可见——改用 outputs/llava_progress.log)。
-输出: outputs/llava_instruction_dynamics.json + outputs/llava_progress.log
+"""(c) MarineGPT-scale (7B+) native multimodal instruction tuning — LLaVA-1.5-7B (full local weights)
+4-bit quantization + LoRA (LLM layers), ML16K QA full budget (10ep × 3440 pairs), vision-conditioned.
+monitor = 67-class dual-template text embeddings + gap surgery (exactly the same protocol as the Qwen2V probe).
+v2 optimizations: batch=2 (accum=2), text templates / image preprocessing cached once, progress written to a log file
+(conda run pipe buffering makes stdout invisible — switched to outputs/llava_progress.log).
+output: outputs/llava_instruction_dynamics.json + outputs/llava_progress.log
 """
 import os, sys, json, glob, time
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -28,7 +28,7 @@ EPOCHS = 5
 LR = 1e-4
 GRAD_ACC = 1
 BATCH = 1
-PAIR_SUB = 500  # 时间预算: 与 Qwen2-VL-2B 视觉条件时间预算版相同 (5ep x 500 对)
+PAIR_SUB = 500  # time budget: same as the Qwen2-VL-2B vision-conditioned time-budgeted run (5ep x 500 pairs)
 
 
 def log(msg, also_stdout=True):
@@ -171,8 +171,8 @@ def main():
     log('cache/template done')
     del cache_paths
 
-    # 一次性预处理(每对只调一次 processor): 文本分词(含 576 图像 token 展开, 与训练时一致)
-    # + 图像像素(bf16)。此前版本每步重做 => 慢 2-4s/步。
+    # one-time preprocessing (processor called only once per pair): text tokenization (with the 576 image-token expansion, as at training time)
+    # + image pixels (bf16). Earlier versions redid this every step => 2-4s/step slower.
     ids_list, mask_list, pix_list = [], [], []
     for k in range(len(pairs)):
         with torch.no_grad():
@@ -211,7 +211,7 @@ def main():
     n = len(pairs)
     text_ids, text_mask, pix = text_ids[:n], text_mask[:n], pix[:n]
     log('subset n=%d' % n)
-    # 预热计时 ~5 批(无 empty_cache 干扰)
+    # warm-up timing over ~5 batches (without empty_cache interference)
     t0 = time.time()
     warm = 0
     for w in range(0, n, BATCH):
@@ -243,7 +243,7 @@ def main():
     log('warmup done step_time=%.3fs (%.2fs/step over warm)' % (elapsed / max(warm, 1), elapsed))
     del opt
     opt = None
-    # 重新初始化优化器(去掉预热梯度污染)
+    # re-initialize the optimizer (remove warm-up gradient contamination)
     for p in m.parameters():
         if p.requires_grad and p.grad is not None:
             p.grad = None

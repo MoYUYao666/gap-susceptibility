@@ -1,6 +1,6 @@
-"""(完整版) β 选择准则: 对 LLaVA r8 无偏估计的 4 块 |Γ|, 扫描 exp 分配策略的 β 网格,
-给出定量准则: β* = 1/σ(Γ) (软最小化温度 ≈ Γ 离散度) + 目标函数效率/熵/分离度诊断。
-输出: outputs/clip_beta_selection.json
+"""(full version) β selection criterion: over the 4-block |Γ| estimated without bias for LLaVA r8, sweep the β grid of the exponential allocation policy,
+giving a quantitative criterion: β* = 1/σ(Γ) (softmin temperature ≈ Γ spread) + objective efficiency/entropy/separation diagnostics.
+Output: outputs/clip_beta_selection.json
 """
 import json
 import numpy as np
@@ -18,7 +18,7 @@ assert C == 64
 def softmin_alloc(beta):
     w = np.exp(-beta * g)
     w = w / w.sum() * C
-    # 最大余数法取整, 保证和为 C
+    # largest-remainder rounding, guaranteeing the sum is C
     fl = np.floor(w)
     rem = C - fl.sum()
     idx = np.argsort(-(w - fl))
@@ -47,7 +47,7 @@ for b in betas:
                  'eff_vs_greedy_pct': round((o / d['policies']['greedy(lowest|Gamma|)']['obj'] - 1) * 100, 1),
                  'beta_sigma': round(float(b * g.std()), 3)})
 
-# 分离度与准则
+# separation and criterion
 sigma = float(g.std())
 mu = float(g.mean())
 rng_sorted = np.sort(g)

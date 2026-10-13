@@ -1,9 +1,9 @@
-"""(b) 逐图方向(泛函)精确算子——闭合方向解析问题。
-推导: 退化嵌入 fd_i = normalize(f0_i + δ_i) 已归一化 ⇒ 分母=1 ⇒ 分数差精确为
-Δs_c = δ_i · t_c ⇒ inversion iff δ_i·(t_j − t_i) > d_ij —— 任意方向位移的闭式精确反转条件。
-与共享方向子空间(k=1..5)对照;若逐图预测 err≈0 ⇒ 离轴问题闭合(配对数下)。
-数据: marine(bioclip frozen) 4 退化 + sonar(frozen) 4 退化(与 direction_subspace 同条件)。
-输出: outputs/perimage_operator.json
+"""(b) Exact per-image direction (functional) operator---closes the direction analysis problem.
+Derivation: the degraded embedding fd_i = normalize(f0_i + δ_i) is already normalized ⇒ the denominator is 1 ⇒ the score difference is exactly
+Δs_c = δ_i · t_c ⇒ inversion iff δ_i·(t_j − t_i) > d_ij --- the closed-form exact inversion condition for a displacement in an arbitrary direction.
+Compared against the shared direction subspace (k=1..5); if the per-image prediction err≈0 ⇒ the off-axis problem is closed (at the paired count).
+Data: marine (bioclip frozen) 4 degradations + sonar (frozen) 4 degradations (same conditions as direction_subspace).
+Output: outputs/perimage_operator.json
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -46,19 +46,19 @@ def perimage(f0, fd, tf, S0, topk5, tag, rows):
         if np.isfinite(t):
             taus.append(t)
         r2e = r2
-        # 逐图精确反转条件(理论恒等式: r2_a-r2_b = d_ab + (Δs_a-Δs_b) < 0 iff Δs_a-Δs_b < -d_ab)
+        # exact per-image inversion condition (theoretical identity: r2_a-r2_b = d_ab + (Δs_a-Δs_b) < 0 iff Δs_a-Δs_b < -d_ab)
         dm = tf_np[k5] @ dta[i]
         dms = dm[:, None] - dm[None, :]
         up = np.triu(np.ones((5, 5)), k=1).astype(bool)
         d_pairs = (S0[i][k5][:, None] - S0[i][k5][None, :])[up]
         inv = (dms[up] < -d_pairs).sum()
         preds.append(1.0 - 2 * inv / 10.0)
-        # 同口径实测(tau-a: 从 Sd 直接数真实反转)
+        # same-definition measurement (tau-a: count the true inversions directly from Sd)
         inv_true = np.sum((r2e[:, None] - r2e[None, :])[up] < 0)
         taus_tie.append(1.0 - 2 * inv_true / 10.0)
-    tm = float(np.mean(taus))          # scipy tau-b(含 tie 校正)
-    tp = float(np.mean(preds))         # 公式预测
-    ta = float(np.mean(taus_tie))      # 同口径实测(tau-a)
+    tm = float(np.mean(taus))          # scipy tau-b (with tie correction)
+    tp = float(np.mean(preds))         # formula prediction
+    ta = float(np.mean(taus_tie))      # same-definition measurement (tau-a)
     rows.append({'name': tag, 'tau_meas_tauB': round(tm, 4), 'tau_meas_tauA': round(ta, 4),
                  'tau_pred_perimage': round(tp, 4),
                  'err_same_def': round(abs(ta - tp), 4),

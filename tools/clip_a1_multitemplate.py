@@ -1,9 +1,9 @@
-"""A1 提升实验 3：多模板稳健性（3/7 模板）在关键 λ 点。
-模板集：
+"""A1 improvement experiment 3: multi-template robustness (3/7 templates) at critical λ points.
+Template sets:
 3-tpl = ['a photo of a {}','a photo of the {}','a photo of a {} in a photo']
 7-tpl = 3-tpl + ['a {} in a photo','a photo of one {}','an image of a {}','a close-up of a {}']
-对 CLIP frozen 在 λ∈{0,0.5,1,2} 做 gap 方向平移，测 top-1 与 τ（各自模板集的 frozen 排序为基准）。
-结果存 outputs/a1_multitemplate.json。
+Apply a gap-direction shift to CLIP frozen at λ∈{0,0.5,1,2}, and measure top-1 and τ (with the frozen ranking of the respective template set as the baseline).
+Results are stored in outputs/a1_multitemplate.json.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'

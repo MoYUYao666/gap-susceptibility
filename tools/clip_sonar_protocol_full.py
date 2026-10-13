@@ -1,6 +1,6 @@
-"""A3 提升①: 全量 NKSID（2617 图, 无 per-class cap）协议复跑。
-与 clip_sonar_protocol.py 完全同协议, 仅: ① manifest 全取 ② SonarCLIP 在全量上重训 10ep(同名调度)
-       ③ 输出 outputs/sonar_protocol_full.json ④ FT 权重存 outputs/sonar_clip_ft_full.pt
+"""A3 improvement ①: full NKSID (2617 images, no per-class cap) protocol re-run.
+Exactly the same protocol as clip_sonar_protocol.py, only: ① manifest taken in full ② SonarCLIP retrained 10ep on the full set (same schedule)
+       ③ output outputs/sonar_protocol_full.json ④ FT weights saved to outputs/sonar_clip_ft_full.pt
 """
 import os, sys, json, io, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -31,9 +31,9 @@ def build_manifest():
     for c, d in zip(CLASSES, CLASS_DIR):
         p = os.path.join(IMG_ROOT, d)
         if not os.path.isdir(p):
-            p = IMG_ROOT  # tire 直接解压在根目录
+            p = IMG_ROOT  # tire is extracted directly into the root directory
         fs = sorted(f for f in os.listdir(p) if f.lower().endswith(('.jpg', '.png')))
-        manifest.extend((os.path.join(p, f), c) for f in fs)  # 全量: 不截取
+        manifest.extend((os.path.join(p, f), c) for f in fs)  # full set: no truncation
     return manifest
 
 
@@ -96,7 +96,7 @@ def protocol(tag, m, p, manifest, texts, labels, outdict):
                      'tau_pred': round(float(np.mean(preds)), 4), 'CG': round(cg, 4)})
         print('  %s λ=%+.1f top1=%.2f tau_pred=%.4f tau_meas=%.4f CG=%.4f' %
               (tag, l, top1_l, np.mean(preds), np.mean(taus), cg), flush=True)
-    # 文本侧 λ=1
+    # text side λ=1
     with torch.no_grad():
         tf2 = F.normalize(tf - 1.0 * gnorm * dH, dim=-1)
     S2 = (base @ tf2.T).cpu().numpy()
@@ -125,7 +125,7 @@ def main():
                     'n_images': len(manifest), 'per_class': dict(collections.Counter(c for _, c in manifest))}}
     m, p = load_model()
     protocol('clip_frozen', m, p, manifest, texts, labels, out)
-    # SonarCLIP: 全量重训 10ep(与原 650 子集同调度)
+    # SonarCLIP: retrain 10ep on the full set (same schedule as the original 650 subset)
     torch.manual_seed(SEED)
     np.random.seed(SEED)
     m = CLIPModel.from_pretrained(MDIR, local_files_only=True).cuda().train()
@@ -158,7 +158,7 @@ def main():
     torch.save(m.state_dict(), FT_WEIGHTS)
     m = m.eval()
     protocol('sonar_ft_full', m, p, manifest, texts, labels, out)
-    # 陆地对照: 已有 CLIP+FlickrFT 权重(与子集协议一致, 直接全量评估)
+    # land control: existing CLIP+FlickrFT weights (consistent with the subset protocol, evaluated directly on the full set)
     if os.path.exists('outputs/ocean_clip_flickrft.pt'):
         m2 = CLIPModel.from_pretrained(MDIR, local_files_only=True).cuda()
         m2.load_state_dict(torch.load('outputs/ocean_clip_flickrft.pt', map_location='cpu'))

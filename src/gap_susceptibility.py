@@ -1,5 +1,5 @@
 """
-Gap Susceptibility — Γ_m 与 β 的计算模块
+Gap Susceptibility — computation module for Γ_m and β
 
 Γ_m = ⟨∇_m DG*, g_m⟩ / ||g_m||
 β   = η · ∂⟨∇DG*, ∇L⟩/∂DG*|_{DG₀}

@@ -1,9 +1,9 @@
-"""paper_ap3 编译审计：从 main.log 提取错误/未定义引用/重复标签/Overfull 盒，并报告页数。
+"""paper_ap3 compile audit: extract errors/undefined references/multiply-defined labels/Overfull boxes from main.log and report the page count.
 
-用法（先跑完 pdflatex ×3 + bibtex）：
-    python tools/ap3_compile_check.py            # 默认 paper_ap3
+Usage (after running pdflatex ×3 + bibtex):
+    python tools/ap3_compile_check.py            # default paper_ap3
     python tools/ap3_compile_check.py paper_ap3
-退出码：0 = 全部通过（无 error / 无 undefined / 无 multiply-defined / 无 Overfull>20pt）
+Exit code: 0 = all checks pass (no error / no undefined / no multiply-defined / no Overfull>20pt)
 """
 import os
 import re
@@ -15,7 +15,7 @@ LOG = os.path.join(DIR, 'main.log')
 PDF = os.path.join(DIR, 'main.pdf')
 
 if not os.path.exists(LOG):
-    print(f'FATAL: 找不到 {LOG}（先编译）')
+    print(f'FATAL: cannot find {LOG} (compile first)')
     sys.exit(2)
 
 log = open(LOG, encoding='utf-8', errors='replace').read()
@@ -35,10 +35,10 @@ try:
     if m:
         pages = int(m.group(1))
 except Exception as exc:  # noqa: BLE001
-    print(f'(pdfinfo 不可用: {exc!r})')
+    print(f'(pdfinfo unavailable: {exc!r})')
 
-print(f'== {DIR} 编译审计 ==')
-print(f'  页数              : {pages}')
+print(f'== {DIR} compile audit ==')
+print(f'  pages             : {pages}')
 print(f'  errors (!)        : {len(errors)}')
 for e in errors[:5]:
     print(f'      {e.strip()[:110]}')
@@ -50,5 +50,5 @@ print(f'  Overfull max      : {max(overfull) if overfull else 0:.5f} pt')
 print(f'  Underfull hbox    : {underfull}')
 
 ok = not errors and not undef_refs and not undef_cites and not multi and not over20
-print(f'  判定              : {"PASS" if ok else "FAIL"}')
+print(f'  verdict           : {"PASS" if ok else "FAIL"}')
 sys.exit(0 if ok else 1)

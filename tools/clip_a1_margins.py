@@ -1,21 +1,21 @@
-"""A1 理论精修配套：逐对 margin 提取 + 精确 τ(λ) 预测（写好后随 #8 一起跑，未执行）。
+"""Supporting theory refinement for A1: pairwise margin extraction + exact τ(λ) prediction (to be run together with #8, not executed).
 
-目的（配合 docs/theory_tau_bound.md §9-1 与 docs/theory_first_order_residual.md）：
-  1. 冻结模型在 5k 样本（RandomState(42)，与 baseline_metrics 同款抽样）上算：
-     top-5 类别集、10 个成对 margin {d_ij}、rank-1 margin d_min^1；
-  2. 计算 m_c = d̂·t_c（d̂ 来自 Flickr30k 验证子集的鸿沟向量）；
-  3. **精确预测**（无任何分布假设）：
-     反转条件（Lemma 1 精确版）λ‖g‖(m_j − m_i) > d_ij ⟹
+Purpose (together with docs/theory_tau_bound.md §9-1 and docs/theory_first_order_residual.md):
+  1. On 5k samples (RandomState(42), the same sampling as baseline_metrics) compute for the frozen model:
+     the top-5 class set, the 10 pairwise margins {d_ij}, and the rank-1 margin d_min^1;
+  2. Compute m_c = d̂·t_c (d̂ comes from the gap vector of the Flickr30k validation subset);
+  3. **Exact prediction** (without any distributional assumption):
+     inversion condition (exact version of Lemma 1) λ‖g‖(m_j − m_i) > d_ij ⟹
         predicted_τ(λ)   = mean_i(1 − 2·inv_i(λ)/10)
         predicted_rank1_loss(λ) = mean_i(1{∃j≠c1: λ‖g‖(m_j − m_c1) > d_c1j})
-     以及高斯模型版（Φ̄ 公式）作对照；
-  4. 与实测 τ(λ) 比对：baseline_metrics 的 T 条件（同 5k 样本）+ a1_full_results（50k）。
+     plus the Gaussian-model version (the Φ̄ formula) as a comparison;
+  4. Compare against the measured τ(λ): the T condition of baseline_metrics (same 5k samples) + a1_full_results (50k).
 
-输出：outputs/a1_margins.json（margin 统计 + m 统计 + 两条预测曲线 + 实测曲线）。
-运行：conda run -n pytorch python tools/clip_a1_margins.py  （数分钟，只跑冻结模型前向）
+Output: outputs/a1_margins.json (margin statistics + m statistics + the two prediction curves + the measured curves).
+Run: conda run -n pytorch python tools/clip_a1_margins.py  (a few minutes, only forward passes of the frozen model)
 """
 import os
-os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')   # Windows + torch 必须
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')   # required for Windows + torch
 import glob
 import json
 import sys
@@ -68,7 +68,7 @@ def main():
             imgs.append(F.normalize(model.visual_projection(vpooled), dim=-1))
         base = torch.cat(imgs)
 
-    # 鸿沟方向（Flickr30k 验证子集，与 baseline_metrics 同口径）
+    # gap direction (Flickr30k validation subset, same convention as baseline_metrics)
     ds_f = Flickr30kDataset('flickr30k', split='train', max_samples=None, pre_tokenize=True)
     val_ds = torch.utils.data.Subset(ds_f, range(2000, 3000))
     loader = DataLoader(val_ds, batch_size=64, shuffle=False, num_workers=0,
@@ -88,45 +88,45 @@ def main():
     gap_norm = gap_vec.norm().item()
     d_hat = gap_vec / gap_norm
 
-    m = (d_hat @ tf.T).cpu().numpy()          # 逐类 m_c
+    m = (d_hat @ tf.T).cpu().numpy()          # per-class m_c
     S = (base @ tf.T).cpu().numpy()
-    topk5 = np.argsort(-S, axis=1)[:, :5]     # 冻结 top-5（降序）
+    topk5 = np.argsort(-S, axis=1)[:, :5]     # frozen top-5 (descending)
 
-    # 逐图像 margin 提取
+    # per-image margin extraction
     margins, rank1_margins, inv_exact, inv_gauss, r1_loss_exact, r1_loss_gauss = (
         [], [], {l: [] for l in LAMBDAS}, {l: [] for l in LAMBDAS},
         {l: [] for l in LAMBDAS}, {l: [] for l in LAMBDAS})
-    all_d, all_b = [], []          # 独立性校验：全部 (margin, 偏置差) 成对样本
+    all_d, all_b = [], []          # independence check: all paired (margin, bias difference) samples
     sigma_b = float(np.sqrt(2) * np.std(m))
     for i in range(N):
         k5 = topk5[i]
         s5 = S[i][k5]
         d_pairs = s5[:, None] - s5[None, :]           # d_ij = s_i − s_j
-        dm = m[k5][:, None] - m[k5][None, :]          # b_ij = m_i − m_j（待用 j−i 变号）
+        dm = m[k5][:, None] - m[k5][None, :]          # b_ij = m_i − m_j (to be used as j−i with the sign flipped)
         dm = -dm                                      # b_ij = m_j − m_i
         upper = np.triu(np.ones((5, 5)), k=1).astype(bool)
-        d_flat = d_pairs[upper]                       # 10 个 margin（i 高于 j）
+        d_flat = d_pairs[upper]                       # the 10 margins (i above j)
         b_flat = dm[upper]
         margins.append(d_flat)
         all_d.append(d_flat)
         all_b.append(b_flat)
-        rank1_margins.append(d_pairs[0, 1:])          # 4 个 rank-1 margin
+        rank1_margins.append(d_pairs[0, 1:])          # the 4 rank-1 margins
         for l in LAMBDAS:
             inv = (l * gap_norm * b_flat > d_flat).sum()
             inv_exact[l].append(1.0 - 2 * inv / 10.0)
             r1_loss_exact[l].append(float((l * gap_norm * dm[0, 1:] > d_pairs[0, 1:]).any()))
-            # 高斯模型版（Φ̄ 公式，theory_tau_bound §4）
+            # Gaussian-model version (the Φ̄ formula, theory_tau_bound §4)
             u = d_flat / (abs(l) * gap_norm * sigma_b + 1e-12)
             p_g = stats.norm.sf(u)
             inv_gauss[l].append(1.0 - 2 * np.mean(p_g))
             u1 = d_pairs[0, 1:] / (abs(l) * gap_norm * sigma_b + 1e-12)
             r1_loss_gauss[l].append(float(np.mean(stats.norm.sf(u1))))
 
-    # ------------------- 相关结构 top-1 界（2026-08-22 推导补完） -------------------
-    # 精确定义: 给定 m_1 = mean_m + σ_m u，各竞争者条件独立:
-    #   λ>0: P(c1 存活 | u) = ∏_j Φ(u + c_j),   c_j = d_{1j}/(λ‖g‖σ_m)
-    #   λ<0: P(c1 存活 | u) = ∏_j Φ(−u − c_j)
-    # r1_loss_corr(λ) = 1 − E_u[∏_j Φ(±(u+c_j))]   （高斯工作模型; 数值求积）
+    # ------------------- top-1 bound with correlation structure (derivation completed 2026-08-22) -------------------
+    # exact definition: given m_1 = mean_m + σ_m u, the competitors are conditionally independent:
+    #   λ>0: P(c1 survives | u) = ∏_j Φ(u + c_j),   c_j = d_{1j}/(λ‖g‖σ_m)
+    #   λ<0: P(c1 survives | u) = ∏_j Φ(−u − c_j)
+    # r1_loss_corr(λ) = 1 − E_u[∏_j Φ(±(u+c_j))]   (Gaussian working model; numerical quadrature)
     mean_m = float(np.mean(m))
     m0 = m - mean_m
     sigma_m = float(np.std(m0))
@@ -135,12 +135,12 @@ def main():
     r1_corr = {l: [] for l in LAMBDAS}
     for i in range(N):
         k5 = topk5[i]
-        dm4 = m0[k5[1:]] - m0[k5[0]]             # m_j − m_1（4 个竞争者）
+        dm4 = m0[k5[1:]] - m0[k5[0]]             # m_j − m_1 (the 4 competitors)
         d4 = S[i][k5[0]] - S[i][k5[1:]]          # d_{1j}
         for l in LAMBDAS:
             cj = d4 / (abs(l) * gap_norm * sigma_m + 1e-12)
             sgn = 1.0 if l > 0 else -1.0
-            # P(survive | u) = ∏_j Φ(sgn·u + c_j)（λ>0: Z_j ≤ u + c_j；λ<0: Z_j ≥ u − c_j）
+            # P(survive | u) = ∏_j Φ(sgn·u + c_j) (λ>0: Z_j ≤ u + c_j; λ<0: Z_j ≥ u − c_j)
             arg = sgn * ugrid[:, None] + cj[None, :]
             phi = 0.5 * (1.0 + erf(arg / np.sqrt(2.0)))
             surv = np.prod(phi, axis=1)
@@ -154,7 +154,7 @@ def main():
     r1_exact = {str(l): float(np.mean(r1_loss_exact[l])) for l in LAMBDAS}
     r1_gauss = {str(l): float(np.mean(r1_loss_gauss[l])) for l in LAMBDAS}
 
-    # 独立性校验：margin d_ij 与偏置差 b_ij 的成对相关
+    # independence check: pairwise correlation between the margin d_ij and the bias difference b_ij
     d_cat = np.concatenate(all_d)
     b_cat = np.concatenate(all_b)
     r_dm, p_dm = stats.pearsonr(d_cat, b_cat)
@@ -165,8 +165,8 @@ def main():
     print('margin/bias independence: pearson=%.4f (p=%.3g) spearman=%.4f (p=%.3g) n=%d' %
           (r_dm, p_dm, rho_dm, p_rho, len(d_cat)), flush=True)
 
-    # 实测参照：baseline_metrics（同 5k 样本）T 条件 + a1_full_results（50k）
-    # 同一样本实测 τ(λ)（图像侧 T 平移）——抹平"5k 预测 vs 50k 实测"的口子
+    # measured reference: the T condition of baseline_metrics (same 5k samples) + a1_full_results (50k)
+    # measured τ(λ) on the same samples (image-side T shift) — closes the gap between "5k prediction vs 50k measurement"
     measured_5k = {}
     with torch.no_grad():
         for l in LAMBDAS:
@@ -201,8 +201,8 @@ def main():
                     'q10': float(np.percentile(d_all, 10)), 'q50': float(np.percentile(d_all, 50)),
                     'q90': float(np.percentile(d_all, 90)),
                     'rank1_mean': float(r1_all.mean()), 'rank1_q10': float(np.percentile(r1_all, 10))},
-        'm_values': [float(v) for v in m],   # 1000 类 m_c（原始单位，图用）
-        'pair_samples': {'d': [float(v) for v in d_all], 'b': [float(v) for v in b_cat]},  # 50000 对 (d, b)
+        'm_values': [float(v) for v in m],   # 1000 classes m_c (raw units, for plots)
+        'pair_samples': {'d': [float(v) for v in d_all], 'b': [float(v) for v in b_cat]},  # 50000 pairs (d, b)
         'predicted_tau_exact': pred_exact, 'predicted_tau_gauss': pred_gauss,
         'predicted_rank1_loss_exact': r1_exact, 'predicted_rank1_loss_gauss': r1_gauss,
         'predicted_rank1_loss_corr': r1_corr_out,

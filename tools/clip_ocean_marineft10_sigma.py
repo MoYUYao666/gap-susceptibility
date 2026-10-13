@@ -1,6 +1,6 @@
-"""判别实验 A-③: 匹配规模 2×2 的海洋侧——bioclip + 海洋子集(rare-species 67类) FullFT 10 epoch。
-与 A-②（Flickr 10 epoch）同训练配置（lr 5e-5 / cosine / seed 42 / 对称 CE），仅数据域不同。
-输出: outputs/ocean_marineft10_bioclip.pt + outputs/ocean_marineft10_sigma.json
+"""Discriminative experiment A-③: marine side of the matched-scale 2×2 — bioclip + marine subset (rare-species 67 classes) FullFT 10 epochs.
+Same training configuration as A-② (Flickr 10 epochs) (lr 5e-5 / cosine / seed 42 / symmetric CE), only the data domain differs.
+Output: outputs/ocean_marineft10_bioclip.pt + outputs/ocean_marineft10_sigma.json
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -35,7 +35,7 @@ def main():
     sub = json.load(open(SUB, encoding='utf-8'))
     classes = sub['classes']
     idx = sub['subset_idx']
-    cls_arr = np.array([classes.index(r['sciName']) for r in ds.select(idx)])  # 位置 j → 类序号
+    cls_arr = np.array([classes.index(r['sciName']) for r in ds.select(idx)])  # position j → class index
     n = len(idx)
     tok = open_clip.get_tokenizer('ViT-B-16')
     m, _, pre = open_clip.create_model_and_transforms(
@@ -82,7 +82,7 @@ def main():
     torch.save(m.state_dict(), OUT_W)
     print('saved', OUT_W, flush=True)
 
-    # 海洋协议测量
+    # marine protocol measurement
     texts = [TEMPLATE.format(c) for c in classes]
     labels = cls_arr
     m.eval()

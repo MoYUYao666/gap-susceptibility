@@ -1,8 +1,8 @@
-"""Full FT 重训（复现 Paper 1 零样本节 full_ft 行）— 重建配置基于 8/3 存档 results.json：
-epoch=10, step=320 → 32 steps/epoch ≈ batch 64 × 2000 样本（max_samples=2000, drop_last=False）。
-其余超参取 src/config.py 默认：lr=1e-4, AdamW wd=0.01, cosine, seed=42, grad clip 1.0。
-与原脚本的差异：本脚本保存完整模型权重（原 trainer 只存 LoRA，full_ft 权重丢失——本次修复）。
-训练后自动评测 ImageNet-1K 零样本（synset+single 与 plain+single 两协议）。
+"""Full FT retraining (reproduces the full_ft row of the Paper 1 zero-shot section) — reconstruction config based on the 8/3 archived results.json:
+epoch=10, step=320 → 32 steps/epoch ≈ batch 64 × 2000 samples (max_samples=2000, drop_last=False).
+Other hyperparameters take the src/config.py defaults: lr=1e-4, AdamW wd=0.01, cosine, seed=42, grad clip 1.0.
+Difference from the original script: this script saves the full model weights (the original trainer saved only the LoRA; the full_ft weights were lost — fixed here).
+After training it automatically evaluates ImageNet-1K zero-shot (both the synset+single and plain+single protocols).
 """
 import os, sys, json, time, argparse
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -32,7 +32,7 @@ np.random.seed(args.seed)
 import random
 random.seed(args.seed)
 
-# ---------- 数据 ----------
+# ---------- data ----------
 ds_all = Flickr30kDataset('flickr30k', split='train', max_samples=None, pre_tokenize=True)
 train_ds = torch.utils.data.Subset(ds_all, range(0, 2000))
 val_ds = torch.utils.data.Subset(ds_all, range(2000, 3000))
@@ -42,7 +42,7 @@ val_loader = DataLoader(val_ds, batch_size=64, shuffle=False, num_workers=0,
                         collate_fn=_collate_fn)
 print('train batches/epoch:', len(train_loader), '| val batches:', len(val_loader), flush=True)
 
-# ---------- 模型 ----------
+# ---------- model ----------
 from transformers import CLIPModel, CLIPProcessor
 model = CLIPModel.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True)
 processor = CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True)
@@ -140,9 +140,9 @@ for epoch in range(1, 11):
         best_val = vl
         torch.save(model.state_dict(), os.path.join(SAVE_DIR, 'model_state_best.pt'))
 torch.save(model.state_dict(), os.path.join(SAVE_DIR, 'model_state_last.pt'))
-print('训练完成，总步数', step, flush=True)
+print('training done, total steps', step, flush=True)
 
-# ---------- 零样本评测 ----------
+# ---------- zero-shot evaluation ----------
 from glob import glob
 from datasets import Dataset
 PARQ = sorted(glob('data/imagenet_hf/*.parquet'))
@@ -184,7 +184,7 @@ results = {
         'dataset': 'flickr30k subset (captions 0..1999, batch64 -> 32 steps/epoch)',
         'num_epochs': 10, 'lr': 1e-4, 'weight_decay': 0.01, 'scheduler': 'cosine',
         'seed': args.seed, 'amp': 'fp16', 'grad_clip': 1.0,
-        'reconstruction_note': '超参从 8/3 存档 results.json (epoch=10, step=320) 与 src/config.py 默认值重建；原脚本已丢失',
+        'reconstruction_note': 'hyperparameters rebuilt from the 8/3 archived results.json (epoch=10, step=320) and the src/config.py defaults; the original script has been lost',
     },
     'final_train_loss': train_losses[-1], 'final_val_loss': val_losses[-1],
     'best_val_loss': best_val, 'final_R1': r1s[-1],
@@ -199,4 +199,4 @@ results = {
 }
 json.dump(results, open(os.path.join(SAVE_DIR, 'results.json'), 'w', encoding='utf-8'),
           ensure_ascii=False, indent=2)
-print('结果已存', os.path.join(SAVE_DIR, 'results.json'))
+print('results saved to', os.path.join(SAVE_DIR, 'results.json'))

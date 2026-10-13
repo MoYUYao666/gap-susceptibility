@@ -1,7 +1,7 @@
-"""(修正版 v2) 解码器 E 位置聚合消融 —— 前缀感知分桶。
-修复: transformers 5.x 'model.' 前缀 + vision/LLM 层同名混淆。
-分桶(规范 8/16/8 + 前缀): vis | proj | llm_shallow(0-7) | llm_mid(8-23) | llm_deep(24-31) | llm_other(embed/norm) | lm_head
-输出: outputs/llava_e_pooling_ablation_v2.json
+"""(Corrected v2) Decoder E-position pooling ablation — prefix-aware bucketing.
+Fix: transformers 5.x 'model.' prefix + vision/LLM layers sharing the same names.
+Bucketing (canonical 8/16/8 + prefix): vis | proj | llm_shallow(0-7) | llm_mid(8-23) | llm_deep(24-31) | llm_other(embed/norm) | lm_head
+Output: outputs/llava_e_pooling_ablation_v2.json
 """
 import os, sys, json, glob
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'

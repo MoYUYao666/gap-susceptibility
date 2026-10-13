@@ -1,9 +1,9 @@
-"""指令微调型(VLM LLM 组件)轨迹——A 的最后一格。
-模型: Qwen2-VL-2B-Instruct (本地 models/Qwen2-VL-2B-Instruct), 仅语言模型 + LoRA(r=16, α=32)。
-数据: MarineLife-16K QA (3,440 对) → 指令格式 "Question: {q}\\nAnswer: {a}" (q 段 labels=-100)。
-监控: 67 类 fish-67 双模板嵌入 — A="a photo of a {c}"(查询/"图像"侧), B="a detailed photo of a {c}"(类侧);
-      手术沿 g=μA−μB 方向; τ(冻结 top-5, 预测 vs 实测), σ_m, 类嵌入几何(Ω=类间平均余弦)。
-输出: outputs/vlm_instruction_dynamics.json
+"""Instruction-tuned (VLM LLM component) trajectory -- the last cell of A.
+Model: Qwen2-VL-2B-Instruct (local models/Qwen2-VL-2B-Instruct), language model only + LoRA(r=16, α=32).
+Data: MarineLife-16K QA (3,440 pairs) → instruction format "Question: {q}\\nAnswer: {a}" (q segment labels=-100).
+Monitoring: 67-class fish-67 dual-template embeddings -- A="a photo of a {c}"(query/"image" side), B="a detailed photo of a {c}"(class side);
+      surgery along the g=μA−μB direction; τ(frozen top-5, predicted vs measured), σ_m, class embedding geometry(Ω=mean inter-class cosine).
+Output: outputs/vlm_instruction_dynamics.json
 """
 import os, sys, json, glob
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -56,7 +56,7 @@ def class_texts():
 
 
 def embed(m, tok, texts):
-    """文本嵌入 = 语言模型最后层 hidden state 末 token, L2 归一化。"""
+    """Text embedding = last-layer hidden state of the language model at the final token, L2-normalized."""
     out = []
     with torch.no_grad(), torch.autocast('cuda', dtype=torch.bfloat16):
         for i in range(0, len(texts), 16):
@@ -102,7 +102,7 @@ def protocol(m, tok, textsA, textsB):
                 taus.append(t)
         rows.append({'lambda': l, 'tau_meas': round(float(np.mean(taus)), 4),
                      'tau_pred': round(float(np.mean(preds)), 4)})
-    # 文本侧 λ=1
+    # text side λ=1
     with torch.no_grad():
         EB2 = F.normalize(EB - 1.0 * gnorm * dH, dim=-1)
     S2 = (EA @ EB2.T).cpu().numpy()
@@ -142,7 +142,7 @@ def main():
     opt = torch.optim.AdamW([p for p in m.parameters() if p.requires_grad], lr=LR, weight_decay=0.01)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=EPOCHS)
 
-    # 冻结基线
+    # frozen baseline
     m.eval()
     base = protocol(m, tok, textsA, textsB)
     res = {'meta': {'model': 'Qwen2-VL-2B-Instruct + LoRA (text-only instruction tuning)',

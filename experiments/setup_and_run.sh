@@ -1,20 +1,20 @@
 #!/bin/bash
-# Paper2 实验一键脚本 — 修复所有已知问题 + 跑实验
+# Paper2 experiment one-shot script — fix all known issues + run experiments
 set -e
 
-echo "===== Step 1: 修复 trainer.py ====="
+echo "===== Step 1: fix trainer.py ====="
 sed -i 's/, local_files_only=True//g' /root/src/trainer.py
 
-echo "===== Step 2: 修复 HF_HUB_OFFLINE ====="
+echo "===== Step 2: fix HF_HUB_OFFLINE ====="
 sed -i '/HF_HUB_OFFLINE/d' /root/experiments/theory/v1_rank_sweep.py
 sed -i '/HF_HUB_OFFLINE/d' /root/experiments/theory/v1_rank_sweep_coco.py
 sed -i '/HF_HUB_OFFLINE/d' /root/experiments/theory/adapter_sweep.py
 
-echo "===== Step 3: 建数据软链接 ====="
+echo "===== Step 3: create data symlinks ====="
 [ -d /root/flickr30k ] || ln -sf /root/experiments/flickr30k /root/flickr30k
 [ -d /root/coco ] || ln -sf /root/experiments/coco /root/coco
 
-echo "===== Step 4: 修复 flickr30k.json 格式 ====="
+echo "===== Step 4: fix flickr30k.json format ====="
 python3 -c "
 import json
 path = '/root/flickr30k/flickr30k.json'
@@ -37,21 +37,21 @@ else:
     print(f'Fixed: {len(new)} images')
 "
 
-echo "===== Step 5: 设置环境 ====="
+echo "===== Step 5: set up environment ====="
 unset HF_HUB_OFFLINE
 export HF_ENDPOINT=https://hf-mirror.com
 
-echo "===== Step 6: 跑实验 ====="
-echo "启动: v1_rank_sweep (Flickr30k)"
+echo "===== Step 6: run experiments ====="
+echo "launching: v1_rank_sweep (Flickr30k)"
 python experiments/theory/v1_rank_sweep.py > /root/v1_flickr30k.log 2>&1 &
 
-echo "启动: v1_rank_sweep_coco (COCO)"
+echo "launching: v1_rank_sweep_coco (COCO)"
 python experiments/theory/v1_rank_sweep_coco.py > /root/v1_coco.log 2>&1 &
 
-echo "启动: adapter_sweep"
+echo "launching: adapter_sweep"
 python experiments/theory/adapter_sweep.py > /root/adapter.log 2>&1 &
 
-echo "===== Step 4.5: 修复 COCO 标注格式 ====="
+echo "===== Step 4.5: fix COCO annotation format ====="
 python3 -c "
 import json, os
 for split in ['train','val']:
@@ -69,7 +69,7 @@ for split in ['train','val']:
     print(f'COCO {split}: fixed')
 "
 
-echo "===== 三个实验已后台启动 ====="
-echo "查看进度: tail -f /root/v1_flickr30k.log"
+echo "===== all three experiments launched in background ====="
+echo "check progress: tail -f /root/v1_flickr30k.log"
 echo "          tail -f /root/v1_coco.log"
 echo "          tail -f /root/adapter.log"

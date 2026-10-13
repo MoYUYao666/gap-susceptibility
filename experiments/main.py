@@ -1,30 +1,30 @@
 """
-主入口 — LoRA微调CLIP的模态差距演化实验
+Main entry — modality gap evolution experiments for LoRA fine-tuning of CLIP
 ============================================
-"先出图再写论文" — 所有实验跑完自动生成5张核心图表
+"Figures first, then the paper" — all experiments run and 5 core figures are generated automatically
 
-运行方式:
-    # 单次实验
+How to run:
+    # single experiment
     python main.py --mode single --rank 8
 
-    # RQ1: LoRA rank 影响
+    # RQ1: effect of LoRA rank
     python main.py --mode rq1
 
-    # RQ2: LoRA 作用位置
+    # RQ2: LoRA injection position
     python main.py --mode rq2
 
-    # RQ3: 缺失模态
+    # RQ3: missing modality
     python main.py --mode rq3
 
-    # Gap-Init 基线
+    # Gap-Init baseline
     python main.py --mode gap_init
 
-    # 所有实验 + 自动出图（核心流水线）
+    # all experiments + automatic figures (the core pipeline)
     python main.py --mode all --auto_viz
 """
 
 import os, sys
-os.environ["HF_HUB_OFFLINE"] = "1"  # 国内HF被墙，强制离线模式
+os.environ["HF_HUB_OFFLINE"] = "1"  # HF is blocked domestically, force offline mode
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import json
@@ -44,23 +44,23 @@ from src.visualize import generate_report
 
 
 def set_seed(seed: int = 42):
-    """固定随机种子"""
+    """Fix the random seed"""
     torch.manual_seed(seed)
     torch.mps.manual_seed(seed)
     np.random.seed(seed)
 
 
 def run_single_experiment(config: ExperimentConfig, data_dir: str = "./data"):
-    """运行单个实验"""
+    """Run a single experiment"""
     print(f"\n{'='*70}")
-    print(f"🔬 实验: {config.name}")
+    print(f"🔬 Experiment: {config.name}")
     print(f"   LoRA: r={config.lora.rank if config.lora else 'full'}, "
           f"α={config.lora.alpha if config.lora else 'N/A'}")
     print(f"   Vision={config.lora.apply_to_vision if config.lora else True}, "
           f"Text={config.lora.apply_to_text if config.lora else True}")
     print(f"{'='*70}")
 
-    # 数据加载
+    # Data loading
     train_loader, val_loader, test_loader = create_dataloaders(
         dataset_name=config.train.dataset,
         data_dir=data_dir,
@@ -69,19 +69,19 @@ def run_single_experiment(config: ExperimentConfig, data_dir: str = "./data"):
         max_samples=config.train.max_samples,
     )
 
-    # 训练
+    # Training
     trainer = GapAwareTrainer(config)
     results = trainer.train(train_loader, val_loader)
 
-    # 测试集评估
-    print("\n📊 测试集评估...")
+    # Test-set evaluation
+    print("\n📊 Test-set evaluation...")
     test_metrics = trainer._compute_retrieval_metrics(test_loader)
     results["test_metrics"] = test_metrics
     print(f"   R@1: {test_metrics.get('R@1', 0):.4f}")
     print(f"   R@5: {test_metrics.get('R@5', 0):.4f}")
     print(f"   R@10: {test_metrics.get('R@10', 0):.4f}")
 
-    # 保存结果
+    # Save results
     save_path = os.path.join(config.train.save_dir, config.name, "results.json")
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
     with open(save_path, 'w', encoding='utf-8') as f:
@@ -91,9 +91,9 @@ def run_single_experiment(config: ExperimentConfig, data_dir: str = "./data"):
 
 
 def run_rq1_rank_impact(data_dir: str = "./data", max_samples=None, epochs=None):
-    """RQ1: LoRA rank 对Gap的影响"""
+    """RQ1: effect of LoRA rank on the Gap"""
     print("\n" + "="*70)
-    print("🔬 RQ1: LoRA Rank 对模态差距演化的影响")
+    print("🔬 RQ1: effect of LoRA rank on modality gap evolution")
     print("="*70)
 
     results = {}
@@ -113,16 +113,16 @@ def run_rq1_rank_impact(data_dir: str = "./data", max_samples=None, epochs=None)
         )
         results[f"rank{rank}"] = run_single_experiment(config, data_dir)
 
-    # 生成对比图
+    # Generate the comparison figure
     generate_report(results, save_dir="./outputs/rq1_comparison")
 
     return results
 
 
 def run_rq2_lora_position(data_dir: str = "./data", max_samples=None, epochs=None):
-    """RQ2: LoRA 作用位置的影响"""
+    """RQ2: effect of LoRA injection position"""
     print("\n" + "="*70)
-    print("🔬 RQ2: LoRA 作用位置影响")
+    print("🔬 RQ2: effect of LoRA injection position")
     print("="*70)
 
     results = {}
@@ -152,9 +152,9 @@ def run_rq2_lora_position(data_dir: str = "./data", max_samples=None, epochs=Non
 
 
 def run_rq3_missing_modality(data_dir: str = "./data", max_samples=None, epochs=None):
-    """RQ3: 缺失模态下的Gap稳定性"""
+    """RQ3: Gap stability under missing modalities"""
     print("\n" + "="*70)
-    print("🔬 RQ3: 缺失模态对Gap的影响")
+    print("🔬 RQ3: effect of missing modalities on the Gap")
     print("="*70)
 
     results = {}
@@ -162,7 +162,7 @@ def run_rq3_missing_modality(data_dir: str = "./data", max_samples=None, epochs=
     base_lora = LoRAConfig(rank=8, alpha=16.0,
                           apply_to_vision=True, apply_to_text=True)
 
-    # 不同缺失比例
+    # Different missing ratios
     missing_configs = [
         ("complete", MissingModalitySimulator(image_drop_ratio=0.0, text_mask_ratio=0.0)),
         ("img_drop_10", MissingModalitySimulator(image_drop_ratio=0.1)),
@@ -183,7 +183,7 @@ def run_rq3_missing_modality(data_dir: str = "./data", max_samples=None, epochs=
         )
         trainer = GapAwareTrainer(config)
 
-        # 加载数据
+        # Load data
         train_loader, val_loader, test_loader = create_dataloaders(
             dataset_name=config.train.dataset,
             data_dir=data_dir,
@@ -200,15 +200,15 @@ def run_rq3_missing_modality(data_dir: str = "./data", max_samples=None, epochs=
 
 
 def run_baselines(data_dir: str = "./data", max_samples=None, epochs=None):
-    """运行基线实验：冻结 vs 全量微调"""
+    """Run baseline experiments: frozen vs full fine-tuning"""
     print("\n" + "="*70)
-    print("🔬 基线实验")
+    print("🔬 Baseline experiments")
     print("="*70)
 
     results = {}
     epoch_val = epochs if epochs else 5
 
-    # 冻结
+    # Frozen
     tc = TrainConfig(save_dir="./outputs/baseline_frozen", num_epochs=epoch_val,
                     max_samples=max_samples)
     config = ExperimentConfig(
@@ -218,7 +218,7 @@ def run_baselines(data_dir: str = "./data", max_samples=None, epochs=None):
     )
     results["frozen"] = run_single_experiment(config, data_dir)
 
-    # 全量微调
+    # Full fine-tuning
     tc2 = TrainConfig(save_dir="./outputs/baseline_full_ft", num_epochs=epoch_val,
                      max_samples=max_samples, gradient_accumulation_steps=4)
     config = ExperimentConfig(
@@ -235,13 +235,13 @@ def run_baselines(data_dir: str = "./data", max_samples=None, epochs=None):
 
 def run_gap_init_baselines(data_dir: str = "./data", max_samples=None, epochs=None):
     """
-    Gap-Init 实验 (参考: "When Is Rank-1 Enough?", arXiv:2602.01522)
+    Gap-Init experiment (ref: "When Is Rank-1 Enough?", arXiv:2602.01522)
 
-    核心对比: rank-1/2/4/8 + Gap-Init vs 相同rank的标准LoRA
-    验证命题: Gap-Init 能否让低rank达到高rank的性能？
+    Core comparison: rank-1/2/4/8 + Gap-Init vs standard LoRA at the same rank
+    Proposition tested: can Gap-Init let a low rank reach high-rank performance?
     """
     print("\n" + "="*70)
-    print("🔬 Gap-Init 实验 (arXiv:2602.01522)")
+    print("🔬 Gap-Init experiment (arXiv:2602.01522)")
     print("="*70)
 
     results = {}
@@ -263,7 +263,7 @@ def run_gap_init_baselines(data_dir: str = "./data", max_samples=None, epochs=No
         )
         results[name] = run_single_experiment(config, data_dir)
 
-    # Null-LoRA 对比
+    # Null-LoRA comparison
     tc2 = TrainConfig(save_dir="./outputs/null_lora_r8", num_epochs=epoch_val,
                      max_samples=max_samples)
     config = ExperimentConfig(
@@ -284,55 +284,55 @@ def run_gap_init_baselines(data_dir: str = "./data", max_samples=None, epochs=No
 
 def run_all_and_viz(data_dir: str = "./data", max_samples=None, epochs=None):
     """
-    完整流水线: 所有实验 → 自动出图 → 论文可直接用
-    "先出图再写论文" 的核心入口
+    Full pipeline: all experiments → automatic figures → directly usable in the paper
+    The core entry point for "figures first, then the paper"
     """
     print("\n" + "="*70)
-    print("🎬 完整实验流水线: 先出图 → 再写论文")
+    print("🎬 Full experiment pipeline: figures first → then the paper")
     print("="*70)
 
     all_results = {}
 
-    # Step 1: 基线
-    print("\n📌 Phase 1/5: 基线实验")
+    # Step 1: baselines
+    print("\n📌 Phase 1/5: baseline experiments")
     all_results["baselines"] = run_baselines(data_dir, max_samples, epochs)
 
-    # Step 2: RQ1 — Rank 影响
-    print("\n📌 Phase 2/5: RQ1 — LoRA Rank 对 Gap 演化的影响")
+    # Step 2: RQ1 — effect of rank
+    print("\n📌 Phase 2/5: RQ1 — effect of LoRA rank on Gap evolution")
     all_results["rq1"] = run_rq1_rank_impact(data_dir, max_samples, epochs)
 
-    # Step 3: RQ2 — 作用位置
-    print("\n📌 Phase 3/5: RQ2 — LoRA 位置影响")
+    # Step 3: RQ2 — injection position
+    print("\n📌 Phase 3/5: RQ2 — effect of LoRA position")
     all_results["rq2"] = run_rq2_lora_position(data_dir, max_samples, epochs)
 
-    # Step 4: RQ3 — 缺失模态
-    print("\n📌 Phase 4/5: RQ3 — 缺失模态下的 Gap 稳定性")
+    # Step 4: RQ3 — missing modality
+    print("\n📌 Phase 4/5: RQ3 — Gap stability under missing modalities")
     all_results["rq3"] = run_rq3_missing_modality(data_dir, max_samples, epochs)
 
     # Step 5: Gap-Init
-    print("\n📌 Phase 5/5: Gap-Init 基线")
+    print("\n📌 Phase 5/5: Gap-Init baseline")
     all_results["gap_init"] = run_gap_init_baselines(data_dir, max_samples, epochs)
 
-    # ---- 自动生成所有图表 ----
+    # ---- Automatically generate all figures ----
     print("\n" + "="*70)
-    print("📊 自动出图 — 生成论文图表")
+    print("📊 Automatic figures — generating paper figures")
     print("="*70)
 
-    # 合并所有 gap history 用于对比图
+    # Merge all gap histories for the comparison figure
     _merge_and_plot_all(all_results, save_dir="./outputs/figures")
 
     print("\n" + "="*70)
-    print("🎉 流水线完成！")
-    print(f"   实验数据: ./outputs/")
-    print(f"   论文图表: ./outputs/figures/")
-    print(f"   下一步: 看图写论文 → paper_outline.md")
+    print("🎉 Pipeline complete!")
+    print(f"   Experiment data: ./outputs/")
+    print(f"   Paper figures: ./outputs/figures/")
+    print(f"   Next step: read the figures and write the paper → paper_outline.md")
     print("="*70)
 
     return all_results
 
 
 def _merge_and_plot_all(all_results: dict, save_dir: str = "./outputs/figures"):
-    """合并所有实验结果，生成综合对比图表"""
+    """Merge all experiment results and generate comprehensive comparison figures"""
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -340,22 +340,22 @@ def _merge_and_plot_all(all_results: dict, save_dir: str = "./outputs/figures"):
 
     os.makedirs(save_dir, exist_ok=True)
 
-    # 收集所有 gap history
+    # Collect all gap histories
     gap_histories = {}
     for group_name, group_results in all_results.items():
         if isinstance(group_results, dict):
             for exp_name, result in group_results.items():
                 if isinstance(result, dict):
-                    # 尝试从保存的文件中加载 gap_history
-                    pass  # 各实验自行保存，这里通过文件加载
-                # 简化处理：如果result中有gap数据就直接用
+                    # Try to load gap_history from the saved file
+                    pass  # each experiment saves its own; here we load from files
+                # Simplified handling: use gap data directly if result has it
                 if "initial_gap" in result and "final_gap" in result and result["initial_gap"] is not None and result["final_gap"] is not None:
                     gap_histories[f"{group_name}/{exp_name}"] = [
                         {"epoch": 0, **result["initial_gap"]},
                         {"epoch": result.get("epoch", 20), **result["final_gap"]},
                     ]
 
-    # 从各实验目录加载详细gap历史（目录直接在outputs/下，非嵌套）
+    # Load detailed gap history from each experiment directory (directories sit directly under outputs/, not nested)
     for exp_dir in os.listdir("./outputs"):
         exp_path = os.path.join("./outputs", exp_dir)
         if not os.path.isdir(exp_path):
@@ -365,7 +365,7 @@ def _merge_and_plot_all(all_results: dict, save_dir: str = "./outputs/figures"):
             with open(gap_file) as f:
                 import json
                 raw = json.load(f)
-                # 列式 → 行式转换
+                # Column-wise → row-wise conversion
                 if isinstance(raw, dict) and "epoch" in raw and isinstance(raw["epoch"], list):
                     epochs = raw["epoch"]
                     history = [{k: raw[k][i] for k in raw if isinstance(raw[k], list) and len(raw[k]) == len(epochs)} for i in range(len(epochs))]
@@ -380,7 +380,7 @@ def _merge_and_plot_all(all_results: dict, save_dir: str = "./outputs/figures"):
             save_path=os.path.join(save_dir, "fig1_gap_evolution.png"),
         )
 
-    # RQ1: rank对比图
+    # RQ1: rank comparison figure
     rq1_histories = {k: v for k, v in gap_histories.items() if "rq1" in k}
     if rq1_histories:
         from src.visualize import plot_gap_evolution
@@ -390,7 +390,7 @@ def _merge_and_plot_all(all_results: dict, save_dir: str = "./outputs/figures"):
             figsize=(14, 10),
         )
 
-    # Gap-Init 对比图: rank-1 + Gap-Init vs rank-8 Standard
+    # Gap-Init comparison figure: rank-1 + Gap-Init vs rank-8 Standard
     gap_init_histories = {k: v for k, v in gap_histories.items() if "gap_init" in k or "rq1_rank8" in k}
     if gap_init_histories:
         from src.visualize import plot_gap_evolution
@@ -400,8 +400,8 @@ def _merge_and_plot_all(all_results: dict, save_dir: str = "./outputs/figures"):
             figsize=(14, 10),
         )
 
-    print(f"📊 共生成 {len(gap_histories)} 条Gap曲线的对比图")
-    print(f"   保存于: {save_dir}/")
+    print(f"📊 Generated comparison figures for {len(gap_histories)} Gap curves")
+    print(f"   Saved in: {save_dir}/")
 
 
 # ============================================================
@@ -410,41 +410,41 @@ def _merge_and_plot_all(all_results: dict, save_dir: str = "./outputs/figures"):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="LoRA微调CLIP的模态差距演化实验",
+        description="Modality gap evolution experiments for LoRA fine-tuning of CLIP",
     )
     parser.add_argument(
         "--mode", type=str, default="single",
         choices=["single", "rq1", "rq2", "rq3", "baselines", "gap_init", "all"],
-        help="实验模式 (all = 完整流水线: 实验+自动出图)",
+        help="experiment mode (all = full pipeline: experiments + automatic figures)",
     )
     parser.add_argument("--gap_init", action="store_true",
-                       help="在single模式下使用Gap-Init初始化")
+                       help="use Gap-Init initialization in single mode")
     parser.add_argument("--null_lora", action="store_true",
-                       help="在single模式下使用Null-LoRA约束")
+                       help="use the Null-LoRA constraint in single mode")
     parser.add_argument("--auto_viz", action="store_true",
-                       help="实验结束后自动生成可视化图表")
+                       help="automatically generate visualization figures after the experiments")
     parser.add_argument("--peft_method", type=str, default="lora",
                        choices=["lora", "adapter", "prefix", "full_ft", "frozen"],
-                       help="PEFT 方法")
+                       help="PEFT method")
     parser.add_argument("--rank", type=int, default=8, help="LoRA rank")
     parser.add_argument("--alpha", type=float, default=16.0, help="LoRA alpha")
     parser.add_argument("--bottleneck_dim", type=int, default=16,
                        help="Adapter bottleneck dim")
     parser.add_argument("--prefix_length", type=int, default=16,
                        help="Prefix Tuning prefix length")
-    parser.add_argument("--data_dir", type=str, default="./data", help="数据目录")
+    parser.add_argument("--data_dir", type=str, default="./data", help="data directory")
     parser.add_argument("--dataset", type=str, default="flickr30k",
-                       choices=["flickr30k", "coco"], help="数据集")
+                       choices=["flickr30k", "coco"], help="dataset")
     parser.add_argument("--batch_size", type=int, default=64, help="Batch size")
-    parser.add_argument("--epochs", type=int, default=20, help="训练epoch数")
-    parser.add_argument("--max_samples", type=int, default=None, help="限制样本数")
+    parser.add_argument("--epochs", type=int, default=20, help="number of training epochs")
+    parser.add_argument("--max_samples", type=int, default=None, help="limit the number of samples")
     parser.add_argument("--device", type=str, default="auto",
-                       choices=["auto", "cuda", "mps", "cpu"], help="设备")
-    parser.add_argument("--seed", type=int, default=42, help="随机种子")
+                       choices=["auto", "cuda", "mps", "cpu"], help="device")
+    parser.add_argument("--seed", type=int, default=42, help="random seed")
 
     args = parser.parse_args()
 
-    # 设备：自动检测 CUDA > MPS > CPU
+    # Device: auto-detect CUDA > MPS > CPU
     if args.device == "auto":
         if torch.cuda.is_available():
             device = "cuda"
@@ -456,15 +456,15 @@ def main():
         device = args.device
 
     if device == "cuda":
-        print(f"🖥️  使用设备: CUDA (GPU: {torch.cuda.get_device_name(0)})")
+        print(f"🖥️  Using device: CUDA (GPU: {torch.cuda.get_device_name(0)})")
     elif device == "mps":
-        print(f"🖥️  使用设备: Apple Silicon MPS")
+        print(f"🖥️  Using device: Apple Silicon MPS")
     else:
-        print(f"🖥️  使用设备: CPU")
+        print(f"🖥️  Using device: CPU")
 
     set_seed(args.seed)
 
-    # 基础训练配置
+    # Base training configuration
     train_cfg = TrainConfig(
         device=device,
         dataset=args.dataset,
@@ -474,7 +474,7 @@ def main():
     )
 
     if args.mode == "single":
-        # 单次实验 — 支持 LoRA / Adapter / Prefix
+        # Single experiment — supports LoRA / Adapter / Prefix
         from src.config import AdapterConfig, PrefixConfig
 
         if args.peft_method == "lora":
@@ -521,7 +521,7 @@ def main():
                 train=train_cfg,
             )
         else:
-            raise ValueError(f"未知 PEFT 方法: {args.peft_method}")
+            raise ValueError(f"unknown PEFT method: {args.peft_method}")
 
         result = run_single_experiment(config, args.data_dir)
 

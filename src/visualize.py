@@ -1,31 +1,31 @@
 """
-可视化工具 — 模态差距演化图表
+Visualization tools — modality gap evolution charts
 
-生成图表:
-1. Gap随epoch演化曲线（不同LoRA配置对比）
-2. 逐层Gap分布热力图
-3. 缺失比例 vs Gap偏移的折线图
-4. Gap vs Recall 散点图 + 回归线
-5. t-SNE可视化（微调前后的embedding分布）
+Generate charts:
+1. Gap evolution curve over epochs (comparison of different LoRA configurations)
+2. Per-layer Gap distribution heatmap
+3. Line chart of missing ratio vs Gap shift
+4. Gap vs Recall scatter plot + regression line
+5. t-SNE visualization (embedding distribution before and after fine-tuning)
 """
 
 import os
 import json
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')  # 非交互后端
+matplotlib.use('Agg')  # non-interactive backend
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from typing import Dict, List, Optional
 from pathlib import Path
 
-# 中文字体设置
+# CJK font settings
 plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'DejaVu Sans', 'SimHei']
 plt.rcParams['axes.unicode_minus'] = False
 
 
 # ============================================================
-# 图1: Gap 随训练演化
+# Fig 1: Gap evolution during training
 # ============================================================
 
 def plot_gap_evolution(
@@ -34,7 +34,7 @@ def plot_gap_evolution(
     figsize: tuple = (14, 10),
 ):
     """
-    绘制不同实验的Gap演化曲线
+    Plot the Gap evolution curves of different experiments
 
     gap_histories = {
         "LoRA r=4": [{"epoch": 0, "centroid_gap": 0.5, ...}, ...],
@@ -67,25 +67,25 @@ def plot_gap_evolution(
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches='tight')
     plt.close()
-    print(f"✅ 图1 已保存: {save_path}")
+    print(f"✅ Fig 1 saved: {save_path}")
 
 
 # ============================================================
-# 图2: 逐层Gap热力图
+# Fig 2: per-layer Gap heatmap
 # ============================================================
 
 def plot_layer_gap_heatmap(
-    initial_gaps: Dict[str, float],   # {layer_name: gap_value} 微调前
-    final_gaps: Dict[str, float],     # {layer_name: gap_value} 微调后
+    initial_gaps: Dict[str, float],   # {layer_name: gap_value} before fine-tuning
+    final_gaps: Dict[str, float],     # {layer_name: gap_value} after fine-tuning
     save_path: str = "outputs/fig2_layer_gap.png",
     figsize: tuple = (12, 6),
 ):
     """
-    绘制微调前后的逐层Gap热力图对比
+    Plot the per-layer Gap heatmap comparison before and after fine-tuning
     """
     layers = sorted(set(list(initial_gaps.keys()) + list(final_gaps.keys())))
 
-    # 构建矩阵
+    # build the matrix
     data = np.zeros((2, len(layers)))
     for i, layer in enumerate(layers):
         data[0, i] = initial_gaps.get(layer, 0)
@@ -93,7 +93,7 @@ def plot_layer_gap_heatmap(
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=figsize)
 
-    # 热力图
+    # heatmap
     im = ax1.imshow(data, cmap='RdYlBu_r', aspect='auto')
     ax1.set_xticks(range(len(layers)))
     ax1.set_xticklabels([l.split('_')[-1] for l in layers], rotation=45, fontsize=8)
@@ -102,7 +102,7 @@ def plot_layer_gap_heatmap(
     ax1.set_title("Per-Layer Centroid Gap", fontsize=12)
     plt.colorbar(im, ax=ax1)
 
-    # 差值柱状图
+    # difference bar chart
     diffs = data[1] - data[0]
     colors_bar = ['#e74c3c' if d > 0 else '#3498db' for d in diffs]
     ax2.bar(range(len(layers)), diffs, color=colors_bar, alpha=0.8)
@@ -117,11 +117,11 @@ def plot_layer_gap_heatmap(
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches='tight')
     plt.close()
-    print(f"✅ 图2 已保存: {save_path}")
+    print(f"✅ Fig 2 saved: {save_path}")
 
 
 # ============================================================
-# 图3: 缺失比例 vs Gap偏移
+# Fig 3: missing ratio vs Gap shift
 # ============================================================
 
 def plot_missing_modality_impact(
@@ -131,7 +131,7 @@ def plot_missing_modality_impact(
     figsize: tuple = (10, 6),
 ):
     """
-    绘制缺失比例与Gap偏移的关系
+    Plot the relationship between missing ratio and Gap shift
     """
     fig, ax = plt.subplots(figsize=figsize)
 
@@ -150,11 +150,11 @@ def plot_missing_modality_impact(
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches='tight')
     plt.close()
-    print(f"✅ 图3 已保存: {save_path}")
+    print(f"✅ Fig 3 saved: {save_path}")
 
 
 # ============================================================
-# 图4: Gap vs Task Performance 散点图
+# Fig 4: Gap vs Task Performance scatter plot
 # ============================================================
 
 def plot_gap_vs_performance(
@@ -166,17 +166,17 @@ def plot_gap_vs_performance(
     figsize: tuple = (8, 6),
 ):
     """
-    绘制 Gap vs 下游任务性能散点图 + 回归线
+    Plot the scatter plot of Gap vs downstream task performance + regression line
     """
     fig, ax = plt.subplots(figsize=figsize)
 
     gap_arr = np.array(gap_values)
     perf_arr = np.array(performance_values)
 
-    # 散点
+    # scatter
     ax.scatter(gap_arr, perf_arr, c='#3498db', alpha=0.6, s=60, edgecolors='white')
 
-    # 线性回归
+    # linear regression
     if len(gap_arr) >= 3:
         coeffs = np.polyfit(gap_arr, perf_arr, 1)
         x_fit = np.linspace(gap_arr.min(), gap_arr.max(), 100)
@@ -184,7 +184,7 @@ def plot_gap_vs_performance(
         ax.plot(x_fit, y_fit, '--', color='#e74c3c', linewidth=2,
                label=f'y = {coeffs[0]:.4f}x + {coeffs[1]:.4f}')
 
-        # Pearson相关系数
+        # Pearson correlation coefficient
         from scipy.stats import pearsonr
         r, p = pearsonr(gap_arr, perf_arr)
         ax.text(0.05, 0.95, f"Pearson r = {r:.3f}\np = {p:.4f}",
@@ -201,11 +201,11 @@ def plot_gap_vs_performance(
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches='tight')
     plt.close()
-    print(f"✅ 图4 已保存: {save_path}")
+    print(f"✅ Fig 4 saved: {save_path}")
 
 
 # ============================================================
-# 图5: t-SNE Embedding 可视化
+# Fig 5: t-SNE Embedding visualization
 # ============================================================
 
 def plot_tsne_comparison(
@@ -218,11 +218,11 @@ def plot_tsne_comparison(
     sample_size: int = 1000,
 ):
     """
-    t-SNE可视化：微调前后的embedding分布对比
+    t-SNE visualization: comparison of embedding distributions before and after fine-tuning
     """
     from sklearn.manifold import TSNE
 
-    # 采样
+    # sampling
     if len(before_image_embeds) > sample_size:
         indices = np.random.choice(len(before_image_embeds), sample_size, replace=False)
         before_image_embeds = before_image_embeds[indices]
@@ -230,7 +230,7 @@ def plot_tsne_comparison(
         after_image_embeds = after_image_embeds[indices]
         after_text_embeds = after_text_embeds[indices]
 
-    # 合并四个集合进行t-SNE（保持全局结构可比）
+    # merge the four sets for t-SNE (keeping the global structure comparable)
     all_embeds = np.vstack([
         before_image_embeds, before_text_embeds,
         after_image_embeds, after_text_embeds,
@@ -263,11 +263,11 @@ def plot_tsne_comparison(
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches='tight')
     plt.close()
-    print(f"✅ 图5 已保存: {save_path}")
+    print(f"✅ Fig 5 saved: {save_path}")
 
 
 # ============================================================
-# 综合报告生成
+# Comprehensive report generation
 # ============================================================
 
 def generate_report(
@@ -275,24 +275,24 @@ def generate_report(
     save_dir: str = "outputs/",
 ):
     """
-    根据所有实验结果生成综合可视化报告
+    Generate a comprehensive visualization report from all experiment results
     """
     os.makedirs(save_dir, exist_ok=True)
 
-    # 收集所有gap历史
+    # collect all gap histories
     gap_histories = {}
     for name, result in experiment_results.items():
         if "gap_history" in result:
             gap_histories[name] = result["gap_history"]
 
-    # 图1: Gap演化
+    # Fig 1: Gap evolution
     if gap_histories:
         plot_gap_evolution(
             gap_histories,
             save_path=os.path.join(save_dir, "fig1_gap_evolution.png"),
         )
 
-    # 图4: Gap vs Performance
+    # Fig 4: Gap vs Performance
     for name, result in experiment_results.items():
         if result.get("gap_values") and result.get("performance_values"):
             plot_gap_vs_performance(
@@ -301,4 +301,4 @@ def generate_report(
                 save_path=os.path.join(save_dir, f"fig4_gap_vs_perf_{name}.png"),
             )
 
-    print(f"\n📊 综合报告已生成: {save_dir}")
+    print(f"\n📊 Comprehensive report generated: {save_dir}")

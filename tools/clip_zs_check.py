@@ -1,15 +1,15 @@
-"""确认 imagenet_zs 实验的数据集身份：测 frozen CLIP ViT-B/32 在 CIFAR-100 的 zero-shot top-1。
-对比论文 60.72%（声称 CIFAR-100）。如果 ≈66-68%（CLIP 参考值）则不是 CIFAR-100。"""
+"""Confirm the dataset identity of the imagenet_zs experiment: measure frozen CLIP ViT-B/32 zero-shot top-1 on CIFAR-100.
+Compare with the paper's 60.72% (claimed to be CIFAR-100). If it is ≈66-68% (CLIP reference value), then it is not CIFAR-100."""
 import os
 os.environ.setdefault('HF_ENDPOINT', 'https://hf-mirror.com')
-os.environ.setdefault('HF_HUB_OFFLINE', '1')  # 模型已缓存，离线加载避免超时
+os.environ.setdefault('HF_HUB_OFFLINE', '1')  # model already cached, load offline to avoid timeouts
 import torch
 from transformers import CLIPModel, CLIPProcessor
 import torchvision.datasets as dsets
 from torch.utils.data import DataLoader
 
 MODEL = 'openai/clip-vit-base-patch32'
-LOCAL = './models/clip-vit-base-patch32'  # 本地下载的路径（可选）
+LOCAL = './models/clip-vit-base-patch32'  # locally downloaded path (optional)
 
 def has_weights(path):
     if not os.path.isdir(path):
@@ -17,15 +17,15 @@ def has_weights(path):
     return any(f.endswith(('.safetensors', '.bin')) for f in os.listdir(path))
 
 if has_weights(LOCAL):
-    print('加载本地 CLIP:', LOCAL, flush=True)
+    print('Loading local CLIP:', LOCAL, flush=True)
     model = CLIPModel.from_pretrained(LOCAL).cuda().eval()
     processor = CLIPProcessor.from_pretrained(LOCAL)
 else:
-    print('下载/加载 CLIP ViT-B/32（在线，~330MB，耐心等待）...', flush=True)
+    print('Downloading/loading CLIP ViT-B/32 (online, ~330MB, please be patient)...', flush=True)
     model = CLIPModel.from_pretrained(MODEL).cuda().eval()
     processor = CLIPProcessor.from_pretrained(MODEL)
 
-print('加载 CIFAR-100 ...', flush=True)
+print('Loading CIFAR-100 ...', flush=True)
 ds = dsets.CIFAR100('./data', train=False, download=True)
 labels = ds.classes
 texts = [f'a photo of a {c.replace("_", " ")}' for c in labels]
@@ -45,8 +45,8 @@ with torch.no_grad():
         if total % 2500 == 0:
             print('  ... %d/%d' % (total, len(ds)), flush=True)
 print('\nCIFAR-100 zero-shot top-1: %.2f%% (n=%d)' % (100 * correct / total, total))
-print('论文声称值: 60.72%%')
+print('Paper claimed value: 60.72%%')
 if abs(100 * correct / total - 60.72) < 3:
-    print('=> 与 60.72 匹配 → 数据集确为 CIFAR-100')
+    print('=> Matches 60.72 -> the dataset is indeed CIFAR-100')
 else:
-    print('=> 与 60.72 不匹配 → 60.72 不是 CIFAR-100，可能为 ImageNet（需进一步验证）')
+    print('=> Does not match 60.72 -> 60.72 is not CIFAR-100, possibly ImageNet (further verification needed)')

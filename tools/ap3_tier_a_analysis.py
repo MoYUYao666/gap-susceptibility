@@ -1,12 +1,12 @@
-"""(Tier A 汇总分析) 把电池产出的实验结果一次性汇总成论文可用的 JSON 产物。
+"""(Tier A summary analysis) Aggregate the experimental results produced by the battery into paper-ready JSON artifacts in one pass.
 
-分节:
-  A5  policy_multiseed : 5 种分配策略 × 多种子的 ΔE、均值/标准差、与 uniform 的 Welch 检验、预算与可训练参数量
-  A2  gradmask         : 图像/文本通路梯度门控 vs 参考 vs 语言-only 的 ΔE, 以及梯度范数证据(门控是否真的生效)
-  A6  projector_asym   : 投影器单独 / 投影器高-LLM 低 / 投影器低-LLM 高 的 ΔE 与可训练参数
-  A7  alpha_sweep      : LoRA alpha=32 vs 默认(2r) 在 r5/r6 的 ΔE
-  A10 grad_norm_vs_rank: 参考协议各 rank 的 ‖g_vision‖ 均值(测梯度饱和) + 门控生效校验
-输出: outputs/tier_a_analysis.json (可重复运行, 数据落地多少就统计多少)
+Sections:
+  A5  policy_multiseed : ΔE of 5 allocation policies × multiple seeds, mean/std, Welch test against uniform, budget and trainable parameter count
+  A2  gradmask         : ΔE of image/text pathway gradient masking vs reference vs language-only, plus gradient-norm evidence (whether masking really takes effect)
+  A6  projector_asym   : ΔE and trainable parameters of projector-only / high-projector-low-LLM / low-projector-high-LLM
+  A7  alpha_sweep      : ΔE of LoRA alpha=32 vs default (2r) at r5/r6
+  A10 grad_norm_vs_rank: mean ‖g_vision‖ per rank under the reference protocol (measuring gradient saturation) + masking-effectiveness check
+Output: outputs/tier_a_analysis.json (re-runnable; whatever data has landed is what gets summarized)
 """
 import glob
 import json
@@ -42,8 +42,8 @@ def load():
         if not gm:
             mm = re.search(r'_gm(image|text)', base)
             gm = mm.group(1) if mm else 'none'
-        # alpha: 新版 JSON 会写入"有效 alpha"(=2r or 16), 不能据此判断是否做过 alpha 消融
-        # → 只认文件名里的显式标签 _a<digits>(旧 run 无该字段, 新 run 一律以标签为准)
+        # alpha: newer JSON writes the "effective alpha" (=2r or 16), which cannot be used to tell whether an alpha ablation was run
+        # → only trust the explicit tag _a<digits> in the filename (old runs lack the field, new runs always go by the tag)
         mm = re.search(r'_a(\d+)', base)
         alpha = float(mm.group(1)) if mm else None
         targets = d.get('attn_targets')
@@ -65,7 +65,7 @@ def load():
                      'images_dir': bool(d.get('images_dir')) or '_imgs' in base,
                      'data_path': bool(d.get('data_path')) or '_cap' in base,
                      'is_variant': bool(re.search(r'_(tf457|e10)\b', base)),
-                     # 云端每 epoch 落盘的 *_partial.json(防 OOM 丢整轮)不是完整 run, 永不参与统计
+                     # the per-epoch *_partial.json written in the cloud (to avoid losing a whole round to OOM) is not a complete run and never enters the statistics
                      'partial': bool(d.get('partial')) or '_partial' in base,
                      'delta_E': None if de is None else float(de),
                      'E': d.get('E'), 'grad_norms': d.get('grad_norms'), 'trainable': d.get('trainable')})
@@ -73,7 +73,7 @@ def load():
 
 
 def ref(recs):
-    """严格参考协议记录(3 epochs, fp16, adamw, lr 5e-5, 无 warmup, batch=1, 无任何干预标签)。"""
+    """Strict reference-protocol records (3 epochs, fp16, adamw, lr 5e-5, no warmup, batch=1, no intervention tag at all)."""
     return [r for r in recs if r['epochs'] == 3 and r['grad_mask'] == 'none' and r['alpha'] is None
             and r['targets'] == 'qkvo' and r['proj_rank'] is None and not r['lang_only']
             and not r['target_proj'] and r['batch_size'] == 1 and abs(r['lr'] - 5e-5) < 1e-12
@@ -87,10 +87,10 @@ def ok(x):
 
 
 def sec_policies(recs):
-    # 基线: uniformv1 = LLM 全层 r4 + vision r1(与各策略 vision r1 同口径)
+    # baseline: uniformv1 = all LLM layers r4 + vision r1 (same convention as vision r1 of each policy)
     base = [r for r in ref(recs) if r['cfg'] == 'uniformv1' and r['rank'] == 4 and ok(r['delta_E'])]
     base_label = 'uniformv1'
-    if not base:  # 回退: 若 uniformv1 尚未跑完, 用 uniform(vision r4) 作参考并标注
+    if not base:  # fallback: if uniformv1 has not finished running, use uniform (vision r4) as the reference and label it as such
         base = [r for r in ref(recs) if r['cfg'] == 'uniform' and r['rank'] == 4 and ok(r['delta_E'])]
         base_label = 'uniform(vision r4)'
     out = {'baseline': base_label,
@@ -133,9 +133,9 @@ def sec_gradmask(recs):
                 entry[cond] = {'n': len(rs), 'mean': round(float(np.mean([r['delta_E'] for r in rs])), 2),
                                'values': [round(r['delta_E'], 2) for r in rs],
                                'grad_norms_last': (rs[0]['grad_norms'] or [None])[-1]}
-        # 门控生效证据: image 门控下 vision 路由梯度范数应 ≈ 0
+        # masking-effectiveness evidence: under image masking the vision-route gradient norm should be ≈ 0
         out[f'r{rank}'] = entry
-    # 交叉是否仍存在(每条件内 r6 均值 - r5 均值)
+    # whether the crossing still exists (within each condition, r6 mean - r5 mean)
     cross = {}
     for cond in ('reference', 'gradmask_image', 'gradmask_text', 'loss_lang_only'):
         v5 = out.get('r5', {}).get(cond, {}).get('mean')
@@ -165,7 +165,7 @@ def sec_projector(recs):
 
 
 def sec_alpha(recs):
-    """A7 三轴灵敏度: alpha / 注意力目标模块 / 批大小 各在 r5/r6 相对参考协议。"""
+    """A7 three-axis sensitivity: alpha / attention target modules / batch size, each at r5/r6 relative to the reference protocol."""
     out = {'axes': {}, 'reference_crossing': None}
 
     def one(tag, sel):
@@ -181,7 +181,7 @@ def sec_alpha(recs):
         out['axes'][tag] = ent
         return ent
 
-    # 参考协议基线(用于比较)
+    # reference-protocol baseline (for comparison)
     refset = {(r['rank'], r['seed']): r for r in ref(recs)}
     refc = {}
     for rank in (5, 6):
@@ -219,7 +219,7 @@ def sec_gradnorm(recs):
         vm = np.array([summary[str(k)]['vision_mean'] for k in ranks], dtype=float)
         rho, p = stats.spearmanr(rk, vm)
         corr = {'spearman_rank_vs_vision_gradnorm': round(float(rho), 3), 'p': round(float(p), 4)}
-    # 门控生效校验: image 门控下 vision 梯度应≈0
+    # masking-effectiveness check: under image masking the vision gradient should be ≈ 0
     masked = [r for r in recs if r['grad_mask'] == 'image' and r['grad_norms']]
     mask_check = [{'seed': r['seed'], 'rank': r['rank'],
                    'vision': (r['grad_norms'] or [{}])[-1].get('vision'),

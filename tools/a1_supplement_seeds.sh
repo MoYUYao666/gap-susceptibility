@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# A1 补种子：先重下 ImageNet 50k 分片，再串行跑剂量-响应的两个额外种子 + 早停第二种子。
-# 用法（后台运行）：
+# A1 seed top-up: first re-download the ImageNet 50k shards, then serially run two extra seeds of the dose-response plus a second early-stopping seed.
+# Usage (run in the background):
 #   bash tools/a1_supplement_seeds.sh > a1_supplement.log 2>&1 &
-# GPU 严格串行：本脚本一次只跑一个 python 进程。
+# GPU strictly serial: this script runs only one python process at a time.
 set -u
 cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit 1
 PY="${PY:-/d/Anaconda/envs/pytorch/python.exe}"
@@ -10,11 +10,11 @@ LOG_PREFIX="[$(date '+%F %H:%M:%S')]"
 
 say() { echo; echo "===== $LOG_PREFIX $* ====="; }
 
-say "检查 ImageNet 50k 分片"
+say "checking ImageNet 50k shards"
 N=$(ls data/imagenet_hf/*.parquet 2>/dev/null | wc -l)
-echo "  现有分片: $N / 14"
+echo "  existing shards: $N / 14"
 if [ "$N" -lt 14 ]; then
-  say "尝试重下（先走 hf-mirror，失败再试直连；门控数据集，本机有 hf token）"
+  say "trying to re-download (hf-mirror first, direct connection on failure; gated dataset, hf token available on this machine)"
   for EP in "https://hf-mirror.com" "https://huggingface.co"; do
     echo "--- endpoint: $EP"
     HF_ENDPOINT="$EP" HF_HUB_DISABLE_XET=1 "$PY" - <<'PY'
@@ -24,52 +24,52 @@ try:
     p = snapshot_download('imagenet-1k', repo_type='dataset',
                           allow_patterns=['data/*.parquet'],
                           local_dir='data/imagenet_hf')
-    print('  下载完成 ->', p)
+    print('  download complete ->', p)
 except Exception as e:
-    print('  失败:', type(e).__name__, str(e)[:200])
+    print('  failed:', type(e).__name__, str(e)[:200])
     sys.exit(3)
 PY
     [ $? -eq 0 ] && break
   done
   N=$(ls data/imagenet_hf/*.parquet 2>/dev/null | wc -l)
   [ "$N" -lt 14 ] && {
-    say "分片仍未就绪（$N/14）→ 训练已跳过。"
-    echo "  需要手动重下 14 个 parquet 分片（≈6.4 GB）到 data/imagenet_hf/："
-    echo "  · 迅雷/浏览器（当初就是这么下的；gated 数据集直链可能 401/403）"
-    echo "  · 或在能连 HF 的网络下：HF_ENDPOINT=https://hf-mirror.com python -c \"from huggingface_hub import snapshot_download; snapshot_download('imagenet-1k', repo_type='dataset', allow_patterns=['data/*.parquet'], local_dir='data/imagenet_hf')\""
-    echo "  · 放好后重跑本脚本即可自动补种子"
+    say "shards still not ready ($N/14) → training skipped."
+    echo "  need to re-download the 14 parquet shards manually (≈6.4 GB) into data/imagenet_hf/:"
+    echo "  · Thunder/browser (that is how it was downloaded originally; direct links for gated datasets may return 401/403)"
+    echo "  · or on a network that can reach HF: HF_ENDPOINT=https://hf-mirror.com python -c \"from huggingface_hub import snapshot_download; snapshot_download('imagenet-1k', repo_type='dataset', allow_patterns=['data/*.parquet'], local_dir='data/imagenet_hf')\""
+    echo "  · once in place, just rerun this script to top up the seeds automatically"
     exit 3; }
 fi
-echo "  分片就绪: $(ls data/imagenet_hf/*.parquet | wc -l) 个"
+echo "  shards ready: $(ls data/imagenet_hf/*.parquet | wc -l) files"
 
-say "开始补种子（4 个 λ × 2 个 seed = 8 次训练；GPU 串行）"
+say "starting the seed top-up (4 λ × 2 seeds = 8 training runs; GPU serial)"
 for lam in 0 0.1 0.5 1.0; do
   for seed in 123 456; do
     if [ -f "outputs/a1_class_aligned/lr$lam/seed$seed/eval_epoch10.json" ]; then
-      echo "  跳过 λ=$lam seed=$seed（已有 eval_epoch10.json）"
+      echo "  skipping λ=$lam seed=$seed (eval_epoch10.json already present)"
       continue
     fi
-    echo "--- $(date '+%H:%M:%S') 训练 λ=$lam seed=$seed"
+    echo "--- $(date '+%H:%M:%S') training λ=$lam seed=$seed"
     "$PY" tools/train_class_aligned.py --lambda-reg "$lam" --seed "$seed" || {
-      echo "  λ=$lam seed=$seed 训练失败，继续下一个"; continue; }
-    echo "--- $(date '+%H:%M:%S') 端点评测 λ=$lam seed=$seed (epoch 10)"
+      echo "  λ=$lam seed=$seed training failed, moving on to the next"; continue; }
+    echo "--- $(date '+%H:%M:%S') endpoint eval λ=$lam seed=$seed (epoch 10)"
     "$PY" tools/train_class_aligned.py --eval-only --epoch 10 --lambda-reg "$lam" --seed "$seed" \
-      || echo "  端点评测失败"
+      || echo "  endpoint eval failed"
   done
 done
 
-say "早停表的第二/第三个种子（λ=0，逐 epoch 1/2/3/5/10）"
+say "second/third seed for the early-stopping table (λ=0, per epoch 1/2/3/5/10)"
 for seed in 123 456; do
   for ep in 1 2 3 5 10; do
     f="outputs/a1_class_aligned/lr0/seed$seed/eval_epoch$ep.json"
-    [ -f "$f" ] && { echo "  跳过 λ=0 seed=$seed ep=$ep"; continue; }
-    echo "--- $(date '+%H:%M:%S') 评测 λ=0 seed=$seed ep=$ep"
+    [ -f "$f" ] && { echo "  skipping λ=0 seed=$seed ep=$ep"; continue; }
+    echo "--- $(date '+%H:%M:%S') eval λ=0 seed=$seed ep=$ep"
     "$PY" tools/train_class_aligned.py --eval-only --epoch "$ep" --lambda-reg 0 --seed "$seed" \
-      || echo "  评测失败 ep=$ep"
+      || echo "  eval failed ep=$ep"
   done
 done
 
-say "完成；汇总各配置的端点结果"
+say "done; summarizing the endpoint results of each configuration"
 for lam in 0 0.1 0.5 1.0; do
   for seed in 123 456; do
     f="outputs/a1_class_aligned/lr$lam/seed$seed/eval_epoch10.json"
@@ -77,4 +77,4 @@ for lam in 0 0.1 0.5 1.0; do
   done
 done
 echo
-echo "===== 结束 $(date '+%F %H:%M:%S') ====="
+echo "===== finished $(date '+%F %H:%M:%S') ====="

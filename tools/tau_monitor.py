@@ -1,23 +1,23 @@
-"""A1 #4：TauMonitor —— 训练期零开销 τ 监控回调（代码先行，未执行、未接入训练）。
+"""A1 #4: TauMonitor — zero-overhead τ monitoring callback during training (code first, not executed, not wired into training).
 
-思路（A1 §5.5 结论的工程化）：
-  1. 训练前用冻结模型在验证集上算一次 top-5 类别集与冻结分数（precompute，一次性）；
-  2. 每个 epoch 用当前微调模型的图像嵌入 + 类别文本嵌入算 top-5 集上的 Kendall τ；
-  3. 早停逻辑：τ 相对历史最大值的平台化（默认 3 个 epoch 不创新高即触发），
-     可在 τ 开始侵蚀、top-1 仍平坦时提前叫停（A1：τ 第 3 epoch 降、top-1 到第 10 epoch 都不动）。
+Idea (engineering the conclusion of A1 §5.5):
+  1. Before training, compute the top-5 class sets and frozen scores on the validation set with the frozen model (precompute, one-off);
+  2. Each epoch, compute Kendall τ on the top-5 sets using the current fine-tuned model's image embeddings + class text embeddings;
+  3. Early stopping: plateauing of τ relative to its historical maximum (by default triggers after 3 epochs without a new high),
+     which can stop early when τ starts eroding while top-1 is still flat (A1: τ drops at epoch 3, top-1 does not move until epoch 10).
 
-零开销论证：验证时本来就要算相似度矩阵拿 top-k 类集，τ 只是同一矩阵上的
-top-5 子块的 Kendall 系数——O(5 log 5) 每样本，无额外前向。
+Zero-overhead argument: validation already computes the similarity matrix to get the top-k class sets, and τ is just the
+Kendall coefficient over the top-5 sub-block of that same matrix — O(5 log 5) per sample, no extra forward pass.
 
-用法示例（接入现有训练循环的伪代码）：
+Usage example (pseudocode for wiring into an existing training loop):
     mon = TauMonitor(frozen_text_features, val_topk5_sets, patience=3)
     for epoch in ...:
-        img_feats = encoder(images)            # 微调模型图像嵌入
-        tau = mon.step(img_feats)              # 返回本 epoch 的平均 τ
+        img_feats = encoder(images)            # fine-tuned model image embeddings
+        tau = mon.step(img_feats)              # returns this epoch's mean τ
         if mon.should_stop():
             break
 
-依赖：torch, numpy, scipy。不导入模型、不下载权重。
+Dependencies: torch, numpy, scipy. Does not import models or download weights.
 """
 from __future__ import annotations
 
@@ -26,14 +26,14 @@ from scipy import stats
 
 
 def kendall_tau_topk(ranks_a: np.ndarray, ranks_b: np.ndarray) -> float:
-    """两组 top-k 排序（同一样本）的 Kendall τ。ranks: 长度为 k 的类别索引序列。"""
+    """Kendall τ between two top-k rankings (same sample). ranks: a length-k sequence of class indices."""
     assert ranks_a.shape == ranks_b.shape
     k = ranks_a.shape[0]
     if k < 2:
         return 1.0
     r1 = np.empty(k)
     r2 = np.empty(k)
-    # 用各自序列的位置作为秩
+    # Use each sequence's position as the rank
     r1[ranks_a] = np.arange(k)
     r2[ranks_b] = np.arange(k)
     if np.std(r1) < 1e-12 or np.std(r2) < 1e-12:
@@ -43,15 +43,15 @@ def kendall_tau_topk(ranks_a: np.ndarray, ranks_b: np.ndarray) -> float:
 
 
 class TauMonitor:
-    """训练期 τ 监控 + 早停。"""
+    """τ monitoring + early stopping during training."""
 
     def __init__(self, frozen_text_features, val_topk5_sets, patience: int = 3,
                  min_epochs: int = 1, verbose: bool = True):
         """
-        frozen_text_features: [K, D] 归一化类别文本嵌入（冻结模型，一次性）。
-        val_topk5_sets:       [N, 5] 冻结模型在验证集每张图像上的 top-5 类别索引
-                              （一次性；同时可缓存冻结分数 [N, 5] 省掉重复取数）。
-        patience: τ 平台化容忍的 epoch 数（不创新高）。
+        frozen_text_features: [K, D] normalized class text embeddings (frozen model, one-off).
+        val_topk5_sets:       [N, 5] top-5 class indices of the frozen model for each validation image
+                              (one-off; the frozen scores [N, 5] can also be cached to avoid recomputation).
+        patience: number of epochs τ may plateau (no new high).
         """
         self.text_feats = frozen_text_features
         self.topk5 = np.asarray(val_topk5_sets)
@@ -64,14 +64,14 @@ class TauMonitor:
         self.epochs_since_best = 0
 
     def step(self, image_feats) -> float:
-        """image_feats: [N, D] 当前微调模型的验证集图像嵌入（调用方负责归一化）。
-        返回本 epoch 平均 τ。"""
+        """image_feats: [N, D] validation image embeddings of the current fine-tuned model (the caller normalizes them).
+        Returns this epoch's mean τ."""
         S = image_feats @ self.text_feats.T          # [N, K]
         S = S.cpu().numpy() if hasattr(S, 'cpu') else S
         taus = []
         for i in range(self.n_val):
             k5 = self.topk5[i]
-            # 约定：topk5 按冻结分数降序存储（precompute_frozen 保证）
+            # Convention: topk5 is stored in descending frozen-score order (guaranteed by precompute_frozen)
             frozen_order = k5
             cur_order = k5[np.argsort(-S[i][k5])]
             t = kendall_tau_topk(frozen_order, cur_order)
@@ -91,15 +91,15 @@ class TauMonitor:
         return tau
 
     def should_stop(self) -> bool:
-        """τ 平台化（连续 patience 个 epoch 不创新高）且超过 min_epochs 时触发。"""
+        """Triggered when τ plateaus (no new high for patience consecutive epochs) and min_epochs is exceeded."""
         return (len(self.history) >= self.min_epochs
                 and self.epochs_since_best >= self.patience)
 
 
 def precompute_frozen(encoder_fn, text_feats, val_loader, k: int = 5):
-    """一次性：用冻结模型算验证集 top-k 类别集（按分数降序）。
-    encoder_fn(images) -> [N, D] 归一化图像嵌入；text_feats: [K, D]。
-    训练前调用一次，结果喂给 TauMonitor。"""
+    """One-off: compute the validation top-k class sets with the frozen model (sorted by descending score).
+    encoder_fn(images) -> [N, D] normalized image embeddings; text_feats: [K, D].
+    Call once before training and feed the result to TauMonitor."""
     topk_sets, topk_scores = [], []
     for images in val_loader:
         feats = encoder_fn(images)
@@ -112,7 +112,7 @@ def precompute_frozen(encoder_fn, text_feats, val_loader, k: int = 5):
 
 
 if __name__ == '__main__':
-    # 自检（不涉模型）：随机秩与打乱秩的 τ 应在 1 附近/明显更低
+    # Self-check (no model involved): τ of an identical rank vs a shuffled rank should be near 1 / clearly lower
     rng = np.random.RandomState(0)
     a = np.array([3, 1, 4, 2, 0])
     print('self τ:', kendall_tau_topk(a, a.copy()))

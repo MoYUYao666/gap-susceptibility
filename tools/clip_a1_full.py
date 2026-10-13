@@ -1,9 +1,9 @@
-"""A1 实验 1：完整 Gap Surgery 相位图（CLIP ViT-B/32）+ OpenCLIP 跨模型复现。
-扰动家族：T=gap 方向平移（λ∈{-2,-1,-0.5,0,0.25,0.5,1,2,4}）、O=随机正交平移（同 λ）、
-C=向图像质心收缩（a∈{0.1,0.25,0.5}）。
-指标：CG、R@1、top-1、top-5、τ_top5、NCC（最近质心分类，线性探针代理）。
-OpenCLIP（laion2B）复现：T 家族 λ∈{0,0.5,1,2}。
-结果增量写入 outputs/a1_full_results.json（防崩溃丢失）。
+"""A1 experiment 1: full Gap Surgery phase diagram (CLIP ViT-B/32) + OpenCLIP cross-model reproduction.
+Perturbation families: T=shift along the gap direction (λ∈{-2,-1,-0.5,0,0.25,0.5,1,2,4}), O=random orthogonal shift (same λ),
+C=contraction toward the image centroid (a∈{0.1,0.25,0.5}).
+Metrics: CG, R@1, top-1, top-5, τ_top5, NCC (nearest-centroid classification, a linear-probe surrogate).
+OpenCLIP (laion2B) reproduction: T family λ∈{0,0.5,1,2}.
+Results are appended incrementally to outputs/a1_full_results.json (guards against loss on crash).
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -24,7 +24,7 @@ TEMPLATE = 'a photo of a {}'
 N_TAU = 5000
 OUT = 'outputs/a1_full_results.json'
 
-# ---------- 公共数据 ----------
+# ---------- shared data ----------
 processor = CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True)
 PARQ = sorted(glob('data/imagenet_hf/*.parquet'))
 ds_in = Dataset.from_parquet(PARQ)
@@ -73,7 +73,7 @@ def metrics(img_full, tf, fi, ft, base_sims_np, base_labels):
     i2t = (sims.argmax(1) == torch.arange(len(fi), device='cuda')).float().mean().item()
     t2i = (sims.argmax(0) == torch.arange(len(fi), device='cuda')).float().mean().item()
     r1 = (i2t + t2i) / 2
-    # top-1 / top-5 (全 50k)
+    # top-1 / top-5 (all 50k)
     s_all = img_full @ tf.T
     pred = s_all.argmax(1).cpu()
     lab_all = torch.tensor(ds_in['label'])
@@ -93,7 +93,7 @@ def metrics(img_full, tf, fi, ft, base_sims_np, base_labels):
         if np.isfinite(t):
             taus.append(t)
     tau = float(np.mean(taus))
-    # NCC (最近质心分类)
+    # NCC (nearest-centroid classification)
     cls = torch.tensor(sorted(set(ds_in['label'])))
     cents = torch.stack([img_full[lab_all == c].mean(0) for c in cls])
     cents = F.normalize(cents, dim=-1)
@@ -105,13 +105,13 @@ def metrics(img_full, tf, fi, ft, base_sims_np, base_labels):
 
 
 def run_model(model, proc, tag):
-    print('== %s: 提取嵌入 ==' % tag, flush=True)
+    print('== %s: extracting embeddings ==' % tag, flush=True)
     tf, full, fi, ft = extract(model, proc)
     mu_i = fi.mean(0); mu_t = ft.mean(0)
     gap_vec = mu_t - mu_i; gap_norm = gap_vec.norm().item(); d_hat = gap_vec / gap_norm
     rng2 = np.random.RandomState(7)
     r_hat = torch.tensor(rng2.randn(512), dtype=torch.float32, device='cuda')
-    r_hat = r_hat - (r_hat @ d_hat) * d_hat  # 与 gap 方向正交
+    r_hat = r_hat - (r_hat @ d_hat) * d_hat  # orthogonal to the gap direction
     r_hat = r_hat / r_hat.norm()
     base_sims_np = (full[tau_idx] @ tf.T).cpu().numpy()
     print('%s frozen CG=%.4f' % (tag, gap_norm), flush=True)
@@ -126,7 +126,7 @@ def run_model(model, proc, tag):
                 delta = lam * gap_norm * r_hat
                 img_full2 = F.normalize(full + delta, dim=-1)
                 fi2 = F.normalize(fi + delta, dim=-1)
-            else:  # C 收缩
+            else:  # C contraction
                 a = lam
                 img_full2 = F.normalize((1 - a) * full + a * mu_i, dim=-1)
                 fi2 = F.normalize((1 - a) * fi + a * mu_i, dim=-1)
@@ -152,7 +152,7 @@ def run_model(model, proc, tag):
     return rows
 
 
-# ---------- 主流程 ----------
+# ---------- main flow ----------
 all_rows = []
 m1 = CLIPModel.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True).cuda().eval()
 all_rows += run_model(m1, processor, 'clip')
@@ -164,7 +164,7 @@ try:
     p2 = CLIPProcessor.from_pretrained('laion/CLIP-ViT-B-32-laion2B-s34B-b79K', local_files_only=True)
     all_rows += run_model(m2, p2, 'openclip_laion2b')
 except Exception as e:
-    print('OpenCLIP 部分失败: %s' % str(e)[:200], flush=True)
+    print('OpenCLIP part failed: %s' % str(e)[:200], flush=True)
 
 json.dump(all_rows, open(OUT, 'w', encoding='utf-8'), indent=2)
 print('ALL DONE ->', OUT, flush=True)

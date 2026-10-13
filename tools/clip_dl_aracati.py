@@ -1,4 +1,4 @@
-"""ARACATI2017 FLS 数据集 — jsDelivr 逐文件镜像下载(6366 图 + 标注)。"""
+"""ARACATI2017 FLS dataset — per-file mirror download from jsDelivr (6366 images + annotations)."""
 import os, json, time, urllib.request, urllib.parse
 import concurrent.futures as cf
 

@@ -1,21 +1,21 @@
-"""(A9) 用"对实测 ΔE 的预测力"选定对齐能量 E 的实例化(局限 7 / 13 的操作性收口)。
+"""(A9) Select the instantiation of the alignment energy E by its "predictive power for the measured ΔE" (operational closure of limitations 7 / 13).
 
-思路: 论文的分配律要求先给定 E; 不同 E 实例化会重排 |Γ_k|(成对族 vs 信息论族在 CLIP 上
-完全反向; 解码器侧 4 种池化变体使 LLM 层序翻转)。与其把"哪个 E 正确"留作开放问题,
-本脚本用**已有实测 ΔE**做留出预测检验: 对每个候选 E 实例化的 |Γ_k|, 用三种风险泛函
-预测各分配策略的 ΔE, 再看哪个实例化的预测与实测排序最一致。
+Rationale: the paper's allocation law requires E to be given first; different E instantiations
+reorder |Γ_k| (the pairwise family vs the information-theoretic family are on CLIP completely
+opposite; the 4 decoder-side pooling variants flip the LLM layer order). Rather than leaving
+"which E is correct" as an open question, this script uses the **existing measured ΔE** for a hold-out
 
-候选 E 实例化(全部来自本地归档 JSON):
-  i1 adapter 子空间块耦合 (outputs/llava_granularity_bootstrap_v2.json :: block_mean_gdot 的 llm_*)
-  i2 全参数化层剖面聚合到三层块 (同文件的 llm_layer_gdot_full)
-  i3..i6 四种解码器池化变体 (outputs/llava_e_pooling_ablation_v2.json :: gamma[*])
-风险泛函:
-  P1 Σ_k |Γ_k| r_k        (Corollary 2 线性风险目标)
-  P2 Σ_k |Γ_k| (r_k - r_max)^2  (容量分散×耦合)
-  P3 max_k |Γ_k| r_k      (最差块损伤)
-实测策略(LLaVA, 参考协议, 多种子取均值):
+Candidate E instantiations (all from local archived JSON):
+  i1 adapter subspace block coupling (outputs/llava_granularity_bootstrap_v2.json :: llm_* of block_mean_gdot)
+  i2 full-parameter layer profile aggregated into three blocks (llm_layer_gdot_full of the same file)
+  i3..i6 four decoder pooling variants (outputs/llava_e_pooling_ablation_v2.json :: gamma[*])
+Risk functionals:
+  P1 Σ_k |Γ_k| r_k        (Corollary 2 linear risk objective)
+  P2 Σ_k |Γ_k| (r_k - r_max)^2  (capacity dispersion x coupling)
+  P3 max_k |Γ_k| r_k      (worst-block damage)
+Measured policies (LLaVA, reference protocol, average over multiple seeds):
   uniform 4/4/4, exp 9/1/6, greedy 16/1/1, expnorm 9/2/5, deepavoid 9/6/1
-输出: outputs/e_family_selection.json
+Output: outputs/e_family_selection.json
 """
 import glob
 import json
@@ -38,14 +38,14 @@ POLICY_RANKS = {
 
 
 def measured_policies():
-    """从实验目录读取各策略的 ΔE(多种子取均值)。"""
+    """Read the ΔE of each policy from the experiment directory (averaged over multiple seeds)."""
     got = {k: [] for k in POLICY_RANKS}
     for p in glob.glob(os.path.join(EXP, 'verify_r*.json')):
         base = os.path.basename(p)
         d = json.load(open(p, encoding='utf-8'))
         if d.get('partial') or '_partial' in base:
-            continue  # 云端逐 epoch 落盘的中间态, 不是完整 run
-        # 旧 JSON 无 block_config 字段 → 从文件名标签 _bc<name> 推断
+            continue  # intermediate state written per-epoch in the cloud, not a complete run
+        # old JSON has no block_config field → infer from the filename tag _bc<name>
         cfg = d.get('block_config')
         if not cfg:
             mm = re.search(r'_bc([a-z]+)', base)
@@ -53,10 +53,10 @@ def measured_policies():
         if cfg not in POLICY_RANKS:
             continue
         if cfg == 'uniform' and int(d.get('rank', 0)) != 4:
-            continue  # 只取 uniform 策略基线(全层 r=4), 排除 rank 扫描运行
+            continue  # only take the uniform policy baseline (all layers r=4), excluding rank-sweep runs
         if d.get('target_proj') or '_proj' in base:
-            continue  # 投影器探查单独报告, 不属块重分配策略
-        # 仅参考协议: 3 epochs, fp16, adamw, lr 5e-5, 无 warmup/imgs/lang/mask/alpha 等
+            continue  # projector probing is reported separately, not a block reallocation policy
+        # reference protocol only: 3 epochs, fp16, adamw, lr 5e-5, no warmup/imgs/lang/mask/alpha etc.
         if (d.get('epochs') != 3 or d.get('compute_dtype') != 'float16' or d.get('opt') != 'adamw'
                 or abs(d.get('lr', 5e-5) - 5e-5) > 1e-12 or d.get('warmup')
                 or d.get('grad_mask', 'none') != 'none' or d.get('attn_targets', 'qkvo') != 'qkvo'
@@ -112,7 +112,7 @@ def main():
     for name, gam in inst.items():
         preds = {p: predictors(gam, POLICY_RANKS[p]) for p in meas}
         rows[name] = {'gamma': {k: round(v, 3) for k, v in gam.items()}, 'pred': preds}
-    # 与实测 ΔE 的排序相关(策略级)
+    # ranking correlation with the measured ΔE (policy level)
     pol = sorted(meas)
     y = np.array([meas[p]['mean'] for p in pol])
     res = {}
@@ -127,7 +127,7 @@ def main():
                                  'pearson': round(float(pr), 3), 'pearson_p': round(float(pp), 4)}
             else:
                 res[name][pk] = None
-    # 选出最佳实例化(以 |Spearman| 最大者为准, 期望正相关: 预测风险越大 ΔE 越大)
+    # select the best instantiation (the one with the largest |Spearman|, expecting a positive correlation: the larger the predicted risk, the larger ΔE)
     best, best_rho = None, -2
     for name, d in res.items():
         for pk, v in d.items():
@@ -137,7 +137,7 @@ def main():
                'instantiations': rows, 'correlations': res,
                'best_predictor': None if best is None else {'instantiation': best[0], 'predictor': best[1],
                                                             **best[2]},
-               'note': '正 Spearman 表示该 E 实例化的风险泛函与实测 ΔE 同序(预测力越强越应作为分配 E)'},
+               'note': 'A positive Spearman means the risk functional of this E instantiation has the same order as the measured ΔE (the stronger the predictive power, the more it should serve as the allocation E)'},
               open(OUT, 'w', encoding='utf-8'), indent=1)
     print('measured:', {k: round(v['mean'], 1) for k, v in meas.items()}, flush=True)
     for name, d in res.items():

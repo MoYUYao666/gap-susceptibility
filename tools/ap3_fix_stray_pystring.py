@@ -1,11 +1,11 @@
-"""修复 07_discussion.tex 里残留的 Python 源码片段（会印进 PDF 的内容缺陷）。
+"""Fix the leftover Python source fragments in 07_discussion.tex (a content defect that gets printed into the PDF).
 
-缺陷：limitations 段落里混入了三行 Python 原始字符串源码
+Defect: three lines of Python raw-string source got mixed into the limitations paragraph
       r'gradient-path gating ... '
       r'image-token path ... '
       r'not, and that the crossing ...'
-它们在 LaTeX 里被当作正文排版，PDF 中可见为 "’ r’gradient-path ..."（编译审计查不出内容级缺陷）。
-修法：去掉 r'...' 包装与行尾的 ' 残片，按原意拼回正文；其余文字不动。
+They are typeset as body text by LaTeX and show up in the PDF as "’ r’gradient-path ..." (a compile audit cannot catch content-level defects).
+Fix: strip the r'...' wrapper and the stray ' at the end of the line, splice the prose back together as intended; leave all other text untouched.
 """
 import re
 import sys
@@ -21,12 +21,12 @@ NEW = ("isolated: gradient-path gating (Section~\\ref{sec:gradmask}, Table~\\ref
 
 src = open(P, encoding='utf-8', newline='').read()
 if OLD not in src:
-    print('FATAL: 锚点未找到（可能已修过或文件变了）')
+    print('FATAL: anchor not found (it may already be fixed, or the file changed)')
     sys.exit(1)
 src = src.replace(OLD, NEW, 1)
 open(P, 'w', encoding='utf-8', newline='').write(src)
 
-# 验证：不应再有以 r' 开头的整行
+# Verification: there should be no full line starting with r'
 leftover = [i + 1 for i, ln in enumerate(src.split('\r\n')) if ln.lstrip().startswith("r'")]
-print(f'修复完成；残留的 r\'-开头行：{leftover if leftover else "无"}')
-print(f'检查 "gradient-path gating" 出现次数：{len(re.findall("gradient-path gating", src))}')
+print(f'Fix complete; leftover lines starting with r\': {leftover if leftover else "none"}')
+print(f'Count of "gradient-path gating" occurrences: {len(re.findall("gradient-path gating", src))}')

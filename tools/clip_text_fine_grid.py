@@ -1,6 +1,6 @@
-"""L4 文本侧细网格:fish-67 × {bioclip, oceanclip} × λ ∈ 8 值。
-复用 clip_ocean_gap_surgery 的子集/编码/评估,仅文本侧手术,Δτ 曲线分辨率更高。
-输出 outputs/text_fine_grid.json (rows: model, lam, CG, top1, tau) + 定理4斜率校验量。
+"""L4 fine grid on the text side: fish-67 × {bioclip, oceanclip} × λ ∈ 8 values.
+Reuses the subset/encoding/evaluation of clip_ocean_gap_surgery, text-side surgery only, so the Δτ curve has higher resolution.
+Outputs outputs/text_fine_grid.json (rows: model, lam, CG, top1, tau) + the Theorem 4 slope check quantity.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -26,7 +26,7 @@ classes = sub['classes']
 idx = sub['subset_idx']
 texts = [gs.TEMPLATE.format(c) for c in classes]
 labels = torch.tensor([classes.index(r['sciName']) for r in ds.select(idx)])
-print('子集: %d 类 / %d 图' % (len(classes), len(idx)), flush=True)
+print('subset: %d classes / %d images' % (len(classes), len(idx)), flush=True)
 
 MODELS = gs.load_models()
 rows = []

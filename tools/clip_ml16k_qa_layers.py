@@ -1,6 +1,6 @@
-"""A2 扩展 E5: MarineLife QA 分层检索 —— 按 QA 类型 (central_object/外观/环境等) 分层的 videoR1。
-模型: bioclip / oceanclip (open_clip)。输出: outputs/ml16k_qa_layers.json
-运行: conda run -n pytorch python tools/clip_ml16k_qa_layers.py
+"""A2 extension E5: MarineLife QA stratified retrieval -- videoR1 stratified by QA type (central_object / appearance / environment, etc.).
+Models: bioclip / oceanclip (open_clip). Output: outputs/ml16k_qa_layers.json
+Run: conda run -n pytorch python tools/clip_ml16k_qa_layers.py
 """
 import os, sys, json, glob, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'

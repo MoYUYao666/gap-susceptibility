@@ -1,58 +1,58 @@
 # -*- coding: utf-8 -*-
-r"""图的**统一字体（Times New Roman）与尺寸**（2026-10-06）。
+r"""**Unified font (Times New Roman) and size** for figures (2026-10-06).
 
-## 为什么需要
+## Why this is needed
 
-操作者："**图片啥的文字也要 times new roman，然后大小你要调整好**"。
+Operator: "**the text in the figures should also be times new roman, and you must adjust the size properly**".
 
-**两个问题**（实测）：
+**Two problems** (measured):
 
-### ① 字体不是 Times
-各图用 matplotlib 默认 **DejaVu Sans**（无衬线），与正文（Elsevier `elsarticle` 用 Times）**不匹配**。
+### ① The font is not Times
+Each figure uses matplotlib's default **DejaVu Sans** (sans-serif), which does **not match** the body text (Elsevier `elsarticle` uses Times).
 
-### ② 尺寸不统一（**根因**）
-各图在**任意画布尺寸**下绘制，再由 LaTeX 缩放到目标宽度 → 文字被整体缩小，且**倍率各不相同**：
+### ② The sizes are inconsistent (**root cause**)
+Each figure is drawn at an **arbitrary canvas size** and then scaled by LaTeX to the target width → the text is scaled down as a whole, and **each scale factor differs**:
 
-| 图 | 画布宽 | 最终宽 | 缩放 |
+| Figure | Canvas width | Final width | Scale |
 |---|---|---|---|
 | `fig8_weight_svd` | 13.40 in | 3.71 in | **×0.28** |
 | `fig10` / `fig14` | 7.6–7.8 in | 3.71 in | ×0.48 |
 | `fig1` / `fig4` | 5.60 in | 4.19 in | ×0.75 |
 | `fig3` | 4.60 in | 4.19 in | ×0.91 |
 
-**→ 同一张稿子里图的字号相差 3 倍。**
+**→ Font sizes differ by 3x among figures in the same manuscript.**
 
-## 修法（按 `scipilot-figure-skill` 原则 1 与 4）
+## The fix (per `scipilot-figure-skill` principles 1 and 4)
 
-- **按最终尺寸出图**：`figsize` 直接设 LaTeX 里的实际宽度（原则 1：导出后不再缩放）；
-- **Times New Roman**：`font.family=serif` + Times 系列；数学用 `mathtext.fontset='stix'`（与 Times 同源）；
-- **字号在最终尺寸下可读**（原则 4）：刻度/轴标签 **9 pt**、图例 **8 pt**，均 ≥6 pt；
-- **同时导出 PDF（矢量）**（原则 2）。
+- **Draw at the final size**: set `figsize` directly to the actual LaTeX width (principle 1: no rescaling after export);
+- **Times New Roman**: `font.family=serif` + the Times family; math uses `mathtext.fontset='stix'` (same origin as Times);
+- **Font sizes readable at the final size** (principle 4): ticks/axis labels **9 pt**, legend **8 pt**, both ≥6 pt;
+- **Also export PDF (vector)** (principle 2).
 
-## 版心（实测）
+## Text block (measured)
 
-`\textwidth = 342.7 pt = 4.760 in`（像素法，见 `tools/_measure_textblock.py`）。
+`\textwidth = 342.7 pt = 4.760 in` (pixel method, see `tools/_measure_textblock.py`).
 
-| LaTeX 宽度 | 最终图宽 |
+| LaTeX width | Final figure width |
 |---|---|
 | `0.88\textwidth` | **4.189 in** |
 | `0.78\textwidth` | **3.713 in** |
 
-    python tools\figure_style.py            # 自测：打印配置
+    python tools\figure_style.py            # self-test: print the configuration
 """
 from __future__ import annotations
 
-# ── Okabe-Ito 色盲友好调色板（2026-10-06 统一；见 scipilot-figure-skill 原则 3）
+# ── Okabe-Ito colorblind-friendly palette (unified 2026-10-06; see scipilot-figure-skill principle 3)
 OKABE_ITO = {
-    "blue":   "#0072B2",   # 主色：text-only / LoRA / 实测
-    "vermil": "#D55E00",   # 强调：both / Adapter / 预测对照
-    "green":  "#009E73",   # 第三：vision-only
-    "grey":   "#666666",   # 中性：Frozen / 基准
-    "purple": "#CC79A7",   # 第四
-    "sky":    "#56B4E9",   # 浅蓝
-    "yellow": "#E69F00",   # 橙黄
+    "blue":   "#0072B2",   # primary: text-only / LoRA / measured
+    "vermil": "#D55E00",   # emphasis: both / Adapter / predicted control
+    "green":  "#009E73",   # third: vision-only
+    "grey":   "#666666",   # neutral: Frozen / baseline
+    "purple": "#CC79A7",   # fourth
+    "sky":    "#56B4E9",   # light blue
+    "yellow": "#E69F00",   # orange-yellow
 }
-# 语义映射：保证同一概念在不同图里同色
+# Semantic mapping: the same concept keeps the same color across figures
 SEMANTIC = {
     "text_only":   OKABE_ITO["blue"],
     "both":        OKABE_ITO["vermil"],
@@ -64,26 +64,26 @@ SEMANTIC = {
     "adapter":     OKABE_ITO["vermil"],
 }
 
-# ── 版心与最终尺寸（实测）
+# ── Text block and final sizes (measured)
 TEXTWIDTH_PT = 342.7
 TEXTWIDTH_IN = TEXTWIDTH_PT / 72.0            # 4.760 in
-FIG_W_FULL = 0.88 * TEXTWIDTH_IN              # 4.189 in（0.88\textwidth）
-FIG_W_WIDE = 0.78 * TEXTWIDTH_IN              # 3.713 in（0.78\textwidth）
+FIG_W_FULL = 0.88 * TEXTWIDTH_IN              # 4.189 in (0.88\textwidth)
+FIG_W_WIDE = 0.78 * TEXTWIDTH_IN              # 3.713 in (0.78\textwidth)
 
-# ── 字号（**在最终尺寸下的 pt**；≥6 pt 方可读）
+# ── Font sizes (**pt at the final size**; ≥6 pt is readable)
 FS_TICK = 9.0
 FS_LABEL = 9.0
 FS_LEGEND = 8.0
 FS_TITLE = 9.0
 FS_ANNOT = 7.5
 
-# ── 线宽/标记（最终尺寸下的绝对量）
+# ── Line widths/markers (absolute quantities at the final size)
 LW = 1.4
 MS = 4.0
 
 
 def apply_style() -> None:
-    """应用 Times New Roman + STIX 数学 + 统一字号。**在 import matplotlib 后调用。**"""
+    """Apply Times New Roman + STIX math + unified font sizes. **Call after importing matplotlib.**"""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -109,11 +109,11 @@ def apply_style() -> None:
         "ytick.major.size": 3.0,
         "grid.linewidth": 0.5,
         "grid.alpha": 0.25,
-        # 不扩张画布：tight bbox 会按内容外扩，导致实际尺寸 ≠ figsize，
-        # LaTeX 再缩放时字号就与其它图不一致（2026-10-06 实测 fig8 偏大 1.46×）。
+        # No canvas expansion: tight bbox expands to the content, making the actual size ≠ figsize,
+        # so when LaTeX rescales, font sizes become inconsistent with the other figures (measured 2026-10-06: fig8 1.46x too big).
         "savefig.bbox": None,
         "savefig.pad_inches": 0.01,
-        # constrained layout 自动理版，避免标签被裁
+        # constrained layout arranges the figure automatically, avoiding clipped labels
         "figure.constrained_layout.use": True,
         "figure.constrained_layout.h_pad": 0.02,
         "figure.constrained_layout.w_pad": 0.02,
@@ -124,26 +124,26 @@ def apply_style() -> None:
 
 
 def figsize_full(h_ratio: float = 0.72) -> tuple[float, float]:
-    """0.88\\textwidth 的图：返回 (宽, 高) in；h_ratio = 高/宽。"""
+    """Figure at 0.88\\textwidth: returns (width, height) in in; h_ratio = height/width."""
     return FIG_W_FULL, FIG_W_FULL * h_ratio
 
 
 def figsize_wide(h_ratio: float = 0.72) -> tuple[float, float]:
-    """0.78\\textwidth 的图。"""
+    """Figure at 0.78\\textwidth."""
     return FIG_W_WIDE, FIG_W_WIDE * h_ratio
 
 
 def figsize_tall(h_ratio: float = 1.15) -> tuple[float, float]:
-    """**竖排两行**的图（0.78\\textwidth 宽，每行约 2.1 in 高）。
+    """**Two stacked rows** figure (0.78\\textwidth wide, each row about 2.1 in tall).
 
-    两个面板共享 x 轴时用竖排：并排每格仅 1.86 in 宽，图例容易压数据；
-    竖排每行占满栏宽（3.71 in），图例可移到绘图区之外。
+    Use stacking when two panels share the x axis: side by side each panel is only 1.86 in wide
+    and the legend easily covers the data; stacked, each row fills the column (3.71 in) and the legend can move outside the axes.
     """
     return FIG_W_WIDE, FIG_W_WIDE * h_ratio
 
 
 def save(fig, path, also_pdf: bool = True) -> None:
-    """按最终尺寸存 PNG（LaTeX 现用）+ PDF（矢量，原则 2）。"""
+    """Save at the final size as PNG (currently used by LaTeX) + PDF (vector, principle 2)."""
     from pathlib import Path as _P
     p = _P(path)
     fig.savefig(p, dpi=300)
@@ -152,14 +152,14 @@ def save(fig, path, also_pdf: bool = True) -> None:
 
 
 if __name__ == "__main__":
-    print("=== 版心与最终尺寸（实测）===")
+    print("=== Text block and final sizes (measured) ===")
     print(f"  textwidth = {TEXTWIDTH_PT} pt = {TEXTWIDTH_IN:.3f} in")
     print(f"  0.88 textwidth -> {FIG_W_FULL:.3f} in")
     print(f"  0.78 textwidth -> {FIG_W_WIDE:.3f} in")
-    print("\n=== 字号（最终尺寸下的 pt）===")
-    for k, v in (("刻度", FS_TICK), ("轴标签", FS_LABEL), ("图例", FS_LEGEND),
-                 ("标题", FS_TITLE), ("标注", FS_ANNOT)):
+    print("\n=== Font sizes (pt at the final size) ===")
+    for k, v in (("tick", FS_TICK), ("axis label", FS_LABEL), ("legend", FS_LEGEND),
+                 ("title", FS_TITLE), ("annotation", FS_ANNOT)):
         print(f"  {k:<8} {v} pt  {'OK >=6pt' if v >= 6 else 'FAIL <6pt'}")
-    print("\n=== 字体栈 ===")
+    print("\n=== Font stack ===")
     print("  serif: Times New Roman -> Nimbus Roman -> Liberation Serif -> DejaVu Serif")
     print("  mathtext: stix (Times-compatible)")

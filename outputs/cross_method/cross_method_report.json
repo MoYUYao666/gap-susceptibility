@@ -17,13 +17,13 @@
           "std": 0.06434731911484376
         }
       },
-      "note": "2026-08-14 修正：旧版错误地把 LoRA alpha 扫描组 (alpha_*, n=5) 当 Adapter；正确组为 phase1 adapter 7 配置，ANOVA 结论由不显著翻转为显著 (F=13.37, p=5e-4)。"
+      "note": "2026-08-14 correction: the earlier version wrongly treated the LoRA alpha sweep group (alpha_*, n=5) as Adapter; the correct group is the 7 phase1 adapter configurations, and the ANOVA conclusion flips from non-significant to significant (F=13.37, p=5e-4)."
     },
     "welch_t_peft_vs_full_ft": {
       "t_statistic": -22.96,
       "p_value": 3.5e-31,
       "significant_0.05": "True",
-      "note": "2026-08-14 修正：随 Adapter 正确分组重算（旧值 t=-25.33 基于错误分组）。"
+      "note": "2026-08-14 correction: recomputed with Adapter grouped correctly (the old value t=-25.33 was based on the wrong grouping)."
     }
   },
   "5B_pareto_frontier": {
@@ -114,7 +114,7 @@
         "phase1/adapter_d16_both",
         "phase1/adapter_d16_vis"
       ],
-      "note": "2026-08-14 修正：原值取自 alpha_* LoRA 扫描（错误分组），现已用 phase1 adapter 真实值。"
+      "note": "2026-08-14 correction: the original values came from the alpha_* LoRA sweep (wrong grouping); the true phase1 adapter values are used now."
     },
     "full_ft": {
       "n_experiments": 2,

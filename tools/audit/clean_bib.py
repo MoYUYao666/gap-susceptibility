@@ -10,9 +10,9 @@ for m in re.findall(r'\\cite\{([^}]+)\}', alltex):
 bib = open('references.bib', encoding='utf-8').read()
 keys = set(re.findall(r'@\w+\{([^,]+),', bib))
 unused = keys - cites
-print('未引用条目:', unused if unused else '无')
+print('Unused entries:', unused if unused else 'none')
 entries = re.split(r'(?=@\w+\{)', bib)
 kept = [e for e in entries if not (e.startswith('@') and re.match(r'@\w+\{(%s),' % '|'.join(unused), e))]
 open('references.bib', 'w', encoding='utf-8').write(''.join(kept))
 keys2 = set(re.findall(r'@\w+\{([^,]+),', open('references.bib').read()))
-print('bib 条目:', len(keys2), '| 删除:', len(unused))
+print('bib entries:', len(keys2), '| removed:', len(unused))

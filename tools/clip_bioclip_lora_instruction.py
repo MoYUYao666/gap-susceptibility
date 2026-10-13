@@ -1,8 +1,8 @@
-"""分类学基座(BioCLIP)文本塔 LoRA 指令微调——L1 FullFT 复刻的 PEFT 对照。
-训练: 与 clip_ocean_replica 完全同调度(ML16K QA 3,440 对, 对称对比, 10ep, seed42),
-但仅文本塔 LoRA(r16/a32)——回答"渐进式单分支(双语)是否可行"。
-评估: fish-67 协议(σ_m/τ@1/Δτ/top1) + ML16K 检索 R@1。
-输出: outputs/bioclip_lora_instruction.json
+"""Taxonomic foundation model (BioCLIP) text-tower LoRA instruction tuning — PEFT control for the L1 FullFT replica.
+Training: exactly the same schedule as clip_ocean_replica (ML16K QA 3,440 pairs, symmetric contrastive, 10ep, seed42),
+but text-tower-only LoRA (r16/a32) — answering whether a "progressive single-branch (bilingual)" route is feasible.
+Evaluation: fish-67 protocol (σ_m/τ@1/Δτ/top1) + ML16K retrieval R@1.
+Output: outputs/bioclip_lora_instruction.json
 """
 import os, sys, json, glob
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -66,9 +66,9 @@ def main():
     m, _, pre = open_clip.create_model_and_transforms(
         'ViT-B-16', pretrained=BASE_CKPT, device='cuda')
     tok = open_clip.get_tokenizer('ViT-B-16')
-    # 仅文本塔 LoRA
+    # text-tower-only LoRA
     names = [n for n, _ in m.named_modules()]
-    print('text tower Linear 样本:', [n for n in names if 'resblocks.0.mlp.c_fc' in n][:1],
+    print('text tower Linear samples:', [n for n in names if 'resblocks.0.mlp.c_fc' in n][:1],
           '| q/k/v:', [n for n in names if 'resblocks.0.attn' in n and 'proj' in n][:4], flush=True)
     m = get_peft_model(m, LoraConfig(
         r=16, lora_alpha=32, lora_dropout=0.05, bias='none',
@@ -99,7 +99,7 @@ def main():
         losses.append(round(tot / cnt, 4))
         print('  ep%d loss=%.4f' % (ep + 1, losses[-1]), flush=True)
 
-    # ① fish-67 协议
+    # (1) fish-67 protocol
     ds, sub = gs.build_subset()
     classes = sub['classes']
     idx = sub['subset_idx']
@@ -143,7 +143,7 @@ def main():
     del img_full, tf
     torch.cuda.empty_cache()
 
-    # ② ML16K 检索
+    # (2) ML16K retrieval
     queries = mt.build_queries(ROOT)
     frames = sorted(glob.glob(os.path.join(ROOT, '*', '*', '*.jpg')))
     frame_meta = [(fp, os.path.basename(os.path.dirname(os.path.dirname(fp))) + '/'

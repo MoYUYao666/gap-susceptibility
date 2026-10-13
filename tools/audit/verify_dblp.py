@@ -6,10 +6,10 @@ papers = [
     ('Paper 3', 'paper3/paper_ieee/references.bib'),
 ]
 
-# 从 citation_verify_results.json 取未找到条目
+# Take the not-found entries from citation_verify_results.json
 results = json.load(open('citation_verify_results.json', encoding='utf-8'))
 
-# 已知正常（无需查）：自家 under review
+# Known OK (no lookup needed): our own under-review papers
 OWN = {'wan2026protect', 'wan2026gap'}
 
 def query_dblp(title):
@@ -34,17 +34,17 @@ for label, bib in papers:
             entry_titles[key] = ' '.join(tm.group(1).split())
     missing_by_paper[label] = entry_titles
 
-# 对全部"未找到"条目做 DBLP 验证
+# Run DBLP verification on all "not found" entries
 all_missing = set()
 for label, r in results.items():
     for k in r.get('missing_keys', []):
         if k not in OWN:
             all_missing.add(k)
 
-print('=== DBLP 二次验证（%d 条未找到条目）===' % len(all_missing))
+print('=== DBLP second-pass verification (%d not-found entries) ===' % len(all_missing))
 final_missing = []
 for key in sorted(all_missing):
-    # 找该 key 的 title（可能多篇 bib 都有）
+    # find the title for this key (several bib files may have it)
     title = None
     for label in missing_by_paper:
         if key in missing_by_paper[label]:
@@ -57,11 +57,11 @@ for key in sorted(all_missing):
     if ok is True:
         print('  [DBLP✓] %-24s %s' % (key, title[:55]))
     elif ok is False:
-        print('  [双查无] %-24s %s' % (key, title[:55]))
+        print('  [both missing] %-24s %s' % (key, title[:55]))
         final_missing.append(key)
     else:
-        print('  [查询失败] %-24s' % key)
+        print('  [query failed] %-24s' % key)
 
-print('\n=== 最终高危清单（arXiv+DBLP 均查无）===')
-print(final_missing if final_missing else '无')
+print('\n=== Final high-risk list (found in neither arXiv nor DBLP) ===')
+print(final_missing if final_missing else 'none')
 json.dump({'high_risk': final_missing}, open('citation_high_risk.json', 'w', encoding='utf-8'), ensure_ascii=False)

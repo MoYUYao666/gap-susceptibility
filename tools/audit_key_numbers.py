@@ -1,4 +1,4 @@
-"""核查合并稿关键数字来源: 相位表 / 机制章 / 反事实 / Qwen。"""
+"""Verify the provenance of the key numbers in the merged manuscript: phase table / mechanism section / counterfactual / Qwen."""
 import json
 import glob
 import os
@@ -24,7 +24,7 @@ def show(f, depth=2, limit=30):
             print('  ' * lvl, path, '[list', len(o), ']')
     walk(d)
 
-# 相位表候选源
+# candidate sources for the phase table
 for pat in ['paper3/scripts/outputs/experiments/E2*.json',
             'paper3/scripts/outputs/experiments/all_results.json',
             'paper3/scripts/outputs/experiments/*qwen*results*.json',

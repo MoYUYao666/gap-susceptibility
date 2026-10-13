@@ -1,6 +1,6 @@
-"""船载类 (FathomNet ROV 部署视频帧子集) 轨迹——与 L5 同构(CLIP ViT-B/32, 10ep 匹配调度)。
-评测集: data/fathomnet8 (8 概念 × 30 图); 逐 epoch τ/σ_m/top1; 陆地对照 = flickrft。
-输出: outputs/dynamics_fathomnet.json
+"""Shipboard class (FathomNet ROV deployment video-frame subset) trajectory — isomorphic to L5 (CLIP ViT-B/32, 10ep matched schedule).
+Evaluation set: data/fathomnet8 (8 concepts × 30 images); τ/σ_m/top1 per epoch; land control = flickrft.
+Output: outputs/dynamics_fathomnet.json
 """
 import os, sys, json
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -134,7 +134,7 @@ def main():
     print('frozen:', res['frozen_info'], flush=True)
     json.dump(res, open(OUT, 'w', encoding='utf-8'), indent=1)
 
-    # 陆地对照
+    # land control
     fr = CLIPModel.from_pretrained(MDIR, local_files_only=True)
     fr.load_state_dict(torch.load(FR, map_location='cpu'))
     fr = fr.cuda().eval()
@@ -142,7 +142,7 @@ def main():
     print('flickrft:', res['flickrft_info'], flush=True)
     json.dump(res, open(OUT, 'w', encoding='utf-8'), indent=1)
 
-    # 域 FT 轨迹
+    # domain-FT trajectory
     mt = CLIPModel.from_pretrained(MDIR, local_files_only=True).cuda().train()
     mt.logit_scale.requires_grad_(False)
     for pp in mt.parameters():

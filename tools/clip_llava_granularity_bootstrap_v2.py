@@ -1,8 +1,9 @@
-"""(修正版 v2) 前缀感知的层粒度 + bootstrap + E-n(解码器)。
-修复: transformers 5.x 顶层参数带 'model.' 前缀且 vision/proj 与 LLM 层同名 'layers.N'
-→ 旧版 startswith 不匹配 + 按数字混桶。本版: 前缀精确归属。
-分桶(规范): vis | proj | llm_shallow(0-7) | llm_mid(8-23) | llm_deep(24-31) | llm_other(embed/norm) | lm_head
-输出: outputs/llava_granularity_bootstrap_v2.json
+"""(fixed v2) Prefix-aware layer granularity + bootstrap + E-n (decoder).
+Fix: in transformers 5.x top-level parameters carry the 'model.' prefix and vision/proj share the
+same 'layers.N' names as the LLM layers
+→ the old version's startswith did not match + bucketed by number. This version: exact prefix attribution.
+Bucketing (canonical): vis | proj | llm_shallow(0-7) | llm_mid(8-23) | llm_deep(24-31) | llm_other(embed/norm) | lm_head
+Output: outputs/llava_granularity_bootstrap_v2.json
 """
 import os, sys, json, glob
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -41,7 +42,7 @@ if IMGID is None or IMGID < 0:
 
 
 def blk_of(name):
-    """前缀感知分桶(修正版)"""
+    """prefix-aware bucketing (fixed)"""
     if name.startswith('model.vision_tower.'):
         return 'vis'
     if name.startswith('model.multi_modal_projector.'):

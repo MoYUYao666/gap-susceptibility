@@ -1,4 +1,4 @@
-"""构建 instruction 文本 + 真实图像 的 2x2 组合数据集(20 样本, 与参考协议同构)。"""
+"""Build the 2x2 combined dataset of instruction text + real images (20 samples, isomorphic to the reference protocol)."""
 import pandas as pd
 
 src = pd.read_parquet('paper3/train-00000-of-00001-a09b74b3ef9c3b56.parquet').head(20)

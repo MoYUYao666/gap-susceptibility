@@ -1,7 +1,7 @@
-"""A1 提升实验 1：文本侧对称手术。
-对文本嵌入施加对称平移（向图像簇方向），与图像侧平移对比。
-预测：文本侧平移 = 图像侧平移的反向类比，同样破坏分类（验证类偏置场理论）。
-结果存 outputs/a1_text_surgery.json。
+"""A1 enhancement experiment 1: text-side symmetric surgery.
+Apply a symmetric translation to the text embeddings (toward the image cluster), and compare with the image-side translation.
+Prediction: the text-side translation is the reverse analogue of the image-side translation and likewise breaks classification (validates the class bias-field theory).
+Results stored in outputs/a1_text_surgery.json.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -88,12 +88,12 @@ def evaluate(img2, tf2, fi2, ft2):
 results = []
 for lam in [0.0, 0.5, 1.0, 2.0]:
     with torch.no_grad():
-        # 图像侧平移（基线，供对比）
+        # image-side translation (baseline, for comparison)
         delta_i = lam * gap_norm * d_hat
         img_i = F.normalize(base + delta_i, dim=-1)
         fi_i = F.normalize(fi + delta_i, dim=-1)
         cg_i, t1_i, tau_i = evaluate(img_i, tf, fi_i, ft)
-        # 文本侧对称平移（文本向图像方向移动）
+        # text-side symmetric translation (move the text toward the image direction)
         delta_t = -lam * gap_norm * d_hat
         tf_t = F.normalize(tf + delta_t, dim=-1)
         ft_t = F.normalize(ft + delta_t, dim=-1)
@@ -101,7 +101,7 @@ for lam in [0.0, 0.5, 1.0, 2.0]:
     results.append({'lambda': lam,
                     'image_side': {'CG': round(cg_i, 4), 'top1': round(t1_i, 2), 'tau': round(tau_i, 4)},
                     'text_side': {'CG': round(cg_t, 4), 'top1': round(t1_t, 2), 'tau': round(tau_t, 4)}})
-    print('λ=%+.1f | 图像侧: CG=%.3f top1=%.2f tau=%.3f | 文本侧: CG=%.3f top1=%.2f tau=%.3f' %
+    print('λ=%+.1f | image side: CG=%.3f top1=%.2f tau=%.3f | text side: CG=%.3f top1=%.2f tau=%.3f' %
           (lam, cg_i, t1_i, tau_i, cg_t, t1_t, tau_t), flush=True)
 
 json.dump({'gap_norm': round(gap_norm, 4), 'results': results},

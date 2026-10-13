@@ -1,12 +1,12 @@
-"""ImageNet-1K 50k 复验（只读档案，不覆盖稿件引用文件）。
+"""ImageNet-1K 50k re-verification (read-only against the archive; does not overwrite the files cited by the manuscript).
 
-目的：在不重训 full-FT 的前提下，把稿件 Table 7 的 6 行在完整 50k val 上重跑一遍，
-与 outputs/imagenet1k_zs_50k_plain.json 的档案值逐行比对（plain 单模板协议）。
+Goal: without retraining full-FT, re-run the 6 rows of Table 7 of the manuscript on the full 50k val
+and compare them row by row with the archive values of outputs/imagenet1k_zs_50k_plain.json (plain single-template protocol).
 
-- 只做 plain 协议（Table 7 用的就是它）；synset 协议不在此脚本内，避免 12 次评估。
-- 结果写 outputs/imagenet1k_zs_50k_verify.json，绝不写 imagenet1k_zs_50k_plain.json。
-- 每个配置跑完立即落盘，中断也保留已完成的行。
-用法: python tools/p1_imagenet_verify.py
+- plain protocol only (that is what Table 7 uses); the synset protocol is not in this script, to avoid 12 evaluations.
+- results go to outputs/imagenet1k_zs_50k_verify.json and never to imagenet1k_zs_50k_plain.json.
+- each configuration is flushed to disk as soon as it finishes, so an interruption keeps the completed rows.
+Usage: python tools/p1_imagenet_verify.py
 """
 import os, sys, json, time
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -16,7 +16,7 @@ from glob import glob
 from datasets import Dataset
 PARQ = sorted(glob('data/imagenet_hf/*.parquet'))
 ds = Dataset.from_parquet(PARQ)
-print('50k 分片已加载:', len(ds), '张,', len(PARQ), '个分片', flush=True)
+print('50k shards loaded:', len(ds), 'images,', len(PARQ), 'shards', flush=True)
 names_plain = [n.split(',')[0].strip() for n in ds.features['label'].names]
 
 import torch
@@ -69,7 +69,7 @@ def load_model(ckpt=None, vision=False, text=True):
     return m.cuda().eval()
 
 
-# 档案值（outputs/imagenet1k_zs_50k_plain.json，稿件 Table 7 引用）
+# archive values (outputs/imagenet1k_zs_50k_plain.json, cited by Table 7 of the manuscript)
 ARCHIVE = {'frozen': 59.28, 'text_only_r8': 58.66, 'both_r8': 59.67,
            'full_ft_s42': 0.13, 'full_ft_s123': 4.09, 'full_ft_s999': 3.54}
 
@@ -104,10 +104,10 @@ for label, cfg in CONFIGS.items():
 
 n_exact = sum(1 for k in results if deltas[k] == 0.0)
 print('', flush=True)
-print('== 汇总 ==', flush=True)
+print('== summary ==', flush=True)
 for k in results:
     print('  %-14s rerun %6.2f  archive %6.2f  delta %+.2f' % (k, results[k], ARCHIVE[k], deltas[k]), flush=True)
-print('  %d/%d 行逐位复现, 最大偏差 %.2f' % (n_exact, len(results), max(abs(d) for d in deltas.values())), flush=True)
+print('  %d/%d rows reproduced exactly, max deviation %.2f' % (n_exact, len(results), max(abs(d) for d in deltas.values())), flush=True)
 ft = [results['full_ft_s42'], results['full_ft_s123'], results['full_ft_s999']]
-print('  full-FT 三 seed 均值: %.2f%% (档案 %.2f%%)' % (sum(ft) / 3, sum(ARCHIVE[k] for k in ARCHIVE if k.startswith('full_ft')) / 3), flush=True)
+print('  full-FT mean over three seeds: %.2f%% (archive %.2f%%)' % (sum(ft) / 3, sum(ARCHIVE[k] for k in ARCHIVE if k.startswith('full_ft')) / 3), flush=True)
 print('saved', OUT, flush=True)

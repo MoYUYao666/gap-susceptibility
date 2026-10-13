@@ -1,17 +1,17 @@
-"""(A3) 跨批 Γ 估计: 分层 bootstrap(批 × 批内) 给出分块 |Γ| 的批级置信区间与分配稳定性。
+"""(A3) Cross-batch Γ estimation: hierarchical bootstrap (batch × within-batch) gives batch-level confidence intervals and allocation stability for the per-block |Γ|.
 
-背景(论文局限 9): 既有 bootstrap 只在单批内重采样, 无法反映跨批变异。
-本脚本对 N 个独立样本窗口(BATCH_START ∈ {0,16,32,48,64,80})各测一次分块 Γ,
-协议与已发表的 clip_llava_granularity_bootstrap_v2.py **完全一致**(同一模板、同一 E/L 定义、
-同前缀感知分桶、全参数化), 因此可直接与 outputs/llava_granularity_bootstrap_v2*.json 对照。
+Background (limitation 9 in the paper): the existing bootstrap resamples only within a single batch and cannot reflect cross-batch variation.
+This script measures the per-block Γ once for each of the N independent sample windows (BATCH_START ∈ {0,16,32,48,64,80}),
+with a protocol **fully identical** to the published clip_llava_granularity_bootstrap_v2.py (same template, same E/L definition,
+same prefix-aware bucketing, full parametrization), so it can be compared directly with outputs/llava_granularity_bootstrap_v2*.json.
 
-产出:
-  1) 逐块跨批 mean / std / 95% t-CI / CV;
-  2) 分层 bootstrap(先重采样批, 再批内重采样样本) → 每块 |Γ| 的分层 95% CI;
-  3) 排序稳定性: 每批块序、argmax/argmin 频率、批间 Spearman;
-  4) 分配稳定性: beta*=1/sigma(|Γ|) 指数份额 → 与论文同预算的 rank 向量, 及其 bootstrap 一致率
-     (含按参数量归一化变体)。
-输出: outputs/llava_gamma_batches.json
+Output:
+  1) per-block cross-batch mean / std / 95% t-CI / CV;
+  2) hierarchical bootstrap (resample batches first, then resample samples within a batch) → hierarchical 95% CI of |Γ| per block;
+  3) ordering stability: block order per batch, argmax/argmin frequency, cross-batch Spearman;
+  4) allocation stability: beta*=1/sigma(|Γ|) exponential shares → rank vectors with the same budget as the paper, and their bootstrap agreement rate
+     (including the per-parameter-count normalized variant).
+Output: outputs/llava_gamma_batches.json
 """
 import os
 import sys
@@ -38,7 +38,7 @@ ANS = 'a fish.'
 BLOCKS = ['vis', 'proj', 'llm_shallow', 'llm_mid', 'llm_deep', 'llm_other', 'lm_head']
 ALLOC_BLOCKS = ['llm_shallow', 'llm_mid', 'llm_deep']
 LAYERS_PER_BLOCK = {'llm_shallow': 8, 'llm_mid': 16, 'llm_deep': 8}
-BUDGET_RANKLAYERS = 136  # 与论文 exp/beta* 策略同预算
+BUDGET_RANKLAYERS = 136  # same budget as the paper's exp/beta* strategy
 
 bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16,
                          bnb_4bit_quant_type='nf4', bnb_4bit_use_double_quant=True)

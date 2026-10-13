@@ -1,9 +1,9 @@
-"""A2 扩展 E2: 训练动力学矩阵 —— 逐 epoch τ/σ_m/top-1 轨迹。
-- CLIP+Sonar10ep(平衡650) 逐 epoch 评测 NKSID-650
-- CLIP+Flickr10ep(1000对) 逐 epoch 评测 ImageNet-5k
-监控器语义: τ(t)=Kendall(冻结初始 vs 当前, 冻结 top-5 集); σ_m(t)/top1(t) 为当前模型。
-输出: outputs/dynamics_matrix.json
-运行: conda run -n pytorch python tools/clip_dynamics.py
+"""A2 extended E2: training dynamics matrix —— per-epoch τ/σ_m/top-1 trajectories.
+- CLIP+Sonar10ep (balanced 650) evaluated epoch by epoch on NKSID-650
+- CLIP+Flickr10ep (1000 pairs) evaluated epoch by epoch on ImageNet-5k
+Monitor semantics: τ(t)=Kendall(frozen initial vs current, frozen top-5 set); σ_m(t)/top1(t) are for the current model.
+Output: outputs/dynamics_matrix.json
+Run: conda run -n pytorch python tools/clip_dynamics.py
 """
 import os, sys, json, io, glob
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -67,7 +67,7 @@ def load_flickr(n=1000):
 
 
 def eval_stats(m, p, imgs, texts, labels, f0, topk5, gnorm=None, dH=None, m_c=None):
-    """返回当前模型在 eval 集上的 top1/tau/sigma_m。f0/topk5 来自冻结初始。"""
+    """Return top1/tau/sigma_m of the current model on the eval set. f0/topk5 come from the frozen initial model."""
     with torch.no_grad():
         fi = []
         for i in range(0, len(imgs), 48):
@@ -81,7 +81,7 @@ def eval_stats(m, p, imgs, texts, labels, f0, topk5, gnorm=None, dH=None, m_c=No
         pooled = out[1] if isinstance(out, tuple) else out.pooler_output
         tf = F.normalize(m.text_projection(pooled), dim=-1)
     S = (fi @ tf.T).cpu().numpy()
-    S0 = (f0 @ tf.T).cpu().numpy()  # 冻结分数(重算, 用当前文本?) —— 冻结基准 f0 = 初始视觉, 文本=初始
+    S0 = (f0 @ tf.T).cpu().numpy()  # frozen scores (recomputed, with current text?) —— frozen baseline f0 = initial vision, text = initial
     top1 = float((S.argmax(1) == labels).mean() * 100)
     taus = []
     for i in range(len(S)):
@@ -100,10 +100,10 @@ def eval_stats(m, p, imgs, texts, labels, f0, topk5, gnorm=None, dH=None, m_c=No
 
 
 def train_traj(tag, man, texts, labels, eval_info):
-    """训练 10ep, 每 epoch 后评测。man=(path,class) 或 PIL 列表。"""
+    """Train 10ep, evaluate after each epoch. man=(path,class) or a list of PIL images."""
     m0 = CLIPModel.from_pretrained(MDIR, local_files_only=True).cuda().eval()
     p = CLIPProcessor.from_pretrained(MDIR, local_files_only=True)
-    # 冻结基准
+    # frozen baseline
     f0_imgs = eval_info['f0_imgs']
     f0 = []
     with torch.no_grad():
@@ -176,7 +176,7 @@ def main():
                                    {'f0_imgs': simgs})
     json.dump(res, open(OUT, 'w', encoding='utf-8'), indent=1)
     torch.cuda.empty_cache()
-    # 2) Flickr(1000对) → ImageNet-5k 评测
+    # 2) Flickr (1000 pairs) → ImageNet-5k evaluation
     print('== CLIP+Flickr ==', flush=True)
     pairs = load_flickr(1000)
     i5, lab5, names5 = load_imagenet5k()

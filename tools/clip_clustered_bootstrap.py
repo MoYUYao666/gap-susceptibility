@@ -1,4 +1,4 @@
-"""DG-R@1 聚配置 bootstrap(可复现版): 记录输入与结果 → outputs/clustered_bootstrap_dg_r1.json"""
+"""DG-R@1 clustered bootstrap (reproducible version): records the inputs and results → outputs/clustered_bootstrap_dg_r1.json"""
 import json
 import numpy as np
 

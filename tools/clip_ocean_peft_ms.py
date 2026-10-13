@@ -1,7 +1,7 @@
-"""P1 保护性实验 · 3-seed 版本（训练随机性稳健性）。
-配置与 clip_ocean_peft.py 完全一致（Flickr 1000 对/10ep/lr 1e-4(FT 5e-5)/cosine/对称CE/fp16 autocast），
-仅种子遍历 {1,42,99}（seed42 应复现原 ocean_peft.json 数值，作一致性校验）。
-输出: outputs/ocean_peft_ms.json
+"""P1 protective experiment · 3-seed version (training-randomness robustness).
+Configuration identical to clip_ocean_peft.py (Flickr 1000 pairs/10ep/lr 1e-4(FT 5e-5)/cosine/symmetric CE/fp16 autocast),
+only the seeds loop over {1,42,99} (seed42 should reproduce the original ocean_peft.json values, as a consistency check).
+Output: outputs/ocean_peft_ms.json
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'

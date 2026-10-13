@@ -1,8 +1,8 @@
-"""A1 跨模型复现：OpenCLIP(laion2B) 与 SigLIP 的 T 家族 gap 平移手术。
-模型目录约定（浏览器登录 HF 下载整个 repo 文件夹放入）：
-  models/openclip/            <- laion/CLIP-ViT-B-32-laion2B-s34B-b79K 全部文件
-  models/siglip-base-patch16-224/ <- google/siglip-base-patch16-224 全部文件
-每个存在的模型跑 T λ∈{0,0.5,1,2} × {CG, R@1, top-1, τ}，结果存 outputs/a1_crossmodel_results.json。
+"""A1 cross-model reproduction: T-family gap-shift surgery for OpenCLIP (laion2B) and SigLIP.
+Model directory convention (log in to HF in a browser, download the whole repo folder, and drop it here):
+  models/openclip/            <- all files from laion/CLIP-ViT-B-32-laion2B-s34B-b79K
+  models/siglip-base-patch16-224/ <- all files from google/siglip-base-patch16-224
+For every model present, run T with λ∈{0,0.5,1,2} × {CG, R@1, top-1, τ}; results go to outputs/a1_crossmodel_results.json.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -44,21 +44,21 @@ MODELS = [
 all_rows = []
 for tag, mdir, MCls, PCls in MODELS:
     if not os.path.isdir(mdir):
-        print('跳过 %s（目录 %s 不存在）' % (tag, mdir), flush=True)
+        print('skipping %s (directory %s does not exist)' % (tag, mdir), flush=True)
         continue
     print('== %s ==' % tag, flush=True)
     try:
         model = MCls.from_pretrained(mdir, local_files_only=True).cuda().eval()
         proc = PCls.from_pretrained(mdir, local_files_only=True)
     except Exception as e:
-        print('  %s 加载失败: %s' % (tag, str(e)[:200]), flush=True)
+        print('  %s failed to load: %s' % (tag, str(e)[:200]), flush=True)
         continue
 
     @torch.no_grad()
     def feats(m, proc):
         if tag == 'siglip':
-            # SigLIP eos_id == pad_id == 1，必须复刻模型原生约定：
-            # padding='max_length' + text_model.pooler_output（= last_token + head）。
+            # SigLIP eos_id == pad_id == 1, so the model's native convention must be replicated:
+            # padding='max_length' + text_model.pooler_output (= last_token + head).
             text_in = proc(text=texts, return_tensors='pt', padding='max_length', max_length=64).to('cuda')
             tout = m.text_model(**text_in)
             tf = F.normalize(tout.pooler_output, dim=-1)

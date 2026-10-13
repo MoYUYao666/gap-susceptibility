@@ -1,7 +1,7 @@
-"""从云端逐格日志解析训练动力学：逐 epoch 的 avg_loss / 梯度范数 / 耗时，并检验"梯度范数是否早于 E 发散"。
+"""Parse training dynamics from the cloud per-cell logs: per-epoch avg_loss / gradient norm / runtime, and test "whether the gradient norm diverges before E".
 
-输入：paper3/scripts/outputs/logs/c3_r*_s*.log（run_all_clean.sh 的逐格 tee 日志，UTF-8；已随结果入库）
-产出：outputs/c3_log_dynamics.json
+Input: paper3/scripts/outputs/logs/c3_r*_s*.log (per-cell tee logs of run_all_clean.sh, UTF-8; already committed together with the results)
+Output: outputs/c3_log_dynamics.json
 """
 import glob
 import json
@@ -14,7 +14,7 @@ OUT = 'outputs/c3_log_dynamics.json'
 
 RE_EPOCH = re.compile(
     r'Epoch (\d+): avg_loss=([\d.]+|nan) \((\d+)/(\d+) valid\) \| \|\|g\|\| vis=([\d.eE+-]+) proj=([\d.eE+-]+) llm=([\d.eE+-]+)')
-# NaN 之后的行没有梯度段：Epoch 8: avg_loss=0.0000 (0/16 valid)
+# lines after the NaN have no gradient segment: Epoch 8: avg_loss=0.0000 (0/16 valid)
 RE_EPOCH_NAN = re.compile(r'Epoch (\d+): avg_loss=([\d.]+|nan) \((\d+)/(\d+) valid\)\s*$', re.M)
 RE_E = re.compile(r'E\((\d+)\) = ([\d.]+|nan)')
 RE_TIME = re.compile(r'Training time: (\d+)s')
@@ -58,13 +58,13 @@ def isnan(v):
 
 def main():
     files = sorted(glob.glob(os.path.join(LOG_DIR, 'c3_r*_s*.log')))
-    print(f'解析 {len(files)} 个日志\n')
+    print(f'parsing {len(files)} logs\n')
     recs = [parse(p) for p in files]
     for r in recs:
         m = re.search(r'c3_r(\d+)_s(\d+)', r['file'])
         r['rank'], r['seed'] = int(m.group(1)), int(m.group(2))
 
-    print(f'{"cel":<12} {"训练秒":>6} {"有效 epoch":>9} {"首个 0/16":>9} {"loss 轨迹（有效段）":<46}')
+    print(f'{"cel":<12} {"train s":>6} {"valid epochs":>9} {"first 0/16":>9} {"loss trajectory (valid part)":<46}')
     for r in sorted(recs, key=lambda x: (x['rank'], x['seed'])):
         zero = next((e['epoch'] for e in r['epochs'] if e['valid'] == 0), None)
         los = ' '.join(f'{e["avg_loss"]:.2f}' for e in r['epochs'] if e['valid'] > 0)
@@ -72,8 +72,8 @@ def main():
               f'{sum(1 for e in r["epochs"] if e["valid"] > 0):>9} {str(zero):>9} {los:<46}')
 
     print()
-    print('===== ⭐ loss 下降 vs E 上升：两个指标在有效 epoch 内方向相反 =====')
-    print(f'{"cel":<12} {"loss 首→末":>16} {"变化":>9} {"E 首→峰值":>16} {"峰值/首":>9}')
+    print('===== ⭐ loss decreases vs E increases: the two metrics point in opposite directions within the valid epochs =====')
+    print(f'{"cel":<12} {"loss first→last":>16} {"change":>9} {"E first→peak":>16} {"peak/first":>9}')
     for r in sorted(recs, key=lambda x: (x['rank'], x['seed']))[:6]:
         eff = [e for e in r['epochs'] if e['valid'] > 0]
         if not eff:
@@ -87,8 +87,8 @@ def main():
               f'{max(Ev) / Ev[1]:>8.2f}x')
 
     print()
-    print('===== 梯度范数的趋势：发散前是否单调上升？ =====')
-    print(f'{"rank":>4} {"‖g‖llm 首→末(有效段)":>26} {"斜率(每 epoch)":>15} {"‖g‖vis 首→末":>20} {"斜率":>10}')
+    print('===== gradient-norm trend: does it rise monotonically before divergence? =====')
+    print(f'{"rank":>4} {"‖g‖llm first→last (valid)":>26} {"slope (per epoch)":>15} {"‖g‖vis first→last":>20} {"slope":>10}')
     per_rank = {}
     for rank in (4, 5, 6):
         sub = [r for r in recs if r['rank'] == rank]
@@ -118,7 +118,7 @@ def main():
               f'{sum(slopes_v)/len(slopes_v):>+10.3f}')
 
     print()
-    print('===== E 发散的机制：avg_loss 与 E 的关系 =====')
+    print('===== mechanism of the E divergence: relation between avg_loss and E =====')
     for r in sorted(recs, key=lambda x: (x['rank'], x['seed']))[:3]:
         eff = [e for e in r['epochs'] if e['valid'] > 0]
         los = ' '.join(f'{e["avg_loss"]:.2f}' for e in eff)
@@ -129,15 +129,15 @@ def main():
 
     ok = [r for r in recs if r['train_seconds']]
     print()
-    print(f'训练耗时：{min(r["train_seconds"] for r in ok)}–{max(r["train_seconds"] for r in ok)} s '
-          f'（中位数 {sorted(r["train_seconds"] for r in ok)[len(ok)//2]} s，10 epochs）')
+    print(f'training time: {min(r["train_seconds"] for r in ok)}–{max(r["train_seconds"] for r in ok)} s '
+          f'(median {sorted(r["train_seconds"] for r in ok)[len(ok)//2]} s, 10 epochs)')
 
     print()
-    print('===== 论文表格用的每 rank 汇总 =====')
-    # 发散斜率以 outputs/c3_epoch_budget.json 为唯一来源（避免两处各算一遍）
+    print('===== per-rank summary for the paper tables =====')
+    # the divergence slope has outputs/c3_epoch_budget.json as its single source (to avoid computing it in two places)
     budget = json.load(open('outputs/c3_epoch_budget.json', encoding='utf-8')) if os.path.exists('outputs/c3_epoch_budget.json') else {'per_rank': {}}
-    print(f'{"rank":>4} {"n":>2} {"崩溃 epoch(mean±sd)":>20} {"发散斜率(budget)":>18} '
-          f'{"min E":>7} {"minE@ep":>8} {"loss 降幅":>10} {"E峰/首值":>10} {"崩溃后 0/16":>11}')
+    print(f'{"rank":>4} {"n":>2} {"collapse epoch(mean±sd)":>20} {"divergence slope(budget)":>18} '
+          f'{"min E":>7} {"minE@ep":>8} {"loss drop":>10} {"E peak/first":>10} {"0/16 after collapse":>11}')
 
     def mean(v):
         return sum(v) / len(v)

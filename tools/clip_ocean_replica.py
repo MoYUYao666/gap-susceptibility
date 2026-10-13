@@ -1,9 +1,9 @@
-"""L1 公开语料复刻实验:BioCLIP + MarineLife-16K 人工 QA 文本对 (数据完全已知) 10ep 匹配调度微调。
-判别逻辑: 若复刻模型(海洋域+自然文本) 保留自然文本检索(R@1 高) 而 OceanCLIP(分类学文本)≈0.26%,
-则特化代价由分类学文本驱动而非海洋域本身 → 支撑 Part V 机制解读。
-评估: ① fish-67 协议(τ_pred/τ_meas/σ_m/top1/Δτ 文本侧λ=1) ② ML16K 视频级检索 R@1。
-输出: outputs/ocean_replica.json
-运行: conda run -n pytorch python tools/clip_ocean_replica.py
+"""L1 public-corpus replication experiment: BioCLIP + MarineLife-16K human QA text pairs (data fully known), 10ep matched-schedule fine-tuning.
+Decision logic: if the replicated model (marine domain + natural text) retains natural-text retrieval (high R@1) while OceanCLIP (taxonomic text) ≈0.26%,
+then the specialization cost is driven by taxonomic text rather than by the marine domain itself → supports the Part V mechanism reading.
+Evaluation: ① fish-67 protocol (τ_pred/τ_meas/σ_m/top1/Δτ text side λ=1) ② ML16K video-level retrieval R@1.
+Output: outputs/ocean_replica.json
+Run: conda run -n pytorch python tools/clip_ocean_replica.py
 """
 import os, sys, json, glob
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -37,7 +37,7 @@ ROOT = 'data/marinelife16k/data/selected_frames'
 
 
 def build_pairs(root):
-    """每 QA 文本配其视频目录中的一帧 (确定性: 行号 % 帧数)。"""
+    """Each QA text is paired with one frame in its video directory (deterministic: line number % frame count)."""
     qa = []
     for qf in sorted(glob.glob(os.path.join(root, '*', '*', 'qa.jsonl'))):
         vdir = os.path.dirname(qf)
@@ -99,7 +99,7 @@ def main():
         print('  ep%d loss=%.4f' % (ep + 1, losses[-1]), flush=True)
     torch.save(m.state_dict(), FT_WEIGHTS)
 
-    # ---- ① fish-67 协议 ----
+    # ---- ① fish-67 protocol ----
     ds, sub = gs.build_subset()
     classes = sub['classes']
     idx = sub['subset_idx']
@@ -122,7 +122,7 @@ def main():
         cg, t1, tau = gs.evaluate(sh.cuda() if False else sh, tf, sh, tf, labels_t, tau_idx, S0, topk5)
         mar['rows'].append({'lambda': lam, 'top1': round(t1, 3), 'tau_meas': round(tau, 4)})
         print('  marine λ=%+.2f top1=%.2f tau=%.4f' % (lam, t1, tau), flush=True)
-    # 文本侧 λ=1 (Δτ)
+    # text side λ=1 (Δτ)
     with torch.no_grad():
         tf2 = F.normalize(tf - 1.0 * gnorm * dH, dim=-1)
     S2 = (img_full @ tf2.T).cpu().numpy()
@@ -138,7 +138,7 @@ def main():
     del img_full, tf
     torch.cuda.empty_cache()
 
-    # ---- ② ML16K 检索 (q_ans 变体) ----
+    # ---- ② ML16K retrieval (q_ans variant) ----
     queries = mt.build_queries(ROOT)
     frames = sorted(glob.glob(os.path.join(ROOT, '*', '*', '*.jpg')))
     frame_meta = [(fp, os.path.basename(os.path.dirname(os.path.dirname(fp))) + '/'

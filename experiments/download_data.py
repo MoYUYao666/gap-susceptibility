@@ -1,4 +1,4 @@
-"""自动下载数据集 — 用 HuggingFace datasets 库。支持跳过已完成。"""
+"""Automatically download datasets — using the HuggingFace datasets library. Skips already-completed ones."""
 import os, json, glob
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 from datasets import load_dataset

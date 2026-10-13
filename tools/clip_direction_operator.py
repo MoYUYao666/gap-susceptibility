@@ -1,12 +1,12 @@
-"""A3 提升③: 方向解析算子 v1（每退化类型内在方向手术）。
-在 clip_direction_aware.py 的负面结果上推进:
-  对每种退化, 估计主损伤方向 ê_deg = normalize(mean δ_i) (及 PCA 第一主成分版),
-  每图 α_i = δ_i·ê_deg; 类偏置场推广到 ê: m_c(ê) = ê·t_c;
-  反转条件 α_i (m_j(ê) - m_i(ê)) > d_ij → τ_pred_deg。
-  并测量结构占比: mean(||δ_i - α_i ê||/||δ_i||)（残差份额越小 → 单方向主导 → 可解析）。
-对照: τ_pred_gap(现有 gap 轴) / τ_meas / 误差。
-输出: outputs/direction_operator.json
-运行: conda run -n pytorch python tools/clip_direction_operator.py
+"""A3 improvement ③: directional analytic operator v1 (intrinsic-direction surgery per degradation type).
+Builds on the negative result of clip_direction_aware.py:
+  for each degradation, estimate the dominant damage direction ê_deg = normalize(mean δ_i) (and the first-PCA-component version),
+  per image α_i = δ_i·ê_deg; the class bias field is generalized to ê: m_c(ê) = ê·t_c;
+  inversion condition α_i (m_j(ê) - m_i(ê)) > d_ij → τ_pred_deg.
+  also measure the structural share: mean(||δ_i - α_i ê||/||δ_i||) (smaller residual share → single-direction dominance → analytically tractable).
+control: τ_pred_gap (existing gap axis) / τ_meas / error.
+output: outputs/direction_operator.json
+run: conda run -n pytorch python tools/clip_direction_operator.py
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -51,7 +51,7 @@ def sonar_deg(im, kind, arg):
 
 
 def pred_tau(alpha_i, dm_ups, d_ups):
-    """α_i: 逐图位移幅值; dm_ups/d_ups: 每图 10 个上三角对的类偏置差分与 margin。"""
+    """α_i: per-image shift magnitude; dm_ups/d_ups: class-bias differences and margins of the 10 upper-triangular pairs per image."""
     preds = []
     for i in range(len(d_ups)):
         inv = (alpha_i[i] * dm_ups[i] > d_ups[i]).sum()
@@ -89,10 +89,10 @@ def measure(enc, tf, f0, deg_gen, deg_names):
         delta = (fd - f0).cpu().numpy()
         Sd = (fd @ tf.T).cpu().numpy()
         tm = tau_of(Sd)
-        # --- gap 轴基线 (幅值 = δ·d̂, 不除以 gnorm) ---
+        # --- gap-axis baseline (magnitude = δ·d̂, not divided by gnorm) ---
         a_gap = delta @ dH
         pred_gap = pred_tau(a_gap, [dm_gap[i][upM] for i in range(len(S0))], d_up)
-        # --- 方向解析: mean-方向 & PCA 第一主成分 ---
+        # --- directional analysis: mean direction & first PCA component ---
         e_mean = delta.mean(0)
         e_mean = e_mean / (np.linalg.norm(e_mean) + 1e-12)
         X = delta - delta.mean(0)
@@ -120,7 +120,7 @@ def measure(enc, tf, f0, deg_gen, deg_names):
 
 def main():
     res = {}
-    # ---------- 海洋: bioclip, 退化 haze/uw (与 direction_aware 同口径) ----------
+    # ---------- ocean: bioclip, haze/uw degradations (same protocol as direction_aware) ----------
     from clip_ocean_degradation import degrade as m_deg
     ds = ocm.load_ds()
     sub = json.load(open('outputs/ocean_subset.json', encoding='utf-8'))
@@ -155,7 +155,7 @@ def main():
     del m, f0, tf
     torch.cuda.empty_cache()
 
-    # ---------- 声呐: frozen CLIP, 退化 speckle/blur/shadow (650 子集, 与 direction_aware 同口径) ----------
+    # ---------- sonar: frozen CLIP, speckle/blur/shadow degradations (650 subset, same protocol as direction_aware) ----------
     man = []
     for c, d in zip(SONAR_CLASSES, SONAR_DIR):
         p = os.path.join('data/NKSID/NKSID', d)

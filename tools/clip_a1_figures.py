@@ -1,11 +1,11 @@
-"""A1 论文图：从 outputs/a1_*.json 生成三张核心图 → paper_a1/figures/"""
+"""A1 paper figures: generate the three core figures from outputs/a1_*.json → paper_a1/figures/"""
 import json, os
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-# 投稿要求：图内文字统一 Times New Roman（数学符号用 stix 以匹配 Times 风格）
+# submission requirement: text inside figures uses Times New Roman throughout (math symbols use stix to match the Times style)
 plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['mathtext.fontset'] = 'stix'
 
@@ -16,7 +16,7 @@ e2b = json.load(open('outputs/a1_e2b_e3b.json', encoding='utf-8'))
 
 C = {'T': '#B2182B', 'O': '#D6604D', 'C': '#2166AC'}
 
-# ---------- Fig 1: λ vs top-1（T/O/C 家族）----------
+# ---------- Fig 1: λ vs top-1 (T/O/C families) ----------
 fig, ax = plt.subplots(figsize=(5.2, 3.6))
 for fam, c, m in [('T', C['T'], 'o'), ('O', C['O'], 's'), ('C', C['C'], '^')]:
     xs = [r['lambda'] for r in full if r['kind'] == fam]
@@ -32,9 +32,9 @@ ax.legend(fontsize=8)
 ax.set_ylim(0, 75)
 fig.tight_layout(); fig.savefig('paper_a1/figures/fig1_lambda.png', dpi=300); fig.savefig('paper_a1/figures/fig1_lambda.pdf'); plt.close(fig)
 
-# ---------- Fig 2: τ vs top-1（全谱系 + 真实 checkpoint）----------
-# 两组合成点的样本量不同（图注已披露）：20 个手术网格条件在完整 50k 验证集上评分，
-# 其余（谱系 + 逐图像低秩）在 5k 样本上评分。两者用不同标记/颜色 + 两个图例条目区分。
+# ---------- Fig 2: τ vs top-1 (full spectrum + real checkpoints) ----------
+# the two synthetic point sets have different sample sizes (disclosed in the caption): the 20 surgery-grid conditions are scored on the full 50k validation set,
+# the rest (spectrum + per-image low rank) are scored on the 5k sample. The two are separated by different markers/colors + two legend entries.
 fig, ax = plt.subplots(figsize=(5.2, 3.8))
 taus50, t1s50 = [], []
 for r in full:
@@ -50,7 +50,7 @@ ax.scatter(taus50, t1s50, s=30, alpha=0.60, marker='o', color='#555555',
 ax.scatter(taus5, t1s5, s=36, alpha=0.85, marker='^', color='#2166AC',
            label='synthetic, 5k-image sample (n=%d)' % len(taus5))
 print('fig2 point sets: 50k-grid n=%d  5k-sample n=%d' % (len(taus50), len(taus5)))
-# 真实 checkpoint：text_only/both 用重训轨迹 epoch10（与 §5.5/fig4 同源），full_ft 用 e2b 三 seed
+# real checkpoints: text_only/both use the retrained trajectory epoch10 (same source as §5.5/fig4), full_ft uses the three e2b seeds
 traj = json.load(open('outputs/a1_tau_trajectory.json', encoding='utf-8'))
 real_pts = []
 for mode in ['text_only', 'both']:
@@ -70,7 +70,7 @@ ax.legend(fontsize=8, loc='lower right')
 ax.set_xlim(-0.12, 1.05); ax.set_ylim(-5, 85)
 fig.tight_layout(); fig.savefig('paper_a1/figures/fig2_tau_top1.png', dpi=300); fig.savefig('paper_a1/figures/fig2_tau_top1.pdf'); plt.close(fig)
 
-# ---------- Fig 3: 任务敏感度三档（λ=+1 处各指标相对 frozen 的保留率）----------
+# ---------- Fig 3: three task-sensitivity tiers (retention of each metric relative to frozen at λ=+1) ----------
 base = [r for r in full if r['lambda'] == 0.0 and r['kind'] == 'T'][0]
 pert = [r for r in full if r['lambda'] == 1.0 and r['kind'] == 'T'][0]
 tasks = ['NCC\n(centroid class.)', 'zero-shot\ntop-1', 'retrieval\nR@1']
@@ -85,7 +85,7 @@ ax.set_ylabel('performance retained at λ=+1 (%)')
 ax.set_title(r'Task-sensitivity spectrum under the same gap shift', fontsize=9)
 ax.set_ylim(0, 124)
 ax.axhline(100, color='gray', ls='--', lw=0.8)
-# 用户要求：图 4（谱系柱状图）不要图例，任务名已由 x 轴标签标明
+# user requirement: Fig 4 (spectrum bar chart) has no legend; the task names are already given by the x-axis labels
 fig.tight_layout(); fig.savefig('paper_a1/figures/fig4_spectrum.png', dpi=300); fig.savefig('paper_a1/figures/fig4_spectrum.pdf'); plt.close(fig)
 print('figures done')
 

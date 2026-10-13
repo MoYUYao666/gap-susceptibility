@@ -1,9 +1,9 @@
-"""按正确结构(E 列表)聚合 ΔE = E[-1] - E[0], 核对论文相位表与反事实数字。"""
+"""Aggregate ΔE = E[-1] - E[0] with the correct structure (the E list), cross-checking the paper's phase table and counterfactual numbers."""
 import json
 import math
 from collections import defaultdict
 
-PAPER = {  # rank: (mean, std) 论文 tab:phase
+PAPER = {  # rank: (mean, std) paper tab:phase
     4: (-105, 21), 5: (-21, 26), 6: (62, 42), 7: (192, 44),
     8: (311, 49), 16: (1572, 67), 20: (2860, 234),
 }

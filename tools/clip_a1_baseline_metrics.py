@@ -1,9 +1,9 @@
-"""A1 提升实验 4：τ vs 基线指标对比 + 理论验证（类偏置场）。
-A) 指标对比：对全部扰动条件（T/O/C/G/L/ID/P 家族，与已跑实验同构）计算
-   top-1、τ、线性 CKA、平均嵌入余弦、CG，然后做各指标与 top-1 的 Spearman 相关。
-B) 理论验证：λ=1 平移下，逐类实际分数位移 vs 预测 λ||g||·m_c 的 Pearson 相关；
-   std(m_c) 与 τ 退化关系。
-结果存 outputs/a1_baseline_metrics.json。
+"""A1 improvement experiment 4: τ vs baseline metrics + theoretical verification (class bias field).
+A) Metric comparison: for all perturbation conditions (T/O/C/G/L/ID/P families, isomorphic to the experiments already run) compute
+   top-1, τ, linear CKA, mean embedding cosine, CG, then the Spearman correlation of each metric with top-1.
+B) Theoretical verification: under the λ=1 translation, the Pearson correlation between the per-class actual score shift and the predicted λ||g||·m_c;
+   the relation between std(m_c) and τ degradation.
+Results are stored in outputs/a1_baseline_metrics.json.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -138,7 +138,7 @@ with torch.no_grad():
         c_own = cents[torch.tensor([lab_map[int(x)] for x in labels], device='cuda')]
         push('P%.2g' % a, F.normalize((1 - a) * base + a * c_own, dim=-1), fi)
 
-# 指标 vs top-1 的 Spearman
+# Spearman of each metric vs top-1
 top1s = [c['top1'] for c in conds]
 corrs = {}
 for metric in ['tau', 'CG', 'cka', 'mean_cos']:
@@ -146,17 +146,17 @@ for metric in ['tau', 'CG', 'cka', 'mean_cos']:
     r, p = stats.spearmanr(top1s, vals)
     corrs[metric] = {'spearman_r': round(float(r), 4), 'p': float(p)}
 
-# 理论验证：λ=1 类偏置场
+# theoretical verification: λ=1 class bias field
 with torch.no_grad():
     shifted = F.normalize(base + gap_norm * d_hat, dim=-1)
 S1 = shifted @ tf.T
-m_c = (d_hat @ tf.T).cpu().numpy()          # 预测偏置系数
-actual = (S1 - base_sims).mean(0).cpu().numpy()  # 实际逐类分数位移
+m_c = (d_hat @ tf.T).cpu().numpy()          # predicted bias coefficient
+actual = (S1 - base_sims).mean(0).cpu().numpy()  # actual per-class score shift
 pred = gap_norm * m_c
 r_bias, p_bias = stats.pearsonr(actual, pred)
 theory = {'pearson_actual_vs_predicted': round(float(r_bias), 4), 'p': float(p_bias),
           'std_m_c': round(float(np.std(m_c)), 4), 'gap_norm': round(gap_norm, 4)}
-print('类偏置场验证: pearson(actual, predicted)=%.4f  std(m_c)=%.4f' % (r_bias, np.std(m_c)), flush=True)
+print('class bias field verification: pearson(actual, predicted)=%.4f  std(m_c)=%.4f' % (r_bias, np.std(m_c)), flush=True)
 
 json.dump({'metric_correlations': corrs, 'theory_verification': theory,
            'n_conditions': len(conds)},

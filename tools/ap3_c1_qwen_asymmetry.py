@@ -1,18 +1,18 @@
-"""C1（Qwen2-VL-7B：投影器 vs LLM 的不对称秩分配）分析。
+"""C1 (Qwen2-VL-7B: asymmetric rank allocation between projector and LLM) analysis.
 
-数据：2026-09-13 云端清盘重跑，autodl RTX 4080 SUPER（32760 MiB / torch 2.12.1+cu130）。
-4 seeds {42,123,456,999} × 3 臂，3 epochs，参考协议（rank=8, uniform 块策略, qkvo 关闭）：
-  ① projonly        : 投影器 r=4, attn-targets=none（LLM 不加 LoRA）
-  ② projhi16_llmlo2 : 投影器 r=16 + LLM r=2
-  ③ projlo2_llmhi16 : 投影器 r=2  + LLM r=16
+Data: cloud clean rerun 2026-09-13, autodl RTX 4080 SUPER (32760 MiB / torch 2.12.1+cu130).
+4 seeds {42,123,456,999} × 3 arms, 3 epochs, reference protocol (rank=8, uniform block policy, qkvo off):
+  ① projonly        : projector r=4, attn-targets=none (no LoRA on the LLM)
+  ② projhi16_llmlo2 : projector r=16 + LLM r=2
+  ③ projlo2_llmhi16 : projector r=2  + LLM r=16
 
-⚠️ 协议注意（必须写进论文/局限）：Qwen 脚本的"blank image"实为 `np.random.randint` 噪声图，
-按 seed 播撒 → **E0 随 seed 变化**（27008–46592，跨度 72%）。因此：
-  * 臂间比较（同一 seed 内）是干净的：三臂共用同一张图、同一 E0；
-  * 跨 seed 的 ΔE 绝对值不可直接平均 —— 同时报告归一化 ΔE/E0（%），并以"每 seed 的臂序"为主证据；
-  * LLaVA 脚本用的是全黑图（E0 恒定 3921/3926），两架构此点协议不一致。
+⚠️ Protocol caveat (must go into the paper/limitations): the Qwen script's "blank image" is actually an `np.random.randint` noise image,
+seeded by seed → **E0 varies with seed** (27008–46592, a 72% span). Therefore:
+  * comparisons between arms (within the same seed) are clean: all three arms share the same image and the same E0;
+  * cross-seed absolute ΔE cannot be averaged directly — also report the normalized ΔE/E0 (%), and treat "per-seed arm ordering" as the primary evidence;
+  * the LLaVA script uses an all-black image (E0 constant 3921/3926), so the two architectures differ in protocol on this point.
 
-产出：outputs/c1_qwen_asymmetry.json
+Output: outputs/c1_qwen_asymmetry.json
 """
 import glob
 import json
@@ -25,9 +25,9 @@ EXP = 'paper3/scripts/outputs/experiments'
 SEEDS = (42, 123, 456, 999)
 ARMS = ('tnone_pr4_projonly', 'pr16_lr2_projhi16_llmlo2', 'pr2_lr16_projlo2_llmhi16')
 LABEL = {
-    'tnone_pr4_projonly': '投影器 r=4 单独（LLM 冻结）',
-    'pr16_lr2_projhi16_llmlo2': '投影器 r=16 + LLM r=2',
-    'pr2_lr16_projlo2_llmhi16': '投影器 r=2 + LLM r=16',
+    'tnone_pr4_projonly': 'projector r=4 only (LLM frozen)',
+    'pr16_lr2_projhi16_llmlo2': 'projector r=16 + LLM r=2',
+    'pr2_lr16_projlo2_llmhi16': 'projector r=2 + LLM r=16',
 }
 
 
@@ -39,7 +39,7 @@ def load(seed, arm):
 
 
 def sign_test_p(k, n):
-    """双侧符号检验 p（k 次成功 / n 次）。"""
+    """Two-sided sign test p (k successes / n trials)."""
     if n == 0:
         return float('nan')
     from math import comb
@@ -48,9 +48,9 @@ def sign_test_p(k, n):
 
 
 def block_baseline_block():
-    """当前 vintage 的块策略基线（_v2）vs 旧存档：E0 指纹决定可否直接比较。"""
+    """Block-policy baseline of the current vintage (_v2) vs the old archive: the E0 fingerprint decides comparability."""
     print()
-    print('===== 块策略基线：当前 vintage（_v2）vs 旧存档 =====')
+    print('===== Block-policy baseline: current vintage (_v2) vs old archive =====')
     out = {'v2': {}, 'archive': {}}
     for s in (42, 123, 456):
         row = {}
@@ -65,7 +65,7 @@ def block_baseline_block():
             e0 = next(iter(row.values()))['E0']
             print(f'  seed {s}: E0={e0:.0f} | ' + '  '.join(
                 f'{bc} {row[bc]["delta_E"]:+.0f}' for bc in row))
-    # 旧存档（若存在）
+    # Old archive (if present)
     for s in (42, 123, 456):
         row = {}
         for bc in ('uniform', 'theory', 'violation'):
@@ -76,10 +76,10 @@ def block_baseline_block():
         if row:
             out['archive'][s] = row
             e0 = next(iter(row.values()))['E0']
-            print(f'  [旧存档] seed {s}: E0={e0:.0f} | ' + '  '.join(
+            print(f'  [old archive] seed {s}: E0={e0:.0f} | ' + '  '.join(
                 f'{bc} {row[bc]["delta_E"]:+.0f}' for bc in row))
 
-    # E0 指纹检查：v2 与 C1 各臂是否同 vintage
+    # E0 fingerprint check: are v2 and the C1 arms the same vintage?
     print()
     c1_e0 = {}
     for s in SEEDS:
@@ -88,25 +88,25 @@ def block_baseline_block():
             c1_e0[s] = json.load(open(p, encoding='utf-8'))['E'][0]
     same = all(out['v2'][s][next(iter(out['v2'][s]))]['E0'] == c1_e0.get(s)
                for s in out['v2'] if s in c1_e0)
-    print(f'  E0 指纹：v2 基线与 C1 各臂一致 = {same}'
-          f'（v2 {[out["v2"][s][next(iter(out["v2"][s]))]["E0"] for s in sorted(out["v2"])]} '
-          f'vs C1 {[c1_e0[s] for s in sorted(c1_e0)]}）')
+    print(f'  E0 fingerprint: v2 baseline matches the C1 arms = {same}'
+          f' (v2 {[out["v2"][s][next(iter(out["v2"][s]))]["E0"] for s in sorted(out["v2"])]} '
+          f'vs C1 {[c1_e0[s] for s in sorted(c1_e0)]})')
     if out['archive']:
         arch_e0 = [out['archive'][s][next(iter(out['archive'][s]))]['E0'] for s in sorted(out['archive'])]
-        print(f'  旧存档 E0 = {arch_e0} → 与当前 vintage 不同 → 两组不得混表')
+        print(f'  old archive E0 = {arch_e0} → different vintage from the current one → the two groups must not be tabulated together')
 
-    # 块策略效应 vs 秩分配效应（同 seed 配对）
+    # Block-policy effect vs rank-allocation effect (paired by seed)
     print()
-    print('  ---- 同 seed 配对：块策略三臂 vs 秩分配三臂 ----')
+    print('  ---- Paired by seed: block-policy arms vs rank-allocation arms ----')
     for s in sorted(out['v2']):
         if s not in c1_e0:
             continue
         row = out['v2'][s]
         proj = json.load(open(os.path.join(EXP, f'qwen_cf_uniform_rank8_seed{s}_tnone_pr4_projonly.json'),
                               encoding='utf-8'))['delta_E']
-        print(f'  seed {s}: 块策略 {min(row[b]["delta_E"] for b in row):+.0f}…{max(row[b]["delta_E"] for b in row):+.0f}'
-              f'（跨度 {max(row[b]["delta_E"] for b in row) - min(row[b]["delta_E"] for b in row):.0f}）'
-              f' | 投影器单独 {proj:+.0f} → 差 {proj - row["uniform"]["delta_E"]:+.0f}')
+        print(f'  seed {s}: block policy {min(row[b]["delta_E"] for b in row):+.0f}…{max(row[b]["delta_E"] for b in row):+.0f}'
+              f' (span {max(row[b]["delta_E"] for b in row) - min(row[b]["delta_E"] for b in row):.0f})'
+              f' | projector only {proj:+.0f} → diff {proj - row["uniform"]["delta_E"]:+.0f}')
     return out
 
 
@@ -132,11 +132,11 @@ def main():
                 'delta_E_pct': (de / e0 * 100.0) if e0 else float('nan'),
             })
     if missing:
-        print('缺文件 seeds:', missing)
+        print('missing files, seeds:', missing)
 
-    print(f'纳入 {len(rows)} 条（{len({r["seed"] for r in rows})} seeds × 3 臂）\n')
-    print('===== 每 seed 明细 =====')
-    print(f'{"seed":>5} {"臂":<28} {"可训练参数":>10} {"E0":>8} {"ΔE":>9} {"ΔE/E0":>9}  E 轨迹')
+    print(f'included {len(rows)} rows ({len({r["seed"] for r in rows})} seeds × 3 arms)\n')
+    print('===== Per-seed detail =====')
+    print(f'{"seed":>5} {"arm":<28} {"trainable":>10} {"E0":>8} {"ΔE":>9} {"ΔE/E0":>9}  E trajectory')
     for s in SEEDS:
         sub = [r for r in rows if r['seed'] == s]
         if not sub:
@@ -147,8 +147,8 @@ def main():
                   f'{r["delta_E"]:>+9.0f} {r["delta_E_pct"]:>+8.2f}%  {traj}')
         print()
 
-    print('===== 每臂汇总 =====')
-    print(f'{"臂":<28} {"n":>2} {"ΔE 均值±sd":>22} {"ΔE/E0 均值±sd":>20} {"正号次数":>9}')
+    print('===== Per-arm summary =====')
+    print(f'{"arm":<28} {"n":>2} {"ΔE mean±sd":>22} {"ΔE/E0 mean±sd":>20} {"n positive":>9}')
     summ = {}
     for arm in ARMS:
         sub = [r for r in rows if r['arm'] == arm]
@@ -162,7 +162,7 @@ def main():
               f'{mean(pc):>+11.2f}% ± {pstdev(pc):<6.2f}% {pos:>6}/{len(sub)}')
 
     print()
-    print('===== 主检验：每 seed 的臂序是否一致 =====')
+    print('===== Main test: is the arm ordering consistent across seeds =====')
     order_ok = 0
     pair_ok = {('tnone_pr4_projonly', 'pr16_lr2_projhi16_llmlo2'): 0,
                ('tnone_pr4_projonly', 'pr2_lr16_projlo2_llmhi16'): 0,
@@ -180,15 +180,15 @@ def main():
                 pair_ok[(a, b)] += 1
             pair_diff[(a, b)].append(vals[a] - vals[b])
     n_seeds = len({r['seed'] for r in rows})
-    print(f'臂序 投影器单独 > 投影器r2+LLM r16 > 投影器r16+LLM r2 的 seed 数: {order_ok}/{n_seeds}'
-          f'  （若完全随机，恰为此序的概率 = 1/6 每 seed → 观测到 {order_ok}/{n_seeds} 的概率 = {(1/6) ** order_ok:.4f}）')
+    print(f'seeds with order projector-only > projector r2+LLM r16 > projector r16+LLM r2: {order_ok}/{n_seeds}'
+          f'  (if fully random, the probability of exactly this order = 1/6 per seed → probability of observing {order_ok}/{n_seeds} = {(1/6) ** order_ok:.4f})')
     for (a, b), k in pair_ok.items():
         diffs = pair_diff[(a, b)]
         print(f'  {LABEL[a][:18]:<18} > {LABEL[b][:18]:<18}: {k}/{len(diffs)} seeds  '
-              f'差值均值 {mean(diffs):+.0f}（全部差值同号: {"是" if k in (0, len(diffs)) else "否"}）')
+              f'mean diff {mean(diffs):+.0f} (all diffs same sign: {"yes" if k in (0, len(diffs)) else "no"})')
 
     print()
-    print('===== 与存档的 Qwen 块策略基线对照 =====')
+    print('===== Against the archived Qwen block-policy baseline =====')
     arch = sorted(glob.glob(os.path.join(EXP, 'qwen_cf_*_rank8_seed42.json')))
     arch = [p for p in arch if not any(a in os.path.basename(p) for a in ARMS)]
     for p in arch:
@@ -199,9 +199,9 @@ def main():
 
     json.dump({
         'source': 'cloud clean rerun 2026-09-13, autodl RTX 4080 SUPER 32760MiB / torch 2.12.1+cu130',
-        'protocol_note': ('Qwen 脚本的 blank image 为 np.random.randint 噪声图并按 seed 播撒，'
-                          '故 E0 随 seed 变化；臂间比较干净，跨 seed 绝对值不可平均，另报 ΔE/E0。'
-                          'LLaVA 脚本用 np.zeros 全黑图（E0 恒定），两架构此点协议不一致。'),
+        'protocol_note': ('The Qwen script uses an np.random.randint noise image, seeded by seed, so E0 varies with seed; '
+                          'arm comparisons are clean but cross-seed absolute values cannot be averaged, so ΔE/E0 is also '
+                          'reported. The LLaVA script uses a np.zeros black image (constant E0): the protocols differ here.'),
         'rows': rows,
         'summary': summ,
         'block_baseline': blocks,

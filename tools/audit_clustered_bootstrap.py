@@ -1,4 +1,4 @@
-"""复算 DG-R@1 相关与聚类 bootstrap(配置为单位), 核对论文 r=-0.819 / 94 实验 / 79 簇。"""
+"""Recompute DG-R@1 correlation with clustered bootstrap (config as unit), check paper r=-0.819 / 94 experiments / 79 clusters."""
 import json
 import numpy as np
 
@@ -30,7 +30,7 @@ def pearson(a, b):
     return float(np.corrcoef(a, b)[0, 1])
 
 
-# 聚类 bootstrap
+# clustered bootstrap
 rng = np.random.RandomState(0)
 by_c = {c: [i for i, r in enumerate(rows) if r['cluster'] == c] for c in clusters}
 vals = []

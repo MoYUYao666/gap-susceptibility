@@ -1,8 +1,8 @@
-"""D 实验: BLIP 生成海洋图文对 → caption 检索探针（判定"检索跟踪 CG"是否随自然文本成立）。
-1) BLIP-base 为 fish-67 子集每类 8 张生成自然句子字幕(每图一条, 逐图变化);
-2) 检索协议(与 A2 同口径): 图像侧 λ∈{0,0.5,1,2}(+ 文本侧 λ=1); 模型 bioclip/oceanclip/openclip_tf;
-   指标: i2t R@1 / t2i R@1 / 均值 / CG; 判据: R@1 是否跟随 CG(λ=1 近零 λ=2 回弹) 还是单调随 τ。
-输出: data/marine_captions/ + outputs/ocean_waterbench.json
+"""Experiment D: BLIP-generated marine image-text pairs → caption retrieval probe (tests whether "retrieval tracks CG" also holds for natural text).
+1) BLIP-base generates a natural-sentence caption for 8 images per class of the fish-67 subset (one per image, varying per image);
+2) retrieval protocol (same convention as A2): image side λ∈{0,0.5,1,2}(+ text side λ=1); models bioclip/oceanclip/openclip_tf;
+   metrics: i2t R@1 / t2i R@1 / mean / CG; criterion: does R@1 follow CG (near zero at λ=1, rebound at λ=2) or vary monotonically with τ.
+Output: data/marine_captions/ + outputs/ocean_waterbench.json
 """
 import os, sys, json, io, importlib.util
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'

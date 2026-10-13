@@ -1,10 +1,10 @@
-"""A2 图 7（声呐偏置场结构）重生成脚本。
-修复：右侧面板旧版只有两根粗柱（3.6x/3.4x），观感像图例且数值过时
-（正文已修正为 平衡 3.8×/全量 1.8×，陆地 1.1×）。
-新版：(a) 分组柱——平衡 650 / 全量 2,617 两口径 × (冻结/+Flickr/+Sonar) 的 σ_m；
-      (b) 压平比（σ_m 冻结/σ_m 微调）——sonar 平衡 3.8× / sonar 全量 1.8× / 陆地 1.1×。
-数字全部实时从 outputs/sonar_protocol.json + sonar_protocol_full.json 计算。
-输出 paper_a2/figures/fig7_sonar_sigma.png @300dpi
+"""Regeneration script for A2 Figure 7 (sonar bias-field structure).
+Fix: the old version of the right panel had only two thick bars (3.6x/3.4x), which looked like a legend and was outdated
+(the text has been corrected to balanced 3.8× / full 1.8×, terrestrial 1.1×).
+New version: (a) grouped bars — σ_m for the two protocols balanced 650 / full 2,617 × (frozen / +Flickr / +Sonar);
+      (b) flattening ratio (σ_m frozen / σ_m fine-tuned) — sonar balanced 3.8× / sonar full 1.8× / terrestrial 1.1×.
+All numbers are computed in real time from outputs/sonar_protocol.json + sonar_protocol_full.json.
+output paper_a2/figures/fig7_sonar_sigma.png @300dpi
 """
 import json
 import numpy as np
@@ -21,23 +21,23 @@ plt.rcParams['axes.linewidth'] = 0.8
 BAL = json.load(open('outputs/sonar_protocol.json', encoding='utf-8'))
 FUL = json.load(open('outputs/sonar_protocol_full.json', encoding='utf-8'))
 
-# σ_m 取值（平衡口径 / 全量口径）
+# σ_m values (balanced protocol / full protocol)
 frozen = [BAL['clip_frozen']['sigma_m'], FUL['clip_frozen']['sigma_m']]
 flickr = [BAL['clip_flickrft']['sigma_m'], FUL['clip_flickrft']['sigma_m']]
 sonar = [BAL['sonar_ft']['sigma_m'], FUL['sonar_ft_full']['sigma_m']]
 
-# 压平比 = σ_m(冻结) / σ_m(微调)
-ratio_bal = BAL['clip_frozen']['sigma_m'] / BAL['sonar_ft']['sigma_m']        # 平衡口径
-ratio_ful = FUL['clip_frozen']['sigma_m'] / FUL['sonar_ft_full']['sigma_m']    # 全量口径
-ratio_ter = FUL['clip_frozen']['sigma_m'] / FUL['clip_flickrft']['sigma_m']    # 陆地对照
+# flattening ratio = σ_m(frozen) / σ_m(fine-tuned)
+ratio_bal = BAL['clip_frozen']['sigma_m'] / BAL['sonar_ft']['sigma_m']        # balanced protocol
+ratio_ful = FUL['clip_frozen']['sigma_m'] / FUL['sonar_ft_full']['sigma_m']    # full protocol
+ratio_ter = FUL['clip_frozen']['sigma_m'] / FUL['clip_flickrft']['sigma_m']    # terrestrial control
 
 fig, axes = plt.subplots(1, 2, figsize=(8.4, 3.3))
 ax = axes[0]
 
-# ---- (a) 分组柱状 ----
+# ---- (a) grouped bars ----
 groups = ['balanced 650', 'full 2,617']
-# '+ Flickr' 不是多余条目：它就是 (b) 面板里的陆地对照 (CLIP + Flickr FT)，图例写明，
-# 以免读者以为它是一条与正文无关的曲线（正文 0.0239→0.0063 vs 0.0216 即此序列）。
+# '+ Flickr' is not a redundant entry: it is the terrestrial control (CLIP + Flickr FT) of panel (b), and the legend says so,
+# so that readers do not take it for a curve unrelated to the text (in the text 0.0239→0.0063 vs 0.0216 is exactly this series).
 series = [('CLIP frozen', frozen, '#8C8C8C'), ('+ Flickr FT (terrestrial control)', flickr, '#57A860'),
           ('+ Sonar', sonar, '#C44E52')]
 x = np.arange(len(groups))
@@ -59,7 +59,7 @@ ax.grid(axis='y', color='#DDDDDD', linewidth=0.6, zorder=0)
 ax.legend(loc='upper center', frameon=False, fontsize=8.5, ncol=3,
           bbox_to_anchor=(0.5, -0.30))
 
-# ---- (b) 压平比 ----
+# ---- (b) flattening ratio ----
 ax2 = axes[1]
 names = ['sonar\nbalanced 650', 'sonar\nfull 2,617', 'terrestrial\n(full 2,617)']
 vals = [ratio_bal, ratio_ful, ratio_ter]

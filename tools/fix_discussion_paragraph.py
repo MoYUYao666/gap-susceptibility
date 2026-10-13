@@ -1,4 +1,4 @@
-"""07_discussion.tex 第 23 行(局限段)外科修复: 删除重复片段 + 把 Sixteenth 移到 Fifteenth 之后 + 修断句。"""
+"""Surgical repair of line 23 (limitations paragraph) of 07_discussion.tex: delete the duplicated fragment + move Sixteenth after Fifteenth + fix the sentence break."""
 import re
 
 p = 'paper_ap3/sections/07_discussion.tex'
@@ -19,11 +19,11 @@ print('   ...', duplicate[-120:].replace('\n', ' '))
 
 new_l = l[:i16] + fifteenth + ' ' + sixteenth
 
-# 断句修复
+# sentence-break fix
 new_l = new_l.replace('is undetermined Eighth, the two pipelines', 'is undetermined. Eighth, the two pipelines')
 new_l = new_l.replace('(Section~\\ref{sec:crossarch}). the reported 1-epoch', '(Section~\\ref{sec:crossarch}). The reported 1-epoch')
 
-# 校验: 重复片段不应再出现; 序数顺序应为 ...Fifteenth...Sixteenth...
+# checks: the duplicated fragment must not reappear; the ordinal order must be ...Fifteenth...Sixteenth...
 assert 'Sixteenth' in new_l and 'Fifteenth' in new_l
 assert new_l.index('Fifteenth,') < new_l.index('Sixteenth,')
 assert 'undetermined. Eighth' in new_l

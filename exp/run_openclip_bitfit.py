@@ -1,13 +1,13 @@
-"""OpenCLIP + BitFit ODE fit — 恢复 Paper A generalization 表
+"""OpenCLIP + BitFit ODE fit — recovers the Paper A generalization table
 
-用法：
+Usage:
   conda activate pytorch
   python exp/run_openclip_bitfit.py --method openclip
   python exp/run_openclip_bitfit.py --method bitfit
 
-依赖：src/（trainer, dataset, gap_susceptibility）——打包时须包含 src/
+Dependencies: src/ (trainer, dataset, gap_susceptibility) — src/ must be included when packaging
 
-产出：openclip_results.json / bitfit_results.json
+Output: openclip_results.json / bitfit_results.json
   [{"name", "seed", "alpha", "beta", "r_squared", "dg_star_trajectory"}, ...]
 """
 import os, sys, json, warnings
@@ -69,7 +69,7 @@ def get_tokenizer(method):
 
 
 def load_model(method):
-    """OpenCLIP 或 CLIP（BitFit: bias-only）。"""
+    """OpenCLIP or CLIP (BitFit: bias-only)."""
     if method == 'openclip':
         import open_clip
         m, _, _ = open_clip.create_model_and_transforms(
@@ -79,7 +79,7 @@ def load_model(method):
         m = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
     m = m.to(DEVICE)
     m.train()
-    # BitFit: 只解冻 bias
+    # BitFit: unfreeze only the bias
     for n, p in m.named_parameters():
         p.requires_grad = "bias" in n
     return m
@@ -90,12 +90,12 @@ _TOKENIZER_METHOD = 'openclip'
 
 def get_embeds(model, batch):
     if isinstance(batch, dict):
-        # 原始 batch（image/caption 字符串）
+        # raw batch (image/caption strings)
         img = batch["image"].to(DEVICE)
         txt = batch["caption"]
         tok = get_tokenizer(_TOKENIZER_METHOD)
         return get_embeds_tok(model, img, tok)
-    # 已 tokenize 的 (img_tensor, tokens)
+    # already-tokenized (img_tensor, tokens)
     img, tokens = batch
     return get_embeds_tok(model, img, tokens)
 
@@ -109,7 +109,7 @@ def get_embeds_tok(model, img, tokens):
     if hasattr(model, 'get_image_features'):
         zi = model.get_image_features(img)
         zt = model.get_text_features(tokens)
-        # 兼容返回 BaseModelOutputWithPooling 的情况
+        # handle the case that returns BaseModelOutputWithPooling
         if not torch.is_tensor(zi):
             zi = zi.pooler_output if zi.pooler_output is not None else zi.last_hidden_state.mean(dim=1)
         if not torch.is_tensor(zt):
@@ -183,7 +183,7 @@ def main():
 
     out_path = args.output or f"{args.method}_results.json"
 
-    # ===== Resume: 读已有结果，跳过已完成的 seed =====
+    # ===== Resume: read existing results, skip seeds already done =====
     results = []
     done_seeds = set()
     if os.path.exists(out_path):
@@ -191,9 +191,9 @@ def main():
             with open(out_path, encoding='utf-8') as f:
                 results = json.load(f)
             done_seeds = {r['seed'] for r in results}
-            print(f"[resume] 已有 {len(results)} 个完成: seeds {sorted(done_seeds)}", flush=True)
+            print(f"[resume] {len(results)} already done: seeds {sorted(done_seeds)}", flush=True)
         except Exception as e:
-            print(f"[resume] 读取失败（从头开始）: {e}", flush=True)
+            print(f"[resume] read failed (starting from scratch): {e}", flush=True)
             results = []
 
     from src.dataset import create_dataloaders
@@ -202,19 +202,19 @@ def main():
             dataset_name="flickr30k", data_dir=str(PROJECT_ROOT),
             batch_size=BATCH_SIZE, max_samples=500, num_workers=0)
     except Exception as e:
-        print(f"WARNING: 数据集加载失败（可能需要 flickr30k 数据）: {e}")
-        print("实验 5 需在本地跑（本地有数据），或上传 flickr30k 数据")
+        print(f"WARNING: dataset loading failed (flickr30k data may be required): {e}")
+        print("Experiment 5 must be run locally (the data is local), or upload the flickr30k data")
         return
 
     for seed in [42, 123, 456][:args.seeds]:
         if seed in done_seeds:
-            print(f"  seed={seed}: 已完成，跳过", flush=True)
+            print(f"  seed={seed}: already done, skipping", flush=True)
             continue
         print(f"  seed={seed}: training {args.method}...", flush=True)
         r = run_seed(args.method, seed, train_loader)
         results.append(r)
 
-        # 每完成一个立即保存（续跑核心）
+        # save immediately after each one completes (core of resuming)
         with open(out_path, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2)
         print(f"  [saved] {r['name']}: α={r['alpha']} β={r['beta']} R²={r['r_squared']}", flush=True)

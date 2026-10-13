@@ -1,7 +1,7 @@
-"""A1 理论节图示（2026-08-22）——扩展版 §4/§11 用。
-数据：outputs/a1_margins.json（τ 预测/实测、top-1 界、m 分布、逐对样本）、
-outputs/a1_theory_verify.json（经验界、O 族、P 类）、outputs/a1_subspace_results.json（P 类实测）。
-输出：paper_a1/figures/figT1..T6 *.png（Times New Roman + stix，300 dpi）。
+"""A1 theory-section figures (2026-08-22) —— for the extended §4/§11.
+Data: outputs/a1_margins.json (τ predicted/measured, top-1 bound, m distribution, pairwise samples),
+outputs/a1_theory_verify.json (empirical bound, O family, P class), outputs/a1_subspace_results.json (P class measurement).
+Output: paper_a1/figures/figT1..T6 *.png (Times New Roman + stix, 300 dpi).
 """
 import json
 import numpy as np
@@ -14,7 +14,7 @@ plt.rcParams['mathtext.fontset'] = 'stix'
 plt.rcParams['axes.spines.right'] = False
 plt.rcParams['axes.spines.top'] = False
 plt.rcParams['axes.linewidth'] = 1.0
-# 图例必须白底：否则曲线穿过图例文字（2026-08-22 用户指出压字问题）
+# the legend must have a white background: otherwise curves run through the legend text (user reported text overlap on 2026-08-22)
 plt.rcParams['legend.frameon'] = True
 plt.rcParams['legend.framealpha'] = 0.95
 plt.rcParams['legend.facecolor'] = 'white'
@@ -36,7 +36,7 @@ taum = [M['measured_tau_5k'][l]['tau'] for l in LN]
 gap_norm = M['meta']['gap_norm']
 sigma_m = M['meta']['std_m']
 
-# ---------------- T1: τ(λ) 逐点预测 vs 实测 ----------------
+# ---------------- T1: pointwise τ(λ) predicted vs measured ----------------
 fig, ax = plt.subplots(figsize=(6.8, 3.6))
 ax.plot(xpos, taue, 'o-', color=C['b'], lw=2, ms=6, label=r'predicted (Thm. 1, closed-form)')
 ax.plot(xpos, taum, 's--', color=C['r'], lw=1.6, ms=6, label='measured (same 5k sample)')
@@ -55,7 +55,7 @@ fig.tight_layout(pad=1.5)
 fig.savefig(OUT + 'figT1_tau_dose.png', dpi=300, bbox_inches='tight', pad_inches=0.15)
 plt.close(fig)
 
-# ---------------- T2: top-1 失守率：界链 ----------------
+# ---------------- T2: top-1 loss rate: bound chain ----------------
 LP = ['0.25', '0.5', '1', '2', '4']
 xp = np.arange(len(LP))
 exact = [M['predicted_rank1_loss_exact'][l] for l in LP]
@@ -84,13 +84,13 @@ fig.tight_layout(pad=1.5)
 fig.savefig(OUT + 'figT2_top1_bounds.png', dpi=300, bbox_inches='tight', pad_inches=0.15)
 plt.close(fig)
 
-# ---------------- T3: (d, b) 联合分布与反转边界 ----------------
+# ---------------- T3: (d, b) joint distribution and inversion boundary ----------------
 dd = np.array(M['pair_samples']['d'])
 bb = np.array(M['pair_samples']['b'])
 fig, ax = plt.subplots(figsize=(6.8, 4.4))
 hb = ax.hexbin(dd, bb, gridsize=45, cmap='Blues', mincnt=1, bins='log')
 for lam, cl, ls in [(1.0, C['r'], '-'), (0.5, C['o'], '--'), (2.0, C['gy'], ':')]:
-    xl = np.linspace(0.001, 0.075, 50)   # 截短：不钻进右上图例框（2026-08-22）
+    xl = np.linspace(0.001, 0.075, 50)   # truncated: does not run into the upper-right legend box (2026-08-22)
     ax.plot(xl, xl / (lam * gap_norm), ls, color=cl, lw=1.4,
             label=r'inversion boundary $b=d/(\lambda\|g\|)$, $\lambda=%g$' % lam)
 ax.set_xlim(0, 0.12)
@@ -107,7 +107,7 @@ fig.tight_layout(pad=1.5)
 fig.savefig(OUT + 'figT3_inversion_joint.png', dpi=300, bbox_inches='tight', pad_inches=0.15)
 plt.close(fig)
 
-# ---------------- T4: O 族（Corollary 1）验证 ----------------
+# ---------------- T4: O family (Corollary 1) verification ----------------
 predO = [V['predicted_tau_orthogonal'][l] for l in LN]
 _lookO = {float(k): v for k, v in V['measured_tau_orthogonal'].items()}
 measO = [float(_lookO.get(float(l), np.nan)) for l in LN]
@@ -137,7 +137,7 @@ fig.tight_layout(pad=1.4)
 fig.savefig(OUT + 'figT4_orthogonal.png', dpi=300, bbox_inches='tight', pad_inches=0.15)
 plt.close(fig)
 
-# ---------------- T5: P 类（Theorem 5）验证 ----------------
+# ---------------- T5: P class (Theorem 5) verification ----------------
 pc = V['class_contraction']
 measP = pc['measured']
 fig, (axa, axb) = plt.subplots(1, 2, figsize=(8.6, 3.6))
@@ -169,7 +169,7 @@ fig.tight_layout(rect=[0, 0, 1, 0.94])
 fig.savefig(OUT + 'figT5_class_contraction.png', dpi=300, bbox_inches='tight', pad_inches=0.15)
 plt.close(fig)
 
-# ---------------- T6: m 分布 ----------------
+# ---------------- T6: m distribution ----------------
 mv = np.array(M['m_values'])
 mean_m = M['meta']['mean_m']
 fig, ax = plt.subplots(figsize=(6.0, 3.4))

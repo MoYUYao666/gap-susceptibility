@@ -1,5 +1,5 @@
 """
-Adapter & Prefix Tuning — 复用 lora.py 注入框架
+Adapter & Prefix Tuning — reusing the lora.py injection framework
 =================================================
 """
 import torch
@@ -8,7 +8,7 @@ from typing import Dict, List, Tuple
 
 
 class AdapterLayer(nn.Module):
-    """Bottleneck Adapter: down→GELU→up, 残差连接"""
+    """Bottleneck Adapter: down→GELU→up, residual connection"""
     def __init__(self, hidden_dim, bottleneck_dim=16):
         super().__init__()
         self.down = nn.Linear(hidden_dim, bottleneck_dim)
@@ -20,7 +20,7 @@ class AdapterLayer(nn.Module):
 
 
 class AdapterWrapper(nn.Module):
-    """原始层 + Adapter 残差"""
+    """original layer + Adapter residual"""
     def __init__(self, original, bottleneck_dim, hidden_dim=None):
         super().__init__()
         self.original = original
@@ -33,23 +33,23 @@ class AdapterWrapper(nn.Module):
 
 
 class PrefixWrapper(nn.Module):
-    """attention 前拼接 prefix tokens"""
+    """prepend prefix tokens before attention"""
     def __init__(self, original, pre_len, hidden_dim):
         super().__init__()
         self.original = original
         self.pre_len = pre_len
         self.prefix = nn.Parameter(torch.randn(pre_len, hidden_dim) * 0.02)
     def forward(self, hs=None, *a, **kw):
-        # CLIP 传 hidden_states= 是 keyword 参数，需兼容
+        # CLIP passes hidden_states= as a keyword argument, needs compatibility
         if hs is None:
             hs = kw.pop("hidden_states", None)
         if hs is None:
-            raise ValueError("PrefixWrapper: 未找到 hidden_states 输入")
+            raise ValueError("PrefixWrapper: hidden_states input not found")
         B = hs.shape[0]
         pfx = self.prefix.unsqueeze(0).expand(B, -1, -1)
         ext = torch.cat([pfx, hs], dim=1)
 
-        # 扩展所有 mask（attention_mask 2D/4D、causal_attention_mask 4D）
+        # extend all masks (attention_mask 2D/4D, causal_attention_mask 4D)
         for mask_key in ('attention_mask', 'causal_attention_mask'):
             if mask_key not in kw or kw[mask_key] is None:
                 continue
@@ -61,23 +61,23 @@ class PrefixWrapper(nn.Module):
                 ], dim=1)
             elif m.dim() == 4:
                 # 4D: (B, 1, Q, K) → (B, 1, pre_len+Q, pre_len+K)
-                # 前缀行: prefix attend 所有; 前缀列: 所有 attend prefix
+                # prefix rows: prefix attends to all; prefix columns: all attend to prefix
                 m = torch.cat([
                     torch.ones(B, 1, m.shape[2], self.pre_len, device=m.device, dtype=m.dtype),
                     m,
-                ], dim=-1)  # 扩展 key 维
+                ], dim=-1)  # extend key dimension
                 kw[mask_key] = torch.cat([
                     torch.ones(B, 1, self.pre_len, m.shape[-1], device=m.device, dtype=m.dtype),
                     m,
-                ], dim=2)  # 扩展 query 维
+                ], dim=2)  # extend query dimension
 
         return self.original(ext, *a, **kw)
 
 
-# --- 递归注入（仿照 lora.py _inject_lora 模式）---
+# --- recursive injection (mirroring the lora.py _inject_lora pattern) ---
 
 def _inject_into(module, target_names, factory_fn, result_dict, prefix):
-    """递归遍历，自动穿透 ModuleList"""
+    """recursive traversal, automatically descending through ModuleList"""
     for name, child in list(module.named_children()):
         full = f"{prefix}.{name}"
         if name in target_names:
@@ -93,7 +93,7 @@ def _inject_into(module, target_names, factory_fn, result_dict, prefix):
 
 def apply_adapter_to_model(model, bottleneck_dim=16, activation="gelu", dropout=0.0,
                           target_modules=None, apply_to_vision=True, apply_to_text=True):
-    # 从 model config 获取 hidden_dim
+    # get hidden_dim from model config
     vis_dim = model.config.vision_config.hidden_size if hasattr(model, 'config') else 768
     txt_dim = model.config.text_config.hidden_size if hasattr(model, 'config') else 512
     adict = {}
@@ -103,7 +103,7 @@ def apply_adapter_to_model(model, bottleneck_dim=16, activation="gelu", dropout=
     if apply_to_text and hasattr(model, 'text_model'):
         f = lambda c, n: AdapterWrapper(c, bottleneck_dim, txt_dim)
         _inject_into(model.text_model, {'self_attn', 'mlp'}, f, adict, "text")
-    # 冻结所有参数，再只解冻 adapter 子模块
+    # freeze all parameters, then unfreeze only the adapter submodules
     for p in model.parameters(): p.requires_grad = False
     for w in adict.values():
         for p in w.adapter.parameters(): p.requires_grad = True

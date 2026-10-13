@@ -1,16 +1,16 @@
-"""Tier A1: Γ 块排序在四种参数化下的一致性 + 耦合偏差量化（论文局限 3 的直接测量）。
+"""Tier A1: consistency of Γ block ordering across four parameterizations + coupling deviation quantification (direct measurement of paper limitation 3).
 
-背景: 表示定理的证明假设重参数化落在正交子群内; LoRA/Adapter/BitFit 都是非正交的。
-本脚本在冻结 CLIP ViT-B/32 上, 对同一对齐能量 E 与同一任务梯度 u, 分别在
-  (a) full  : 全参数梯度,
-  (b) lora  : 注意力投影的 LoRA 子空间 (r=8, q/k/v/out, 两个编码器),
-  (c) adapter: 注意力输出后的 bottleneck 适配器 (64),
-  (d) bitfit: 仅偏置,
-四种可训练子空间内计算 Γ_k = Σ_{θ∈block} ⟨∇_θE, ∇_θL⟩, 报告:
-  1) 各参数化下的块排序 (E ∈ {DG*, GD, negcos} × 3 批);
-  2) 与 full 的逐块耦合偏差 ε_k = |Γ^peft_k − Γ^full_k| / |Γ^full_k|;
-  3) 参数化两两之间的块排序 Spearman 相关。
-输出: outputs/clip_peft_gamma_ordering.json
+Background: the proof of the representation theorem assumes the reparameterization lies in the orthogonal subgroup; LoRA/Adapter/BitFit are all non-orthogonal.
+On a frozen CLIP ViT-B/32, for the same alignment energy E and the same task gradient u, this script computes within four trainable subspaces:
+  (a) full  : all-parameter gradients,
+  (b) lora  : LoRA subspace of the attention projections (r=8, q/k/v/out, both encoders),
+  (c) adapter: bottleneck adapter after the attention output (64),
+  (d) bitfit: biases only,
+computes Γ_k = Σ_{θ∈block} ⟨∇_θE, ∇_θL⟩, and reports:
+  1) block ordering under each parameterization (E ∈ {DG*, GD, negcos} × 3 batches);
+  2) per-block coupling deviation from full, ε_k = |Γ^peft_k − Γ^full_k| / |Γ^full_k|;
+  3) block-ordering Spearman correlation between each pair of parameterizations.
+Output: outputs/clip_peft_gamma_ordering.json
 """
 import os
 import sys
@@ -39,13 +39,13 @@ LORA_R = 8
 ADAPTER_BOTTLENECK = 64
 
 
-# ---------------- PEFT 模块(手工实现, 便于按前缀分块) ----------------
+# ---------------- PEFT modules (hand-written, so blocks can be split by prefix) ----------------
 class LoRALinear(nn.Module):
-    """W x + scale * B (A x); 仅 A/B 可训练(基座冻结)。
+    """W x + scale * B (A x); only A/B are trainable (base frozen).
 
-    注: 标准 LoRA 把 B 初始化为 0 → 在初始化点 A 的梯度恒为 0, 耦合只有半个子空间
-    且量级远小于全参数化(维度/尺度伪影)。为做**参数化几何**层面的对比, 这里把 B 以
-    小尺度随机初始化, 使两个因子在初始化点都携带梯度(尺度与 kaiming(A) 匹配)。
+    Note: standard LoRA initializes B to 0 → at init the gradient w.r.t. A is identically 0, so coupling
+    covers only half the subspace and is far below the full parameterization (dimension/scale artefact).
+    To compare the **parameterization geometry**, B is randomly initialized at small scale here so both factors carry gradients at init.
     """
 
     def __init__(self, base: nn.Linear, r: int = LORA_R, alpha: int = 16, b_scale: float = 1e-2):
@@ -63,7 +63,7 @@ class LoRALinear(nn.Module):
 
 
 class AdapterAttn(nn.Module):
-    """注意力输出后接 bottleneck 残差适配器 h <- h + W_up relu(W_down h)。"""
+    """Attention output followed by a bottleneck residual adapter h <- h + W_up relu(W_down h)."""
 
     def __init__(self, attn: nn.Module, dim: int, bottleneck: int = ADAPTER_BOTTLENECK,
                  up_scale: float = 1e-2):
@@ -83,7 +83,7 @@ class AdapterAttn(nn.Module):
 
 
 def add_lora(model, targets=('q_proj', 'k_proj', 'v_proj', 'out_proj')):
-    """把两个编码器内的注意力投影替换为 LoRA 包装(基座 requires_grad=False)。"""
+    """Replace the attention projections inside both encoders with LoRA wrappers (base requires_grad=False)."""
     n = 0
     for name, module in list(model.named_modules()):
         for child_name, child in list(module.named_children()):
@@ -158,16 +158,16 @@ def main():
     def e1(zI, zT):  # DG*
         return ((zI[:, None, :] - zT[None, :, :]) ** 2).mean()
 
-    def e2(zI, zT):  # GD: 质心 + 标准差
+    def e2(zI, zT):  # GD: centroids + standard deviations
         return (zI.mean(0) - zT.mean(0)).norm() + (zI.std(0) - zT.std(0)).norm()
 
-    def e3(zI, zT):  # 负平均余弦
+    def e3(zI, zT):  # negative mean cosine
         return -(zI @ zT.t()).mean()
 
     EFNS = [('DGstar', e1), ('GD', e2), ('negcos', e3)]
 
     def measure(mode):
-        """返回 (gamma[E][block] 均值, 每块可训练参数数) —— 每种模式独立加载模型。"""
+        """Return (mean gamma[E][block], trainable parameter count per block) — each mode loads its own model."""
         m = CLIPModel.from_pretrained(MDIR, local_files_only=True)
         if mode == 'lora':
             nmod = add_lora(m)
@@ -191,7 +191,7 @@ def main():
                 blk_sizes[b] += p.numel()
         print(f'[{mode}] modules wrapped={nmod} trainable={ntr/1e6:.3f}M', flush=True)
 
-        # 文本特征(冻结, 与 e_sensitivity_v2 一致)
+        # Text features (frozen, consistent with e_sensitivity_v2)
         ti = proc(text=[TEMPLATE.format(c) for c in classes], return_tensors='pt', padding=True).to('cuda')
         with torch.no_grad():
             t_out = m.text_model(**ti)
@@ -217,8 +217,8 @@ def main():
             for name, efn in EFNS:
                 m.zero_grad()
                 with torch.enable_grad():
-                    # E 必须同时依赖两个模态: 文本分支也要在 enable_grad 下前向
-                    # (否则 ∂E/∂θ ≡ 0 于所有文本侧参数, 文本块的 Γ 恒为 0 —— 设计缺陷)
+                    # E must depend on both modalities: the text branch must also be forwarded under
+                    # enable_grad (else ∂E/∂θ ≡ 0 on all text-side params and the text block's Γ is always 0)
                     t_out2 = m.text_model(**ti)
                     tp2 = t_out2[1] if isinstance(t_out2, tuple) else t_out2.pooler_output
                     tf2 = F.normalize(m.text_projection(tp2), dim=-1)
@@ -255,7 +255,7 @@ def main():
         sizes[mode] = bs
         ntrain[mode] = nt
 
-    # 排序 + 两两 Spearman（同时给出"逐参数归一化"的耦合, 消除维度/尺度伪影）
+    # Ordering + pairwise Spearman (also gives the "per-parameter normalized" coupling, removing dimension/scale artefacts)
     from scipy import stats
     norm = {}
     for mode in res:
@@ -274,7 +274,7 @@ def main():
                 rho, p = stats.spearmanr(a, b_)
                 spear[f'{modes[i]}_vs_{modes[j]}|{E}'] = {'spearman': round(float(rho), 3),
                                                           'p': round(float(p), 4)}
-    # 耦合偏差(归一化后) ε_k = |Γ^peft - Γ^full| / |Γ^full|
+    # Coupling deviation (after normalization) ε_k = |Γ^peft - Γ^full| / |Γ^full|
     dev = {}
     for mode in ['lora', 'adapter', 'bitfit']:
         dev[mode] = {}
@@ -285,7 +285,7 @@ def main():
         allrel = [dev[mode][b] for b in BLOCKS]
         dev[mode]['_median'] = round(float(np.median(allrel)), 4)
         dev[mode]['_max'] = round(float(np.max(allrel)), 4)
-    # 排序一致性汇总: 每个 E 下 full 与三 PEFT 的排序是否完全相同
+    # Ordering-consistency summary: for each E, whether full and the three PEFT orderings are exactly the same
     same = {E: all(orderings[m][E] == orderings['full'][E] for m in ['lora', 'adapter', 'bitfit'])
             for E in res['full']}
     json.dump({'blocks': BLOCKS, 'gamma': res, 'gamma_per_param': norm,
@@ -294,7 +294,7 @@ def main():
                'coupling_deviation_median_rel': dev, 'identical_order_to_full': same,
                'config': {'lora_r': LORA_R, 'adapter_bottleneck': ADAPTER_BOTTLENECK,
                           'batches': N_BATCH, 'batch_size': BS, 'E': [n for n, _ in EFNS],
-                          'note': 'LoRA B 与 adapter up 采用非零小尺度随机初始化, 使两因子在初始化点均携带梯度'}},
+                          'note': 'LoRA B and adapter up use non-zero small-scale random init so both factors carry gradients at the init point'}},
               open(OUT, 'w', encoding='utf-8'), indent=1)
     print('orderings:', json.dumps(orderings, indent=1), flush=True)
     print('identical_order_to_full:', same, flush=True)

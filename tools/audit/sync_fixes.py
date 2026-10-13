@@ -1,4 +1,4 @@
-# 同步 main_springer.tex 的关键修复到旧版 main.tex（防误用）
+# Sync the key fixes in main_springer.tex into the older main.tex (to prevent misuse)
 edits = [
     (r'across 58 LoRA configurations', r'across all tested LoRA configurations'),
     (r'$R^2 > 0.96$ across 58 LoRA configurations', r'mean $R^2 > 0.96$ across all tested LoRA configurations'),
@@ -19,4 +19,4 @@ for old, new in edits:
     if old in src:
         src = src.replace(old, new); n += 1
 open('main.tex', 'w', encoding='utf-8').write(src)
-print('main.tex 同步 %d 处' % n)
+print('main.tex: synced %d places' % n)

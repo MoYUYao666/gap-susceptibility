@@ -1,4 +1,4 @@
-"""A1 素材包补丁 v2：用锚点切片替换（对源码换行鲁棒），完成剩余 3 处。"""
+"""A1 material-pack patch v2: anchor-slice replacement (robust to source line breaks), completing the remaining 3 spots."""
 import sys
 
 P = 'paper_a1/revision_additions.tex'
@@ -6,25 +6,25 @@ src = open(P, encoding='utf-8', newline='').read()
 
 
 def splice(tag, start_anchor, end_anchor, new_text):
-    """把 [start_anchor, end_anchor 结尾] 之间的整段替换为 new_text。"""
+    """Replace the whole span between [start_anchor, end of end_anchor] with new_text."""
     global src
     i = src.find(start_anchor)
     j = src.find(end_anchor, i) if i >= 0 else -1
     if i < 0 or j < 0:
-        print(f'  FAIL {tag}: anchor 未找到 (start={i}, end={j})')
+        print(f'  FAIL {tag}: anchor not found (start={i}, end={j})')
         return False
     j += len(end_anchor)
     old = src[i:j]
     src = src[:i] + new_text + src[j:]
-    print(f'  OK   {tag}: 替换 {len(old)} 字节 → {len(new_text)} 字节')
+    print(f'  OK   {tag}: replaced {len(old)} bytes → {len(new_text)} bytes')
     return True
 
 
 ok = []
 
-# ---------- F1e：早停表的叙述段 ----------
+# ---------- F1e: narrative paragraph of the early-stopping table ----------
 ok.append(splice(
-    'F1e 早停叙述',
+    'F1e early-stopping narrative',
     'erodes monotonically over epochs 1--3',
     'classification-oriented fine-tuning.',
     'erodes slowly over epochs 1--5 ($0.833\\to 0.823$, a $1.2\\%$ loss) and then\r\n'
@@ -40,9 +40,9 @@ ok.append(splice(
     'consistent with the retrain trajectory of Section~\\ref{sec:traj}, where the\r\n'
     'erosion was larger.'))
 
-# ---------- F2：块 7 ----------
+# ---------- F2: block 7 ----------
 ok.append(splice(
-    'F2 块7 数字',
+    'F2 block7 numbers',
     'The retrain checkpoints of',
     'is the earliest erosion signal, top-1 is inert.',
     'The retrain checkpoints of Section~\\ref{sec:traj} archive the LoRA adapter\r\n'
@@ -59,9 +59,9 @@ ok.append(splice(
     'level at $0.71$--$0.83$ and $0.75$--$0.77$ respectively, but agree on the\r\n'
     'conclusion: $\\tau$ is the earliest erosion signal, top-1 is inert.'))
 
-# ---------- F3：DINOv2 措辞 ----------
+# ---------- F3: DINOv2 wording ----------
 ok.append(splice(
-    'F3 DINOv2 措辞',
+    'F3 DINOv2 wording',
     'under the same surgery grid,',
     'even where CG shrinks to $0.001$.',
     'under the same surgery grid and in \\emph{both} variants (gap-direction and\r\n'
@@ -72,7 +72,7 @@ ok.append(splice(
 
 if all(ok):
     open(P, 'w', encoding='utf-8', newline='').write(src)
-    print(f'\n全部完成；文件 {len(src)} 字节')
+    print(f'\nall done; file {len(src)} bytes')
 else:
-    print('\n有未完成项，未写盘')
+    print('\nsome items incomplete, nothing written to disk')
 sys.exit(0 if all(ok) else 1)

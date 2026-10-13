@@ -1,13 +1,13 @@
-"""Tier A 本地实验电池: 串行执行所有 LLaVA 训练/干预运行(GPU 单进程), 幂等可续跑。
+"""Tier A local experiment battery: run all LLaVA training/intervention runs serially (single GPU process), idempotent and resumable.
 
-用法:
-  python tools/ap3_tier_a_battery.py            # 跑全部未完成的运行
-  python tools/ap3_tier_a_battery.py --stage A4 # 只跑某阶段
-  python tools/ap3_tier_a_battery.py --force    # 忽略已有 JSON, 全部重跑
-  python tools/ap3_tier_a_battery.py --list     # 只列出运行清单
+Usage:
+  python tools/ap3_tier_a_battery.py            # run every unfinished run
+  python tools/ap3_tier_a_battery.py --stage A4 # run one stage only
+  python tools/ap3_tier_a_battery.py --force    # ignore existing JSON, rerun everything
+  python tools/ap3_tier_a_battery.py --list     # only list the run manifest
 
-每个运行: paper3/scripts/run_training.py <args>, stdout/stderr 存 paper3/scripts/logs/tier_a/<name>.log
-运行完毕后打印 <name> -> delta_E 汇总表。
+Per run: paper3/scripts/run_training.py <args>, stdout/stderr saved to paper3/scripts/logs/tier_a/<name>.log
+After all runs finish, print a <name> -> delta_E summary table.
 """
 import argparse
 import json
@@ -23,7 +23,7 @@ LOGDIR = os.path.join(SCRIPTS, 'logs', 'tier_a')
 
 
 def tag_for(a):
-    """与 run_training.py 的 _tag 逻辑保持一致(用于幂等检查)。"""
+    """Keep consistent with the _tag logic of run_training.py (used for the idempotency check)."""
     defaults = dict(lr=5e-5, warmup=False, compute_dtype='float16', opt='adamw', images_dir=None,
                     data_path=None, epochs=3, block_config='uniform', lang_only=False, target_proj=False,
                     grad_mask='none', lora_alpha=None, attn_targets='qkvo', batch_size=1, proj_rank=None,
@@ -51,12 +51,12 @@ def build_runs():
     runs = []
 
     def add(stage, name, a):
-        # 参考协议固定 3 epochs(run_training.py 的 --epochs 默认是 1, 必须显式传)
+        # the reference protocol fixes 3 epochs (run_training.py's --epochs defaults to 1, so it must be passed explicitly)
         a = {'epochs': 3, **a}
         runs.append({'stage': stage, 'name': name, 'args': a})
 
-    # --- A5: 分配策略多种子 + 两个新策略 + vision 口径一致的对照臂 ---
-    # uniformv1: LLM 全层 r4、vision r1 —— 与各策略(vision r1)同口径, 消除 vision 秩混淆
+    # --- A5: multi-seed allocation policies + two new policies + a control arm with a consistent vision convention ---
+    # uniformv1: all LLM layers r4, vision r1 —— same convention as each policy (vision r1), removing the vision-rank confound
     for s in (42, 123, 456):
         add('A5', f'A5_uniformv1_s{s}', dict(rank=4, seed=s, block_config='uniformv1'))
     for s in (123, 456):
@@ -66,27 +66,27 @@ def build_runs():
     for s in (42, 123):
         add('A5', f'A5_expnorm_s{s}', dict(rank=8, seed=s, block_config='expnorm'))
         add('A5', f'A5_deepavoid_s{s}', dict(rank=8, seed=s, block_config='deepavoid'))
-    # --- A4: 扩大独立种子族(每条 ~34 min) ---
+    # --- A4: enlarge the independent seed family (~34 min each) ---
     for r in (5, 6):
         for s in (7, 17, 27, 37, 47):
             add('A4', f'A4_r{r}_s{s}', dict(rank=r, seed=s))
-    # --- A2: 梯度通路门控(图/文 × r5/r6, seed 42) ---
+    # --- A2: gradient pathway masking (image/text × r5/r6, seed 42) ---
     for r in (5, 6):
         for gm in ('image', 'text'):
             add('A2', f'A2_r{r}_{gm}_s42', dict(rank=r, seed=42, grad_mask=gm))
-    # --- A6: 投影器/LLM 不对称秩 ---
+    # --- A6: projector/LLM asymmetric ranks ---
     for s in (42,):
         add('A6', f'A6_projonly_r4_s{s}', dict(rank=4, seed=s, attn_targets='none', proj_rank=4))
         add('A6', f'A6_projhi_r16_llmlo_r2_s{s}', dict(rank=2, seed=s, proj_rank=16))
         add('A6', f'A6_projlo_r2_llmhi_r16_s{s}', dict(rank=16, seed=s, proj_rank=2))
-    # --- A7: 三轴灵敏度(α / 注意力目标模块 / 批大小), 每个扰动相对参考协议 ---
-    # 注: batch=4 在本机 8GB 上 OOM(CUDA out of memory, 4×576 图像 token 的 7B 反传),
-    #     故批大小轴改用 batch=2(仍与参考的 batch=1 形成对照); OOM 本身作为设备约束证据记录。
+    # --- A7: three-axis sensitivity (α / attention target modules / batch size), each perturbation relative to the reference protocol ---
+    # note: batch=4 OOMs on this 8GB box (CUDA out of memory, 7B backward pass of 4×576 image tokens),
+    #     so the batch-size axis uses batch=2 instead (still contrasting with the reference batch=1); the OOM itself is recorded as device-constraint evidence.
     for r in (5, 6):
         add('A7', f'A7_r{r}_a32', dict(rank=r, lora_alpha=32))
         add('A7', f'A7_r{r}_q', dict(rank=r, attn_targets='q'))
         add('A7', f'A7_r{r}_b2', dict(rank=r, batch_size=2))
-    # --- A8: 补充 10-epoch 亚临界轨迹(r4, 与已有 r5/r6 形成单调/回弹对照) ---
+    # --- A8: additional 10-epoch subcritical trajectory (r4, contrasting with the existing r5/r6 for monotonicity/rebound) ---
     add('A8', 'A8_r4_e10', dict(rank=4, epochs=10))
     return runs
 
@@ -100,7 +100,7 @@ def main():
     ap.add_argument('--stage', default=None)
     ap.add_argument('--force', action='store_true')
     ap.add_argument('--list', action='store_true')
-    ap.add_argument('--only', default=None, help='只跑名字包含该子串的运行')
+    ap.add_argument('--only', default=None, help='only run runs whose name contains this substring')
     args = ap.parse_args()
 
     runs = build_runs()

@@ -1,6 +1,6 @@
-"""并行分段续传 Zenodo recordings.7z(支持 Range: 206)。
-用法: python clip_uxo_download_segments.py
-拼接前当前文件必须是 [0, S0) 完整前缀(由先前断点续传保证)。
+"""Parallel segmented resumable download of Zenodo recordings.7z (supports Range: 206).
+Usage: python clip_uxo_download_segments.py
+Before concatenation the current file must be a complete [0, S0) prefix (guaranteed by the prior resumable download).
 """
 import os, sys, subprocess, concurrent.futures
 
@@ -41,7 +41,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=K) as ex:
         if not ok:
             sys.exit(1)
 
-# 按序拼接
+# concatenate in order
 with open(OUT, 'ab') as f:
     for seg in segs:
         part = '%s.part%d' % (OUT, seg[0])

@@ -1,23 +1,23 @@
-"""A1 fig4：训练期轨迹（text_only vs both），上下两面板。
-上：τ（左轴）+ CG（右轴）；下：top-1（含冻结基线虚线）。数据 outputs/a1_tau_trajectory.json。
+"""A1 fig4: training-time trajectory (text_only vs both), two stacked panels.
+Top: τ (left axis) + CG (right axis); bottom: top-1 (with the frozen baseline as a dashed line). Data: outputs/a1_tau_trajectory.json.
 """
 import json
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-# 投稿要求：图内文字统一 Times New Roman（数学符号用 stix 以匹配 Times 风格）
+# Submission requirement: all in-figure text uses Times New Roman (stix for math symbols, to match the Times look)
 plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['mathtext.fontset'] = 'stix'
 
 d = json.load(open('outputs/a1_tau_trajectory.json', encoding='utf-8'))
 colors = {'text_only': '#2166AC', 'both': '#D6604D'}
-frozen_top1 = d['frozen']['top1']          # 59.26（5k 样本冻结基线）
+frozen_top1 = d['frozen']['top1']          # 59.26 (frozen baseline on 5k samples)
 
 fig, (ax, axb) = plt.subplots(2, 1, figsize=(5.0, 4.4), sharex=True)
 ax2 = ax.twinx()
 
-# ---------- 上：τ（左）+ CG（右） ----------
+# ---------- top: τ (left) + CG (right) ----------
 for mode, c in colors.items():
     eps = [r['epoch'] for r in d[mode]]
     tau = [r['tau'] for r in d[mode]]
@@ -33,7 +33,7 @@ lines2, lab2 = ax2.get_legend_handles_labels()
 ax.legend(lines1 + lines2, lab1 + lab2, fontsize=6.5, loc='upper right',
           handlelength=1.2, labelspacing=0.4, borderaxespad=0.4)
 
-# ---------- 下：top-1 ----------
+# ---------- bottom: top-1 ----------
 for mode, c in colors.items():
     eps = [r['epoch'] for r in d[mode]]
     t1 = [r['top1'] for r in d[mode]]

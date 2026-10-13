@@ -1,4 +1,4 @@
-# Paper 1 修复 — 三模型审计发现（2026-08-12）
+# Paper 1 fixes — findings of the three-model audit (2026-08-12)
 import re
 
 def patch(path, pairs):
@@ -15,10 +15,10 @@ base = 'paper/'
 
 # ============ experiments.tex ============
 patch(base + 'sections/experiments.tex', [
-    # ANOVA 错标重算（结论反转）+ Welch 更新
+    # ANOVA mislabeling recomputed (conclusion reversed) + Welch updated
     (r"Welch's $t$-test comparing all PEFT methods against full fine-tuning yields $t = -25.33$, $p = 9.8 \times 10^{-34}$, confirming extreme statistical significance. One-way ANOVA across PEFT methods: $F = 2.17$, $p = 0.146$ (not significant), suggesting that the choice among PEFT methods matters less than the choice of \textit{where} to apply them.",
      r"Welch's $t$-test comparing all PEFT methods against full fine-tuning yields $t = -22.96$, $p = 3.5 \times 10^{-31}$, confirming extreme statistical significance. One-way ANOVA across PEFT methods (LoRA vs.\ Adapter, using the correctly matched Adapter group): $F = 13.37$, $p = 5 \times 10^{-4}$, indicating that the PEFT method choice also matters: Adapter attains substantially larger gap reduction on average (mean CG$\Delta = -0.100$ vs.\ $-0.004$ for LoRA), at the cost of lower retrieval accuracy."),
-    # Table 4 Adapter 行（正确值）
+    # Table 4 Adapter row (correct values)
     (r'Adapter & $-$0.047 & 0.623 & $d$=64, text-only \\',
      r'Adapter & $-$0.100 & 0.173 & $d$=64, text-only \\'),
     # Table 1: BLIP R@1
@@ -31,14 +31,14 @@ patch(base + 'sections/experiments.tex', [
 
 # ============ discussion.tex ============
 patch(base + 'sections/discussion.tex', [
-    # sole exception → one of a few（与引言一致）
+    # sole exception → one of a few (consistent with the introduction)
     (r'across LoRA, Adapter, BLIP-1, and ViT-L, with COCO as the sole marginal exception (Table~\ref{tab:cross_val})',
      r'across LoRA, Adapter, BLIP-1, and ViT-L, with a few marginal exceptions (COCO both-position, SigLIP both-position, and Adapter vision-only; Table~\ref{tab:cross_val})'),
 ])
 
 # ============ main_nn.tex ============
 patch(base + 'main_nn.tex', [
-    # 摘要 text-only 声称限定（SigLIP 是反例）
+    # abstract text-only claim qualified (SigLIP is a counterexample)
     (r'We find that text-only fine-tuning overwhelmingly preserves cross-modal alignment better than joint modality fine-tuning across LoRA, Adapter, BLIP-1, and SigLIP configurations.',
      r'We find that text-only fine-tuning preserves cross-modal alignment better than joint modality fine-tuning across LoRA, Adapter, BLIP-1, and ViT-L configurations (with a few marginal exceptions, e.g., SigLIP both-position).'),
 ])
@@ -52,21 +52,21 @@ if 'siglip\\_frozen & --- & --- & 0.000 & 0.000' in src:
 else:
     print('MISS supplementary.tex | siglip_frozen R@1')
 
-# ============ bib: IMoD DOI 重复 ============
+# ============ bib: duplicate IMoD DOI ============
 bib = open(base + 'references.bib', encoding='utf-8').read()
 if '10.48550/arXiv.2508.00230' in bib:
-    # IMoD 的 DOI 删除（该 DOI 属于 KRAdapter）
+    # remove the DOI of IMoD (that DOI belongs to KRAdapter)
     m = re.search(r'@\w+\{zhang2026imod,([^@]*?)\n\}', bib, re.S)
     if m:
         body = m.group(1)
         new_body = re.sub(r'\n\s*doi\s*=\s*\{[^}]*\}', '', body)
         bib = bib.replace(body, new_body)
         open(base + 'references.bib', 'w', encoding='utf-8').write(bib)
-        print('OK  references.bib | IMoD DOI 删除')
+        print('OK  references.bib | IMoD DOI removed')
 else:
     print('MISS references.bib | IMoD DOI')
 
-# ============ 孤儿 abstract.tex 更新 ============
+# ============ orphan abstract.tex update ============
 abstract_new = '''\\documentclass[11pt]{article}
 \\usepackage[margin=1in]{geometry}
 \\usepackage{times}
@@ -77,6 +77,6 @@ abstract_new = '''\\documentclass[11pt]{article}
 \\end{document}
 '''
 open(base + 'abstract.tex', 'w', encoding='utf-8').write(abstract_new)
-print('OK  abstract.tex | 孤儿文件标记为废弃')
+print('OK  abstract.tex | orphan file marked obsolete')
 
-print('\nPaper 1 修复执行完成')
+print('\nPaper 1 fixes finished')

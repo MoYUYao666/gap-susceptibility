@@ -1,4 +1,4 @@
-"""诊断: Llava decod式块的命名/分组归属(快速, 不跑 backward)。"""
+"""Diagnostic: naming/group attribution of Llava decoder-style blocks (fast, no backward pass)."""
 import os
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 from transformers import LlavaForConditionalGeneration, BitsAndBytesConfig
@@ -23,7 +23,7 @@ for n, p in par.items():
     else:
         c['llm_other'] += 1
 print(c)
-# 每块 param numel
+# param numel per block
 from collections import defaultdict
 sz = defaultdict(float)
 for n, p in par.items():
@@ -64,9 +64,9 @@ print('model attr:', type(getattr(m, 'model', None)).__name__ if hasattr(m, 'mod
 print('model.mm attr:', [a for a in dir(m.model) if 'vision' in a.lower() or 'proj' in a.lower()][:8] if hasattr(m, 'model') else 'NA')
 print('vision params in m.vision_named:', sum(1 for _ in m.vision_tower.named_parameters()) if hasattr(m, 'vision_tower') else 'NA')
 print('proj params in m.named:', sum(1 for n, _ in m.multi_modal_projector.named_parameters()) if hasattr(m, 'multi_modal_projector') else 'NA')
-# 层数
+# number of layers
 layers = m.language_model.model.layers
 print('num llm layers:', len(layers))
-# projector 模块名
+# projector module names
 for n, mod in m.multi_modal_projector.named_modules():
     print('proj module:', n)

@@ -1,4 +1,4 @@
-"""FathomNet 船载类子集 v2: 并行查询 + 并发下载, 每类 20 张。"""
+"""FathomNet shipboard-class subset v2: parallel queries + concurrent downloads, 20 images per class."""
 import os, json, time, urllib.request, urllib.parse
 import concurrent.futures as cf
 import numpy as np

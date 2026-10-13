@@ -1,8 +1,8 @@
-# 云端结果包清单
-生成时间 : 2026-09-13 15:05:44 CST
-主机     : autodl-container-12ce4dade8-36de0add
+# Cloud result pack manifest
+Generated at : 2026-09-13 15:05:44 CST
+Host     : autodl-container-12ce4dade8-36de0add
 
-## 硬件 / 环境
+## Hardware / environment
 NVIDIA GeForce RTX 4080 SUPER, 32760 MiB, 580.142
 python 3.12.3
 torch 2.12.1+cu130
@@ -10,17 +10,17 @@ transformers 5.16.1
 peft 0.20.0
 bitsandbytes 0.50.2
 
-## 数据与脚本 MD5（与本地入库版本一致才可用）
+## Data and script MD5 (usable only if identical to the locally archived version)
 7ee1db72e37b3da427de67c6242caf39  paper3/train-00000-of-00001-a09b74b3ef9c3b56.parquet
 55761d23c803740871fdb99a45b35a4f  paper3/scripts/run_training.py
 4109fe8d80aaa84acf2d8cc46de145d5  paper3/scripts/run_training_qwen.py
 
-## 结果文件计数
-e10 完整结果    : 15
-b2  完整结果    : 2
-b4/b8 完整结果  : 0
-逐 epoch 中间态 : 18
-qwen C1 系列    : 21
-Γ 成本探针      : 8
+## Result file counts
+e10 full results    : 15
+b2  full results    : 2
+b4/b8 full results  : 0
+per-epoch intermediates : 18
+qwen C1 series    : 21
+Γ cost probe      : 8
 
-## 关键日志尾部（C5 的 batch=4/8 失败原因在内）
+## Tail of key logs (includes the cause of the C5 batch=4/8 failures)

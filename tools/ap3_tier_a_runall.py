@@ -1,13 +1,13 @@
-"""Tier A 总驱动: 一次性串行执行全部需要 GPU 的步骤(GPU 严格单进程)。
+"""Tier A master driver: run every GPU-requiring step serially in one pass (GPU strictly single-process).
 
-顺序(按价值/小时排序):
-  1) LLaVA 训练电池 (tools/ap3_tier_a_battery.py) — A5 策略多种子 → A4 种子族 → A2 梯度门控
-     → A6 不对称投影器 → A7 alpha → A8 10-epoch 亚临界
-  2) A1 跨 PEFT 参数化 Γ 排序 (tools/clip_peft_gamma_ordering.py, CLIP, 分钟级)
-  3) A3 跨批 Γ + 分层 bootstrap (tools/llava_gamma_batch_ci.py)
+Order (sorted by value per hour):
+  1) LLaVA training battery (tools/ap3_tier_a_battery.py) — A5 policy multi-seed → A4 seed family → A2 gradient gating
+     → A6 asymmetric projector → A7 alpha → A8 10-epoch subcritical
+  2) A1 Γ ordering across PEFT parameterizations (tools/clip_peft_gamma_ordering.py, CLIP, minutes)
+  3) A3 cross-batch Γ + stratified bootstrap (tools/llava_gamma_batch_ci.py)
 
-用法: python tools/ap3_tier_a_runall.py [--skip-battery] [--skip-clip] [--skip-batches]
-日志: paper3/scripts/logs/tier_a/master_*.log; 汇总: outputs/tier_a_runall_status.json
+Usage: python tools/ap3_tier_a_runall.py [--skip-battery] [--skip-clip] [--skip-batches]
+Logs: paper3/scripts/logs/tier_a/master_*.log; summary: outputs/tier_a_runall_status.json
 """
 import argparse
 import json

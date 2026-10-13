@@ -1,8 +1,8 @@
-"""视觉条件指令微调轨迹(VLM 全通道)——A2 最后一格。
-Qwen2-VL-2B-Instruct + LoRA(LLM 层), 训练 = 帧(ML16K)+ QA 指令 chat template;
-监控 = 67 类双模板文本嵌入(与纯文本版同一协议)。图 max_pixels=78400(280×280)。
-labels: 简式 LM 目标(未 mask 用户段), 论文如实标注。
-输出: outputs/vlm_vision_instruction_dynamics.json
+"""Vision-conditioned instruction-tuning trajectory (VLM all channels) — the last cell of A2.
+Qwen2-VL-2B-Instruct + LoRA (LLM layers), training = frames (ML16K) + QA instruction chat template;
+monitoring = 67-class dual-template text embeddings (same protocol as the text-only version). Images max_pixels=78400 (280×280).
+labels: simplified LM objective (user segment not masked), reported as such in the paper.
+Output: outputs/vlm_vision_instruction_dynamics.json
 """
 import os, sys, json, glob
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -145,7 +145,7 @@ def main():
     opt = torch.optim.AdamW([p for p in m.parameters() if p.requires_grad], lr=LR, weight_decay=0.01)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=EPOCHS)
 
-    # 模板预缓存 + 小图缓存(预处理瓶颈消除)
+    # template pre-caching + small-frame caching (removes the preprocessing bottleneck)
     from PIL import Image
     print('pre-caching templates + small frames...', flush=True)
     cache_dir = 'data/marinelife16k/_small'

@@ -1,13 +1,13 @@
-"""重算 class-aligned 全部检查点的 τ（只算 τ，不动 50k/val_loss）。
+"""Recompute τ for all class-aligned checkpoints (τ only; 50k/val_loss untouched).
 
-背景：frozen_refs.pt 的 S0 与当前 data/imagenet_hf 的 sub_indices 图像不再对应，
-导致 2026-09-14 批次的 τ 全部是噪声（连 LoRA 增量为 0 的基座都给出 τ=−0.087）。
-本脚本用修好的参照重算，结果写到各目录的 tau_recomputed_ep{N}.json，不动原文件。
+Background: the S0 in frozen_refs.pt no longer matches the sub_indices images in the current
+data/imagenet_hf, so all τ from the 2026-09-14 batch were noise (even a zero-LoRA-delta base
+model gave τ=−0.087). Recomputed with the fixed reference, written to tau_recomputed_ep{N}.json.
 
-用法：
-  python tools/a1_tau_recompute.py                 # 用缓存自带 sub_indices
-  python tools/a1_tau_recompute.py --remap         # 用 sub_indices_orig_order.json（行序复原）
-  python tools/a1_tau_recompute.py --only 0,123    # 只跑指定 seed
+Usage:
+  python tools/a1_tau_recompute.py                 # use the sub_indices bundled in the cache
+  python tools/a1_tau_recompute.py --remap         # use sub_indices_orig_order.json (restore row order)
+  python tools/a1_tau_recompute.py --only 0,123    # run only the listed seeds
 """
 import os
 import sys
@@ -32,10 +32,10 @@ SAVE_ROOT = 'outputs/a1_class_aligned'
 N_TAU = 5000
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--remap', action='store_true', help='用 sub_indices_orig_order.json 的索引')
-ap.add_argument('--only', type=str, default='', help='逗号分隔的 seed 白名单')
-ap.add_argument('--lam', type=str, default='', help='逗号分隔的 λ 白名单')
-ap.add_argument('--epochs', type=str, default='10', help='逗号分隔的 epoch；seed42/λ=0 额外自动补 1,2,3,5')
+ap.add_argument('--remap', action='store_true', help='index from sub_indices_orig_order.json')
+ap.add_argument('--only', type=str, default='', help='comma-separated seed whitelist')
+ap.add_argument('--lam', type=str, default='', help='comma-separated λ whitelist')
+ap.add_argument('--epochs', type=str, default='10', help='comma-separated epochs; seed42/λ=0 additionally auto-adds 1,2,3,5')
 args = ap.parse_args()
 
 ck0 = torch.load(os.path.join(SAVE_ROOT, 'frozen_refs.pt'), weights_only=False)
@@ -49,7 +49,7 @@ if args.remap:
     with open(rp) as f:
         sub_indices = json.load(f)['sub_indices']
     src = rp
-print('sub_indices 来源: %s (n=%d)' % (src, len(sub_indices)), flush=True)
+print('sub_indices source: %s (n=%d)' % (src, len(sub_indices)), flush=True)
 
 parq = sorted(glob.glob('data/imagenet_hf/*.parquet'))
 ds_in = HFDataset.from_parquet(parq)
@@ -57,17 +57,17 @@ sub = ds_in.select(sub_indices)
 processor = CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32',
                                           local_files_only=True)
 
-# 预解码 5000 张图（每个检查点复用，保证与出厂 compute_tau 完全同路径）
-print('预解码 %d 张图 ...' % N_TAU, flush=True)
+# Pre-decode 5000 images (reused by every checkpoint, same path as the factory compute_tau)
+print('Pre-decoding %d images ...' % N_TAU, flush=True)
 try:
     px = []
     for i in range(0, N_TAU, 64):
         px.append(processor(images=sub[i:i + 64]['image'],
                             return_tensors='pt')['pixel_values'])
-    print('  已缓存到内存 (%.2f GB)' % (sum(p.numel() for p in px) * 4 / 2 ** 30), flush=True)
+    print('  cached in memory (%.2f GB)' % (sum(p.numel() for p in px) * 4 / 2 ** 30), flush=True)
 except MemoryError:
     px = None
-    print('  内存不足，改为逐检查点重解码', flush=True)
+    print('  out of memory, falling back to per-checkpoint re-decoding', flush=True)
 
 
 def tau_only(model):
@@ -118,10 +118,10 @@ for lam, seed in dose:
         cp = os.path.join(d, 'epoch%d.pt' % ep)
         out_p = os.path.join(d, 'tau_recomputed_ep%d.json' % ep)
         if os.path.exists(out_p):
-            print('  已有 τ 结果，跳过 %s' % out_p, flush=True)
+            print('  τ result already exists, skipping %s' % out_p, flush=True)
             continue
         if not os.path.exists(cp):
-            print('  跳过（无权重）%s' % cp, flush=True)
+            print('  skipping (no weights) %s' % cp, flush=True)
             continue
         m = CLIPModel.from_pretrained('openai/clip-vit-base-patch32',
                                       local_files_only=True)
@@ -140,7 +140,7 @@ for lam, seed in dose:
         with open(out_p, 'w', encoding='utf-8') as f:
             json.dump(rec, f, indent=1, ensure_ascii=False)
         summary.append(rec)
-        print('λ=%-5g seed=%-4d ep=%-2d  τ=%.4f  (逐样本 sd=%.4f, n=%d)'
+        print('λ=%-5g seed=%-4d ep=%-2d  τ=%.4f  (per-sample sd=%.4f, n=%d)'
               % (lam, seed, ep, mean, sdv, n), flush=True)
         del m
         torch.cuda.empty_cache()
@@ -150,4 +150,4 @@ with open(os.path.join(SAVE_ROOT, 'tau_recomputed_summary.json'), 'w',
     json.dump({'sub_indices_source': src, 'records': summary}, f,
               indent=1, ensure_ascii=False)
 print()
-print('已写 %s/tau_recomputed_summary.json（%d 条）' % (SAVE_ROOT, len(summary)))
+print('wrote %s/tau_recomputed_summary.json (%d records)' % (SAVE_ROOT, len(summary)))

@@ -1,28 +1,28 @@
-"""A1 #1 v2：解码器 VLM 的 logprob 零样本 + 隐藏态空间 gap surgery（云端，未执行）。
+"""A1 #1 v2: logprob zero-shot + hidden-state-space gap surgery for a decoder VLM (cloud, not executed).
 
-协议（修复 v1 的 ~3% 地板）：
-  1. 图像表示 h_p：完整多模态前向（图 + "a photo of a" 前缀，processor 图像+文本
-     同传，绕开 4.48 单模态 bug），取前缀最后一个真实 token 的末层 hidden state；
-  2. 文本表示 t_h：语言模型纯文本前向，末 token 末层 hidden state；
-  3. 鸿沟方向 d̂ = normalize(mean(t_h) − mean(h_p))，‖g‖ = 其模长；
-  4. 零样本得分：logprob 协议——用 h_p 接续类别名 token（批量 1000），
-     score_c = Σ 类别 token 位置的 log-softmax 对数概率；
-  5. 手术（隐藏态空间，与 A1 偏置场同构）：
-       图像侧  h_p' = norm(h_p + λ‖g‖ d̂) → 重算 score → top1/τ
-       文本侧  类别 token 嵌入 += λ‖g‖ d̂ → 重算 score → top1/τ
-  6. τ：冻结 top-5 类集上，冻结 vs 扰动 logprob 排序的 Kendall 系数（与 A1 同定义）。
+Protocol (fixes the ~3% floor of v1):
+  1. Image representation h_p: full multimodal forward pass (image + “a photo of a” prefix, processor with image+text
+     passed together, bypassing the 4.48 unimodal bug), take the last-layer hidden state of the last real token of the prefix;
+  2. Text representation t_h: pure-text forward pass of the language model, last-layer hidden state of the last token;
+  3. Gap direction d̂ = normalize(mean(t_h) − mean(h_p)), ‖g‖ = its norm;
+  4. Zero-shot score: logprob protocol — continue the class-name tokens from h_p (batch 1000),
+     score_c = Σ log-softmax log-probability at the class token positions;
+  5. Surgery (hidden-state space, isomorphic to the A1 bias field):
+       image side  h_p' = norm(h_p + λ‖g‖ d̂) → recompute score → top1/τ
+       text side  class token embedding += λ‖g‖ d̂ → recompute score → top1/τ
+  6. τ: on the frozen top-5 class set, the Kendall coefficient between the frozen and perturbed logprob rankings (same definition as A1).
 
-已知注意事项（4.48.3）：
-  - Qwen2VLProcessor 单模态输入有 bug → 文本用 tokenizer、图像用 image_processor、
-    多模态（图+文同传）用 processor；
-  - model.visual 需要 grid_thw，返回纯 Tensor；
-  - 语言模型在 4.48 为 model.model（Qwen2VLModel），get_lm 兼容新旧。
+known caveats (4.48.3):
+  - Qwen2VLProcessor has a bug with unimodal input → use the tokenizer for text, image_processor for images,
+    and the processor for multimodal (image+text passed together);
+  - model.visual needs grid_thw and returns a pure Tensor;
+  - in 4.48 the language model is model.model (Qwen2VLModel); get_lm is compatible with old and new.
 
-用法（服务器）：
+Usage (server):
   python qwen_gap_surgery_v2.py --model /autodl-fs/data/models/qwen2vl-2b --local-only \
       --parquet-dir /autodl-fs/data/imagenet_hf/data --sample 64 \
       --out /autodl-fs/data/a1_qwen_v2_smoke.json
-  正式：--sample 5000（预计 3–5 小时，4080）。
+  Full run: --sample 5000 (estimated 3–5 hours, 4080).
 """
 import argparse
 import glob
@@ -53,7 +53,7 @@ def get_lm(model):
 
 
 def text_h(model, processor, texts, batch=16):
-    """文本表示：LM 末 token 末层 hidden。"""
+    """Text representation: last-layer hidden state of the LM's last token."""
     tok = processor.tokenizer
     lm = get_lm(model)
     outs = []
@@ -70,10 +70,10 @@ def text_h(model, processor, texts, batch=16):
 
 
 def img_h_p(model, processor, img):
-    """图像表示：图 + PREFIX 完整前向，取末真实 token 的末层 hidden。
+    """Image representation: full forward pass over image + PREFIX, take the last-layer hidden state of the last real token.
 
-    必须 add_generation_prompt=True：否则用户回合以 <|im_end|> 结尾，
-    下一 token 是 <|im_start|>assistant 而非类别名，评分退化为噪声。
+    add_generation_prompt=True is required: otherwise the user turn ends with <|im_end|>,
+    and the next token is <|im_start|>assistant rather than a class name, degrading the score to noise.
     """
     msgs = [{'role': 'user', 'content': [
         {'type': 'image'},
@@ -89,9 +89,9 @@ def img_h_p(model, processor, img):
 
 
 def score_classes(model, processor, h_p, class_texts, text_shift=None):
-    """h_p 接续类别名 token 的 logprob 得分 [K]。
+    """logprob score [K] of the class-name tokens continued from h_p.
 
-    text_shift: 若非 None，则类别 token 嵌入加该偏移（文本侧手术，[D]）。
+    text_shift: if not None, add this offset to the class token embeddings (text-side surgery, [D]).
     """
     tok = processor.tokenizer
     lm = get_lm(model)
@@ -106,15 +106,15 @@ def score_classes(model, processor, h_p, class_texts, text_shift=None):
     seq = torch.cat([hp, emb], dim=1)                         # [K, 1+L2, D]
     att = torch.cat([torch.ones(K, 1, device=ids.device, dtype=mask.dtype), mask], dim=1)
     with torch.no_grad():
-        out = lm(inputs_embeds=seq, attention_mask=att)      # 基础模型：无 logits
-        logits = model.lm_head(out.last_hidden_state)        # 分类头在顶层模型上
+        out = lm(inputs_embeds=seq, attention_mask=att)      # base model: no logits
+        logits = model.lm_head(out.last_hidden_state)        # the classification head is on the top-level model
     lsm = torch.log_softmax(logits.float(), dim=-1)           # [K, 1+L2, V]
     scores = torch.zeros(K, device=ids.device)
     for t in range(ids.shape[1]):
-        pos = mask[:, t].bool()                               # token t 真实存在
+        pos = mask[:, t].bool()                               # token t really exists
         if not pos.any():
             continue
-        # token t 的概率来自 logits 位置 t（位置 0 的 logits 预测 token 0）
+        # the probability of token t comes from the logits at position t (the logits at position 0 predict token 0)
         scores[pos] += lsm[pos, t, ids[pos, t]]
     return scores
 
@@ -159,7 +159,7 @@ def main():
         local_files_only=args.local_only).eval().cuda()
     processor = AutoProcessor.from_pretrained(args.model, local_files_only=args.local_only)
 
-    # 文本表示 + 鸿沟方向（文本侧取"答案词"格式的类别名嵌入，与评分一致）
+    # text representation + gap direction (the text side takes the class-name embedding in "answer word" format, consistent with scoring)
     t_h = norm(text_h(model, processor, names))
     print('text_h done', tuple(t_h.shape), flush=True)
 
@@ -184,14 +184,14 @@ def main():
     results = []
     for lam in [float(x) for x in args.lambdas.split(',')]:
         rec = {'lambda': lam}
-        # 图像侧手术：h_p 平移后重算得分
+        # image-side surgery: shift h_p then recompute the score
         hp_s = norm(hps + lam * gap_norm * d_hat)
         sc_i = np.stack([score_classes(model, processor, hp_s[i], names).cpu().numpy()
                          for i in range(args.sample)])
         t1_i, tau_i = top1_tau(sc_i, labels, frozen_scores, topk5, args.sample)
         cg_i = (t_h.mean(0) - hp_s.mean(0)).norm().item()
         rec['image_side'] = {'top1': t1_i, 'tau': tau_i, 'CG': cg_i}
-        # 文本侧手术：类别 token 嵌入平移
+        # text-side surgery: shift the class token embeddings
         shift = lam * gap_norm * d_hat
         sc_t = np.stack([score_classes(model, processor, hps[i], names, text_shift=shift)
                          .cpu().numpy() for i in range(args.sample)])

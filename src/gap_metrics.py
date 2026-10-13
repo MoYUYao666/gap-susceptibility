@@ -1,15 +1,15 @@
 """
-模态差距 (Modality Gap) 度量工具集
+Modality Gap measurement toolkit
 
-指标说明:
-1. Centroid Gap:   G_c = ||μ_I - μ_T||₂  （质心欧氏距离）
-2. Distribution Gap: W₂² = ||μ_I - μ_T||² + ||σ_I - σ_T||²  （2-Wasserstein距离）
-3. Cosine Stats:  正/负样本对余弦相似度分布统计
-4. Positive Separation: 正样本相似度 - 最大负样本相似度的平均值
-5. Per-Layer Gap: 逐层计算各指标
+Metric descriptions:
+1. Centroid Gap:   G_c = ||μ_I - μ_T||₂  (centroid Euclidean distance)
+2. Distribution Gap: W₂² = ||μ_I - μ_T||² + ||σ_I - σ_T||²  (2-Wasserstein distance)
+3. Cosine Stats:  statistics of the cosine similarity distribution for positive/negative sample pairs
+4. Positive Separation: mean of (positive sample similarity - largest negative sample similarity)
+5. Per-Layer Gap: compute each metric layer by layer
 
-参考论文:
-- MAAB-ER (Cheng et al., 2026, Information Fusion): 2-Wasserstein距离度量
+Reference papers:
+- MAAB-ER (Cheng et al., 2026, Information Fusion): 2-Wasserstein distance metric
 - Understanding the Modality Gap in CLIP (Liang et al., 2022, ICLR)
 - Geometry of the Modality Gap (2026)
 """
@@ -24,25 +24,25 @@ from collections import defaultdict
 
 @dataclass
 class GapMetrics:
-    """单次 Gap 度量结果"""
+    """Result of a single Gap measurement"""
     epoch: int
     step: int
-    centroid_gap: float                      # 质心距离
-    distribution_gap: float                  # Wasserstein分布距离
-    centroid_gap_norm: float                 # 归一化质心距离 (除以维度平方根)
-    mean_cosine_pos: float                   # 正样本对平均余弦相似度
-    mean_cosine_neg: float                   # 负样本对平均余弦相似度
-    cosine_separation: float                 # 正负样本分离度 (pos - neg)
-    std_cosine_pos: float                    # 正样本对余弦相似度标准差
-    std_cosine_neg: float                    # 负样本对余弦相似度标准差
-    per_layer: Optional[Dict[str, 'GapMetrics']] = None  # 逐层度量
+    centroid_gap: float                      # centroid distance
+    distribution_gap: float                  # Wasserstein distribution distance
+    centroid_gap_norm: float                 # normalized centroid distance (divided by sqrt of dimension)
+    mean_cosine_pos: float                   # mean cosine similarity of positive sample pairs
+    mean_cosine_neg: float                   # mean cosine similarity of negative sample pairs
+    cosine_separation: float                 # positive-negative sample separation (pos - neg)
+    std_cosine_pos: float                    # std of cosine similarity of positive sample pairs
+    std_cosine_neg: float                    # std of cosine similarity of negative sample pairs
+    per_layer: Optional[Dict[str, 'GapMetrics']] = None  # per-layer measurements
 
 
 class GapTracker:
     """
-    模态差距跟踪器 — 贯穿训练过程记录gap变化
+    Modality gap tracker — records gap changes throughout the training process
 
-    用法:
+    Usage:
         tracker = GapTracker()
         for epoch in range(num_epochs):
             ... training ...
@@ -63,21 +63,21 @@ class GapTracker:
         text_embeds: torch.Tensor,      # (N, D)
         epoch: int = 0,
         step: int = 0,
-        labels: Optional[torch.Tensor] = None,  # 正样本对索引 (N,)
+        labels: Optional[torch.Tensor] = None,  # positive sample pair indices (N,)
     ) -> GapMetrics:
         """
-        计算所有 gap 指标
+        Compute all gap metrics
 
         Args:
-            image_embeds: 归一化后的图像嵌入
-            text_embeds: 归一化后的文本嵌入
-            labels: 如果为None，假设对角线是正样本对
+            image_embeds: normalized image embeddings
+            text_embeds: normalized text embeddings
+            labels: if None, assume the diagonal holds the positive sample pairs
         """
-        # 归一化
+        # normalize
         image_embeds = F.normalize(image_embeds, p=2, dim=-1)
         text_embeds = F.normalize(text_embeds, p=2, dim=-1)
 
-        # 采样（数据量大时）
+        # sampling (when the data volume is large)
         if len(image_embeds) > self.sample_size:
             indices = torch.randperm(len(image_embeds))[:self.sample_size]
             image_embeds = image_embeds[indices]
@@ -89,21 +89,21 @@ class GapTracker:
         mu_I = image_embeds.mean(dim=0)  # (D,)
         mu_T = text_embeds.mean(dim=0)    # (D,)
         centroid_gap = torch.norm(mu_I - mu_T, p=2).item()
-        centroid_gap_norm = centroid_gap / np.sqrt(D)  # 除以√D归一化
+        centroid_gap_norm = centroid_gap / np.sqrt(D)  # normalize by dividing by √D
 
         # ---- 2. Distribution Gap (2-Wasserstein) ----
-        # 假设对角协方差矩阵: W₂² = ||μ_I-μ_T||² + ||σ_I-σ_T||²
+        # assume a diagonal covariance matrix: W₂² = ||μ_I-μ_T||² + ||σ_I-σ_T||²
         sigma_I = image_embeds.std(dim=0)  # (D,)
         sigma_T = text_embeds.std(dim=0)    # (D,)
         dist_gap = (centroid_gap ** 2 + torch.norm(sigma_I - sigma_T, p=2).item() ** 2) ** 0.5
 
-        # ---- 3. 余弦相似度统计 ----
-        # 计算所有图像-文本对的余弦相似度矩阵
+        # ---- 3. Cosine similarity statistics ----
+        # compute the cosine similarity matrix over all image-text pairs
         # logits: (N, N), logits[i,j] = image_i · text_j
         logits = image_embeds @ text_embeds.T  # (N, N)
 
         if labels is None:
-            # 默认对角线是正样本
+            # by default the diagonal holds the positive samples
             pos_mask = torch.eye(N, device=logits.device, dtype=torch.bool)
             neg_mask = ~pos_mask
         else:
@@ -140,7 +140,7 @@ class GapTracker:
         epoch: int = 0,
         step: int = 0,
     ) -> Dict[str, GapMetrics]:
-        """逐层计算 gap 指标"""
+        """Compute gap metrics layer by layer"""
         per_layer = {}
         for layer_name in layer_image_embeds:
             if layer_name in layer_text_embeds:
@@ -152,7 +152,7 @@ class GapTracker:
         return per_layer
 
     def record(self, metrics: GapMetrics):
-        """记录一次度量结果"""
+        """Record one measurement result"""
         self.history.append(metrics)
 
         if metrics.per_layer:
@@ -160,7 +160,7 @@ class GapTracker:
                 self.per_layer_history[layer_name].append(layer_metrics)
 
     def get_history_dict(self) -> Dict[str, List[float]]:
-        """以字典形式返回历史记录（方便pandas/matplotlib使用）"""
+        """Return the history as a dict (convenient for pandas/matplotlib)"""
         return {
             "epoch": [m.epoch for m in self.history],
             "centroid_gap": [m.centroid_gap for m in self.history],
@@ -173,15 +173,15 @@ class GapTracker:
 
 
 # ============================================================
-# 批量分析工具
+# Batch analysis tools
 # ============================================================
 
 def gap_correlation_analysis(
     gap_history: List[GapMetrics],
-    task_performance: List[float],  # 对应每个epoch的Recall@K
+    task_performance: List[float],  # Recall@K corresponding to each epoch
 ) -> Dict[str, float]:
     """
-    分析 gap 指标与下游任务性能的相关性
+    Analyze the correlation between gap metrics and downstream task performance
 
     Returns:
         {metric_name: pearson_correlation}
@@ -204,7 +204,7 @@ def gap_correlation_analysis(
 
     correlations = {}
     for key, values in metrics_dict.items():
-        if len(values) >= 5:  # 至少需要5个数据点
+        if len(values) >= 5:  # at least 5 data points are required
             r, p = pearsonr(values, task_performance)
             correlations[key] = r
             correlations[f"{key}_pvalue"] = p
@@ -217,10 +217,10 @@ def gap_shift_analysis(
     missing_metrics: GapMetrics,
 ) -> Dict[str, float]:
     """
-    分析缺失模态下的 gap 偏移
+    Analyze the gap shift under missing modalities
 
     Returns:
-        {metric_name: relative_shift}  (相对于baseline的相对变化)
+        {metric_name: relative_shift}  (relative change with respect to baseline)
     """
     shifts = {}
     for attr in ["centroid_gap", "distribution_gap", "cosine_separation"]:

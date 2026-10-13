@@ -1,5 +1,5 @@
-"""DTD / Food101 零样本重测 — torchvision 数据集（官方源下载），协议：单模板 'a photo of a {}'。
-对 frozen / text_only_r8 / both_r8 三个 checkpoint 评测，结果落盘 outputs/dtd_food101_zs_check.json。
+"""DTD / Food101 zero-shot re-evaluation — torchvision datasets (downloaded from the official source), protocol: single template 'a photo of a {}'.
+Evaluates the three checkpoints frozen / text_only_r8 / both_r8; results are written to outputs/dtd_food101_zs_check.json.
 """
 import os, json, sys
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -22,7 +22,7 @@ def get_split(ds_name):
 
 
 def tv_collate(batch):
-    """torchvision 默认返回 (PIL, label)，只堆叠标签、图像保持 PIL 列表"""
+    """torchvision returns (PIL, label) by default; only labels are stacked, images stay a PIL list"""
     imgs = [b[0] for b in batch]
     ys = torch.tensor([b[1] for b in batch])
     return imgs, ys
@@ -96,4 +96,4 @@ out = {
 }
 json.dump(out, open('outputs/dtd_food101_zs_check.json', 'w', encoding='utf-8'),
           ensure_ascii=False, indent=2)
-print('结果已存 outputs/dtd_food101_zs_check.json')
+print('results saved to outputs/dtd_food101_zs_check.json')

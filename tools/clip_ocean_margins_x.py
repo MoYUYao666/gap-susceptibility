@@ -1,6 +1,6 @@
-"""补强实验 ⑤：siglip / openclip 的 Theorem 1 精确预测验证（margins 协议）。
-与 clip_ocean_margins.py 同 analyze 逻辑，编码层为 transformers 模型（siglip 用原生 pooler 约定）。
-输出: outputs/ocean_margins_x.json
+"""Reinforcement experiment (5): exact Theorem 1 prediction check for siglip / openclip (margins protocol).
+Same analyze logic as clip_ocean_margins.py, the encoder layer is a transformers model (siglip uses the native pooler convention).
+Output: outputs/ocean_margins_x.json
 """
 import os, sys, json, io
 os.environ['HF_HUB_OFFLINE'] = '1'

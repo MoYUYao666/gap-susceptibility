@@ -1,13 +1,13 @@
-"""Ocean λ 平移手术：把 A1 的 gap surgery 协议移植到海洋视觉模型。
-协议（与 tools/clip_a1_crossmodel.py / clip_a1_text_surgery.py 一致）：
-  d_hat = (mu_t - mu_i) / ||mu_t - mu_i||   文本质心 - 图像质心（海洋子集自估）
-  图像侧: img' = normalize(img + lam*gap_norm*d_hat)        λ ∈ {-1,-0.5,-0.25,0,0.25,0.5,1,2}
-  文本侧: txt' = normalize(txt - lam*gap_norm*d_hat)        λ ∈ {0,0.5,1,2}
-  指标: CG=||mean(img') - mean(txt')||, top1(零样本, 类集=海洋子集 sciName),
-        tau(逐图 top-5 类分数 Kendall 均值, 基线 vs 手术)
-模型: oceanclip(BioCLIP基座+海洋微调) / bioclip(仅基座) / clip / openclip_tf / siglip
-输出: outputs/ocean_gap_surgery.json + outputs/ocean_subset.json（子集索引）
-运行环境: conda pytorch (torch 2.9.1+cu130, open_clip 3.3.0)
+"""Ocean λ-shift surgery: port the A1 gap surgery protocol to ocean vision models.
+Protocol (consistent with tools/clip_a1_crossmodel.py / clip_a1_text_surgery.py):
+  d_hat = (mu_t - mu_i) / ||mu_t - mu_i||   text centroid - image centroid (self-estimated on the ocean subset)
+  image side: img' = normalize(img + lam*gap_norm*d_hat)        λ ∈ {-1,-0.5,-0.25,0,0.25,0.5,1,2}
+  text side: txt' = normalize(txt - lam*gap_norm*d_hat)        λ ∈ {0,0.5,1,2}
+  metrics: CG=||mean(img') - mean(txt')||, top1(zero-shot, class set = ocean subset sciName),
+        tau(per-image Kendall mean over top-5 class scores, baseline vs surgery)
+models: oceanclip(BioCLIP base + ocean fine-tune) / bioclip(base only) / clip / openclip_tf / siglip
+output: outputs/ocean_gap_surgery.json + outputs/ocean_subset.json (subset indices)
+environment: conda pytorch (torch 2.9.1+cu130, open_clip 3.3.0)
 """
 import os, sys, json, io
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -23,8 +23,8 @@ from datasets import load_dataset
 import open_clip
 
 TEMPLATE = 'a photo of a {}'
-MIN_PER_CLASS = 8      # 每类最少图像数（保证统计稳定）
-MAX_PER_CLASS = 24     # 每类最多图像数（均衡，防长尾）
+MIN_PER_CLASS = 8      # minimum images per class (for statistical stability)
+MAX_PER_CLASS = 24     # maximum images per class (balanced, avoids long tail)
 SEED = 42
 OUT = 'outputs/ocean_gap_surgery.json'
 OUT_SUB = 'outputs/ocean_subset.json'
@@ -32,19 +32,19 @@ FISH_CLASSES = ['Actinopterygii', 'Chondrichthyes', 'Coelacanthi']
 
 
 def build_subset():
-    """从 rare-species 抽取海洋鱼类子集：类 = sciName，图像按类均衡。"""
+    """Extract a marine-fish subset from rare-species: class = sciName, images balanced per class."""
     files = sorted(os.path.join('data/rare-species/data', f) for f in os.listdir('data/rare-species/data'))
     ds = load_dataset('parquet', data_files=files, split='train')
-    print('总行数', len(ds), flush=True)
+    print('total rows', len(ds), flush=True)
     idx_fish = [i for i, r in enumerate(ds) if r['class'] in FISH_CLASSES]
-    print('鱼类行数', len(idx_fish), flush=True)
+    print('fish rows', len(idx_fish), flush=True)
     sub = ds.select(idx_fish)
     import collections
     per_class = collections.defaultdict(list)
     for i, r in enumerate(sub):
-        per_class[r['sciName']].append(idx_fish[i])   # 存原数据集索引
+        per_class[r['sciName']].append(idx_fish[i])   # keep the original dataset index
     keep_classes = {c: v for c, v in per_class.items() if len(v) >= MIN_PER_CLASS}
-    print('≥%d 图的类数: %d' % (MIN_PER_CLASS, len(keep_classes)), flush=True)
+    print('classes with ≥%d images: %d' % (MIN_PER_CLASS, len(keep_classes)), flush=True)
     rng = np.random.RandomState(SEED)
     chosen = []
     for c, v in sorted(keep_classes.items()):
@@ -68,25 +68,25 @@ def build_subset():
 def load_models():
     from transformers import CLIPModel, CLIPProcessor, SiglipModel, SiglipProcessor
     MODELS = {}
-    # open_clip: BioCLIP 基座
+    # open_clip: BioCLIP base
     m_b, _, p_b = open_clip.create_model_and_transforms(
         'ViT-B-16', pretrained='models/oceanclip-0.15b/bioclip/open_clip_pytorch_model.bin', device='cuda')
     m_b.eval()
     MODELS['bioclip'] = dict(kind='openclip', model=m_b, pre=p_b, tag='bioclip')
-    # open_clip: OceanCLIP（海洋微调）
+    # open_clip: OceanCLIP (ocean fine-tune)
     ck = torch.load('models/oceanclip-0.15b/oceanclip-bio/epoch_50.pt', map_location='cpu')
     m_o, _, p_o = open_clip.create_model_and_transforms(
         'ViT-B-16', pretrained='models/oceanclip-0.15b/bioclip/open_clip_pytorch_model.bin', device='cuda')
     m_o.load_state_dict(ck['state_dict'], strict=False)
     m_o.eval()
     MODELS['oceanclip'] = dict(kind='openclip', model=m_o, pre=p_o, tag='oceanclip')
-    # transformers 家族
+    # transformers family
     for tag, mdir, use_siglip in [
             ('clip', 'models/clip-vit-base-patch32', False),
             ('openclip_tf', 'models/openclip', False),
             ('siglip', 'models/siglip-base-patch16-224', True)]:
         if not os.path.isdir(mdir):
-            print('跳过 %s（目录 %s 不存在）' % (tag, mdir), flush=True)
+            print('skipping %s (directory %s does not exist)' % (tag, mdir), flush=True)
             continue
         try:
             if use_siglip:
@@ -97,7 +97,7 @@ def load_models():
             p = P.from_pretrained(mdir, local_files_only=True)
             MODELS[tag] = dict(kind='transformers', model=m, pre=p, tag=tag)
         except Exception as e:
-            print('%s 加载失败: %s' % (tag, str(e)[:160]), flush=True)
+            print('%s failed to load: %s' % (tag, str(e)[:160]), flush=True)
     return MODELS
 
 
@@ -175,7 +175,7 @@ def main():
     idx = sub['subset_idx']
     texts = [TEMPLATE.format(c) for c in classes]
     labels = torch.tensor([classes.index(r['sciName']) for r in ds.select(idx)])
-    print('子集: %d 类 / %d 图' % (len(classes), len(idx)), flush=True)
+    print('subset: %d classes / %d images' % (len(classes), len(idx)), flush=True)
 
     MODELS = load_models()
     all_rows = []
@@ -191,7 +191,7 @@ def main():
         base_np = base_sims.cpu().numpy()
         topk5 = np.argsort(-base_np, axis=1)[:, :5]
         tau_idx = list(range(len(idx)))
-        # 图像侧 λ 扫描
+        # image-side λ sweep
         for lam in [-1.0, -0.5, -0.25, 0.0, 0.25, 0.5, 1.0, 2.0]:
             with torch.no_grad():
                 delta = lam * gap_norm * d_hat
@@ -202,7 +202,7 @@ def main():
             all_rows.append(row)
             print('  %s I λ=%+.2f: CG=%.4f top1=%.2f tau=%.4f' % (tag, lam, cg, t1, tau), flush=True)
             json.dump(all_rows, open(OUT, 'w', encoding='utf-8'), indent=2)
-        # 文本侧 λ 扫描
+        # text-side λ sweep
         for lam in [0.0, 0.5, 1.0, 2.0]:
             with torch.no_grad():
                 delta = -lam * gap_norm * d_hat

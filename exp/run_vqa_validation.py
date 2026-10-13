@@ -1,20 +1,20 @@
-"""第二数据集相变验证 — 解耦 dataset vs architecture
+"""Second-dataset phase-transition validation — decoupling dataset vs architecture
 
-目的：Paper 3 的相变只在 Alpaca 上验证过。审稿人要求第二个指令微调数据集。
-用 LLaVA-Instruct-158K（真实图片，与 blank images 对比）验证 r_c 是否稳定。
+Goal: the phase transition in Paper 3 was only validated on Alpaca. Reviewers asked for a second instruction-tuning dataset.
+Use LLaVA-Instruct-158K (real images, compared against blank images) to check whether r_c is stable.
 
-注意：本实验用真实图片（不同于主实验的 blank images），
-用于检验相变是架构现象还是数据集 artifact。
+Note: this experiment uses real images (unlike the blank images of the main experiment),
+to test whether the phase transition is an architectural phenomenon or a dataset artifact.
 
-产出：vqa_phase_results.json
+Output: vqa_phase_results.json
   {"r4": {"dE": [..3 seeds..]}, "r5": {...}, ..., "r20": {...}, "r24": "NaN"}
 
-数据集选择（任选其一）：
-1. LLaVA-Instruct-158K（LLaVA 官方微调集，真实图片+指令）
-2. OK-VQA（需要下载，~9GB）
-3. ShareGPT（纯文本指令，无图片——保持 blank images 设计）
+Dataset options (choose one):
+1. LLaVA-Instruct-158K (the official LLaVA fine-tuning set, real images + instructions)
+2. OK-VQA (needs download, ~9GB)
+3. ShareGPT (text-only instructions, no images — keeps the blank images design)
 
-推荐：LLaVA-Instruct-158K，最接近原始设置且图片真实。
+Recommended: LLaVA-Instruct-158K, closest to the original setting and with real images.
 """
 import os, sys, json, torch, gc, subprocess, argparse
 import numpy as np
@@ -24,21 +24,21 @@ os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 
 TRAIN_SCRIPT = os.path.join(os.path.dirname(__file__), '..', 'scripts', 'run_training.py')
 
-# 与原 sweep 相同：15 ranks × 3 seeds
+# same as the original sweep: 15 ranks × 3 seeds
 RANKS = [4,5,6,7,8,10,12,14,16,20,24,28,32,48,64]
 SEEDS = [42, 123, 999]
 
 import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument('--model-path', type=str, default='/root/autodl-tmp/llava-hf',
-                help='本地 LLaVA 模型目录')
+                help='local LLaVA model directory')
 ap.add_argument('--output', type=str, default='vqa_phase_results.json')
 vqa_args = ap.parse_args()
-DATA_PATH = os.environ.get("VQA_DATA_PATH", None)  # 例：./llava_instruct/train.parquet
+DATA_PATH = os.environ.get("VQA_DATA_PATH", None)  # e.g. ./llava_instruct/train.parquet
 
 def main():
     if DATA_PATH is None:
-        print("ERROR: 请设置 VQA_DATA_PATH 指向第二个数据集的 parquet")
+        print("ERROR: please set VQA_DATA_PATH to the parquet of the second dataset")
         print("  export VQA_DATA_PATH=/path/to/your_dataset.parquet")
         sys.exit(1)
     results = {}
@@ -74,7 +74,7 @@ def main():
     with open("vqa_phase_results.json", 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2)
     print(f"\nSaved: vqa_phase_results.json")
-    # 相变点检测
+    # phase-transition point detection
     for rank in sorted(results.keys(), key=lambda x: int(x[1:])):
         m = results[rank]["mean"]
         print(f"  r={rank[1:]}: ΔE={m}")

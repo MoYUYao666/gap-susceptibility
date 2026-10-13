@@ -1,23 +1,23 @@
-"""A1 #8：关键数字多 seed 区间（防御性实验）。
+"""A1 #8: multi-seed intervals for key numbers (defensive experiment).
 
-对论文中的"headline"统计量做 N seed 复算，输出 均值±std：
-  - 26 条件网格的四个 Spearman（τ 0.926 / CG −0.082 / CKA 0.755 / mean_cos 0.872）
-  - 类偏置场验证 Pearson（r=1.000）与 std(m_c)
-  - 各条件 top1 / τ 的跨 seed 均值±std（T/O/C/G/L/P 全部 26 个条件）
-随机性两个来源都覆盖：
-  (a) 扰动随机性：每个 seed 用 RandomState(seed) 重新抽噪声/正交方向/低秩子空间；
-  (b) 采样随机性：每个 seed 用 RandomState(100000+seed) 重抽 5k 图像子集。
+Recompute the paper's "headline" statistics over N seeds and report mean±std:
+  - the four Spearman values of the 26-condition grid (τ 0.926 / CG −0.082 / CKA 0.755 / mean_cos 0.872)
+  - class bias-field validation Pearson (r=1.000) and std(m_c)
+  - cross-seed mean±std of top1 / τ per condition (all 26 conditions: T/O/C/G/L/P)
+Both sources of randomness are covered:
+  (a) perturbation randomness: each seed redraws noise / orthogonal direction / low-rank subspace with RandomState(seed);
+  (b) sampling randomness: each seed redraws the 5k image subset with RandomState(100000+seed).
 
-用法（Windows，conda env pytorch）：
+Usage (Windows, conda env pytorch):
   conda run -n pytorch python tools/clip_a1_multiseed.py --seeds 5 --sample 5000
-预计时长：26 条件 × 5 seeds ≈ 130 次 5k 评测，RTX 4060 约 3–5 小时（夜跑）。
-输出：outputs/a1_multiseed.json（per-seed 明细 + aggregate 均值/std）。
+Estimated runtime: 26 conditions × 5 seeds ≈ 130 evaluations on 5k images, about 3–5 hours on an RTX 4060 (overnight run).
+Output: outputs/a1_multiseed.json (per-seed details + aggregate mean/std).
 
-注意：本脚本只复算 5k 样本口径的统计量；50k 全量 headline 数字（59.28 等）
-协议固定、不需 seed，只在 revision 回复里与 5k 区间并陈即可。
+Note: this script only recomputes the statistics on the 5k-sample scale; the 50k full headline numbers (59.28 etc.)
+have a fixed protocol and need no seed, so just present them alongside the 5k intervals in the revision reply.
 """
 import os
-os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')   # Windows + torch 必须
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')   # required for Windows + torch
 import argparse
 import glob
 import json
@@ -48,7 +48,7 @@ def linear_cka(X, Y):
 
 
 def build_base(model, processor, parq, sample_seed, n_images):
-    """5k 子集 + Flickr30k 验证子集 + 冻结基线的全部公共量。"""
+    """All shared quantities for the 5k subset + Flickr30k validation subset + frozen baseline."""
     ds_in = Dataset.from_parquet(parq)
     names = [n.split(',')[0].strip() for n in ds_in.features['label'].names]
     texts = [TEMPLATE.format(c.replace('_', ' ')) for c in names]
@@ -125,7 +125,7 @@ def evaluate(ctx, img2, fi2):
 
 
 def run_seed(model, processor, parq, seed, n_images):
-    """单 seed：重抽样本 + 重抽扰动，跑 26 条件，返回该 seed 的全部统计量。"""
+    """Single seed: redraw samples + redraw perturbations, run 26 conditions, return all statistics for that seed."""
     s_seed = 100000 + seed
     ctx = build_base(model, processor, parq, s_seed, n_images)
     base, fi, d_hat, gap_norm, cents, lab_map, labels = (ctx['base'], ctx['fi'],
@@ -133,7 +133,7 @@ def run_seed(model, processor, parq, seed, n_images):
                                                          ctx['cents'], ctx['lab_map'],
                                                          ctx['labels'])
     D = base.shape[1]
-    rng2 = np.random.RandomState(seed)          # 扰动随机性：每 seed 独立
+    rng2 = np.random.RandomState(seed)          # perturbation randomness: independent per seed
     Q, _ = torch.linalg.qr(torch.tensor(rng2.randn(D, D), dtype=torch.float32, device=DEVICE))
 
     conds = []
@@ -171,7 +171,7 @@ def run_seed(model, processor, parq, seed, n_images):
             c_own = cents[torch.tensor([lab_map[int(x)] for x in labels], device=DEVICE)]
             push('P%.2g' % a, F.normalize((1 - a) * base + a * c_own, dim=-1), fi)
 
-    # 指标 vs top-1 的 Spearman（该 seed）
+    # Spearman of metrics vs top-1 (this seed)
     top1s = [c['top1'] for c in conds]
     corrs = {}
     for metric in ['tau', 'CG', 'cka', 'mean_cos']:
@@ -179,7 +179,7 @@ def run_seed(model, processor, parq, seed, n_images):
         r, p = stats.spearmanr(top1s, vals)
         corrs[metric] = {'spearman_r': float(r), 'p': float(p)}
 
-    # 类偏置场验证（该 seed，λ=1）
+    # class bias-field validation (this seed, λ=1)
     with torch.no_grad():
         shifted = F.normalize(base + gap_norm * d_hat, dim=-1)
     S1 = shifted @ ctx['tf'].T
@@ -213,7 +213,7 @@ def main():
     per_seed = [run_seed(model, processor, parq, s, args.sample)
                 for s in range(args.seeds)]
 
-    # 聚合
+    # aggregation
     agg = {'spearman': {}, 'theory': {}, 'conditions': {}}
     for metric in ['tau', 'CG', 'cka', 'mean_cos']:
         rs = [s['spearman'][metric]['spearman_r'] for s in per_seed]
@@ -240,16 +240,16 @@ def main():
         json.dump(out, f, indent=1, ensure_ascii=False)
     print('saved', args.out)
 
-    print('\n===== 论文值 vs %d-seed 均值±std =====' % args.seeds)
-    print('tau    spearman: 论文 0.926  | %d-seed %.4f±%.4f' %
+    print('\n===== paper values vs %d-seed mean±std =====' % args.seeds)
+    print('tau    spearman: paper 0.926  | %d-seed %.4f±%.4f' %
           (args.seeds, agg['spearman']['tau']['mean'], agg['spearman']['tau']['std']))
-    print('CG     spearman: 论文 -0.082 | %d-seed %.4f±%.4f' %
+    print('CG     spearman: paper -0.082 | %d-seed %.4f±%.4f' %
           (args.seeds, agg['spearman']['CG']['mean'], agg['spearman']['CG']['std']))
-    print('CKA    spearman: 论文 0.755  | %d-seed %.4f±%.4f' %
+    print('CKA    spearman: paper 0.755  | %d-seed %.4f±%.4f' %
           (args.seeds, agg['spearman']['cka']['mean'], agg['spearman']['cka']['std']))
-    print('cos    spearman: 论文 0.872  | %d-seed %.4f±%.4f' %
+    print('cos    spearman: paper 0.872  | %d-seed %.4f±%.4f' %
           (args.seeds, agg['spearman']['mean_cos']['mean'], agg['spearman']['mean_cos']['std']))
-    print('pearson (偏置场): 论文 1.000 | %d-seed %.4f±%.4f' %
+    print('pearson (bias field): paper 1.000 | %d-seed %.4f±%.4f' %
           (args.seeds, agg['theory']['pearson_r']['mean'], agg['theory']['pearson_r']['std']))
 
 

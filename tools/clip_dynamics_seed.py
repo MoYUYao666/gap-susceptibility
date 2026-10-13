@@ -1,8 +1,8 @@
-"""L5 轨迹加固:多 seed + 长程。
-- CLIP+Sonar(平衡650) 10ep × seed {0,99} (seed42 已有) + seed42 × 50ep
-- BioCLIP+Marine(fish-67) 10ep × seed {0,99} (seed42 已有)
-每个 epoch 评测 top1/τ/σ_m。输出 outputs/dynamics_seed.json
-运行: conda run -n pytorch python tools/clip_dynamics_seed.py [sonar_seeds|bio_seeds|sonar50]
+"""L5 trajectory hardening: multiple seeds + long range.
+- CLIP+Sonar(balanced 650) 10ep × seed {0,99} (seed42 already available) + seed42 × 50ep
+- BioCLIP+Marine(fish-67) 10ep × seed {0,99} (seed42 already available)
+Evaluates top1/τ/σ_m every epoch. Outputs outputs/dynamics_seed.json
+Run: conda run -n pytorch python tools/clip_dynamics_seed.py [sonar_seeds|bio_seeds|sonar50]
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -26,7 +26,7 @@ def set_seed(s):
     torch.cuda.manual_seed_all(s)
 
 
-# ---------- CLIP 侧: 复用 cd.train_traj(通过模块全局 seed/epochs 参数化) ----------
+# ---------- CLIP side: reuse cd.train_traj (parameterized through the module globals seed/epochs) ----------
 def run_clip(tag, man, texts, labels, eval_info, seed, epochs):
     cd.SEED = seed
     cd.EPOCHS = epochs
@@ -35,7 +35,7 @@ def run_clip(tag, man, texts, labels, eval_info, seed, epochs):
 
 
 def bio_eval(m, pre, tok, ds, idx, classes, labels, S0, topk5):
-    """BioCLIP(open_clip) 当前模型评估: top1/tau/sigma_m。"""
+    """Evaluation of the current BioCLIP (open_clip) model: top1/tau/sigma_m."""
     with torch.no_grad():
         tf = F.normalize(m.encode_text(tok([TEMPLATE.format(c) for c in classes]).to('cuda')), dim=-1)
         feats = []

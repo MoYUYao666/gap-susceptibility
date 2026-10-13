@@ -1,6 +1,6 @@
-"""A3 增强②: 声呐退化压力测试（散斑噪声/模糊/阴影条带）→ 检验离轴边界是否跨模态。
-与 A2 退化实验同构: 每图退化后嵌入位移投影 s → λ_eff; τ_meas vs τ_pred(λ_eff) (间隙轴预测器);
-输出: outputs/sonar_degradation.json
+"""A3 enhancement ②: sonar degradation stress test (speckle noise/blur/shadow strip) → test whether the off-axis boundary crosses modalities.
+Isomorphic to the A2 degradation experiment: per-image degradation then embedding shift projection s → λ_eff; τ_meas vs τ_pred(λ_eff) (gap-axis predictor);
+Output: outputs/sonar_degradation.json
 """
 import os, sys, json
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -48,7 +48,7 @@ def degrade(im, kind, arg):
     if kind == 'shadow':
         a = np.asarray(im).astype(np.float32)
         h, w = a.shape[:2]
-        a[:, int(w * 0.55):] *= 0.45  # 阴影条带
+        a[:, int(w * 0.55):] *= 0.45  # shadow strip
         return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
     return im
 

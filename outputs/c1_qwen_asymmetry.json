@@ -1,11 +1,11 @@
 {
  "source": "cloud clean rerun 2026-09-13, autodl RTX 4080 SUPER 32760MiB / torch 2.12.1+cu130",
- "protocol_note": "Qwen 脚本的 blank image 为 np.random.randint 噪声图并按 seed 播撒，故 E0 随 seed 变化；臂间比较干净，跨 seed 绝对值不可平均，另报 ΔE/E0。LLaVA 脚本用 np.zeros 全黑图（E0 恒定），两架构此点协议不一致。",
+ "protocol_note": "In the Qwen script the blank image is an np.random.randint noise image seeded per seed, so E0 varies with seed; comparisons between arms are clean, absolute values cannot be averaged across seeds, and ΔE/E0 is reported separately. The LLaVA script uses an np.zeros all-black image (E0 constant); the two architectures are inconsistent on this protocol point.",
  "rows": [
   {
    "seed": 42,
    "arm": "tnone_pr4_projonly",
-   "label": "投影器 r=4 单独（LLM 冻结）",
+   "label": "Projector r=4 alone (LLM frozen)",
    "trainable_params": 75776,
    "proj_rank": 4,
    "llm_rank": null,
@@ -22,7 +22,7 @@
   {
    "seed": 42,
    "arm": "pr16_lr2_projhi16_llmlo2",
-   "label": "投影器 r=16 + LLM r=2",
+   "label": "Projector r=16 + LLM r=2",
    "trainable_params": 1564672,
    "proj_rank": 16,
    "llm_rank": 2,
@@ -39,7 +39,7 @@
   {
    "seed": 42,
    "arm": "pr2_lr16_projlo2_llmhi16",
-   "label": "投影器 r=2 + LLM r=16",
+   "label": "Projector r=2 + LLM r=16",
    "trainable_params": 10130432,
    "proj_rank": 2,
    "llm_rank": 16,
@@ -56,7 +56,7 @@
   {
    "seed": 123,
    "arm": "tnone_pr4_projonly",
-   "label": "投影器 r=4 单独（LLM 冻结）",
+   "label": "Projector r=4 alone (LLM frozen)",
    "trainable_params": 75776,
    "proj_rank": 4,
    "llm_rank": null,
@@ -73,7 +73,7 @@
   {
    "seed": 123,
    "arm": "pr16_lr2_projhi16_llmlo2",
-   "label": "投影器 r=16 + LLM r=2",
+   "label": "Projector r=16 + LLM r=2",
    "trainable_params": 1564672,
    "proj_rank": 16,
    "llm_rank": 2,
@@ -90,7 +90,7 @@
   {
    "seed": 123,
    "arm": "pr2_lr16_projlo2_llmhi16",
-   "label": "投影器 r=2 + LLM r=16",
+   "label": "Projector r=2 + LLM r=16",
    "trainable_params": 10130432,
    "proj_rank": 2,
    "llm_rank": 16,
@@ -107,7 +107,7 @@
   {
    "seed": 456,
    "arm": "tnone_pr4_projonly",
-   "label": "投影器 r=4 单独（LLM 冻结）",
+   "label": "Projector r=4 alone (LLM frozen)",
    "trainable_params": 75776,
    "proj_rank": 4,
    "llm_rank": null,
@@ -124,7 +124,7 @@
   {
    "seed": 456,
    "arm": "pr16_lr2_projhi16_llmlo2",
-   "label": "投影器 r=16 + LLM r=2",
+   "label": "Projector r=16 + LLM r=2",
    "trainable_params": 1564672,
    "proj_rank": 16,
    "llm_rank": 2,
@@ -141,7 +141,7 @@
   {
    "seed": 456,
    "arm": "pr2_lr16_projlo2_llmhi16",
-   "label": "投影器 r=2 + LLM r=16",
+   "label": "Projector r=2 + LLM r=16",
    "trainable_params": 10130432,
    "proj_rank": 2,
    "llm_rank": 16,
@@ -158,7 +158,7 @@
   {
    "seed": 999,
    "arm": "tnone_pr4_projonly",
-   "label": "投影器 r=4 单独（LLM 冻结）",
+   "label": "Projector r=4 alone (LLM frozen)",
    "trainable_params": 75776,
    "proj_rank": 4,
    "llm_rank": null,
@@ -175,7 +175,7 @@
   {
    "seed": 999,
    "arm": "pr16_lr2_projhi16_llmlo2",
-   "label": "投影器 r=16 + LLM r=2",
+   "label": "Projector r=16 + LLM r=2",
    "trainable_params": 1564672,
    "proj_rank": 16,
    "llm_rank": 2,
@@ -192,7 +192,7 @@
   {
    "seed": 999,
    "arm": "pr2_lr16_projlo2_llmhi16",
-   "label": "投影器 r=2 + LLM r=16",
+   "label": "Projector r=2 + LLM r=16",
    "trainable_params": 10130432,
    "proj_rank": 2,
    "llm_rank": 16,

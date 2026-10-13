@@ -1,9 +1,9 @@
-"""ERS 1-epoch 重跑 — 恢复 Paper 3 fig3（真实数据版）
+"""ERS 1-epoch rerun — restoring Paper 3 fig3 (real-data version)
 
-背景：原 fig3 数据 [-50, -113.5, -113.5, -226] 是硬编码的，无法溯源。
-本脚本跑 4 ranks × 3 seeds 的 1-epoch 实验，输出 norm_g_v 和 |ΔE|。
+Background: the original fig3 data [-50, -113.5, -113.5, -226] was hardcoded and cannot be traced to a source.
+This script runs a 1-epoch experiment over 4 ranks × 3 seeds, outputting norm_g_v and |ΔE|.
 
-产出：ers_1epoch_results.json
+Produces: ers_1epoch_results.json
   {"r4": {"dE": [...], "norm_g_v": [...]}, "r16": {...}, "r32": {...}, "r64": {...}}
 """
 import os, sys, json, torch, gc, subprocess, argparse
@@ -12,7 +12,7 @@ import numpy as np
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 
-# 复用 Paper 3 训练脚本（run_training.py --epochs 1）
+# reuse the Paper 3 training script (run_training.py --epochs 1)
 TRAIN_SCRIPT = os.path.join(os.path.dirname(__file__), '..', 'scripts', 'run_training.py')
 
 RANKS = [4, 16, 32, 64]
@@ -21,7 +21,7 @@ SEEDS = [42, 123, 999]
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--model-path', type=str, default='/root/autodl-tmp/llava-hf',
-                    help='本地 LLaVA 模型目录')
+                    help='local LLaVA model directory')
 parser.add_argument('--output', type=str, default='ers_1epoch_results.json')
 args = parser.parse_args()
 
@@ -39,11 +39,11 @@ def main():
                 "--num-samples", "16",
                 "--model-path", args.model_path,
             ]
-            # 运行并收集输出（run_training.py 打印 E(t) 和 gamma）
+            # run and collect the output (run_training.py prints E(t) and gamma)
             proc = subprocess.run(cmd, capture_output=True, text=True)
             output = proc.stdout
 
-            # 解析 E(t): 行格式 "  E(1) = 1234.5 (n=4) ↓"
+            # parse E(t): line format "  E(1) = 1234.5 (n=4) ↓"
             import re
             evals = [float(m) for m in re.findall(r"E\(\d+\) = ([-\d.]+)", output)]
             if evals and len(evals) >= 2 and evals[-1] == evals[-1]:
@@ -51,7 +51,7 @@ def main():
             else:
                 dEs.append(float('nan'))
 
-            # 保存原始输出（含完整日志，便于人工核查）
+            # save the raw output (with the full log, for manual inspection)
             with open(out_name, 'w') as f:
                 json.dump({"rank": rank, "seed": seed, "raw": output, "E": evals}, f)
             print(f"  r={rank} s={seed}: ΔE={dEs[-1]:+.1f}", flush=True)

@@ -1,4 +1,4 @@
-"""对 clip_fullft_rerun.py 产出的 full FT 权重做 ImageNet-1K 零样本评测（两协议 × 两 checkpoint）。"""
+"""ImageNet-1K zero-shot evaluation of the full FT weights produced by clip_fullft_rerun.py (two protocols × two checkpoints)."""
 import os, json
 os.environ['HF_HUB_OFFLINE'] = '1'
 from glob import glob

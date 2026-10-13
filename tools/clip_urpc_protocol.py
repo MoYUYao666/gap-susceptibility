@@ -1,11 +1,11 @@
-"""A2/A3 合并提升⑦: 跨数据集声呐验证 —— URPC (PCL 多波束 FLS) 协议。
-数据: fuhao7i/URPC = URPC2021 声呐检测数据集 (COCO 标注, train+test)。
-流程: ① COCO 标注 → 目标裁剪(padding 10%, 滤小框) → 分类 manifest
-      ② frozen CLIP 协议 (λ 手术/τ 预测/σ_m)
-      ③ SonarCLIP(=NKSID 全量 FullFT sonar_clip_ft_full.pt) 跨数据集迁移评估
-      ④ 陆地对照 flickrft
-输出: outputs/sonar_urpc.json
-运行: conda run -n pytorch python tools/clip_urpc_protocol.py
+"""A2/A3 combined improvement ⑦: cross-dataset sonar validation --- URPC (PCL multibeam FLS) protocol.
+Data: fuhao7i/URPC = URPC2021 sonar detection dataset (COCO annotations, train+test).
+Pipeline: ① COCO annotations → object crops (padding 10%, small boxes filtered) → classification manifest
+      ② frozen CLIP protocol (λ surgery / τ prediction / σ_m)
+      ③ SonarCLIP (=NKSID full-data FullFT sonar_clip_ft_full.pt) cross-dataset transfer evaluation
+      ④ terrestrial control flickrft
+Output: outputs/sonar_urpc.json
+Run: conda run -n pytorch python tools/clip_urpc_protocol.py
 """
 import os, sys, json, io, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -22,9 +22,9 @@ TEMPLATE = 'a photo of a {}'
 MDIR = 'models/clip-vit-base-patch32'
 ROOT = 'data/urpc'
 OUT = 'outputs/sonar_urpc.json'
-FT_WEIGHTS = 'outputs/sonar_clip_ft_full.pt'   # NKSID 全量 SonarCLIP
-MIN_SIDE = 16          # 滤掉过小裁剪
-CAP_PER_CLASS = 100    # 每类上限(与 NKSID 平衡口径类似)
+FT_WEIGHTS = 'outputs/sonar_clip_ft_full.pt'   # NKSID full-data SonarCLIP
+MIN_SIDE = 16          # drop crops that are too small
+CAP_PER_CLASS = 100    # per-class cap (similar to the NKSID balanced convention)
 
 
 def load_coco_json(path):
@@ -33,7 +33,7 @@ def load_coco_json(path):
 
 
 def build_crops():
-    """从 train+test COCO 标注裁剪目标 → [(img_path, cat_name)]。仅加载实际存在的 split。"""
+    """Crop objects from the train+test COCO annotations → [(img_path, cat_name)]. Only splits that actually exist are loaded."""
     cats, crops = {}, []
     img2file = {}
     for split in ['train', 'test']:
@@ -58,7 +58,7 @@ def build_crops():
         if w < MIN_SIDE or h < MIN_SIDE:
             continue
         out.append((fp, cat, (x, y, w, h)))
-    # 每类 cap(类数太少类不丢; 大长尾 cap 后保留)
+    # per-class cap (classes with very few samples are not dropped; the large long tail is kept after capping)
     bycat = collections.defaultdict(list)
     for it in out:
         bycat[it[1]].append(it)

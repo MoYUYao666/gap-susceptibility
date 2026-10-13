@@ -1,13 +1,13 @@
-"""(A1 备战) τ 的独立性与泛化验证 + 关键数字溯源计算。
+"""(A1 preparation) independence and generalization validation of τ + provenance computation of key numbers.
 
-任务:
-  1) 理论预测 vs 实测 τ: 从 outputs/a1_margins.json 逐 λ 对比 predicted_tau_{exact,gauss}
-     与 measured_tau_5k / measured_tau_50k —— 独立复算相关性与误差(不采信已有的 r=1.0 结论)。
-  2) 跨模型泛化(留一模型): 用 a1_full_results + a1_crossmodel_results(+其它含 τ/top1 的结果),
-     对比"top1 ~ τ"与"top1 ~ CG"两种预测子在留出模型上的表现, 回答"τ 是否只是描述性/同义反复"。
-  3) 条件计数与关键数字: 核对摘要里的 34 条件 / CG 0.82→0.01 / top1 59.3%→32.0% / +0.114 等
-     的出处(逐文件统计 + 极值定位)。
-输出: outputs/a1_tau_holdout.json
+Tasks:
+  1) Theoretical prediction vs measured τ: from outputs/a1_margins.json compare predicted_tau_{exact,gauss} per λ
+     against measured_tau_5k / measured_tau_50k — independently recompute the correlation and error (the existing r=1.0 conclusion is not taken on trust).
+  2) Cross-model generalization (leave-one-model-out): using a1_full_results + a1_crossmodel_results (+ other results containing τ/top1),
+     compare the two predictors "top1 ~ τ" and "top1 ~ CG" on held-out models, answering whether "τ is merely descriptive/tautological".
+  3) Condition counts and key numbers: verify the provenance of 34 conditions / CG 0.82→0.01 / top1 59.3%→32.0% / +0.114 etc. in the summary
+     (per-file statistics + extreme-value localization).
+output: outputs/a1_tau_holdout.json
 """
 import glob
 import json
@@ -27,7 +27,7 @@ def load(p):
 
 
 def rows_from(fn):
-    """把含 model/lambda/CG/tau_top5/top1 的记录统一成行。"""
+    """Normalize records containing model/lambda/CG/tau_top5/top1 into rows."""
     d = load(fn)
     out = []
     if isinstance(d, list):
@@ -68,7 +68,7 @@ def main():
     for f in files:
         rows += rows_from(f)
 
-    # ---- 1) 理论预测 vs 实测 τ ----
+    # ---- 1) theoretical prediction vs measured τ ----
     mg = load('outputs/a1_margins.json') or {}
     theory = {}
     for pk, mk in (('predicted_tau_exact', 'measured_tau_5k'), ('predicted_tau_gauss', 'measured_tau_5k'),
@@ -90,7 +90,7 @@ def main():
             'predicted': {k: round(float(p[k]), 4) for k in keys},
             'measured': {k: round(float((m[k]['tau'] if isinstance(m[k], dict) else m[k])), 4) for k in keys}}
 
-    # ---- 2) 跨模型泛化(留一模型) ----
+    # ---- 2) cross-model generalization (leave-one-model-out) ----
     models = sorted({r['model'] for r in rows})
     pooled = {}
     if len(rows) > 3:
@@ -109,7 +109,7 @@ def main():
                        'tau_predictor': fit_predict(tr, te, 'tau'),
                        'CG_predictor': fit_predict(tr, te, 'CG')}
 
-    # ---- 3) 条件计数与关键数字 ----
+    # ---- 3) condition counts and key numbers ----
     per_file = {}
     for f in files:
         rs = rows_from(f)

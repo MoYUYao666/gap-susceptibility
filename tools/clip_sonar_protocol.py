@@ -1,7 +1,7 @@
-"""E 实验: 声呐域 λ 手术（NKSID, 8 类/2617 图）。
-流程: ① 清单(类名→图) ② CLIP ViT-B/32 冻结协议(λ 手术/τ 预测/σ_m/非对称)
-      ③ SonarCLIP = CLIP FullFT 10ep(与海洋 2×2 同调度) ④ sonarFT 重测 σ_m/τ + 复用已有 CLIP+FlickrFT 作陆地对照
-输出: outputs/sonar_protocol.json
+"""E experiment: sonar-domain λ surgery (NKSID, 8 classes/2617 images).
+Pipeline: (1) manifest (class name → image) (2) CLIP ViT-B/32 frozen protocol (λ surgery/τ prediction/σ_m/asymmetry)
+      (3) SonarCLIP = CLIP FullFT 10ep (same schedule as ocean 2×2) (4) sonarFT re-measures σ_m/τ + reuse the existing CLIP+FlickrFT as the land control
+Output: outputs/sonar_protocol.json
 """
 import os, sys, json, io, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -24,7 +24,7 @@ CLASSES = ['big propeller', 'cylinder', 'fishing net', 'floats', 'iron pipeline'
            'small propeller', 'soft pipeline', 'tire']
 CLASS_DIR = ['big_propeller', 'cylinder', 'fishing_net', 'floats', 'iron_pipeline',
              'small_propeller', 'soft_pipeline', 'tire']
-CAP_PER_CLASS = 90  # 长尾上限; fishing_net 只有 20
+CAP_PER_CLASS = 90  # long-tail cap; fishing_net has only 20
 
 
 def build_manifest():
@@ -32,7 +32,7 @@ def build_manifest():
     for c, d in zip(CLASSES, CLASS_DIR):
         p = os.path.join(IMG_ROOT, d)
         if not os.path.isdir(p):
-            p = IMG_ROOT  # tire 直接解压在根目录
+            p = IMG_ROOT  # tire is extracted directly into the root directory
         fs = sorted(f for f in os.listdir(p) if f.lower().endswith(('.jpg', '.png')))
         fs = fs[:CAP_PER_CLASS]
         manifest.extend((os.path.join(p, f), c) for f in fs)
@@ -98,7 +98,7 @@ def protocol(tag, m, p, manifest, texts, labels, outdict):
                      'tau_pred': round(float(np.mean(preds)), 4), 'CG': round(cg, 4)})
         print('  %s λ=%+.1f top1=%.2f tau_pred=%.4f tau_meas=%.4f CG=%.4f' %
               (tag, l, top1_l, np.mean(preds), np.mean(taus), cg), flush=True)
-    # 文本侧 λ=1
+    # text side λ=1
     with torch.no_grad():
         tf2 = F.normalize(tf - 1.0 * gnorm * dH, dim=-1)
     S2 = (base @ tf2.T).cpu().numpy()
@@ -167,7 +167,7 @@ def main():
         torch.save(m.state_dict(), 'outputs/sonar_clip_ft.pt')
         m = m.eval()
         protocol('sonar_ft', m, p, manifest, texts, labels, out)
-    # 陆地对照: 已有 CLIP+FlickrFT 权重
+    # land control: existing CLIP+FlickrFT weights
     if os.path.exists('outputs/ocean_clip_flickrft.pt'):
         m2 = CLIPModel.from_pretrained(MDIR, local_files_only=True).cuda()
         m2.load_state_dict(torch.load('outputs/ocean_clip_flickrft.pt', map_location='cpu'))

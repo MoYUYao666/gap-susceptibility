@@ -1,8 +1,8 @@
-"""L3 阈值校准:τ 绊线的灵敏度/特异度统计检定。
-汇总全矩阵 (域×模型×λ) 格点 (tau_meas, top1 保留率) — 5 域:
-域矩阵(imagenet5k/dtd/food101 × 4 模型) + 海洋(4 模型) + 声呐(平衡/全量 × 3 模型)。
-输出 outputs/threshold_calibration.json:每格列表 + 各切断点(0.5/0.6/0.7/0.8/0.9)下的
-灵敏度/特异度/精确率 (按"健康=保留率≥96%"与"≥83%"两个基准), bootstrap 95% CI。
+"""L3 threshold calibration: sensitivity/specificity statistical test of the τ tripwire.
+Aggregates (tau_meas, top1 retention) cells over the full matrix (domain × model × λ) — 5 domains:
+domain matrix (imagenet5k/dtd/food101 × 4 models) + marine (4 models) + sonar (balanced/full × 3 models).
+Outputs outputs/threshold_calibration.json: per-cell list + for each cutoff (0.5/0.6/0.7/0.8/0.9) the
+sensitivity/specificity/precision (under the two baselines "healthy = retention ≥96%" and "≥83%"), bootstrap 95% CI.
 """
 import json
 import itertools
@@ -20,13 +20,13 @@ def add_rows(domain, model, sigma, top1_0, rows):
         CELLS.append(dict(domain=domain, model=model, sigma_m=sigma,
                           lam=lam, tau=tau, ret=top1 / top1_0))
 
-# 域矩阵 (冻结模型, 数据文件)
+# domain matrix (frozen models, data files)
 DM = json.load(open('outputs/domain_matrix.json', encoding='utf-8'))
 for dom in ['imagenet5k', 'dtd', 'food101']:
     for mk, m in DM[dom].items():
         add_rows(dom, mk, m['sigma_m'], m['top1_0'], m['rows'])
 
-# 海洋 (fish-67, 4 模型族) — ocean_gap_surgery.json 为扁平行列表 {model, side, lam, CG, top1, tau}
+# marine (fish-67, 4 model families) — ocean_gap_surgery.json is a flat row list {model, side, lam, CG, top1, tau}
 GS = json.load(open('outputs/ocean_gap_surgery.json', encoding='utf-8'))
 base = {r['model']: r['top1'] for r in GS if r['side'] == 'image' and abs(r['lam']) < 1e-9}
 for r in GS:
@@ -35,7 +35,7 @@ for r in GS:
     CELLS.append(dict(domain='marine-67', model=r['model'], sigma_m=None,
                       lam=r['lam'], tau=r['tau'], ret=r['top1'] / base[r['model']]))
 
-# 声呐 (平衡 650 / 全量 2617, 冻结 + 微调)
+# sonar (balanced 650 / full 2617, frozen + fine-tuned)
 for proto, cols in [('sonar-balanced', ['clip_frozen', 'sonar_ft', 'clip_flickrft']),
                     ('sonar-full', ['clip_frozen', 'sonar_ft_full', 'clip_flickrft'])]:
     P = json.load(open(f'outputs/sonar_protocol{"_full" if "full" in proto else ""}.json',
@@ -45,14 +45,14 @@ for proto, cols in [('sonar-balanced', ['clip_frozen', 'sonar_ft', 'clip_flickrf
             continue
         add_rows(proto, mk, P[mk]['sigma_m'], P[mk]['top1_0'], P[mk]['rows'])
 
-# 声呐冻结/微调已有; 海洋 2×2 判别(4 模型里的 clip 家族)已在 ocean_gap_surgery? 跳过重复。
+# sonar frozen/fine-tuned already present; marine 2×2 discrimination (clip family among the 4 models) already in ocean_gap_surgery? skip duplicates.
 
 X = np.array([c['tau'] for c in CELLS])
 R = np.array([c['ret'] for c in CELLS])
 N = len(CELLS)
 
 def stats(cut, thr):
-    # 健康 = R >= thr; 绊线 = X >= cut
+    # healthy = R >= thr; tripwire = X >= cut
     healthy = R >= thr
     flagged = X >= cut
     tp = np.mean(flagged & healthy)

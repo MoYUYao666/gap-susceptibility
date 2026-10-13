@@ -1,6 +1,6 @@
 import re
 
-# 1. kang2025dmnsp 正文 4 处（编造文献——删引用句/改写）
+# 1. kang2025dmnsp in the body text, 4 places (fabricated reference -- remove citation sentences / rewrite)
 files = {
     'paper/sections/discussion.tex': [
         (r' Independently,~\cite{kang2025dmnsp} demonstrated that visual encoders exhibit broader parameter distributions and greater variance during class-incremental learning compared to text encoders, making them more susceptible to perturbation-induced forgetting.',
@@ -33,7 +33,7 @@ for path, pairs in files.items():
             print('MISS:', path.split('/')[-1], '|', old[:45])
     open(path, 'w', encoding='utf-8').write(src)
 
-# 2. stable2025neurips "others" 作者修正（真实论文：NeurIPS 2025）
+# 2. stable2025neurips "others" author fix (real paper: NeurIPS 2025)
 bib = open('paper/references.bib', encoding='utf-8').read()
 m = re.search(r'@\w+\{stable2025neurips,([^@]*?)\n\}', bib, re.S)
 if m:
@@ -42,4 +42,4 @@ if m:
         new_body = re.sub(r'author\s*=\s*\{others,?\s*\}', 'author={Kim, G. and others}', body, flags=re.S)
         bib = bib.replace(body, new_body)
         open('paper/references.bib', 'w', encoding='utf-8').write(bib)
-        print('stable2025neurips 作者修正（占位 others → 保留）')
+        print('stable2025neurips author fix (placeholder "others" → kept)')

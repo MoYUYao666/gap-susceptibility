@@ -1,7 +1,7 @@
-"""(d) 多类声呐集复现——ARIS 3000 UXO 极坐标声呐集(DFKI "An Acoustic and Optical Dataset
-for the Perception of Underwater UXO", Zenodo 13778485, BSD-3-Clause)。
-类=3 种 UXO(标注 JSON 的 "class" 字段;逐帧框)。协议与 NKSID 完全一致,仅 top-k=k=n_class(3)。
-输出: outputs/aris_uxo_protocol.json
+"""(d) Multi-class sonar-set reproduction -- ARIS 3000 UXO polar sonar set (DFKI "An Acoustic and Optical Dataset
+for the Perception of Underwater UXO", Zenodo 13778485, BSD-3-Clause).
+Classes = 3 UXO types (the "class" field of the annotation JSON; per-frame boxes). Protocol identical to NKSID, only top-k=k=n_class(3).
+Output: outputs/aris_uxo_protocol.json
 """
 import os, sys, json, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -21,7 +21,7 @@ MDIR = 'models/clip-vit-base-patch32'
 ROOT = 'data/ctx_uxo/uxo_aris'
 OUT = 'outputs/aris_uxo_protocol.json'
 FT_WEIGHTS = 'outputs/aris_clip_ft.pt'
-CAP = 150          # 每类最多图(类间平衡)
+CAP = 150          # max images per class (balanced across classes)
 MAXSIDE = 640
 DEGS = [('speckle_p20', 'speckle', 0.20), ('speckle_p40', 'speckle', 0.40),
         ('blur_r2', 'blur', 2), ('blur_r5', 'blur', 5), ('shadow_strip', 'shadow', None)]
@@ -49,7 +49,7 @@ def _gblur(im, r):
 def build_manifest():
     rec = os.path.join(ROOT, 'data_export', 'recordings')
     if not os.path.isdir(rec):
-        # 递归定位 recordings 目录
+        # recursively locate the recordings directory
         for root, dirs, files in os.walk(ROOT):
             if os.path.basename(root) == 'recordings' and 'data_export' in root:
                 rec = root
@@ -79,7 +79,7 @@ def build_manifest():
                 png = os.path.join(pol, stem + '.png')
                 if os.path.exists(png):
                     man.append((png, c))
-    # 每类 CAP,均匀抽样
+    # CAP per class, sampled uniformly
     byc = collections.defaultdict(list)
     for pth, c in man:
         byc[c].append(pth)
@@ -189,7 +189,7 @@ def deg_map(m, p, manifest, texts, labels, outdict, tf, tag):
     for name, kind, arg in DEGS:
         deg = [sonar_deg(im, kind, arg) for im in imgs]
         fd = encode(m, p, deg)[1]
-        # λ_eff: 平均位移在间隙轴上的投影 / ‖g‖
+        # λ_eff: projection of the mean displacement onto the gap axis / ‖g‖
         delta = (fd - base).cpu().numpy()
         lam_eff = float((delta.mean(0) @ dH) / gnorm_out)
         Sd = (fd @ tf.T).cpu().numpy()
@@ -220,7 +220,7 @@ def main():
     m, p = load_model()
     imgs, tf = protocol('clip_frozen', m, p, manifest, texts, labels, out)
     deg_map(m, p, manifest, texts, labels, out, tf, 'clip_frozen')
-    # 匹配域微调 10ep(与声呐协议同调度)
+    # matched-domain fine-tuning 10ep (same schedule as the sonar protocol)
     torch.manual_seed(SEED)
     np.random.seed(SEED)
     m = CLIPModel.from_pretrained(MDIR, local_files_only=True).cuda().train()

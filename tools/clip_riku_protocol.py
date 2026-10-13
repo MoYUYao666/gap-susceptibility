@@ -1,9 +1,11 @@
-"""riku-1825 FLS 数据集增量协议(与 clip_watertank_protocol.py 同构,仅数据装载不同)。
-数据: Roboflow 导出,11 类 YOLO(mine + 10 debris); Train 1627 / val 202 / test 206;
-全分辨率原图((438,658)/(500,605)/(416,416))——与 watertank 96×96 图块互为补充,加深
-"分辨率/裁剪不变性"证据;mine 类(sonar7 来源)为类集增量。
-图像级标签: 每图取标注实例数最多的类(多标注图占比将在输出中报告);无标注图剔除。
-输出: outputs/riku_protocol.json
+"""riku-1825 FLS dataset incremental protocol (isomorphic to clip_watertank_protocol.py, only the data loading differs).
+Data: Roboflow export, 11 YOLO classes (mine + 10 debris); Train 1627 / val 202 / test 206;
+full-resolution raw images ((438,658)/(500,605)/(416,416)) — complementary to the watertank
+96x96 patches, strengthening the "resolution/crop invariance" evidence; the mine class (from
+sonar7) is the incremental class-set entry.
+Image-level label: take the class with the most annotated instances in each image (the fraction
+of multi-label images is reported in the output); images without annotations are dropped.
+Output: outputs/riku_protocol.json
 """
 import os, sys, json, glob, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -29,7 +31,7 @@ DEGS = [('speckle_p20', 'speckle', 0.20), ('blur_r2', 'blur', 2), ('shadow_strip
 
 
 def load_riku(split):
-    """返回 (imgs, labels, class_names)。每图取实例数最多类。"""
+    """Return (imgs, labels, class_names). Take the class with most instances per image."""
     cfg = yaml.safe_load(open(os.path.join(ROOT, 'data.yaml'), encoding='utf-8'))
     names = [str(n) for n in cfg['names'].values()] if isinstance(cfg['names'], dict) else list(cfg['names'])
     img_dir = os.path.join(ROOT, 'images', split)
@@ -53,7 +55,7 @@ def load_riku(split):
         best = max(cls, key=cls.get)
         imgs.append(os.path.join(img_dir, fn))
         labels.append(best)
-    print('  %s: %d imgs (multi-class %d, 无标注 %d)' % (split, len(imgs), multi, none), flush=True)
+    print('  %s: %d imgs (multi-class %d, no-label %d)' % (split, len(imgs), multi, none), flush=True)
     return imgs, np.array(labels), names, multi, none
 
 

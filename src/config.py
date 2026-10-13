@@ -1,6 +1,6 @@
 """
-实验配置文件 — LoRA微调CLIP模态差距演化
-适配 MacBook M5 (MPS backend)
+Experiment configuration file — LoRA fine-tuning CLIP modality gap evolution
+Adapted for MacBook M5 (MPS backend)
 """
 
 from dataclasses import dataclass, field
@@ -10,65 +10,65 @@ import torch
 
 @dataclass
 class LoRAConfig:
-    """LoRA 微调配置"""
-    rank: int = 8                    # LoRA 秩 r
-    alpha: float = 16.0             # LoRA 缩放因子 α
+    """LoRA fine-tuning configuration"""
+    rank: int = 8                    # LoRA rank r
+    alpha: float = 16.0             # LoRA scaling factor α
     dropout: float = 0.1            # LoRA dropout
     target_modules: List[str] = field(default_factory=lambda: ["q_proj", "v_proj"])
-    # 可选: "q_proj", "k_proj", "v_proj", "out_proj", "fc1", "fc2"
+    # options: "q_proj", "k_proj", "v_proj", "out_proj", "fc1", "fc2"
 
-    # 作用位置
-    apply_to_vision: bool = True    # 是否在视觉编码器上应用LoRA
-    apply_to_text: bool = True      # 是否在文本编码器上应用LoRA
+    # where to apply
+    apply_to_vision: bool = True    # whether to apply LoRA on the vision encoder
+    apply_to_text: bool = True      # whether to apply LoRA on the text encoder
 
-    # LoRA 变体
-    use_null_lora: bool = False     # Null-LoRA 约束
-    use_gap_init: bool = False      # Gap-Init 初始化 (arXiv:2602.01522)
+    # LoRA variants
+    use_null_lora: bool = False     # Null-LoRA constraint
+    use_gap_init: bool = False      # Gap-Init initialization (arXiv:2602.01522)
 
 
 @dataclass
 class AdapterConfig:
-    """Adapter 微调配置（Houlsby bottleneck）"""
-    bottleneck_dim: int = 16          # 瓶颈维度
-    activation: str = "gelu"          # 激活函数 (gelu, relu, silu)
-    dropout: float = 0.0              # Adapter 内部 dropout
+    """Adapter fine-tuning configuration (Houlsby bottleneck)"""
+    bottleneck_dim: int = 16          # bottleneck dimension
+    activation: str = "gelu"          # activation function (gelu, relu, silu)
+    dropout: float = 0.0              # dropout inside the Adapter
     target_modules: List[str] = field(default_factory=lambda: ["q_proj", "v_proj"])
-    apply_to_vision: bool = True      # 是否在视觉编码器上应用
-    apply_to_text: bool = True        # 是否在文本编码器上应用
+    apply_to_vision: bool = True      # whether to apply on the vision encoder
+    apply_to_text: bool = True        # whether to apply on the text encoder
 
 
 @dataclass
 class PrefixConfig:
-    """Prefix Tuning 配置"""
-    prefix_length: int = 16           # Prefix token 数量
-    apply_to_vision: bool = True      # 是否在视觉编码器上应用
-    apply_to_text: bool = True        # 是否在文本编码器上应用
+    """Prefix Tuning configuration"""
+    prefix_length: int = 16           # number of prefix tokens
+    apply_to_vision: bool = True      # whether to apply on the vision encoder
+    apply_to_text: bool = True        # whether to apply on the text encoder
 
 
 @dataclass
 class GapConfig:
-    """模态差距度量配置"""
-    compute_every_n_epochs: int = 2      # 每N个epoch计算一次gap
-    compute_per_layer: bool = True       # 是否逐层计算gap
+    """Modality gap measurement configuration"""
+    compute_every_n_epochs: int = 2      # compute the gap once every N epochs
+    compute_per_layer: bool = True       # whether to compute the gap layer by layer
     metrics: List[str] = field(default_factory=lambda: [
-        "centroid_gap",                  # 质心距离
-        "distribution_gap",              # Wasserstein分布距离
-        "cosine_stats",                  # 余弦相似度分布统计
-        "positive_separation",           # 正负样本分离度
+        "centroid_gap",                  # centroid distance
+        "distribution_gap",              # Wasserstein distribution distance
+        "cosine_stats",                  # cosine similarity distribution statistics
+        "positive_separation",           # positive-negative sample separation
     ])
-    sample_size: int = 5000              # 计算gap时的采样数量（避免OOM）
+    sample_size: int = 5000              # number of samples when computing the gap (avoid OOM)
 
 
 @dataclass
 class MissingModalityConfig:
-    """缺失模态模拟配置"""
+    """Missing modality simulation configuration"""
     image_drop_ratios: List[float] = field(default_factory=lambda: [0.0, 0.1, 0.3, 0.5])
     text_mask_ratios: List[float] = field(default_factory=lambda: [0.0, 0.1, 0.3, 0.5])
     complete_missing: bool = True
 
 
 # ============================================================
-# Route C 增强配置
+# Route C enhancement configuration
 # ============================================================
 
 @dataclass
@@ -104,7 +104,7 @@ class DGESConfig:
 
 
 def _detect_device() -> str:
-    """跨平台自动检测最佳设备: CUDA > MPS > CPU"""
+    """Cross-platform automatic detection of the best device: CUDA > MPS > CPU"""
     if torch.cuda.is_available():
         return "cuda"
     elif torch.backends.mps.is_available():
@@ -115,37 +115,37 @@ def _detect_device() -> str:
 
 @dataclass
 class TrainConfig:
-    """训练配置"""
-    # 模型
-    clip_model: str = "openai/clip-vit-base-patch32"  # ViT-B/32 (~400MB, 适合M5)
-    # 备选: "openai/clip-vit-base-patch16"
+    """Training configuration"""
+    # model
+    clip_model: str = "openai/clip-vit-base-patch32"  # ViT-B/32 (~400MB, suitable for M5)
+    # alternative: "openai/clip-vit-base-patch16"
 
-    # 数据
+    # data
     dataset: str = "flickr30k"           # flickr30k, coco
-    max_samples: Optional[int] = None    # 限制样本数（调试用）
+    max_samples: Optional[int] = None    # limit the number of samples (for debugging)
     image_size: int = 224
 
-    # 训练参数
-    batch_size: int = 64                 # M5 统一内存下可支持
+    # training hyperparameters
+    batch_size: int = 64                 # supported under M5 unified memory
     num_epochs: int = 20
     learning_rate: float = 1e-4
     weight_decay: float = 0.01
     warmup_steps: int = 100
     gradient_accumulation_steps: int = 1
 
-    # 优化器
+    # optimizer
     optimizer: Literal["adamw", "adam"] = "adamw"
     scheduler: Literal["cosine", "linear", "none"] = "cosine"
 
-    # 日志 & 保存
+    # logging & saving
     log_every_n_steps: int = 50
     save_dir: str = "./outputs"
     seed: int = 42
 
-    # Mixed precision (MPS 对 float16 支持有限，建议 float32)
+    # Mixed precision (MPS has limited float16 support, float32 is recommended)
     use_amp: bool = False
 
-    # 设备（自动检测 CUDA > MPS > CPU）
+    # device (automatic detection CUDA > MPS > CPU)
     device: str = field(default_factory=_detect_device)
 
 
@@ -153,10 +153,10 @@ class TrainConfig:
 
 @dataclass
 class ExperimentConfig:
-    """主实验配置"""
+    """Main experiment configuration"""
     name: str = "gap1_baseline"
 
-    # PEFT 方法选择
+    # PEFT method selection
     peft_method: str = "lora"         # "lora" | "adapter" | "prefix" | "full_ft" | "frozen"
     lora: LoRAConfig = field(default_factory=LoRAConfig)
     adapter: Optional[AdapterConfig] = None
@@ -166,21 +166,21 @@ class ExperimentConfig:
     missing: MissingModalityConfig = field(default_factory=MissingModalityConfig)
     train: TrainConfig = field(default_factory=TrainConfig)
 
-    # Route C 增强
+    # Route C enhancement
     gap_reg: GapRegConfig = field(default_factory=GapRegConfig)
     rank_schedule: RankScheduleConfig = field(default_factory=RankScheduleConfig)
     alpha_schedule: AlphaScheduleConfig = field(default_factory=AlphaScheduleConfig)
     dg_es: DGESConfig = field(default_factory=DGESConfig)
 
-    # 实验变体列表（用于批量实验）
+    # list of experiment variants (for batch experiments)
     lora_variants: List[LoRAConfig] = field(default_factory=list)
 
     def __post_init__(self):
-        """如果指定了lora_variants，则忽略单独的lora配置"""
+        """If lora_variants is specified, the individual lora config is ignored"""
         if not self.lora_variants:
             self.lora_variants = [self.lora]
 
-        # 设置默认 adapter/prefix 配置
+        # set the default adapter/prefix configuration
         if self.peft_method == "adapter" and self.adapter is None:
             self.adapter = AdapterConfig()
         if self.peft_method == "prefix" and self.prefix is None:
@@ -188,16 +188,16 @@ class ExperimentConfig:
 
 
 # ============================================================
-# 预设实验变体
+# Preset experiment variants
 # ============================================================
 
 def get_all_experiments() -> List[ExperimentConfig]:
-    """返回RQ1-RQ4的所有实验配置"""
+    """Return all experiment configurations for RQ1-RQ4"""
     experiments = []
 
     base = TrainConfig()
 
-    # ---- RQ1: LoRA rank 影响 ----
+    # ---- RQ1: effect of LoRA rank ----
     for rank in [4, 8, 16, 32, 64]:
         experiments.append(ExperimentConfig(
             name=f"rq1_rank{rank}",
@@ -206,7 +206,7 @@ def get_all_experiments() -> List[ExperimentConfig]:
             train=base,
         ))
 
-    # ---- RQ2: LoRA 作用位置 ----
+    # ---- RQ2: where LoRA is applied ----
     for name, vis, txt in [("vision_only", True, False),
                            ("text_only", False, True),
                            ("both", True, True)]:
@@ -217,7 +217,7 @@ def get_all_experiments() -> List[ExperimentConfig]:
             train=base,
         ))
 
-    # ---- Baseline: 全量微调, 冻结 ----
+    # ---- Baseline: full fine-tuning, frozen ----
     experiments.append(ExperimentConfig(
         name="baseline_frozen",
         lora=LoRAConfig(rank=0, apply_to_vision=False, apply_to_text=False),
@@ -225,12 +225,12 @@ def get_all_experiments() -> List[ExperimentConfig]:
     ))
     experiments.append(ExperimentConfig(
         name="baseline_full_ft",
-        lora=None,  # 标记为全量微调
+        lora=None,  # mark as full fine-tuning
         train=base,
     ))
 
-    # ---- Gap-Init 基线 (arXiv:2602.01522) ----
-    # rank=1 + Gap-Init vs rank=8 标准LoRA
+    # ---- Gap-Init baseline (arXiv:2602.01522) ----
+    # rank=1 + Gap-Init vs rank=8 standard LoRA
     for rank in [1, 2, 4, 8]:
         experiments.append(ExperimentConfig(
             name=f"gap_init_r{rank}",
@@ -240,7 +240,7 @@ def get_all_experiments() -> List[ExperimentConfig]:
             train=base,
         ))
 
-    # ---- Null-LoRA 基线 ----
+    # ---- Null-LoRA baseline ----
     experiments.append(ExperimentConfig(
         name="null_lora_r8",
         lora=LoRAConfig(rank=8, alpha=16.0,

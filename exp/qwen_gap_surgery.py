@@ -1,24 +1,24 @@
-"""A1 #1：解码器式 VLM（Qwen2-VL）的 gap surgery 推广——云端脚本，先不执行。
+"""A1 #1: generalization of gap surgery to a decoder-style VLM (Qwen2-VL) — cloud script, not executed yet.
 
-复现 A1 核心签名在 decoder VLM 上是否成立：
-  - 鸿沟方向平移手术（图像侧 / 文本侧）下 top-1 与 τ 的崩塌曲线；
-  - 图像侧 vs 文本侧非对称（偏置场理论的预测：图像侧更致命）；
-  - CG 随 λ 的非单调行为。
-嵌入口径（decoder VLM 无 CLIP 式双塔，按如下定义）：
-  - 图像嵌入：model.visual(pixel_values) 输出 [B, T, D]，对 T 做 mean-pool 后 L2 归一化；
-  - 文本嵌入：纯文本前向（无图像），取末 token hidden_state，L2 归一化；
-  - 鸿沟：g = mean(类别文本嵌入) − mean(图像嵌入)，在 5k ImageNet 样本上估计。
+Does the core A1 signature still hold on a decoder VLM:
+  - the collapse curves of top-1 and τ under gap-direction shift surgery (image side / text side);
+  - image side vs text side asymmetry (the prediction of bias-field theory: the image side is more fatal);
+  - the non-monotonic behavior of CG as a function of λ.
+Embedding conventions (a decoder VLM has no CLIP-style dual tower, so define them as follows):
+  - image embedding: model.visual(pixel_values) outputs [B, T, D], mean-pool over T then L2-normalize;
+  - text embedding: pure-text forward pass (no image), take the last-token hidden_state, L2-normalize;
+  - gap: g = mean(class text embeddings) − mean(image embeddings), estimated on 5k ImageNet samples.
 
-⚠️ 模型权重规则（CLAUDE.md）：一律在服务器下载，禁止本地下载后上传。
-  服务器下载（二选一）：
+⚠️ Model weight rule (CLAUDE.md): always download on the server; uploading after a local download is forbidden.
+  Server download (pick one):
     HF_ENDPOINT=https://hf-mirror.com HF_HUB_DISABLE_XET=1 python -c "from huggingface_hub import snapshot_download; snapshot_download('Qwen/Qwen2-VL-2B-Instruct', local_dir='/root/models/qwen2vl-2b')"
     python -c "from modelscope import snapshot_download; snapshot_download('Qwen/Qwen2-VL-2B-Instruct', local_dir='/root/models/qwen2vl-2b')"
 
-用法（服务器）：
+Usage (server):
   python exp/qwen_gap_surgery.py --model /root/models/qwen2vl-2b \
       --parquet-dir data/imagenet_hf --sample 5000 --out outputs/a1_qwen_surgery.json
-显存：2B bf16 ≈ 8–10 GB（单卡可跑）；7B 需 ~24 GB。
-时长参考：5k 图像 × (1 冻结 + 8λ×2 侧) ≈ 17 次前向，A100 约 20–40 分钟。
+VRAM: 2B bf16 ≈ 8–10 GB (runs on a single GPU); 7B needs ~24 GB.
+Runtime reference: 5k images × (1 frozen + 8λ×2 sides) ≈ 17 forward passes, about 20–40 minutes on an A100.
 """
 import argparse
 import glob
@@ -42,11 +42,11 @@ def get_lm(model):
         return lm
     m = model.model
     lm = getattr(m, 'language_model', None)
-    return lm if lm is not None else m   # 4.48: model.model 即语言模型
+    return lm if lm is not None else m   # 4.48: model.model is the language model
 
 
 def text_embeddings(model, processor, texts, batch=16):
-    """纯文本前向（走语言模型），末 token hidden state 作为文本嵌入。"""
+    """Pure-text forward pass (through the language model), last-token hidden state as the text embedding."""
     tok = processor.tokenizer
     lm = get_lm(model)
     outs = []
@@ -65,8 +65,8 @@ def text_embeddings(model, processor, texts, batch=16):
 
 
 def image_embeddings(model, processor, images):
-    """视觉 token（已过 merger）再喂给语言模型，取末层隐藏状态 mean-pool。
-    两边嵌入同处 LM 空间，零样本相似度才有意义。"""
+    """Feed the vision tokens (already through the merger) to the language model, then mean-pool the last-layer hidden state.
+    Both embeddings then live in the same LM space, so the zero-shot similarity is meaningful."""
     ip = processor.image_processor
     lm = get_lm(model)
     outs = []
@@ -75,7 +75,7 @@ def image_embeddings(model, processor, images):
             out = ip(images=img, return_tensors='pt')
             px = out.pixel_values.to(model.device)
             grid = out.image_grid_thw.to(model.device)
-            v = model.visual(px, grid_thw=grid)        # [T, D]（已过 merger）
+            v = model.visual(px, grid_thw=grid)        # [T, D] (already through the merger)
             if hasattr(v, 'last_hidden_state'):
                 v = v.last_hidden_state
             elif isinstance(v, tuple):
@@ -90,7 +90,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--model', default='Qwen/Qwen2-VL-2B-Instruct')
     ap.add_argument('--local-only', action='store_true',
-                    help='离线读本地缓存（服务器无网/免 HF 访问时用）')
+                    help='read the local cache offline (for servers without network / to avoid HF access)')
     ap.add_argument('--parquet-dir', default='data/imagenet_hf')
     ap.add_argument('--sample', type=int, default=5000)
     ap.add_argument('--lambdas', default='-2,-1,-0.5,0,0.25,0.5,1,2')
@@ -128,7 +128,7 @@ def main():
     results = []
     for lam in [float(x) for x in args.lambdas.split(',')]:
         rec = {'lambda': lam}
-        # 图像侧平移
+        # image-side shift
         simg = norm(imf + lam * gap_norm * d_hat)
         si = (simg @ tf.T).float().cpu().numpy()
         taus_i = []
@@ -143,7 +143,7 @@ def main():
         rec['image_side'] = {'top1': float((si.argmax(1) == labels).mean() * 100),
                              'tau': float(np.mean(taus_i)),
                              'CG': float((tf.mean(0) - simg.mean(0)).norm().item())}
-        # 文本侧平移
+        # text-side shift
         stf = norm(tf + lam * gap_norm * d_hat)
         st = (imf @ stf.T).float().cpu().numpy()
         taus_t = []

@@ -1,8 +1,8 @@
 """
-5-Seed 统计验证 — Flickr30k
+5-Seed statistical validation — Flickr30k
 ============================
-4 实验 × 5 seed = 20 runs
-输出: outputs/flickr30k_seeds/{exp}/seed{seed}/results.json + 汇总
+4 experiments × 5 seeds = 20 runs
+Output: outputs/flickr30k_seeds/{exp}/seed{seed}/results.json + summary
 """
 
 import os, sys, json, time
@@ -18,7 +18,7 @@ from src.dataset import create_dataloaders
 SEEDS = [42, 123, 456, 789, 1024]
 DATA_DIR = "."
 
-# 实验定义（baseline_frozen 无随机性，从已有结果取）
+# Experiment definitions (baseline_frozen has no randomness, taken from existing results)
 EXPERIMENTS = [
     ("rq1_rank4",  LoRAConfig(rank=4,  alpha=8,   apply_to_vision=True,  apply_to_text=True)),
     ("rq1_rank32", LoRAConfig(rank=32, alpha=64,  apply_to_vision=True,  apply_to_text=True)),
@@ -63,9 +63,9 @@ def run_one(name, lora_cfg, seed):
 
 
 def summarize(all_results):
-    """计算 mean ± std 并输出汇总表"""
+    """Compute mean ± std and print the summary table"""
     print("\n" + "=" * 80)
-    print("5-Seed 统计验证 — 汇总")
+    print("5-Seed statistical validation — summary")
     print("=" * 80)
 
     summary = {}
@@ -99,11 +99,11 @@ def summarize(all_results):
         r1_str = f"{s['r1_mean']:.4f} ± {s['r1_std']:.4f}" if s['r1_mean'] is not None else "N/A"
         print(f"{exp_name:25s} {cg_str:25s} {r1_str:25s}")
 
-    # 保存
+    # save
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(f"{OUTPUT_DIR}/summary.json", 'w') as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
-    print(f"\n📁 汇总: {OUTPUT_DIR}/summary.json")
+    print(f"\n📁 summary: {OUTPUT_DIR}/summary.json")
 
     return summary
 
@@ -121,7 +121,7 @@ def main():
             run_idx += 1
             save_dir = f"{OUTPUT_DIR}/{exp_name}/seed{seed}"
             if os.path.exists(f"{save_dir}/results.json"):
-                print(f"\n⏭ [{run_idx}/{total_runs}] {exp_name} seed={seed} — 已完成，跳过")
+                print(f"\n⏭ [{run_idx}/{total_runs}] {exp_name} seed={seed} — already done, skipping")
                 with open(f"{save_dir}/results.json") as f:
                     all_results[exp_name][seed] = json.load(f)
                 continue
@@ -134,7 +134,7 @@ def main():
             result = run_one(exp_name, lora_cfg, seed)
             elapsed = time.time() - start
 
-            # 保存
+            # save
             os.makedirs(save_dir, exist_ok=True)
             with open(f"{save_dir}/results.json", 'w') as f:
                 json.dump(result, f, indent=2, ensure_ascii=False)
@@ -146,7 +146,7 @@ def main():
             print(f"   ✅ seed={seed}: R@1={r1}, loss={loss}, time={elapsed:.0f}s")
 
     total = time.time() - total_start
-    print(f"\n🎉 5-Seed 验证完成！总耗时: {total/60:.0f} 分钟")
+    print(f"\n🎉 5-Seed validation complete! Total time: {total/60:.0f} minutes")
 
     summary = summarize(all_results)
     return all_results, summary

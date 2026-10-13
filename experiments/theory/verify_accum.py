@@ -1,10 +1,10 @@
-"""验证：pilot 的 full_ft β=0.643 是否梯度累积伪影。
+"""Verification: is the pilot's full_ft β=0.643 a gradient accumulation artifact.
 
-同一脚本、同一训练设置（batch=32 适配 8GB），只改 gradient_accumulation_steps：
-  accum=1 (有效 batch 32)  vs  accum=4 (有效 batch 128)
-若 accum=4 时 β 显著大于 accum=1（~0.6 vs ~0.16），则实锤 pilot 差异来自有效 batch。
+Same script, same training setup (batch=32 to fit 8GB), only gradient_accumulation_steps changed:
+  accum=1 (effective batch 32)  vs  accum=4 (effective batch 128)
+If β at accum=4 is markedly larger than at accum=1 (~0.6 vs ~0.16), then the pilot difference is conclusively driven by effective batch.
 
-用法（本地 conda activate pytorch）：
+Usage (local conda activate pytorch):
     python experiments/theory/verify_accum.py
 """
 import os, sys, json, time
@@ -26,7 +26,7 @@ from src.dataset import create_dataloaders
 
 warnings_filter = True
 
-BATCH_SIZE = 32      # 8GB 显存适配（pilot/v1 用 128，云端；本地验证相对差异即可）
+BATCH_SIZE = 32      # fits 8GB VRAM (pilot/v1 used 128 on the cloud; local run only needs the relative difference)
 NUM_EPOCHS = 10
 MAX_SAMPLES = 10000
 LEARNING_RATE = 1e-4
@@ -92,7 +92,7 @@ def run_full_ft(accum, seed=SEED):
 if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     print("=" * 60)
-    print("验证：梯度累积对 full_ft β 的影响 (batch=32, seed=42)")
+    print("Verification: effect of gradient accumulation on full_ft β (batch=32, seed=42)")
     print("=" * 60)
     results = {}
     for acc in [1, 4]:
@@ -101,8 +101,8 @@ if __name__ == "__main__":
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
     print(f"\nSaved: {out_path}")
-    print(f"结论: accum=1 β={results['accum1']['beta']:.4f} vs "
+    print(f"Conclusion: accum=1 β={results['accum1']['beta']:.4f} vs "
           f"accum=4 β={results['accum4']['beta']:.4f}")
     if results['accum4']['beta'] and results['accum1']['beta']:
         ratio = results['accum4']['beta'] / results['accum1']['beta']
-        print(f"比值: {ratio:.1f}x  (>2x → 实锤有效 batch 驱动 β；~1x → accum 不是主因)")
+        print(f"Ratio: {ratio:.1f}x  (>2x → effective batch conclusively drives β; ~1x → accum is not the main cause)")

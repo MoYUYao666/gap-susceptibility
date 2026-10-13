@@ -1,12 +1,12 @@
-"""(修正版) 解码器侧风险模型线性度: 输入=相位表 7 个有限秩的 |ΔE| 均值, 记录完整输入以便复现。
-输出: outputs/llava_rank_linearity_v2.json
+"""(Corrected version) Linearity of the decoder-side risk model: input = the mean |ΔE| over the 7 finite ranks of the phase table, with the full input recorded for reproducibility.
+Output: outputs/llava_rank_linearity_v2.json
 """
 import json
 import numpy as np
 from scipy import stats
 
 RANKS = [4, 5, 6, 7, 8, 16, 20]
-DE = [-105.2, -21.0, 62.3, 191.5, 311.3, 1571.5, 2859.7]  # tab:phase 均值 (E2_results.json)
+DE = [-105.2, -21.0, 62.3, 191.5, 311.3, 1571.5, 2859.7]  # tab:phase mean (E2_results.json)
 x = np.array(RANKS, dtype=float)
 y = np.abs(np.array(DE, dtype=float))
 

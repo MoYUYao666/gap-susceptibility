@@ -1,8 +1,8 @@
-"""UATD (Xie et al., Scientific Data 2022) 全景协议——与 watertank/riku 同构。
-数据: data/second_sonar/UATD/data/{UATD_Training,UATD_Test_1,UATD_Test_2}
-标注: VOC xml(对象名 + 声呐参数);10 类;多类图 44.8%(取实例数最多类为图像级标签)。
-评测: Test_1+Test_2(1,600 图);训练: Training(7,600 图)。同调度 10ep FT;同陆地对照。
-输出: outputs/uatd_protocol.json
+"""UATD (Xie et al., Scientific Data 2022) full protocol---isomorphic to watertank/riku.
+Data: data/second_sonar/UATD/data/{UATD_Training,UATD_Test_1,UATD_Test_2}
+Annotations: VOC xml (object names + sonar parameters); 10 classes; 44.8% multi-class images (the most frequent class is taken as the image-level label).
+Eval: Test_1+Test_2 (1,600 images); train: Training (7,600 images). Same 10ep FT schedule; same terrestrial control.
+Output: outputs/uatd_protocol.json
 """
 import os, sys, json, glob, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -25,7 +25,7 @@ OUT = 'outputs/uatd_protocol.json'
 FT_WEIGHTS = 'outputs/uatd_clip_ft.pt'
 FR = 'outputs/ocean_clip_flickrft.pt'
 
-CLASS_ORDER = None  # 由训练集决定
+CLASS_ORDER = None  # determined by the training set
 
 
 def load_split(splits):
@@ -52,7 +52,7 @@ def load_split(splits):
             labels.append(c)
             cnt[c] += 1
     print('  %s: %d imgs' % ('+'.join(splits), len(imgs)), flush=True)
-    print('  类分布:', dict(cnt.most_common(15)), flush=True)
+    print('  class distribution:', dict(cnt.most_common(15)), flush=True)
     return imgs, labels
 
 
@@ -136,7 +136,7 @@ def protocol(tag, m, p, imgs, texts, labels, outdict):
 def main():
     tr, lab_tr0 = load_split(['UATD_Training'])
     te, lab_te0 = load_split(['UATD_Test_1', 'UATD_Test_2'])
-    # 类集 = 训练+测试全类并集(按频次排序;同时覆盖测试新类)
+    # class set = union of all classes over train+test (sorted by frequency; also covers classes new in test)
     allc = collections.Counter(lab_tr0 + lab_te0)
     names = [c for c, _ in allc.most_common()]
     idx = {c: i for i, c in enumerate(names)}
@@ -159,12 +159,12 @@ def main():
     protocol('flickrft', fr, p, open_imgs, texts, labels_te, outd)
     print('== domain FT ==', flush=True)
     m = CLIPModel.from_pretrained(MDIR, local_files_only=True).cuda().train()
-    m.logit_scale.requires_grad_(False)  # 固定温度: 10ep 同调度下大样本触发温度坍缩, 固定可复现
+    m.logit_scale.requires_grad_(False)  # fixed temperature: under the same 10ep schedule large samples trigger temperature collapse; fixing it keeps this reproducible
     for pp in m.parameters():
         pp.requires_grad_(True)
     opt = torch.optim.AdamW(m.parameters(), lr=5e-5, weight_decay=0.0)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=EPOCHS)
-    # 类平衡批采样: 每批每类 k 张(批内类重复导致对称 CE 退化为 ln32 的修复)
+    # class-balanced batch sampling: k images per class per batch (fix for symmetric CE degenerating to ln32 due to repeated classes within a batch)
     idx_by_cls = collections.defaultdict(list)
     for j, c in enumerate(labels_tr):
         idx_by_cls[int(c)].append(j)

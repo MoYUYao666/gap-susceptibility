@@ -1,11 +1,11 @@
-"""A2 提升②: top-1 失守界跨域验证 (Theorem 3 海洋版)。
-对 4 模型族 {bioclip, oceanclip, openclip_tf, siglip} × rare-species 67 类/1608 图:
-  (a) 确定性精确 (Theorem 3a, 真实 m): mean( any(λ‖g‖b_1j > d_1j) )     —— 与存档 predicted_rank1_loss_exact 对拍
-  (c) 相关结构高斯紧界 (Theorem 3c): r1 = 1 - ∫φ(u)∏Φ(σ_λ u + d_1j/(λ‖g‖σ_m)) du (λ>0; λ<0 用 Φ(c_j - u))
-  弱界: P(top-1 错) ≤ 5(1 - τ̄_meas)
-  实测保失率: (top1_0 - top1_λ)/top1_0
-输出: outputs/ocean_rank1_bound.json
-运行: conda run -n pytorch python tools/clip_ocean_rank1_bound.py
+"""A2 enhancement ②: cross-domain validation of the top-1 loss bound (ocean version of Theorem 3).
+For the 4 model families {bioclip, oceanclip, openclip_tf, siglip} × rare-species 67 classes/1608 images:
+  (a) deterministic exact (Theorem 3a, true m): mean( any(λ‖g‖b_1j > d_1j) )     —— cross-checked against the archived predicted_rank1_loss_exact
+  (c) correlated-structure Gaussian tight bound (Theorem 3c): r1 = 1 - ∫φ(u)∏Φ(σ_λ u + d_1j/(λ‖g‖σ_m)) du (λ>0; for λ<0 use Φ(c_j - u))
+  weak bound: P(top-1 wrong) ≤ 5(1 - τ̄_meas)
+  measured loss rate: (top1_0 - top1_λ)/top1_0
+Output: outputs/ocean_rank1_bound.json
+Run: conda run -n pytorch python tools/clip_ocean_rank1_bound.py
 """
 import os, sys, json, io
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -30,12 +30,12 @@ TEMPLATE = 'a photo of a {}'
 LAMBDAS = [-1.0, -0.5, -0.25, 0.0, 0.25, 0.5, 1.0, 2.0]
 OUT = 'outputs/ocean_rank1_bound.json'
 SUB = 'outputs/ocean_subset.json'
-U = np.arange(-8.0, 8.0 + 1e-9, 0.02)          # 数值积分网格 (与 A1 同)
+U = np.arange(-8.0, 8.0 + 1e-9, 0.02)          # numerical integration grid (same as A1)
 PHI = np.exp(-U ** 2 / 2) / np.sqrt(2 * np.pi)  # φ(u)
 
 
 def corr_bound_exact(d1j, lam, gnorm, sigma_m):
-    """Theorem 3c 正确实现: r1 = 1 - ∫φ(u) ∏_j Φ(σ_λ u + c_j) du, c_j = d_1j/(|λ|‖g‖σ_m)。"""
+    """Correct implementation of Theorem 3c: r1 = 1 - ∫φ(u) ∏_j Φ(σ_λ u + c_j) du, c_j = d_1j/(|λ|‖g‖σ_m)。"""
     lamg = abs(lam) * gnorm * sigma_m
     c = d1j / lamg
     prod = np.ones_like(U)
@@ -85,14 +85,14 @@ def run_model(tag, tf, base, labels_c, m_c, gnorm, d_hat):
     topk5 = np.argsort(-S, axis=1)[:, :5]
     sig = float(np.std(m_c))
     rows = {}
-    per_img = {l: [] for l in LAMBDAS}  # 每图存 (d1j, b1j)
+    per_img = {l: [] for l in LAMBDAS}  # store (d1j, b1j) per image
     for i in range(len(S)):
         k5 = topk5[i]
         s5 = S[i][k5]
         d_pairs = s5[:, None] - s5[None, :]
         dm = -(m_c[k5][:, None] - m_c[k5][None, :])
         per_img[i] = (d_pairs[0, 1:], dm[0, 1:])
-    # 实测 (τ, top1) 重算以对齐存档口径
+    # recompute the measured (τ, top1) to align with the archived convention
     measured = {}
     for l in LAMBDAS:
         with torch.no_grad():
@@ -111,12 +111,12 @@ def run_model(tag, tf, base, labels_c, m_c, gnorm, d_hat):
     top1_0 = measured['0.0']['top1']
     for l in LAMBDAS:
         d1j_all = np.concatenate([per_img[i][0] for i in range(len(S))])
-        # (a) 精确
+        # (a) exact
         ex = []
         for i in range(len(S)):
             d1, b1 = per_img[i]
             ex.append(float((l * gnorm * b1 > d1).any()))
-        # (c) 相关结构界: 逐图计算后平均
+        # (c) correlated-structure bound: computed per image then averaged
         cc = [corr_bound_exact(per_img[i][0], l, gnorm, sig) for i in range(len(S))]
         cc = np.array([x for x in cc if np.isfinite(x)])
         meas_keep_loss = (top1_0 - measured[str(l)]['top1']) / top1_0 if top1_0 > 0 else np.nan
@@ -141,7 +141,7 @@ def main():
     texts = [TEMPLATE.format(c) for c in classes]
     labels = np.array([classes.index(r['sciName']) for r in ds.select(idx)])
     res = {}
-    # open_clip 族 (bioclip / oceanclip)
+    # open_clip family (bioclip / oceanclip)
     for tag in ['bioclip', 'oceanclip']:
         print('== %s ==' % tag, flush=True)
         tf, base = ocm.embed(tag, ds, idx, texts)
@@ -153,7 +153,7 @@ def main():
         json.dump(res, open(OUT, 'w', encoding='utf-8'), indent=1)
         del tf, base
         torch.cuda.empty_cache()
-    # transformers 族 (openclip_tf / siglip)
+    # transformers family (openclip_tf / siglip)
     for tag, mdir in [('openclip_tf', 'models/openclip'), ('siglip', 'models/siglip-base-patch16-224')]:
         print('== %s ==' % tag, flush=True)
         if tag == 'siglip':

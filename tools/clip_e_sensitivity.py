@@ -1,8 +1,8 @@
-"""合并稿提升#1: 跨 E 敏感性——Γ 排序是否依赖对齐能量 E 的选取。
-CLIP ViT-B/32 冻结; K=4 块(vision trunk / visual_projection / text model / text_projection);
-E 变体: E1=DG* 均方对距, E2=GD(质心+标准差), E3=负平均余弦;
-u=InfoNCE 任务梯度(同批); Γ_k=<∇_kE, ∇_kL>; 报告 3 种 E 下的块排序 + Kendall W(一致性)。
-输出: outputs/e_sensitivity.json
+"""Merged-paper improvement #1: cross-E sensitivity — does the Γ ordering depend on the choice of alignment energy E.
+CLIP ViT-B/32 frozen; K=4 blocks (vision trunk / visual_projection / text model / text_projection);
+E variants: E1=DG* mean squared pair distance, E2=GD (centroid + standard deviation), E3=negative mean cosine;
+u=InfoNCE task gradient (same batch); Γ_k=<∇_kE, ∇_kL>; report the block ordering under the 3 E variants + Kendall W (consistency).
+output: outputs/e_sensitivity.json
 """
 import os, sys, json, io, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -22,8 +22,8 @@ TEMPLATE = 'a photo of a {}'
 
 
 def block_grads(m, grad_map, imgs_enc, txt_enc, loss_fn):
-    """loss_fn(scaled_cos) -> loss; 返回每块梯度对 (gE, gL)。"""
-    pass  # 简化: 直接在 main 中做
+    """loss_fn(scaled_cos) -> loss; return the per-block gradient pair (gE, gL)."""
+    pass  # simplification: done directly in main
 
 
 def main():
@@ -41,12 +41,12 @@ def main():
     m = CLIPModel.from_pretrained(MDIR, local_files_only=True).cuda().eval()
     p = CLIPProcessor.from_pretrained(MDIR, local_files_only=True)
 
-    # 冻结全模型但保留要求的参数梯度路径(块粒度投影)
+    # freeze the entire model but keep the required parameter gradient paths (block-level projection)
     for prm in m.parameters():
         prm.requires_grad = True
     blocks = {'vision_trunk': None, 'visual_projection': None,
               'text_model': None, 'text_projection': None}
-    # 参数映射
+    # parameter mapping
     par = dict(m.named_parameters())
     blk_of = {}
     for name, prm in par.items():
@@ -98,7 +98,7 @@ def main():
         def e3(zI, zT):
             return -(zI @ zT.T).mean()
 
-        # 任务梯度(InfoNCE): 48 图配对 48 个抽样类文本(无放回, 同批内对齐)
+        # task gradient (InfoNCE): 48 images paired with 48 sampled class texts (without replacement, aligned within the batch)
         sel = np.random.RandomState(bi).choice(len(classes), 48, replace=False)
         tids = p(text=[TEMPLATE.format(classes[kk]) for kk in sel], return_tensors='pt',
                  padding=True)['input_ids'].to('cuda')
@@ -112,7 +112,7 @@ def main():
             return (F.cross_entropy(logits, lab) + F.cross_entropy(logits.T, lab)) / 2
 
         for name, efn in [('E1_DGstar', e1), ('E2_GD', e2), ('E3_negcos', e3)]:
-            # 双通道: 重算两个梯度并逐参数点积(单批, 两次 backward)
+            # two-channel: recompute both gradients and take the per-parameter dot product (single batch, two backward passes)
             m.zero_grad()
             with torch.enable_grad():
                 v_out = m.vision_model(**{'pixel_values': xs})
@@ -141,7 +141,7 @@ def main():
         out[name] = {b: (round(float(np.mean(v)), 2) if isinstance(v, list) and v else None)
                      for b, v in d.items() if b != '_Evalue'}
         out[name]['_Evalue'] = round(float(np.mean(d['_Evalue'])), 3)
-    # Kendall W: 各 E 下块序一致性
+    # Kendall W: block-order consistency across the E variants
     from scipy import stats
     orderings = {}
     for name, d in out.items():
@@ -149,7 +149,7 @@ def main():
         vals = np.array([d[k] for k in keys])
         orderings[name] = [k for k in keys]
         orderings[name] = [keys[i] for i in np.argsort(-vals)]
-    # 配对 Spearman/Kendall 相关系数
+    # pairwise Spearman/Kendall correlation coefficients
     ks = list(out.keys())
     cons = {}
     for i in range(len(ks)):

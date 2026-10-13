@@ -1,8 +1,8 @@
-"""BH-FDR 校正: 相变章节全部报告的 p 值族(局限 12)。输出 outputs/bh_fdr_correction.json"""
+"""BH-FDR correction: the family of p-values reported throughout the phase-transition section (limitation 12). Writes outputs/bh_fdr_correction.json"""
 import json
 import numpy as np
 
-# 名称, p 值, 来源(论文 tab:phase 讨论)
+# name, p-value, source (paper tab:phase discussion)
 tests = [
     ('sharegpt_r5_eq0', 0.92, 'ShareGPT r=5 sign test (n=3)'),
     ('llava_r5_eq0', 0.37, 'LLaVA r=5 sign test (n=3)'),

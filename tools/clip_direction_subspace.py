@@ -1,8 +1,8 @@
-"""A2 扩展 E4: 方向解析算子 v2 —— k=1/2/3 方向子空间投影。
-对 marine(bioclip)+sonar(frozen) 退化集: 方向源 = 退化对均值方向集(前 k 个),
-每图 α_i∈R^k, 反转条件 Σ_k α_ik (e_k·t_j - e_k·t_i) > d_ij。
-输出: outputs/direction_subspace.json
-运行: conda run -n pytorch python tools/clip_direction_subspace.py
+"""A2 extension E4: direction-resolution operator v2 — k=1/2/3 direction subspace projection.
+On the marine(bioclip)+sonar(frozen) degraded set: direction sources = mean direction set of the degraded pairs (first k),
+per image α_i∈R^k, reversal condition Σ_k α_ik (e_k·t_j - e_k·t_i) > d_ij.
+Output: outputs/direction_subspace.json
+Run: conda run -n pytorch python tools/clip_direction_subspace.py
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -63,9 +63,9 @@ def sub_pred(enc_f, tf, imgs, degs, res_tag):
         tm = float(np.mean([stats.kendalltau(S0[i][topk5[i]], Sd[i][topk5[i]])[0]
                             for i in range(len(S0))
                             if np.std(S0[i][topk5[i]]) > 1e-12 and np.std(Sd[i][topk5[i]]) > 1e-12]))
-        # 方向子空间: 跨退化共享的均值方向集 (Gram-Schmidt 正交化)
+        # direction subspace: mean direction set shared across degradations (Gram-Schmidt orthogonalization)
         e1 = delta.mean(0); e1 = e1 / (np.linalg.norm(e1) + 1e-12)
-        # k=2/3: 用 PCA 前 k-1 分量扩充
+        # k=2/3: augmented with the top k-1 PCA components
         X = delta - delta.mean(0)
         _, _, vh = np.linalg.svd(X, full_matrices=False)
         dirs = [e1]
@@ -81,7 +81,7 @@ def sub_pred(enc_f, tf, imgs, degs, res_tag):
             E = np.stack(dirs[:k])
             alpha = delta @ E.T  # n x k
             proj = E @ tfn.T  # k x n_classes
-            # 每图: 每方向 e_kk 的类偏置差分矩阵 (10 对)
+            # per image: class-bias difference matrix for each direction e_kk (10 pairs)
             dm_full = np.zeros((len(S0), k, d_up[0].shape[0]))
             for i in range(len(S0)):
                 pk = proj[:, topk5[i]]

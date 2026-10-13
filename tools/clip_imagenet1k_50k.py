@@ -1,8 +1,8 @@
-"""ImageNet-1K 全量 50k val 双协议零样本评测。
-协议 A: plain 类名 + 单模板 'a photo of a {}'
-协议 B: synset 全名 + 单模板
-模型: frozen / text_only_r8 / both_r8（原 checkpoint）+ full FT 三 seed（重训）
-结果存 outputs/imagenet1k_zs_50k_plain.json 与 outputs/imagenet1k_zs_50k_synset.json（不覆盖子集档案）。
+"""ImageNet-1K full 50k val two-protocol zero-shot evaluation.
+Protocol A: plain class names + single template 'a photo of a {}'
+Protocol B: full synset names + single template
+Models: frozen / text_only_r8 / both_r8 (original checkpoints) + full FT three seeds (retrained)
+Results saved to outputs/imagenet1k_zs_50k_plain.json and outputs/imagenet1k_zs_50k_synset.json (does not overwrite the subset archives).
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -12,7 +12,7 @@ from glob import glob
 from datasets import Dataset
 PARQ = sorted(glob('data/imagenet_hf/*.parquet'))
 ds = Dataset.from_parquet(PARQ)
-print('50k 分片已加载:', len(ds), '张,', len(PARQ), '个分片', flush=True)
+print('50k shards loaded:', len(ds), 'images,', len(PARQ), 'shards', flush=True)
 names_full = ds.features['label'].names
 names_plain = [n.split(',')[0].strip() for n in names_full]
 

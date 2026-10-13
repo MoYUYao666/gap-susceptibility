@@ -1,6 +1,6 @@
-"""补强实验 ⑥: CLIP 族 2×2 判别——CLIP ViT-B-32 基座 × {Flickr FT, Marine FT}（10ep 匹配规模）。
-检验 σ_m 压平的域特异性是否跨模型族成立（当前仅在 bioclip 基座上验证过）。
-输出: outputs/ocean_clip_flickrft.pt / ocean_clip_marineft.pt + ocean_clip2x2.json
+"""Reinforcement experiment (6): CLIP-family 2×2 discrimination — CLIP ViT-B-32 backbone × {Flickr FT, Marine FT} (10ep matched scale).
+Tests whether the domain specificity of the σ_m flattening holds across model families (so far verified only on the bioclip backbone).
+Output: outputs/ocean_clip_flickrft.pt / ocean_clip_marineft.pt + ocean_clip2x2.json
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'

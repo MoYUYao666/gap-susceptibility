@@ -32,7 +32,7 @@ pdl() {  # pdl <url> <dest>
   echo "  OK $sz B in $((t1-t0))s  → $(( sz / (t1-t0+1) )) B/s"
 }
 
-# 小文件先取（快）
+# Fetch small files first (faster)
 for repo_dir in "openai/clip-vit-base-patch32:models/clip-vit-base-patch32" \
                 "openai/clip-vit-base-patch16:models/clip-vit-base-patch16"; do
   repo="${repo_dir%%:*}"; d="${repo_dir##*:}"

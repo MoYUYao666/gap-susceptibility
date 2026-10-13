@@ -1,4 +1,4 @@
-"""验证 exp rank_pattern 正确注入(快速, 无训练)。"""
+"""Verify that the exp rank_pattern is injected correctly (fast, no training)."""
 import os, re, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 import torch

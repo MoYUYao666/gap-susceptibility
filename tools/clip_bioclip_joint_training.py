@@ -1,8 +1,8 @@
-"""(e) 双分支联合(协同训练)优化——共享文本塔同批学两类目标。
-A: rare-species 图 × 类提示(分类学分枝) B: ML16K 帧 × QA 文本(自然语言分枝)
-每步: A/B 各 16 对 → 对称对比损失分别计算后平均; 双塔 LoRA; 10ep。
-评估: fish-67(σ_m/τ/top1)+ ML16K 检索 R@1。对照(LoRA 单一目标 / FullFT)。
-输出: outputs/bioclip_joint_training.json
+"""(e) Dual-branch joint (co-training) optimization -- a shared text tower learns both objectives in the same batch.
+A: rare-species images × class prompts (taxonomic branch) B: ML16K frames × QA text (natural-language branch)
+Each step: 16 pairs each from A/B → symmetric contrastive losses computed separately then averaged; dual-tower LoRA; 10ep.
+Evaluation: fish-67(σ_m/τ/top1)+ ML16K retrieval R@1. Controls (LoRA single objective / FullFT).
+Output: outputs/bioclip_joint_training.json
 """
 import os, sys, json, glob, io
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -45,7 +45,7 @@ def main():
         os.path.join('data/rare-species/data', f) for f in os.listdir('data/rare-species/data')),
         split='train')
     A = []
-    tr_classes = sorted(classes)[:57]  # 留出最后 10 类评测真实泛化
+    tr_classes = sorted(classes)[:57]  # hold out the last 10 classes to evaluate true generalization
     for j in idx:
         b = dd[j]['file_name']
         if dd[j]['sciName'] not in tr_classes:
@@ -122,7 +122,7 @@ def main():
         losses.append(round(tot / max(cnt, 1), 4))
         print('  ep%d loss=%.4f' % (ep + 1, losses[-1]), flush=True)
 
-    # fish-67 协议
+    # fish-67 protocol
     cls = classes
     labels_t = torch.tensor([classes.index(r['sciName']) for r in dd.select(idx)])
     cfg = dict(kind='openclip', model=m, pre=pre, tag='bioclip')

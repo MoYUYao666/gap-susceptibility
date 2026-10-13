@@ -1,9 +1,9 @@
-"""A1 E2b + E3b：
-E2b —— 输入依赖的低秩扰动场（每图独立随机子空间/向量）vs 全局低秩（已跑）→ 测 P2v3
-      （保序性来自场的输入依赖性，而非子空间低秩性）。
-E3b —— 真实 checkpoint 的 τ 全家桶：text_only_r8 / both_r8 / full_ft_s{42,123,999}
-      在 ImageNet 5000 抽样上的 top-1 与 τ（vs frozen 排序）。
-结果存 outputs/a1_e2b_e3b.json。
+"""A1 E2b + E3b:
+E2b --- input-dependent low-rank perturbation field (per-image independent random subspace/vector) vs global low-rank (already run) → test P2v3
+      (order preservation comes from the input dependence of the field, not from the low-rankness of the subspace).
+E3b --- the full τ suite over real checkpoints: text_only_r8 / both_r8 / full_ft_s{42,123,999}
+      top-1 and τ on the ImageNet 5000 sample (vs the frozen ranking).
+Results are stored in outputs/a1_e2b_e3b.json.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -93,22 +93,22 @@ def evaluate(img2):
 results = {'E2b_input_dependent': [], 'E3b_real_checkpoints': []}
 D = base.shape[1]
 
-# ---------- E2b: 输入依赖低秩场 ----------
+# ---------- E2b: input-dependent low-rank field ----------
 for k in [1, 16, 64]:
-    Q = torch.tensor(rng.randn(N, D, D), dtype=torch.float32, device='cuda')  # 每图独立随机基底
-    # 用每图随机 k 维子空间：取 Q_i 的前 k 列做 QR 投影
+    Q = torch.tensor(rng.randn(N, D, D), dtype=torch.float32, device='cuda')  # per-image independent random basis
+    # use a per-image random k-dimensional subspace: take the first k columns of Q_i and project
     with torch.no_grad():
         Qi = Q[:, :, :k]
-        # 每图独立正交化（简化：直接用未正交化的列 + 归一化扰动）
+        # per-image independent orthogonalization (simplified: use the non-orthogonalized columns directly + a normalized perturbation)
         v = torch.tensor(rng.randn(N, k), dtype=torch.float32, device='cuda')
         delta = (Qi @ v.unsqueeze(-1)).squeeze(-1)
         delta = delta / delta.norm(dim=-1, keepdim=True)
         img2 = F.normalize(base + gap_norm * delta, dim=-1)
     t1, tau = evaluate(img2)
     results['E2b_input_dependent'].append({'k': k, 'top1': round(t1, 2), 'tau_top5': round(tau, 4)})
-    print('E2b 输入依赖低秩 k=%d: top1=%.2f tau=%.4f' % (k, t1, tau), flush=True)
+    print('E2b input-dependent low-rank k=%d: top1=%.2f tau=%.4f' % (k, t1, tau), flush=True)
 
-# ---------- E3b: 真实 checkpoint τ ----------
+# ---------- E3b: real checkpoint τ ----------
 def load_ckpt(ckpt, vision, text):
     m, lora_layers, _ = apply_lora_to_model(
         CLIPModel.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True),

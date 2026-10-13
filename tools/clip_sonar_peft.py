@@ -1,8 +1,8 @@
-"""A3 增强①: 声呐 PEFT 保护性（与 A2 PEFT 同构）。
-对 SonarCLIP 同源数据(650 图/8 类 + 类名提示)做 {lora_text, lora_both, bitfit}×10ep(同调度),
-训练后探针: 海洋探针同构 — 任务 R@1(类条件 i2t/t2i) + 声呐零样本 top-1 + τ@λ=1 + σ_m;
-与已有 sonar FullFT(sonar_ft) 对比保护性。
-输出: outputs/sonar_peft.json
+"""A3 enhancement 1: sonar PEFT protectiveness (isomorphic to A2 PEFT).
+On SonarCLIP same-source data (650 images / 8 classes + class-name prompts), run {lora_text, lora_both, bitfit}×10ep (same schedule),
+post-training probes: same marine probe design — task R@1 (class-conditional i2t/t2i) + sonar zero-shot top-1 + τ@λ=1 + σ_m;
+protectiveness compared with the existing sonar FullFT (sonar_ft).
+Output: outputs/sonar_peft.json
 """
 import os, sys, json, collections
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -81,7 +81,7 @@ def probe(m, p, imgs, texts, labels, freeze):
         t, _ = stats.kendalltau(r1, r2)
         if np.isfinite(t):
             taus.append(t)
-    # 检索 R@1 (类条件, 与 A2 协议一致): i2t == top-1; t2i 为文本→图
+    # retrieval R@1 (class-conditional, same protocol as A2): i2t == top-1; t2i is text→image
     i2t = float((S0.argmax(1) == labels).mean())
     t2i = float(np.mean([labels[int(S0[:, c].argmax())] == c for c in range(len(CLASSES))]))
     return {'top1_0': round(float((S0.argmax(1) == labels).mean() * 100), 3),
@@ -151,7 +151,7 @@ def main():
         json.dump(res, open(OUT, 'w', encoding='utf-8'), indent=1)
         del m
         torch.cuda.empty_cache()
-    # 参考: 已有 FullFT 结果(sonar_protocol.json sonar_ft)
+    # reference: existing FullFT results (sonar_protocol.json sonar_ft)
     sp = json.load(open('outputs/sonar_protocol.json', encoding='utf-8'))
     res['fullft'] = {'top1_0': sp['sonar_ft']['top1_0'],
                      'tau_l1': [r['tau_meas'] for r in sp['sonar_ft']['rows'] if r['lambda'] == 1.0][0],

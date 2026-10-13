@@ -1,10 +1,10 @@
-"""P1 保护性实验（海洋版）：目标域微调后，海洋零样本是否被 PEFT 保护？
-结构忠实 Paper 1：在 Flickr30k（陆地检索任务）上微调，探针 = 任务 R@1（Flickr val）+
-零样本保持（海洋 rare-species 子集 top-1 / τ / CG，d̂ 同 phase-1a 协议）。
-方法: LoRA-text / LoRA-both / BitFit / FullFT（Adapter 略，peft 0.19 对 open_clip 适配不完整，报告中披露）
-模型: oceanclip（主角）x 4 方法 + bioclip（对照）x {LoRA-text, FullFT}
-数据: Flickr30k train[0:1000] 训练, train[2000:2500] 验证;  10 epoch, lr 1e-4 (FullFT 5e-5), cosine, fp32
-输出: outputs/ocean_peft.json
+"""P1 protective experiment (marine version): after target-domain fine-tuning, is marine zero-shot protected by PEFT?
+Structurally faithful to Paper 1: fine-tune on Flickr30k (terrestrial retrieval task), probes = task R@1 (Flickr val) +
+zero-shot retention (marine rare-species subset top-1 / τ / CG, d̂ as in the phase-1a protocol).
+Methods: LoRA-text / LoRA-both / BitFit / FullFT (Adapter omitted: peft 0.19 does not fully support open_clip; disclosed in the report)
+Models: oceanclip (main subject) x 4 methods + bioclip (control) x {LoRA-text, FullFT}
+Data: Flickr30k train[0:1000] for training, train[2000:2500] for validation;  10 epoch, lr 1e-4 (FullFT 5e-5), cosine, fp32
+Output: outputs/ocean_peft.json
 """
 import os, sys, json, io
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -46,7 +46,7 @@ def load_base(tag):
 
 
 def build_flickr():
-    """Flickr30k: flickr30k-images/*.jpg + flickr30k.json [{'image','captions':[...]}] → (路径, caption)。"""
+    """Flickr30k: flickr30k-images/*.jpg + flickr30k.json [{'image','captions':[...]}] → (path, caption)."""
     import json as _j
     img_dir = os.path.join('flickr30k', 'flickr30k-images')
     data = _j.load(open(os.path.join('flickr30k', 'flickr30k.json'), encoding='utf-8'))
@@ -95,7 +95,7 @@ def eval_marine(m, pre, ds, idx, texts, labels, tok):
         base = torch.cat(feats)
     S = (base @ tf.T).cpu().numpy()
     top1 = float((S.argmax(1) == labels).mean() * 100)
-    # τ: 需要"手术后"对照才有意义; 此处记录冻结 τ 定义上的替代: 与 base 一致的 triv 1.0, 直接记 CG
+    # τ: only meaningful with a "post-surgery" control; here we record a surrogate on the frozen τ definition: trivially 1.0 as for base, and log CG directly
     cg = (base.mean(0) - tf.mean(0)).norm().item()
     return {'top1': round(top1, 3), 'CG': round(cg, 4)}
 
@@ -142,7 +142,7 @@ def train_eval(tag, method, pairs, tok, m, pre, ds, idx, texts, labels, marine_i
             xs = torch.stack([pre(Image.open(tr_paths[j])) for j in sel]).to('cuda')
             txt = tok([tr_caps[j] for j in sel]).to('cuda')
             opt.zero_grad()
-            with torch.cuda.amp.autocast():  # fp16 前向
+            with torch.cuda.amp.autocast():  # fp16 forward
                 if_ = m.encode_image(xs)
                 tf_ = m.encode_text(txt)
                 if_ = F.normalize(if_, dim=-1)
@@ -157,7 +157,7 @@ def train_eval(tag, method, pairs, tok, m, pre, ds, idx, texts, labels, marine_i
         sched.step()
         print('  [%s/%s] ep%d loss=%.4f' % (tag, method, ep, total / max(1, len(range(0, 1000, 64)))), flush=True)
 
-    # 任务 R@1（val 500）
+    # task R@1 (val 500)
     m.eval()
     def r_at_1(imgs_p, caps_p, bs=64):
         i2t_l, t2i_l = [], []

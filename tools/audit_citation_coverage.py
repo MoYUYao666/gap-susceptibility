@@ -1,4 +1,4 @@
-"""快速引用覆盖检查: bib 条目 vs 正文 \\cite 键(修复转义问题)。"""
+"""Quick citation coverage check: bib entries vs body \\cite keys (escape issue fixed)."""
 import re
 import glob
 

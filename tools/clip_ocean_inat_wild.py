@@ -1,7 +1,7 @@
-"""补强 ⑨: iNaturalist 野生照片来源复验（跨来源稳健性）。
-用 ocean_subset_fauna.json 的海洋学名, 经 iNat API 检索 taxon id → 拉观察照片（野生, 真实名标签,
-CC 许可公开数据）→ 按我们的协议（d̂=类文本质心差, λ 手术, margins 分析）在 iNat 子集上复验。
-输出: data/inat_wild/{species}/*.jpg + outputs/ocean_inat_wild.json
+"""Reinforcement ⑨: re-verification with iNaturalist wild-photo provenance (cross-source robustness).
+Use the marine scientific names from ocean_subset_fauna.json, look up the taxon id via the iNat API → pull observation photos (wild, real name labels,
+CC-licensed public data) → re-verify on the iNat subset following our protocol (d̂=class text centroid difference, λ surgery, margins analysis).
+Output: data/inat_wild/{species}/*.jpg + outputs/ocean_inat_wild.json
 """
 import os, sys, json, time
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
@@ -18,7 +18,7 @@ import open_clip
 TEMPLATE = 'a photo of a {}'
 API = 'https://api.inaturalist.org/v1'
 TOP_N = 50
-PER_SPECIES = 15        # 每物种最多取图
+PER_SPECIES = 15        # max images fetched per species
 MIN_PER_CLASS = 8
 MAX_PER_CLASS = 12
 IMG_DIR = 'data/inat_wild'
@@ -115,14 +115,14 @@ def analyze(tf, base, labels, m_c, gnorm, dH):
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else 'all'
     classes = load_subset_info()
-    print('目标物种(按图数 top%d): %d 模式=%s' % (TOP_N, len(classes), mode), flush=True)
+    print('target species (by image count, top%d): %d mode=%s' % (TOP_N, len(classes), mode), flush=True)
     per_sp = {}
     if mode in ('all', 'collect'):
         tok_save = {}
         for c in classes:
             tid = find_taxon(c)
             if tid is None:
-                print('  %-40s 未找到 taxon' % c, flush=True)
+                print('  %-40s taxon not found' % c, flush=True)
                 continue
             urls = fetch_photos(tid)
             got = download(c, urls)
@@ -131,7 +131,7 @@ def main():
         json.dump(per_sp, open(os.path.join(IMG_DIR, 'per_species.json'), 'w', encoding='utf-8'), indent=1)
     else:
         per_sp = json.load(open(os.path.join(IMG_DIR, 'per_species.json'), encoding='utf-8'))
-    # 构建子集（≥8 图）
+    # build the subset (≥8 images)
     keep = {c: sorted(f for f in os.listdir(os.path.join(IMG_DIR, c.replace(' ', '_')))
                       if f.endswith('.jpg'))[:MAX_PER_CLASS]
             for c, g in per_sp.items() if g >= MIN_PER_CLASS}
@@ -146,7 +146,7 @@ def main():
             imgs.append(Image.open(os.path.join(d, f)).convert('RGB'))
             labels.append(ci)
     labels = np.array(labels)
-    print('子集: %d 类 / %d 图' % (len(classes2), len(imgs)), flush=True)
+    print('subset: %d classes / %d images' % (len(classes2), len(imgs)), flush=True)
     res = {'n_species': len(classes2), 'n_images': len(imgs), 'per_species': per_sp}
     tok = open_clip.get_tokenizer('ViT-B-16')
     for tag in ['bioclip', 'oceanclip']:

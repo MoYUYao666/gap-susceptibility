@@ -1,6 +1,6 @@
-"""riku-1825 FLS 数据集经 jsDelivr 逐文件镜像下载(绕过 GitHub 大包 TLS 中断)。
-清单: GitHub API tree(images + 标注);URL: cdn.jsdelivr.net/gh/<repo>@main/<path>
-8 并发 + 重试;输出 data/second_sonar/riku1825/<path>
+"""File-by-file jsDelivr mirror download of the riku-1825 FLS dataset (bypasses TLS interruptions on large GitHub bundles).
+Manifest: GitHub API tree (images + annotations); URL: cdn.jsdelivr.net/gh/<repo>@main/<path>
+8 concurrent workers + retries; output data/second_sonar/riku1825/<path>
 """
 import json
 import os

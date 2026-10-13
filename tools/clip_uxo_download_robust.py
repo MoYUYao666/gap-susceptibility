@@ -1,5 +1,5 @@
-"""稳健续传:显式 Range(bytes=S-) 追加,仅 206 才写,进度写日志。
-保证主文件单调增长(不依赖 curl -C - 的隐式行为)。
+"""Robust resume: explicit Range(bytes=S-) append, write only on 206, log progress.
+Guarantees the main file grows monotonically (no reliance on curl -C - implicit behavior).
 """
 import os, subprocess, time, sys
 
@@ -25,7 +25,7 @@ for it in range(3000):
     if s != last:
         log('size=%d (%.1f%%)' % (s, 100.0 * s / TOTAL))
         last = s
-    # 显式 Range 请求小分块(服务端对大 Range 返回 504;64MB 分块稳定 206)
+    # explicit Range request for a small chunk (server returns 504 for a large Range; 64MB chunks reliably give 206)
     hi = min(TOTAL - 1, s + CHUNK - 1)
     r = subprocess.run(
         ['curl.exe', '-sS', '-L', '--max-time', '900', '--speed-time', '60',

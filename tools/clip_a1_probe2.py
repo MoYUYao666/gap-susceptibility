@@ -1,6 +1,6 @@
-"""A1 探针 2：排序保持性验证。
-测 (a) 全局平移各 λ 下 ImageNet 类级排序 Kendall τ vs λ=0；(b) 真实 both_r8 微调 vs frozen 的 τ。
-预测：τ(全局平移) 随 λ 崩塌；τ(both_r8) 保持高位 → 解耦机制 = 训练扰动的排序保持性。
+"""A1 probe 2: rank-preservation verification.
+Measure (a) ImageNet class-level ranking Kendall τ vs λ=0 under global shifts at each λ; (b) τ of real both_r8 fine-tuning vs frozen.
+Prediction: τ(global shift) collapses with λ; τ(both_r8) stays high → decoupling mechanism = rank preservation of the training perturbation.
 """
 import os, sys, json
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -20,7 +20,7 @@ from scipy import stats
 
 TEMPLATE = 'a photo of a {}'
 LAMBDAS = [0.5, 1.0, 2.0]
-N_SAMPLE = 5000  # τ 用 5000 张抽样即可
+N_SAMPLE = 5000  # 5000 sampled images are enough for τ
 
 model = CLIPModel.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True).cuda().eval()
 processor = CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True)
@@ -55,7 +55,7 @@ def text_feats(m):
     return F.normalize(m.text_projection(pooled), dim=-1)
 
 
-# gap 方向（Flickr30k val）
+# gap direction (Flickr30k val)
 ds_f = Flickr30kDataset('flickr30k', split='train', max_samples=None, pre_tokenize=True)
 val_ds = torch.utils.data.Subset(ds_f, range(2000, 3000))
 loader = DataLoader(val_ds, batch_size=64, shuffle=False, num_workers=0, collate_fn=_collate_fn)
@@ -75,11 +75,11 @@ tf = text_feats(model)
 base = img_feats(model)          # frozen, λ=0
 base_sims = base @ tf.T
 base_top1 = (base_sims.argmax(1).cpu() == torch.tensor(sub['label'])).float().mean().item() * 100
-print('frozen top-1 (5k 抽样) = %.2f%%' % base_top1, flush=True)
+print('frozen top-1 (5k sample) = %.2f%%' % base_top1, flush=True)
 
 
 def kendall_topk(rank_a, rank_b, k=5):
-    """类级 top-k 集合的 Kendall τ 平均（逐图计算前 k 个类的秩相关，再平均）。"""
+    """Mean Kendall τ of the class-level top-k set (per-image rank correlation over the top k classes, then averaged)."""
     taus = []
     topk = np.argsort(-rank_a, axis=1)[:, :k]
     for i in range(len(rank_a)):
@@ -101,7 +101,7 @@ for lam in LAMBDAS:
     results['lambda_%+.1f' % lam] = {'top1': round(top1, 2), 'kendall_tau_top5': round(tau, 4)}
     print('λ=%+.1f  top-1=%.2f%%  τ_top5=%.4f' % (lam, top1, tau), flush=True)
 
-# 真实 both_r8 微调
+# real both_r8 fine-tuning
 m2, lora_layers, _ = apply_lora_to_model(
     CLIPModel.from_pretrained('openai/clip-vit-base-patch32', local_files_only=True),
     rank=8, alpha=16.0, apply_to_vision=True, apply_to_text=True)
@@ -117,7 +117,7 @@ with torch.no_grad():
     ft_top1 = (ft_sims.argmax(1).cpu() == torch.tensor(sub['label'])).float().mean().item() * 100
     ft_tau = kendall_topk(base_sims.cpu().numpy(), ft_sims.cpu().numpy(), k=5)
 results['both_r8_ft'] = {'top1': round(ft_top1, 2), 'kendall_tau_top5': round(ft_tau, 4)}
-print('both_r8 微调: top-1=%.2f%%  τ_top5=%.4f' % (ft_top1, ft_tau), flush=True)
+print('both_r8 fine-tuned: top-1=%.2f%%  τ_top5=%.4f' % (ft_top1, ft_tau), flush=True)
 
 json.dump({'frozen_top1_5k': round(base_top1, 2), 'gap_norm': round(gap_norm, 4),
            'results': results}, open('outputs/a1_probe2_tau.json', 'w', encoding='utf-8'), indent=2)

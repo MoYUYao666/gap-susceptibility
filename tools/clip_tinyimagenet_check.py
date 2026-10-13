@@ -1,23 +1,23 @@
-"""验证 imagenet_zs 实验是否用了 TinyImageNet：测 frozen CLIP ViT-B/32 在 TinyImageNet-200 val 的 zero-shot top-1。
-对比论文 60.72%（声称 CIFAR-100，实际疑似 ImageNet 系列）。"""
+"""Check whether the imagenet_zs experiment used TinyImageNet: measure zero-shot top-1 of frozen CLIP ViT-B/32 on TinyImageNet-200 val.
+Compared against the paper value 60.72% (claimed CIFAR-100, but actually looks like an ImageNet variant)."""
 import os, zipfile, shutil
-os.environ.setdefault('HF_HUB_OFFLINE', '1')  # CLIP 已缓存
+os.environ.setdefault('HF_HUB_OFFLINE', '1')  # CLIP already cached
 import torch
 from transformers import CLIPModel, CLIPProcessor
 from PIL import Image
 
-# ---------- 1. 准备 TinyImageNet ----------
+# ---------- 1. Prepare TinyImageNet ----------
 ZIP = './data/tiny-imagenet-200.zip'
 ROOT = './data/tiny-imagenet-200'
 if not os.path.isdir(ROOT):
-    print('下载 TinyImageNet (~250MB)...', flush=True)
+    print('downloading TinyImageNet (~250MB)...', flush=True)
     url = 'http://cs231n.stanford.edu/tiny-imagenet-200.zip'
     import urllib.request
     urllib.request.urlretrieve(url, ZIP)
-    print('解压...', flush=True)
+    print('extracting...', flush=True)
     with zipfile.ZipFile(ZIP) as z:
         z.extractall('./data/')
-    # 整理 val：val_annotations.txt → images 移到 class 子目录
+    # organize val: move images listed in val_annotations.txt into per-class subdirectories
     val_ann = os.path.join(ROOT, 'val', 'val_annotations.txt')
     val_img = os.path.join(ROOT, 'val', 'images')
     import collections
@@ -30,21 +30,21 @@ if not os.path.isdir(ROOT):
                 os.rename(os.path.join(val_img, fn), os.path.join(d, fn))
             except OSError:
                 pass
-print('TinyImageNet 就绪', flush=True)
+print('TinyImageNet ready', flush=True)
 
-# ---------- 2. 加载 CLIP ----------
-print('加载 CLIP ViT-B/32 ...', flush=True)
+# ---------- 2. Load CLIP ----------
+print('loading CLIP ViT-B/32 ...', flush=True)
 model = CLIPModel.from_pretrained('openai/clip-vit-base-patch32').cuda().eval()
 processor = CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32')
 
-# ---------- 3. 类别 ----------
-classes = sorted(os.listdir(os.path.join(ROOT, 'train')))  # 200 类（wnid 如 n01443537）
-# 用 synset words 做 prompt（简易：类名数字无意义，用 wnid 提示效果差）
-# 更准确：TinyImageNet 类名 = ImageNet 同 wnid 的类别名。这里用 ImageNet 1k 模板的替代：
-# 简易方案：用 ImageNet 1000 类中对应 wnid 的名称映射（torchvision 有）
+# ---------- 3. Classes ----------
+classes = sorted(os.listdir(os.path.join(ROOT, 'train')))  # 200 classes (wnid such as n01443537)
+# Use synset words as prompts (simple approach: numeric class names are meaningless, wnid prompts work poorly)
+# More accurate: TinyImageNet class names = ImageNet class names of the same wnid. Here a substitute for the ImageNet 1k template:
+# Simple workaround: use the name mapping for the corresponding wnid among the ImageNet 1000 classes (torchvision has it)
 import torchvision.datasets as tvds
 meta = tvds.ImageNet.meta if hasattr(tvds.ImageNet, 'meta') else None
-# 用 torchvision 的 ImageNet 类别映射（无需下载数据）
+# Use the torchvision ImageNet class mapping (no data download needed)
 import json
 imagenet_classes_url = 'https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt'
 local_classes = './data/imagenet_classes.txt'
@@ -59,13 +59,13 @@ if os.path.exists(local_classes):
     with open(local_classes) as f:
         for i, line in enumerate(f):
             name = line.strip()
-            # wnid 推导：ImageNet 1000 类 wnid 需要额外映射，这里用最接近的启发式
+            # wnid derivation: the 1000 ImageNet wnids need an extra mapping, so the closest heuristic is used here
             wnid2name.setdefault(name, name)
-texts = [f'a photo of a {classes[i]}' for i in range(200)]  # 备选：wnid 直接当文本
-# 尝试更好：用 torchvision ImageNet 的 wnid→name（models 里有 siglip 但不是这个）
+texts = [f'a photo of a {classes[i]}' for i in range(200)]  # alternative: use the wnid directly as text
+# Try a better option: torchvision ImageNet wnid→name (models has siglip but not this one)
 text_in = processor(text=texts, return_tensors='pt', padding=True).to('cuda')
 
-# ---------- 4. 评估 ----------
+# ---------- 4. Evaluation ----------
 val_dir = os.path.join(ROOT, 'val')
 val_items = []
 for c in os.listdir(val_dir):
@@ -73,7 +73,7 @@ for c in os.listdir(val_dir):
     if os.path.isdir(cd):
         for fn in os.listdir(cd):
             val_items.append((os.path.join(cd, fn), classes.index(c)))
-print('val 样本:', len(val_items), flush=True)
+print('val samples:', len(val_items), flush=True)
 
 correct = total = 0
 with torch.no_grad():
@@ -87,8 +87,8 @@ with torch.no_grad():
         correct += sum(1 for p, y in zip(pred, ys) if p == y)
         total += len(batch)
 print('\nTinyImageNet-200 zero-shot top-1: %.2f%% (n=%d)' % (100 * correct / total, total))
-print('论文声称值: 60.72%%')
+print('value claimed in the paper: 60.72%%')
 if abs(100 * correct / total - 60.72) < 3:
-    print('=> 与 60.72 匹配 → 数据集实为 TinyImageNet')
+    print('=> matches 60.72 → the dataset is actually TinyImageNet')
 else:
-    print('=> 与 60.72 不匹配（%.1f vs 60.72）→ 非 TinyImageNet，倾向完整 ImageNet' % (100 * correct / total))
+    print('=> does not match 60.72 (%.1f vs 60.72) → not TinyImageNet, more likely the full ImageNet' % (100 * correct / total))

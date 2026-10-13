@@ -1,12 +1,12 @@
 """
-训练器 — LoRA微调CLIP + 模态差距动态监测
+Trainer — LoRA fine-tuning of CLIP + dynamic monitoring of the modality gap
 
-核心功能:
-1. 加载CLIP模型 + 注入LoRA层
-2. 对比学习训练循环（图像-文本检索任务）
-3. 定期计算并记录模态差距指标
-4. 缺失模态模拟实验
-5. 日志记录 + 中间检查点保存
+Core features:
+1. Load CLIP + inject LoRA
+2. Contrastive training loop (image-text retrieval)
+3. Periodically compute/record gap
+4. Missing-modality simulation
+5. Logging + checkpoint saves
 """
 
 import os
@@ -38,9 +38,9 @@ from .missing_modality import MissingModalitySimulator
 
 class GapAwareTrainer:
     """
-    Gap感知训练器
+    Gap-aware trainer
 
-    用法:
+    Usage:
         trainer = GapAwareTrainer(config)
         results = trainer.train(train_loader, val_loader)
     """
@@ -58,7 +58,7 @@ class GapAwareTrainer:
         self.save_dir = self.train_cfg.save_dir
         os.makedirs(self.save_dir, exist_ok=True)
 
-        # 组件（延迟初始化）
+        # Components (lazy initialization)
         self.model = None
         self.processor = None
         self.lora_layers = {}
@@ -79,34 +79,34 @@ class GapAwareTrainer:
 
         self.missing_sim = MissingModalitySimulator.identity()
 
-        # 梯度收集（Phase 4B — 梯度对齐分析）
-        self.gradient_snapshots: List[Dict] = []  # 存储 vis/txt 梯度快照
+        # Gradient collection (Phase 4B — gradient alignment analysis)
+        self.gradient_snapshots: List[Dict] = []  # stores vis/txt gradient snapshots
         self._collect_gradients = False
 
-        # 训练状态
+        # Training state
         self.current_epoch = 0
         self.global_step = 0
         self.best_val_loss = float('inf')
 
-        # 日志
+        # Logs
         self.train_losses = []
         self.val_losses = []
-        self.task_metrics = []  # 下游任务性能
+        self.task_metrics = []  # downstream task performance
 
     # ============================================================
-    # 模型初始化
+    # Model initialization
     # ============================================================
 
     def setup_model(self):
-        """加载CLIP模型并注入PEFT方法（LoRA / Adapter / Prefix）"""
+        """Load the CLIP model and inject the PEFT method (LoRA / Adapter / Prefix)"""
         from transformers import CLIPModel, CLIPProcessor
 
         print(f"\n{'='*60}")
-        print(f"🚀 加载 CLIP 模型: {self.train_cfg.clip_model}")
-        print(f"   PEFT 方法: {self.peft_method}")
+        print(f"🚀 Loading CLIP model: {self.train_cfg.clip_model}")
+        print(f"   PEFT method: {self.peft_method}")
         print(f"{'='*60}")
 
-        # 加载模型 (离线模式: 国内网络HF被墙)
+        # Load model (offline mode: HF is blocked on domestic networks)
         self.model = CLIPModel.from_pretrained(
             self.train_cfg.clip_model
         )
@@ -114,11 +114,11 @@ class GapAwareTrainer:
             self.train_cfg.clip_model
         )
 
-        # 统计原始参数
+        # Count original parameters
         total_params = sum(p.numel() for p in self.model.parameters())
-        print(f"📊 原始参数量: {total_params:,}")
+        print(f"📊 Original parameter count: {total_params:,}")
 
-        # ---- 根据 peft_method 调度不同的注入逻辑 ----
+        # ---- Dispatch different injection logic based on peft_method ----
         if self.peft_method == "lora":
             self._setup_lora(total_params)
         elif self.peft_method == "adapter":
@@ -128,21 +128,21 @@ class GapAwareTrainer:
         elif self.peft_method in ("full_ft", "frozen"):
             self._setup_baseline(total_params)
         else:
-            raise ValueError(f"未知 PEFT 方法: {self.peft_method}")
+            raise ValueError(f"Unknown PEFT method: {self.peft_method}")
 
-        # 移至设备
+        # Move to device
         self.model = self.model.to(self.device)
         self.model.train()
 
-        # 打印效率信息
+        # Print efficiency information
         params_info = count_peft_parameters(self.model, self.peft_method)
-        print(f"📊 可训练参数: {params_info['peft_trainable']:,} "
+        print(f"📊 Trainable parameters: {params_info['peft_trainable']:,} "
               f"({params_info['trainable_ratio']:.2f}%)")
 
-        print(f"✅ 模型准备完成 (设备: {self.device})")
+        print(f"✅ Model ready (device: {self.device})")
 
     def _setup_lora(self, total_params: int):
-        """LoRA 注入逻辑（原有逻辑）"""
+        """LoRA injection logic (original logic)"""
         if self.lora_cfg is not None and self.lora_cfg.rank > 0:
             self.model, self.lora_layers, trainable = apply_lora_to_model(
                 self.model,
@@ -155,16 +155,16 @@ class GapAwareTrainer:
                 use_null_lora=self.lora_cfg.use_null_lora,
                 use_gap_init=self.lora_cfg.use_gap_init,
             )
-            print(f"📊 可训练参数占比: {trainable/total_params*100:.2f}%")
+            print(f"📊 Trainable parameter ratio: {trainable/total_params*100:.2f}%")
         else:
-            print("🔒 冻结模式: 无LoRA, 所有参数冻结")
+            print("🔒 Frozen mode: no LoRA, all parameters frozen")
             for p in self.model.parameters():
                 p.requires_grad = False
 
     def _setup_adapter(self, total_params: int):
-        """Adapter 注入逻辑"""
+        """Adapter injection logic"""
         if self.adapter_cfg is None:
-            raise ValueError("peft_method='adapter' 但未提供 AdapterConfig")
+            raise ValueError("peft_method='adapter' but no AdapterConfig provided")
 
         self.model, self.adapter_layers, trainable = apply_adapter_to_model(
             self.model,
@@ -175,12 +175,12 @@ class GapAwareTrainer:
             apply_to_vision=self.adapter_cfg.apply_to_vision,
             apply_to_text=self.adapter_cfg.apply_to_text,
         )
-        print(f"📊 可训练参数占比: {trainable/total_params*100:.2f}%")
+        print(f"📊 Trainable parameter ratio: {trainable/total_params*100:.2f}%")
 
     def _setup_prefix(self, total_params: int):
-        """Prefix Tuning 注入逻辑"""
+        """Prefix Tuning injection logic"""
         if self.prefix_cfg is None:
-            raise ValueError("peft_method='prefix' 但未提供 PrefixConfig")
+            raise ValueError("peft_method='prefix' but no PrefixConfig provided")
 
         self.model, self.prefix_layers, trainable = apply_prefix_to_model(
             self.model,
@@ -188,21 +188,21 @@ class GapAwareTrainer:
             apply_to_vision=self.prefix_cfg.apply_to_vision,
             apply_to_text=self.prefix_cfg.apply_to_text,
         )
-        print(f"📊 可训练参数占比: {trainable/total_params*100:.2f}%")
+        print(f"📊 Trainable parameter ratio: {trainable/total_params*100:.2f}%")
 
     def _setup_baseline(self, total_params: int):
-        """全量微调 或 冻结"""
+        """Full fine-tuning or frozen"""
         if self.peft_method == "full_ft":
-            print("⚠️ 全量微调模式: 所有参数可训练")
+            print("⚠️ Full fine-tuning mode: all parameters trainable")
             for p in self.model.parameters():
                 p.requires_grad = True
         else:
-            print("🔒 冻结模式: 所有参数冻结")
+            print("🔒 Frozen mode: all parameters frozen")
             for p in self.model.parameters():
                 p.requires_grad = False
 
     # ============================================================
-    # 训练循环
+    # Training loop
     # ============================================================
 
     def train(
@@ -212,42 +212,42 @@ class GapAwareTrainer:
         missing_sim: Optional[MissingModalitySimulator] = None,
     ) -> Dict:
         """
-        主训练循环
+        Main training loop
 
         Args:
-            train_loader: 训练数据
-            val_loader: 验证数据
-            missing_sim: 缺失模态模拟器（None=无缺失）
+            train_loader: training data
+            val_loader: validation data
+            missing_sim: missing-modality simulator (None = no missing modality)
 
         Returns:
-            包含所有训练结果的字典
+            Dictionary containing all training results
         """
         if self.model is None:
             self.setup_model()
 
-        # ---- Gap-Init 初始化（仅 LoRA，论文 arXiv:2602.01522） ----
+        # ---- Gap-Init initialization (LoRA only, paper arXiv:2602.01522) ----
         if self.peft_method == "lora" and self.lora_cfg is not None and self.lora_cfg.use_gap_init:
-            print("\n🎯 计算模态Gap方向用于 LoRA 初始化...")
+            print("\n🎯 Computing modality Gap direction for LoRA initialization...")
             gap_dir = compute_gap_direction(
                 self.model, train_loader,
                 device=self.device, n_batches=10,
             )
             apply_gap_init_to_layers(self.lora_layers, gap_dir)
-            print("✅ Gap-Init 完成\n")
+            print("✅ Gap-Init done\n")
 
         if missing_sim is None:
             missing_sim = MissingModalitySimulator.identity()
         self.missing_sim = missing_sim
 
-        # ---- 优化器（支持 LoRA / Adapter / Prefix / full_ft） ----
+        # ---- Optimizer (supports LoRA / Adapter / Prefix / full_ft) ----
         if self.peft_method in ("lora", "adapter", "prefix"):
             self._trainable_params = get_peft_params(self.model, self.peft_method)
         else:
             self._trainable_params = [p for p in self.model.parameters() if p.requires_grad]
 
-        # 无可训练参数（如 baseline_frozen）→ 跳过训练
+        # No trainable parameters (e.g. baseline_frozen) → skip training
         if len(self._trainable_params) == 0:
-            print("\n⚠️ 无可训练参数，跳过训练，仅评估初始Gap")
+            print("\n⚠️ No trainable parameters, skipping training, evaluating initial Gap only")
             init_metrics = self._compute_gap_metrics(val_loader, epoch=0, step=0)
             self.gap_tracker.record(init_metrics)
             self._print_gap_metrics(init_metrics)
@@ -260,7 +260,7 @@ class GapAwareTrainer:
             weight_decay=self.train_cfg.weight_decay,
         )
 
-        # ---- 学习率调度器 ----
+        # ---- Learning rate scheduler ----
         total_steps = len(train_loader) * self.train_cfg.num_epochs
         if self.train_cfg.scheduler == "cosine":
             scheduler = CosineAnnealingLR(optimizer, T_max=total_steps)
@@ -270,8 +270,8 @@ class GapAwareTrainer:
         else:
             scheduler = None
 
-        # ---- 初始Gap测量（epoch 0） ----
-        print("\n📏 测量初始模态差距 (epoch 0)...")
+        # ---- Initial Gap measurement (epoch 0) ----
+        print("\n📏 Measuring initial modality gap (epoch 0)...")
         init_metrics = self._compute_gap_metrics(val_loader, epoch=0, step=0)
         self.gap_tracker.record(init_metrics)
         self._print_gap_metrics(init_metrics)
@@ -281,56 +281,56 @@ class GapAwareTrainer:
             self.enable_dg_early_stopping(self.config.dg_es.patience)
             print(f"🛑 DG-ES: patience={self.config.dg_es.patience}")
 
-        # ---- 训练循环 ----
+        # ---- Training loop ----
         print(f"\n{'='*60}")
-        print(f"🏋️ 开始训练 — {self.train_cfg.num_epochs} epochs")
+        print(f"🏋️ Starting training — {self.train_cfg.num_epochs} epochs")
         print(f"   LoRA rank: {self.lora_cfg.rank if self.lora_cfg else 'full FT'}")
-        print(f"   缺失模式: {self._missing_mode_str()}")
+        print(f"   Missing mode: {self._missing_mode_str()}")
         print(f"{'='*60}\n")
 
-        # ---- Route C: 初始化增强 ----
+        # ---- Route C: initialization enhancements ----
         self._init_route_c()
 
         for epoch in range(1, self.train_cfg.num_epochs + 1):
             self.current_epoch = epoch
             epoch_start = time.time()
 
-            # ---- Route C: per-epoch 回调 ----
+            # ---- Route C: per-epoch callbacks ----
             self._apply_alpha_annealing(epoch)
             self._apply_rank_schedule(epoch)
 
-            # 训练一个epoch
+            # Train one epoch
             train_loss = self._train_epoch(train_loader, optimizer, scheduler, epoch)
             self.train_losses.append(train_loss)
 
-            # 验证
+            # Validation
             val_loss = self._validate(val_loader)
             self.val_losses.append(val_loss)
 
-            # 计算下游任务性能（Retrieval Recall@K）
+            # Compute downstream task performance (Retrieval Recall@K)
             task_metrics = self._compute_retrieval_metrics(val_loader)
             self.task_metrics.append(task_metrics)
 
             # ---- Route E: DG-Guided Early Stopping ----
             if getattr(self, '_dg_es_enabled', False) and self._should_stop_early():
-                print(f"\n🛑 DG-ES: DG 连续上升, epoch {epoch} 停止训练")
+                print(f"\n🛑 DG-ES: DG rising consecutively, stopping training at epoch {epoch}")
                 break
 
-            # 定期计算 Gap
+            # Periodically compute Gap
             if epoch % self.gap_cfg.compute_every_n_epochs == 0 or epoch == 1:
                 gap_metrics = self._compute_gap_metrics(
                     val_loader, epoch=epoch, step=self.global_step
                 )
                 self.gap_tracker.record(gap_metrics)
 
-                # Route C: 更新 gap delta 用于 Gap-Reg Loss
+                # Route C: update gap delta for Gap-Reg Loss
                 if self.gap_tracker.history:
                     prev = self.gap_tracker.history[-2] if len(self.gap_tracker.history) >= 2 else self.gap_tracker.history[0]
                     cg_prev = prev.centroid_gap
                     cg_curr = gap_metrics.centroid_gap
                     self._current_gap_delta = cg_curr - cg_prev
 
-                # 逐层Gap
+                # Per-layer Gap
                 if self.gap_cfg.compute_per_layer:
                     per_layer = self._compute_per_layer_gap(val_loader, epoch)
                     gap_metrics.per_layer = per_layer
@@ -344,25 +344,25 @@ class GapAwareTrainer:
 
             epoch_time = time.time() - epoch_start
 
-            # 日志
+            # Logging
             print(f"Epoch {epoch:3d}/{self.train_cfg.num_epochs} | "
                   f"Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | "
                   f"R@1: {task_metrics.get('R@1', 0):.3f} | "
                   f"Time: {epoch_time:.1f}s")
 
-            # 保存最佳模型
+            # Save best model
             if val_loss < self.best_val_loss:
                 self.best_val_loss = val_loss
                 self._save_checkpoint(epoch, is_best=True)
 
-        # ---- 最终保存 ----
+        # ---- Final save ----
         self._save_results()
         self._save_checkpoint(self.train_cfg.num_epochs, is_best=False)
 
         return self._collect_results()
 
     def _train_epoch(self, loader, optimizer, scheduler, epoch: int = 0) -> float:
-        """训练一个epoch — 对比学习损失 (InfoNCE)"""
+        """Train one epoch — contrastive learning loss (InfoNCE)"""
         self.model.train()
         total_loss = 0.0
         n_batches = 0
@@ -371,14 +371,14 @@ class GapAwareTrainer:
         pbar = tqdm(loader, desc=f"Epoch {self.current_epoch}", leave=False)
 
         for batch in pbar:
-            # 缺失模态模拟
+            # Missing-modality simulation
             batch = self.missing_sim(batch)
 
-            # 处理输入
+            # Process inputs
             images = batch["image"].to(self.device)
             texts = batch["caption"]
 
-            # 优先用预 tokenize（多 worker 并行完成），否则实时 tokenize
+            # Prefer pre-tokenized inputs (done in parallel by multiple workers), otherwise tokenize on the fly
             if "input_ids" in batch and "attention_mask" in batch:
                 input_ids = batch["input_ids"].to(self.device)
                 attention_mask = batch["attention_mask"].to(self.device)
@@ -390,7 +390,7 @@ class GapAwareTrainer:
                 input_ids = text_inputs["input_ids"].to(self.device)
                 attention_mask = text_inputs.get("attention_mask", torch.ones_like(input_ids)).to(self.device)
 
-            # 应用文本mask（缺失模态模拟的一部分）
+            # Apply text mask (part of the missing-modality simulation)
             batch_text = {
                 "input_ids": input_ids,
                 "attention_mask": attention_mask,
@@ -400,7 +400,7 @@ class GapAwareTrainer:
             input_ids = batch_text["input_ids"]
             attention_mask = batch_text["attention_mask"]
 
-            # 前向传播
+            # Forward pass
             outputs = self.model(
                 pixel_values=images,
                 input_ids=input_ids,
@@ -411,11 +411,11 @@ class GapAwareTrainer:
             image_embeds = outputs.image_embeds   # (B, D)
             text_embeds = outputs.text_embeds       # (B, D)
 
-            # 归一化
+            # Normalize
             image_embeds = F.normalize(image_embeds, p=2, dim=-1)
             text_embeds = F.normalize(text_embeds, p=2, dim=-1)
 
-            # InfoNCE 对比损失
+            # InfoNCE contrastive loss
             logit_scale = self.model.logit_scale.exp()
             logits_per_image = logit_scale * image_embeds @ text_embeds.T   # (B, B)
             logits_per_text = logits_per_image.T
@@ -427,7 +427,7 @@ class GapAwareTrainer:
             loss_t = F.cross_entropy(logits_per_text, labels)
             loss = (loss_i + loss_t) / 2.0
 
-            # Null-LoRA 零空间约束（仅 LoRA）
+            # Null-LoRA null-space constraint (LoRA only)
             if self.peft_method == "lora":
                 null_loss = get_null_space_loss(self.lora_layers)
                 loss = loss + null_loss
@@ -437,18 +437,18 @@ class GapAwareTrainer:
             if gap_penalty > 0:
                 loss = loss + gap_penalty
 
-            # 反向传播
+            # Backward pass
             loss = loss / self.train_cfg.gradient_accumulation_steps
             loss.backward()
 
-            # 梯度取值钩子：**必须在 zero_grad 之前**（否则 p.grad 已被清空，见
-            # tools/_p40_diag_inner_nan.py 的实测）。默认关闭 → 对既有实验零影响。
+            # Gradient hook: **must be before zero_grad** (else p.grad is already cleared;
+            # measured in tools/_p40_diag_inner_nan.py). Off by default → zero impact.
             if getattr(self, "_capture_train_grad", False):
-                # **必须用 model.parameters()**：`_trainable_params` 只在 train() 里设置，
-                # 而调用方（实验 A）为插 ∇DG* 反向而自走循环、从未调用 train()
-                # → 该属性为 None → 遍历空列表 → 取不到任何梯度（实测，见 tools/_p43）。
-                # **保留 None 占位**：与 [p for p in model.parameters() if p.requires_grad]
-                # 一一对应，便于与 ∇DG* 按位置配对（实测两者非零个数不同：398 vs 397）。
+                # **Must use model.parameters()**: `_trainable_params` is set only in train(), but
+                # the caller (experiment A) runs its own loop for the ∇DG* backward pass and never
+                # calls train() → it is None → iterates an empty list → no gradient (see tools/_p43).
+                # **Keep the None placeholder**: it pairs 1:1 with
+                # [p for p in self.model.parameters() if p.requires_grad]
                 self._last_train_grad = [
                     (p.grad.detach().clone() if p.grad is not None else None)
                     for p in self.model.parameters() if p.requires_grad
@@ -461,7 +461,7 @@ class GapAwareTrainer:
                     scheduler.step()
                 optimizer.zero_grad()
 
-                # 梯度快照收集（Phase 4B）
+                # Gradient snapshot collection (Phase 4B)
                 self._collect_gradient_snapshot()
 
             total_loss += loss.item()
@@ -473,24 +473,24 @@ class GapAwareTrainer:
         return total_loss / max(n_batches, 1) * self.train_cfg.gradient_accumulation_steps
 
     # ============================================================
-    # 梯度收集（Phase 4B — 梯度对齐分析）
+    # Gradient collection (Phase 4B — gradient alignment analysis)
     # ============================================================
 
     def enable_gradient_collection(self, collect_every_n_steps: int = 50):
         """
-        启用梯度快照收集，用于 Phase 4B 梯度对齐分析。
+        Enable gradient snapshot collection, used for Phase 4B gradient alignment analysis.
 
-        在每个优化步骤后，收集视觉和文本编码器的梯度，
-        计算它们之间的余弦相似度以检测冲突。
+        After each optimization step, collect the gradients of the vision and text encoders
+        and compute the cosine similarity between them to detect conflicts.
 
         Args:
-            collect_every_n_steps: 每隔多少步收集一次梯度
+            collect_every_n_steps: collect gradients every this many steps
         """
         self._collect_gradients = True
         self._grad_collect_interval = collect_every_n_steps
 
     def _collect_gradient_snapshot(self):
-        """收集当前步骤的梯度快照"""
+        """Collect the gradient snapshot of the current step"""
         if not self._collect_gradients:
             return
         if self.global_step % self._grad_collect_interval != 0:
@@ -498,7 +498,7 @@ class GapAwareTrainer:
 
         snapshot = {"step": self.global_step, "epoch": self.current_epoch}
 
-        # 收集视觉编码器梯度
+        # Collect vision encoder gradients
         vis_grads = []
         for name, param in self.model.named_parameters():
             if param.grad is None:
@@ -506,10 +506,10 @@ class GapAwareTrainer:
             if "vision_model" in name and param.requires_grad:
                 vis_grads.append(param.grad.detach().flatten())
             elif "text_model" in name and param.requires_grad:
-                # 后面统一处理 text
+                # text is handled uniformly below
                 pass
 
-        # 收集文本编码器梯度
+        # Collect text encoder gradients
         txt_grads = []
         for name, param in self.model.named_parameters():
             if param.grad is None:
@@ -531,12 +531,12 @@ class GapAwareTrainer:
             self.gradient_snapshots.append(snapshot)
 
     def get_gradient_snapshots(self) -> List[Dict]:
-        """返回所有梯度快照"""
+        """Return all gradient snapshots"""
         return self.gradient_snapshots
 
     @torch.no_grad()
     def _validate(self, loader) -> float:
-        """验证 — 计算对比损失"""
+        """Validation — compute the contrastive loss"""
         self.model.eval()
         total_loss = 0.0
         n_batches = 0
@@ -578,12 +578,12 @@ class GapAwareTrainer:
         return total_loss / max(n_batches, 1)
 
     # ============================================================
-    # Gap 度量
+    # Gap metrics
     # ============================================================
 
     @torch.no_grad()
     def _compute_gap_metrics(self, loader, epoch: int, step: int) -> GapMetrics:
-        """计算模态差距指标"""
+        """Compute modality gap metrics"""
         self.model.eval()
 
         all_image_embeds = []
@@ -696,22 +696,22 @@ class GapAwareTrainer:
 
     @torch.no_grad()
     def _compute_per_layer_gap(self, loader, epoch: int) -> Dict[str, GapMetrics]:
-        """逐层计算 gap — 需要模型导出中间层输出"""
-        # CLIP 模型通过 output_hidden_states=True 获取各层输出
+        """Compute the gap layer by layer — requires the model to export intermediate layer outputs"""
+        # The CLIP model obtains the outputs of each layer via output_hidden_states=True
         self.model.eval()
 
-        # 由于CLIP模型结构，这里简化：只计算vision encoder和text encoder的最终输出
-        # 深层逐层分析需要hook或模型修改，在后继版本中实现
+        # Simplified here: only the final outputs of vision encoder and text encoder are computed
+        # Deep per-layer analysis requires hooks or model changes, to be done in a later version
         per_layer = {}
 
-        # Vision encoder: 获取最后3个transformer block的输出
-        # 通过注册hook实现
+        # Vision encoder: get the outputs of the last 3 transformer blocks
+        # Implemented by registering hooks
         vision_outputs = {}
         text_outputs = {}
 
         def make_hook(name, storage):
             def hook(module, input, output):
-                # output通常是 (hidden_states, ...) 的tuple
+                # output is usually a tuple of (hidden_states, ...)
                 if isinstance(output, tuple):
                     storage[name] = output[0].detach()
                 else:
@@ -720,7 +720,7 @@ class GapAwareTrainer:
 
         hooks = []
 
-        # 注册vision编码器的hook（取第一层和最后一层）
+        # Register hooks for the vision encoder (take the first and the last layer)
         if hasattr(self.model.vision_model, 'encoder') and hasattr(self.model.vision_model.encoder, 'layers'):
             layers = self.model.vision_model.encoder.layers
             for idx in [0, len(layers)//2, len(layers)-1]:
@@ -734,9 +734,9 @@ class GapAwareTrainer:
                     name = f"txt_layer_{idx}"
                     hooks.append(layers[idx].register_forward_hook(make_hook(name, text_outputs)))
 
-        # 前向传播一次
+        # One forward pass
         for batch in loader:
-            images = batch["image"].to(self.device)[:32]  # 采样
+            images = batch["image"].to(self.device)[:32]  # sample
             texts = batch["caption"][:32]
 
             if "input_ids" in batch and "attention_mask" in batch:
@@ -756,18 +756,18 @@ class GapAwareTrainer:
             )
             break
 
-        # 移除hooks
+        # Remove hooks
         for h in hooks:
             h.remove()
 
-        # 计算各层的gap（vision和text中间层维度不同，跳过不匹配的层）
+        # Compute the gap of each layer (vision and text middle layers differ in dim, so skip)
         for vis_key in vision_outputs:
             layer_idx = vis_key.replace("vis_", "")
             txt_key = vis_key.replace("vis", "txt")
             if txt_key in text_outputs:
                 vis_emb = vision_outputs[vis_key].mean(dim=1)
                 txt_emb = text_outputs[txt_key].mean(dim=1)
-                # 维度匹配检查: ViT hidden=768, Text hidden=512
+                # Dimension match check: ViT hidden=768, Text hidden=512
                 if vis_emb.shape[-1] != txt_emb.shape[-1]:
                     continue
                 per_layer[f"layer_{layer_idx}"] = self.gap_tracker.compute(
@@ -778,12 +778,12 @@ class GapAwareTrainer:
         return per_layer
 
     # ============================================================
-    # 下游任务评估
+    # Downstream task evaluation
     # ============================================================
 
     @torch.no_grad()
     def _compute_retrieval_metrics(self, loader, k_values: List[int] = [1, 5, 10]) -> Dict[str, float]:
-        """计算图像→文本和文本→图像的 Recall@K"""
+        """Compute image→text and text→image Recall@K"""
         self.model.eval()
 
         all_image_embeds = []
@@ -816,7 +816,7 @@ class GapAwareTrainer:
         image_embeds = torch.cat(all_image_embeds, dim=0)
         text_embeds = torch.cat(all_text_embeds, dim=0)
 
-        # 相似度矩阵
+        # Similarity matrix
         sim_matrix = image_embeds @ text_embeds.T  # (N, N)
 
         metrics = {}
@@ -831,27 +831,27 @@ class GapAwareTrainer:
             correct_t2i = (indices_t2i == torch.arange(len(sim_matrix)).unsqueeze(1)).any(dim=1)
             metrics[f"R@{k}_t2i"] = correct_t2i.float().mean().item()
 
-            # 平均
+            # Average
             metrics[f"R@{k}"] = (metrics[f"R@{k}_i2t"] + metrics[f"R@{k}_t2i"]) / 2.0
 
         self.model.train()
         return metrics
 
     # ============================================================
-    # 保存 & 加载
+    # Save & load
     # ============================================================
 
     # ============================================================
-    # Route C: 增强训练策略
+    # Route C: enhanced training strategies
     # ============================================================
 
     def _init_route_c(self):
-        """初始化 Route C 增强"""
+        """Initialize Route C enhancements"""
         self._rank_schedule_applied = set()
-        self._current_gap_delta = None  # 用于 Gap-Reg Loss
+        self._current_gap_delta = None  # used for Gap-Reg Loss
 
     def _apply_alpha_annealing(self, epoch: int):
-        """α Annealing (Route C4): per-epoch 指数衰减"""
+        """α Annealing (Route C4): per-epoch exponential decay"""
         cfg = self.config.alpha_schedule
         if not cfg.enabled or self.peft_method != "lora":
             return
@@ -863,7 +863,7 @@ class GapAwareTrainer:
             print(f"   🔥 α Annealing: α_max={cfg.alpha_max}, α_min={cfg.alpha_min}, decay={cfg.decay}")
 
     def _apply_rank_schedule(self, epoch: int):
-        """Dynamic Rank Scheduler (Route C2): per-epoch 降低 rank"""
+        """Dynamic Rank Scheduler (Route C2): reduce rank every epoch"""
         cfg = self.config.rank_schedule
         if not cfg.enabled or self.peft_method != "lora":
             return
@@ -873,17 +873,17 @@ class GapAwareTrainer:
                 print(f"   📉 Rank Schedule: epoch {epoch} → rank {new_rank}")
 
     def enable_dg_early_stopping(self, patience: int = 2):
-        """启用 DG-Guided Early Stopping (Route E)"""
+        """Enable DG-Guided Early Stopping (Route E)"""
         self._dg_es_enabled = True
         self._dg_es_patience = patience
         self._dg_consecutive_rises = 0
         self._dg_prev = None
 
     def _should_stop_early(self) -> bool:
-        """检查 DG 是否连续上升"""
+        """Check whether DG has been rising consecutively"""
         if not self.gap_tracker.history:
             return False
-        # 从 gap_tracker 取最新 DG
+        # Take the latest DG from gap_tracker
         latest = self.gap_tracker.history[-1]
         if not hasattr(latest, 'distribution_gap'):
             return False
@@ -896,7 +896,7 @@ class GapAwareTrainer:
         return self._dg_consecutive_rises >= self._dg_es_patience
 
     def _compute_gap_penalty(self) -> float:
-        """计算 gap 正则化惩罚项 (Route C1)"""
+        """Compute the gap regularization penalty term (Route C1)"""
         cfg = self.config.gap_reg
         if not cfg.enabled or self._current_gap_delta is None:
             return 0.0
@@ -904,7 +904,7 @@ class GapAwareTrainer:
         return cfg.lambda_reg * penalty
 
     def _save_checkpoint(self, epoch: int, is_best: bool = False):
-        """保存检查点（仅LoRA权重，不含冻结的完整模型）"""
+        """Save checkpoint (LoRA weights only, without the frozen full model)"""
         checkpoint = {
             "epoch": epoch,
             "config_name": self.config.name,
@@ -924,7 +924,7 @@ class GapAwareTrainer:
         torch.save(checkpoint, path)
 
     def _save_results(self):
-        """保存最终结果（JSON）"""
+        """Save final results (JSON)"""
         results = self._collect_results()
 
         path = os.path.join(self.save_dir, "results.json")
@@ -938,16 +938,16 @@ class GapAwareTrainer:
             with open(dg_star_path, 'w', encoding='utf-8') as f:
                 json.dump(dg_star_dict, f, indent=2)
 
-        print(f"📁 结果已保存: {path}")
+        print(f"📁 Results saved: {path}")
 
-        # 保存 gap 历史（便于后续分析）
+        # Save gap history (for later analysis)
         gap_path = os.path.join(self.save_dir, "gap_history.json")
         gap_dict = self.gap_tracker.get_history_dict()
         with open(gap_path, 'w', encoding='utf-8') as f:
             json.dump(gap_dict, f, indent=2)
 
     def _collect_results(self) -> Dict:
-        """收集训练结果"""
+        """Collect training results"""
         return {
             "experiment": self.config.name,
             "lora_rank": self.lora_cfg.rank if self.lora_cfg else None,
@@ -963,11 +963,11 @@ class GapAwareTrainer:
         }
 
     # ============================================================
-    # 辅助
+    # Helpers
     # ============================================================
 
     def _print_gap_metrics(self, metrics: GapMetrics):
-        """打印gap指标"""
+        """Print gap metrics"""
         print(f"  📏 Gap — Centroid: {metrics.centroid_gap:.4f} | "
               f"Dist(W₂): {metrics.distribution_gap:.4f} | "
               f"Separation: {metrics.cosine_separation:.3f} | "
@@ -975,12 +975,12 @@ class GapAwareTrainer:
 
     def _missing_mode_str(self) -> str:
         if self.missing_sim is None:
-            return "无缺失"
+            return "no missing"
         parts = []
         if self.missing_sim.complete_missing:
-            parts.append(f"完整缺失({self.missing_sim.complete_missing})")
+            parts.append(f"complete missing({self.missing_sim.complete_missing})")
         if self.missing_sim.image_drop_ratio > 0:
-            parts.append(f"图像丢弃{self.missing_sim.image_drop_ratio:.0%}")
+            parts.append(f"image drop {self.missing_sim.image_drop_ratio:.0%}")
         if self.missing_sim.text_mask_ratio > 0:
-            parts.append(f"文本mask{self.missing_sim.text_mask_ratio:.0%}")
-        return ", ".join(parts) if parts else "无缺失"
+            parts.append(f"text mask {self.missing_sim.text_mask_ratio:.0%}")
+        return ", ".join(parts) if parts else "no missing"

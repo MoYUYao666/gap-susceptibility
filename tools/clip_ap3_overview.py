@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""合并稿提升#2: 框架概念总览图(Γ→表示定理→GFAP→实验)."""
+"""Merged manuscript upgrade #2: framework concept overview figure (Γ→representation theorem→GFAP→experiments)."""
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
