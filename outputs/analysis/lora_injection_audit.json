@@ -1,0 +1,1981 @@
+{
+ "files_with_trainable_counts": {
+  "outputs\\c1_qwen_asymmetry.json": [
+   75776,
+   1564672,
+   10130432
+  ],
+  "outputs\\master_results.json": [
+   0,
+   110688,
+   209088,
+   405888,
+   608640,
+   799488,
+   1014528,
+   1586688,
+   6500352,
+   20969472,
+   28348416,
+   130860801,
+   130922241,
+   131045121,
+   131290881,
+   131782401,
+   132765441,
+   134731521,
+   137398017,
+   138866433,
+   139063041,
+   144998145,
+   145071873,
+   145170177,
+   145366785,
+   148223745,
+   151277313,
+   175102466,
+   175397378,
+   175987202,
+   189276674,
+   196672514,
+   363602177,
+   413737217
+  ],
+  "outputs\\analysis\\field_diff.json": [
+   245760
+  ],
+  "outputs\\analysis\\master_record.json": [
+   145170177
+  ],
+  "outputs\\analysis\\pr_adapter_init_check.json": [
+   3965952
+  ],
+  "outputs\\analysis\\pr_fullft_ckpt_reeval.json": [
+   151277313
+  ],
+  "outputs\\analysis\\pr_fullft_feasibility.json": [
+   151277313
+  ],
+  "outputs\\analysis\\pr_fullft_lr_sweep.json": [
+   151277313
+  ],
+  "outputs\\analysis\\pr_fullft_lr_sweep_ext.json": [
+   151277313
+  ],
+  "outputs\\analysis\\pr_fullft_lr_sweep_full.json": [
+   151277313
+  ],
+  "outputs\\analysis\\pr_fullft_verdict.json": [
+   151277313
+  ],
+  "outputs\\analysis\\pr_peft_lr_sweep.json": [
+   196608,
+   491520,
+   3965952,
+   151277313
+  ],
+  "outputs\\analysis\\pr_peft_verdict.json": [
+   196608,
+   491520,
+   3965952,
+   151277313
+  ],
+  "outputs\\analysis\\rank_parity.json": [
+   98304,
+   147456,
+   196608,
+   245760,
+   294912,
+   491520
+  ],
+  "outputs\\analysis\\recomputed_tables.json": [
+   5262528,
+   9232384,
+   14494912
+  ],
+  "outputs\\analysis\\side_by_side.json": [
+   245760
+  ],
+  "outputs\\analysis\\strict_control_summary.json": [
+   196608,
+   294912,
+   491520,
+   131290881,
+   145170177,
+   151277313
+  ],
+  "outputs\\analysis\\vlm_bf16_detail.json": [
+   5262528,
+   9232384,
+   14494912
+  ],
+  "outputs\\analysis\\vlm_seed_feasibility.json": [
+   5262528,
+   9232384,
+   14494912
+  ],
+  "outputs\\blip2\\b1_blip2_frozen\\results.json": [
+   0
+  ],
+  "outputs\\blip2\\b2_blip2_full_ft\\results.json": [
+   0
+  ],
+  "outputs\\blip2\\b3_blip2_lora_r16\\results.json": [
+   196672514
+  ],
+  "outputs\\blip2\\b3_blip2_lora_r4\\results.json": [
+   28348416
+  ],
+  "outputs\\blip2\\b3_blip2_lora_r8\\results.json": [
+   196672514
+  ],
+  "outputs\\blip2\\b4_blip2_lora_both\\results.json": [
+   196672514
+  ],
+  "outputs\\blip2\\b4_blip2_lora_text_only\\results.json": [
+   196672514
+  ],
+  "outputs\\coco\\baseline_frozen_coco\\results.json": [
+   0
+  ],
+  "outputs\\coco\\baseline_full_ft_coco\\results.json": [
+   151277313
+  ],
+  "outputs\\coco\\rq1_rank16_coco\\results.json": [
+   131782401
+  ],
+  "outputs\\coco\\rq1_rank4_coco\\results.json": [
+   131045121
+  ],
+  "outputs\\coco\\rq1_rank8_coco\\results.json": [
+   131290881
+  ],
+  "outputs\\coco\\rq2_both_coco\\results.json": [
+   131290881
+  ],
+  "outputs\\coco\\rq2_text_only_coco\\results.json": [
+   145170177
+  ],
+  "outputs\\coco\\rq2_vision_only_coco\\results.json": [
+   137398017
+  ],
+  "outputs\\coco_sweep\\r1\\both\\seed123\\results.json": [
+   61440
+  ],
+  "outputs\\coco_sweep\\r1\\both\\seed42\\results.json": [
+   61440
+  ],
+  "outputs\\coco_sweep\\r1\\both\\seed456\\results.json": [
+   61440
+  ],
+  "outputs\\coco_sweep\\r1\\text_only\\seed123\\results.json": [
+   24576
+  ],
+  "outputs\\coco_sweep\\r1\\text_only\\seed42\\results.json": [
+   24576
+  ],
+  "outputs\\coco_sweep\\r1\\text_only\\seed456\\results.json": [
+   24576
+  ],
+  "outputs\\coco_sweep\\r16\\both\\seed1011\\results.json": [
+   983040
+  ],
+  "outputs\\coco_sweep\\r16\\both\\seed123\\results.json": [
+   983040
+  ],
+  "outputs\\coco_sweep\\r16\\both\\seed42\\results.json": [
+   983040
+  ],
+  "outputs\\coco_sweep\\r16\\both\\seed456\\results.json": [
+   983040
+  ],
+  "outputs\\coco_sweep\\r16\\both\\seed789\\results.json": [
+   983040
+  ],
+  "outputs\\coco_sweep\\r16\\text_only\\seed123\\results.json": [
+   393216
+  ],
+  "outputs\\coco_sweep\\r16\\text_only\\seed42\\results.json": [
+   393216
+  ],
+  "outputs\\coco_sweep\\r16\\text_only\\seed456\\results.json": [
+   393216
+  ],
+  "outputs\\coco_sweep\\r2\\both\\seed123\\results.json": [
+   122880
+  ],
+  "outputs\\coco_sweep\\r2\\both\\seed42\\results.json": [
+   122880
+  ],
+  "outputs\\coco_sweep\\r2\\both\\seed456\\results.json": [
+   122880
+  ],
+  "outputs\\coco_sweep\\r2\\text_only\\seed42\\results.json": [
+   49152
+  ],
+  "outputs\\coco_sweep\\r32\\both\\seed123\\results.json": [
+   1966080
+  ],
+  "outputs\\coco_sweep\\r32\\both\\seed42\\results.json": [
+   1966080
+  ],
+  "outputs\\coco_sweep\\r32\\both\\seed456\\results.json": [
+   1966080
+  ],
+  "outputs\\coco_sweep\\r4\\both\\seed1011\\results.json": [
+   245760
+  ],
+  "outputs\\coco_sweep\\r4\\both\\seed123\\results.json": [
+   245760
+  ],
+  "outputs\\coco_sweep\\r4\\both\\seed42\\results.json": [
+   245760
+  ],
+  "outputs\\coco_sweep\\r4\\both\\seed456\\results.json": [
+   245760
+  ],
+  "outputs\\coco_sweep\\r4\\both\\seed789\\results.json": [
+   245760
+  ],
+  "outputs\\coco_sweep\\r4\\text_only\\seed123\\results.json": [
+   98304
+  ],
+  "outputs\\coco_sweep\\r4\\text_only\\seed42\\results.json": [
+   98304
+  ],
+  "outputs\\coco_sweep\\r4\\text_only\\seed456\\results.json": [
+   98304
+  ],
+  "outputs\\coco_sweep\\r64\\both\\seed1011\\results.json": [
+   3932160
+  ],
+  "outputs\\coco_sweep\\r64\\both\\seed123\\results.json": [
+   3932160
+  ],
+  "outputs\\coco_sweep\\r64\\both\\seed42\\results.json": [
+   3932160
+  ],
+  "outputs\\coco_sweep\\r64\\both\\seed456\\results.json": [
+   3932160
+  ],
+  "outputs\\coco_sweep\\r64\\both\\seed789\\results.json": [
+   3932160
+  ],
+  "outputs\\coco_sweep\\r64\\text_only\\seed123\\results.json": [
+   1572864
+  ],
+  "outputs\\coco_sweep\\r64\\text_only\\seed42\\results.json": [
+   1572864
+  ],
+  "outputs\\coco_sweep\\r64\\text_only\\seed456\\results.json": [
+   1572864
+  ],
+  "outputs\\coco_sweep_dgstar\\r4\\both\\seed123\\results.json": [
+   245760
+  ],
+  "outputs\\coco_sweep_dgstar\\r4\\both\\seed42\\results.json": [
+   245760
+  ],
+  "outputs\\coco_sweep_text_only\\r16\\text_only\\seed1011\\results.json": [
+   393216
+  ],
+  "outputs\\coco_sweep_text_only\\r16\\text_only\\seed123\\results.json": [
+   393216
+  ],
+  "outputs\\coco_sweep_text_only\\r16\\text_only\\seed42\\results.json": [
+   393216
+  ],
+  "outputs\\coco_sweep_text_only\\r16\\text_only\\seed456\\results.json": [
+   393216
+  ],
+  "outputs\\coco_sweep_text_only\\r16\\text_only\\seed789\\results.json": [
+   393216
+  ],
+  "outputs\\coco_sweep_text_only\\r2\\text_only\\seed1011\\results.json": [
+   49152
+  ],
+  "outputs\\coco_sweep_text_only\\r2\\text_only\\seed123\\results.json": [
+   49152
+  ],
+  "outputs\\coco_sweep_text_only\\r2\\text_only\\seed42\\results.json": [
+   49152
+  ],
+  "outputs\\coco_sweep_text_only\\r2\\text_only\\seed456\\results.json": [
+   49152
+  ],
+  "outputs\\coco_sweep_text_only\\r2\\text_only\\seed789\\results.json": [
+   49152
+  ],
+  "outputs\\coco_sweep_text_only\\r32\\text_only\\seed1011\\results.json": [
+   786432
+  ],
+  "outputs\\coco_sweep_text_only\\r32\\text_only\\seed123\\results.json": [
+   786432
+  ],
+  "outputs\\coco_sweep_text_only\\r32\\text_only\\seed42\\results.json": [
+   786432
+  ],
+  "outputs\\coco_sweep_text_only\\r32\\text_only\\seed456\\results.json": [
+   786432
+  ],
+  "outputs\\coco_sweep_text_only\\r32\\text_only\\seed789\\results.json": [
+   786432
+  ],
+  "outputs\\coco_sweep_text_only\\r4\\text_only\\seed1011\\results.json": [
+   98304
+  ],
+  "outputs\\coco_sweep_text_only\\r4\\text_only\\seed123\\results.json": [
+   98304
+  ],
+  "outputs\\coco_sweep_text_only\\r4\\text_only\\seed42\\results.json": [
+   98304
+  ],
+  "outputs\\coco_sweep_text_only\\r4\\text_only\\seed456\\results.json": [
+   98304
+  ],
+  "outputs\\coco_sweep_text_only\\r4\\text_only\\seed789\\results.json": [
+   98304
+  ],
+  "outputs\\coco_sweep_text_only\\r64\\text_only\\seed1011\\results.json": [
+   1572864
+  ],
+  "outputs\\coco_sweep_text_only\\r64\\text_only\\seed123\\results.json": [
+   1572864
+  ],
+  "outputs\\coco_sweep_text_only\\r64\\text_only\\seed42\\results.json": [
+   1572864
+  ],
+  "outputs\\coco_sweep_text_only\\r64\\text_only\\seed456\\results.json": [
+   1572864
+  ],
+  "outputs\\coco_sweep_text_only\\r64\\text_only\\seed789\\results.json": [
+   1572864
+  ],
+  "outputs\\coco_sweep_text_only\\r8\\text_only\\seed1011\\results.json": [
+   196608
+  ],
+  "outputs\\coco_sweep_text_only\\r8\\text_only\\seed123\\results.json": [
+   196608
+  ],
+  "outputs\\coco_sweep_text_only\\r8\\text_only\\seed42\\results.json": [
+   196608
+  ],
+  "outputs\\coco_sweep_text_only\\r8\\text_only\\seed456\\results.json": [
+   196608
+  ],
+  "outputs\\coco_sweep_text_only\\r8\\text_only\\seed789\\results.json": [
+   196608
+  ],
+  "outputs\\coco_sweep_text_only\\text_only.MISPLACED_no_rank_segment\\seed1011\\results.json": [
+   196608
+  ],
+  "outputs\\coco_sweep_text_only\\text_only.MISPLACED_no_rank_segment\\seed42\\results.json": [
+   196608
+  ],
+  "outputs\\coco_sweep_text_only\\text_only.MISPLACED_no_rank_segment\\seed456\\results.json": [
+   196608
+  ],
+  "outputs\\coco_sweep_text_only\\text_only.MISPLACED_no_rank_segment\\seed789\\results.json": [
+   196608
+  ],
+  "outputs\\cross_method\\cross_method_report.json": [
+   130860801,
+   130922241,
+   131045121,
+   131290881,
+   131782401,
+   132765441,
+   134731521,
+   137398017,
+   139063041,
+   145170177,
+   148223745,
+   151277313,
+   363602177,
+   413737217
+  ],
+  "outputs\\flickr30k\\alpha_16\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k\\alpha_32\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k\\alpha_4\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k\\alpha_64\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k\\alpha_8\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k\\baseline_frozen\\results.json": [
+   0
+  ],
+  "outputs\\flickr30k\\baseline_full_ft\\results.json": [
+   151277313
+  ],
+  "outputs\\flickr30k\\gap_init_r1\\results.json": [
+   130860801
+  ],
+  "outputs\\flickr30k\\gap_init_r2\\results.json": [
+   130922241
+  ],
+  "outputs\\flickr30k\\gap_init_r4\\results.json": [
+   131045121
+  ],
+  "outputs\\flickr30k\\gap_init_r8\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\modules_q\\results.json": [
+   148223745
+  ],
+  "outputs\\flickr30k\\modules_qv\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k\\modules_qvko\\results.json": [
+   139063041
+  ],
+  "outputs\\flickr30k\\null_lora_r8\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\rq1_rank16\\results.json": [
+   131782401
+  ],
+  "outputs\\flickr30k\\rq1_rank32\\results.json": [
+   132765441
+  ],
+  "outputs\\flickr30k\\rq1_rank4\\results.json": [
+   131045121
+  ],
+  "outputs\\flickr30k\\rq1_rank64\\results.json": [
+   134731521
+  ],
+  "outputs\\flickr30k\\rq1_rank8\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\rq2_both\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\rq2_text_only\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k\\rq2_vision_only\\results.json": [
+   137398017
+  ],
+  "outputs\\flickr30k\\rq3_complete\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\rq3_img_drop_10\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\rq3_img_drop_30\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\rq3_img_drop_50\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\rq3_txt_mask_10\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\rq3_txt_mask_30\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k\\rq3_txt_mask_50\\results.json": [
+   131290881
+  ],
+  "outputs\\flickr30k_seeds\\baseline_full_ft\\seed1024\\results.json": [
+   151277313
+  ],
+  "outputs\\flickr30k_seeds\\baseline_full_ft\\seed123\\results.json": [
+   151277313
+  ],
+  "outputs\\flickr30k_seeds\\baseline_full_ft\\seed42\\results.json": [
+   151277313
+  ],
+  "outputs\\flickr30k_seeds\\baseline_full_ft\\seed456\\results.json": [
+   151277313
+  ],
+  "outputs\\flickr30k_seeds\\baseline_full_ft\\seed789\\results.json": [
+   151277313
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank32\\seed1024\\results.json": [
+   132765441
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank32\\seed123\\results.json": [
+   132765441
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank32\\seed42\\results.json": [
+   132765441
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank32\\seed456\\results.json": [
+   132765441
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank32\\seed789\\results.json": [
+   132765441
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank4\\seed1024\\results.json": [
+   131045121
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank4\\seed123\\results.json": [
+   131045121
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank4\\seed42\\results.json": [
+   131045121
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank4\\seed456\\results.json": [
+   131045121
+  ],
+  "outputs\\flickr30k_seeds\\rq1_rank4\\seed789\\results.json": [
+   131045121
+  ],
+  "outputs\\flickr30k_seeds\\rq2_text_only\\seed1024\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k_seeds\\rq2_text_only\\seed123\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k_seeds\\rq2_text_only\\seed42\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k_seeds\\rq2_text_only\\seed456\\results.json": [
+   145170177
+  ],
+  "outputs\\flickr30k_seeds\\rq2_text_only\\seed789\\results.json": [
+   145170177
+  ],
+  "outputs\\imagenet_zs\\both_r8\\results.json": [
+   20969472
+  ],
+  "outputs\\imagenet_zs\\full_ft\\results.json": [
+   151277313
+  ],
+  "outputs\\imagenet_zs\\text_only_r8\\results.json": [
+   6500352
+  ],
+  "outputs\\imagenet_zs_rerun\\full_ft\\results.json": [
+   151277313
+  ],
+  "outputs\\imagenet_zs_rerun\\full_ft_s123\\results.json": [
+   151277313
+  ],
+  "outputs\\imagenet_zs_rerun\\full_ft_s999\\results.json": [
+   151277313
+  ],
+  "outputs\\phase1\\adapter_d16_both\\results.json": [
+   1014528
+  ],
+  "outputs\\phase1\\adapter_d16_text\\results.json": [
+   405888
+  ],
+  "outputs\\phase1\\adapter_d16_vis\\results.json": [
+   608640
+  ],
+  "outputs\\phase1\\adapter_d32_text\\results.json": [
+   799488
+  ],
+  "outputs\\phase1\\adapter_d4_text\\results.json": [
+   110688
+  ],
+  "outputs\\phase1\\adapter_d64_text\\results.json": [
+   1586688
+  ],
+  "outputs\\phase1\\adapter_d8_text\\results.json": [
+   209088
+  ],
+  "outputs\\route_c\\c1_gapreg_lam0.01\\results.json": [
+   145170177
+  ],
+  "outputs\\route_c\\c1_gapreg_lam0.1\\results.json": [
+   145170177
+  ],
+  "outputs\\route_c\\c1_gapreg_lam0.5\\results.json": [
+   145170177
+  ],
+  "outputs\\route_c\\c1_gapreg_lam1.0\\results.json": [
+   145170177
+  ],
+  "outputs\\route_c\\c3_gapinit_text_r1\\results.json": [
+   144998145
+  ],
+  "outputs\\route_c\\c3_gapinit_text_r4\\results.json": [
+   145071873
+  ],
+  "outputs\\route_c\\c4_alpha_anneal_d0.3\\results.json": [
+   145170177
+  ],
+  "outputs\\route_c\\c4_alpha_anneal_d0.5\\results.json": [
+   145170177
+  ],
+  "outputs\\route_d\\d1_alpha64_text_r8\\results.json": [
+   145170177
+  ],
+  "outputs\\route_d\\d2_r4_alpha64_text\\results.json": [
+   145071873
+  ],
+  "outputs\\route_d\\d3_r4_alpha64_text_qvko\\results.json": [
+   138866433
+  ],
+  "outputs\\route_d\\d4_gapinit_text_alpha64\\results.json": [
+   145071873
+  ],
+  "outputs\\route_d\\d5_r16_alpha64_text\\results.json": [
+   145366785
+  ],
+  "outputs\\route_e\\e1_dges_both_r8\\results.json": [
+   131290881
+  ],
+  "outputs\\route_e\\e2_dges_alpha4\\results.json": [
+   145170177
+  ],
+  "outputs\\route_e\\e3_dges_text_r8\\results.json": [
+   145170177
+  ],
+  "outputs\\siglip\\s1_siglip_frozen\\results.json": [
+   0
+  ],
+  "outputs\\siglip\\s3_siglip_lora_r16\\results.json": [
+   175987202
+  ],
+  "outputs\\siglip\\s3_siglip_lora_r4\\results.json": [
+   175102466
+  ],
+  "outputs\\siglip\\s3_siglip_lora_r8\\results.json": [
+   175397378
+  ],
+  "outputs\\siglip\\s4_siglip_lora_both\\results.json": [
+   175397378
+  ],
+  "outputs\\siglip\\s4_siglip_lora_text_only\\results.json": [
+   189276674
+  ],
+  "outputs\\siglip_strict\\frozen\\s1_siglip_frozen\\results.json": [
+   0
+  ],
+  "outputs\\siglip_strict\\seed1024\\s4_siglip_lora_both\\results.json": [
+   589824
+  ],
+  "outputs\\siglip_strict\\seed1024\\s4_siglip_lora_text_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed1024\\s6_siglip_lora_vision_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed1024\\s7_siglip_lora_r4_both\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed1024\\s7_siglip_lora_r4_text_only\\results.json": [
+   147456
+  ],
+  "outputs\\siglip_strict\\seed123\\s4_siglip_lora_both\\results.json": [
+   589824
+  ],
+  "outputs\\siglip_strict\\seed123\\s4_siglip_lora_text_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed123\\s6_siglip_lora_vision_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed123\\s7_siglip_lora_r4_both\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed123\\s7_siglip_lora_r4_text_only\\results.json": [
+   147456
+  ],
+  "outputs\\siglip_strict\\seed42\\s4_siglip_lora_both\\results.json": [
+   589824
+  ],
+  "outputs\\siglip_strict\\seed42\\s4_siglip_lora_text_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed42\\s6_siglip_lora_vision_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed42\\s7_siglip_lora_r4_both\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed42\\s7_siglip_lora_r4_text_only\\results.json": [
+   147456
+  ],
+  "outputs\\siglip_strict\\seed456\\s4_siglip_lora_both\\results.json": [
+   589824
+  ],
+  "outputs\\siglip_strict\\seed456\\s4_siglip_lora_text_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed456\\s6_siglip_lora_vision_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed456\\s7_siglip_lora_r4_both\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed456\\s7_siglip_lora_r4_text_only\\results.json": [
+   147456
+  ],
+  "outputs\\siglip_strict\\seed789\\s4_siglip_lora_both\\results.json": [
+   589824
+  ],
+  "outputs\\siglip_strict\\seed789\\s4_siglip_lora_text_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed789\\s6_siglip_lora_vision_only\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed789\\s7_siglip_lora_r4_both\\results.json": [
+   294912
+  ],
+  "outputs\\siglip_strict\\seed789\\s7_siglip_lora_r4_text_only\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze\\both\\seed1024\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze\\both\\seed123\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze\\both\\seed42\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze\\both\\seed456\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze\\both\\seed789\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze\\frozen\\results.json": [
+   0
+  ],
+  "outputs\\strict_freeze\\text_only\\seed1024\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze\\text_only\\seed123\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze\\text_only\\seed42\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze\\text_only\\seed456\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze\\text_only\\seed789\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze\\vision_only\\seed1024\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze\\vision_only\\seed123\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze\\vision_only\\seed42\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze\\vision_only\\seed456\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze\\vision_only\\seed789\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze_b16\\r4\\both\\seed1011\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b16\\r4\\both\\seed123\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b16\\r4\\both\\seed42\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b16\\r4\\both\\seed456\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b16\\r4\\both\\seed789\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b16\\r4\\text_only\\seed1011\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b16\\r4\\text_only\\seed123\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b16\\r4\\text_only\\seed42\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b16\\r4\\text_only\\seed456\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b16\\r4\\text_only\\seed789\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b16\\r4\\vision_only\\seed1011\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_b16\\r4\\vision_only\\seed123\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_b16\\r4\\vision_only\\seed42\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_b16\\r4\\vision_only\\seed456\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_b16\\r4\\vision_only\\seed789\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_b32_r4\\both\\seed1011\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b32_r4\\both\\seed123\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b32_r4\\both\\seed42\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b32_r4\\both\\seed456\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b32_r4\\both\\seed789\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_b32_r4\\text_only\\seed1011\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b32_r4\\text_only\\seed123\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b32_r4\\text_only\\seed42\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b32_r4\\text_only\\seed456\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b32_r4\\text_only\\seed789\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_b32_r4\\vision_only\\seed1011\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_b32_r4\\vision_only\\seed123\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_b32_r4\\vision_only\\seed42\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_b32_r4\\vision_only\\seed456\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_b32_r4\\vision_only\\seed789\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_bioclip\\results_partial.json": [
+   294912,
+   442368,
+   737280
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\both\\seed1011\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\both\\seed123\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\both\\seed42\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\both\\seed456\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\both\\seed789\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\text_only\\seed1011\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\text_only\\seed123\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\text_only\\seed42\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\text_only\\seed456\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\text_only\\seed789\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed1011\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed123\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed42\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed456\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed789\\results.json": [
+   147456
+  ],
+  "outputs\\strict_freeze_openclip\\both\\seed1024\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze_openclip\\both\\seed123\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze_openclip\\both\\seed42\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze_openclip\\both\\seed456\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze_openclip\\both\\seed789\\results.json": [
+   491520
+  ],
+  "outputs\\strict_freeze_openclip\\text_only\\seed1024\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze_openclip\\text_only\\seed123\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze_openclip\\text_only\\seed42\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze_openclip\\text_only\\seed456\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze_openclip\\text_only\\seed789\\results.json": [
+   196608
+  ],
+  "outputs\\strict_freeze_openclip\\vision_only\\seed1024\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze_openclip\\vision_only\\seed123\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze_openclip\\vision_only\\seed42\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze_openclip\\vision_only\\seed456\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze_openclip\\vision_only\\seed789\\results.json": [
+   294912
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\both\\seed1024\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\both\\seed123\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\both\\seed42\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\both\\seed456\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\both\\seed789\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed1024\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed123\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed42\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed456\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed789\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_rank\\r1\\both\\seed123\\results.json": [
+   61440
+  ],
+  "outputs\\strict_freeze_rank\\r1\\both\\seed42\\results.json": [
+   61440
+  ],
+  "outputs\\strict_freeze_rank\\r1\\both\\seed456\\results.json": [
+   61440
+  ],
+  "outputs\\strict_freeze_rank\\r1\\text_only\\seed123\\results.json": [
+   24576
+  ],
+  "outputs\\strict_freeze_rank\\r1\\text_only\\seed42\\results.json": [
+   24576
+  ],
+  "outputs\\strict_freeze_rank\\r1\\text_only\\seed456\\results.json": [
+   24576
+  ],
+  "outputs\\strict_freeze_rank\\r16\\both\\seed123\\results.json": [
+   983040
+  ],
+  "outputs\\strict_freeze_rank\\r16\\both\\seed42\\results.json": [
+   983040
+  ],
+  "outputs\\strict_freeze_rank\\r16\\both\\seed456\\results.json": [
+   983040
+  ],
+  "outputs\\strict_freeze_rank\\r16\\text_only\\seed123\\results.json": [
+   393216
+  ],
+  "outputs\\strict_freeze_rank\\r16\\text_only\\seed42\\results.json": [
+   393216
+  ],
+  "outputs\\strict_freeze_rank\\r16\\text_only\\seed456\\results.json": [
+   393216
+  ],
+  "outputs\\strict_freeze_rank\\r32\\both\\seed123\\results.json": [
+   1966080
+  ],
+  "outputs\\strict_freeze_rank\\r32\\both\\seed42\\results.json": [
+   1966080
+  ],
+  "outputs\\strict_freeze_rank\\r32\\both\\seed456\\results.json": [
+   1966080
+  ],
+  "outputs\\strict_freeze_rank\\r32\\text_only\\seed123\\results.json": [
+   786432
+  ],
+  "outputs\\strict_freeze_rank\\r32\\text_only\\seed42\\results.json": [
+   786432
+  ],
+  "outputs\\strict_freeze_rank\\r32\\text_only\\seed456\\results.json": [
+   786432
+  ],
+  "outputs\\strict_freeze_rank\\r4\\both\\seed123\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_rank\\r4\\both\\seed42\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_rank\\r4\\both\\seed456\\results.json": [
+   245760
+  ],
+  "outputs\\strict_freeze_rank\\r4\\text_only\\seed123\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_rank\\r4\\text_only\\seed42\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_rank\\r4\\text_only\\seed456\\results.json": [
+   98304
+  ],
+  "outputs\\strict_freeze_rank\\r64\\both\\seed123\\results.json": [
+   3932160
+  ],
+  "outputs\\strict_freeze_rank\\r64\\both\\seed42\\results.json": [
+   3932160
+  ],
+  "outputs\\strict_freeze_rank\\r64\\both\\seed456\\results.json": [
+   3932160
+  ],
+  "outputs\\strict_freeze_rank\\r64\\text_only\\seed123\\results.json": [
+   1572864
+  ],
+  "outputs\\strict_freeze_rank\\r64\\text_only\\seed42\\results.json": [
+   1572864
+  ],
+  "outputs\\strict_freeze_rank\\r64\\text_only\\seed456\\results.json": [
+   1572864
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d16\\seed123\\results.json": [
+   1014528
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d16\\seed42\\results.json": [
+   1014528
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d16\\seed456\\results.json": [
+   1014528
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d32\\seed123\\results.json": [
+   1998336
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d32\\seed42\\results.json": [
+   1998336
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d32\\seed456\\results.json": [
+   1998336
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d4\\seed123\\results.json": [
+   276672
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d4\\seed42\\results.json": [
+   276672
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d4\\seed456\\results.json": [
+   276672
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d64\\seed123\\results.json": [
+   3965952
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d64\\seed42\\results.json": [
+   3965952
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d64\\seed456\\results.json": [
+   3965952
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d8\\seed123\\results.json": [
+   522624
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d8\\seed42\\results.json": [
+   522624
+  ],
+  "outputs\\theory\\adapter\\adapter_both_d8\\seed456\\results.json": [
+   522624
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d16\\seed123\\results.json": [
+   405888
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d16\\seed42\\results.json": [
+   405888
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d16\\seed456\\results.json": [
+   405888
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d32\\seed123\\results.json": [
+   799488
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d32\\seed42\\results.json": [
+   799488
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d32\\seed456\\results.json": [
+   799488
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d4\\seed123\\results.json": [
+   110688
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d4\\seed42\\results.json": [
+   110688
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d4\\seed456\\results.json": [
+   110688
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d64\\seed123\\results.json": [
+   1586688
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d64\\seed42\\results.json": [
+   1586688
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d64\\seed456\\results.json": [
+   1586688
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d8\\seed123\\results.json": [
+   209088
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d8\\seed42\\results.json": [
+   209088
+  ],
+  "outputs\\theory\\adapter\\adapter_text_only_d8\\seed456\\results.json": [
+   209088
+  ],
+  "outputs\\theory\\alpha_from_gradients\\alpha_from_gradients.json": [
+   491520
+  ],
+  "outputs\\theory\\alpha_from_gradients\\alpha_from_gradients_maxsamp2000.json": [
+   491520
+  ],
+  "outputs\\theory\\beta_pilot\\beta_pilot_both_r8\\seed123\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\beta_pilot\\beta_pilot_both_r8\\seed42\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\beta_pilot\\beta_pilot_both_r8\\seed456\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\beta_pilot\\beta_pilot_full_ft\\seed123\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\beta_pilot\\beta_pilot_full_ft\\seed42\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\beta_pilot\\beta_pilot_full_ft\\seed456\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\beta_pilot\\beta_pilot_text_r8\\seed123\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\beta_pilot\\beta_pilot_text_r8\\seed42\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\beta_pilot\\beta_pilot_text_r8\\seed456\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\coco\\coco_both_r8\\seed123\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\coco\\coco_both_r8\\seed42\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\coco\\coco_both_r8\\seed456\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\coco\\coco_full_ft\\seed123\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\coco\\coco_full_ft\\seed42\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\coco\\coco_full_ft\\seed456\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\coco\\coco_text_r8\\seed123\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\coco\\coco_text_r8\\seed42\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\coco\\coco_text_r8\\seed456\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\epoch1\\v1_both_r1\\results.json": [
+   130860801
+  ],
+  "outputs\\theory\\epoch1\\v1_both_r16\\results.json": [
+   131782401
+  ],
+  "outputs\\theory\\epoch1\\v1_both_r2\\results.json": [
+   130922241
+  ],
+  "outputs\\theory\\epoch1\\v1_both_r32\\results.json": [
+   132765441
+  ],
+  "outputs\\theory\\epoch1\\v1_both_r4\\results.json": [
+   131045121
+  ],
+  "outputs\\theory\\epoch1\\v1_both_r64\\results.json": [
+   134731521
+  ],
+  "outputs\\theory\\epoch1\\v1_both_r8\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\epoch1\\v1_text_only_r1\\results.json": [
+   144998145
+  ],
+  "outputs\\theory\\epoch1\\v1_text_only_r16\\results.json": [
+   145366785
+  ],
+  "outputs\\theory\\epoch1\\v1_text_only_r2\\results.json": [
+   145022721
+  ],
+  "outputs\\theory\\epoch1\\v1_text_only_r32\\results.json": [
+   145760001
+  ],
+  "outputs\\theory\\epoch1\\v1_text_only_r4\\results.json": [
+   145071873
+  ],
+  "outputs\\theory\\epoch1\\v1_text_only_r64\\results.json": [
+   146546433
+  ],
+  "outputs\\theory\\epoch1\\v1_text_only_r8\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\gradflow_identity\\identity_check.json": [
+   196608,
+   294912,
+   491520
+  ],
+  "outputs\\theory\\grad_interference\\grad_interference.json": [
+   196608,
+   294912,
+   491520
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r1\\seed123\\results.json": [
+   130860801
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r1\\seed42\\results.json": [
+   130860801
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r1\\seed456\\results.json": [
+   130860801
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r16\\seed123\\results.json": [
+   131782401
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r16\\seed42\\results.json": [
+   131782401
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r16\\seed456\\results.json": [
+   131782401
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r2\\seed123\\results.json": [
+   130922241
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r2\\seed42\\results.json": [
+   130922241
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r2\\seed456\\results.json": [
+   130922241
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r32\\seed123\\results.json": [
+   132765441
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r32\\seed42\\results.json": [
+   132765441
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r32\\seed456\\results.json": [
+   132765441
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r4\\seed123\\results.json": [
+   131045121
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r4\\seed42\\results.json": [
+   131045121
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r4\\seed456\\results.json": [
+   131045121
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r64\\seed123\\results.json": [
+   134731521
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r64\\seed42\\results.json": [
+   134731521
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r64\\seed456\\results.json": [
+   134731521
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r8\\seed123\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r8\\seed42\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_both_r8\\seed456\\results.json": [
+   131290881
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_frozen\\seed123\\results.json": [
+   0
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_frozen\\seed42\\results.json": [
+   0
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_frozen\\seed456\\results.json": [
+   0
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_full_ft\\seed123\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_full_ft\\seed42\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_full_ft\\seed456\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r1\\seed123\\results.json": [
+   144998145
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r1\\seed42\\results.json": [
+   144998145
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r1\\seed456\\results.json": [
+   144998145
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r16\\seed123\\results.json": [
+   145366785
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r16\\seed42\\results.json": [
+   145366785
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r16\\seed456\\results.json": [
+   145366785
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r16\\seed789\\results.json": [
+   145366785
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r2\\seed123\\results.json": [
+   145022721
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r2\\seed42\\results.json": [
+   145022721
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r2\\seed456\\results.json": [
+   145022721
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r32\\seed123\\results.json": [
+   145760001
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r32\\seed42\\results.json": [
+   145760001
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r32\\seed456\\results.json": [
+   145760001
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r4\\seed123\\results.json": [
+   145071873
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r4\\seed42\\results.json": [
+   145071873
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r4\\seed456\\results.json": [
+   145071873
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r64\\seed123\\results.json": [
+   146546433
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r64\\seed42\\results.json": [
+   146546433
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r64\\seed456\\results.json": [
+   146546433
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r8\\seed123\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r8\\seed42\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\v1_trajectory\\v1_text_only_r8\\seed456\\results.json": [
+   145170177
+  ],
+  "outputs\\theory\\verify_accum\\full_ft_accum1_bs32\\seed42\\results.json": [
+   151277313
+  ],
+  "outputs\\theory\\verify_accum\\full_ft_accum4_bs32\\seed42\\results.json": [
+   151277313
+  ],
+  "outputs\\vitl\\vitl_frozen\\results.json": [
+   0
+  ],
+  "outputs\\vitl\\vitl_rank4\\results.json": [
+   363602177
+  ],
+  "outputs\\vitl\\vitl_text_only\\results.json": [
+   413737217
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed1011.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed123.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed1313.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed1616.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed1919.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed2323.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed2727.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed3131.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed3737.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed4141.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed42.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed456.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\both_seed789.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\summary.json": [
+   14494912
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed1011.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed123.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed1313.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed1616.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed1919.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed2323.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed2727.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed3131.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed3737.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed4141.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed42.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed456.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\text_only_seed789.json": [
+   9232384
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed1011.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed123.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed1313.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed1616.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed1919.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed2323.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed2727.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed3131.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed3737.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed4141.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed42.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed456.json": [
+   5262528
+  ],
+  "outputs\\vlm_seeds_bf16\\vision_only_seed789.json": [
+   5262528
+  ],
+  "outputs\\vlm_strictfreeze\\text_only_seed42.json": [
+   9232384
+  ],
+  "outputs\\vlm_strictfreeze\\4bit\\both_seed42.json": [
+   14494912
+  ],
+  "outputs\\vlm_strictfreeze\\4bit\\summary.json": [
+   9232384
+  ],
+  "outputs\\vlm_strictfreeze\\4bit\\text_only_seed42.json": [
+   9232384
+  ],
+  "outputs\\vlm_strictfreeze\\4bit\\vision_only_seed42.json": [
+   5262528
+  ],
+  "outputs\\_layout_test\\r4\\both\\seed42\\results.json": [
+   245760
+  ]
+ },
+ "value_histogram": {
+  "0": 12,
+  "24576": 6,
+  "49152": 6,
+  "61440": 6,
+  "75776": 1,
+  "98304": 32,
+  "110688": 5,
+  "122880": 3,
+  "147456": 21,
+  "196608": 25,
+  "209088": 5,
+  "245760": 34,
+  "276672": 3,
+  "294912": 30,
+  "393216": 11,
+  "405888": 5,
+  "442368": 1,
+  "491520": 18,
+  "522624": 3,
+  "589824": 5,
+  "608640": 2,
+  "737280": 1,
+  "786432": 8,
+  "799488": 5,
+  "983040": 8,
+  "1014528": 5,
+  "1564672": 1,
+  "1572864": 11,
+  "1586688": 5,
+  "1966080": 6,
+  "1998336": 3,
+  "3932160": 8,
+  "3965952": 6,
+  "5262528": 17,
+  "6500352": 2,
+  "9232384": 19,
+  "10130432": 1,
+  "14494912": 18,
+  "20969472": 2,
+  "28348416": 2,
+  "130860801": 7,
+  "130922241": 7,
+  "131045121": 14,
+  "131290881": 27,
+  "131782401": 8,
+  "132765441": 12,
+  "134731521": 7,
+  "137398017": 4,
+  "138866433": 2,
+  "139063041": 3,
+  "144998145": 6,
+  "145022721": 4,
+  "145071873": 8,
+  "145170177": 36,
+  "145366785": 7,
+  "145760001": 4,
+  "146546433": 4,
+  "148223745": 3,
+  "151277313": 33,
+  "175102466": 2,
+  "175397378": 3,
+  "175987202": 2,
+  "189276674": 2,
+  "196672514": 5,
+  "363602177": 3,
+  "413737217": 3
+ },
+ "known_lora_counts": {
+  "491520": "LoRA-both (q,v; 12 vision + 12 text layers)",
+  "196608": "LoRA-text-only (q_proj,v_proj; 12 text layers)",
+  "294912": "LoRA-vision-only (query,value; 12 vision layers)"
+ },
+ "suspicious": [
+  {
+   "file": "outputs\\c1_qwen_asymmetry.json",
+   "n_trainable": 75776
+  },
+  {
+   "file": "outputs\\master_results.json",
+   "n_trainable": 110688
+  },
+  {
+   "file": "outputs\\analysis\\rank_parity.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\analysis\\rank_parity.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\coco_sweep\\r1\\both\\seed123\\results.json",
+   "n_trainable": 61440
+  },
+  {
+   "file": "outputs\\coco_sweep\\r1\\both\\seed42\\results.json",
+   "n_trainable": 61440
+  },
+  {
+   "file": "outputs\\coco_sweep\\r1\\both\\seed456\\results.json",
+   "n_trainable": 61440
+  },
+  {
+   "file": "outputs\\coco_sweep\\r1\\text_only\\seed123\\results.json",
+   "n_trainable": 24576
+  },
+  {
+   "file": "outputs\\coco_sweep\\r1\\text_only\\seed42\\results.json",
+   "n_trainable": 24576
+  },
+  {
+   "file": "outputs\\coco_sweep\\r1\\text_only\\seed456\\results.json",
+   "n_trainable": 24576
+  },
+  {
+   "file": "outputs\\coco_sweep\\r2\\both\\seed123\\results.json",
+   "n_trainable": 122880
+  },
+  {
+   "file": "outputs\\coco_sweep\\r2\\both\\seed42\\results.json",
+   "n_trainable": 122880
+  },
+  {
+   "file": "outputs\\coco_sweep\\r2\\both\\seed456\\results.json",
+   "n_trainable": 122880
+  },
+  {
+   "file": "outputs\\coco_sweep\\r2\\text_only\\seed42\\results.json",
+   "n_trainable": 49152
+  },
+  {
+   "file": "outputs\\coco_sweep\\r4\\text_only\\seed123\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\coco_sweep\\r4\\text_only\\seed42\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\coco_sweep\\r4\\text_only\\seed456\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r2\\text_only\\seed1011\\results.json",
+   "n_trainable": 49152
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r2\\text_only\\seed123\\results.json",
+   "n_trainable": 49152
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r2\\text_only\\seed42\\results.json",
+   "n_trainable": 49152
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r2\\text_only\\seed456\\results.json",
+   "n_trainable": 49152
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r2\\text_only\\seed789\\results.json",
+   "n_trainable": 49152
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r4\\text_only\\seed1011\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r4\\text_only\\seed123\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r4\\text_only\\seed42\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r4\\text_only\\seed456\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\coco_sweep_text_only\\r4\\text_only\\seed789\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\phase1\\adapter_d4_text\\results.json",
+   "n_trainable": 110688
+  },
+  {
+   "file": "outputs\\siglip_strict\\seed1024\\s7_siglip_lora_r4_text_only\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\siglip_strict\\seed123\\s7_siglip_lora_r4_text_only\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\siglip_strict\\seed42\\s7_siglip_lora_r4_text_only\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\siglip_strict\\seed456\\s7_siglip_lora_r4_text_only\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\siglip_strict\\seed789\\s7_siglip_lora_r4_text_only\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\text_only\\seed1011\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\text_only\\seed123\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\text_only\\seed42\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\text_only\\seed456\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\text_only\\seed789\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\vision_only\\seed1011\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\vision_only\\seed123\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\vision_only\\seed42\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\vision_only\\seed456\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b16\\r4\\vision_only\\seed789\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\text_only\\seed1011\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\text_only\\seed123\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\text_only\\seed42\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\text_only\\seed456\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\text_only\\seed789\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\vision_only\\seed1011\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\vision_only\\seed123\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\vision_only\\seed42\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\vision_only\\seed456\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_b32_r4\\vision_only\\seed789\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\text_only\\seed1011\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\text_only\\seed123\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\text_only\\seed42\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\text_only\\seed456\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\text_only\\seed789\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed1011\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed123\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed42\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed456\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed789\\results.json",
+   "n_trainable": 147456
+  },
+  {
+   "file": "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed1024\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed123\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed42\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed456\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_openclip_rank\\r4\\text_only\\seed789\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_rank\\r1\\both\\seed123\\results.json",
+   "n_trainable": 61440
+  },
+  {
+   "file": "outputs\\strict_freeze_rank\\r1\\both\\seed42\\results.json",
+   "n_trainable": 61440
+  },
+  {
+   "file": "outputs\\strict_freeze_rank\\r1\\both\\seed456\\results.json",
+   "n_trainable": 61440
+  },
+  {
+   "file": "outputs\\strict_freeze_rank\\r1\\text_only\\seed123\\results.json",
+   "n_trainable": 24576
+  },
+  {
+   "file": "outputs\\strict_freeze_rank\\r1\\text_only\\seed42\\results.json",
+   "n_trainable": 24576
+  },
+  {
+   "file": "outputs\\strict_freeze_rank\\r1\\text_only\\seed456\\results.json",
+   "n_trainable": 24576
+  },
+  {
+   "file": "outputs\\strict_freeze_rank\\r4\\text_only\\seed123\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_rank\\r4\\text_only\\seed42\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\strict_freeze_rank\\r4\\text_only\\seed456\\results.json",
+   "n_trainable": 98304
+  },
+  {
+   "file": "outputs\\theory\\adapter\\adapter_text_only_d4\\seed123\\results.json",
+   "n_trainable": 110688
+  },
+  {
+   "file": "outputs\\theory\\adapter\\adapter_text_only_d4\\seed42\\results.json",
+   "n_trainable": 110688
+  },
+  {
+   "file": "outputs\\theory\\adapter\\adapter_text_only_d4\\seed456\\results.json",
+   "n_trainable": 110688
+  }
+ ]
+}

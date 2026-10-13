@@ -1,0 +1,173 @@
+{
+ "source": "outputs/a1_h_offset.json:checkpoints",
+ "n_checkpoints": 13,
+ "candidates": [
+  "tau"
+ ],
+ "pooled": {
+  "tau": {
+   "pearson": 0.6004,
+   "spearman": 0.7527
+  }
+ },
+ "within_dataset": {
+  "coco": {
+   "n": 3,
+   "spearman_tau_top1": -0.5,
+   "tau": [
+    0.575433,
+    0.575651,
+    0.575929
+   ],
+   "top1": [
+    58.14,
+    56.94,
+    57.56
+   ]
+  },
+  "food101": {
+   "n": 3,
+   "spearman_tau_top1": -0.5,
+   "tau": [
+    0.593573,
+    0.580987,
+    0.564444
+   ],
+   "top1": [
+    58.22,
+    59.78,
+    58.34
+   ]
+  },
+  "dtd": {
+   "n": 3,
+   "spearman_tau_top1": 1.0,
+   "tau": [
+    0.540227,
+    0.541102,
+    0.514949
+   ],
+   "top1": [
+    55.42,
+    55.74,
+    53.5
+   ]
+  },
+  "flickr30k_ref": [
+   {
+    "tag": "flickr30k_ref_r8_both",
+    "dataset": "flickr30k_ref",
+    "tau": 0.613064,
+    "top1": 57.8,
+    "CG": null,
+    "vision_lora": true,
+    "text_lora": true,
+    "displacement": {
+     "mean_abs_dx": 0.243056,
+     "mean_abs_text_dx": 0.190652,
+     "cos_shift_vs_gap_dir": -0.267741,
+     "component_parallel_to_gap_dir": -0.036167,
+     "component_orthogonal_to_gap_dir": 0.239664,
+     "frac_orthogonal_of_total": 0.868881,
+     "equivalent_synthetic_lambda": 0.299353
+    },
+    "zero_vision_displacement_control": {
+     "note": "frozen image tower x this checkpoint's text tower -- the only comparison available for checkpoints with a frozen vision tower (gap surgery on a frozen vision tower is a no-op, dx = 0)",
+     "top1": 58.9,
+     "tau_vs_frozen": 0.700425,
+     "frozen_image_tower_top1_under_frozen_text": 59.06,
+     "delta_top1_from_frozen": -0.16
+    },
+    "matched_displacement": {
+     "lambda": 0.2993530539873071,
+     "tau": 0.5985187425886723,
+     "top1": 54.300000000000004,
+     "displacement": 0.2424996942281723
+    }
+   }
+  ],
+  "flickr30k": {
+   "n": 3,
+   "spearman_tau_top1": -1.0,
+   "tau": [
+    0.759484,
+    0.696242,
+    0.749667
+   ],
+   "top1": [
+    58.5,
+    59.32,
+    58.58
+   ]
+  }
+ },
+ "lodo": {
+  "tau": {
+   "coco": {
+    "r2_linear": -1.4063,
+    "r2_const": -0.003,
+    "pred": [
+     56.963,
+     56.966,
+     56.97
+    ],
+    "actual": [
+     58.14,
+     56.94,
+     57.56
+    ]
+   },
+   "dtd": {
+    "r2_linear": -9.6768,
+    "r2_const": -12.0329,
+    "pred": [
+     58.006,
+     58.009,
+     57.917
+    ],
+    "actual": [
+     55.42,
+     55.74,
+     53.5
+    ]
+   },
+   "flickr30k": {
+    "r2_linear": -371.6984,
+    "r2_const": -20.1248,
+    "pred": [
+     66.942,
+     63.714,
+     66.441
+    ],
+    "actual": [
+     58.5,
+     59.32,
+     58.58
+    ]
+   },
+   "food101": {
+    "r2_linear": -9.4311,
+    "r2_const": -5.2884,
+    "pred": [
+     56.828,
+     56.631,
+     56.373
+    ],
+    "actual": [
+     58.22,
+     59.78,
+     58.34
+    ]
+   }
+  }
+ },
+ "summary": {
+  "tau": {
+   "mean_r2": -98.0532,
+   "mean_r2_const": -9.3623,
+   "wins": 0,
+   "n_folds": 4
+  }
+ },
+ "best": "tau"
+}

@@ -1,0 +1,566 @@
+{
+ "passed": 80,
+ "failed": 0,
+ "claims": [
+  {
+   "claim": "严格冻结 text_only CGΔ",
+   "manuscript": -0.0465,
+   "computed": -0.046505,
+   "source": "strict_control_summary.json:configs.text_only.cg_delta_mean",
+   "pass": true
+  },
+  {
+   "claim": "严格冻结 both CGΔ",
+   "manuscript": -0.0258,
+   "computed": -0.025825,
+   "source": "...configs.both.cg_delta_mean",
+   "pass": true
+  },
+  {
+   "claim": "严格冻结 vision_only CGΔ",
+   "manuscript": 0.0106,
+   "computed": 0.010572,
+   "source": "...configs.vision_only.cg_delta_mean",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/32@r4 text_only CGΔ(3seed均值)",
+   "manuscript": -0.030382,
+   "computed": -0.030382,
+   "source": "outputs/strict_freeze_b32_r4/text_only/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/32@r4 text_only R@1(3seed均值)",
+   "manuscript": 0.621,
+   "computed": 0.6222,
+   "source": "outputs/strict_freeze_b32_r4/text_only/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/32@r4 both CGΔ(3seed均值)",
+   "manuscript": -0.020375,
+   "computed": -0.020375,
+   "source": "outputs/strict_freeze_b32_r4/both/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/32@r4 both R@1(3seed均值)",
+   "manuscript": 0.679,
+   "computed": 0.6796,
+   "source": "outputs/strict_freeze_b32_r4/both/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/32@r4 vision_only CGΔ(3seed均值)",
+   "manuscript": 0.016577,
+   "computed": 0.016577,
+   "source": "outputs/strict_freeze_b32_r4/vision_only/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/32@r4 vision_only R@1(3seed均值)",
+   "manuscript": 0.67,
+   "computed": 0.6698,
+   "source": "outputs/strict_freeze_b32_r4/vision_only/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/16@r4 text_only CGΔ(3seed均值)",
+   "manuscript": -0.016574,
+   "computed": -0.016574,
+   "source": "outputs/strict_freeze_b16/r4/text_only/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/16@r4 text_only R@1(3seed均值)",
+   "manuscript": 0.651,
+   "computed": 0.6502,
+   "source": "outputs/strict_freeze_b16/r4/text_only/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/16@r4 both CGΔ(3seed均值)",
+   "manuscript": 0.012357,
+   "computed": 0.012357,
+   "source": "outputs/strict_freeze_b16/r4/both/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/16@r4 both R@1(3seed均值)",
+   "manuscript": 0.707,
+   "computed": 0.707,
+   "source": "outputs/strict_freeze_b16/r4/both/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/16@r4 vision_only CGΔ(3seed均值)",
+   "manuscript": 0.037551,
+   "computed": 0.037551,
+   "source": "outputs/strict_freeze_b16/r4/vision_only/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/16@r4 vision_only R@1(3seed均值)",
+   "manuscript": 0.686,
+   "computed": 0.686,
+   "source": "outputs/strict_freeze_b16/r4/vision_only/*/results.json: mean over 5 seeds",
+   "pass": true
+  },
+  {
+   "claim": "VLM text_only DG* 相对变化(%), n=13",
+   "manuscript": 66.47,
+   "computed": 66.47,
+   "source": "vlm_bf16_detail.json:summary.text_only.dg_rel_mean",
+   "pass": true
+  },
+  {
+   "claim": "VLM text_only DG* 相对变化 sd, n=13",
+   "manuscript": 8.32,
+   "computed": 8.32,
+   "source": "vlm_bf16_detail.json:summary.text_only.dg_rel_sd",
+   "pass": true
+  },
+  {
+   "claim": "VLM text_only CG 跨度均值, n=13",
+   "manuscript": 0.168,
+   "computed": 0.168,
+   "source": "vlm_bf16_detail.json:summary.text_only.cg_mean",
+   "pass": true
+  },
+  {
+   "claim": "VLM vision_only DG* 相对变化(%), n=13",
+   "manuscript": 18.03,
+   "computed": 18.03,
+   "source": "vlm_bf16_detail.json:summary.vision_only.dg_rel_mean",
+   "pass": true
+  },
+  {
+   "claim": "VLM vision_only DG* 相对变化 sd, n=13",
+   "manuscript": 8.78,
+   "computed": 8.78,
+   "source": "vlm_bf16_detail.json:summary.vision_only.dg_rel_sd",
+   "pass": true
+  },
+  {
+   "claim": "VLM vision_only CG 跨度均值, n=13",
+   "manuscript": 0.3919,
+   "computed": 0.3919,
+   "source": "vlm_bf16_detail.json:summary.vision_only.cg_mean",
+   "pass": true
+  },
+  {
+   "claim": "VLM both DG* 相对变化(%), n=13",
+   "manuscript": 87.94,
+   "computed": 87.94,
+   "source": "vlm_bf16_detail.json:summary.both.dg_rel_mean",
+   "pass": true
+  },
+  {
+   "claim": "VLM both DG* 相对变化 sd, n=13",
+   "manuscript": 5.35,
+   "computed": 5.35,
+   "source": "vlm_bf16_detail.json:summary.both.dg_rel_sd",
+   "pass": true
+  },
+  {
+   "claim": "VLM both CG 跨度均值, n=13",
+   "manuscript": 0.2913,
+   "computed": 0.2913,
+   "source": "vlm_bf16_detail.json:summary.both.cg_mean",
+   "pass": true
+  },
+  {
+   "claim": "VLM text_only 种子下界(%)",
+   "manuscript": 47.8,
+   "computed": 47.8,
+   "source": "vlm_bf16_detail.json:summary.text_only.dg_rel",
+   "pass": true
+  },
+  {
+   "claim": "VLM text_only 种子上界(%)",
+   "manuscript": 78.77,
+   "computed": 78.77,
+   "source": "vlm_bf16_detail.json:summary.text_only.dg_rel",
+   "pass": true
+  },
+  {
+   "claim": "VLM vision_only 种子下界(%)",
+   "manuscript": 8.51,
+   "computed": 8.51,
+   "source": "vlm_bf16_detail.json:summary.vision_only.dg_rel",
+   "pass": true
+  },
+  {
+   "claim": "VLM vision_only 种子上界(%)",
+   "manuscript": 35.72,
+   "computed": 35.72,
+   "source": "vlm_bf16_detail.json:summary.vision_only.dg_rel",
+   "pass": true
+  },
+  {
+   "claim": "VLM both 种子下界(%)",
+   "manuscript": 73.14,
+   "computed": 73.14,
+   "source": "vlm_bf16_detail.json:summary.both.dg_rel",
+   "pass": true
+  },
+  {
+   "claim": "VLM both 种子上界(%)",
+   "manuscript": 95.05,
+   "computed": 95.05,
+   "source": "vlm_bf16_detail.json:summary.both.dg_rel",
+   "pass": true
+  },
+  {
+   "claim": "r4 Flickr30k|text_only ΔCG",
+   "manuscript": -0.0304,
+   "computed": -0.03038,
+   "source": "dataset_flip_strict.json:r4.Flickr30k|text_only.mean",
+   "pass": true
+  },
+  {
+   "claim": "r4 Flickr30k|both ΔCG",
+   "manuscript": -0.0204,
+   "computed": -0.02037,
+   "source": "dataset_flip_strict.json:r4.Flickr30k|both.mean",
+   "pass": true
+  },
+  {
+   "claim": "r4 COCO|text_only ΔCG",
+   "manuscript": -0.043,
+   "computed": -0.04301,
+   "source": "dataset_flip_strict.json:r4.COCO|text_only.mean",
+   "pass": true
+  },
+  {
+   "claim": "r4 COCO|both ΔCG",
+   "manuscript": -0.0877,
+   "computed": -0.0886,
+   "source": "dataset_flip_strict.json:r4.COCO|both.mean",
+   "pass": true
+  },
+  {
+   "claim": "r4 Flickr30k|text_only sd",
+   "manuscript": 0.0039,
+   "computed": 0.00385,
+   "source": "dataset_flip_strict.json:r4.Flickr30k|text_only.sd",
+   "pass": true
+  },
+  {
+   "claim": "r4 COCO|both sd",
+   "manuscript": 0.0026,
+   "computed": 0.00263,
+   "source": "dataset_flip_strict.json:r4.COCO|both.sd",
+   "pass": true
+  },
+  {
+   "claim": "COCO text_only r2 ΔCG",
+   "manuscript": -0.0247,
+   "computed": -0.024723,
+   "source": "coco_sweep_text_only/r2/text_only/seed*/results.json:mean",
+   "pass": true
+  },
+  {
+   "claim": "COCO text_only r8 ΔCG",
+   "manuscript": -0.069,
+   "computed": -0.06899,
+   "source": "coco_sweep_text_only/r8/text_only/seed*/results.json:mean",
+   "pass": true
+  },
+  {
+   "claim": "COCO text_only r32 ΔCG",
+   "manuscript": -0.1153,
+   "computed": -0.115272,
+   "source": "coco_sweep_text_only/r32/text_only/seed*/results.json:mean",
+   "pass": true
+  },
+  {
+   "claim": "COCO text_only r64 ΔCG",
+   "manuscript": -0.1359,
+   "computed": -0.13592,
+   "source": "coco_sweep_text_only/r64/text_only/seed*/results.json:mean",
+   "pass": true
+  },
+  {
+   "claim": "f(DG0) 高精度合并值",
+   "manuscript": 66.7,
+   "computed": 66.713714,
+   "source": "alpha_precision.json:pooled_f.mean",
+   "pass": true
+  },
+  {
+   "claim": "f(DG0) 标准误",
+   "manuscript": 4.8,
+   "computed": 4.823723,
+   "source": "alpha_precision.json:pooled_f.se",
+   "pass": true
+  },
+  {
+   "claim": "归档 alpha_fit",
+   "manuscript": -0.0027743,
+   "computed": -0.002774,
+   "source": "alpha_precision.json:alpha_fit_archive",
+   "pass": true
+  },
+  {
+   "claim": "f_fit = alpha_fit/eta",
+   "manuscript": -27.7,
+   "computed": -27.742992,
+   "source": "alpha_precision.json:f_fit_archive",
+   "pass": true
+  },
+  {
+   "claim": "驱动项轨迹均值 text_only",
+   "manuscript": 10.8,
+   "computed": 10.827892,
+   "source": "driving_trajectory.json:trajectory_means.text_only",
+   "pass": true
+  },
+  {
+   "claim": "驱动项轨迹均值 vision_only",
+   "manuscript": 10.2,
+   "computed": 10.239625,
+   "source": "driving_trajectory.json:trajectory_means.vision_only",
+   "pass": true
+  },
+  {
+   "claim": "驱动项轨迹均值 both",
+   "manuscript": 9.2,
+   "computed": 9.161939,
+   "source": "driving_trajectory.json:trajectory_means.both",
+   "pass": true
+  },
+  {
+   "claim": "驱动项极差(%)",
+   "manuscript": 16.5,
+   "computed": 16.533075,
+   "source": "driving_trajectory.json:trajectory_mean_spread_pct",
+   "pass": true
+  },
+  {
+   "claim": "实测 CGΔ 极差(%)",
+   "manuscript": 277.0,
+   "computed": 277.633712,
+   "source": "driving_verdict.json:cg_delta_spread_pct",
+   "pass": true
+  },
+  {
+   "claim": "dg_pred 实测/预测中位比",
+   "manuscript": 2.44,
+   "computed": 2.437942,
+   "source": "dg_pred_bias.json:verdict.systematic_ratio_median",
+   "pass": true
+  },
+  {
+   "claim": "dg_pred 极差比(预测/实测)",
+   "manuscript": 3.33,
+   "computed": 3.33043,
+   "source": "dg_pred_bias.json:verdict.spread_ratio",
+   "pass": true
+  },
+  {
+   "claim": "dg_pred 预测极差",
+   "manuscript": 0.223,
+   "computed": 0.223139,
+   "source": "dg_pred_bias.json:verdict.pred_spread",
+   "pass": true
+  },
+  {
+   "claim": "dg_pred 实测极差",
+   "manuscript": 0.067,
+   "computed": 0.067,
+   "source": "dg_pred_bias.json:verdict.actual_spread",
+   "pass": true
+  },
+  {
+   "claim": "dg_pred 相关系数",
+   "manuscript": 0.225,
+   "computed": 0.224901,
+   "source": "dg_pred_bias.json:verdict.corr",
+   "pass": true
+  },
+  {
+   "claim": "alpha 预测中位相对误差(%)",
+   "manuscript": 34.0,
+   "computed": 33.973255,
+   "source": "prospective_results.json:median rel err of alpha_pred",
+   "pass": true
+  },
+  {
+   "claim": "Qwen2-VL both DG* 相对降幅",
+   "manuscript": 0.838,
+   "computed": 0.838373,
+   "source": "qwen_verdict.json:rows.<arm>.rel",
+   "pass": true
+  },
+  {
+   "claim": "Qwen2-VL text_only DG* 相对降幅",
+   "manuscript": 0.739,
+   "computed": 0.739221,
+   "source": "qwen_verdict.json:rows.<arm>.rel",
+   "pass": true
+  },
+  {
+   "claim": "Qwen2-VL vision_only DG* 相对降幅",
+   "manuscript": 0.11,
+   "computed": 0.11004,
+   "source": "qwen_verdict.json:rows.<arm>.rel",
+   "pass": true
+  },
+  {
+   "claim": "Qwen2-VL 三臂起点比",
+   "manuscript": 3.4,
+   "computed": 3.419109,
+   "source": "qwen_verdict.json:start_ratio",
+   "pass": true
+  },
+  {
+   "claim": "Qwen2-VL both n_trainable",
+   "manuscript": 14494912.0,
+   "computed": 14494912.0,
+   "source": "vlm_strictfreeze/4bit/both_seed42.json:n_trainable",
+   "pass": true
+  },
+  {
+   "claim": "Qwen2-VL text_only n_trainable",
+   "manuscript": 9232384.0,
+   "computed": 9232384.0,
+   "source": "vlm_strictfreeze/4bit/text_only_seed42.json:n_trainable",
+   "pass": true
+  },
+  {
+   "claim": "Qwen2-VL vision_only n_trainable",
+   "manuscript": 5262528.0,
+   "computed": 5262528.0,
+   "source": "vlm_strictfreeze/4bit/vision_only_seed42.json:n_trainable",
+   "pass": true
+  },
+  {
+   "claim": "LoRA 全部 R²（55 run）",
+   "manuscript": 0.949,
+   "computed": 0.948615,
+   "source": "ode_ledger.json:subsets.lora.mean ← tools/_p1_ledger.py",
+   "pass": true
+  },
+  {
+   "claim": "LoRA+Flickr30k R²（43 run）",
+   "manuscript": 0.953,
+   "computed": 0.95418,
+   "source": "...lora_flickr.mean",
+   "pass": true
+  },
+  {
+   "claim": "LoRA+MS-COCO R²（6 run）",
+   "manuscript": 0.903,
+   "computed": 0.903168,
+   "source": "...lora_coco.mean",
+   "pass": true
+  },
+  {
+   "claim": "Adapter R²（30 run）",
+   "manuscript": 0.6694,
+   "computed": 0.669446,
+   "source": "...adapter.mean",
+   "pass": true
+  },
+  {
+   "claim": "full-FT R²（11 run）",
+   "manuscript": 0.9217,
+   "computed": 0.921728,
+   "source": "...full_ft.mean",
+   "pass": true
+  },
+  {
+   "claim": "逐秩 both r=2 R²",
+   "manuscript": 0.937,
+   "computed": 0.936936,
+   "source": "ode_ledger.json:runs(both,r=2)",
+   "pass": true
+  },
+  {
+   "claim": "逐秩 both r=64 R²",
+   "manuscript": 0.938,
+   "computed": 0.938158,
+   "source": "ode_ledger.json:runs(both,r=64)",
+   "pass": true
+  },
+  {
+   "claim": "梯度流恒等式 cos(预测,实测)",
+   "manuscript": 0.9977,
+   "computed": 0.997657,
+   "source": "gradflow_identity/identity_check.json:cos_pred_vs_actual",
+   "pass": true
+  },
+  {
+   "claim": "梯度流恒等式 中位相对误差",
+   "manuscript": 0.027,
+   "computed": 0.027004,
+   "source": "...identity_check.json:median_rel_err",
+   "pass": true
+  },
+  {
+   "claim": "text_only 视觉梯度范数",
+   "manuscript": 0.0,
+   "computed": 0.0,
+   "source": "encoder_side/encoder_side.json:summary.text_only.norm_g_vision",
+   "pass": true
+  },
+  {
+   "claim": "vision_only 文本梯度范数",
+   "manuscript": 0.0,
+   "computed": 0.0,
+   "source": "...summary.vision_only.norm_g_text",
+   "pass": true
+  },
+  {
+   "claim": "text_only 文本梯度范数",
+   "manuscript": 13.51,
+   "computed": 13.507651,
+   "source": "...summary.text_only.norm_g_text",
+   "pass": true
+  },
+  {
+   "claim": "OpenCLIP BitFit R² 均值",
+   "manuscript": 0.943,
+   "computed": 0.942799,
+   "source": "openclip/openclip_results.json:mean(r_squared)",
+   "pass": true
+  },
+  {
+   "claim": "CLIP BitFit R² 下界",
+   "manuscript": 0.3,
+   "computed": 0.297921,
+   "source": "bitfit/bitfit_results.json:min(r_squared)",
+   "pass": true
+  },
+  {
+   "claim": "CLIP BitFit R² 上界",
+   "manuscript": 0.84,
+   "computed": 0.843419,
+   "source": "...max(r_squared)",
+   "pass": true
+  },
+  {
+   "claim": "初始 DG* vs 末态 R@1（r）",
+   "manuscript": -0.708,
+   "computed": -0.70811,
+   "source": "monitor_dg_check3.json:corr_dg0_r1 ← tools/_p3_monitor_dg3.py",
+   "pass": true
+  },
+  {
+   "claim": "DG/CG 最优 epoch 一致率",
+   "manuscript": 0.42,
+   "computed": 0.416667,
+   "source": "...argmin_agree_rate",
+   "pass": true
+  },
+  {
+   "claim": "LOCO LoRA 族内配置数",
+   "manuscript": 18.0,
+   "computed": 18.0,
+   "source": "ode_loco2.json:per_config(LoRA 子集) ← tools/_p1_ode_loco2.py",
+   "pass": true
+  }
+ ]
+}

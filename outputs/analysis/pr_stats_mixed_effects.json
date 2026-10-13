@@ -1,0 +1,259 @@
+{
+  "provenance": {
+    "input_file": "outputs/analysis/dg_r1_reproducible.json",
+    "input_field": "rows[*].{path,dg_final,cg_final,r1}",
+    "input_producer": "tools/p1_dg_r1_recompute.py",
+    "archive_source": "outputs/**/results.json :: final_gap.distribution_gap, final_gap.centroid_gap, final_task_metrics.R@1",
+    "recheck": "all 204 rows independently re-read from their results.json; values match bit-for-bit (0 mismatches)",
+    "labels": "results.json archives NO dataset/model/config field; labels are derived, see label_evidence. family (first path component) is the only archive-literal grouping.",
+    "statsmodels_available": false
+  },
+  "M1_random_intercept_config": {
+    "random_effects": [
+      125
+    ],
+    "beta_intercept": 1.4935,
+    "beta_DG": -1.0112,
+    "se_DG": 0.0774,
+    "z": -13.0653,
+    "p_wald": 5.200941950881547e-39,
+    "t_conservative": -13.0653,
+    "df_conservative": 124,
+    "p_t_conservative": 4.580889459413351e-25,
+    "variance_components": {
+      "levels": [
+        0.0286
+      ],
+      "residual": 0.0036
+    },
+    "icc": {
+      "levels": [
+        0.8873
+      ],
+      "residual": 0.1127
+    },
+    "icc_total_random": 0.8873,
+    "neg2_reml": 250.3165,
+    "converged": true
+  },
+  "M2_random_intercepts_family_config": {
+    "random_effects": [
+      12,
+      125
+    ],
+    "beta_intercept": 1.4355,
+    "beta_DG": -0.9429,
+    "se_DG": 0.1017,
+    "z": -9.2676,
+    "p_wald": 1.9041924740422527e-20,
+    "t_conservative": -9.2676,
+    "df_conservative": 11,
+    "p_t_conservative": 1.5723053581888366e-06,
+    "variance_components": {
+      "levels": [
+        0.0118,
+        0.0225
+      ],
+      "residual": 0.0036
+    },
+    "icc": {
+      "levels": [
+        0.311,
+        0.5938
+      ],
+      "residual": 0.0952
+    },
+    "icc_total_random": 0.9048,
+    "neg2_reml": 238.1001,
+    "converged": true
+  },
+  "M3_random_intercepts_dataset_model": {
+    "random_effects": [
+      4,
+      4
+    ],
+    "beta_intercept": 1.5017,
+    "beta_DG": -1.0475,
+    "se_DG": 0.0679,
+    "z": -15.4222,
+    "p_wald": 1.160344649135259e-53,
+    "t_conservative": -15.4222,
+    "df_conservative": 3,
+    "p_t_conservative": 0.0005922360915120242,
+    "variance_components": {
+      "levels": [
+        0.0523,
+        0.0085
+      ],
+      "residual": 0.0207
+    },
+    "icc": {
+      "levels": [
+        0.6419,
+        0.1044
+      ],
+      "residual": 0.2537
+    },
+    "icc_total_random": 0.7463,
+    "neg2_reml": 307.7058,
+    "converged": false
+  },
+  "M4_random_intercepts_dataset_model_config": {
+    "random_effects": [
+      4,
+      4,
+      125
+    ],
+    "beta_intercept": 1.3947,
+    "beta_DG": -0.9526,
+    "se_DG": 0.079,
+    "z": -12.0528,
+    "p_wald": 1.8754631863121935e-33,
+    "t_conservative": -12.0528,
+    "df_conservative": 3,
+    "p_t_conservative": 0.001228998480178441,
+    "variance_components": {
+      "levels": [
+        0.0404,
+        0.0043,
+        0.0187
+      ],
+      "residual": 0.0037
+    },
+    "icc": {
+      "levels": [
+        0.6027,
+        0.0634,
+        0.2787
+      ],
+      "residual": 0.0551
+    },
+    "icc_total_random": 0.9449,
+    "neg2_reml": 214.7363,
+    "converged": true
+  },
+  "M5_random_intercepts_dataset_model_family_config": {
+    "random_effects": [
+      4,
+      4,
+      12,
+      125
+    ],
+    "beta_intercept": 1.293,
+    "beta_DG": -0.9057,
+    "se_DG": 0.0878,
+    "z": -10.318,
+    "p_wald": 5.840078890557954e-25,
+    "t_conservative": -10.318,
+    "df_conservative": 3,
+    "p_t_conservative": 0.0019417111056313275,
+    "variance_components": {
+      "levels": [
+        0.0523,
+        0.0,
+        0.0082,
+        0.0151
+      ],
+      "residual": 0.0037
+    },
+    "icc": {
+      "levels": [
+        0.6598,
+        0.0,
+        0.1032,
+        0.1902
+      ],
+      "residual": 0.0468
+    },
+    "icc_total_random": 0.9532,
+    "neg2_reml": 204.4616,
+    "converged": true
+  },
+  "cluster_robust_OLS": {
+    "by_design_cell": {
+      "n_clusters": 6,
+      "beta_DG": -1.0484,
+      "se_ols": 0.0723,
+      "se_cr0": 0.2651,
+      "se_cr1": 0.2911,
+      "p_cr1_t_Gminus1": 0.015529145476530174,
+      "se_inflation_vs_ols": 4.0275
+    },
+    "by_family": {
+      "n_clusters": 12,
+      "beta_DG": -1.0484,
+      "se_ols": 0.0723,
+      "se_cr1": 0.2175,
+      "p_cr1_t_Gminus1": 0.0005359761539089513,
+      "se_inflation_vs_ols": 3.0089
+    },
+    "by_config": {
+      "n_clusters": 125,
+      "beta_DG": -1.0484,
+      "se_ols": 0.0723,
+      "se_cr1": 0.1149,
+      "p_cr1_t_Gminus1": 1.6140464304403892e-15,
+      "se_inflation_vs_ols": 1.5888
+    },
+    "note": "CR1 = G/(G-1)*(n-1)/(n-k) finite-sample correction; p from t with G-1 df, the conventional conservative choice for few clusters."
+  },
+  "self_test_reml": {
+    "beta_slope": -1.1931381234446583,
+    "tau": [
+      0.21290818056345723,
+      0.30031795895983204,
+      0.2736482876640883
+    ],
+    "tau_true": [
+      0.5,
+      0.4,
+      0.3
+    ],
+    "icc": [
+      0.11344342375177363,
+      0.16001779447076578,
+      0.14580744889307753
+    ],
+    "tau_ratio": [
+      0.4258,
+      0.7508,
+      0.9122
+    ],
+    "tau_total_ratio": 0.6557,
+    "n_levels": [
+      8,
+      5,
+      40
+    ],
+    "n": 400,
+    "caveat": "component-wise recovery is weakest for the factor with fewest levels; use the ICCs as order-of-magnitude, not exact"
+  },
+  "sensitivity_subsets": {
+    "documented_dataset_only": {
+      "description": "drop the 5 rows whose dataset is undocumented or disputed",
+      "n": 199,
+      "beta_DG": -0.9568,
+      "se_DG": 0.0807,
+      "p_wald": 1.9814447259625698e-32,
+      "icc_total_random": 0.9542
+    },
+    "drop_route_cde": {
+      "description": "drop the 16 Route C/D/E rows",
+      "n": 188,
+      "beta_DG": -0.9812,
+      "se_DG": 0.0759,
+      "p_wald": 3.0843472051687676e-38,
+      "icc_total_random": 0.9444
+    },
+    "design_cells_n_ge_10": {
+      "description": "keep only design cells with n>=10",
+      "n": 189,
+      "beta_DG": -1.2181,
+      "se_DG": 0.0952,
+      "p_wald": 1.686328641908164e-37,
+      "icc_total_random": 1.0
+    }
+  },
+  "statsmodels_available": false,
+  "note_statsmodels": "statsmodels is NOT installed in D:\\Anaconda\\envs\\pytorch (verified: ModuleNotFoundError). The crossed random-intercept REML engine above is implemented in this script and validated by simulation."
+}

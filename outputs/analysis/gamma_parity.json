@@ -1,0 +1,82 @@
+{
+ "cloud_gamma": {
+  "text_only": {
+   "norm_grad_text": 26.0692,
+   "cos_text": 0.9608,
+   "Gamma_text": 25.0481,
+   "norm_grad_vision": 0.0,
+   "cos_vision": null,
+   "Gamma_vision": 0.0
+  },
+  "vision_only": {
+   "norm_grad_vision": 5.2054,
+   "cos_vision": 0.1918,
+   "Gamma_vision": 0.9983,
+   "norm_grad_text": 0.0,
+   "cos_text": null,
+   "Gamma_text": 0.0
+  },
+  "both": {
+   "norm_grad_vision": 5.2988,
+   "cos_vision": 0.1915,
+   "Gamma_vision": 1.0148,
+   "norm_grad_text": 26.5986,
+   "cos_text": 0.9617,
+   "Gamma_text": 25.5793
+  }
+ },
+ "comparison": [
+  {
+   "arm": "text_only",
+   "qty": "‖∇_vDG*‖",
+   "local": 0.0,
+   "cloud": 0.0,
+   "ratio": null
+  },
+  {
+   "arm": "text_only",
+   "qty": "‖∇_tDG*‖",
+   "local": 13.507651,
+   "cloud": 26.0692,
+   "ratio": 1.9299580659879354,
+   "same_order": true
+  },
+  {
+   "arm": "vision_only",
+   "qty": "‖∇_vDG*‖",
+   "local": 15.437072,
+   "cloud": 5.2054,
+   "ratio": 0.33720125163632064,
+   "same_order": false
+  },
+  {
+   "arm": "vision_only",
+   "qty": "‖∇_tDG*‖",
+   "local": 0.0,
+   "cloud": 0.0,
+   "ratio": null
+  },
+  {
+   "arm": "both",
+   "qty": "‖∇_vDG*‖",
+   "local": 12.92894,
+   "cloud": 5.2988,
+   "ratio": 0.4098402498580703,
+   "same_order": false
+  },
+  {
+   "arm": "both",
+   "qty": "‖∇_tDG*‖",
+   "local": 11.045594,
+   "cloud": 26.5986,
+   "ratio": 2.408073300539564,
+   "same_order": false
+  }
+ ],
+ "usable": false,
+ "caveats": [
+  "cloud averaged 7 batches vs local 8",
+  "different torch version",
+  "report as an independent set, do not merge"
+ ]
+}

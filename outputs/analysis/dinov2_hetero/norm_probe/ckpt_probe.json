@@ -1,0 +1,249 @@
+{
+  "script": "tools/_p357a_ckpt_probe.py",
+  "checkpoints": {
+    "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/best_checkpoint.pt": {
+      "path": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/best_checkpoint.pt",
+      "top_keys": [
+        "config_name",
+        "epoch",
+        "gap_history",
+        "lora_state_dict",
+        "task_metrics",
+        "train_losses",
+        "val_losses"
+      ],
+      "epoch": 10,
+      "config_name": "dinov2het_fitted_text_only",
+      "n_lora_layers": 24,
+      "lora_layer_names_sample": [
+        "text.text_model.encoder.layers.0.self_attn.q_proj",
+        "text.text_model.encoder.layers.0.self_attn.v_proj",
+        "text.text_model.encoder.layers.1.self_attn.q_proj"
+      ],
+      "train_losses": [
+        1.994022,
+        1.691935,
+        1.560699,
+        1.466767,
+        1.394352,
+        1.342612,
+        1.299212,
+        1.281073,
+        1.27058,
+        1.270926
+      ],
+      "val_losses": [
+        1.870158,
+        1.75581,
+        1.707881,
+        1.665912,
+        1.658333,
+        1.648502,
+        1.633828,
+        1.62889,
+        1.63375,
+        1.627376
+      ],
+      "task_R1": [
+        0.327,
+        0.331,
+        0.344,
+        0.352,
+        0.358,
+        0.357,
+        0.358,
+        0.351,
+        0.37,
+        0.354
+      ],
+      "gap_epochs": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "gap_CG": [
+        0.676763,
+        0.477772,
+        0.414738,
+        0.36774,
+        0.334858,
+        0.312924,
+        0.30488,
+        0.291443,
+        0.28909,
+        0.28594,
+        0.285498
+      ],
+      "lora_AB_frobenius_sum_of_norms": 20.052438139915466,
+      "fingerprint_lora_first_tensor": 6.036969184875488
+    },
+    "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/last_checkpoint.pt": {
+      "path": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/last_checkpoint.pt",
+      "top_keys": [
+        "config_name",
+        "epoch",
+        "gap_history",
+        "lora_state_dict",
+        "task_metrics",
+        "train_losses",
+        "val_losses"
+      ],
+      "epoch": 10,
+      "config_name": "dinov2het_fitted_text_only",
+      "n_lora_layers": 24,
+      "lora_layer_names_sample": [
+        "text.text_model.encoder.layers.0.self_attn.q_proj",
+        "text.text_model.encoder.layers.0.self_attn.v_proj",
+        "text.text_model.encoder.layers.1.self_attn.q_proj"
+      ],
+      "train_losses": [
+        1.994022,
+        1.691935,
+        1.560699,
+        1.466767,
+        1.394352,
+        1.342612,
+        1.299212,
+        1.281073,
+        1.27058,
+        1.270926
+      ],
+      "val_losses": [
+        1.870158,
+        1.75581,
+        1.707881,
+        1.665912,
+        1.658333,
+        1.648502,
+        1.633828,
+        1.62889,
+        1.63375,
+        1.627376
+      ],
+      "task_R1": [
+        0.327,
+        0.331,
+        0.344,
+        0.352,
+        0.358,
+        0.357,
+        0.358,
+        0.351,
+        0.37,
+        0.354
+      ],
+      "gap_epochs": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "gap_CG": [
+        0.676763,
+        0.477772,
+        0.414738,
+        0.36774,
+        0.334858,
+        0.312924,
+        0.30488,
+        0.291443,
+        0.28909,
+        0.28594,
+        0.285498
+      ],
+      "lora_AB_frobenius_sum_of_norms": 20.052438139915466,
+      "fingerprint_lora_first_tensor": 6.036969184875488
+    },
+    "outputs/analysis/dinov2_hetero/fitted/text_only/seed123/best_checkpoint.pt": {
+      "path": "outputs/analysis/dinov2_hetero/fitted/text_only/seed123/best_checkpoint.pt",
+      "top_keys": [
+        "config_name",
+        "epoch",
+        "gap_history",
+        "lora_state_dict",
+        "task_metrics",
+        "train_losses",
+        "val_losses"
+      ],
+      "epoch": 3,
+      "config_name": "dinov2het_fitted_text_only",
+      "n_lora_layers": 24,
+      "lora_layer_names_sample": [
+        "text.text_model.encoder.layers.0.self_attn.q_proj",
+        "text.text_model.encoder.layers.0.self_attn.v_proj",
+        "text.text_model.encoder.layers.1.self_attn.q_proj"
+      ],
+      "train_losses": [
+        1.990726,
+        1.702418,
+        1.557489
+      ],
+      "val_losses": [
+        1.865295,
+        1.755743,
+        1.703292
+      ],
+      "task_R1": [
+        0.308,
+        0.335,
+        0.342
+      ],
+      "gap_epochs": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "gap_CG": [
+        0.6766,
+        0.481748,
+        0.424324,
+        0.3804
+      ],
+      "lora_AB_frobenius_sum_of_norms": 14.393053561449051,
+      "fingerprint_lora_first_tensor": -15.163678169250488
+    }
+  },
+  "head": {
+    "path": "outputs/analysis/dinov2_hetero/heads/fitted.pt",
+    "top_keys": [
+      "meta",
+      "state_dict"
+    ],
+    "state_dict_keys": [
+      "0.bias",
+      "0.weight",
+      "2.bias",
+      "2.weight"
+    ],
+    "meta": {
+      "head": "fitted",
+      "tuning_split": "flickr30k train captions [5000, 10000)",
+      "tuning_n": 5000,
+      "epochs": 10,
+      "batch": 128,
+      "lr": 0.0001,
+      "seed": 42,
+      "n_head_params": 656384,
+      "val_R@1_after_fitting": 0.28200000524520874,
+      "fit_seconds": 3440.8,
+      "note": "head fitted on a split disjoint from the arm training data ([0,5000)) and from the gap/retrieval evaluation; frozen for every arm"
+    }
+  },
+  "last_equals_best": true
+}

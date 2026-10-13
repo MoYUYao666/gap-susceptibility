@@ -1,0 +1,49 @@
+{
+  "scaling_alpha_over_rank": 2.0,
+  "best": {
+    "checkpoint": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/best_checkpoint.pt",
+    "epoch": 10,
+    "n_lora_layers": {
+      "text": 24
+    },
+    "frobenius_of_scaled_update": {
+      "definition": "sqrt(sum_layers ||scaling*A@B||_F^2)",
+      "value": 8.3371
+    },
+    "sum_of_per_layer_frobenius": {
+      "definition": "sum_layers ||scaling*A@B||_F   (NOT a norm of any single matrix)",
+      "value": 40.1049,
+      "per_layer_mean": 1.671
+    },
+    "sum_of_per_layer_frobenius_unscaled": {
+      "definition": "sum_layers ||A@B||_F, i.e. without the alpha/rank factor",
+      "value": 20.0525
+    },
+    "max_abs": {
+      "text": 0.038458
+    }
+  },
+  "last": {
+    "checkpoint": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/last_checkpoint.pt",
+    "epoch": 10,
+    "n_lora_layers": {
+      "text": 24
+    },
+    "frobenius_of_scaled_update": {
+      "definition": "sqrt(sum_layers ||scaling*A@B||_F^2)",
+      "value": 8.3371
+    },
+    "sum_of_per_layer_frobenius": {
+      "definition": "sum_layers ||scaling*A@B||_F   (NOT a norm of any single matrix)",
+      "value": 40.1049,
+      "per_layer_mean": 1.671
+    },
+    "sum_of_per_layer_frobenius_unscaled": {
+      "definition": "sum_layers ||A@B||_F, i.e. without the alpha/rank factor",
+      "value": 20.0525
+    },
+    "max_abs": {
+      "text": 0.038458
+    }
+  }
+}

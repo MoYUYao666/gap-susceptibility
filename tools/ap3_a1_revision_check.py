@@ -244,7 +244,7 @@ for lr in SEEDS1:
     got = seeds_hit(lr)
     check('B9 %s intermediate point results.json count (single seed)' % lr, float(len(got)), 1.0, 0)
     check('B9 %s seed set = [42]' % lr, 1.0 if got == [42] else 0.0, 1.0, 0)
-print('  n=3: %s；n=1: %s'
+print('  n=3: %s;n=1: %s'
       % (' '.join('%s:%d' % (lr, len(seeds_hit(lr))) for lr in SEEDS3),
          ' '.join('%s:%d' % (lr, len(seeds_hit(lr))) for lr in SEEDS1)))
 
@@ -325,7 +325,7 @@ else:
         check('B9 τ ep1→ep10 relative change %', rel_tau, -6.3, 0.05)
         check('B9 top-1 ep1→ep10 relative change %', rel_top, -2.9, 0.05)
         check('B9 |τ erosion| > |top-1 erosion|', 1.0 if abs(rel_tau) > abs(rel_top) else 0.0, 1.0, 0)
-        print('  ep1→ep10 τ %.7f→%.7f = %.4f%%；top-1 %.3f→%.3f = %.4f%%'
+        print('  ep1→ep10 τ %.7f→%.7f = %.4f%%;top-1 %.3f→%.3f = %.4f%%'
               % (tau1, tau10, rel_tau, p1, p10, rel_top))
 
 # B9.6 val_loss minimum location: argmin = epoch 3, and epoch 10 is the max of the five points

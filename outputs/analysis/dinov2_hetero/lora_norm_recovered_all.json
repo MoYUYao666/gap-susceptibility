@@ -1,0 +1,87 @@
+{
+  "script": "tools/_p293m_recover_lora_norm.py",
+  "why": "runs started before the lora_update_* instrumentation was fixed carry 0.0 in those fields, because the pre-fix code zeroed the trained LoRA matrices before measuring them; the trained matrices survive in the run's checkpoints, so the same quantity is recoverable without a rerun",
+  "note": "computed from the checkpoint, NOT measured in-process -- distinguished on purpose so the report never implies the field existed at run time",
+  "runs": {
+    "fitted/text_only/seed42": {
+      "file": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/lora_norm_recovered.json",
+      "values": {
+        "checkpoint": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/best_checkpoint.pt",
+        "epoch": 10,
+        "n_lora_layers": {
+          "text": 24
+        },
+        "frobenius_of_scaled_update": {
+          "definition": "sqrt(sum_layers ||scaling*A@B||_F^2)",
+          "value": 8.3371
+        },
+        "sum_of_per_layer_frobenius": {
+          "definition": "sum_layers ||scaling*A@B||_F   (NOT a norm of any single matrix)",
+          "value": 40.1049,
+          "per_layer_mean": 1.671
+        },
+        "sum_of_per_layer_frobenius_unscaled": {
+          "definition": "sum_layers ||A@B||_F, i.e. without the alpha/rank factor",
+          "value": 20.0525
+        },
+        "max_abs": {
+          "text": 0.038458
+        }
+      }
+    },
+    "fitted/both/seed42": {
+      "file": "outputs/analysis/dinov2_hetero/fitted/both/seed42/lora_norm_recovered.json",
+      "values": {
+        "checkpoint": "outputs/analysis/dinov2_hetero/fitted/both/seed42/best_checkpoint.pt",
+        "epoch": 10,
+        "n_lora_layers": {
+          "vision": 24,
+          "text": 24
+        },
+        "frobenius_of_scaled_update": {
+          "definition": "sqrt(sum_layers ||scaling*A@B||_F^2)",
+          "value": 11.9478
+        },
+        "sum_of_per_layer_frobenius": {
+          "definition": "sum_layers ||scaling*A@B||_F   (NOT a norm of any single matrix)",
+          "value": 81.392,
+          "per_layer_mean": 1.6957
+        },
+        "sum_of_per_layer_frobenius_unscaled": {
+          "definition": "sum_layers ||A@B||_F, i.e. without the alpha/rank factor",
+          "value": 40.696
+        },
+        "max_abs": {
+          "vision": 0.023715,
+          "text": 0.042633
+        }
+      }
+    },
+    "random/text_only/seed42": {
+      "file": "outputs/analysis/dinov2_hetero/random/text_only/seed42/lora_norm_recovered.json",
+      "values": {
+        "checkpoint": "outputs/analysis/dinov2_hetero/random/text_only/seed42/best_checkpoint.pt",
+        "epoch": 9,
+        "n_lora_layers": {
+          "text": 24
+        },
+        "frobenius_of_scaled_update": {
+          "definition": "sqrt(sum_layers ||scaling*A@B||_F^2)",
+          "value": 9.7878
+        },
+        "sum_of_per_layer_frobenius": {
+          "definition": "sum_layers ||scaling*A@B||_F   (NOT a norm of any single matrix)",
+          "value": 46.2267,
+          "per_layer_mean": 1.9261
+        },
+        "sum_of_per_layer_frobenius_unscaled": {
+          "definition": "sum_layers ||A@B||_F, i.e. without the alpha/rank factor",
+          "value": 23.1133
+        },
+        "max_abs": {
+          "text": 0.035679
+        }
+      }
+    }
+  }
+}

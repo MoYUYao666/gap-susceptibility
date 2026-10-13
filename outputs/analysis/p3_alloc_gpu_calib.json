@@ -1,0 +1,59 @@
+{
+ "script": "tools/_p430_gpu_calib.py",
+ "purpose": "找到 8 GB 卡上可用的训练配置（判据：单步<3s 且 reserved<7.0GiB）",
+ "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+ "criterion": {
+  "step_sec_median_lt": 3.0,
+  "peak_reserved_gib_lt": 7.0
+ },
+ "configs": {
+  "_first_round": {
+   "A_batch2_plain": {
+    "step_sec": 7.78,
+    "peak_alloc_gib": 10.28,
+    "peak_reserved_gib": 10.67,
+    "viable": false
+   },
+   "B_batch2_ckpt": {
+    "error": "gradient checkpointing 与 output_hidden_states=True 不兼容（hidden_states 返回 None）"
+   },
+   "C_batch1_ckpt": {
+    "error": "同上"
+   }
+  },
+  "D_batch1_plain": {
+   "batch": 1,
+   "grad_ckpt": false,
+   "load_sec": 4.6,
+   "n_trainable": 7237632,
+   "step_sec_median": 1.308,
+   "step_sec_all": [
+    1.308,
+    1.327,
+    1.301
+   ],
+   "peak_alloc_gib": 7.476,
+   "peak_reserved_gib": 7.705,
+   "verdict_ok": false
+  },
+  "E_batch2_ckpt_nonreentrant": {
+   "batch": 2,
+   "grad_ckpt": true,
+   "error": "AttributeError: 'Qwen2VLCausalLMOutputWithPast' object has no attribute 'last_hidden_state'",
+   "traceback": "Traceback (most recent call last):\n  File \"D:\\Realdesktop\\Wan\\Important\\New\\tools\\_p430_gpu_calib.py\", line 136, in main\n    one_step(model, proc, samples[:batch], \"cuda\", ckpt)\n  File \"D:\\Realdesktop\\Wan\\Important\\New\\tools\\_p430_gpu_calib.py\", line 68, in one_step\n    hid = out.hidden_states[-1] if out.hidden_states is not None else out.last_hidden_state\n                                                                      ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'Qwen2VLCausalLMOutputWithPast' object has no attribute 'last_hidden_state'\n"
+  },
+  "F_batch4_ckpt_nonreentrant": {
+   "batch": 4,
+   "grad_ckpt": true,
+   "error": "AttributeError: 'Qwen2VLCausalLMOutputWithPast' object has no attribute 'last_hidden_state'",
+   "traceback": "Traceback (most recent call last):\n  File \"D:\\Realdesktop\\Wan\\Important\\New\\tools\\_p430_gpu_calib.py\", line 136, in main\n    one_step(model, proc, samples[:batch], \"cuda\", ckpt)\n  File \"D:\\Realdesktop\\Wan\\Important\\New\\tools\\_p430_gpu_calib.py\", line 68, in one_step\n    hid = out.hidden_states[-1] if out.hidden_states is not None else out.last_hidden_state\n                                                                      ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'Qwen2VLCausalLMOutputWithPast' object has no attribute 'last_hidden_state'\n"
+  }
+ },
+ "viable_configs": [],
+ "recommended": null,
+ "known_upper_bound_bad_config": {
+  "desc": "全序列 CE、batch=4（早期标定）",
+  "peak_alloc_gib": 17.82,
+  "source": "tools/_p430_gpu_calib.py 早期运行输出"
+ }
+}

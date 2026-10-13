@@ -1,0 +1,114 @@
+{
+  "script": "tools/_p363_logit_scale_provenance.py",
+  "dinov2_script_constant": 2.659260036932778,
+  "dinov2_script_line": "tools/_p293_dinov2_hetero_strict.py:107-108",
+  "candidates": {
+    "models\\Qwen2-VL-2B-Instruct": {
+      "dir": "models\\Qwen2-VL-2B-Instruct",
+      "config_logit_scale_init_value": null,
+      "architectures": [
+        "Qwen2VLForConditionalGeneration"
+      ]
+    },
+    "models\\blip-caption-base": {
+      "dir": "models\\blip-caption-base",
+      "config_logit_scale_init_value": 2.6592,
+      "architectures": [
+        "BlipForConditionalGeneration"
+      ],
+      "weights_file": "pytorch_model.bin",
+      "tensors": {}
+    },
+    "models\\clip-vit-base-patch16": {
+      "dir": "models\\clip-vit-base-patch16",
+      "config_logit_scale_init_value": 2.6592,
+      "architectures": [
+        "CLIPModel"
+      ],
+      "weights_file": "pytorch_model.bin",
+      "tensors": {
+        "logit_scale": [
+          4.605170249938965
+        ],
+        "text_projection.weight": {
+          "shape": [
+            512,
+            512
+          ]
+        }
+      }
+    },
+    "models\\clip-vit-base-patch32": {
+      "dir": "models\\clip-vit-base-patch32",
+      "config_logit_scale_init_value": 2.6592,
+      "architectures": [
+        "CLIPModel"
+      ],
+      "weights_file": "pytorch_model.bin",
+      "tensors": {
+        "logit_scale": [
+          4.605170249938965
+        ],
+        "text_projection.weight": {
+          "shape": [
+            512,
+            512
+          ]
+        }
+      }
+    },
+    "models\\dinov2-base": {
+      "dir": "models\\dinov2-base",
+      "config_logit_scale_init_value": null,
+      "architectures": [
+        "Dinov2Model"
+      ],
+      "weights_file": "model.safetensors",
+      "tensors": {}
+    },
+    "models\\llava-hf": {
+      "dir": "models\\llava-hf",
+      "config_logit_scale_init_value": null,
+      "architectures": [
+        "LlavaForConditionalGeneration"
+      ]
+    },
+    "models\\openclip": {
+      "dir": "models\\openclip",
+      "config_logit_scale_init_value": 2.6592,
+      "architectures": [
+        "CLIPModel"
+      ],
+      "weights_file": "pytorch_model.bin",
+      "tensors": {
+        "logit_scale": [
+          4.605170249938965
+        ],
+        "text_projection.weight": {
+          "shape": [
+            512,
+            512
+          ]
+        }
+      }
+    },
+    "models\\siglip-base-patch16-224": {
+      "dir": "models\\siglip-base-patch16-224",
+      "config_logit_scale_init_value": null,
+      "architectures": [
+        "SiglipModel"
+      ],
+      "weights_file": "model.safetensors",
+      "tensors": {
+        "logit_scale": [
+          4.7649970054626465
+        ]
+      }
+    }
+  },
+  "src_config_default_clip_model": "openai/clip-vit-base-patch32",
+  "paper_control_PRISTINE": "models/clip-vit-base-patch32 (experiments/strict_freeze_control.py:63)",
+  "hf_cache_dirs": [
+    "C:\\Users\\hongr\\.cache\\huggingface\\hub\\models--openai--clip-vit-base-patch32"
+  ]
+}

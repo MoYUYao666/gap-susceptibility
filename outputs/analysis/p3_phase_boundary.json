@@ -1,0 +1,1408 @@
+{
+ "meta": {
+  "script": "tools/_p444_p3_phase_boundary.py",
+  "task": "task-11 (P3 R3.17 / R3.19, part 2)",
+  "archive_files": {
+   "E2": "paper3/scripts/outputs/experiments/E2_results.json",
+   "sample_size": "paper3/scripts/outputs/experiments/sample_size_results.json",
+   "sharegpt": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+   "Qwen": "paper3/scripts/outputs/experiments/Qwen_results.json",
+   "ers": "paper3/scripts/outputs/experiments/ers_1epoch_results.json"
+  }
+ },
+ "batch_trajectory_comparison": {
+  "per_rank_seed": [
+   {
+    "rank": 4,
+    "seed": 42,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3873.0,
+       3780.5,
+       3816.0
+      ],
+      "E0": 3930.5,
+      "dE": -114.5
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3927.5,
+       3917.0,
+       3903.5
+      ],
+      "E0": 3927.0,
+      "dE": -23.5
+     }
+    },
+    "dE_spread_across_batches": 91.0,
+    "sign_agreement": true
+   },
+   {
+    "rank": 4,
+    "seed": 123,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3881.5,
+       3801.0,
+       3805.5
+      ],
+      "E0": 3930.5,
+      "dE": -125.0
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3922.0,
+       3914.0,
+       3900.0
+      ],
+      "E0": 3927.0,
+      "dE": -27.0
+     }
+    },
+    "dE_spread_across_batches": 98.0,
+    "sign_agreement": true
+   },
+   {
+    "rank": 4,
+    "seed": 999,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3873.5,
+       3790.0,
+       3854.5
+      ],
+      "E0": 3930.5,
+      "dE": -76.0
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3918.5,
+       3910.0,
+       3887.0
+      ],
+      "E0": 3927.0,
+      "dE": -40.0
+     }
+    },
+    "dE_spread_across_batches": 36.0,
+    "sign_agreement": true
+   },
+   {
+    "rank": 5,
+    "seed": 42,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3858.0,
+       3794.5,
+       3903.0
+      ],
+      "E0": 3927.0,
+      "dE": -24.0
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3928.0,
+       3903.0,
+       3877.5
+      ],
+      "E0": 3927.0,
+      "dE": -49.5
+     }
+    },
+    "dE_spread_across_batches": 25.5,
+    "sign_agreement": true
+   },
+   {
+    "rank": 5,
+    "seed": 123,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3842.0,
+       3772.5,
+       3875.5
+      ],
+      "E0": 3927.0,
+      "dE": -51.5
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3924.0,
+       3910.0,
+       3886.0
+      ],
+      "E0": 3927.0,
+      "dE": -41.0
+     }
+    },
+    "dE_spread_across_batches": 10.5,
+    "sign_agreement": true
+   },
+   {
+    "rank": 5,
+    "seed": 999,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3858.5,
+       3795.5,
+       3939.5
+      ],
+      "E0": 3927.0,
+      "dE": 12.5
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3924.5,
+       3903.5,
+       3871.5
+      ],
+      "E0": 3927.0,
+      "dE": -55.5
+     }
+    },
+    "dE_spread_across_batches": 68.0,
+    "sign_agreement": false
+   },
+   {
+    "rank": 6,
+    "seed": 42,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3836.5,
+       3795.5,
+       3957.5
+      ],
+      "E0": 3927.0,
+      "dE": 30.5
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3916.5,
+       3894.0,
+       3872.5
+      ],
+      "E0": 3927.0,
+      "dE": -54.5
+     }
+    },
+    "dE_spread_across_batches": 85.0,
+    "sign_agreement": false
+   },
+   {
+    "rank": 6,
+    "seed": 123,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3829.0,
+       3800.0,
+       4048.5
+      ],
+      "E0": 3927.0,
+      "dE": 121.5
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3919.5,
+       3902.0,
+       3869.0
+      ],
+      "E0": 3927.0,
+      "dE": -58.0
+     }
+    },
+    "dE_spread_across_batches": 179.5,
+    "sign_agreement": false
+   },
+   {
+    "rank": 6,
+    "seed": 999,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3856.0,
+       3799.0,
+       3962.0
+      ],
+      "E0": 3927.0,
+      "dE": 35.0
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3919.5,
+       3903.0,
+       3876.0
+      ],
+      "E0": 3927.0,
+      "dE": -51.0
+     }
+    },
+    "dE_spread_across_batches": 86.0,
+    "sign_agreement": false
+   },
+   {
+    "rank": 7,
+    "seed": 42,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3822.5,
+       3813.0,
+       4131.0
+      ],
+      "E0": 3927.0,
+      "dE": 204.0
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3924.0,
+       3886.5,
+       3869.0
+      ],
+      "E0": 3927.0,
+      "dE": -58.0
+     }
+    },
+    "dE_spread_across_batches": 262.0,
+    "sign_agreement": false
+   },
+   {
+    "rank": 7,
+    "seed": 123,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3826.5,
+       3800.0,
+       4060.0
+      ],
+      "E0": 3927.0,
+      "dE": 133.0
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3912.0,
+       3893.0,
+       3864.0
+      ],
+      "E0": 3927.0,
+      "dE": -63.0
+     }
+    },
+    "dE_spread_across_batches": 196.0,
+    "sign_agreement": false
+   },
+   {
+    "rank": 7,
+    "seed": 999,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3838.0,
+       3801.5,
+       4164.5
+      ],
+      "E0": 3927.0,
+      "dE": 237.5
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3918.0,
+       3889.0,
+       3865.5
+      ],
+      "E0": 3927.0,
+      "dE": -61.5
+     }
+    },
+    "dE_spread_across_batches": 299.0,
+    "sign_agreement": false
+   },
+   {
+    "rank": 8,
+    "seed": 42,
+    "batches": {
+     "extra": {
+      "E": [
+       3930.5,
+       3839.5,
+       3906.0,
+       4183.5
+      ],
+      "E0": 3930.5,
+      "dE": 253.0
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3914.5,
+       3876.0,
+       3849.0
+      ],
+      "E0": 3927.0,
+      "dE": -78.0
+     }
+    },
+    "dE_spread_across_batches": 331.0,
+    "sign_agreement": false
+   },
+   {
+    "rank": 8,
+    "seed": 123,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3816.5,
+       3888.5,
+       4236.0
+      ],
+      "E0": 3927.0,
+      "dE": 309.0
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3916.5,
+       3875.0,
+       3855.5
+      ],
+      "E0": 3927.0,
+      "dE": -71.5
+     }
+    },
+    "dE_spread_across_batches": 380.5,
+    "sign_agreement": false
+   },
+   {
+    "rank": 8,
+    "seed": 999,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3827.5,
+       3883.5,
+       4299.0
+      ],
+      "E0": 3927.0,
+      "dE": 372.0
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3902.5,
+       3882.5,
+       3861.5
+      ],
+      "E0": 3927.0,
+      "dE": -65.5
+     }
+    },
+    "dE_spread_across_batches": 437.5,
+    "sign_agreement": false
+   },
+   {
+    "rank": 16,
+    "seed": 42,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3830.0,
+       4370.5,
+       5595.0
+      ],
+      "E0": 3930.5,
+      "dE": 1664.5
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3879.0,
+       3843.0,
+       3810.0
+      ],
+      "E0": 3927.0,
+      "dE": -117.0
+     }
+    },
+    "dE_spread_across_batches": 1781.5,
+    "sign_agreement": false
+   },
+   {
+    "rank": 16,
+    "seed": 123,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3831.5,
+       4304.5,
+       5437.0
+      ],
+      "E0": 3930.5,
+      "dE": 1506.5
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3739.0,
+       4030.0,
+       5464.0
+      ],
+      "E0": 3927.0,
+      "dE": 1537.0
+     }
+    },
+    "dE_spread_across_batches": 30.5,
+    "sign_agreement": true
+   },
+   {
+    "rank": 16,
+    "seed": 999,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3799.0,
+       4227.5,
+       5474.0
+      ],
+      "E0": 3930.5,
+      "dE": 1543.5
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3730.0,
+       3892.0,
+       5359.0
+      ],
+      "E0": 3927.0,
+      "dE": 1432.0
+     }
+    },
+    "dE_spread_across_batches": 111.5,
+    "sign_agreement": true
+   },
+   {
+    "rank": 24,
+    "seed": 42,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3861.5,
+       5032.5,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3854.5,
+       4941.0,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     }
+    }
+   },
+   {
+    "rank": 24,
+    "seed": 123,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3885.5,
+       5324.0,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3883.0,
+       5316.0,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     }
+    }
+   },
+   {
+    "rank": 24,
+    "seed": 999,
+    "batches": {
+     "extra": {
+      "E": [
+       3927.0,
+       3918.5,
+       5491.0,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3914.5,
+       5431.0,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     }
+    }
+   },
+   {
+    "rank": 32,
+    "seed": 42,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3888.0,
+       6071.0,
+       NaN
+      ],
+      "E0": 3930.5,
+      "dE": null
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3831.0,
+       6418.0,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     }
+    }
+   },
+   {
+    "rank": 32,
+    "seed": 123,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3788.0,
+       6090.0,
+       NaN
+      ],
+      "E0": 3930.5,
+      "dE": null
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3752.5,
+       6258.0,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     }
+    }
+   },
+   {
+    "rank": 32,
+    "seed": 999,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3776.0,
+       6189.0,
+       NaN
+      ],
+      "E0": 3930.5,
+      "dE": null
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       3795.0,
+       6552.0,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     }
+    }
+   },
+   {
+    "rank": 64,
+    "seed": 42,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3705.5,
+       NaN,
+       NaN
+      ],
+      "E0": 3930.5,
+      "dE": null
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       4022.0,
+       NaN,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     }
+    }
+   },
+   {
+    "rank": 64,
+    "seed": 123,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3792.5,
+       NaN,
+       NaN
+      ],
+      "E0": 3930.5,
+      "dE": null
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       4129.0,
+       NaN,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     }
+    }
+   },
+   {
+    "rank": 64,
+    "seed": 999,
+    "batches": {
+     "E2": {
+      "E": [
+       3930.5,
+       3688.5,
+       NaN,
+       NaN
+      ],
+      "E0": 3930.5,
+      "dE": null
+     },
+     "sweep": {
+      "E": [
+       3927.0,
+       4064.5,
+       NaN,
+       NaN
+      ],
+      "E0": 3927.0,
+      "dE": null
+     }
+    }
+   }
+  ],
+  "E0_by_batch": {
+   "E2": {
+    "E0_values": [
+     3930.5
+    ],
+    "n_runs": 12,
+    "epoch_lengths": [
+     4
+    ]
+   },
+   "extra": {
+    "E0_values": [
+     3927.0,
+     3930.5
+    ],
+    "n_runs": 15,
+    "epoch_lengths": [
+     4
+    ]
+   },
+   "sweep": {
+    "E0_values": [
+     3927.0
+    ],
+    "n_runs": 45,
+    "epoch_lengths": [
+     4
+    ]
+   }
+  },
+  "epoch_by_epoch_E2_vs_sweep": [
+   {
+    "rank": 4,
+    "seed": 42,
+    "E2": [
+     3930.5,
+     3873.0,
+     3780.5,
+     3816.0
+    ],
+    "sweep": [
+     3927.0,
+     3927.5,
+     3917.0,
+     3903.5
+    ]
+   },
+   {
+    "rank": 4,
+    "seed": 123,
+    "E2": [
+     3930.5,
+     3881.5,
+     3801.0,
+     3805.5
+    ],
+    "sweep": [
+     3927.0,
+     3922.0,
+     3914.0,
+     3900.0
+    ]
+   },
+   {
+    "rank": 4,
+    "seed": 999,
+    "E2": [
+     3930.5,
+     3873.5,
+     3790.0,
+     3854.5
+    ],
+    "sweep": [
+     3927.0,
+     3918.5,
+     3910.0,
+     3887.0
+    ]
+   },
+   {
+    "rank": 16,
+    "seed": 42,
+    "E2": [
+     3930.5,
+     3830.0,
+     4370.5,
+     5595.0
+    ],
+    "sweep": [
+     3927.0,
+     3879.0,
+     3843.0,
+     3810.0
+    ]
+   },
+   {
+    "rank": 16,
+    "seed": 123,
+    "E2": [
+     3930.5,
+     3831.5,
+     4304.5,
+     5437.0
+    ],
+    "sweep": [
+     3927.0,
+     3739.0,
+     4030.0,
+     5464.0
+    ]
+   },
+   {
+    "rank": 16,
+    "seed": 999,
+    "E2": [
+     3930.5,
+     3799.0,
+     4227.5,
+     5474.0
+    ],
+    "sweep": [
+     3927.0,
+     3730.0,
+     3892.0,
+     5359.0
+    ]
+   }
+  ]
+ },
+ "r6_gt_r5_exhaustive_audit": {
+  "n_configurations": 8,
+  "n_r6_gt_r5": 8,
+  "all_hold": true,
+  "configurations": [
+   {
+    "configuration": "LLaVA extra seed=42",
+    "source_file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.extra rank5/6 seed42",
+    "dE_r5": -24.0,
+    "dE_r6": 30.5,
+    "r6_gt_r5": true,
+    "note": "multi-seed sweep batch"
+   },
+   {
+    "configuration": "LLaVA extra seed=123",
+    "source_file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.extra rank5/6 seed123",
+    "dE_r5": -51.5,
+    "dE_r6": 121.5,
+    "r6_gt_r5": true,
+    "note": "multi-seed sweep batch"
+   },
+   {
+    "configuration": "LLaVA extra seed=999",
+    "source_file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.extra rank5/6 seed999",
+    "dE_r5": 12.5,
+    "dE_r6": 35.0,
+    "r6_gt_r5": true,
+    "note": "multi-seed sweep batch"
+   },
+   {
+    "configuration": "LLaVA sample-size n=16",
+    "source_file": "paper3/scripts/outputs/experiments/sample_size_results.json",
+    "field": "$.runs samples=16 rank=5/6",
+    "dE_r5": 22.0,
+    "dE_r6": 52.0,
+    "r6_gt_r5": true,
+    "note": "single seed per cell"
+   },
+   {
+    "configuration": "LLaVA sample-size n=64",
+    "source_file": "paper3/scripts/outputs/experiments/sample_size_results.json",
+    "field": "$.runs samples=64 rank=5/6",
+    "dE_r5": -59.5,
+    "dE_r6": 16.0,
+    "r6_gt_r5": true,
+    "note": "single seed per cell"
+   },
+   {
+    "configuration": "LLaVA sample-size n=128",
+    "source_file": "paper3/scripts/outputs/experiments/sample_size_results.json",
+    "field": "$.runs samples=128 rank=5/6",
+    "dE_r5": -61.5,
+    "dE_r6": 31.5,
+    "r6_gt_r5": true,
+    "note": "single seed per cell"
+   },
+   {
+    "configuration": "LLaVA sample-size n=256",
+    "source_file": "paper3/scripts/outputs/experiments/sample_size_results.json",
+    "field": "$.runs samples=256 rank=5/6",
+    "dE_r5": -54.5,
+    "dE_r6": 26.5,
+    "r6_gt_r5": true,
+    "note": "single seed per cell"
+   },
+   {
+    "configuration": "ShareGPT r5 vs r6 (3-seed means)",
+    "source_file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r5.dE / $.r6.dE",
+    "dE_r5": 2.6666666666666665,
+    "dE_r6": 133.5,
+    "r6_gt_r5": true,
+    "note": "3 seeds per rank"
+   }
+  ],
+  "definition": "a 'configuration' is one archived (dataset, batch, seed) cell pair that has both r=5 and r=6 measured; the paper's '6/6' is checked against the full machine enumeration",
+  "exact_sign_test_all_hold": {
+   "k": 8,
+   "n": 8,
+   "p_two_sided": 0.0078125
+  }
+ },
+ "paired_seed_analysis": {
+  "seed_matched_pairs": {
+   "seeds": [
+    42,
+    123,
+    999
+   ],
+   "dE_r5": [
+    -24.0,
+    -51.5,
+    12.5
+   ],
+   "dE_r6": [
+    30.5,
+    121.5,
+    35.0
+   ],
+   "differences_r6_minus_r5": [
+    54.5,
+    173.0,
+    22.5
+   ],
+   "all_positive": true
+  },
+  "paired_t": {
+   "t": 1.820494261380586,
+   "p": 0.21028498926073003,
+   "df": 2
+  },
+  "wilcoxon": {
+   "stat": 0.0,
+   "p": 0.25,
+   "n_pairs": 3
+  },
+  "exact_signflip_permutation": {
+   "n_perm": 8,
+   "observed_mean_diff": 83.33333333333333,
+   "p_two_sided": 0.25
+  }
+ },
+ "power_analysis": {
+  "n3_vs_n3": {
+   "n1": 3,
+   "n2": 3,
+   "alpha": 0.05,
+   "power": 0.8,
+   "cohens_d_mde": 2.9541387951759788,
+   "note": "two-sample two-sided t, equal n; effect size in pooled-sd units"
+  },
+  "observed_effects": {
+   "r6_vs_r5_extra_batch": {
+    "cohens_d": 1.947664359033751,
+    "n": [
+     3,
+     3
+    ]
+   },
+   "r4_vs_r16_E2_batch": {
+    "cohens_d": 27.38974454133421,
+    "n": [
+     3,
+     3
+    ]
+   }
+  }
+ },
+ "sharegpt_adjacent_tests": {
+  "pairs": [
+   {
+    "r_a": 4,
+    "r_b": 5,
+    "mean_a": -60.0,
+    "mean_b": 2.6666666666666665,
+    "welch_t": 2.2677776719286054,
+    "welch_p": 0.0922808080463744,
+    "significant_at_05": false
+   },
+   {
+    "r_a": 5,
+    "r_b": 6,
+    "mean_a": 2.6666666666666665,
+    "mean_b": 133.5,
+    "welch_t": 4.814048796409928,
+    "welch_p": 0.011421273635847651,
+    "significant_at_05": true
+   },
+   {
+    "r_a": 6,
+    "r_b": 7,
+    "mean_a": 133.5,
+    "mean_b": 282.3333333333333,
+    "welch_t": 5.28014277287928,
+    "welch_p": 0.009207291297995945,
+    "significant_at_05": true
+   },
+   {
+    "r_a": 7,
+    "r_b": 8,
+    "mean_a": 282.3333333333333,
+    "mean_b": 282.6666666666667,
+    "welch_t": 0.009919482994149536,
+    "welch_p": 0.9925606593796317,
+    "significant_at_05": false
+   },
+   {
+    "r_a": 8,
+    "r_b": 10,
+    "mean_a": 282.6666666666667,
+    "mean_b": 374.6666666666667,
+    "welch_t": 1.2103284289262954,
+    "welch_p": 0.3304436602365031,
+    "significant_at_05": false
+   },
+   {
+    "r_a": 10,
+    "r_b": 12,
+    "mean_a": 374.6666666666667,
+    "mean_b": 719.0,
+    "welch_t": 4.692256369663722,
+    "welch_p": 0.037318040572164785,
+    "significant_at_05": true
+   },
+   {
+    "r_a": 12,
+    "r_b": 14,
+    "mean_a": 719.0,
+    "mean_b": 1264.0,
+    "welch_t": 15.269041950044327,
+    "welch_p": 0.0011834675776763374,
+    "significant_at_05": true
+   },
+   {
+    "r_a": 14,
+    "r_b": 16,
+    "mean_a": 1264.0,
+    "mean_b": 1710.6666666666667,
+    "welch_t": 2.3023307317260087,
+    "welch_p": 0.14075941992166924,
+    "significant_at_05": false
+   },
+   {
+    "r_a": 16,
+    "r_b": 20,
+    "mean_a": 1710.6666666666667,
+    "mean_b": 1907.0,
+    "welch_t": 0.7450648042304776,
+    "welch_p": 0.49773618941481657,
+    "significant_at_05": false
+   },
+   {
+    "r_a": 20,
+    "r_b": 24,
+    "mean_a": 1907.0,
+    "mean_b": 2730.6666666666665,
+    "welch_t": 2.2199582341323283,
+    "welch_p": 0.10897958586299787,
+    "significant_at_05": false
+   },
+   {
+    "r_a": 24,
+    "r_b": 28,
+    "mean_a": 2730.6666666666665,
+    "mean_b": 1834.3333333333333,
+    "welch_t": -2.599219214255071,
+    "welch_p": 0.0957378254517873,
+    "significant_at_05": false
+   },
+   {
+    "r_a": 28,
+    "r_b": 32,
+    "mean_a": 1834.3333333333333,
+    "mean_b": 2238.0,
+    "welch_t": 3.187570649957133,
+    "welch_p": 0.0631163377107454,
+    "significant_at_05": false
+   },
+   {
+    "r_a": 32,
+    "r_b": 48,
+    "mean_a": 2238.0,
+    "mean_b": -35.5,
+    "welch_t": -51.741773357239445,
+    "welch_p": 0.0002743413000421778,
+    "significant_at_05": true
+   },
+   {
+    "r_a": 48,
+    "r_b": 64,
+    "mean_a": -35.5,
+    "mean_b": 212.33333333333334,
+    "welch_t": 11.612935494428424,
+    "welch_p": 0.003480046577712373,
+    "significant_at_05": true
+   }
+  ],
+  "n_significant_at_05": 6,
+  "note": "adjacent-rank Welch tests on the ShareGPT table; addresses whether the r=5 -> r=6 step is individually resolvable with 3 seeds",
+  "r5_vs_r6": {
+   "welch_t": 4.814048796409928,
+   "welch_p": 0.011421273635847651,
+   "mean_r5": 2.6666666666666665,
+   "mean_r6": 133.5,
+   "sd_r5": 38.71154005375313,
+   "sd_r6": 26.781523481684157,
+   "cohens_d": 3.9306543826879405
+  }
+ },
+ "qwen_per_seed": {
+  "per_rank": {
+   "r4": {
+    "mean": 78.66666666666667,
+    "sd_sample": 138.01932231877294,
+    "values": [
+     218.0,
+     -58.0,
+     76.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r5": {
+    "mean": 80.66666666666667,
+    "sd_sample": 140.07616975536322,
+    "values": [
+     218.0,
+     -62.0,
+     86.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r6": {
+    "mean": 78.0,
+    "sd_sample": 142.04224723651762,
+    "values": [
+     218.0,
+     -66.0,
+     82.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r7": {
+    "mean": 82.0,
+    "sd_sample": 143.01048912579805,
+    "values": [
+     224.0,
+     -62.0,
+     84.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r8": {
+    "mean": 82.66666666666667,
+    "sd_sample": 143.33643407498784,
+    "values": [
+     220.0,
+     -66.0,
+     94.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r10": {
+    "mean": 78.66666666666667,
+    "sd_sample": 153.3144915959784,
+    "values": [
+     226.0,
+     -80.0,
+     90.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r12": {
+    "mean": 79.33333333333333,
+    "sd_sample": 160.10413278030438,
+    "values": [
+     236.0,
+     -84.0,
+     86.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r14": {
+    "mean": 81.33333333333333,
+    "sd_sample": 165.96786837618097,
+    "values": [
+     236.0,
+     -94.0,
+     102.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r16": {
+    "mean": 85.33333333333333,
+    "sd_sample": 173.92335476678608,
+    "values": [
+     248.0,
+     -98.0,
+     106.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r20": {
+    "mean": 89.33333333333333,
+    "sd_sample": 180.71340108949678,
+    "values": [
+     254.0,
+     -104.0,
+     118.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r24": {
+    "mean": 92.66666666666667,
+    "sd_sample": 190.93803532385405,
+    "values": [
+     266.0,
+     -112.0,
+     124.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r28": {
+    "mean": 103.33333333333333,
+    "sd_sample": 183.9275219572463,
+    "values": [
+     270.0,
+     -94.0,
+     134.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r32": {
+    "mean": 104.0,
+    "sd_sample": 197.06851600395228,
+    "values": [
+     274.0,
+     -112.0,
+     150.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r48": {
+    "mean": 154.0,
+    "sd_sample": 204.70466531078378,
+    "values": [
+     322.0,
+     -74.0,
+     214.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   },
+   "r64": {
+    "mean": 214.0,
+    "sd_sample": 198.6756150110023,
+    "values": [
+     350.0,
+     -14.0,
+     306.0
+    ],
+    "signs": [
+     "+",
+     "-",
+     "+"
+    ],
+    "n_negative": 1
+   }
+  },
+  "n_total": 45,
+  "n_nan": 0,
+  "n_ranks_with_negative_seed": 15,
+  "n_ranks": 15
+ }
+}

@@ -35,7 +35,7 @@ PHI = np.exp(-U ** 2 / 2) / np.sqrt(2 * np.pi)  # φ(u)
 
 
 def corr_bound_exact(d1j, lam, gnorm, sigma_m):
-    """Correct implementation of Theorem 3c: r1 = 1 - ∫φ(u) ∏_j Φ(σ_λ u + c_j) du, c_j = d_1j/(|λ|‖g‖σ_m)。"""
+    """Correct implementation of Theorem 3c: r1 = 1 - ∫φ(u) ∏_j Φ(σ_λ u + c_j) du, c_j = d_1j/(|λ|‖g‖σ_m)."""
     lamg = abs(lam) * gnorm * sigma_m
     c = d1j / lamg
     prod = np.ones_like(U)

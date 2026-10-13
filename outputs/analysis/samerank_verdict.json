@@ -1,0 +1,79 @@
+{
+ "table": {
+  "CLIP B/32 @ r8 (归档)": {
+   "text_only": {
+    "mean": -0.0465049147605896,
+    "n": 5,
+    "sd": 0.003014157005147766
+   },
+   "both": {
+    "mean": -0.02582501173019409,
+    "n": 5,
+    "sd": 0.003496222785823423
+   },
+   "vision_only": {
+    "mean": 0.010572373867034912,
+    "n": 5,
+    "sd": 0.0043745098699675255
+   }
+  },
+  "CLIP B/16 @ r4 (新增)": {
+   "text_only": {
+    "mean": -0.018969476222991943,
+    "n": 1,
+    "sd": null
+   },
+   "both": {
+    "mean": 0.015005946159362793,
+    "n": 1,
+    "sd": null
+   },
+   "vision_only": {
+    "mean": 0.04330110549926758,
+    "n": 1,
+    "sd": null
+   }
+  },
+  "CLIP B/32 @ r4 (新增)": {
+   "text_only": {
+    "mean": -0.029655635356903076,
+    "n": 1,
+    "sd": null
+   },
+   "both": {
+    "mean": -0.018567979335784912,
+    "n": 1,
+    "sd": null
+   },
+   "vision_only": {
+    "mean": 0.012417018413543701,
+    "n": 1,
+    "sd": null
+   }
+  },
+  "OpenCLIP B/32 @ r4 (新增)": {
+   "text_only": {
+    "mean": 0.07975411415100098,
+    "n": 1,
+    "sd": null
+   },
+   "both": {
+    "mean": 0.08602035045623779,
+    "n": 1,
+    "sd": null
+   },
+   "vision_only": {
+    "mean": 0.10191386938095093,
+    "n": 1,
+    "sd": null
+   }
+  }
+ },
+ "most_protective": {
+  "CLIP B/32 @ r8 (归档)": "text_only",
+  "CLIP B/16 @ r4 (新增)": "text_only",
+  "CLIP B/32 @ r4 (新增)": "text_only",
+  "OpenCLIP B/32 @ r4 (新增)": "text_only"
+ },
+ "verdict": "pretraining_not_patch_size"
+}

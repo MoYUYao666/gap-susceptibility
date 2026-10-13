@@ -1,0 +1,38 @@
+{
+ "model": "CLIP ViT-B/32",
+ "rank": 8,
+ "n_batches": 8,
+ "note": "single-pass average over batches; paper Gamma_m is trajectory-averaged",
+ "arms": {
+  "text_only": {
+   "arm": "text_only",
+   "n_batches": 7,
+   "norm_grad_vision": 5.986865852593991,
+   "norm_grad_text": 4.090376874042103,
+   "cos_phi_vision": 0.7558033472550979,
+   "cos_phi_text": 0.5181121380501638,
+   "Gamma_vision": 4.524893250957784,
+   "Gamma_text": 2.119273907640899
+  },
+  "both": {
+   "arm": "both",
+   "n_batches": 7,
+   "norm_grad_vision": 6.077451143091321,
+   "norm_grad_text": 4.057053983242321,
+   "cos_phi_vision": 0.7622970256905387,
+   "cos_phi_text": 0.5105672054179615,
+   "Gamma_vision": 4.632822930158079,
+   "Gamma_text": 2.0713987144538413
+  },
+  "vision_only": {
+   "arm": "vision_only",
+   "n_batches": 7,
+   "norm_grad_vision": 6.077451143091321,
+   "norm_grad_text": 3.962711965241714,
+   "cos_phi_vision": 0.7669218212911276,
+   "cos_phi_text": 0.501725636699463,
+   "Gamma_vision": 4.660929899467441,
+   "Gamma_text": 1.9881941838174795
+  }
+ }
+}

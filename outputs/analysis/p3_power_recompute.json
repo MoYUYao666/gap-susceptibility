@@ -1,0 +1,33 @@
+{
+ "constants": {
+  "k_correct_per_arm": 15.6978,
+  "k_i_misused": 7.8489
+ },
+ "delta": 4172.4746,
+ "delta_source": "outputs/analysis/p3_alloc_runs/main/{exp_beta_paper_0.137,uniform}__seed*.json :: delta_E",
+ "pool": {
+  "n": 30,
+  "mean": 3347.43,
+  "sd": 4771.18,
+  "n_negative": 7,
+  "gamma_percentile": 53.33,
+  "sd_source": "outputs/analysis/p3_alloc_runs/main/random_*__seed*.json :: delta_E"
+ },
+ "power": [
+  {
+   "label": "池 sd（最终，n=30）",
+   "sigma": 4771.18,
+   "n_per_arm": 20.5
+  },
+  {
+   "label": "我先前引用的 σ=6937（n=7 时）",
+   "sigma": 6937.4,
+   "n_per_arm": 43.4,
+   "n_wrong_formula": 21.7
+  }
+ ],
+ "correct_n_range": [
+  20.5,
+  43.4
+ ]
+}

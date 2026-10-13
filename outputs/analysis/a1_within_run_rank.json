@@ -1,0 +1,32 @@
+{
+ "source": "outputs/a1_class_aligned/lr0.0/seed*/eval_epoch*.json",
+ "per_run": {
+  "seed123": {
+   "n": 10,
+   "spearman_tau_top1": 0.9515,
+   "pearson_tau_top1": 0.9742,
+   "spearman_vloss_top1": 0.8788,
+   "spearman_tau_vloss": 0.9273
+  },
+  "seed42": {
+   "n": 10,
+   "spearman_tau_top1": 0.8061,
+   "pearson_tau_top1": 0.9937,
+   "spearman_vloss_top1": -0.7818,
+   "spearman_tau_vloss": -0.8061
+  },
+  "seed456": {
+   "n": 10,
+   "spearman_tau_top1": 0.9758,
+   "pearson_tau_top1": 0.9022,
+   "spearman_vloss_top1": -0.903,
+   "spearman_tau_vloss": -0.8909
+  }
+ },
+ "fisher_tau_top1": 0.938,
+ "fisher_vloss_top1": -0.3708,
+ "excl_ep1": {
+  "fisher_tau": 0.9142,
+  "fisher_vloss": -0.5401
+ }
+}
