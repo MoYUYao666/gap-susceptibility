@@ -57,7 +57,7 @@ def main() -> int:
     lines += [
         "",
         "=== Author / CRediT ===",
-        "  Hongrui Wan  |  University of Southampton  |  hw4c24@soton.ac.uk",
+        "  Hongrui Wan  |  University of Southampton  |  contact@example.com",
         "  " + "; ".join(CREDIT),
         "  说明：本稿为批判性综述，未做新实验，故不填 Software / Data curation / Funding acquisition",
         "",

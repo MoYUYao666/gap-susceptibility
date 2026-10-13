@@ -199,9 +199,9 @@ separately.}
 
 \author[1]{{Hongrui Wan}}
 \cormark[1]
-\ead{{hw4c24@soton.ac.uk}}
+\ead{{contact@example.com}}
 \affiliation[1]{{organization={{University of Southampton}}, city={{Southampton}}, postcode={{SO17 1BJ}}, country={{United Kingdom}}}}
-\cortext[1]{{Corresponding author. Institutional email: hw4c24@soton.ac.uk}}
+\cortext[1]{{Corresponding author. Institutional email: contact@example.com}}
 
 \begin{{abstract}}
 {clean_abstract(abstract)}

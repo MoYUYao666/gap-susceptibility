@@ -12,7 +12,7 @@ import urllib.request
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-UA = "A1-ref-audit/1.0 (mailto:hw4c24@soton.ac.uk)"
+UA = "A1-ref-audit/1.0 (mailto:contact@example.com)"
 
 
 def try_url(url: str, tag: str):

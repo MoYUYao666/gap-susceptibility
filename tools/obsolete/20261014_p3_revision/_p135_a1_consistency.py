@@ -56,7 +56,7 @@ def main() -> int:
                    ("not yet submitted", "披露（姊妹稿未投）"),
                    ("PR-D-26-10149", "P1 投 PR 的事实"),
                    ("Prior consideration", "曾投他刊声明"),
-                   ("hw4c24@soton.ac.uk", "正确邮箱"),
+                   ("contact@example.com", "正确邮箱"),
                    ("10 October 2026", "日期")):
         print(f"  {'✅' if k in cl else '❌'} {tag}: {k}")
 

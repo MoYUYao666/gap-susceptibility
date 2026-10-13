@@ -5,7 +5,7 @@ r"""同步最新代码/结果到 `publish_clean/`，并做发布前安全检查�
 
 - `publish_clean` HEAD = **`1ca7744`（2026-09-24）** ⇒ 三周未更新
 - 已跟踪 **1303** 文件（`outputs/` 842、`tools/` 332、`docs/` 78、`experiments/` 25、`exp/` 12、`src/` 11、root 3）
-- 远端 `ssh-origin` = `ssh://git@github.com/MoYUYao666/gap-susceptibility.git`
+- 远端 `ssh-origin` = `ssh://git@github.com/OWNER/gap-susceptibility.git`
 - **工作区有我的 README.md 改动**（`_p558`）+ 一个 `.bak` 残留
 
 ## 本脚本的安全规则（**关键**）

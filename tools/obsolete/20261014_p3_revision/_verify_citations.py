@@ -36,7 +36,7 @@ import urllib.request
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-CROSSREF_UA = "citation-verify/1.0 (mailto:hw4c24@soton.ac.uk)"
+CROSSREF_UA = "citation-verify/1.0 (mailto:contact@example.com)"
 ARXIV_UA = "Mozilla/5.0 (compatible; citation-verify/1.0)"
 HTML_UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 TITLE_MIN_RATIO = 0.82   # 低于此 → FAIL

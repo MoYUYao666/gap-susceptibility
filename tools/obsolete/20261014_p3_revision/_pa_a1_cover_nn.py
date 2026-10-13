@@ -40,7 +40,7 @@ NEW = r"""\documentclass[11pt]{article}
 Hongrui Wan \\
 University of Southampton \\
 Southampton, United Kingdom \\
-\texttt{hw4c24@soton.ac.uk}
+\texttt{contact@example.com}
 
 10 October 2026
 \end{flushright}

@@ -30,7 +30,7 @@ REPO = Path(__file__).resolve().parents[1]
 A1 = REPO / "paper_a1"
 OUT = REPO / "outputs" / "analysis" / "a1_refs_resolved.json"
 API = "https://api.crossref.org/works"
-UA = "A1-ref-audit/1.0 (mailto:hw4c24@soton.ac.uk)"
+UA = "A1-ref-audit/1.0 (mailto:contact@example.com)"
 THRESH = 0.90
 
 

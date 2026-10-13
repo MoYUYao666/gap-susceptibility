@@ -35,7 +35,7 @@ TEX = r"""\documentclass[11pt]{article}
 
 \begin{flushright}
 Hongrui Wan \\
-\href{mailto:hw4c24@soton.ac.uk}{hw4c24@soton.ac.uk} \\
+\href{mailto:contact@example.com}{contact@example.com} \\
 University of Southampton \\
 \today
 \end{flushright}
@@ -105,7 +105,7 @@ manuscript does not cite any of them.
 
 \noindent Hongrui Wan \\
 University of Southampton \\
-\href{mailto:hw4c24@soton.ac.uk}{hw4c24@soton.ac.uk}
+\href{mailto:contact@example.com}{contact@example.com}
 
 \end{document}
 """

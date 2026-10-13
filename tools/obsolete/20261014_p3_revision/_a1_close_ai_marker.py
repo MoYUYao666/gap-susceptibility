@@ -46,7 +46,7 @@ for prefix, new_text in (
      '的 `% AUTHOR: confirm` 标记已改为 `% AUTHOR CONFIRMED 2026-09-16`。'
      '依据为项目自身记录：`SUBMISSION_CHECKLIST.md:27`（"Claude + DeepSeek"）与旧 `declaration.pdf` 原文。'),
     ('3. **仓库公开状态**',
-     '3. **仓库公开状态（已确认）**：作者确认 `github.com/MoYUYao666/gap-susceptibility` 为 **public**，'
+     '3. **仓库公开状态（已确认）**：作者确认 `github.com/OWNER/gap-susceptibility` 为 **public**，'
      '故正文的代码与数据表述已由 "reproducibility archive upon publication" 改为 "public repository"'
      '（`paper_a1/main.tex:578`、`main_zh.tex:581`）。'),
 ):

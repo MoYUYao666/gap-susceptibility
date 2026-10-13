@@ -83,7 +83,7 @@ NEW_FRONT = (
     f"\\title{{{title_text}}}\n\n"
     "\\author{Hongrui Wan%\n"
     "\\thanks{Hongrui Wan is with the University of Southampton, University Road,\n"
-    "Southampton SO17 1BJ, United Kingdom (e-mail: hw4c24@soton.ac.uk).}}\n\n"
+    "Southampton SO17 1BJ, United Kingdom (e-mail: contact@example.com).}}\n\n"
     "\\maketitle\n\n"
     "\\begin{abstract}\n"
     f"{abstract_text}\n"

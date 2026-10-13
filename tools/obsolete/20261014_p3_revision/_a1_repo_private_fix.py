@@ -29,7 +29,7 @@ REPLACEMENTS = [
      '（论文发表后公开可复现档案）',
      'main_zh.tex: 同步恢复'),
     (CL, 'The code, the archived result files and the figure-generation scripts for this study '
-         'are available in a public repository at \\texttt{github.com/MoYUYao666/gap-susceptibility}.',
+         'are available in a public repository at \\texttt{github.com/OWNER/gap-susceptibility}.',
      'All data, code, and checkpoints used in this study are archived and will be released upon publication.',
      'cover_letter.tex: restored, with "publication" rather than "acceptance" so it matches the manuscript'),
 ]

@@ -31,7 +31,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 BIB = REPO / "paper合" / "references.bib"
 OUT = REPO / "outputs" / "analysis" / "lit_weekly_2026-10-12.json"
-MAILTO = "hw4c24@soton.ac.uk"   # 正确邮箱（曾把 hrw1n24 写错）
+MAILTO = "contact@example.com"   # 正确邮箱（曾把 hrw1n24 写错）
 
 QUERIES = [
     "modality gap parameter-efficient fine-tuning",

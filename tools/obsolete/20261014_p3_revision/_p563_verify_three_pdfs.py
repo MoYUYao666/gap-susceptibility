@@ -63,7 +63,7 @@ def main() -> int:
         # 关键要素
         for need, nl in (("Pattern Recognition Letters", "期刊名"),
                          ("University of Southampton", "单位"),
-                         ("hw4c24@soton.ac.uk", "邮箱")):
+                         ("contact@example.com", "邮箱")):
             v = need in t
             if not v:
                 print(f"  🔴 缺 {nl}")

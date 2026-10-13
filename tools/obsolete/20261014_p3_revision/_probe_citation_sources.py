@@ -53,9 +53,9 @@ def probe_arxiv_api(terms: list[str]) -> None:
 
 def probe_openalex() -> None:
     print("\n=== OpenAlex（带 mailto）===")
-    for u in ["https://api.openalex.org/works/doi:10.48550/arXiv.2106.09685?mailto=hw4c24@soton.ac.uk",
-              "https://api.openalex.org/works?search=LoRA%20low-rank%20adaptation&per-page=2&mailto=hw4c24@soton.ac.uk"]:
-        r = get(u, {"User-Agent": "citation-verify/1.0 (mailto:hw4c24@soton.ac.uk)"})
+    for u in ["https://api.openalex.org/works/doi:10.48550/arXiv.2106.09685?mailto=contact@example.com",
+              "https://api.openalex.org/works?search=LoRA%20low-rank%20adaptation&per-page=2&mailto=contact@example.com"]:
+        r = get(u, {"User-Agent": "citation-verify/1.0 (mailto:contact@example.com)"})
         ok = not r.startswith("ERR")
         print(f"  {'✅' if ok else '❌'} {u[:78]}… {'' if ok else r[:70]}")
         if ok:

@@ -20,7 +20,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 OUT = REPO / "outputs" / "analysis" / "lit_2610_09227.json"
-MAILTO = "hw4c24@soton.ac.uk"
+MAILTO = "contact@example.com"
 AX = "2610.09227"
 
 

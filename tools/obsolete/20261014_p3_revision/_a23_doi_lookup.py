@@ -9,7 +9,7 @@ import time
 import urllib.parse
 import urllib.request
 
-MAILTO = "hw4c24@soton.ac.uk"
+MAILTO = "contact@example.com"
 
 # key -> (query string, what we expect, current locator in the manuscript)
 TARGETS = [

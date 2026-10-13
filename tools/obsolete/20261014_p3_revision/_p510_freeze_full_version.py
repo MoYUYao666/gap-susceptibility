@@ -64,7 +64,7 @@ MAIN_FULL = r"""% ==============================================================
 \IEEEauthorblockA{School of Electronics and Computer Science\\
 University of Southampton\\
 Southampton, SO17 1BJ, United Kingdom\\
-Email: hw4c24@soton.ac.uk}
+Email: contact@example.com}
 }
 
 \maketitle

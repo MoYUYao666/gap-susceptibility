@@ -10,14 +10,14 @@ r"""改作者块：去掉院系，只留 University of Southampton（2026-10-13�
 \IEEEauthorblockA{School of Electronics and Computer Science\\
 University of Southampton\\
 Southampton, SO17 1BJ, United Kingdom\\
-Email: hw4c24@soton.ac.uk}
+Email: contact@example.com}
 ```
 
 **⇒ 改为**（去掉院系，保留单位、地址、邮箱）：
 ```
 \IEEEauthorblockA{University of Southampton\\
 Southampton, SO17 1BJ, United Kingdom\\
-Email: hw4c24@soton.ac.uk}
+Email: contact@example.com}
 ```
 
 **⚠️ Guide 要求**：**"The institutional email address needs to be provided for all the authors

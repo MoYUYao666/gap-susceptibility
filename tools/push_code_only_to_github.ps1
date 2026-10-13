@@ -132,7 +132,7 @@ if ($bad) { Write-Host "  ❌ 暂存区仍有稿件类文件，中止：" -Foreg
 Write-Host ("  ✅ 暂存 {0} 个文件，稿件类 0 个" -f ($staged | Measure-Object).Count) -ForegroundColor Green
 
 Write-Host "`n=== 6) 提交并 force push ===" -ForegroundColor Cyan
-git -C $wt -c user.name="Hongrui Wan" -c user.email="2024282101@hrbeu.edu.cn" `
+git -C $wt -c user.name="Hongrui Wan" -c user.email="contact@example.com" `
     commit --quiet -m "Chore: publish code and results only (manuscripts, cover letters and checkpoints removed from tracking)"
 git -C $wt log -1 --pretty=format:"  %h %ad %s" --date=format:"%Y-%m-%d %H:%M"; Write-Host ""
 git -C $wt push --force $Remote "${Branch}:main"

@@ -27,7 +27,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 OUT = REPO / "outputs" / "analysis" / "a1_refs_openalex.json"
-UA = "A1-ref-audit/1.0 (mailto:hw4c24@soton.ac.uk)"
+UA = "A1-ref-audit/1.0 (mailto:contact@example.com)"
 
 
 def get(url: str):
@@ -43,7 +43,7 @@ def by_doi(doi: str):
 
 def by_title_author(title: str, author: str):
     q = urllib.parse.urlencode({"search": f"{title} {author}", "per-page": 5,
-                                "mailto": "hw4c24@soton.ac.uk"})
+                                "mailto": "contact@example.com"})
     return get(f"https://api.openalex.org/works?{q}")
 
 

@@ -17,7 +17,7 @@ param(
 )
 
 $ProgressPreference = 'SilentlyContinue'
-$UA = "citation-verify/1.0 (mailto:hw4c24@soton.ac.uk)"
+$UA = "citation-verify/1.0 (mailto:contact@example.com)"
 
 foreach ($t in $Titles) {
     $q = [uri]::EscapeDataString($t)

@@ -29,7 +29,7 @@ REPO = Path(__file__).resolve().parents[1]
 A1 = REPO / "paper_a1"
 OUT = REPO / "outputs" / "analysis" / "a1_refs_openalex.json"
 OA = "https://api.openalex.org/works"
-UA = "A1-ref-audit/1.0 (mailto:hw4c24@soton.ac.uk)"
+UA = "A1-ref-audit/1.0 (mailto:contact@example.com)"
 
 RETRY = ["chowers2026", "yuksekgonul2023when", "ovadia2019trust", "steck2024cosine",
          "hu2022lora", "huh2024platonic", "imod", "wan2026protect"]
@@ -51,7 +51,7 @@ def get(url: str):
 def resolve_one(title: str) -> dict:
     # **关键修法**：search 用 urlencode（百分号编码），不手拼
     qs = urllib.parse.urlencode({"search": title, "per-page": 8,
-                                 "mailto": "hw4c24@soton.ac.uk"})
+                                 "mailto": "contact@example.com"})
     d = get(f"{OA}?{qs}")
     best, bs = None, 0.0
     for w in d.get("results", []):

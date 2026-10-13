@@ -17,7 +17,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 OUT = REPO / "paper_review_prl" / "benchmark_prl_reviews.md"
-UA = "citation-verify/1.0 (mailto:hw4c24@soton.ac.uk)"
+UA = "citation-verify/1.0 (mailto:contact@example.com)"
 OURS = 35
 
 

@@ -29,7 +29,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 OUT = REPO / "outputs" / "analysis" / "a1_refs_openalex.json"
-UA = "A1-ref-audit/1.0 (mailto:hw4c24@soton.ac.uk)"
+UA = "A1-ref-audit/1.0 (mailto:contact@example.com)"
 TITLE = "LoRA: Low-rank adaptation of large language models"
 
 
@@ -51,7 +51,7 @@ def main() -> int:
 
     print("=== 检索：标题 + 作者 Hu ===")
     q = urllib.parse.urlencode({"search": f"{TITLE} Hu", "per-page": 10,
-                                "mailto": "hw4c24@soton.ac.uk"})
+                                "mailto": "contact@example.com"})
     d = get(f"https://api.openalex.org/works?{q}")
     best, bs = None, 0.0
     for w in (d.get("results") or []):

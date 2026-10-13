@@ -44,7 +44,7 @@ ENT = """> **📄 2026-10-10 —— A1 投稿件按 `Neural Networks` 全部过�
 >
 > | 错 | 真因 | 修法 |
 > |---|---|---|
-> | 在 Crossref/OpenAlex 的 `mailto=` 里写了 `hrw1n24@soton.ac.uk` | **项目实际邮箱是 `hw4c24@soton.ac.uk`**（全项目 20 处；`hrw1n24` **0 处**） | 修 **10 个脚本 / 16 处**（**只影响礼貌池标识，不影响已取回的数据**） |
+> | 在 Crossref/OpenAlex 的 `mailto=` 里写了 `hrw1n24@soton.ac.uk` | **项目实际邮箱是 `contact@example.com`**（全项目 20 处；`hrw1n24` **0 处**） | 修 **10 个脚本 / 16 处**（**只影响礼貌池标识，不影响已取回的数据**） |
 >
 > ### 四、一致性终检（`tools/_p135_a1_consistency.py`）
 >
@@ -84,7 +84,7 @@ def main() -> int:
     io.open(hp, "w", encoding="utf-8", newline="").write(t[:j + 1] + "\n" + ENT + t[j + 1:])
     t2 = io.open(hp, encoding="utf-8").read()
     for k in ("A1 投稿件按 `Neural Networks` 全部过一遍", "is not yet submitted to any journal",
-              "Prior consideration", "hw4c24@soton.ac.uk", "Nov 08 2026", "68", "10 个脚本 / 16 处"):
+              "Prior consideration", "contact@example.com", "Nov 08 2026", "68", "10 个脚本 / 16 处"):
         assert k in t2, f"断言失败：缺 {k}"
     print(f"  ✅ HANDOFF 已追加（{len(t2.splitlines())} 行）")
     return 0

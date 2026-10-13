@@ -6,7 +6,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-MAILTO = "hw4c24@soton.ac.uk"
+MAILTO = "contact@example.com"
 UA = {"User-Agent": f"A23-doi-verify/1.0 (mailto:{MAILTO})"}
 
 

@@ -27,7 +27,7 @@ REPO = Path(__file__).resolve().parents[1]
 A1 = REPO / "paper_a1"
 OUT = REPO / "outputs" / "analysis" / "a1_refs_openalex.json"
 OA = "https://api.openalex.org/works"
-UA = "A1-ref-audit/1.0 (mailto:hw4c24@soton.ac.uk)"
+UA = "A1-ref-audit/1.0 (mailto:contact@example.com)"
 
 RETRY = ["chowers2026", "yuksekgonul2023when", "ovadia2019trust", "steck2024cosine",
          "hu2022lora", "huh2024platonic", "imod", "wan2026protect"]
@@ -50,7 +50,7 @@ def search(title: str):
     """剥 `?` 后检索（实测 `?` 会导致 400）。"""
     q = title.replace("?", " ").replace("  ", " ").strip()
     qs = urllib.parse.urlencode({"search": q, "per-page": 8,
-                                 "mailto": "hw4c24@soton.ac.uk"})
+                                 "mailto": "contact@example.com"})
     return get(f"{OA}?{qs}")
 
 

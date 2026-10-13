@@ -2,7 +2,7 @@
 
 Understanding and predicting how parameter-efficient fine-tuning reshapes cross-modal alignment in vision-language models.
 
-**Hongrui Wan** · University of Southampton · `hw4c24@soton.ac.uk`
+**Hongrui Wan**
 
 ---
 

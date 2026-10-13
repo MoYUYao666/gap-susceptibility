@@ -42,7 +42,7 @@ A1 = {
         ('*.aux / *.log / *.out / *.spl', 'LaTeX build artifacts'),
     ],
     'system_items': [
-        'Data availability statement: state that the code and data are available at github.com/MoYUYao666/gap-susceptibility (public repository), matching the closing sentence of the manuscript.',
+        'Data availability statement: state that the code and data are available at github.com/OWNER/gap-susceptibility (public repository), matching the closing sentence of the manuscript.',
         'Declaration of Interest: complete the online Elsevier declarations tool and upload its Word output; the .docx here is an author-side draft so the wording is settled in advance.',
         'CRediT: the manuscript has a single author, and the guide frames CRediT around co-author contributions, so no CRediT block is included.',
         'Generative-AI declaration: already carried in the manuscript, in a new section before the reference list, as the guide requires.',

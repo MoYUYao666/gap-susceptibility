@@ -3,8 +3,8 @@ r"""收尾：修我写错的邮箱、更新 declaration、核对 highlights 字�
 
 ## ① 我的错
 
-我在 Crossref/OpenAlex 的 `mailto=` 里写了 `hw4c24@soton.ac.uk`，
-**而项目实际邮箱是 `hw4c24@soton.ac.uk`**（全项目 20 处；`hrw1n24` **0 处**）。
+我在 Crossref/OpenAlex 的 `mailto=` 里写了 `contact@example.com`，
+**而项目实际邮箱是 `contact@example.com`**（全项目 20 处；`hrw1n24` **0 处**）。
 → 修所有 `tools/_p1*.py` 里的该字符串（**只影响礼貌池标识，不影响取回的数据**）。
 
 ## ② `declaration.tex` 还是旧标题 + 16 September 2026
@@ -23,8 +23,8 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-BAD = "hw4c24@soton.ac.uk"
-GOOD = "hw4c24@soton.ac.uk"
+BAD = "contact@example.com"
+GOOD = "contact@example.com"
 
 DECL_NEW = r"""\documentclass[11pt]{article}
 \usepackage[T1]{fontenc}

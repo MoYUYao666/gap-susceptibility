@@ -36,7 +36,7 @@ REPO = Path(__file__).resolve().parents[1]
 A1 = REPO / "paper_a1"
 OUT = REPO / "outputs" / "analysis" / "a1_refs_openalex.json"
 OA = "https://api.openalex.org/works"
-UA = "A1-ref-audit/1.0 (mailto:hw4c24@soton.ac.uk)"
+UA = "A1-ref-audit/1.0 (mailto:contact@example.com)"
 THRESH = 0.90
 
 
@@ -70,7 +70,7 @@ def resolve(rec: dict) -> dict:
         return {**rec, "method": "NO_TITLE", "authors": []}
     try:
         q = urllib.parse.urlencode({"search": rec["title"], "per-page": 5,
-                                    "mailto": "hw4c24@soton.ac.uk"})
+                                    "mailto": "contact@example.com"})
         d = get(f"{OA}?{q}")
     except Exception as e:
         return {**rec, "method": "ERROR", "authors": [], "error": str(e)[:140]}

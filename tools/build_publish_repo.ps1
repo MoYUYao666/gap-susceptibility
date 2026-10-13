@@ -13,7 +13,7 @@ param(
     [switch]$SkipPush,
     [string]$Target = 'D:\Realdesktop\Wan\Important\New\publish_clean',
     [string]$Remote = 'ssh-origin',
-    [string]$RepoUrl = 'ssh://git@github.com/MoYUYao666/gap-susceptibility.git'
+    [string]$RepoUrl = 'ssh://git@github.com/OWNER/gap-susceptibility.git'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -72,7 +72,7 @@ git -C $Target init -q -b main
 git -C $Target add -A
 $staged = git -C $Target diff --cached --name-only
 Write-Host ("  暂存: {0} 个文件" -f ($staged | Measure-Object).Count)
-git -C $Target -c user.name="Hongrui Wan" -c user.email="2024282101@hrbeu.edu.cn" `
+git -C $Target -c user.name="Hongrui Wan" -c user.email="contact@example.com" `
     commit -q -m "Code and results only: analysis/audit scripts, result JSONs and method docs (no manuscripts)"
 git -C $Target log -1 --pretty=format:"  %h %ad %s" --date=format:"%Y-%m-%d %H:%M"; Write-Host ""
 $size = [math]::Round((Get-ChildItem (Join-Path $Target '.git') -Recurse -File -Force | Measure-Object Length -Sum).Sum / 1MB, 1)

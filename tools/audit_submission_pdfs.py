@@ -86,7 +86,7 @@ for label, folder, journal, files, expect_raster in SETS:
                 and bad not in ALLOWED_PER_SET.get(label, [])]
         undefined = flat.count('??') + flat.count('[?]')
         who = all(s in flat for s in ('Hongrui Wan', 'Southampton'))
-        mail = 'hw4c24@soton.ac.uk' in flat
+        mail = 'contact@example.com' in flat
         jrn = journal in flat
         ras = raster_count(p)
         size = os.path.getsize(p)

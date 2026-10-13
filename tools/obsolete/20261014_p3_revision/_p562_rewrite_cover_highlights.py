@@ -39,7 +39,7 @@ COVER = r"""\documentclass[11pt]{article}
 
 \begin{flushright}
 Hongrui Wan \\
-hw4c24@soton.ac.uk \\
+contact@example.com \\
 University of Southampton \\
 \today
 \end{flushright}
@@ -140,7 +140,7 @@ Sincerely,
 
 Hongrui Wan \\
 University of Southampton \\
-\href{mailto:hw4c24@soton.ac.uk}{hw4c24@soton.ac.uk}
+\href{mailto:contact@example.com}{contact@example.com}
 
 \end{document}
 """

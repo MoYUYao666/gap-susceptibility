@@ -23,7 +23,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 OUT = REPO / "outputs" / "analysis" / "crossref_probe.json"
 API = "https://api.crossref.org/works"
-UA = "A1-ref-audit/1.0 (mailto:hw4c24@soton.ac.uk)"
+UA = "A1-ref-audit/1.0 (mailto:contact@example.com)"
 
 SAMPLES = [
     ("wortsman2022", "Robust fine-tuning of zero-shot models"),

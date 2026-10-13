@@ -57,7 +57,7 @@ PRL 的 Guide 用的是 **research data guidelines 的 Option C**：
 
 1. 登录 **zenodo.org** → 右上角头像 → **Settings** → **GitHub**
 2. 点 **Connect**，授权 Zenodo 访问你的 GitHub 账号
-3. 在仓库列表里找到你的仓库（如 `MoYUYao666/<repo>`）→ 把开关拨到 **ON**
+3. 在仓库列表里找到你的仓库（如 `OWNER/<repo>`）→ 把开关拨到 **ON**
 4. 回到 GitHub，给仓库**打一个 release**（例如 tag `v1.0-prl-revision`）
    ```bash
    git tag -a v1.0-prl-revision -m "Code and results accompanying PRLETTERS-D-26-02378 (revision)"
