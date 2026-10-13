@@ -103,9 +103,9 @@ hyper-parameters, so a rewritten aggregate file cannot silently change a cited n
 
 A versioned snapshot of this repository is archived on Zenodo:
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23341083.svg)](https://doi.org/10.5281/zenodo.23341083)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23341223.svg)](https://doi.org/10.5281/zenodo.23341223)
 
-**DOI: [10.5281/zenodo.23341083](https://doi.org/10.5281/zenodo.23341083)** — this is the persistent identifier to cite for the code and
+**DOI: [10.5281/zenodo.23341223](https://doi.org/10.5281/zenodo.23341223)** — this is the persistent identifier to cite for the code and
 results. It resolves to the `v1.0-prl-revision` release.
 
 ## Reproducing a reported number
