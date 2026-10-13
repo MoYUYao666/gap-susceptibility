@@ -1,135 +1,126 @@
-# Cross-Modal Alignment under PEFT
+# Gradient Structure Laws as Predictors of PEFT Design
 
-Understanding and predicting how parameter-efficient fine-tuning reshapes cross-modal alignment in vision-language models.
+Code and results for **zero-shot cross-architecture rank allocation** in
+parameter-efficient fine-tuning of vision-language models.
 
-**Hongrui Wan**
-
----
-
-## Papers
-
-### Paper 1: Protect, Don't Perturb
-**An Empirical Study of Cross-Modal Alignment under PEFT of Vision-Language Models**
-
-- 116 experiments, 14 figures, 43 references
-- Key finding: text-only fine-tuning overwhelmingly preserves alignment across 5 architectures
-- Distribution Gap predicts retrieval ($r = -0.827$, partial $r = -0.807$)
-- Visual Fragility: causal evidence via noise sensitivity, gradient contribution, effective rank
-- **Submitted to Pattern Recognition** (transferred from Neurocomputing, 2026-07)
-
-### Paper 2: Gap Susceptibility
-**A Dynamical Theory of Cross-Modal Alignment under PEFT**
-
-- 224 experiments, 5 random seeds, 2 datasets (Flickr30k, MS-COCO), 3 PEFT methods
-- Introduces Gap Susceptibility $\Gamma_m = \|\nabla_m DG^*\| \cdot \cos\phi_m$
-- First-order ODE $d(DG^*)/dt = \alpha - \beta(DG^*-DG_0)$ with $R^2 = 0.984 \pm 0.009$
-- Effective Rank Saturation: $\|g_v\|$ flat across ranks ($k = 0.09$)
-- Cross-dataset validation on MS-COCO ($R^2 = 0.973 \pm 0.018$)
-- **Ready for submission**
-
-### Paper 3: Predictive PEFT Allocation
-**Gradient Structure Laws as Predictors of PEFT Design**
-
-- 126 runs on the present protocol plus a 57-run capacity-matched allocation study; 2 architectures (LLaVA-1.5-7B, Qwen2-VL-7B)
-- **Representation Theorem**: $\Gamma$ is canonical up to positive scaling **given R1-R5 and the additivity axiom R3'**. R3 alone does not imply R3' --- we prove that with a counterexample ($\|\nabla E\|^2$ is block-decomposable but not additive)
-- The crossing in alignment energy on LLaVA is **bracketed** at $r \in [5,6]$, not sharp; its location belongs to the measurement protocol, and we do not claim an architecture dependence
-- **Negative results we report rather than hide**: the allocation rule beats the uniform-rank baseline at one learning rate, reverses at another, and vanishes under matched training loss; it is indistinguishable from a random allocation at the same parameter budget; and AdaLoRA, swept over the same learning rates, reaches lower alignment energy than any of our arms
-- Cross-architecture zero-shot Predictive Transfer
-- **Submitted to Pattern Recognition Letters** (`PRLETTERS-D-26-02378`, decision: Revise)
+Submitted to *Pattern Recognition Letters* (manuscript `PRLETTERS-D-26-02378`,
+decision: revise).
 
 ---
 
-## Repository Structure
+## What this repository is
+
+This repository holds the **code and the derived results** behind the manuscript:
+
+- **per-run result records** — every number in the paper traces to a named script and a
+  named JSON field under `outputs/`
+- **analysis, audit and verification scripts** — the tools that compute the reported
+  statistics and gate the manuscript, under `tools/`
+- **training and experiment code** — under `src/`, `exp/` and `experiments/`
+
+It deliberately contains **no manuscript source, no PDF, no cover letter and no
+supplementary material**.
+
+## The claim, and what we had to give up
+
+Acting on the reviewer reports changed the paper's claims. Four of those changes are
+**against** what was originally submitted, and they are recorded here rather than in a
+footnote:
+
+1. **The Representation Theorem no longer claims uniqueness from R1–R5 alone.** Block
+   decomposability does not imply bilinearity. We state the missing property as an explicit
+   axiom (**R3′**, cross-block additivity) and prove that it does **not** follow from the
+   earlier requirements, by counterexample: `‖∇E‖²` is block-decomposable but not additive.
+
+2. **The allocation rule's advantage does not survive our own controls.** It beats the
+   uniform-rank baseline at one learning rate (5e-5: `+1478 ± 1563` vs `+5048 ± 1900`,
+   `p = 0.0055`) and **reverses at another** (3e-4: `+5968` vs `+2842`). Once the arms are
+   matched on training loss (0.5872 vs 0.5826) the difference vanishes, and the rule is
+   **indistinguishable from a random allocation at the same parameter budget**
+   (`p = 0.2057`). We have withdrawn the claim that it beats the uniform baseline.
+
+3. **The "sharp phase transition" is a bracketed crossing.** The crossing in alignment
+   energy on LLaVA is bracketed at `r ∈ [5, 6]` (permutation `p = 0.100`), not sharp, and
+   its location belongs to the measurement protocol. The apparent architecture dependence
+   was a **visual-token-budget artefact** and that reading is withdrawn.
+
+4. **The 30× variance ratio is withdrawn.** 98.9% of that spread is between-rank variance,
+   not an effect of the allocation.
+
+We also implemented **AdaLoRA** at matched budget and swept both methods over the same
+learning rates. It reaches lower alignment energy than any of our arms (`−1468` / `−757`),
+and the paper now says so.
+
+Full detail, including the axiom derivation and the counterexample, is in the manuscript and
+its supplementary material.
+
+## Repository structure
 
 ```
-├── paper/              # Paper 1: LaTeX + figures + submission (PR)
-├── paper2/             # Paper 2: LaTeX + figures + submission
-├── paper3/             # Paper 3
-│   ├── paper_ieee/         ← IEEEtran version (submitted to Pattern Recognition Letters)
-│   ├── scripts/            ← Experiment scripts (LLaVA, Qwen-VL)
-│   ├── theory/             ← Theory derivations (Representation Theorem, GFAP)
-│   └── literature_review.md ← 40+ papers
-├── src/                # Shared code (trainer, lora, gap_susceptibility, dataset)
-├── experiments/        # Experiment runners + data download
-├── outputs/            # Results (224 runs Paper2, 126 + 57 runs Paper3)
-├── flickr30k/          # Flickr30k dataset (~30GB)
-├── coco/               # MS-COCO dataset (~25GB)
-└── docs/               # Documentation
+outputs/          Per-run result records (the provenance for every number)
+  theory/           ODE fits, β estimates, Γ measurements
+  analysis/         Aggregation, audits, cross-checks
+tools/            Analysis, audit, plotting and verification scripts
+  audit/            Claim and reference auditors
+src/              Shared code (trainer, LoRA, gap susceptibility, metrics, datasets)
+exp/              Supplementary experiment scripts
+experiments/      Experiment runners and data download
 ```
-
-## Key Metrics
-
-| | Paper 1 | Paper 2 | Paper 3 |
-|---|:--:|:--:|:--:|
-| Experiments | 116 | 224 | 126 + 57 |
-| Models | CLIP, BLIP-1, SigLIP, ViT-L | CLIP, SigLIP, OpenCLIP | LLaVA-7B, Qwen2-VL-7B |
-| PEFT Methods | LoRA, Adapter | LoRA, Adapter, BitFit | LoRA |
-| Datasets | Flickr30k, COCO | Flickr30k, COCO | Alpaca |
-| Seeds | 3-5 | 5 | 3-5 |
-| Core Concept | Visual Fragility | Gap Susceptibility $\Gamma$ | Representation Theorem |
-| Key Result | Text-only is optimal | ODE $R^2 > 0.97$ | Zero-shot allocation without target gradients |
-| Status | → Pattern Recognition | Ready | → PRL (Revise) |
-
-## Setup
-
-```bash
-# Paper 2 (CLIP training)
-pip install torch transformers scipy
-
-# Paper 3 (LLaVA training)  
-conda create -n paper3 python=3.10
-pip install torch==2.5.1 bitsandbytes transformers==4.48.3 peft datasets
-
-# Data download (Paper2)
-python experiments/download_data.py
-```
-
----
 
 ## Hardware and environment
 
-Every run in this repository was produced on one of two configurations, and the archived
-run records state which:
+Every run was produced on one of three configurations, and each archived run record states
+which:
 
 | Configuration | Used for | Notes |
 |---|---|---|
-| Local workstation | LLaVA-1.5-7B sweeps, CLIP retrieval sweeps | **NVIDIA RTX 4060 Laptop, 8 GB**; QLoRA 4-bit; ~34 min per LLaVA run |
+| Local workstation | LLaVA-1.5-7B sweeps, CLIP retrieval sweeps | NVIDIA RTX 4060 Laptop, **8 GB**; QLoRA 4-bit; ~34 min per LLaVA run |
 | Cloud | Qwen2-VL-7B sweeps | NVIDIA A800 80 GB |
-| CPU only | a few Qwen2-VL-2B runs (marked per run) | bf16; initial energy differs from GPU by 0.09%, recorded per run so runs are not mixed |
+| CPU only | a few Qwen2-VL-2B runs (marked per run) | bf16; initial energy differs from GPU by 0.09%, recorded per run so runs are never mixed |
 
 Peak memory for the local runs fits in 8 GB with QLoRA 4-bit and `batch=1`. Runs are
 single-GPU and sequential; no cluster is required.
 
+## Setup
+
+```bash
+# Training environment for the LLaVA / Qwen2-VL experiments
+python -m venv .venv && . .venv/bin/activate      # or: conda create -n peft python=3.10
+pip install -r requirements.txt
+pip install torch==2.5.1 bitsandbytes transformers==4.48.3 peft datasets
+```
+
 ## Data availability
 
-Datasets and model releases used here are **public**: Alpaca, ShareGPT, MS-COCO, Flickr30k,
-an ImageNet subset, and the HuggingFace model cards for CLIP ViT-B/32, LLaVA-1.5-7B,
-Qwen2-VL-7B and Qwen2-VL-2B.
+The datasets and model releases used here are **public**: Alpaca, ShareGPT, MS-COCO,
+Flickr30k, an ImageNet subset, and the HuggingFace model cards for CLIP ViT-B/32,
+LLaVA-1.5-7B, Qwen2-VL-7B and Qwen2-VL-2B.
 
 What this repository adds is **derived data**: the per-run result JSON files under
-`outputs/`, the analysis scripts that compute every statistic reported in the papers, and
-the training configurations. **Every number in the papers traces to a named script and a
-named JSON field.** The per-run records are append-only and each carries its own
+`outputs/`, the analysis scripts that compute every reported statistic, and the training
+configurations. The per-run records are **append-only** and each carries its own
 hyper-parameters, so a rewritten aggregate file cannot silently change a cited number.
 
-A versioned snapshot of this repository is archived on Zenodo; see the badge above
-(DOI minted from the `v1.0-prl-revision` release).
+A versioned snapshot of this repository is archived on Zenodo; the DOI is minted from the
+`v1.0-prl-revision` release.
 
-## Citation
+## Reproducing a reported number
 
-If you use this code or these results, please cite the corresponding paper:
+Every archived record carries its own provenance. To trace a figure quoted in the paper:
 
-```bibtex
-@article{wan2026gradient,
-  title   = {Gradient Structure Laws as Predictors of {PEFT} Design:
-             Zero-Shot Cross-Architecture Rank Allocation},
-  author  = {Wan, Hongrui},
-  journal = {Pattern Recognition Letters},
-  note    = {Manuscript PRLETTERS-D-26-02378, under revision},
-  year    = {2026}
-}
+```bash
+# find the run records behind a statistic
+grep -rl "<the statistic's field name>" outputs/ | head
+
+# re-run the analysis that produced it
+python tools/<the_named_script>.py
 ```
+
+The per-run files are the source of truth; aggregate files under `outputs/analysis/` are
+derived from them and are regenerated by the analysis scripts.
 
 ## License
 
-See `LICENSE` in this repository.
+No licence file is currently included in this repository. Until one is added, the default
+of "all rights reserved" applies, and reuse should be discussed with the author. If you
+need this code under a specific licence, please open an issue.
