@@ -441,6 +441,19 @@ class GapAwareTrainer:
             loss = loss / self.train_cfg.gradient_accumulation_steps
             loss.backward()
 
+            # 梯度取值钩子：**必须在 zero_grad 之前**（否则 p.grad 已被清空，见
+            # tools/_p40_diag_inner_nan.py 的实测）。默认关闭 → 对既有实验零影响。
+            if getattr(self, "_capture_train_grad", False):
+                # **必须用 model.parameters()**：`_trainable_params` 只在 train() 里设置，
+                # 而调用方（实验 A）为插 ∇DG* 反向而自走循环、从未调用 train()
+                # → 该属性为 None → 遍历空列表 → 取不到任何梯度（实测，见 tools/_p43）。
+                # **保留 None 占位**：与 [p for p in model.parameters() if p.requires_grad]
+                # 一一对应，便于与 ∇DG* 按位置配对（实测两者非零个数不同：398 vs 397）。
+                self._last_train_grad = [
+                    (p.grad.detach().clone() if p.grad is not None else None)
+                    for p in self.model.parameters() if p.requires_grad
+                ]
+
             if (n_batches + 1) % self.train_cfg.gradient_accumulation_steps == 0:
                 torch.nn.utils.clip_grad_norm_(self._trainable_params, max_norm=1.0)
                 optimizer.step()

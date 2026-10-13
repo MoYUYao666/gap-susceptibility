@@ -56,12 +56,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 os.chdir(ROOT)
 
-from src.config import ExperimentConfig, LoRAConfig, TrainConfig   # noqa: E402
+from src.config import ExperimentConfig, LoRAConfig, TrainConfig, GapConfig   # noqa: E402
 from src.trainer import GapAwareTrainer                            # noqa: E402
 from src.dataset import create_dataloaders                         # noqa: E402
 
 PRISTINE = os.path.join(ROOT, "models", "clip-vit-base-patch32")
 OUT_DIR = "outputs/strict_freeze"
+NAME_PREFIX = "strict_"
+RANK = 8            # 论文口径；--rank 可覆盖（rank sweep）
+DATASET = "flickr30k"   # --dataset 覆盖
+DATA_DIR = "."              # --data-dir 覆盖
+ALPHA_MULT = 2      # alpha = rank × 2（rank8 → alpha16）
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # RQ2 configurations of the paper, rank 8 / alpha 16 as published.
@@ -108,8 +113,27 @@ class StrictTrainer(GapAwareTrainer):
         print("[strict] trainable=%d (%.4f%% of %d)  lora_layers=%d"
               % (self.strict_n, 100.0 * self.strict_n / total, total,
                  len(self.lora_layers)))
-        assert self.strict_n < 2_000_000, \
-            "strict freeze failed: %d trainable params" % self.strict_n
+        # 正确的不变量（与 experiments/siglip_experiments.py 同口径）：**可训参数必须全部来自
+        # LoRA 的 A/B 矩阵**。这比"总数小于某个绝对值"更准确。
+        #
+        # 历史：这里原先是 `strict_n < 2_000_000`，那是按 rank8/text-only（196,608）定的。
+        # rank64/both 合法地达到 3,932,160，于是被这道过紧的护栏**误杀**——
+        # 白白浪费一晚（runner 又在失败步骤上等到超时）。
+        lora_ids = set()
+        for w in self.lora_layers.values():
+            lora_ids.add(id(w.lora_A))
+            lora_ids.add(id(w.lora_B))
+        non_lora = sum(p.numel() for p in self.model.parameters()
+                       if p.requires_grad and id(p) not in lora_ids)
+        assert non_lora == 0, \
+            "strict freeze failed: %d non-LoRA params still trainable" % non_lora
+        # 上界用配置推算并留足余量：rank × 768 × 2(A,B) × 层数 × 2(视觉+文本) × 2(余量)。
+        # 该上界只是"明显不对"的哨兵；真正的正确性由上面的 non_lora == 0 保证。
+        layers = max(len(self.lora_layers), 24)
+        cap = 2 * 2 * RANK * 768 * 2 * layers
+        assert self.strict_n < cap, \
+            "strict freeze failed: %d trainable params exceeds cap %d for rank=%s" % (
+                self.strict_n, cap, RANK)
 
 
 @torch.no_grad()
@@ -197,19 +221,48 @@ def run_one(tag, seed, epochs, max_samples, batch_size):
     set_seed(seed)
     save_dir = "%s/%s/seed%d" % (OUT_DIR, tag, seed)
     cfg = ExperimentConfig(
-        name="strict_%s" % tag,
-        lora=LoRAConfig(rank=8, alpha=16, **CONFIGS[tag]),
-        train=TrainConfig(dataset="flickr30k", batch_size=batch_size,
+        name="%s%s" % (NAME_PREFIX, tag),
+        lora=LoRAConfig(rank=RANK, alpha=RANK * ALPHA_MULT, **CONFIGS[tag]),
+        # **必须逐 epoch 记录**：ODE 拟合的状态变量 DG* 需要每 epoch 一个点。
+        # 默认 compute_every_n_epochs=2 会只记偶数 epoch（10 epoch 只得 6 点），
+        # 实测跨度因此小 30 倍（0.0054 vs 归档 0.1641），**拟合不可比**。
+        # 归档的 dg_star_history.json 全部是逐 epoch 的（见 v1_rank_sweep.py:128）。
+        gap=GapConfig(compute_every_n_epochs=1),
+        train=TrainConfig(dataset=DATASET, batch_size=batch_size,
                           num_epochs=epochs, max_samples=max_samples,
-                          save_dir=save_dir),
+                          save_dir=save_dir,
+                          # 必须显式传：GapAwareTrainer 用 train_cfg.clip_model 加载模型
+                          # （src/trainer.py:110-114）。先前没传，导致 --model 只改了
+                          # PRISTINE（backbone_deltas 的参照），**训练仍在跑默认的
+                          # openai/clip-vit-base-patch32** —— OpenCLIP 实验因此得到与
+                          # CLIP 逐位相同的结果。
+                          clip_model=PRISTINE),
     )
     train_loader, val_loader, _ = create_dataloaders(
-        dataset_name="flickr30k", data_dir=".", batch_size=batch_size,
+        dataset_name=DATASET, data_dir=DATA_DIR, batch_size=batch_size,
         max_samples=max_samples)
 
     trainer = StrictTrainer(cfg)
     trainer.setup_model()          # loads CLIP, injects LoRA, then strict-freezes
     n_strict = trainer.strict_n
+
+    # 防线：确认**真的**加载了请求的模型。先前 `--model` 未传入 TrainConfig，
+    # 于是静默加载默认 CLIP，跑出与 CLIP 逐位相同的结果而不报错。
+    loaded = str(getattr(trainer, "model_name", "") or getattr(trainer, "model_path", "") or "")
+    if not loaded:
+        loaded = str(getattr(getattr(trainer, "model", None), "name_or_path", "") or "")
+    want = os.path.basename(PRISTINE.rstrip("/\\")).lower()
+    if loaded:
+        assert want.split("-")[0] in loaded.lower() or want in loaded.lower(), (
+            "加载的模型与请求不符：want=%s loaded=%s（--model 可能未生效）" % (want, loaded))
+        print("[model-check] loaded=%s (want %s)" % (loaded, want))
+    assert cfg.train.clip_model == PRISTINE, \
+        "TrainConfig.clip_model 必须等于 PRISTINE，否则训练的与请求的不是同一个模型"
+
+    # 记录 DG* 逐 epoch 轨迹（论文 ODE 的状态变量；train() 会写 dg_star_history.json）
+    if "--dg-star" in sys.argv:
+        trainer.enable_dg_star_tracking()
+        print("[dg-star] 已启用逐 epoch DG* 记录 → dg_star_history.json")
 
     first = next(iter(val_loader))
     ranks_init = layer_effective_ranks(trainer.model, first, trainer.processor)
@@ -266,7 +319,7 @@ def run_frozen(max_samples, batch_size):
     """
     from transformers import CLIPModel, CLIPProcessor  # noqa: F401  (module-level import used)
     _, val_loader, _ = create_dataloaders(
-        dataset_name="flickr30k", data_dir=".", batch_size=batch_size,
+        dataset_name=DATASET, data_dir=DATA_DIR, batch_size=batch_size,
         max_samples=max_samples)
     model = CLIPModel.from_pretrained(PRISTINE, local_files_only=True).to(DEVICE)
     proc = CLIPProcessor.from_pretrained(PRISTINE, local_files_only=True)
@@ -296,8 +349,54 @@ def main():
     ap.add_argument("--batch-size", type=int, default=128)
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--skip-frozen", action="store_true")
+    # 允许换模型跑同一套严格冻结对照（如 OpenCLIP B/32 LAION：与 CLIP B/32 同架构、不同预训练）。
+    # 默认值保持不变，故既有的 outputs/strict_freeze/ 语义与产物不受影响。
+    ap.add_argument("--model", type=str, default=None,
+                    help="预训练模型目录（默认 models/clip-vit-base-patch32）")
+    ap.add_argument("--out-dir", type=str, default=None,
+                    help="输出根目录（默认 outputs/strict_freeze）")
+    ap.add_argument("--name", type=str, default=None,
+                    help="实验名前缀（默认 strict_），用于区分不同骨干的产物")
+    ap.add_argument("--rank", type=int, default=8,
+                    help="LoRA rank（默认 8，与论文一致）。用于 rank sweep："
+                         "验证设计模式②'更低 rank 更保对齐'在严格冻结下是否成立")
+    ap.add_argument("--dataset", type=str, default="flickr30k",
+                    help="数据集（flickr30k / coco）")
+    ap.add_argument("--data-dir", type=str, default=".",
+                    help="数据根目录（COCO 在仓库根的 coco/）")
+    ap.add_argument("--dg-star", action="store_true",
+                    help="同时记录 DG* 逐 epoch 轨迹（写 dg_star_history.json）。"
+                         "论文 ODE 的状态变量是 DG*，故需要与正文同口径时必须开启。")
+    ap.add_argument("--alpha-mult", type=int, default=2,
+                    help="alpha = rank × 该倍数（默认 2，即 rank8/alpha16 的口径）")
     a = ap.parse_args()
-    global OUT_DIR
+    global OUT_DIR, PRISTINE, NAME_PREFIX, RANK, ALPHA_MULT, DATASET, DATA_DIR
+    DATASET = a.dataset
+    DATA_DIR = a.data_dir
+    if a.model:
+        PRISTINE = a.model if os.path.isabs(a.model) else os.path.join(ROOT, a.model)
+        print("model = %s" % PRISTINE)
+    if a.out_dir:
+        OUT_DIR = a.out_dir
+    if a.name:
+        NAME_PREFIX = a.name
+    RANK = a.rank
+    ALPHA_MULT = a.alpha_mult
+    if RANK != 8:
+        print("rank = %d, alpha = %d（非论文口径，用于 rank sweep）" % (RANK, RANK * ALPHA_MULT))
+        # 名字必须带 rank，否则不同 rank 会写进同一 seed 目录而互相覆盖
+        if a.name is None:
+            NAME_PREFIX = "strict_r%d_" % RANK
+        # 硬防线：跳过逻辑是按 OUT_DIR/tag/seedN/results.json 判断的，若两个 rank 共用
+        # 同一个 OUT_DIR，后跑的 rank 会读到前一个的结果并"跳过"，**数据静默污染**。
+        # 故要求 out-dir 路径里能看出 rank（如 .../r4 或 .../rank4）。
+        marker = os.path.join(OUT_DIR, "")
+        if not any(t in marker for t in ("r%d" % RANK, "rank%d" % RANK)):
+            raise SystemExit(
+                "[拒绝运行] --rank %d 但 --out-dir=%s 未包含 rank 标识。\n"
+                "  原因：跳过逻辑按 OUT_DIR/tag/seed 判断，不同 rank 共用目录会导致\n"
+                "  后跑的 rank 直接复用前一个的结果（静默污染）。\n"
+                "  请改用形如 outputs/strict_freeze_rank/r%d 的目录。" % (RANK, OUT_DIR, RANK))
     if a.smoke:
         a.epochs, a.max_samples, a.seeds = 1, 512, [42]
         # Keep smoke artefacts out of the full-protocol tree: otherwise the

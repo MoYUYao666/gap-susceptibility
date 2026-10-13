@@ -19,7 +19,11 @@ SigLIP 交叉验证实验 — Phase 2
 
 import os, sys, json, time, argparse
 os.environ["HF_HUB_OFFLINE"] = "1"
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _ROOT)
+# src/ 也要在 path 上：run_one_siglip 内部用 `from lora import apply_lora_to_model`
+# （lora.py 位于 src/），只在仓库根时该 import 会 ModuleNotFoundError。
+sys.path.insert(0, os.path.join(_ROOT, "src"))
 
 import torch
 import torch.nn.functional as F
@@ -58,6 +62,19 @@ SIGLIP_EXPERIMENTS = [
     # S5: Adapter text_only（跨 PEFT 验证）
     ("s5_siglip_adapter_text_only", "adapter", None,
      AdapterConfig(bottleneck_dim=16, apply_to_vision=False, apply_to_text=True)),
+
+    # S6: vision_only（补全三臂位置图谱；CLIP 侧已有 text_only/both/vision_only 三臂）
+    ("s6_siglip_lora_vision_only", "lora",
+     LoRAConfig(rank=8, alpha=16, apply_to_vision=True, apply_to_text=False), None),
+
+    # S7: rank4 + text_only（跨骨干 rank sweep 用；alpha = rank×2，与 CLIP 侧同口径）
+    # ⚠ 既有 s3_siglip_lora_r4 是 **both 位置** 且为 legacy 约定跑的，**不能替代**本配置。
+    ("s7_siglip_lora_r4_text_only", "lora",
+     LoRAConfig(rank=4, alpha=8, apply_to_vision=False, apply_to_text=True), None),
+
+    # S8: rank4 + both（跨骨干 rank sweep 用）
+    ("s7_siglip_lora_r4_both", "lora",
+     LoRAConfig(rank=4, alpha=8, apply_to_vision=True, apply_to_text=True), None),
 ]
 
 
@@ -185,12 +202,31 @@ class SigLIPOutput:
 # 单实验运行
 # ============================================================
 
-def run_one_siglip(args, name, peft_method, lora_cfg, adapter_cfg):
-    """运行单个 SigLIP 实验"""
+def run_one_siglip(args, name, peft_method, lora_cfg, adapter_cfg, strict_freeze=False, seed=None):
+    """运行单个 SigLIP 实验
+
+    strict_freeze: 严格冻结基座，只训练 LoRA 的 A/B 矩阵。
+    必须由调用方传入（不能靠闭包捕获 main 的局部变量——本函数在模块级定义，看不到 main 的 locals）。
+
+    seed: 本次运行的随机种子。原先脚本从未设置种子，因此所有归档 run 用的是 TrainConfig 默认值 42
+    （数据划分另有硬编码 manual_seed(42)，对所有 run 一致）。本次显式设置 torch/numpy/random 的种子，
+    以便同一种子下严格冻结 run 可与归档 run 逐项对比。
+    """
     print(f"\n{'='*60}")
     print(f"🔬 SigLIP: {name}")
     print(f"   PEFT: {peft_method}")
     print(f"{'='*60}")
+
+    # 显式设种（原先从未设置；数据划分另在 dataset.py 里硬编码 manual_seed(42)）
+    if seed is not None:
+        import random as _random
+        import numpy as _np
+        _random.seed(seed)
+        _np.random.seed(seed)
+        torch.manual_seed(seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(seed)
+        print(f"🌱 seed = {seed}")
 
     config = ExperimentConfig(
         name=name,
@@ -206,6 +242,7 @@ def run_one_siglip(args, name, peft_method, lora_cfg, adapter_cfg):
             max_samples=args.max_samples,
             save_dir=f"{args.outputs_dir}/{name}",
             gradient_accumulation_steps=4 if peft_method == "full_ft" else 1,
+            seed=seed if seed is not None else 42,
         ),
     )
 
@@ -244,6 +281,45 @@ def run_one_siglip(args, name, peft_method, lora_cfg, adapter_cfg):
                 apply_to_text=lora_cfg.apply_to_text,
             )
             print(f"📊 可训练参数占比: {trainable/total_params*100:.2f}%")
+            # 【严格冻结】src/lora.py 的 apply_lora_to_model 从不冻结基座，优化器因此看到整模型。
+            # 加 --strict-freeze 后在此处（优化器建立之前）冻结基座，只放开 LoRA 的 A/B 矩阵，
+            # 与 experiments/strict_freeze_control.py 的 strict_freeze() 完全同口径。
+            # 这是唯一能让 "text-only vs both" 真正只差"适配器注入位置"的做法。
+            if strict_freeze:
+                for p in trainer.model.parameters():
+                    p.requires_grad = False
+                strict_n = 0
+                for w in trainer.lora_layers.values():
+                    for p in (w.lora_A, w.lora_B):
+                        p.requires_grad = True
+                        strict_n += p.numel()
+                n_vis_updated = 0  # 视觉侧可训参数计数
+                n_non_lora_trainable = 0  # 冻结后仍可训、但不属于 LoRA 矩阵的参数（应为 0）
+                lora_param_ids = set()
+                for w in trainer.lora_layers.values():
+                    lora_param_ids.add(id(w.lora_A)); lora_param_ids.add(id(w.lora_B))
+                for name, p in trainer.model.named_parameters():
+                    if p.requires_grad:
+                        if 'vision_model' in name:
+                            n_vis_updated += p.numel()
+                        if id(p) not in lora_param_ids:
+                            n_non_lora_trainable += p.numel()
+                print(f"🔒 严格冻结: 可训 {strict_n:,} "
+                      f"({100.0*strict_n/total_params:.4f}% of {total_params:,})；"
+                      f"视觉侧可训参数 = {n_vis_updated:,}"
+                      f"（apply_to_vision={lora_cfg.apply_to_vision}）")
+                # 正确的不变量：可训参数**只**来自 LoRA 的 A/B 矩阵。
+                # 注意：apply_to_vision=True 时视觉侧**本来就有** LoRA 参数（基座仍被冻结），
+                # 所以不能断言"视觉侧可训 = 0"——先前那版断言正是这样写错的，
+                # 结果把 both 臂在训练前全部拦掉。
+                assert n_non_lora_trainable == 0, \
+                    f"严格冻结失败：有 {n_non_lora_trainable:,} 个非 LoRA 参数仍可训"
+                assert strict_n < 2_000_000, \
+                    f"严格冻结失败：可训参数 {strict_n:,}（应 < 2e6）"
+                if not lora_cfg.apply_to_vision:
+                    assert n_vis_updated == 0, \
+                        f"text-only 臂的视觉侧不应有可训参数，实测 {n_vis_updated:,}"
+                trainable = strict_n
         elif peft_method == "adapter" and adapter_cfg is not None:
             from peft_methods import apply_adapter_to_model
             trainer.model, trainer.adapter_layers, trainable = apply_adapter_to_model(
@@ -311,7 +387,15 @@ def main():
                        help="跳过全量微调（省时间/显存）")
     parser.add_argument("--collect_gradients", action="store_true",
                        help="启用梯度对齐分析收集")
+    parser.add_argument("--strict-freeze", action="store_true",
+                       help="严格冻结基座，只训练 LoRA 的 A/B 矩阵（与 strict_freeze_control.py 同口径）；"
+                            "这是让 text-only vs both 真正只差'适配器注入位置'的唯一办法")
+    parser.add_argument("--seed", type=int, default=None,
+                       help="随机种子；不传则沿用 TrainConfig 默认 42（与归档 run 一致）")
+    parser.add_argument("--only", type=str, default=None,
+                       help="只跑名字匹配该子串的实验（逗号分隔可多个）")
     args = parser.parse_args()
+    strict_freeze = args.strict_freeze
 
     # 检查 SigLIP 模型是否已缓存
     from transformers.utils.hub import cached_file
@@ -329,6 +413,9 @@ def main():
         if args.skip_full_ft and "full_ft" in name:
             print(f"⏭ 跳过 {name}（全量微调）")
             continue
+        if args.only and not any(s.strip() and s.strip() in name for s in args.only.split(",")):
+            print(f"⏭ 跳过 {name}（--only 未选中）")
+            continue
 
         # Skip if already completed
         save_path = f"{args.outputs_dir}/{name}/results.json"
@@ -339,7 +426,7 @@ def main():
             continue
 
         start = time.time()
-        result = run_one_siglip(args, name, peft_method, lora_cfg, adapter_cfg)
+        result = run_one_siglip(args, name, peft_method, lora_cfg, adapter_cfg, strict_freeze, args.seed)
         results[name] = result
         elapsed = time.time() - start
 
@@ -364,8 +451,10 @@ def main():
         if cg_init and cg_final:
             delta = cg_final - cg_init
             r1 = result.get("test_metrics", {}).get("R@1", "N/A")
-            marker = "✅" if delta < 0 else ("⚠️" if delta == 0 else "❌")
-            print(f"   {marker} {name:<40s} CG Δ={delta:+.4f}  R@1={r1}")
+            # 不要用“间隙降=好”当成败判据：本项目的核心发现正是“降间隙 ≠ 提检索”
+            # （OpenCLIP 上 both 臂的间隙更大、检索却更强）。这里只中性报告方向与检索。
+            arrow = "↓" if delta < 0 else ("=" if delta == 0 else "↑")
+            print(f"   [gap {arrow}] {name:<40s} CG Δ={delta:+.4f}  R@1={r1}  (run completed)")
 
     # 保存汇总
     summary = {}

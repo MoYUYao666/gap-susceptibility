@@ -105,9 +105,9 @@ A1 已投 Neurocomputing（`NEUCOM-D-26-20952`，Submitted to Journal），其�
 | 序 | 期刊 | 速度证据 | 适配判断 | 费用 |
 |---|---|---|---|---|
 | 1 | **Neurocomputing** | SciRev N=12：首轮约 2.5 个月，全程约 3.9 个月 | 方法/评测稿的天然归宿；IF 6.500（Southampton 协议核过）；⚠️ **A1 已投该刊** → 同刊双稿需披露 A1 稿号 | £0（转换协议覆盖 APC £2,130） |
-| 2 | **IEEE Journal of Ocean Engineering** | 速度数据薄（SciRev N=1） | 范围条款明确接受"理论/分析性贡献"与"已有技术的创新应用"；编委含侧扫声呐+ML、声呐处理+ML、海洋声学深度学习、水下 CV/DL 多位 AE | 传统投稿 0 APC；OA US$2,800 |
+| 2 | **IEEE Journal of Ocean Engineering** | 速度数据薄（SciRev N=1） | 范围条款明确接受"理论/分析性贡献"与"已有技术的创新应用"；编委含侧扫声呐+ML、声呐处理+ML、海洋声学深度学习、水下 CV/DL 多位 AE | 传统投稿 0 APC；OA **US$2,645**（2026-09-26 更正：原记 US$2,800 为旧值；依据 JOE Guide for Authors，updated 2025-03-03，本地副本 `outputs/_joe_guide.txt:119`） |
 | 3 | **IEEE Access** | 约 4 周首轮 | 范围宽、几乎无 scope 拒稿风险 | APC ≈ US$2,160 |
-| 4 | **ESWA**（降级） | ⚠️ 用户在投稿件 5 周仍停在 "With Editor" | 适配尚可，流程体验差 | 待核（Elsevier 协议通常覆盖，需按刊名核） |
+| ~~4~~ | ~~**ESWA**（降级）~~ **⛔ 本条已被推翻（2026-09-28）** | ~~⚠️ 用户在投稿件 5 周仍停在 "With Editor"~~ —— **操作者确认：从未向 ESWA 投过任何稿件**。经查，"5 周 With Editor"实际对应的是 **Paper 1 在 Pattern Recognition 的经历**（`HANDOFF.md:768` 记 `PR-D-26-10149, With Editor → Under Review`；`:789` 记 8/5 查询时仍在 With Editor），**被误记到 ESWA 名下**。ESWA 的费用覆盖已另行核过（`docs/OA_FUNDING_ROUTES.md:116` Included + CC BY），**若日后要用 ESWA，无需因"流程体验"降级**。 | 已核：£0（协议覆盖） |
 
 已排除：**IVC**（4500–7500 词硬上限）、**Applied Ocean Research**（与 OE 同族，scope 风险同源）、**EAAI**（用户已有在投积压）。
 

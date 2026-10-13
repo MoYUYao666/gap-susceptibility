@@ -189,3 +189,20 @@ manuscript has been submitted to Neurocomputing." / 「修订版已投 Neurocomp
 已核验 `paper_a2/*.tex` 中**不再有**"in preparation for resubmission"/「正在准备另投」这类过期表述。
 
 **由此 A23 可以提交**：其投稿包中的主稿、封面信与参考文献现在对同伴稿的陈述与事实一致。
+
+
+---
+
+## ⚠️ 2026-10-12 更正（本节状态已过期）
+
+上文关于 A1 的陈述（**Submitted to Journal**，`NEUCOM-D-26-20952`，2026-09-16 提交）**已于 2026-10-10 失效**：
+
+| 字段 | 事实 |
+|---|---|
+| 决定 | **拒稿**（desk reject，*"after an initial evaluation"*）|
+| 理由 | *"falls within the aim and scope of our journal, it did not meet the significance level required"* |
+| 审稿意见 | **无**（`Comments to Authors:` 与 `Editor's comments` 均空）|
+| 转投 | 有（Elsevier ATS），须在 **`Nov 08 2026 11:59PM`** 前确认 |
+
+**由此连带**：`paper_a2`（A23）里「修订版已投 Neurocomputing（`NEUCOM-D-26-20952`）」这类表述**仍然属实**（那是历史事实），但**不应再暗示该稿仍在审**。
+A1 的当前目标刊见 `paper_a1/main.tex` 的 `\journal{}`；投稿件见 `paper_a1/`。

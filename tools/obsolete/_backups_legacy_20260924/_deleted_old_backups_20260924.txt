@@ -1,0 +1,16 @@
+旧备份删除记录（操作者 2026-09-24 指示：旧的备份全删了）
+删除时间：2026-09-24 12:17:08
+（这些内容不在新快照 zip 里——快照脚本把它们列为排除项，故删除不影响快照完整性）
+
+路径	字节数	文件数	原修改时间
+cloud_upload.zip	21068568	1	2026-09-13 16:56:25
+cloud_upload	24350289	12	2026-09-13 16:31:39
+备选/03_检查与备份产物	97873436	3913	2026-09-22 10:12:06
+合计	143292293 字节（约 136.7 MB）
+
+说明：
+- cloud_upload/ + cloud_upload.zip 是待上传到 autodl 的暂存包（12 条目，含一个 23 MB parquet）。
+  docs/CLOUD_RUNBOOK.md 里引用的 cloud_upload 是**服务器上的** /root/autodl-tmp/cloud_upload，
+  不是本地副本，因此本次删除**不断该文档的引用**。
+- 备选/03_检查与备份产物/ 含 _a1h_check、.texcheck_a1、_figbak_a1、_inspect_sensenar、_inspect_sctd2
+  （解包的声呐数据集压缩包）等 3913 个文件。

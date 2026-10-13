@@ -1,71 +1,116 @@
-# 本仓库只放"代码 + 结果"。以下为大件/可再生成/无关内容。
-#
-# 说明（2026-09-24 重建）：旧 .gitignore 编码已损坏且写法有陷阱——
-# `outputs/` 直接忽略后，`!outputs/**/*.json` 之类的 negation 无法把文件加回来
-# （git 不会重新遍历被忽略的目录），导致"只放 JSON 结果"实际从未生效。
-# 现改为：**只按后缀排除大件**，不忽略 outputs/ 目录本身。
+# 本仓库的忽略规则（2026-09-24 重建：修掉两处非法 UTF-8 字节 E2 80 3F，本应为 em dash E2 80 94；
+# 规则逐条保留原文，仅统一行尾为 LF 并补上 backups/ 与 publish_clean/）。
+# 规则语义不变：outputs/ 配合下面的 negation 只让 JSON/TXT/CSV 结果入库，权重与大件排除。
 
-# 原始数据集（体积巨大，可再下载）
-data/
-models/
-coco/
+# Large data files — do not commit raw datasets
 flickr30k/
+coco/
+data/
 
-# 权重与检查点（大件，且 GitHub 单文件上限 100 MB）
+# Model checkpoints (too large for git)
 *.pt
-*.pth
-*.ckpt
-*.bin
-*.safetensors
-*.onnx
+models/
 
-# 数据集分片
-*.parquet
-
-# 生成的 PDF（多为编译产物；稿件本体也不发布）
+# Generated PDFs
 *.pdf
 
-# LaTeX 中间文件
+# LaTeX temp files
 *.aux
 *.log
 *.out
 *.blg
 *.bbl
 *.toc
-*.fls
-*.fdb_latexmk
 *.synctex.gz
+*.fdb_latexmk
+*.fls
 *.synctex(busy)
-*.spl
+
+# Experimental outputs (except analysis summaries)
+# Experiment outputs — track JSON analysis, exclude checkpoints
+outputs/
+!outputs/**/*.json
+!outputs/**/*.txt
+!outputs/**/*.csv
 
 # Python
 __pycache__/
 *.pyc
 *.pyo
 
-# IDE / 编辑器
+# IDE
 .vscode/
 .idea/
 .codegraph/
 *.swp
 *~
 
-# 系统
+# OS
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# 交接文档（本地工作记录，不发布）
+# Claude
 CLAUDE.md
 
-# git worktree 与历史重写产物
+# Git worktrees
 .worktrees/
+
+# Temp/recovery files
+check_env.py
+recover_siglip.py
+
+# HuggingFace dataset shards / parquet artifacts
+*.parquet
+
+# git filter-repo history-rewrite artifacts
 .git-rewrite/
 
-# 本地归档与备份
+*.spl
+main.log
+main_zh.log
+SUBMISSION/
+abstract.log
+
+# Local archive of unused scratch (91 MB of check residue) - never commit
 备选/
+
+# 本地归档与备份（2026-09-24 新增：13.7 GB 快照与重建的发布仓库不入库）
 backups/
 publish_clean/
 
-# 投稿包
-SUBMISSION/
+# Python 虚拟环境（机器相关、可由 requirements 重建；envs/tf457 = transformers 4.57 对照环境，102.7 MB）
+envs/
+
+# 一次性临时产物
+tools/_tmp_*.json
+
+# ---- 2026-10-14 加固：权重 / 大文件 / 压缩包一律不入库 ----
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+*.onnx
+*.h5
+*.pkl
+*.npz
+*.npy
+*.parquet
+*.db
+*.sqlite
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+*.mp4
+*.avi
+*.mov
+*.wav
+*.mp3
+*.log
+# 云端目录快照（1001 个空壳文件）
+outputs/_cloud_layout/
+# 一次性/审计脚本的归档地（保留在库内，但不视为可重跑管线）
+# tools/obsolete/
