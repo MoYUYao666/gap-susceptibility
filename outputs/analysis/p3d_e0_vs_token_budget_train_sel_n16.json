@@ -7,12 +7,12 @@
  "device": "cuda",
  "n_samples": 16,
  "split": "train_sel",
- "data": "outputs/analysis/p3d_manifest.json datasets.coco.train_sel['16']（与 _p464 训练档同批）",
- "E_def": "mean||mean(h_vis)-mean(h_lang)||^2, last hidden state（与 _p464 同一口径）",
- "no_training": "E0 只需一次前向；对给定输入是确定性的 → 无 seed 噪声",
- "blank_control": "Image.new('RGB', real.size) 同尺寸纯黑，保证两条件 token 数相同",
+ "data": "outputs/analysis/p3d_manifest.json datasets.coco.train_sel['16'] (same batch as the _p464 training manifest)",
+ "E_def": "mean||mean(h_vis)-mean(h_lang)||^2, last hidden state (same definition as _p464)",
+ "no_training": "E0 needs only one forward pass; it is deterministic for a given input → no seed noise",
+ "blank_control": "Image.new('RGB', real.size) solid black of the same size, ensuring the same token count for both conditions",
  "paper_operating_point_tokens": 576,
- "paper_source": "paper3/scripts/run_training.py:237 (img_tokens=576); blank 图见 :227",
+ "paper_source": "paper3/scripts/run_training.py:237 (img_tokens=576); blank image see :227",
  "rows": [
   {
    "max_pixels": 16384,

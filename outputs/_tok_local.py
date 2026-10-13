@@ -11,7 +11,7 @@ res = {
     "token_ids": ids.tolist()[0][:14],
     "n_tokens": int(ids.shape[1]),
 }
-# 数据集给出的 caption
+# caption as provided by the dataset
 from src.dataset import create_dataloaders
 loader, _, _ = create_dataloaders(dataset_name="flickr30k", data_dir=".",
                                   batch_size=8, max_samples=200)

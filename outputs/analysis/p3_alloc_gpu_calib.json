@@ -1,6 +1,6 @@
 {
  "script": "tools/_p430_gpu_calib.py",
- "purpose": "找到 8 GB 卡上可用的训练配置（判据：单步<3s 且 reserved<7.0GiB）",
+ "purpose": "Find a usable training config on an 8 GB card (criteria: single step <3s and reserved <7.0GiB)",
  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
  "criterion": {
   "step_sec_median_lt": 3.0,
@@ -15,10 +15,10 @@
     "viable": false
    },
    "B_batch2_ckpt": {
-    "error": "gradient checkpointing 与 output_hidden_states=True 不兼容（hidden_states 返回 None）"
+    "error": "gradient checkpointing is incompatible with output_hidden_states=True (hidden_states returns None)"
    },
    "C_batch1_ckpt": {
-    "error": "同上"
+    "error": "Same as above"
    }
   },
   "D_batch1_plain": {
@@ -52,8 +52,8 @@
  "viable_configs": [],
  "recommended": null,
  "known_upper_bound_bad_config": {
-  "desc": "全序列 CE、batch=4（早期标定）",
+  "desc": "full-sequence CE, batch=4 (early calibration)",
   "peak_alloc_gib": 17.82,
-  "source": "tools/_p430_gpu_calib.py 早期运行输出"
+  "source": "output of an early run of tools/_p430_gpu_calib.py"
  }
 }

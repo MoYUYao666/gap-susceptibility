@@ -99,10 +99,10 @@
   }
  },
  "verdict": {
-  "clip_vit_b32": "OK(q_proj/v_proj 存在)",
-  "clip_vit_b16": "OK(q_proj/v_proj 存在)",
-  "siglip_b16": "OK(q_proj/v_proj 存在)",
-  "openclip_laion2b": "OK(q_proj/v_proj 存在)",
-  "dinov2_base": "🔴 需改用 ['query', 'value', 'key']"
+  "clip_vit_b32": "OK(q_proj/v_proj present)",
+  "clip_vit_b16": "OK(q_proj/v_proj present)",
+  "siglip_b16": "OK(q_proj/v_proj present)",
+  "openclip_laion2b": "OK(q_proj/v_proj present)",
+  "dinov2_base": "🔴 must switch to ['query', 'value', 'key']"
  }
 }

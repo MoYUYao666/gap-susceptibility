@@ -18,12 +18,12 @@ def total_len(url):
             except Exception: pass
     return 0
 
-print("=== 各 shard 分段进度 ===")
+print("=== per-shard segment progress ===")
 todo = []
 for sh in shards:
     dst = os.path.join(DST, sh)
     if os.path.exists(dst) and os.path.getsize(dst) > 100e6:
-        print("  ✅ %s 已完成 %d B" % (sh, os.path.getsize(dst)))
+        print("  ✅ %s complete %d B" % (sh, os.path.getsize(dst)))
         continue
     url = "%s/%s" % (M, sh)
     tot = total_len(url)
@@ -33,12 +33,12 @@ for sh in shards:
         parts.append(os.path.getsize(p) if os.path.exists(p) else 0)
     chunk = tot // PAR + 1 if tot else 0
     have = sum(parts)
-    print("  %s 总=%d 已有=%d (%.1f%%) 分段=%s"
+    print("  %s total=%d have=%d (%.1f%%) parts=%s"
           % (sh, tot, have, 100.0*have/max(tot,1), parts))
     if tot and have < tot * 0.999:
         todo.append((sh, url, tot, chunk, parts))
 
-print("\n=== 需补: %d shard ===" % len(todo))
+print("\n=== to fetch: %d shard ===" % len(todo))
 if "--fix" in sys.argv and todo:
     def fetch(sh, url, tot, chunk, i):
         a = i * chunk
@@ -48,7 +48,7 @@ if "--fix" in sys.argv and todo:
         cur = os.path.getsize(p) if os.path.exists(p) else 0
         need = b - a + 1 - cur
         if need <= 0: return
-        # 续传该段（-C - 需从偏移开始 → 用 -r 精确区间重下更简单）
+        # resume this segment (-C - needs to start from an offset → re-downloading the exact range with -r is simpler)
         subprocess.run(["curl", "-sL", "--retry", "8", "--retry-delay", "2",
                         "--max-time", "7200", "-r", "%d-%d" % (a, b), "-o", p, url],
                        capture_output=True)
@@ -61,12 +61,12 @@ if "--fix" in sys.argv and todo:
             got = parts[i] if i < len(parts) else 0
             if got < (b - a + 1) * 0.999:
                 jobs.append((sh, url, tot, chunk, i))
-    print("  重发 %d 个段" % len(jobs))
+    print("  re-requesting %d segments" % len(jobs))
     with ThreadPoolExecutor(max_workers=min(40, len(jobs) or 1)) as ex:
         list(ex.map(lambda t: fetch(*t), jobs))
-    print("  补段完成")
+    print("  segment fill complete")
 
-    # 合并
+    # merge
     for sh, url, tot, chunk, parts in todo:
         dst = os.path.join(DST, sh)
         tmp = dst + ".tmp"
@@ -83,6 +83,6 @@ if "--fix" in sys.argv and todo:
         got = os.path.getsize(tmp)
         if got >= tot * 0.999:
             os.replace(tmp, dst)
-            print("  ✅ 合并 %s %d/%d" % (sh, got, tot))
+            print("  ✅ merged %s %d/%d" % (sh, got, tot))
         else:
-            print("  ⚠️ %s %d/%d 不足" % (sh, got, tot))
+            print("  ⚠️ %s %d/%d insufficient" % (sh, got, tot))

@@ -3,7 +3,7 @@ import os, json, glob
 os.chdir("/root/autodl-tmp/work")
 
 def sf_info(p):
-    """读 safetensors header，返回 (n_tensors, 前几个 key, 是否 HF 风格)"""
+    """Read the safetensors header, returning (n_tensors, first few keys, whether HF style)"""
     try:
         with open(p, "rb") as f:
             n = int.from_bytes(f.read(8), "little")
@@ -17,7 +17,7 @@ def sf_info(p):
         return f"ERR {str(e)[:60]}"
 
 def bin_info(p):
-    """尝试 torch.load 的键名（只读 header，用 mmap 省内存）"""
+    """Try the key names via torch.load (read the header only, use mmap to save memory)"""
     try:
         import torch
         try:
@@ -30,7 +30,7 @@ def bin_info(p):
     except Exception as e:
         return f"ERR {str(e)[:80]}"
 
-print("=== openclip 目录的两个大文件 ===")
+print("=== the two large files in the openclip directory ===")
 for p in sorted(glob.glob("models/openclip/*")):
     if not os.path.isfile(p): continue
     s = os.path.getsize(p)
@@ -42,24 +42,24 @@ for p in sorted(glob.glob("models/openclip/*")):
     elif p.endswith(".bin"):
         print(f"    {bin_info(p)}")
 
-print("\n=== 能否用 CLIPModel 加载 openclip ===")
+print("\n=== can openclip be loaded with CLIPModel ===")
 try:
     from transformers import CLIPModel
     m = CLIPModel.from_pretrained("models/openclip", local_files_only=True)
-    print(f"  ✅ 可加载 ｜ patch={m.config.vision_config.patch_size} "
+    print(f"  ✅ loadable | patch={m.config.vision_config.patch_size} "
           f"params={sum(x.numel() for x in m.parameters())/1e6:.1f}M")
 except Exception as e:
     print(f"  ❌ {str(e)[:200]}")
 
-print("\n=== b32 / b16 下载状态 ===")
+print("\n=== b32 / b16 download status ===")
 for d in ("models/clip-vit-base-patch32", "models/clip-vit-base-patch16"):
     fs = sorted(os.listdir(d)) if os.path.isdir(d) else []
     rows = [(f, os.path.getsize(os.path.join(d, f))) for f in fs]
     big = [r for r in rows if r[1] > 1e6]
     tmp = [r for r in rows if r[0].endswith(".tmp")]
-    print(f"  {d}: 大文件={big} ｜ 临时={[(t[0], t[1]) for t in tmp]}")
+    print(f"  {d}: large files={big} | temp={[(t[0], t[1]) for t in tmp]}")
 
-print("\n=== 下载日志尾 ===")
+print("\n=== tail of the download log ===")
 if os.path.exists("outputs_safe.log"):
     for ln in open("outputs_safe.log").read().splitlines()[-6:]:
         print("  " + ln[:110])

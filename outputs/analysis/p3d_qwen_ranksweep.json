@@ -19,12 +19,12 @@
   "vision_frozen": true,
   "dtype": "bfloat16",
   "E_def": "mean||mean(h_vis)-mean(h_lang)||^2 last layer",
-  "E_train": "在训练条件自身的数据上（可与论文 ΔE 类比）",
-  "E_eval_real": "在清单 test 划分的前 4 张【held-out 真实图】上（与训练集无重叠，跨条件可比）",
+  "E_train": "On the data of the training condition itself (analogous to ΔE in the paper)",
+  "E_eval_real": "On the first 4 [held-out real images] of the manifest's test split (no overlap with the training set, comparable across conditions)",
   "loss": "CE on assistant response tokens only, logits[:, :-1]",
   "min_pixels": 4096,
   "max_pixels": 16384,
-  "blank": "no image passed = Qwen 的纯文本路径；另见 --conditions blank 时用全零图"
+  "blank": "no image passed = Qwen's text-only path; see also --conditions blank, which uses an all-zero image"
  },
  "runs": [
   {
@@ -1838,12 +1838,12 @@
   "vision_frozen": true,
   "dtype": "bfloat16",
   "E_def": "mean||mean(h_vis)-mean(h_lang)||^2 last layer",
-  "E_train": "在训练条件自身的数据上（可与论文 ΔE 类比）",
-  "E_eval_real": "在清单 test 划分的前 4 张【held-out 真实图】上（与训练集无重叠，跨条件可比）",
+  "E_train": "On the data of the training condition itself (analogous to ΔE in the paper)",
+  "E_eval_real": "On the first 4 [held-out real images] of the manifest's test split (no overlap with the training set, comparable across conditions)",
   "loss": "CE on assistant response tokens only, logits[:, :-1]",
   "min_pixels": 4096,
   "max_pixels": 16384,
-  "blank": "no image passed = Qwen 的纯文本路径；另见 --conditions blank 时用全零图"
+  "blank": "no image passed = Qwen's text-only path; see also --conditions blank, which uses an all-zero image"
  },
- "source_of_truth": "runs[*] —— 只增不改的逐 run 明细，且每条 run 自带超参，是**来源**；顶层 protocol/train_spec 只是说明，派生聚合（*_summary.json）会被重写，**引用请指向 runs[*] 并带 split/n**。"
+ "source_of_truth": "runs[*] — append-only per-run detail, each run carrying its own hyperparameters, is the **source**; the top-level protocol/train_spec is only a description, and derived aggregates (*_summary.json) get rewritten, so **cite runs[*] with split/n**."
 }

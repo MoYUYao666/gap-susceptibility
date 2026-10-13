@@ -39,25 +39,25 @@
  },
  "claims": {
   "1_earlier_than_top1": {
-   "claim": "τ 是比 top-1 更早的指示器",
+   "claim": "τ is an earlier indicator than top-1",
    "supported": 0,
    "n": 3,
-   "verdict": "不支持"
+   "verdict": "not supported"
   },
   "2_relatively_fastest": {
-   "claim": "τ 在相对意义上下降最快",
-   "note": "需比较各信号的**相对降幅**（见 ③）",
+   "claim": "τ drops fastest in the relative sense",
+   "note": "requires comparing the **relative drop** of each signal (see ③)",
    "fastest_counts": {
     "tau": 3,
     "top1": 0,
     "val_loss": 0
    },
-   "verdict": "支持"
+   "verdict": "supported"
   },
   "3_no_extra_forward": {
-   "claim": "τ 只需验证时已有的 top-k 集合",
-   "note": "代码事实（`a1_h_common.per_image_tau` 只读冻结 top-k 与当前分数）",
-   "verdict": "支持（代码事实）"
+   "claim": "τ needs only the top-k set already available at validation time",
+   "note": "code fact (`a1_h_common.per_image_tau` reads only the frozen top-k and the current scores)",
+   "verdict": "supported (code fact)"
   }
  },
  "source": "outputs/a1_class_aligned/lr0.0/seed*/eval_epoch*.json"

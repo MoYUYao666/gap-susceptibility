@@ -1,7 +1,7 @@
 {
  "experiment": "p3d_qwen2vl2b_ranksweep_real_vs_blank",
  "script": "tools/_p464_qwen_ranksweep.py",
- "source_of_truth": "runs[*] —— 只增不改的逐 run 明细且自带超参；顶层 protocol/train_spec 只是说明；派生聚合见 p3d_qwen_summary.json",
+ "source_of_truth": "runs[*] — append-only per-run detail, each with its own hyperparameters; the top-level protocol/train_spec is only a description; derived aggregates are in p3d_qwen_summary.json",
  "train_spec": {
   "model": "models/Qwen2-VL-2B-Instruct",
   "dataset": "coco",
@@ -37,12 +37,12 @@
   "vision_frozen": true,
   "dtype": "bfloat16",
   "E_def": "mean||mean(h_vis)-mean(h_lang)||^2 last layer",
-  "E_train": "在训练条件自身的数据上（可与论文 ΔE 类比）",
-  "E_eval_real": "在清单 test 划分的前 4 张【held-out 真实图】上（与训练集无重叠，跨条件可比）",
+  "E_train": "On the data of the training condition itself (analogous to ΔE in the paper)",
+  "E_eval_real": "On the first 4 [held-out real images] of the manifest's test split (no overlap with the training set, comparable across conditions)",
   "loss": "CE on assistant response tokens only, logits[:, :-1]",
   "min_pixels": 4096,
   "max_pixels": 50176,
-  "blank": "no image passed = Qwen 的纯文本路径；另见 --conditions blank 时用全零图"
+  "blank": "no image passed = Qwen's text-only path; see also --conditions blank, which uses an all-zero image"
  },
  "runs": [
   {

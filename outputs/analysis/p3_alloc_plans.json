@@ -10,7 +10,7 @@
  "gamma_source": "outputs/analysis/p3_alloc_gamma_qwen2vl2b.json :: gamma_final",
  "cost_source": "outputs/analysis/p3_alloc_budget_probe.json :: per_block[*].cost_per_rank",
  "budget_params": 7237632,
- "budget_derivation": "uniform rank 4 × Σ_k cost_k = 7,237,632（= 论文 Theory 组同预算；按**参数量**记账）",
+ "budget_derivation": "uniform rank 4 × Σ_k cost_k = 7,237,632 (= same budget as the Theory group in the paper; accounted by **parameter count**)",
  "uniform_rank": 4,
  "rank_upper_bounds": {
   "vision": 9,
@@ -163,7 +163,7 @@
     "llm_deep": 4,
     "llm_shallow": 4
    },
-   "note": "论文 Theory 组现在的做法：各块同 rank（rank 均匀）",
+   "note": "current practice of the Theory group in the paper: same rank for every block (rank-uniform)",
    "n_trainable_params": 7237632,
    "budget_exact_match": true,
    "linear_objective": 42162.41647468307,
@@ -872,5 +872,5 @@
  "uniform_linear_objective": 42162.41647468307,
  "exact_opt_linear_objective": 24184.58060951729,
  "corner_linear_objective": 24184.58060951729,
- "key_fact_rank_uniform_neq_param_uniform": "uniform 解各块 rank 相等，但逐块参数量为 {'vision': 2621440, 'llm_shallow': 989184, 'llm_mid': 2308096, 'llm_deep': 1318912} —— 相差 2.65×（cost_k 块间不等）"
+ "key_fact_rank_uniform_neq_param_uniform": "the uniform solution gives equal rank for every block, but the per-block parameter counts are {'vision': 2621440, 'llm_shallow': 989184, 'llm_mid': 2308096, 'llm_deep': 1318912} -- a 2.65× difference (cost_k is not equal across blocks)"
 }

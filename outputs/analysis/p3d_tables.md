@@ -1,12 +1,12 @@
-# P3 F+G 补实验汇总（自动生成，勿手改）
+# P3 F+G supplementary experiment summary (auto-generated, do not edit by hand)
 
-来源：`outputs/analysis/p3d_clip_ranksweep.json`；脚本 `tools/_p463_summarize.py`；生成 2026-10-13T00:09:19+00:00
+Source: `outputs/analysis/p3d_clip_ranksweep.json`; script `tools/_p463_summarize.py`; generated 2026-10-13T00:09:19+00:00
 
-冻结基线 R@1 = 0.7058（i2t 0.8220）
+Frozen baseline R@1 = 0.7058 (i2t 0.8220)
 
-## 表 1 rank × 条件
+## Table 1 rank × condition
 
-| 条件 | n_train | rank | dE_train | dE_test | R@1 | R@1_i2t | ΔR@1 vs 冻结 |
+| condition | n_train | rank | dE_train | dE_test | R@1 | R@1_i2t | ΔR@1 vs frozen |
 |---|---|---|---|---|---|---|---|
 | blank | 16 | 1 | +0.0066±0.0041 | -0.0033±0.0010 | 0.7107±0.0013 | 0.8317 | +0.0049 |
 | blank | 16 | 2 | +0.0100±0.0028 | -0.0037±0.0007 | 0.7107±0.0012 | 0.8327 | +0.0049 |
@@ -35,9 +35,9 @@
 | real | 1024 | 8 | -0.0050±0.0008 | -0.0012±0.0010 | 0.7219±0.0015 | 0.8347 | +0.0161 |
 | real | 1024 | 16 | -0.0043±0.0004 | +0.0000±0.0010 | 0.7241±0.0026 | 0.8343 | +0.0183 |
 
-## 秩翻转
+## Rank flips
 
-| 能量口径 | 配置 | dE 序列 | 翻转区间 |
+| energy measure | config | dE sequence | flip interval |
 |---|---|---|---|
 | dE_train | blank_n16 | [0.0066, 0.01, 0.0103, 0.0127, 0.0139, 0.0138, 0.0167] | None |
 | dE_train | blank_n1024 | [-0.0088, -0.02, -0.0208, -0.0276, -0.0271, -0.035] | None |
@@ -48,10 +48,10 @@
 | dE_test | real_n16 | [0.0, 0.0003, 0.0006, 0.0002, 0.0004, 0.0006, 0.0009] | None |
 | dE_test | real_n1024 | [-0.0027, -0.003, -0.003, -0.0024, -0.0012, 0.0] | [8, 16] |
 
-## 表 3 能量 ↔ 下游
+## Table 3 energy ↔ downstream
 
 - Spearman(ΔE_test, ΔR@1) = **-0.3742** (n=78)
 - Spearman(ΔE_train, ΔR@1) = **0.47778578932909693** (n=78)
-- ΔE<0 的 run：n=54，平均 ΔR@1 = +0.0056
-- ΔE>0 的 run：n=24，平均 ΔR@1 = -0.0027
+- runs with ΔE<0: n=54, mean ΔR@1 = +0.0056
+- runs with ΔE>0: n=24, mean ΔR@1 = -0.0027
 - Mann-Whitney p = 9.482496992657418e-06

@@ -15,7 +15,7 @@
    5,
    10
   ],
-  "why_batch_ge_2": "batch=1 时对称对比 CE 恒为 0 → ∇L_task≡0 → Γ≡0",
+  "why_batch_ge_2": "at batch=1 the symmetric contrastive CE is always 0 → ∇L_task≡0 → Γ≡0",
   "lora": "apply_to_vision=True, apply_to_text=True, dropout=0.0",
   "blocks": {
    "vision": "all vision LoRA",
@@ -23,7 +23,7 @@
    "text_mid": "text layers 3-8",
    "text_deep": "text layers 9-11"
   },
-  "data": "outputs/analysis/p3d_manifest.json:datasets.flickr30k.train_sel['16'], 前 15 条分成 3 批 ×5"
+  "data": "outputs/analysis/p3d_manifest.json:datasets.flickr30k.train_sel['16'], first 15 entries split into 3 batches of 5"
  },
  "conditions": {
   "real": {

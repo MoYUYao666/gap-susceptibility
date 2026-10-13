@@ -3,9 +3,9 @@ import os, glob, json, subprocess, time
 W = "/root/autodl-tmp/work"
 os.chdir(W)
 
-print("=== 终止前保存产物清单 ===")
+print("=== Artifact inventory saved before termination ===")
 files = sorted(glob.glob("outputs/**/*.json", recursive=True))
-print("  JSON 产物 %d 个" % len(files))
+print("  %d JSON artifacts" % len(files))
 inv = []
 for f in files:
     inv.append({"path": f, "bytes": os.path.getsize(f)})
@@ -14,7 +14,7 @@ for f in files[:30]:
     print("   ", f)
 print("  ..." if len(files) > 30 else "")
 
-print("\n=== Γ_m 数值（从驱动日志提取）===")
+print("\n=== Γ_m values (extracted from the driver log) ===")
 p = "outputs_cloud_driver.log"
 if os.path.exists(p):
     for ln in open(p).read().splitlines():

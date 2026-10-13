@@ -27,17 +27,17 @@ BASE = [PY, "experiments/strict_freeze_control.py", "--rank", "4",
         "--alpha-mult", "2", "--skip-frozen"]
 
 log("=" * 60)
-log("高成本队列 Q1-Q4 启动")
+log("Starting high-cost queue Q1-Q4")
 
-# ── Q1 大规模：20000 样本 × 20 epoch × 3 seed（B/32 text_only）──
+# ── Q1 large-scale: 20000 samples × 20 epochs × 3 seeds (B/32 text_only) ──
 run(BASE + ["--model", "models/clip-vit-base-patch32",
             "--out-dir", "outputs/scale_b32_r4", "--name", "scale_",
             "--tags", "text_only", "--seeds", "42", "123", "456",
             "--epochs", "20", "--max-samples", "20000",
             "--batch-size", "128"],
-    "Q1 大规模 B/32 r4 text_only (20000x20, 3 seeds)")
+    "Q1 large-scale B/32 r4 text_only (20000x20, 3 seeds)")
 
-# ── Q2 batch 轴（B/32 r4 text_only，batch 32/64/256）──
+# ── Q2 batch axis (B/32 r4 text_only, batch 32/64/256) ──
 for bs in ("32", "64", "256"):
     run(BASE + ["--model", "models/clip-vit-base-patch32",
                 "--out-dir", "outputs/batchaxis_b32_r4", "--name", "bs%s_" % bs,
@@ -46,7 +46,7 @@ for bs in ("32", "64", "256"):
                 "--batch-size", bs],
         "Q2 batch=%s" % bs)
 
-# ── Q3 OpenCLIP 补 seed 3/4/5（text_only + both）──
+# ── Q3 OpenCLIP extra seeds 3/4/5 (text_only + both) ──
 for arm in ("text_only", "both"):
     run(BASE + ["--model", "models/openclip",
                 "--out-dir", "outputs/strict_freeze_oclip/r4", "--name", "oclip_r4_",
@@ -55,5 +55,5 @@ for arm in ("text_only", "both"):
                 "--batch-size", "128"],
         "Q3 OpenCLIP %s seeds 789/1024" % arm)
 
-log("Q1-Q4 完成")
+log("Q1-Q4 complete")
 log("ALLDONE_SMALL")

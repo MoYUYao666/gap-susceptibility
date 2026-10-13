@@ -14,7 +14,7 @@ def log(m):
         f.write(line + "\n")
 
 def head_len(url):
-    """真实长度：GET 首字节 + size_download（跟随重定向）"""
+    """True length: GET first byte + size_download (follows redirects)"""
     r = subprocess.run(["curl", "-sL", "-o", "/dev/null", "--max-time", "40",
                         "-w", "%{size_download}", "-r", "0-0", url],
                        capture_output=True, text=True)
@@ -34,17 +34,17 @@ def dl_shard(shard, par=8):
     if os.path.exists(dst) and os.path.getsize(dst) > 100e6:
         log("SKIP %s (%d B)" % (shard, os.path.getsize(dst)))
         return dst
-    # 用 HEAD 拿长度不可靠（返回重定向页），故先取 index 里声明的 size
+    # HEAD is unreliable for the length (returns a redirect page), so take the size declared in the index first
     try:
         idx = json.load(open(os.path.join(DST, "model.safetensors.index.json")))
-        # index 不含 size，改用 curl -I 跟随重定向
+        # the index has no size, so use curl -I with redirects instead
     except Exception:
         pass
     r = subprocess.run(["curl", "-sL", "-o", "/dev/null", "--max-time", "40",
                         "-w", "%{size_download}", "-r", "0-0", url],
                        capture_output=True, text=True)
     total = 0
-    # 用 --head 跟随重定向拿 Content-Length（此次 -L 会跟到 CDN，返回真实长度）
+    # use --head with redirects to get Content-Length (here -L follows to the CDN and returns the true length)
     r2 = subprocess.run(["curl", "-sL", "-I", "--max-time", "40", url],
                         capture_output=True, text=True)
     for ln in (r2.stdout or "").splitlines():
@@ -54,7 +54,7 @@ def dl_shard(shard, par=8):
             except Exception:
                 pass
     if total < 100e6:
-        log("  %s: 拿不到长度(%d) → 单连接 retry" % (shard, total))
+        log("  %s: no length available (%d) → single-connection retry" % (shard, total))
         subprocess.run(["curl", "-sL", "--retry", "8", "-C", "-", "-o", dst, url],
                        capture_output=True)
         log("  %s → %d B" % (shard, os.path.getsize(dst) if os.path.exists(dst) else 0))
@@ -73,7 +73,7 @@ def dl_shard(shard, par=8):
             futs.append(ex.submit(seg, url, a, b, "%s.p%d" % (tmp, i)))
         for f in futs:
             f.result()
-    # 按序合并
+    # merge in order
     with open(tmp, "wb") as out:
         for i in range(par):
             p = "%s.p%d" % (tmp, i)
@@ -91,13 +91,13 @@ def dl_shard(shard, par=8):
         os.replace(tmp, dst)
         log("  ✅ %s %d/%d in %.0fs (%.2f MB/s)" % (shard, got, total, dt, got/1e6/max(dt,1)))
     else:
-        log("  ⚠️ %s %d/%d 不足，保留 .tmp" % (shard, got, total))
+        log("  ⚠️ %s %d/%d short of target, keeping .tmp" % (shard, got, total))
     return dst
 
 log("=" * 60)
-log("并行下载 7B（5 shard 同时，每 shard 8 段）")
+log("parallel download of 7B (5 shards at once, 8 segments per shard)")
 
-# 小文件
+# small files
 for f in ("config.json", "preprocessor_config.json", "tokenizer.json",
           "tokenizer_config.json", "vocab.json", "merges.txt",
           "generation_config.json", "model.safetensors.index.json"):
@@ -110,17 +110,17 @@ try:
     idx = json.load(open(os.path.join(DST, "model.safetensors.index.json")))
     shards = sorted(set(idx["weight_map"].values()))
 except Exception as e:
-    log("❌ index 读取失败: %s" % str(e)[:120]); sys.exit(1)
+    log("❌ index read failed: %s" % str(e)[:120]); sys.exit(1)
 log("shards: %s" % shards)
 
 t_all = time.time()
 with ThreadPoolExecutor(max_workers=len(shards)) as ex:
     list(ex.map(dl_shard, shards))
-log("全部完成，用时 %.0f min" % ((time.time()-t_all)/60))
+log("all done in %.0f min" % ((time.time()-t_all)/60))
 
-# 校验
+# verify
 big = [f for f in os.listdir(DST) if f.endswith(".safetensors")
        and os.path.getsize(os.path.join(DST, f)) > 100e6]
-log("完整 shard: %d / %d ｜ 合计 %.1f GB"
+log("complete shards: %d / %d | total %.1f GB"
     % (len(big), len(shards), sum(os.path.getsize(os.path.join(DST, f)) for f in big)/1e9))
 log("SEVENBDONE")

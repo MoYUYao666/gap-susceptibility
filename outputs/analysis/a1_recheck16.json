@@ -1,73 +1,73 @@
 [
  {
   "id": "N1",
-  "desc": "引用了评审无法获得的文档",
+  "desc": "Cites documents the reviewers cannot obtain",
   "pattern": "revision_additions|_superseded|内部文档|internal document",
   "hits": 0
  },
  {
   "id": "N2/D1",
-  "desc": "Results 与自家表格/Related Work 矛盾",
+  "desc": "Results contradict the paper's own tables/Related Work",
   "pattern": "necessary, not sufficient|sufficient, not necessary",
   "hits": 3
  },
  {
   "id": "N3",
-  "desc": "中文镜像仍含撤回的主张",
+  "desc": "The Chinese mirror still contains retracted claims",
   "pattern": "main_zh",
   "hits": 0
  },
  {
   "id": "N4",
-  "desc": "摘要里残留编辑片段",
+  "desc": "Leftover editorial fragments in the abstract",
   "pattern": "\\\\emph\\{diagnostic\\}\\s*\\\\emph\\{implicitly\\}",
   "hits": 0
  },
  {
   "id": "N5",
-  "desc": "载重的 prose 主张被自家结果否证",
+  "desc": "Load-bearing prose claims contradicted by the paper's own results",
   "pattern": "unconditional form of that reading",
   "hits": 0
  },
  {
   "id": "N6",
-  "desc": "头条 gap-growth 数字在自己评测器下不可复现",
+  "desc": "Headline gap-growth numbers not reproducible under the paper's own evaluator",
   "pattern": "\\+0\\.033.{0,120}\\+0\\.114|\\+0\\.114.{0,120}\\+0\\.033",
   "hits": 1
  },
  {
   "id": "N8",
-  "desc": "archived checkpoint 的 50k 数字来自论文未描述的协议",
+  "desc": "The archived checkpoint's 50k number comes from a protocol the paper does not describe",
   "pattern": "50{,}?0?00|50k",
   "hits": 5
  },
  {
   "id": "N9",
-  "desc": "图 2 混了两个样本量而表注未说明",
+  "desc": "Figure 2 mixes two sample sizes and the caption does not say so",
   "pattern": "fig:lambda|Figure~\\\\ref\\{fig:lambda\\}",
   "hits": 2
  },
  {
   "id": "N10",
-  "desc": "同一项目里三个不同的 condition 计数",
+  "desc": "Three different condition counts within the same project",
   "pattern": "\\b34\\b.{0,300}\\b5\\b|condition[s]? count",
   "hits": 4
  },
  {
   "id": "N12",
-  "desc": "「预测等于测量」被当作验证",
+  "desc": "'Prediction equals measurement' treated as validation",
   "pattern": "self-consistency check|not independent validation",
   "hits": 7
  },
  {
   "id": "N13",
-  "desc": "Related Work 有让步而 Limitation 没有",
+  "desc": "Related Work makes the concession but Limitation does not",
   "pattern": "Limitations?",
   "hits": 2
  },
  {
   "id": "N15",
-  "desc": "论文依赖的 r=-0.827 是项目自己标记为不可用的",
+  "desc": "The r=-0.827 the paper relies on is one the project itself flagged as unusable",
   "pattern": "-0\\.827",
   "hits": 1
  }

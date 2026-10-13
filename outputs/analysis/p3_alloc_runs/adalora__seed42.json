@@ -16,7 +16,7 @@
   "llm_deep": 1318912
  },
  "search_error": null,
- "note": "AdaLoRA 训练中动态升降 rank ⇒ 参数量会变化；这里只保证**初始**按成本模型精确等于预算，训练后实测值另行归档",
+ "note": "AdaLoRA dynamically raises/lowers rank during training ⇒ the parameter count changes; this only guarantees that the **initial** count exactly equals the budget under the cost model, while post-training measured values are archived separately",
  "n_trainable_measured": 7238928,
  "measured_matches_budget": false,
  "per_block_params_measured": {

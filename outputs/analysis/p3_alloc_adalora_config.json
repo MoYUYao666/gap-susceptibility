@@ -342,7 +342,7 @@
   "base_model.model.model.language_model.layers.27.mlp.up_proj": 4,
   "base_model.model.model.language_model.layers.27.mlp.down_proj": 4
  },
- "note": "AdaLoRA 训练中动态升降 rank ⇒ 参数量会变化；这里只保证**初始**按成本模型精确等于预算，训练后实测值另行归档",
+ "note": "AdaLoRA raises/lowers the rank dynamically during training ⇒ the parameter count changes; here we only guarantee that the **initial** value exactly equals the budget under the cost model, while measured values after training are archived separately",
  "n_trainable_measured": 7238928,
  "measured_matches_budget": false,
  "per_block_params_measured": {

@@ -6,21 +6,21 @@ def sh(cmd):
     r = subprocess.run(cmd, shell=True, capture_output=True, text=True)
     return (r.stdout or "") + (r.stderr or "")
 
-print("=== ① 现状 ===")
+print("=== 1. Current state ===")
 print("  huggingface_hub:", sh("/root/miniconda3/bin/pip show huggingface_hub 2>/dev/null | head -2").strip())
 for pkg in ("hf_xet", "hf_transfer"):
     out = sh("/root/miniconda3/bin/pip show %s 2>/dev/null | head -2" % pkg).strip()
-    print("  %-12s: %s" % (pkg, out if out else "未装"))
+    print("  %-12s: %s" % (pkg, out if out else "not installed"))
 
-print("\n=== ② 安装 hf_xet（Xet 后端，官方推荐的加速）===")
+print("\n=== 2. Install hf_xet (Xet backend, the officially recommended acceleration) ===")
 print(sh("/root/miniconda3/bin/pip install -q hf_xet 2>&1 | tail -3").strip())
-print("  装后:", sh("/root/miniconda3/bin/pip show hf_xet 2>/dev/null | head -2").strip())
+print("  after install:", sh("/root/miniconda3/bin/pip show hf_xet 2>/dev/null | head -2").strip())
 
-print("\n=== ③ 实测：hf_xet 下载一个 shard 的速度 ===")
+print("\n=== 3. Measurement: speed of hf_xet downloading one shard ===")
 env = dict(os.environ)
-env.pop("HF_HUB_DISABLE_XET", None)        # **关键：不再禁用 xet**
+env.pop("HF_HUB_DISABLE_XET", None)        # **key: xet is no longer disabled**
 env["HF_ENDPOINT"] = "https://hf-mirror.com"
-env["HF_HUB_ENABLE_HF_TRANSFER"] = "1"     # 若旧版仍认这个
+env["HF_HUB_ENABLE_HF_TRANSFER"] = "1"     # if older versions still honor this
 env["HF_HOME"] = "/root/autodl-tmp/work/.hf"
 
 code = r"""

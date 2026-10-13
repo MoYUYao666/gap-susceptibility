@@ -982,5 +982,5 @@
   }
  },
  "config": "400 samples / 3 epochs / batch 2 / bf16",
- "note": "CG 跨度越小越保护；DG* 相对变化按 (dg0-dg3)/dg0 计"
+ "note": "a smaller CG span is more protective; DG* relative change is computed as (dg0-dg3)/dg0"
 }

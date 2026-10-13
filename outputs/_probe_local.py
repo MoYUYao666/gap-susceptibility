@@ -11,7 +11,7 @@ m = CLIPModel.from_pretrained(MD, local_files_only=True)
 p = CLIPProcessor.from_pretrained(MD, local_files_only=True)
 m.eval()
 
-# 固定输入：前 4 张图 + 固定文本（不依赖数据集划分）
+# Fixed input: first 4 images + fixed texts (independent of the dataset split)
 imgs = sorted(glob.glob("flickr30k/flickr30k-images/*.jpg"))[:4]
 texts = ["a photo of a dog", "two men in a yard", "a child in a pink dress",
          "a dog running on grass"]

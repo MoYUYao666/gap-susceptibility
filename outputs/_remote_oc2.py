@@ -6,7 +6,7 @@ import subprocess, json, urllib.request
 M = "https://hf-mirror.com"
 REPO_ID = "laion/CLIP-ViT-B-32-laion2B-s34B-b79K"
 
-print("=== 列出该仓库文件（走 HF API）===")
+print("=== listing this repo's files (via the HF API) ===")
 try:
     url = f"{M}/api/models/{REPO_ID}"
     with urllib.request.urlopen(url, timeout=30) as r:
@@ -16,7 +16,7 @@ try:
 except Exception as e:
     print("  API fail:", str(e)[:140])
 
-print("\n=== 试下 HF 格式权重 ===")
+print("\n=== trying the HF-format weights ===")
 dest = "models/openclip"
 for f in ("model.safetensors", "pytorch_model.bin"):
     url = f"{M}/{REPO_ID}/resolve/main/{f}"

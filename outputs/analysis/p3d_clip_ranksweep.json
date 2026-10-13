@@ -3429,5 +3429,5 @@
   "retrieval": "Flickr30k self-split test 1000 imgs x 5 caps (see p3d_manifest.json)",
   "blank": "torch.zeros_like(real pixel_values, 224x224)"
  },
- "source_of_truth": "runs[*] —— 只增不改的逐 run 明细，且每条 run 自带超参，是**来源**；顶层 protocol/train_spec 只是说明，派生聚合（*_summary.json）会被重写，**引用请指向 runs[*] 并带 split/n**。"
+ "source_of_truth": "runs[*] — the per-run detail that is append-only and never modified, and each run carries its own hyperparameters, so this is the **source of truth**; the top-level protocol/train_spec is only documentation, the derived aggregates (*_summary.json) get rewritten, so **cite runs[*] and include split/n**."
 }

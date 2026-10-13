@@ -200,17 +200,17 @@
   "levene_mixed_pool_p": 0.18169308013137084,
   "levene_within_resid_W": 1.9160076009853246,
   "levene_within_resid_p": 0.17531641592308767,
-  "levene_note": "方差判据用 within_resid（Γ-guided vs 组内残差池）；mixed_pool 版本含组间差异，不应直接比"
+  "levene_note": "Variance criterion uses within_resid (Γ-guided vs within-group residual pool); the mixed_pool version includes between-group differences and should not be compared directly"
  },
  "variance_decomposition": {
   "between_arm_sd": 3010.0895615033237,
   "within_arm_sd_median": 3196.58346852305,
   "mixed_pool_sd": 4771.180234255462,
   "gamma_sd": 1563.3373668985585,
-  "note": "池 sd 同时含组间与组内；Γ-guided sd 是单一方案组内 sd —— 两者不是同一个量"
+  "note": "The pooled sd contains both between-group and within-group variance; Γ-guided sd is the within-group sd of a single plan — the two are not the same quantity"
  },
  "variance_claim_allowed": false,
- "variance_claim_rule": "只有当 Levene(Γ-guided vs 组内残差池) p<0.05 且 Γ-guided sd 点估计更小时，才允许写「方差更小」；否则写「不可区分」且不得提及方差",
+ "variance_claim_rule": "Only when Levene(Γ-guided vs within-group residual pool) p<0.05 and the Γ-guided sd point estimate is smaller may one write 'lower variance'; otherwise write 'indistinguishable' and do not mention variance",
  "gamma_mean_percentile_in_random_pool": 46.666666666666664,
  "gamma_worse_than_pool": false,
  "power_diagnosis": {
@@ -230,13 +230,13 @@
   "between_plan_mean_diff": 1869.9802734374998,
   "ratio": 7.663940722970946,
   "underpowered": true,
-  "rule": "同分配内 seed 极差 ≥ 方案间均值差 ⇒ 判为功效不足"
+  "rule": "Within-plan seed range ≥ between-plan mean difference ⇒ judged underpowered"
  },
  "verdict": "UNDERPOWERED_TO_DISTINGUISH",
  "verdict_rules": {
-  "GAMMA_NOT_BETTER_THAN_RANDOM": "Γ-guided 均值更高 且 位置检验 p<0.05 且 **功效诊断通过**",
-  "UNDERPOWERED_TO_DISTINGUISH": "最大同分配内 seed 极差 ≥ 方案间均值差（噪声压过效应）",
-  "INDISTINGUISHABLE_BUT_LOWER_VARIANCE": "功效通过 + 位置不可区分 + Levene p<0.05 且 Γ-guided 方差更小",
-  "INDISTINGUISHABLE": "以上都不成立"
+  "GAMMA_NOT_BETTER_THAN_RANDOM": "Γ-guided mean is higher and location test p<0.05 and **power diagnosis passes**",
+  "UNDERPOWERED_TO_DISTINGUISH": "Largest within-plan seed range ≥ between-plan mean difference (noise drowns out the effect)",
+  "INDISTINGUISHABLE_BUT_LOWER_VARIANCE": "Power passes + location indistinguishable + Levene p<0.05 and Γ-guided variance is smaller",
+  "INDISTINGUISHABLE": "None of the above holds"
  }
 }

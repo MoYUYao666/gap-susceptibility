@@ -22,9 +22,9 @@ def log(m):
 
 
 log("=" * 60)
-log("云端补 seed 启动")
+log("cloud seed top-up starting")
 for name, model, outdir, prefix in JOBS:
-    # 权重就绪检查
+    # weight readiness check
     d = model
     ok = False
     if os.path.isdir(d):
@@ -32,9 +32,9 @@ for name, model, outdir, prefix in JOBS:
             p = os.path.join(d, f)
             if f.endswith((".bin", ".safetensors")) and os.path.getsize(p) > 100e6:
                 ok = True
-    log("%s: 模型 %s ｜ 权重%s" % (name, d, "OK %.0fMB" % (max(
+    log("%s: model %s ｜ weights%s" % (name, d, "OK %.0fMB" % (max(
         os.path.getsize(os.path.join(d, f)) for f in os.listdir(d)
-        if f.endswith((".bin", ".safetensors"))) / 1e6) if ok else "缺失 → 跳过"))
+        if f.endswith((".bin", ".safetensors"))) / 1e6) if ok else "missing → skipping"))
     if not ok:
         continue
     for arm in ARMS:
@@ -59,15 +59,15 @@ for name, model, outdir, prefix in JOBS:
                 log("  FAIL rc=%s %.0fs %s" % (r.returncode, dt, err))
         except subprocess.TimeoutExpired:
             log("  TIMEOUT 6h")
-log("补 seed 完成 → 跑 Γ_m")
+log("seed top-up complete → running Γ_m")
 try:
     r = subprocess.run([PY, "tools/_p58_gamma_clip.py", "--apply"],
                        capture_output=True, text=True, encoding="utf-8",
                        errors="replace", timeout=3600)
     for ln in (r.stdout or "").splitlines():
-        if any(k in ln for k in ("Gamma", "Γ", "已写", "‖")):
+        if any(k in ln for k in ("Gamma", "Γ", "written", "‖")):
             log("  | " + ln.strip()[:150])
     log("  Γ_m rc=%s" % r.returncode)
 except Exception as e:
-    log("  Γ_m 异常 %s" % str(e)[:120])
+    log("  Γ_m exception %s" % str(e)[:120])
 log("ALLDONE")

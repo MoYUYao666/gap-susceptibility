@@ -3,9 +3,9 @@ import os, json, glob, subprocess
 W = "/root/autodl-tmp/work"
 os.chdir(W)
 
-print("=== 全部 results.json ===")
+print("=== all results.json ===")
 files = sorted(glob.glob("outputs/**/results.json", recursive=True))
-print("  共 %d 个" % len(files))
+print("  %d total" % len(files))
 for f in files:
     try:
         d = json.load(open(f))
@@ -16,7 +16,7 @@ for f in files:
     except Exception as e:
         print("  %-56s ERR %s" % (f[:56], str(e)[:60]))
 
-print("\n=== Γ_m 日志（最后 20 行）===")
+print("\n=== Γ_m log (last 20 lines) ===")
 p = "outputs_cloud_driver.log"
 if os.path.exists(p):
     lines = open(p).read().splitlines()
@@ -24,5 +24,5 @@ if os.path.exists(p):
     for ln in lines[max(0, i-25):]:
         print("  " + ln[:150])
 
-print("\n=== gamma_clip.json 是否存在 ===")
+print("\n=== does gamma_clip.json exist ===")
 print("  ", os.path.exists("outputs/analysis/gamma_clip.json"))
