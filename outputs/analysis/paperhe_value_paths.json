@@ -1,0 +1,172 @@
+{
+ "outputs/analysis/dg_r1_reproducible.json": {
+  "-0.71": [],
+  "-0.59": [],
+  "204": [
+   {
+    "path": "$.sensitivity[0].n",
+    "value": 204
+   },
+   {
+    "path": "$.primary.n",
+    "value": 204
+   },
+   {
+    "path": "$.primary.n_delta",
+    "value": 204
+   }
+  ],
+  "96": [],
+  "383": []
+ },
+ "outputs/analysis/ode_ledger.json": {
+  "0.949": [
+   {
+    "path": "$.subsets.lora.mean",
+    "value": 0.9486153770148056
+   },
+   {
+    "path": "$.runs[72].R2",
+    "value": 0.949337844437841
+   },
+   {
+    "path": "$.runs[82].R2",
+    "value": 0.949152200199737
+   }
+  ],
+  "0.814": [
+   {
+    "path": "$.subsets.lora.min",
+    "value": 0.8139714652626437
+   },
+   {
+    "path": "$.subsets.lora_coco.min",
+    "value": 0.8139714652626437
+   },
+   {
+    "path": "$.runs[46].R2",
+    "value": 0.8139714652626437
+   }
+  ],
+  "0.977": [
+   {
+    "path": "$.subsets.all.max",
+    "value": 0.9773493814761667
+   },
+   {
+    "path": "$.subsets.lora.max",
+    "value": 0.9773493814761667
+   },
+   {
+    "path": "$.subsets.lora_coco.max",
+    "value": 0.9773493814761667
+   },
+   {
+    "path": "$.runs[45].R2",
+    "value": 0.9773493814761667
+   }
+  ],
+  "0.922": [
+   {
+    "path": "$.subsets.full_ft.mean",
+    "value": 0.9217284153459521
+   }
+  ],
+  "0.943": [],
+  "0.946": [
+   {
+    "path": "$.runs[83].R2",
+    "value": 0.9464980411116002
+   }
+  ],
+  "96": [
+   {
+    "path": "$.n_runs_total",
+    "value": 96
+   },
+   {
+    "path": "$.subsets.all.n",
+    "value": 96
+   }
+  ],
+  "222": [],
+  "203": []
+ },
+ "outputs/analysis/coco_ode_table.json": {
+  "0.003": [],
+  "0.006": [],
+  "0.108": [],
+  "0.111": []
+ },
+ "outputs/analysis/pr_peft_lr_sweep.json": {
+  "60.69": [
+   {
+    "path": "$.analysis.grid.lora_both@1e-05.zero_shot_top1_pct_mean",
+    "value": 60.69
+   }
+  ],
+  "60.87": [
+   {
+    "path": "$.analysis.vs_fullft.fullft_per_lr.1e-06.zero_shot_top1_pct_mean",
+    "value": 60.87
+   }
+  ],
+  "0.0054": [
+   {
+    "path": "$.analysis.grid.lora_both@0.0001.dDG_sd",
+    "value": 0.0053
+   },
+   {
+    "path": "$.analysis.grid.adapter_both@3e-05.R@1_sd",
+    "value": 0.0053
+   },
+   {
+    "path": "$.analysis.grid.adapter_both@0.0003.dDG_sd",
+    "value": 0.0057
+   },
+   {
+    "path": "$.analysis.vs_fullft.fullft_per_lr.1e-06.dCG_sd",
+    "value": 0.0052
+   }
+  ],
+  "0.0016": [
+   {
+    "path": "$.runs[4].peft_proof.trainable_fraction",
+    "value": 0.0013
+   },
+   {
+    "path": "$.runs[5].peft_proof.trainable_fraction",
+    "value": 0.0013
+   },
+   {
+    "path": "$.runs[6].peft_proof.trainable_fraction",
+    "value": 0.0013
+   },
+   {
+    "path": "$.runs[7].peft_proof.trainable_fraction",
+    "value": 0.0013
+   },
+   {
+    "path": "$.runs[8].final.R@1_t2i",
+    "value": 0.002
+   }
+  ]
+ },
+ "outputs/analysis/driving_trajectory.json": {
+  "0.943": [
+   {
+    "path": "$.trajectories.vision_only[9].normDG_t",
+    "value": 0.9431201689813435
+   }
+  ],
+  "0.922": []
+ },
+ "outputs/analysis/freeze_parity.json": {
+  "117": [],
+  "95": [],
+  "221": []
+ },
+ "outputs/analysis/lit_pool.json": {
+  "383": []
+ }
+}

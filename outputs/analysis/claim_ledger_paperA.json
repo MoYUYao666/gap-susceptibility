@@ -1,0 +1,230 @@
+{
+ "pass": 28,
+ "gap": 0,
+ "entries": [
+  {
+   "claim": "ODE mean R2 over LoRA",
+   "manuscript": 0.949,
+   "computed": 0.9486153770148056,
+   "source": "outputs/analysis/ode_ledger.json::subsets.lora.mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE R2 range lower end",
+   "manuscript": 0.814,
+   "computed": 0.8139714652626437,
+   "source": "outputs/analysis/ode_ledger.json::subsets.lora.min",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE R2 range upper end",
+   "manuscript": 0.977,
+   "computed": 0.9773493814761667,
+   "source": "outputs/analysis/ode_ledger.json::subsets.lora.max",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full fine-tuning pilot R2",
+   "manuscript": 0.922,
+   "computed": 0.9217284153459521,
+   "source": "outputs/analysis/ode_ledger.json::subsets.full_ft.mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "fits archived (paper, after the correction)",
+   "manuscript": 215,
+   "computed": 215,
+   "source": "outputs/analysis/alpha_stats_current.json :: total [= ledger 96 + loco 33 + loco2 33 + adapter 50 + bitfit 3]",
+   "pass": true,
+   "note": "[the 2026-10-05 audit recorded 222]"
+  },
+  {
+   "claim": "fits with negative alpha",
+   "manuscript": 196,
+   "computed": 196,
+   "source": "outputs/analysis/alpha_stats_current.json :: negative",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "non-negative exceptions",
+   "manuscript": 19,
+   "computed": 19,
+   "source": "outputs/analysis/alpha_stats_current.json :: exceptions",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "adapter fits (paper: fifty)",
+   "manuscript": 50,
+   "computed": 50,
+   "source": "outputs/theory/adapter/adapter_all_results.json :: len",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "CLIP BitFit fits (paper: three)",
+   "manuscript": 3,
+   "computed": 3,
+   "source": "outputs/theory/bitfit/bitfit_results.json :: len",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "OpenCLIP BitFit mean R2",
+   "manuscript": 0.943,
+   "computed": 0.942799,
+   "source": "outputs/theory/openclip/openclip_results.json :: mean(r_squared)",
+   "pass": true,
+   "note": "[n=3]"
+  },
+  {
+   "claim": "strict-freezing controls (appendix table)",
+   "manuscript": 104,
+   "computed": 104,
+   "source": "paper合/sections/supplement.tex :: tab:full_experiments row XIV",
+   "pass": true,
+   "note": "[HANDOFF L10175/10193: 95 → 104]"
+  },
+  {
+   "claim": "catalogue total (appendix table)",
+   "manuscript": 221,
+   "computed": 221,
+   "source": "paper合/sections/supplement.tex :: tab:full_experiments Total row",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "catalogue = 117 mechanism + 104 controls",
+   "manuscript": 221,
+   "computed": 221,
+   "source": "sections/supplement.tex prose (117 mechanism) + table row XIV (104)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "validation experiments = 221 + ODE fits",
+   "manuscript": 383,
+   "computed": 383,
+   "source": "HANDOFF L10192: 'catalogue + ODE = 221 + 162 = 383'",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "runs in the association (n = 204)",
+   "manuscript": 204,
+   "computed": 204.0,
+   "source": "outputs/analysis/dg_r1_reproducible.json::primary.n",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "pooled correlation (r = -0.71)",
+   "manuscript": -0.71,
+   "computed": -0.7142,
+   "source": "outputs/analysis/pr_stats_hardened.json::verdict.pooled_r",
+   "pass": true,
+   "note": "= -0.7142"
+  },
+  {
+   "claim": "cluster-robust slope (-1.05)",
+   "manuscript": -1.05,
+   "computed": -1.0484,
+   "source": "outputs/analysis/pr_stats_hardened.json::mixed_effects.cluster_robust_OLS.by_design_cell.beta_DG",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "CR1 standard error (0.29)",
+   "manuscript": 0.29,
+   "computed": 0.2911,
+   "source": "outputs/analysis/pr_stats_hardened.json::mixed_effects.cluster_robust_OLS.by_design_cell.se_cr1",
+   "pass": true,
+   "note": "= 0.2911, inflated 4.03x over OLS 0.0723"
+  },
+  {
+   "claim": "slope significance p (0.016)",
+   "manuscript": 0.016,
+   "computed": 0.015529145476530174,
+   "source": "outputs/analysis/pr_stats_hardened.json::verdict.cr1_p_design_cell_t5",
+   "pass": true,
+   "note": "= 0.01553"
+  },
+  {
+   "claim": "leave-one-family-out folds",
+   "manuscript": 12,
+   "computed": 12.0,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_family_out.n_folds",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "out-of-sample R2, family-held-out, pooled",
+   "manuscript": 0.449,
+   "computed": 0.4488,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_family_out.r2_oos_pooled",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "out-of-sample R2, family-held-out, median fold",
+   "manuscript": 0.396,
+   "computed": 0.3961,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_family_out.r2_oos_median_fold",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "fraction of family folds beating the constant baseline",
+   "manuscript": 0.6667,
+   "computed": 0.6667,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_family_out.frac_folds_beat_constant",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "leave-one-design-cell-out folds",
+   "manuscript": 6,
+   "computed": 6.0,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_design_cell_out.n_folds",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "out-of-sample R2, cell-held-out, pooled",
+   "manuscript": 0.236,
+   "computed": 0.2363,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_design_cell_out.r2_oos_pooled",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "out-of-sample R2, cell-held-out, median fold",
+   "manuscript": 0.227,
+   "computed": 0.2266,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_design_cell_out.r2_oos_median_fold",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "LoRA top-1 after tuning (60.69%)",
+   "manuscript": 60.69,
+   "computed": 60.69,
+   "source": "outputs/analysis/pr_peft_lr_sweep.json::analysis.grid.lora_both@1e-05.zero_shot_top1_pct_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full fine-tuning top-1 (60.87%)",
+   "manuscript": 60.87,
+   "computed": 60.87,
+   "source": "outputs/analysis/pr_fullft_lr_sweep.json::analysis.per_lr.1e-06.zero_shot_top1_pct_mean",
+   "pass": true,
+   "note": ""
+  }
+ ]
+}

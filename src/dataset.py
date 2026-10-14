@@ -1,6 +1,6 @@
 """
-Data loading module — Flickr30k, MS-COCO
-Adapted to CLIP training format: (image, text) paired data
+数据加载模块 — Flickr30k, MS-COCO
+适配 CLIP 训练格式: (image, text) 配对数据
 """
 
 import torch
@@ -13,7 +13,7 @@ from typing import List, Dict, Tuple, Optional
 
 
 # ============================================================
-# CLIP standard preprocessing
+# CLIP 标准预处理
 # ============================================================
 
 CLIP_MEAN = [0.48145466, 0.4578275, 0.40821073]
@@ -21,7 +21,7 @@ CLIP_STD = [0.26862954, 0.26130258, 0.27577711]
 
 
 def get_clip_transform(image_size: int = 224, is_train: bool = True):
-    """CLIP standard image preprocessing"""
+    """CLIP 标准图像预处理"""
     if is_train:
         return transforms.Compose([
             transforms.Resize((image_size, image_size), interpolation=transforms.InterpolationMode.BICUBIC),
@@ -44,18 +44,18 @@ def get_clip_transform(image_size: int = 224, is_train: bool = True):
 
 class Flickr30kDataset(Dataset):
     """
-    Flickr30k image-text retrieval dataset
+    Flickr30k 图文检索数据集
 
-    Expected directory structure:
+    预期目录结构:
         flickr30k/
         ├── flickr30k-images/
         │   ├── 1000092795.jpg
         │   └── ...
-        └── flickr30k.json  (or results_20130124.token)
+        └── flickr30k.json  (或 results_20130124.token)
             [{"image": "xxx.jpg", "captions": ["...", "...", ...]}, ...]
     """
 
-    _tokenizer = None  # class-level shared, avoid loading multiple times
+    _tokenizer = None  # 类级别共享，避免多次加载
 
     def __init__(
         self,
@@ -63,7 +63,7 @@ class Flickr30kDataset(Dataset):
         split: str = "train",   # train, val, test
         image_size: int = 224,
         max_samples: Optional[int] = None,
-        pre_tokenize: bool = True,  # pre-tokenize on the dataset side, use multi-worker parallelism
+        pre_tokenize: bool = True,  # 在 dataset 端预 tokenize，利用多 worker 并行
     ):
         self.data_dir = data_dir
         self.split = split
@@ -74,32 +74,32 @@ class Flickr30kDataset(Dataset):
         self.image_dir = os.path.join(data_dir, "flickr30k-images")
         self.transform = get_clip_transform(image_size, is_train=(split == "train"))
 
-        # load tokenizer (lazy loading, shared)
+        # 加载 tokenizer（懒加载，共享）
         if pre_tokenize and Flickr30kDataset._tokenizer is None:
             from transformers import CLIPTokenizerFast
             Flickr30kDataset._tokenizer = CLIPTokenizerFast.from_pretrained(
                 "openai/clip-vit-base-patch32", local_files_only=True
             )
 
-        # load annotations
+        # 加载标注
         self.samples = self._load_annotations()
 
     def _load_annotations(self) -> List[Dict]:
-        """Load and parse the annotation file"""
-        # try multiple formats
+        """加载并解析标注文件"""
+        # 尝试多种格式
         csv_path = os.path.join(self.data_dir, "results.csv")
         json_path = os.path.join(self.data_dir, "flickr30k.json")
         token_path = os.path.join(self.data_dir, "results_20130124.token")
 
         samples = []
 
-        # try CSV format first (pipe-separated: image_name | comment_number | comment)
+        # 优先尝试 CSV 格式 (pipe分隔: image_name | comment_number | comment)
         if os.path.exists(csv_path):
             import csv
             captions_by_image = {}
             with open(csv_path, 'r', encoding='utf-8') as f:
                 reader = csv.reader(f, delimiter='|')
-                header = next(reader, None)  # skip the header row
+                header = next(reader, None)  # 跳过表头
                 for row in reader:
                     if len(row) >= 3:
                         image_file = row[0].strip()
@@ -114,12 +114,12 @@ class Flickr30kDataset(Dataset):
                         "image": image_file,
                         "caption": caption,
                     })
-            print(f"   📋 CSV format ({len(captions_by_image)} images, {len(samples)} annotations)")
+            print(f"   📋 CSV格式 ({len(captions_by_image)} 图像, {len(samples)} 标注)")
 
         elif os.path.exists(json_path):
             with open(json_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-            # each image has 5 annotations → expand into independent samples
+            # 每张图对应5条标注 → 展开为独立样本
             for item in data:
                 image_file = item["image"]
                 for caption in item["captions"]:
@@ -129,8 +129,8 @@ class Flickr30kDataset(Dataset):
                     })
 
         elif os.path.exists(token_path):
-            # parse the standard .token file format
-            # format: image_id#caption_id<TAB>caption_text
+            # 解析标准 .token 文件格式
+            # 格式: image_id#caption_id<TAB>caption_text
             captions_by_image = {}
             with open(token_path, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -152,13 +152,13 @@ class Flickr30kDataset(Dataset):
                     })
         else:
             raise FileNotFoundError(
-                f"Annotation file not found! Please put flickr30k.json or results_20130124.token in {self.data_dir}/"
+                f"未找到标注文件！请将 flickr30k.json 或 results_20130124.token 放在 {self.data_dir}/"
             )
 
         if self.max_samples:
             samples = samples[:self.max_samples]
 
-        print(f"📦 Flickr30k [{self.split}]: {len(samples)} samples")
+        print(f"📦 Flickr30k [{self.split}]: {len(samples)} 样本")
         return samples
 
     def __len__(self):
@@ -168,12 +168,12 @@ class Flickr30kDataset(Dataset):
         sample = self.samples[idx]
         image_path = os.path.join(self.image_dir, sample["image"])
 
-        # load image
+        # 加载图像
         try:
             image = Image.open(image_path).convert("RGB")
         except Exception as e:
-            # fallback: random image
-            print(f"⚠️ Failed to load {image_path}: {e}")
+            # 兜底：随机图像
+            print(f"⚠️ 无法加载 {image_path}: {e}")
             image = Image.new("RGB", (self.image_size, self.image_size))
 
         image = self.transform(image)
@@ -184,8 +184,8 @@ class Flickr30kDataset(Dataset):
             "image_path": sample["image"],
         }
 
-        # pre-tokenize: use DataLoader multi-worker parallel processing
-        # note: Windows spawn multiprocessing does not share class variables, so lazy-load inside each worker
+        # 预 tokenize：利用 DataLoader 多 worker 并行处理
+        # 注意：Windows spawn 多进程不共享类变量，需在每个 worker 内懒加载
         if self.pre_tokenize:
             if Flickr30kDataset._tokenizer is None:
                 from transformers import CLIPTokenizerFast
@@ -208,9 +208,9 @@ class Flickr30kDataset(Dataset):
 
 class COCODataset(Dataset):
     """
-    MS-COCO image-text retrieval dataset
+    MS-COCO 图文检索数据集
 
-    Expected directory structure:
+    预期目录结构:
         coco/
         ├── train2014/
         ├── val2014/
@@ -231,7 +231,7 @@ class COCODataset(Dataset):
         self.image_size = image_size
         self.max_samples = max_samples
 
-        # COCO image directory — auto-detect 2017 or 2014
+        # COCO图像目录 — auto-detect 2017 or 2014
         self.image_dir = None
         for year in ["2017", "2014"]:
             d = os.path.join(data_dir, f"{split}{year}")
@@ -244,7 +244,7 @@ class COCODataset(Dataset):
             self._coco_year = "2014"
         self.transform = get_clip_transform(image_size, is_train=(split == "train"))
 
-        # load annotations
+        # 加载标注
         self.samples = self._load_annotations()
 
     def _load_annotations(self) -> List[Dict]:
@@ -253,14 +253,14 @@ class COCODataset(Dataset):
 
         if not os.path.exists(ann_file):
             raise FileNotFoundError(
-                f"COCO annotations not found: {ann_file}\n"
-                f"Please download from https://cocodataset.org"
+                f"未找到COCO标注: {ann_file}\n"
+                f"请从 https://cocodataset.org 下载"
             )
 
         with open(ann_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        # build image_id → file_name mapping
+        # 构建 image_id → file_name 映射
         id_to_file = {}
         for img_info in data["images"]:
             id_to_file[img_info["id"]] = img_info["file_name"]
@@ -277,7 +277,7 @@ class COCODataset(Dataset):
         if self.max_samples:
             samples = samples[:self.max_samples]
 
-        print(f"📦 MS-COCO [{self.split}]: {len(samples)} samples")
+        print(f"📦 MS-COCO [{self.split}]: {len(samples)} 样本")
         return samples
 
     def __len__(self):
@@ -302,14 +302,14 @@ class COCODataset(Dataset):
 
 
 # ============================================================
-# General out-of-domain datasets (simple image classification datasets, to test generalization)
+# 通用域外数据集（简单图像分类数据集，测试泛化）
 # ============================================================
 
 class ImageNetStyleDataset(Dataset):
     """
-    Convert an image classification dataset into image-text pairs: use the class name as the text description
+    将图像分类数据集转换为图文对：使用类别名作文本描述
 
-    Supports: Food101, DTD, Flowers102, CIFAR100 and other torchvision datasets
+    支持: Food101, DTD, Flowers102, CIFAR100 等 torchvision 数据集
     """
 
     def __init__(
@@ -335,9 +335,9 @@ class ImageNetStyleDataset(Dataset):
             self.class_names = self.dataset.classes
         elif dataset_name == "Flowers102":
             self.dataset = dsets.Flowers102(root=root, split=split, download=True)
-            self.class_names = [str(i) for i in range(102)]  # Flowers102 has no class names
+            self.class_names = [str(i) for i in range(102)]  # Flowers102 没有类别名
         else:
-            raise ValueError(f"Unsupported dataset: {dataset_name}")
+            raise ValueError(f"不支持的数据集: {dataset_name}")
 
         self.prompts = [
             f"a photo of a {name}" for name in self.class_names
@@ -350,7 +350,7 @@ class ImageNetStyleDataset(Dataset):
         else:
             self.indices = list(range(len(self.dataset)))
 
-        print(f"📦 {dataset_name} [{split}]: {len(self.indices)} samples, {len(self.class_names)} classes")
+        print(f"📦 {dataset_name} [{split}]: {len(self.indices)} 样本, {len(self.class_names)} 类")
 
     def __len__(self):
         return len(self.indices)
@@ -368,7 +368,7 @@ class ImageNetStyleDataset(Dataset):
 
 
 # ============================================================
-# DataLoader construction
+# DataLoader 构建
 # ============================================================
 
 def create_dataloaders(
@@ -376,14 +376,14 @@ def create_dataloaders(
     data_dir: str = "./data",
     batch_size: int = 64,
     image_size: int = 224,
-    num_workers: int | None = None,   # None=auto-detect (4 for CUDA, otherwise 0)
+    num_workers: int | None = None,   # None=自动检测（CUDA用4, 否则0）
     max_samples: Optional[int] = None,
-    pre_tokenize: bool = True,         # False=no CLIP tokenizer needed (used by BLIP)
+    pre_tokenize: bool = True,         # False=不需要 CLIP tokenizer（BLIP用）
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
     if num_workers is None:
         import multiprocessing
         num_workers = 0 if not pre_tokenize else (min(4, multiprocessing.cpu_count() // 2) if torch.cuda.is_available() else 0)
-    use_pin = torch.cuda.is_available()  # pin_memory speeds up transfer under CUDA
+    use_pin = torch.cuda.is_available()  # CUDA 下 pin_memory 加速传输
 
     dataset_cls = {
         "flickr30k": Flickr30kDataset,
@@ -391,13 +391,13 @@ def create_dataloaders(
     }
 
     if dataset_name not in dataset_cls:
-        raise ValueError(f"Unknown dataset: {dataset_name}, options: {list(dataset_cls.keys())}")
+        raise ValueError(f"未知数据集: {dataset_name}, 可选: {list(dataset_cls.keys())}")
 
     cls = dataset_cls[dataset_name]
     data_root = os.path.join(data_dir, dataset_name)
 
-    # For Flickr30k, train/val/test are usually different splits of the same data
-    # Simplified here: 80% train, 10% val, 10% test
+    # 对于Flickr30k，训练/验证/测试通常是同一批数据的不同分割
+    # 这里简化：80%训练, 10%验证, 10%测试
     kwargs = {"split": "train", "image_size": image_size, "max_samples": max_samples}
     if dataset_name == "flickr30k":  # only Flickr30k supports pre_tokenize
         kwargs["pre_tokenize"] = pre_tokenize
@@ -412,7 +412,7 @@ def create_dataloaders(
         kwargs["split"] = "test"
         test_dataset = cls(data_root, **kwargs)
 
-    # for Flickr30k: manual split
+    # 对 Flickr30k: 手动分割
     if dataset_name == "flickr30k":
         from torch.utils.data import random_split
         n = len(train_dataset)
@@ -436,15 +436,20 @@ def create_dataloaders(
 
     return train_loader, val_loader, test_loader
 
-# module-level collate function (Windows spawn multiprocessing requires it to be picklable)
+# 模块级 collate 函数（Windows spawn 多进程要求可 pickle）
 def _collate_fn(batch):
-    """Batching: collect and pad text (supports pre-tokenization)"""
+    """Batch items; image_path is kept so retrieval evaluation can group captions by image."""
     images = torch.stack([item["image"] for item in batch])
     captions = [item["caption"] for item in batch]
 
     result = {"image": images, "caption": captions}
 
-    # if the dataset is already pre-tokenized, directly stack the tensors
+    # image identity must travel with the batch: once the loader is flattened into (image, caption)
+    # rows, nothing else reveals which captions belong to the same image.
+    if "image_path" in batch[0]:
+        result["image_path"] = [item["image_path"] for item in batch]
+
+    # 如果 dataset 已预 tokenize，直接 stack tensor
     if "input_ids" in batch[0]:
         result["input_ids"] = torch.stack([item["input_ids"] for item in batch])
         result["attention_mask"] = torch.stack([item["attention_mask"] for item in batch])

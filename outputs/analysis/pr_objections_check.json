@@ -1,0 +1,117 @@
+{
+ "withdrawn +0.079 no longer presented as the recommended setting": {
+  "pattern": "\\+0\\.079",
+  "hits": 1,
+  "ok": true,
+  "note": "check whether it is described as a different configuration"
+ },
+ "a configuration comparison table exists": {
+  "pattern": "config\\w* (?:comparison|table)|tab:config",
+  "hits": 1,
+  "ok": true,
+  "note": ""
+ },
+ "Route D explained": {
+  "pattern": "Route~?D|route_d",
+  "hits": 0,
+  "ok": false,
+  "note": ""
+ },
+ "cluster-robust inference reported": {
+  "pattern": "cluster(?:ed)?[- ]robust|CR1",
+  "hits": 2,
+  "ok": true,
+  "note": ""
+ },
+ "within-group correlations reported": {
+  "pattern": "within[- ](?:group|model|dataset|family)",
+  "hits": 2,
+  "ok": true,
+  "note": ""
+ },
+ "mixed-effects model reported": {
+  "pattern": "mixed[- ]effects",
+  "hits": 0,
+  "ok": false,
+  "note": ""
+ },
+ "held-out / out-of-sample validation": {
+  "pattern": "held[- ]out|out[- ]of[- ]sample",
+  "hits": 0,
+  "ok": false,
+  "note": ""
+ },
+ "'direct causal evidence' removed": {
+  "pattern": "direct causal",
+  "hits": 0,
+  "ok": true,
+  "note": ""
+ },
+ "'Visual Fragility' still claimed as a mechanism": {
+  "pattern": "Visual Fragility",
+  "hits": 8,
+  "ok": true,
+  "note": ""
+ },
+ "relative perturbation budget used": {
+  "pattern": "\\\\Delta W\\\\|_F|relative (?:weight )?perturbation",
+  "hits": 16,
+  "ok": true,
+  "note": ""
+ },
+ "'2.6 times' ratio removed": {
+  "pattern": "2\\.6\\s*(?:times|x)|2\\.6\\\\times",
+  "hits": 3,
+  "ok": false,
+  "note": ""
+ },
+ "COCO near-random explained": {
+  "pattern": "near[- ]random|below \\$0\\.001\\$",
+  "hits": 1,
+  "ok": true,
+  "note": ""
+ },
+ "'across architectures' universal claim removed": {
+  "pattern": "across architectures|any contrastive",
+  "hits": 3,
+  "ok": false,
+  "note": ""
+ },
+ "SigLIP small-gap limitation stated": {
+  "pattern": "SigLIP",
+  "hits": 24,
+  "ok": true,
+  "note": ""
+ },
+ "'zero-overhead' removed": {
+  "pattern": "zero[- ]overhead",
+  "hits": 0,
+  "ok": true,
+  "note": ""
+ },
+ "early stopping positioned as preliminary": {
+  "pattern": "early stopping",
+  "hits": 0,
+  "ok": false,
+  "note": ""
+ },
+ "per-method learning-rate tuning reported": {
+  "pattern": "learning[- ]rate (?:sweep|tuning)|tuned (?:each|per)",
+  "hits": 1,
+  "ok": true,
+  "note": ""
+ },
+ "60.69 / 60.87 matched-accuracy result present": {
+  "pattern": "60\\.69|60\\.87",
+  "hits": 4,
+  "ok": true,
+  "note": ""
+ },
+ "'Protect, Don't Perturb' title retired (only in the cover letter's disclosure)": {
+  "pattern": "Protect, Don't Perturb",
+  "hits": 0,
+  "ok": false,
+  "note": ""
+ },
+ "cover_letter_number": true
+}

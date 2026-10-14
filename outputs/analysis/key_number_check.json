@@ -1,0 +1,124 @@
+{
+ "checks": [
+  {
+   "label": "random-allocation p-value",
+   "response_form": "0.2057",
+   "in_paper": true,
+   "match": "p = 0.21"
+  },
+  {
+   "label": "matched parameter budget",
+   "response_form": "7,237,632",
+   "in_paper": false,
+   "match": null
+  },
+  {
+   "label": "learning rate 3e-4",
+   "response_form": "0.0003",
+   "in_paper": false,
+   "match": null
+  },
+  {
+   "label": "matched training loss A",
+   "response_form": "0.5872",
+   "in_paper": true,
+   "match": "0.5872"
+  },
+  {
+   "label": "matched training loss B",
+   "response_form": "0.5826",
+   "in_paper": true,
+   "match": "0.5826"
+  },
+  {
+   "label": "experimental arm 5e-5",
+   "response_form": "1478",
+   "in_paper": true,
+   "match": "1478"
+  },
+  {
+   "label": "uniform arm 5e-5",
+   "response_form": "5048",
+   "in_paper": true,
+   "match": "5048"
+  },
+  {
+   "label": "reversal experimental 3e-4",
+   "response_form": "5968",
+   "in_paper": true,
+   "match": "5968"
+  },
+  {
+   "label": "reversal uniform 3e-4",
+   "response_form": "2842",
+   "in_paper": true,
+   "match": "2842"
+  },
+  {
+   "label": "AdaLoRA margin 1",
+   "response_form": "1468",
+   "in_paper": true,
+   "match": "1468"
+  },
+  {
+   "label": "AdaLoRA margin 2",
+   "response_form": "757",
+   "in_paper": true,
+   "match": "757"
+  },
+  {
+   "label": "permutation p for crossing",
+   "response_form": "0.100",
+   "in_paper": true,
+   "match": "0.100"
+  },
+  {
+   "label": "between-rank variance share",
+   "response_form": "98.9",
+   "in_paper": true,
+   "match": "98.9"
+  },
+  {
+   "label": "inverse vs uniform p",
+   "response_form": "0.037",
+   "in_paper": true,
+   "match": "0.037"
+  },
+  {
+   "label": "corner vs uniform p",
+   "response_form": "0.0587",
+   "in_paper": false,
+   "match": null
+  },
+  {
+   "label": "Qwen token count",
+   "response_form": "50176",
+   "in_paper": false,
+   "match": null
+  },
+  {
+   "label": "Ode R2",
+   "response_form": "0.9767",
+   "in_paper": true,
+   "match": "0.98"
+  }
+ ],
+ "problems": [
+  [
+   "matched parameter budget",
+   "7,237,632"
+  ],
+  [
+   "learning rate 3e-4",
+   "0.0003"
+  ],
+  [
+   "corner vs uniform p",
+   "0.0587"
+  ],
+  [
+   "Qwen token count",
+   "50176"
+  ]
+ ]
+}
