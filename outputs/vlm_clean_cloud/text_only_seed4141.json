@@ -1,0 +1,56 @@
+{
+ "arm": "text_only",
+ "seed": 4141,
+ "n_trainable": 9232384,
+ "n_vis": 0,
+ "n_lang": 392,
+ "epochs": 3,
+ "max_samples": 400,
+ "batch": 2,
+ "4bit": false,
+ "dg_star": [
+  0.03393521159887314,
+  0.02072840742766857,
+  0.02438177540898323
+ ],
+ "cg": [
+  0.09821721166372299,
+  0.07490068674087524,
+  0.0774083361029625
+ ],
+ "legacy_dg_star": [
+  2.004284620285034,
+  2.003011465072632,
+  2.0040643215179443
+ ],
+ "loss": [
+  0.36826156843453645,
+  0.29599429555237294,
+  0.2731850819662213
+ ],
+ "dg_span": 0.013206804171204567,
+ "cg_span": 0.023316524922847748,
+ "legacy_dg_span": 0.0012731552124023438,
+ "token_counts_first_batch": {
+  "img": [
+   64,
+   64
+  ],
+  "cap": [
+   12,
+   13
+  ],
+  "all": [
+   96,
+   97
+  ]
+ },
+ "measurement": {
+  "I": "mean pool of final hidden state over image-token positions",
+  "T": "mean pool of final hidden state over caption positions (after last image token, before <|im_end|>)",
+  "normalisation": "L2 per side, NO projection",
+  "DG*": "mean_i ||I_i - T_i||^2",
+  "legacy_dg_star": "the _p47 construction (all-token T, two fixed random 512-d projections), same forward pass"
+ },
+ "elapsed_sec": 176.3
+}
