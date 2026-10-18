@@ -1,0 +1,612 @@
+{
+ "source": "outputs/a1_epoch_sweep.json",
+ "n_trajectories": 10,
+ "rules": {
+  "argmax_tau": "stop at the epoch of maximum tau",
+  "patience2": "stop when tau has fallen for two consecutive epochs",
+  "cusum": "stop when one-sided CUSUM of standardized tau decrements exceeds h",
+  "first_epoch": "stop after epoch 1 (no monitoring)",
+  "last_epoch": "stop at the final epoch (no monitoring)",
+  "oracle": "epoch of maximum measured top-1 (upper bound)"
+ },
+ "cusum": {
+  "kappa": 0.5,
+  "h_median_loo": 6.0,
+  "h_loo_per_trajectory": [
+   6.0,
+   6.0,
+   6.0,
+   6.0,
+   6.0,
+   6.0,
+   6.0,
+   6.0,
+   5.25,
+   6.0
+  ],
+  "in_sample_alarms": 1,
+  "in_sample_false_alarms": 0,
+  "false_alarm_definition": "alarm epoch whose top-1 is within 0.5 point of the trajectory maximum"
+ },
+ "summary": {
+  "oracle": {
+   "mean_top1": 59.489999999999995,
+   "mean_regret": 0.0,
+   "max_regret": 0.0,
+   "mean_epoch": 1.2
+  },
+  "argmax_tau": {
+   "mean_top1": 59.44,
+   "mean_regret": 0.05,
+   "max_regret": 0.46000000000000085,
+   "mean_epoch": 1.0
+  },
+  "patience2": {
+   "mean_top1": 58.796000000000014,
+   "mean_regret": 0.6940000000000005,
+   "max_regret": 1.3799999999999955,
+   "mean_epoch": 2.0
+  },
+  "cusum": {
+   "mean_top1": 59.34599999999999,
+   "mean_regret": 0.14399999999999977,
+   "max_regret": 0.9399999999999977,
+   "mean_epoch": 1.5
+  },
+  "last_epoch": {
+   "mean_top1": 57.141999999999996,
+   "mean_regret": 2.3480000000000003,
+   "max_regret": 4.560000000000002,
+   "mean_epoch": 10.0
+  },
+  "first_epoch": {
+   "mean_top1": 59.44,
+   "mean_regret": 0.05,
+   "max_regret": 0.46000000000000085,
+   "mean_epoch": 1.0
+  }
+ },
+ "rows": [
+  {
+   "trajectory": "coco|seed42",
+   "rule": "oracle",
+   "epoch": 2,
+   "top1": 60.18,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.628941
+  },
+  {
+   "trajectory": "coco|seed42",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 60.14,
+   "regret_vs_oracle": 0.03999999999999915,
+   "lead_vs_oracle_epoch": 1,
+   "tau": 0.688076
+  },
+  {
+   "trajectory": "coco|seed42",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 60.18,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.628941
+  },
+  {
+   "trajectory": "coco|seed42",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 60.14,
+   "regret_vs_oracle": 0.03999999999999915,
+   "lead_vs_oracle_epoch": 1,
+   "tau": 0.688076
+  },
+  {
+   "trajectory": "coco|seed42",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 58.14,
+   "regret_vs_oracle": 2.039999999999999,
+   "lead_vs_oracle_epoch": -8,
+   "tau": 0.575421
+  },
+  {
+   "trajectory": "coco|seed42",
+   "rule": "cusum",
+   "epoch": 1,
+   "top1": 60.14,
+   "regret_vs_oracle": 0.03999999999999915,
+   "lead_vs_oracle_epoch": 1,
+   "tau": 0.688076
+  },
+  {
+   "trajectory": "coco|seed43",
+   "rule": "oracle",
+   "epoch": 1,
+   "top1": 59.52,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.676508
+  },
+  {
+   "trajectory": "coco|seed43",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 59.52,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.676508
+  },
+  {
+   "trajectory": "coco|seed43",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 58.82,
+   "regret_vs_oracle": 0.7000000000000028,
+   "lead_vs_oracle_epoch": -1,
+   "tau": 0.627025
+  },
+  {
+   "trajectory": "coco|seed43",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 59.52,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.676508
+  },
+  {
+   "trajectory": "coco|seed43",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 56.94,
+   "regret_vs_oracle": 2.5800000000000054,
+   "lead_vs_oracle_epoch": -9,
+   "tau": 0.575637
+  },
+  {
+   "trajectory": "coco|seed43",
+   "rule": "cusum",
+   "epoch": 1,
+   "top1": 59.52,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.676508
+  },
+  {
+   "trajectory": "coco|seed44",
+   "rule": "oracle",
+   "epoch": 1,
+   "top1": 60.02,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.666183
+  },
+  {
+   "trajectory": "coco|seed44",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 60.02,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.666183
+  },
+  {
+   "trajectory": "coco|seed44",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 59.32,
+   "regret_vs_oracle": 0.7000000000000028,
+   "lead_vs_oracle_epoch": -1,
+   "tau": 0.631341
+  },
+  {
+   "trajectory": "coco|seed44",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 60.02,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.666183
+  },
+  {
+   "trajectory": "coco|seed44",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 57.54,
+   "regret_vs_oracle": 2.480000000000004,
+   "lead_vs_oracle_epoch": -9,
+   "tau": 0.575879
+  },
+  {
+   "trajectory": "coco|seed44",
+   "rule": "cusum",
+   "epoch": 1,
+   "top1": 60.02,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.666183
+  },
+  {
+   "trajectory": "dtd|seed42",
+   "rule": "oracle",
+   "epoch": 1,
+   "top1": 58.96,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.61801
+  },
+  {
+   "trajectory": "dtd|seed42",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 58.96,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.61801
+  },
+  {
+   "trajectory": "dtd|seed42",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 57.64,
+   "regret_vs_oracle": 1.3200000000000003,
+   "lead_vs_oracle_epoch": -1,
+   "tau": 0.585983
+  },
+  {
+   "trajectory": "dtd|seed42",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 58.96,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.61801
+  },
+  {
+   "trajectory": "dtd|seed42",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 55.42,
+   "regret_vs_oracle": 3.539999999999999,
+   "lead_vs_oracle_epoch": -9,
+   "tau": 0.54021
+  },
+  {
+   "trajectory": "dtd|seed42",
+   "rule": "cusum",
+   "epoch": 1,
+   "top1": 58.96,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.61801
+  },
+  {
+   "trajectory": "dtd|seed43",
+   "rule": "oracle",
+   "epoch": 1,
+   "top1": 59.44,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.622283
+  },
+  {
+   "trajectory": "dtd|seed43",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 59.44,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.622283
+  },
+  {
+   "trajectory": "dtd|seed43",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 58.06,
+   "regret_vs_oracle": 1.3799999999999955,
+   "lead_vs_oracle_epoch": -1,
+   "tau": 0.586234
+  },
+  {
+   "trajectory": "dtd|seed43",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 59.44,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.622283
+  },
+  {
+   "trajectory": "dtd|seed43",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 55.74,
+   "regret_vs_oracle": 3.6999999999999957,
+   "lead_vs_oracle_epoch": -9,
+   "tau": 0.541088
+  },
+  {
+   "trajectory": "dtd|seed43",
+   "rule": "cusum",
+   "epoch": 1,
+   "top1": 59.44,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.622283
+  },
+  {
+   "trajectory": "dtd|seed44",
+   "rule": "oracle",
+   "epoch": 1,
+   "top1": 58.06,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.590752
+  },
+  {
+   "trajectory": "dtd|seed44",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 58.06,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.590752
+  },
+  {
+   "trajectory": "dtd|seed44",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 56.8,
+   "regret_vs_oracle": 1.2600000000000051,
+   "lead_vs_oracle_epoch": -1,
+   "tau": 0.560259
+  },
+  {
+   "trajectory": "dtd|seed44",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 58.06,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.590752
+  },
+  {
+   "trajectory": "dtd|seed44",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 53.5,
+   "regret_vs_oracle": 4.560000000000002,
+   "lead_vs_oracle_epoch": -9,
+   "tau": 0.514936
+  },
+  {
+   "trajectory": "dtd|seed44",
+   "rule": "cusum",
+   "epoch": 1,
+   "top1": 58.06,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.590752
+  },
+  {
+   "trajectory": "food101|seed42",
+   "rule": "oracle",
+   "epoch": 2,
+   "top1": 59.42,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.617872
+  },
+  {
+   "trajectory": "food101|seed42",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 58.96,
+   "regret_vs_oracle": 0.46000000000000085,
+   "lead_vs_oracle_epoch": 1,
+   "tau": 0.633281
+  },
+  {
+   "trajectory": "food101|seed42",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 59.42,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.617872
+  },
+  {
+   "trajectory": "food101|seed42",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 58.96,
+   "regret_vs_oracle": 0.46000000000000085,
+   "lead_vs_oracle_epoch": 1,
+   "tau": 0.633281
+  },
+  {
+   "trajectory": "food101|seed42",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 58.22,
+   "regret_vs_oracle": 1.2000000000000028,
+   "lead_vs_oracle_epoch": -8,
+   "tau": 0.593561
+  },
+  {
+   "trajectory": "food101|seed42",
+   "rule": "cusum",
+   "epoch": 1,
+   "top1": 58.96,
+   "regret_vs_oracle": 0.46000000000000085,
+   "lead_vs_oracle_epoch": 1,
+   "tau": 0.633281
+  },
+  {
+   "trajectory": "food101|seed43",
+   "rule": "oracle",
+   "epoch": 1,
+   "top1": 60.72,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.643763
+  },
+  {
+   "trajectory": "food101|seed43",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 60.72,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.643763
+  },
+  {
+   "trajectory": "food101|seed43",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 60.32,
+   "regret_vs_oracle": 0.3999999999999986,
+   "lead_vs_oracle_epoch": -1,
+   "tau": 0.626423
+  },
+  {
+   "trajectory": "food101|seed43",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 60.72,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.643763
+  },
+  {
+   "trajectory": "food101|seed43",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 59.78,
+   "regret_vs_oracle": 0.9399999999999977,
+   "lead_vs_oracle_epoch": -9,
+   "tau": 0.580972
+  },
+  {
+   "trajectory": "food101|seed43",
+   "rule": "cusum",
+   "epoch": 6,
+   "top1": 59.78,
+   "regret_vs_oracle": 0.9399999999999977,
+   "lead_vs_oracle_epoch": -5,
+   "tau": 0.580152
+  },
+  {
+   "trajectory": "food101|seed44",
+   "rule": "oracle",
+   "epoch": 1,
+   "top1": 59.3,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.604801
+  },
+  {
+   "trajectory": "food101|seed44",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 59.3,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.604801
+  },
+  {
+   "trajectory": "food101|seed44",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 58.58,
+   "regret_vs_oracle": 0.7199999999999989,
+   "lead_vs_oracle_epoch": -1,
+   "tau": 0.586672
+  },
+  {
+   "trajectory": "food101|seed44",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 59.3,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.604801
+  },
+  {
+   "trajectory": "food101|seed44",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 58.34,
+   "regret_vs_oracle": 0.9599999999999937,
+   "lead_vs_oracle_epoch": -9,
+   "tau": 0.564434
+  },
+  {
+   "trajectory": "food101|seed44",
+   "rule": "cusum",
+   "epoch": 1,
+   "top1": 59.3,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.604801
+  },
+  {
+   "trajectory": "flickr30k_ref|seed42",
+   "rule": "oracle",
+   "epoch": 1,
+   "top1": 59.28,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.702257
+  },
+  {
+   "trajectory": "flickr30k_ref|seed42",
+   "rule": "argmax_tau",
+   "epoch": 1,
+   "top1": 59.28,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.702257
+  },
+  {
+   "trajectory": "flickr30k_ref|seed42",
+   "rule": "patience2",
+   "epoch": 2,
+   "top1": 58.82,
+   "regret_vs_oracle": 0.46000000000000085,
+   "lead_vs_oracle_epoch": -1,
+   "tau": 0.663494
+  },
+  {
+   "trajectory": "flickr30k_ref|seed42",
+   "rule": "first_epoch",
+   "epoch": 1,
+   "top1": 59.28,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.702257
+  },
+  {
+   "trajectory": "flickr30k_ref|seed42",
+   "rule": "last_epoch",
+   "epoch": 10,
+   "top1": 57.8,
+   "regret_vs_oracle": 1.480000000000004,
+   "lead_vs_oracle_epoch": -9,
+   "tau": 0.613117
+  },
+  {
+   "trajectory": "flickr30k_ref|seed42",
+   "rule": "cusum",
+   "epoch": 1,
+   "top1": 59.28,
+   "regret_vs_oracle": 0.0,
+   "lead_vs_oracle_epoch": 0,
+   "tau": 0.702257
+  }
+ ],
+ "caveat": "ten trajectories from one training family; top-1 is measured on a fixed 5,000-image holdout, so the regret-optimal epoch is known only post hoc"
+}

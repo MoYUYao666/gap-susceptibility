@@ -1,0 +1,1106 @@
+{
+ "manuscript": "paper_a1",
+ "claims": [
+  {
+   "claim": "frozen CG",
+   "manuscript": 0.855,
+   "computed": 0.855496,
+   "source": "a1_matched_gap_families.json:frozen.CG",
+   "pass": true
+  },
+  {
+   "claim": "frozen top-1",
+   "manuscript": 59.1,
+   "computed": 59.1,
+   "source": "...:frozen.top1",
+   "pass": true
+  },
+  {
+   "claim": "matched-gap spread (tol 0.03)",
+   "manuscript": 32.7,
+   "computed": 32.68,
+   "source": "...:max_matched_gap_spread_tol003.spread",
+   "pass": true
+  },
+  {
+   "claim": "matched-gap dCG",
+   "manuscript": 0.028,
+   "computed": 0.02825,
+   "source": "...:max_matched_gap_spread_tol003.dCG",
+   "pass": true
+  },
+  {
+   "claim": "matched pair a CG (T 0.5)",
+   "manuscript": 0.426,
+   "computed": 0.425781,
+   "source": "...:tol003.a.CG",
+   "pass": true
+  },
+  {
+   "claim": "matched pair a top-1",
+   "manuscript": 46.8,
+   "computed": 46.76,
+   "source": "...:tol003.a.top1",
+   "pass": true
+  },
+  {
+   "claim": "matched pair b CG (T 2)",
+   "manuscript": 0.398,
+   "computed": 0.397531,
+   "source": "...:tol003.b.CG",
+   "pass": true
+  },
+  {
+   "claim": "matched pair b top-1",
+   "manuscript": 14.1,
+   "computed": 14.08,
+   "source": "...:tol003.b.top1",
+   "pass": true
+  },
+  {
+   "claim": "matched-gap spread (tol 0.05)",
+   "manuscript": 52.1,
+   "computed": 52.14,
+   "source": "...:max_matched_gap_spread_tol005.spread",
+   "pass": true
+  },
+  {
+   "claim": "OpenCLIP frozen CG",
+   "manuscript": 0.791,
+   "computed": 0.790637,
+   "source": "...crossmodel:openclip.frozen.CG",
+   "pass": true
+  },
+  {
+   "claim": "OpenCLIP frozen top-1",
+   "manuscript": 62.4,
+   "computed": 62.36,
+   "source": "...:openclip.frozen.top1",
+   "pass": true
+  },
+  {
+   "claim": "SigLIP frozen CG",
+   "manuscript": 1.116,
+   "computed": 1.115528,
+   "source": "...:siglip.frozen.CG",
+   "pass": true
+  },
+  {
+   "claim": "SigLIP frozen top-1",
+   "manuscript": 73.3,
+   "computed": 73.34,
+   "source": "...:siglip.frozen.top1",
+   "pass": true
+  },
+  {
+   "claim": "OpenCLIP matched pair dCG",
+   "manuscript": 0.066,
+   "computed": 0.06558,
+   "source": "...:openclip T 0.5 - T 2 CG",
+   "pass": true
+  },
+  {
+   "claim": "OpenCLIP matched pair spread",
+   "manuscript": 27.1,
+   "computed": 27.08,
+   "source": "...:openclip T top-1 gap",
+   "pass": true
+  },
+  {
+   "claim": "SigLIP matched pair dCG",
+   "manuscript": 0.197,
+   "computed": 0.196885,
+   "source": "...:siglip T 0.5 - T 2 CG",
+   "pass": true
+  },
+  {
+   "claim": "SigLIP matched pair spread",
+   "manuscript": 27.1,
+   "computed": 27.12,
+   "source": "...:siglip T top-1 gap",
+   "pass": true
+  },
+  {
+   "claim": "CLIP contraction gain",
+   "manuscript": 19.0,
+   "computed": 18.98,
+   "source": "...families:P 0.5 - frozen",
+   "pass": true
+  },
+  {
+   "claim": "OpenCLIP contraction gain",
+   "manuscript": 19.4,
+   "computed": 19.4,
+   "source": "...:openclip P 0.5 - frozen",
+   "pass": true
+  },
+  {
+   "claim": "SigLIP contraction gain",
+   "manuscript": 15.0,
+   "computed": 15.0,
+   "source": "...:siglip P 0.5 - frozen",
+   "pass": true
+  },
+  {
+   "claim": "random directions",
+   "manuscript": 200,
+   "computed": 200.0,
+   "source": "...random_direction:summary.n_directions",
+   "pass": true
+  },
+  {
+   "claim": "random CG matched mean",
+   "manuscript": 0.858,
+   "computed": 0.858402,
+   "source": "...:summary.CG_matched.mean",
+   "pass": true
+  },
+  {
+   "claim": "random top-1 range",
+   "manuscript": 2.5,
+   "computed": 2.48,
+   "source": "...:summary.top1.range",
+   "pass": true
+  },
+  {
+   "claim": "random tau min",
+   "manuscript": 0.7,
+   "computed": 0.702745,
+   "source": "...:summary.tau.min",
+   "pass": true
+  },
+  {
+   "claim": "random tau max",
+   "manuscript": 0.9,
+   "computed": 0.900601,
+   "source": "...:summary.tau.max",
+   "pass": true
+  },
+  {
+   "claim": "random tau-top1 correlation",
+   "manuscript": 0.6,
+   "computed": 0.600031,
+   "source": "...:summary.corr_tau_top1",
+   "pass": true
+  },
+  {
+   "claim": "DTD frozen CG",
+   "manuscript": 1.018,
+   "computed": 1.018452,
+   "source": "...second_dataset:dtd.frozen.CG",
+   "pass": true
+  },
+  {
+   "claim": "DTD frozen top-1",
+   "manuscript": 41.6,
+   "computed": 41.62,
+   "source": "...:dtd.frozen.top1",
+   "pass": true
+  },
+  {
+   "claim": "DTD matched spread (0.03)",
+   "manuscript": 10.1,
+   "computed": 10.1,
+   "source": "...:dtd tol003",
+   "pass": true
+  },
+  {
+   "claim": "DTD matched spread (0.05)",
+   "manuscript": 15.1,
+   "computed": 15.14,
+   "source": "...:dtd tol005",
+   "pass": true
+  },
+  {
+   "claim": "Food-101 frozen CG",
+   "manuscript": 0.953,
+   "computed": 0.952839,
+   "source": "...:food101.frozen.CG",
+   "pass": true
+  },
+  {
+   "claim": "Food-101 frozen top-1",
+   "manuscript": 80.6,
+   "computed": 80.64,
+   "source": "...:food101.frozen.top1",
+   "pass": true
+  },
+  {
+   "claim": "Food-101 matched spread (0.03)",
+   "manuscript": 12.1,
+   "computed": 12.14,
+   "source": "...:food101 tol003",
+   "pass": true
+  },
+  {
+   "claim": "Food-101 matched spread (0.05)",
+   "manuscript": 42.1,
+   "computed": 42.08,
+   "source": "...:food101 tol005",
+   "pass": true
+  },
+  {
+   "claim": "Food-101 widest pair dCG",
+   "manuscript": 0.034,
+   "computed": 0.034231,
+   "source": "...:food101 tol005 dCG",
+   "pass": true
+  },
+  {
+   "claim": "flagship spread (recomputed)",
+   "manuscript": 32.7,
+   "computed": 32.68,
+   "source": "...more_benchmarks:imagenet5k.spread",
+   "pass": true
+  },
+  {
+   "claim": "flagship CI lower",
+   "manuscript": 31.3,
+   "computed": 31.34,
+   "source": "...:imagenet5k.ci95[0]",
+   "pass": true
+  },
+  {
+   "claim": "flagship CI upper",
+   "manuscript": 33.9,
+   "computed": 33.88,
+   "source": "...:imagenet5k.ci95[1]",
+   "pass": true
+  },
+  {
+   "claim": "contraction gain (imagenet)",
+   "manuscript": 19.0,
+   "computed": 18.98,
+   "source": "...:imagenet5k.contraction.top1_gain",
+   "pass": true
+  },
+  {
+   "claim": "iNat images",
+   "manuscript": 720,
+   "computed": 720.0,
+   "source": "...:inat_wild.n_images",
+   "pass": true
+  },
+  {
+   "claim": "iNat classes",
+   "manuscript": 50,
+   "computed": 50.0,
+   "source": "...:inat_wild.n_classes",
+   "pass": true
+  },
+  {
+   "claim": "iNat frozen top-1",
+   "manuscript": 10.6,
+   "computed": 10.555556,
+   "source": "...:inat_wild.frozen.top1",
+   "pass": true
+  },
+  {
+   "claim": "iNat matched spread",
+   "manuscript": 2.6,
+   "computed": 2.638889,
+   "source": "...:inat_wild.spread",
+   "pass": true
+  },
+  {
+   "claim": "iNat contraction gain",
+   "manuscript": 3.2,
+   "computed": 3.194444,
+   "source": "...:inat_wild.contraction",
+   "pass": true
+  },
+  {
+   "claim": "rare-species classes",
+   "manuscript": 398,
+   "computed": 398.0,
+   "source": "...:rare_species.n_classes",
+   "pass": true
+  },
+  {
+   "claim": "rare-species frozen top-1",
+   "manuscript": 26.9,
+   "computed": 26.94,
+   "source": "...:rare_species.frozen.top1",
+   "pass": true
+  },
+  {
+   "claim": "rare-species matched spread",
+   "manuscript": 21.0,
+   "computed": 21.0,
+   "source": "...:rare_species.spread",
+   "pass": true
+  },
+  {
+   "claim": "rare-species contraction gain",
+   "manuscript": 9.9,
+   "computed": 9.9,
+   "source": "...:rare_species.contraction",
+   "pass": true
+  },
+  {
+   "claim": "prompt CG spread (max, OpenCLIP)",
+   "manuscript": 0.094,
+   "computed": 0.093968,
+   "source": "...prompt_template_gap:openclip.cg_spread",
+   "pass": true
+  },
+  {
+   "claim": "prompt CG spread (SigLIP)",
+   "manuscript": 0.025,
+   "computed": 0.024578,
+   "source": "...:siglip.cg_spread",
+   "pass": true
+  },
+  {
+   "claim": "prompt top-1 range (max)",
+   "manuscript": 4.9,
+   "computed": 4.88,
+   "source": "...:max top1 range across backbones",
+   "pass": true
+  },
+  {
+   "claim": "prompt/tolerance ratio",
+   "manuscript": 3.4,
+   "computed": 3.356005,
+   "source": "...:openclip.cg_spread / 0.028",
+   "pass": true
+  },
+  {
+   "claim": "mean eta (tau5 - tau10)",
+   "manuscript": 0.04,
+   "computed": 0.040129,
+   "source": "...a1_tau_k.json:summary.mean_gain (negated)",
+   "pass": true
+  },
+  {
+   "claim": "minimum template rank correlation",
+   "manuscript": 0.95,
+   "computed": 0.95,
+   "source": "...:summary.min_spearman",
+   "pass": true
+  },
+  {
+   "claim": "frozen CG ratio",
+   "manuscript": 1.41,
+   "computed": 1.410923,
+   "source": "...threshold_transfer:summary.frozen_CG_ratio",
+   "pass": true
+  },
+  {
+   "claim": "SigLIP frozen CG (thresholds)",
+   "manuscript": 1.116,
+   "computed": 1.115528,
+   "source": "...:settings.siglip.CG",
+   "pass": true
+  },
+  {
+   "claim": "SigLIP frozen top-1 (thresholds)",
+   "manuscript": 73.3,
+   "computed": 73.34,
+   "source": "...:settings.siglip.top1",
+   "pass": true
+  },
+  {
+   "claim": "CLIP frozen CG (thresholds)",
+   "manuscript": 0.855,
+   "computed": 0.855496,
+   "source": "...:settings.clip.CG",
+   "pass": true
+  },
+  {
+   "claim": "CLIP frozen top-1 (thresholds)",
+   "manuscript": 59.1,
+   "computed": 59.1,
+   "source": "...:settings.clip.top1",
+   "pass": true
+  },
+  {
+   "claim": "transfer BA median",
+   "manuscript": 0.458,
+   "computed": 0.458333,
+   "source": "...:summary.transfer BA median",
+   "pass": true
+  },
+  {
+   "claim": "transfers below chance",
+   "manuscript": 10,
+   "computed": 10.0,
+   "source": "...:count BA < 0.5",
+   "pass": true
+  },
+  {
+   "claim": "worst transfer BA",
+   "manuscript": 0.188,
+   "computed": 0.1875,
+   "source": "...:min BA",
+   "pass": true
+  },
+  {
+   "claim": "oracle mean top-1",
+   "manuscript": 59.49,
+   "computed": 59.49,
+   "source": "...monitor_protocol:summary.oracle.mean_top1",
+   "pass": true
+  },
+  {
+   "claim": "tau-max mean regret",
+   "manuscript": 0.05,
+   "computed": 0.05,
+   "source": "...:summary.argmax_tau.mean_regret",
+   "pass": true
+  },
+  {
+   "claim": "last-epoch mean regret",
+   "manuscript": 2.35,
+   "computed": 2.348,
+   "source": "...:summary.last_epoch.mean_regret",
+   "pass": true
+  },
+  {
+   "claim": "CUSUM mean regret",
+   "manuscript": 0.14,
+   "computed": 0.144,
+   "source": "...:summary.cusum.mean_regret",
+   "pass": true
+  },
+  {
+   "claim": "CUSUM threshold h",
+   "manuscript": 6.0,
+   "computed": 6.0,
+   "source": "...:cusum.h_median_loo",
+   "pass": true
+  },
+  {
+   "claim": "tau-max regret CI lower",
+   "manuscript": 0.0,
+   "computed": 0.0,
+   "source": "...monitor_uncertainty:argmax_tau.ci95[0]",
+   "pass": true
+  },
+  {
+   "claim": "tau-max regret CI upper",
+   "manuscript": 0.14,
+   "computed": 0.142,
+   "source": "...:argmax_tau.ci95[1]",
+   "pass": true
+  },
+  {
+   "claim": "last-epoch regret CI lower",
+   "manuscript": 1.65,
+   "computed": 1.65,
+   "source": "...:last_epoch.ci95[0]",
+   "pass": true
+  },
+  {
+   "claim": "tau-max advantage",
+   "manuscript": 2.3,
+   "computed": 2.298,
+   "source": "...:tau_max_advantage.mean",
+   "pass": true
+  },
+  {
+   "claim": "tau-max advantage CI lower",
+   "manuscript": 1.56,
+   "computed": 1.564,
+   "source": "...:advantage.ci95[0]",
+   "pass": true
+  },
+  {
+   "claim": "tau-max advantage CI upper",
+   "manuscript": 3.09,
+   "computed": 3.08805,
+   "source": "...:advantage.ci95[1]",
+   "pass": true
+  },
+  {
+   "claim": "retrieval pairs",
+   "manuscript": 536,
+   "computed": 536.0,
+   "source": "...a1_retrieval_evidence:n_pairs",
+   "pass": true
+  },
+  {
+   "claim": "retrieval matched dCG",
+   "manuscript": 0.016,
+   "computed": 0.016188,
+   "source": "...:widest_matched_pair_tol003.dCG",
+   "pass": true
+  },
+  {
+   "claim": "retrieval R@1 low",
+   "manuscript": 8.96,
+   "computed": 8.955224,
+   "source": "...:tol003.a.R1",
+   "pass": true
+  },
+  {
+   "claim": "retrieval R@1 high",
+   "manuscript": 70.71,
+   "computed": 70.708955,
+   "source": "...:tol003.b.R1",
+   "pass": true
+  },
+  {
+   "claim": "retrieval R@1 spread",
+   "manuscript": 61.8,
+   "computed": 61.753731,
+   "source": "...:tol003.spread",
+   "pass": true
+  },
+  {
+   "claim": "retrieval tau-R@1 correlation",
+   "manuscript": -0.17,
+   "computed": -0.165653,
+   "source": "...:correlation.tau_vs_R1",
+   "pass": true
+  },
+  {
+   "claim": "retrieval CG-R@1 correlation",
+   "manuscript": -0.23,
+   "computed": -0.233551,
+   "source": "...:correlation.CG_vs_R1",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/16 matched spread",
+   "manuscript": 35.5,
+   "computed": 35.52,
+   "source": "...matched_gap_morebackbones:clip16.spread",
+   "pass": true
+  },
+  {
+   "claim": "CLIP L/14 matched spread",
+   "manuscript": 39.6,
+   "computed": 39.6,
+   "source": "...:vitl.spread",
+   "pass": true
+  },
+  {
+   "claim": "CLIP B/16 frozen top-1",
+   "manuscript": 64.1,
+   "computed": 64.1,
+   "source": "...:clip16.frozen.top1",
+   "pass": true
+  },
+  {
+   "claim": "CLIP L/14 frozen top-1",
+   "manuscript": 70.5,
+   "computed": 70.5,
+   "source": "...:vitl.frozen.top1",
+   "pass": true
+  },
+  {
+   "claim": "DTD spread CI lower (abs)",
+   "manuscript": 8.1,
+   "computed": 8.1485,
+   "source": "...more_benchmarks:dtd.ci95 abs lower",
+   "pass": true
+  },
+  {
+   "claim": "DTD spread CI upper (abs)",
+   "manuscript": 12.0,
+   "computed": 11.9925,
+   "source": "...:dtd.ci95 abs upper",
+   "pass": true
+  },
+  {
+   "claim": "Food-101 spread CI lower (abs)",
+   "manuscript": 10.7,
+   "computed": 10.7495,
+   "source": "...:food101.ci95 abs lower",
+   "pass": true
+  },
+  {
+   "claim": "Food-101 spread CI upper (abs)",
+   "manuscript": 13.3,
+   "computed": 13.2905,
+   "source": "...:food101.ci95 abs upper",
+   "pass": true
+  },
+  {
+   "claim": "DTD contraction gain",
+   "manuscript": 17.8,
+   "computed": 17.8,
+   "source": "...:dtd.contraction",
+   "pass": true
+  },
+  {
+   "claim": "Food-101 contraction gain",
+   "manuscript": 18.2,
+   "computed": 18.16,
+   "source": "...:food101.contraction",
+   "pass": true
+  },
+  {
+   "claim": "dense spread CLIP B/32",
+   "manuscript": 50.6,
+   "computed": 50.62,
+   "source": "...a1_matched_gap_dense:clip32",
+   "pass": true
+  },
+  {
+   "claim": "dense spread CLIP B/16",
+   "manuscript": 54.4,
+   "computed": 54.4,
+   "source": "...:clip16",
+   "pass": true
+  },
+  {
+   "claim": "dense spread OpenCLIP",
+   "manuscript": 48.0,
+   "computed": 47.98,
+   "source": "...:openclip",
+   "pass": true
+  },
+  {
+   "claim": "dense spread SigLIP",
+   "manuscript": 7.7,
+   "computed": 7.74,
+   "source": "...:siglip",
+   "pass": true
+  },
+  {
+   "claim": "dense spread CLIP L/14",
+   "manuscript": 62.0,
+   "computed": 61.98,
+   "source": "...:vitl",
+   "pass": true
+  },
+  {
+   "claim": "real checkpoint pairs",
+   "manuscript": 31,
+   "computed": 31.0,
+   "source": "...a1_real_checkpoint_pairs:pairs",
+   "pass": true
+  },
+  {
+   "claim": "widest real pair spread",
+   "manuscript": 6.6,
+   "computed": 6.64,
+   "source": "...:pairs[0].dtop1",
+   "pass": true
+  },
+  {
+   "claim": "widest real pair dCG",
+   "manuscript": 0.002,
+   "computed": 0.002438,
+   "source": "...:pairs[0].dCG",
+   "pass": true
+  },
+  {
+   "claim": "DTD within-dataset spread",
+   "manuscript": 2.2,
+   "computed": 2.24,
+   "source": "...:within_dataset.dtd",
+   "pass": true
+  },
+  {
+   "claim": "DTD within-dataset dCG",
+   "manuscript": 0.001,
+   "computed": 0.001314,
+   "source": "...:within_dataset.dtd dCG",
+   "pass": true
+  },
+  {
+   "claim": "class-spread constant L",
+   "manuscript": 1.013,
+   "computed": 1.01266,
+   "source": "...a1_lower_bound_constants:L",
+   "pass": true
+  },
+  {
+   "claim": "margin mass at eps=0.01",
+   "manuscript": 0.681,
+   "computed": 0.681,
+   "source": "...a1_margin_mass:frozen.mass_eps_0.01",
+   "pass": true
+  },
+  {
+   "claim": "margin mass at eps=0.02",
+   "manuscript": 0.875,
+   "computed": 0.8748,
+   "source": "...:frozen.mass_eps_0.02",
+   "pass": true
+  },
+  {
+   "claim": "mass(0.01) vs top-1 correlation",
+   "manuscript": -0.996,
+   "computed": -0.995575,
+   "source": "...:correlation_with_top1.mass_eps_0.01",
+   "pass": true
+  },
+  {
+   "claim": "CG vs top-1 correlation (same pool)",
+   "manuscript": -0.154,
+   "computed": -0.154116,
+   "source": "...:correlation_with_top1.CG",
+   "pass": true
+  },
+  {
+   "claim": "showdown CG classification r",
+   "manuscript": -0.154,
+   "computed": -0.154116,
+   "source": "...a1_statistic_showdown:cls.CG",
+   "pass": true
+  },
+  {
+   "claim": "showdown CG retrieval r",
+   "manuscript": -0.223,
+   "computed": -0.222853,
+   "source": "...:ret.CG",
+   "pass": true
+  },
+  {
+   "claim": "showdown tau classification r",
+   "manuscript": 0.832,
+   "computed": 0.832035,
+   "source": "...:cls.tau5",
+   "pass": true
+  },
+  {
+   "claim": "showdown tau retrieval r",
+   "manuscript": -0.143,
+   "computed": -0.142745,
+   "source": "...:ret.tau5",
+   "pass": true
+  },
+  {
+   "claim": "showdown M(0.01) classification r",
+   "manuscript": -0.996,
+   "computed": -0.995575,
+   "source": "...:cls.mass_0.01",
+   "pass": true
+  },
+  {
+   "claim": "showdown M(0.01) retrieval r",
+   "manuscript": -0.97,
+   "computed": -0.969944,
+   "source": "...:ret.mass_0.01",
+   "pass": true
+  },
+  {
+   "claim": "showdown M(0.02) classification r",
+   "manuscript": -0.988,
+   "computed": -0.987683,
+   "source": "...:cls.mass_0.02",
+   "pass": true
+  },
+  {
+   "claim": "showdown M(0.02) retrieval r",
+   "manuscript": -0.921,
+   "computed": -0.920547,
+   "source": "...:ret.mass_0.02",
+   "pass": true
+  },
+  {
+   "claim": "half-sample spread first",
+   "manuscript": 32.7,
+   "computed": 32.72,
+   "source": "...a1_robustness:half_sample.first",
+   "pass": true
+  },
+  {
+   "claim": "half-sample spread second",
+   "manuscript": 32.6,
+   "computed": 32.64,
+   "source": "...:half_sample.second",
+   "pass": true
+  },
+  {
+   "claim": "real pair difference",
+   "manuscript": 6.64,
+   "computed": 6.64,
+   "source": "...:real_pair_binomial.difference",
+   "pass": true
+  },
+  {
+   "claim": "real pair standard error",
+   "manuscript": 0.99,
+   "computed": 0.988426,
+   "source": "...:real_pair_binomial.se",
+   "pass": true
+  },
+  {
+   "claim": "real pair CI lower",
+   "manuscript": 4.7,
+   "computed": 4.702685,
+   "source": "...:real_pair_binomial.ci95[0]",
+   "pass": true
+  },
+  {
+   "claim": "real pair CI upper",
+   "manuscript": 8.58,
+   "computed": 8.577315,
+   "source": "...:real_pair_binomial.ci95[1]",
+   "pass": true
+  },
+  {
+   "claim": "real pair z",
+   "manuscript": 6.7,
+   "computed": 6.717751,
+   "source": "...:real_pair_binomial.z",
+   "pass": true
+  },
+  {
+   "claim": "Williams CG vs M classification t",
+   "manuscript": 7.2,
+   "computed": 7.176214,
+   "source": "...a1_williams_tests:classification.CG vs M(0.01).t",
+   "pass": true
+  },
+  {
+   "claim": "Williams CG vs M classification p",
+   "manuscript": 4.7e-06,
+   "computed": 5e-06,
+   "source": "...:classification.CG vs M(0.01).p",
+   "pass": true
+  },
+  {
+   "claim": "Williams CG vs M retrieval t",
+   "manuscript": 6.1,
+   "computed": 6.122116,
+   "source": "...:retrieval.CG vs M(0.01).t",
+   "pass": true
+  },
+  {
+   "claim": "Williams CG vs M retrieval p",
+   "manuscript": 2.6e-05,
+   "computed": 2.6e-05,
+   "source": "...:retrieval.CG vs M(0.01).p",
+   "pass": true
+  },
+  {
+   "claim": "Williams CG vs tau classification p",
+   "manuscript": 7.2e-05,
+   "computed": 7.2e-05,
+   "source": "...:classification.CG vs tau.p",
+   "pass": true
+  },
+  {
+   "claim": "Williams CG vs tau retrieval p",
+   "manuscript": 0.75,
+   "computed": 0.75046,
+   "source": "...:retrieval.CG vs tau.p",
+   "pass": true
+  },
+  {
+   "claim": "selection oracle top-1 (synthetic)",
+   "manuscript": 78.1,
+   "computed": 78.08,
+   "source": "...a1_selection_rule:synthetic_configs.oracle_top1",
+   "pass": true
+  },
+  {
+   "claim": "min-CG regret (synthetic)",
+   "manuscript": 44.4,
+   "computed": 44.4,
+   "source": "...:synthetic_configs.rules.min_CG.regret",
+   "pass": true
+  },
+  {
+   "claim": "min-M regret (synthetic)",
+   "manuscript": 0.0,
+   "computed": 0.0,
+   "source": "...:synthetic_configs.rules.min_M(0.01).regret",
+   "pass": true
+  },
+  {
+   "claim": "template regret min-M CLIP B/32",
+   "manuscript": 1.7,
+   "computed": 1.74,
+   "source": "...:templates.clip32.rules.min_mass_0.01.regret",
+   "pass": true
+  },
+  {
+   "claim": "template regret default CLIP B/32",
+   "manuscript": 1.0,
+   "computed": 1.04,
+   "source": "...:templates.clip32.rules.default_template.regret",
+   "pass": true
+  },
+  {
+   "claim": "template rho CLIP B/32",
+   "manuscript": -0.71,
+   "computed": -0.709091,
+   "source": "...:templates.clip32.rho",
+   "pass": true
+  },
+  {
+   "claim": "campaign runs",
+   "manuscript": 18,
+   "computed": 18.0,
+   "source": "...a1_campaign_analysis:n_runs",
+   "pass": true
+  },
+  {
+   "claim": "campaign checkpoints",
+   "manuscript": 72,
+   "computed": 72.0,
+   "source": "...:n_checkpoints",
+   "pass": true
+  },
+  {
+   "claim": "campaign pairs at 0.03",
+   "manuscript": 670,
+   "computed": 670.0,
+   "source": "...:pairs.n_pairs_at_tol.0.03",
+   "pass": true
+  },
+  {
+   "claim": "campaign pairs at 0.01",
+   "manuscript": 254,
+   "computed": 254.0,
+   "source": "...:pairs.n_pairs_at_tol.0.01",
+   "pass": true
+  },
+  {
+   "claim": "campaign widest pair spread",
+   "manuscript": 48.5,
+   "computed": 48.5,
+   "source": "...:widest.all.dtop1",
+   "pass": true
+  },
+  {
+   "claim": "campaign widest pair dCG",
+   "manuscript": 0.0242,
+   "computed": 0.024188,
+   "source": "...:widest.all.dCG",
+   "pass": true
+  },
+  {
+   "claim": "campaign widest pair CI low",
+   "manuscript": -47.0,
+   "computed": -50.0,
+   "source": "...:widest.all.ci95[0]",
+   "pass": true
+  },
+  {
+   "claim": "campaign widest pair CI high",
+   "manuscript": -50.0,
+   "computed": -47.0195,
+   "source": "...:widest.all.ci95[1]",
+   "pass": true
+  },
+  {
+   "claim": "campaign within-run spread",
+   "manuscript": 19.6,
+   "computed": 19.6,
+   "source": "...:widest.within.dtop1",
+   "pass": true
+  },
+  {
+   "claim": "campaign within-run dCG",
+   "manuscript": 0.0125,
+   "computed": 0.012547,
+   "source": "...:widest.within.dCG",
+   "pass": true
+  },
+  {
+   "claim": "campaign correlate CG",
+   "manuscript": 0.577,
+   "computed": 0.576696,
+   "source": "...:correlation.CG",
+   "pass": true
+  },
+  {
+   "claim": "campaign correlate tau",
+   "manuscript": 0.987,
+   "computed": 0.986727,
+   "source": "...:correlation.tau5",
+   "pass": true
+  },
+  {
+   "claim": "campaign correlate M(0.01)",
+   "manuscript": -0.987,
+   "computed": -0.986519,
+   "source": "...:correlation.M(0.01)",
+   "pass": true
+  },
+  {
+   "claim": "campaign correlate M(0.02)",
+   "manuscript": -0.908,
+   "computed": -0.908331,
+   "source": "...:correlation.M(0.02)",
+   "pass": true
+  },
+  {
+   "claim": "campaign min-M regret",
+   "manuscript": 0.06,
+   "computed": 0.061111,
+   "source": "...:selection.summary.min_M(0.01)",
+   "pass": true
+  },
+  {
+   "claim": "campaign tau regret",
+   "manuscript": 0.0,
+   "computed": 0.0,
+   "source": "...:selection.summary.max_tau5",
+   "pass": true
+  },
+  {
+   "claim": "campaign min-CG regret",
+   "manuscript": 5.65,
+   "computed": 5.646667,
+   "source": "...:selection.summary.min_CG",
+   "pass": true
+  },
+  {
+   "claim": "campaign last-epoch regret",
+   "manuscript": 13.8,
+   "computed": 13.801111,
+   "source": "...:selection.summary.last_epoch",
+   "pass": true
+  },
+  {
+   "claim": "epoch-sweep mean Pearson",
+   "manuscript": 0.93,
+   "computed": 0.933131,
+   "source": "a1_epoch_sweep.json: mean per-trajectory Pearson",
+   "pass": true
+  },
+  {
+   "claim": "boundary k min",
+   "manuscript": 0.36,
+   "computed": 0.36,
+   "source": "...crossbenchmark:k_best_this_benchmark min",
+   "pass": true
+  },
+  {
+   "claim": "boundary k max",
+   "manuscript": 0.98,
+   "computed": 0.98,
+   "source": "...:k_best_this_benchmark max",
+   "pass": true
+  },
+  {
+   "claim": "boundary MAE min",
+   "manuscript": 0.079,
+   "computed": 0.078928,
+   "source": "...:mae_k055 min",
+   "pass": true
+  },
+  {
+   "claim": "boundary MAE max",
+   "manuscript": 0.12,
+   "computed": 0.119854,
+   "source": "...:mae_k055 max",
+   "pass": true
+  },
+  {
+   "claim": "abstract words (audit counter)",
+   "manuscript": 243,
+   "computed": 249.0,
+   "source": "paper_a1/main.tex abstract, texutil.count_words",
+   "pass": true
+  },
+  {
+   "claim": "keywords",
+   "manuscript": 5,
+   "computed": 5.0,
+   "source": "paper_a1/main.tex keyword env",
+   "pass": true
+  }
+ ],
+ "pass": 157,
+ "fail": 0
+}
