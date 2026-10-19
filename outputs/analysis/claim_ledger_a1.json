@@ -1052,6 +1052,160 @@
    "pass": true
   },
   {
+   "claim": "template M(0.01) spread min",
+   "manuscript": 0.032,
+   "computed": 0.0324,
+   "source": "...a1_margin_templates",
+   "pass": true
+  },
+  {
+   "claim": "template M(0.01) spread max",
+   "manuscript": 0.047,
+   "computed": 0.0466,
+   "source": "...a1_margin_templates",
+   "pass": true
+  },
+  {
+   "claim": "template CG spread min",
+   "manuscript": 0.025,
+   "computed": 0.024578,
+   "source": "...a1_margin_templates",
+   "pass": true
+  },
+  {
+   "claim": "template CG spread max",
+   "manuscript": 0.094,
+   "computed": 0.093968,
+   "source": "...a1_margin_templates",
+   "pass": true
+  },
+  {
+   "claim": "template r(M,top1) min",
+   "manuscript": -0.91,
+   "computed": -0.908923,
+   "source": "...a1_margin_templates",
+   "pass": true
+  },
+  {
+   "claim": "template r(M,top1) max",
+   "manuscript": -0.84,
+   "computed": -0.836236,
+   "source": "...a1_margin_templates",
+   "pass": true
+  },
+  {
+   "claim": "template r(CG,top1) min",
+   "manuscript": -0.16,
+   "computed": -0.157649,
+   "source": "...a1_margin_templates",
+   "pass": true
+  },
+  {
+   "claim": "template r(CG,top1) max",
+   "manuscript": 0.2,
+   "computed": 0.195101,
+   "source": "...a1_margin_templates",
+   "pass": true
+  },
+  {
+   "claim": "retrieval real frozen R@1",
+   "manuscript": 18.4,
+   "computed": 18.382353,
+   "source": "...a1_retrieval_realfinetune:frozen",
+   "pass": true
+  },
+  {
+   "claim": "retrieval real best R@1",
+   "manuscript": 29.4,
+   "computed": 29.411765,
+   "source": "...a1_retrieval_realfinetune",
+   "pass": true
+  },
+  {
+   "claim": "retrieval real min CG",
+   "manuscript": 0.49,
+   "computed": 0.491524,
+   "source": "...a1_retrieval_realfinetune",
+   "pass": true
+  },
+  {
+   "claim": "retrieval real checkpoints",
+   "manuscript": 18,
+   "computed": 18.0,
+   "source": "...a1_retrieval_realfinetune",
+   "pass": true
+  },
+  {
+   "claim": "within-run r(M)",
+   "manuscript": -0.99,
+   "computed": -0.987124,
+   "source": "...a1_showdown_within_run",
+   "pass": true
+  },
+  {
+   "claim": "within-run r(tau)",
+   "manuscript": 0.99,
+   "computed": 0.990549,
+   "source": "...a1_showdown_within_run",
+   "pass": true
+  },
+  {
+   "claim": "within-run r(CG)",
+   "manuscript": -0.43,
+   "computed": -0.430053,
+   "source": "...a1_showdown_within_run",
+   "pass": true
+  },
+  {
+   "claim": "cross-domain top1 min",
+   "manuscript": 44.4,
+   "computed": 44.42,
+   "source": "...a1_campaign_crossdomain",
+   "pass": true
+  },
+  {
+   "claim": "cross-domain top1 max",
+   "manuscript": 54.6,
+   "computed": 54.58,
+   "source": "...a1_campaign_crossdomain",
+   "pass": true
+  },
+  {
+   "claim": "stopping rule mean regret",
+   "manuscript": 2.77,
+   "computed": 2.772222,
+   "source": "...a1_certificate_rule",
+   "pass": true
+  },
+  {
+   "claim": "last-epoch mean regret",
+   "manuscript": 13.8,
+   "computed": 13.801111,
+   "source": "...a1_certificate_rule",
+   "pass": true
+  },
+  {
+   "claim": "first-epoch mean regret",
+   "manuscript": 0.0,
+   "computed": 0.0,
+   "source": "...a1_certificate_rule",
+   "pass": true
+  },
+  {
+   "claim": "interior control runs",
+   "manuscript": 4,
+   "computed": 4.0,
+   "source": "...a1_certificate_interior",
+   "pass": true
+  },
+  {
+   "claim": "interior control n",
+   "manuscript": 24,
+   "computed": 24.0,
+   "source": "...a1_certificate_interior",
+   "pass": true
+  },
+  {
    "claim": "epoch-sweep mean Pearson",
    "manuscript": 0.93,
    "computed": 0.933131,
@@ -1101,6 +1255,6 @@
    "pass": true
   }
  ],
- "pass": 157,
+ "pass": 179,
  "fail": 0
 }
