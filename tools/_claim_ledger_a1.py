@@ -361,6 +361,24 @@ def main() -> int:
     claim("interior v2 gap rule mean regret", 1.68, rules["rules"]["seqCG0.01"]["mean_regret"],
           "...a1_monitor_interior_v2_rules", 2)
 
+    # ---- early-stopping baselines (3 datasets x 2 seeds x 10 epochs)
+    base = load("outputs/analysis/a1_stopping_baselines_rules.json")
+    claim("baseline checkpoints", 60, base["correlation"]["n"], "...a1_stopping_baselines_rules", 0)
+    claim("baseline min-M mean regret", 0.18, base["rules"]["minM"]["mean_regret"]
+          if "minM" in base["rules"] else base["rules"]["min_M"]["mean_regret"], "...a1_stopping_baselines_rules", 2)
+    claim("baseline max-softmax mean regret", 2.80, base["rules"]["max_softmax"]["mean_regret"],
+          "...a1_stopping_baselines_rules", 2)
+    claim("baseline max-logit mean regret", 3.15, base["rules"]["max_logit"]["mean_regret"],
+          "...a1_stopping_baselines_rules", 2)
+    claim("baseline entropy mean regret", 3.96, base["rules"]["min_entropy"]["mean_regret"],
+          "...a1_stopping_baselines_rules", 2)
+    claim("baseline energy mean regret", 4.18, base["rules"]["min_energy"]["mean_regret"],
+          "...a1_stopping_baselines_rules", 2)
+    claim("baseline first-epoch mean regret", 9.52, base["rules"]["first"]["mean_regret"],
+          "...a1_stopping_baselines_rules", 2)
+    claim("baseline last-epoch mean regret", 3.63, base["rules"]["last"]["mean_regret"],
+          "...a1_stopping_baselines_rules", 2)
+
     # ---- epoch sweep correlation (manuscript abstract/intro/epoch subsection)
     import collections
     import numpy as np

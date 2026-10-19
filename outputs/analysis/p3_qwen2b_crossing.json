@@ -1,0 +1,36 @@
+{
+ "protocol": "local Qwen2-VL-2B-Instruct, blank-image protocol, run_training_qwen.py defaults, seed 42, 3 epochs",
+ "model": "models/Qwen2-VL-2B-Instruct",
+ "runs": {
+  "r5_s42": {
+   "rank": 5,
+   "seed": 42,
+   "epochs": 3,
+   "E": [
+    26560.0,
+    26560.0,
+    26432.0,
+    26208.0
+   ],
+   "ok": true,
+   "delta_E": -352.0,
+   "elapsed_min": 0.9,
+   "returncode": 0
+  },
+  "r6_s42": {
+   "rank": 6,
+   "seed": 42,
+   "epochs": 3,
+   "E": [
+    26560.0,
+    26560.0,
+    26432.0,
+    26208.0
+   ],
+   "ok": true,
+   "delta_E": -352.0,
+   "elapsed_min": 0.8,
+   "returncode": 0
+  }
+ }
+}
