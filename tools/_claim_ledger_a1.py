@@ -342,38 +342,24 @@ def main() -> int:
     claim("interior control runs", 4, len(it["runs"]), "...a1_certificate_interior", 0)
     claim("interior control n", 24, len(_irows), "...a1_certificate_interior", 0)
 
-    # ---- interior-optimum monitoring validation
-    mon = load("outputs/analysis/a1_monitor_interior.json")
-    _runs = mon["runs"]
-    _tops = [r["top1"] for rows in _runs.values() for r in rows]
-    _mass = [r["mass_0.01"] for rows in _runs.values() for r in rows]
-    _cg = [r["CG"] for rows in _runs.values() for r in rows]
-    _n = len(_tops)
-    _m = lambda x: sum(x) / len(x)
-    def _pear(a, b):
-        ma, mb = _m(a), _m(b)
-        cov = sum((x - ma) * (y - mb) for x, y in zip(a, b))
-        sa = (sum((x - ma) ** 2 for x in a)) ** 0.5
-        sb = (sum((y - mb) ** 2 for y in b)) ** 0.5
-        return cov / (sa * sb)
-    claim("interior checkpoints", 32, _n, "...a1_monitor_interior", 0)
-    claim("interior r(M,top1)", -0.983, _pear(_mass, _tops), "...a1_monitor_interior", 3)
-    claim("interior r(CG,top1)", 0.324, _pear(_cg, _tops), "...a1_monitor_interior", 3)
-    _reg = {"min_M": [], "min_CG": [], "last": [], "first": []}
-    for rows in _runs.values():
-        tops = [r["top1"] for r in rows]
-        orc = max(tops)
-        i_m = min(range(len(rows)), key=lambda i: rows[i]["mass_0.01"])
-        i_c = min(range(len(rows)), key=lambda i: rows[i]["CG"])
-        _reg["min_M"].append(orc - tops[i_m])
-        _reg["min_CG"].append(orc - tops[i_c])
-        _reg["last"].append(orc - tops[-1])
-        _reg["first"].append(orc - tops[0])
-    claim("min-M mean regret", 0.19, _m(_reg["min_M"]), "...a1_monitor_interior", 2)
-    claim("min-M max regret", 0.74, max(_reg["min_M"]), "...a1_monitor_interior", 2)
-    claim("min-CG mean regret", 2.19, _m(_reg["min_CG"]), "...a1_monitor_interior", 2)
-    claim("last-epoch mean regret (interior)", 0.76, _m(_reg["last"]), "...a1_monitor_interior", 2)
-    claim("first-epoch mean regret (interior)", 4.03, _m(_reg["first"]), "...a1_monitor_interior", 2)
+    # ---- interior-optimum monitoring validation (v2: 2 backbones x 2 datasets x 3 seeds x 10 epochs)
+    mon = load("outputs/analysis/a1_monitor_interior_v2.json")
+    rules = load("outputs/analysis/a1_monitor_interior_v2_rules.json")
+    _n = rules["correlation"]["n_checkpoints"]
+    claim("interior v2 checkpoints", 120, _n, "...a1_monitor_interior_v2_rules", 0)
+    claim("interior v2 r(M,top1)", -0.986, rules["correlation"]["pooled_M"], "...a1_monitor_interior_v2_rules", 3)
+    claim("interior v2 r(CG,top1)", 0.781, rules["correlation"]["pooled_CG"], "...a1_monitor_interior_v2_rules", 3)
+    claim("interior v2 min-M mean regret", 0.41, rules["rules"]["minM"]["mean_regret"], "...a1_monitor_interior_v2_rules", 2)
+    claim("interior v2 seq-M 0.01 mean regret", 0.50, rules["rules"]["seqM0.01"]["mean_regret"],
+          "...a1_monitor_interior_v2_rules", 2)
+    claim("interior v2 min-CG mean regret", 1.53, rules["rules"]["minCG"]["mean_regret"],
+          "...a1_monitor_interior_v2_rules", 2)
+    claim("interior v2 last-epoch mean regret", 0.60, rules["rules"]["last"]["mean_regret"],
+          "...a1_monitor_interior_v2_rules", 2)
+    claim("interior v2 first-epoch mean regret", 3.54, rules["rules"]["first"]["mean_regret"],
+          "...a1_monitor_interior_v2_rules", 2)
+    claim("interior v2 gap rule mean regret", 1.68, rules["rules"]["seqCG0.01"]["mean_regret"],
+          "...a1_monitor_interior_v2_rules", 2)
 
     # ---- epoch sweep correlation (manuscript abstract/intro/epoch subsection)
     import collections
