@@ -1,0 +1,833 @@
+{
+ "n_domains": 12,
+ "n_transfers": 132,
+ "domains": [
+  {
+   "domain": "gapsurgery|bioclip|image",
+   "n": 8,
+   "top1_range": [
+    14.925,
+    21.704
+   ],
+   "cg_range": [
+    0.0194,
+    0.8726
+   ],
+   "r_CG_top1": 0.3450920636799074
+  },
+  {
+   "domain": "gapsurgery|bioclip|text",
+   "n": 4,
+   "top1_range": [
+    18.657,
+    21.704
+   ],
+   "cg_range": [
+    0.0158,
+    0.5241
+   ],
+   "r_CG_top1": 0.21292181843431995
+  },
+  {
+   "domain": "gapsurgery|oceanclip|image",
+   "n": 8,
+   "top1_range": [
+    19.652,
+    24.44
+   ],
+   "cg_range": [
+    0.1359,
+    1.53
+   ],
+   "r_CG_top1": 0.3274842127121046
+  },
+  {
+   "domain": "gapsurgery|oceanclip|text",
+   "n": 4,
+   "top1_range": [
+    23.507,
+    24.378
+   ],
+   "cg_range": [
+    0.1881,
+    1.0209
+   ],
+   "r_CG_top1": 0.6537681213301676
+  },
+  {
+   "domain": "gapsurgery|openclip_tf|image",
+   "n": 8,
+   "top1_range": [
+    2.612,
+    7.4
+   ],
+   "cg_range": [
+    0.0537,
+    1.3136
+   ],
+   "r_CG_top1": 0.8927419534538503
+  },
+  {
+   "domain": "gapsurgery|openclip_tf|text",
+   "n": 4,
+   "top1_range": [
+    2.612,
+    7.027
+   ],
+   "cg_range": [
+    0.0688,
+    0.8489
+   ],
+   "r_CG_top1": 0.8001701647715113
+  },
+  {
+   "domain": "gapsurgery|siglip|image",
+   "n": 8,
+   "top1_range": [
+    2.114,
+    16.107
+   ],
+   "cg_range": [
+    0.0381,
+    1.5225
+   ],
+   "r_CG_top1": 0.48700538629120227
+  },
+  {
+   "domain": "gapsurgery|siglip|text",
+   "n": 4,
+   "top1_range": [
+    9.515,
+    15.547
+   ],
+   "cg_range": [
+    0.0449,
+    1.1297
+   ],
+   "r_CG_top1": 0.7769569543654589
+  },
+  {
+   "domain": "sonar|clip_frozen",
+   "n": 6,
+   "top1_range": [
+    4.462,
+    19.692
+   ],
+   "cg_range": [
+    0.0303,
+    1.448
+   ],
+   "r_CG_top1": -0.7698535108131117
+  },
+  {
+   "domain": "sonar|sonar_ft",
+   "n": 6,
+   "top1_range": [
+    91.231,
+    96.923
+   ],
+   "cg_range": [
+    0.0801,
+    1.5562
+   ],
+   "r_CG_top1": -0.5080123417491496
+  },
+  {
+   "domain": "spectrum|bioclip",
+   "n": 4,
+   "top1_range": [
+    14.925,
+    21.704
+   ],
+   "cg_range": [
+    0.0194,
+    0.5241
+   ],
+   "r_CG_top1": 0.2262143993890253
+  },
+  {
+   "domain": "spectrum|oceanclip",
+   "n": 4,
+   "top1_range": [
+    19.652,
+    24.44
+   ],
+   "cg_range": [
+    0.1359,
+    1.0209
+   ],
+   "r_CG_top1": 0.34599942438482895
+  }
+ ],
+ "fit_BA": {
+  "min": 0.5,
+  "max": 0.625
+ },
+ "test_BA": {
+  "min": 0.0,
+  "max": 0.8333333333333333,
+  "median": 0.5
+ },
+ "transfer": {
+  "gapsurgery|bioclip|image->gapsurgery|bioclip|text": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|image->gapsurgery|oceanclip|image": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.375
+  },
+  "gapsurgery|bioclip|image->gapsurgery|oceanclip|text": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.25
+  },
+  "gapsurgery|bioclip|image->gapsurgery|openclip_tf|image": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.0
+  },
+  "gapsurgery|bioclip|image->gapsurgery|openclip_tf|text": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.25
+  },
+  "gapsurgery|bioclip|image->gapsurgery|siglip|image": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.125
+  },
+  "gapsurgery|bioclip|image->gapsurgery|siglip|text": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.25
+  },
+  "gapsurgery|bioclip|image->sonar|clip_frozen": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.6666666666666666
+  },
+  "gapsurgery|bioclip|image->sonar|sonar_ft": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.6666666666666666
+  },
+  "gapsurgery|bioclip|image->spectrum|bioclip": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|image->spectrum|oceanclip": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.25
+  },
+  "gapsurgery|bioclip|text->gapsurgery|bioclip|image": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->gapsurgery|oceanclip|image": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->gapsurgery|oceanclip|text": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->gapsurgery|openclip_tf|image": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->gapsurgery|openclip_tf|text": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->gapsurgery|siglip|image": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->gapsurgery|siglip|text": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->sonar|clip_frozen": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->sonar|sonar_ft": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->spectrum|bioclip": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|bioclip|text->spectrum|oceanclip": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|oceanclip|image->gapsurgery|bioclip|image": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "gapsurgery|oceanclip|image->gapsurgery|bioclip|text": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "gapsurgery|oceanclip|image->gapsurgery|oceanclip|text": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "gapsurgery|oceanclip|image->gapsurgery|openclip_tf|image": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.375
+  },
+  "gapsurgery|oceanclip|image->gapsurgery|openclip_tf|text": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "gapsurgery|oceanclip|image->gapsurgery|siglip|image": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.375
+  },
+  "gapsurgery|oceanclip|image->gapsurgery|siglip|text": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "gapsurgery|oceanclip|image->sonar|clip_frozen": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.8333333333333333
+  },
+  "gapsurgery|oceanclip|image->sonar|sonar_ft": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.8333333333333333
+  },
+  "gapsurgery|oceanclip|image->spectrum|bioclip": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "gapsurgery|oceanclip|image->spectrum|oceanclip": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "gapsurgery|oceanclip|text->gapsurgery|bioclip|image": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|oceanclip|text->gapsurgery|bioclip|text": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|oceanclip|text->gapsurgery|oceanclip|image": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|oceanclip|text->gapsurgery|openclip_tf|image": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|oceanclip|text->gapsurgery|openclip_tf|text": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|oceanclip|text->gapsurgery|siglip|image": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|oceanclip|text->gapsurgery|siglip|text": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|oceanclip|text->sonar|clip_frozen": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "gapsurgery|oceanclip|text->sonar|sonar_ft": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "gapsurgery|oceanclip|text->spectrum|bioclip": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|oceanclip|text->spectrum|oceanclip": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|openclip_tf|image->gapsurgery|bioclip|image": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|openclip_tf|image->gapsurgery|bioclip|text": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|openclip_tf|image->gapsurgery|oceanclip|image": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|openclip_tf|image->gapsurgery|oceanclip|text": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|openclip_tf|image->gapsurgery|openclip_tf|text": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|openclip_tf|image->gapsurgery|siglip|image": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|openclip_tf|image->gapsurgery|siglip|text": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|openclip_tf|image->sonar|clip_frozen": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "gapsurgery|openclip_tf|image->sonar|sonar_ft": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|openclip_tf|image->spectrum|bioclip": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|openclip_tf|image->spectrum|oceanclip": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|openclip_tf|text->gapsurgery|bioclip|image": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|openclip_tf|text->gapsurgery|bioclip|text": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|openclip_tf|text->gapsurgery|oceanclip|image": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|openclip_tf|text->gapsurgery|oceanclip|text": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|openclip_tf|text->gapsurgery|openclip_tf|image": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|openclip_tf|text->gapsurgery|siglip|image": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|openclip_tf|text->gapsurgery|siglip|text": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|openclip_tf|text->sonar|clip_frozen": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "gapsurgery|openclip_tf|text->sonar|sonar_ft": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|openclip_tf|text->spectrum|bioclip": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|openclip_tf|text->spectrum|oceanclip": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|image->gapsurgery|bioclip|image": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|image->gapsurgery|bioclip|text": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|image->gapsurgery|oceanclip|image": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.625
+  },
+  "gapsurgery|siglip|image->gapsurgery|oceanclip|text": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|image->gapsurgery|openclip_tf|image": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|image->gapsurgery|openclip_tf|text": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|image->gapsurgery|siglip|text": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|image->sonar|clip_frozen": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.6666666666666666
+  },
+  "gapsurgery|siglip|image->sonar|sonar_ft": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.8333333333333333
+  },
+  "gapsurgery|siglip|image->spectrum|bioclip": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|image->spectrum|oceanclip": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|text->gapsurgery|bioclip|image": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|siglip|text->gapsurgery|bioclip|text": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|siglip|text->gapsurgery|oceanclip|image": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|text->gapsurgery|oceanclip|text": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|text->gapsurgery|openclip_tf|image": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|text->gapsurgery|openclip_tf|text": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|text->gapsurgery|siglip|image": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "gapsurgery|siglip|text->sonar|clip_frozen": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "gapsurgery|siglip|text->sonar|sonar_ft": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "gapsurgery|siglip|text->spectrum|bioclip": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "gapsurgery|siglip|text->spectrum|oceanclip": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "sonar|clip_frozen->gapsurgery|bioclip|image": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|clip_frozen->gapsurgery|bioclip|text": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|clip_frozen->gapsurgery|oceanclip|image": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.625
+  },
+  "sonar|clip_frozen->gapsurgery|oceanclip|text": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|clip_frozen->gapsurgery|openclip_tf|image": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "sonar|clip_frozen->gapsurgery|openclip_tf|text": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|clip_frozen->gapsurgery|siglip|image": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "sonar|clip_frozen->gapsurgery|siglip|text": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "sonar|clip_frozen->sonar|sonar_ft": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.6666666666666666
+  },
+  "sonar|clip_frozen->spectrum|bioclip": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|clip_frozen->spectrum|oceanclip": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|sonar_ft->gapsurgery|bioclip|image": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|sonar_ft->gapsurgery|bioclip|text": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|sonar_ft->gapsurgery|oceanclip|image": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.625
+  },
+  "sonar|sonar_ft->gapsurgery|oceanclip|text": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|sonar_ft->gapsurgery|openclip_tf|image": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "sonar|sonar_ft->gapsurgery|openclip_tf|text": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|sonar_ft->gapsurgery|siglip|image": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "sonar|sonar_ft->gapsurgery|siglip|text": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "sonar|sonar_ft->sonar|clip_frozen": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.8333333333333333
+  },
+  "sonar|sonar_ft->spectrum|bioclip": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "sonar|sonar_ft->spectrum|oceanclip": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->gapsurgery|bioclip|image": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->gapsurgery|bioclip|text": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "spectrum|bioclip->gapsurgery|oceanclip|image": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->gapsurgery|oceanclip|text": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->gapsurgery|openclip_tf|image": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->gapsurgery|openclip_tf|text": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->gapsurgery|siglip|image": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->gapsurgery|siglip|text": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->sonar|clip_frozen": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->sonar|sonar_ft": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|bioclip->spectrum|oceanclip": {
+   "threshold": 0.0194,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|oceanclip->gapsurgery|bioclip|image": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "spectrum|oceanclip->gapsurgery|bioclip|text": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "spectrum|oceanclip->gapsurgery|oceanclip|image": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|oceanclip->gapsurgery|oceanclip|text": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "spectrum|oceanclip->gapsurgery|openclip_tf|image": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "spectrum|oceanclip->gapsurgery|openclip_tf|text": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "spectrum|oceanclip->gapsurgery|siglip|image": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "spectrum|oceanclip->gapsurgery|siglip|text": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "spectrum|oceanclip->sonar|clip_frozen": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "spectrum|oceanclip->sonar|sonar_ft": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "spectrum|oceanclip->spectrum|bioclip": {
+   "threshold": 0.1359,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  }
+ }
+}

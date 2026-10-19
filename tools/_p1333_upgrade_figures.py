@@ -59,13 +59,17 @@ def campaign_figure(apply):
                            label=f"{'text' if tw == 'text' else 'both'} / {ds}")
     w = an["pairs"]["widest"]["all"]
     ax.plot([w["a"]["CG"], w["b"]["CG"]], [w["a"]["top1"], w["b"]["top1"]], "k--", lw=1.0)
+    mid = ((w["a"]["CG"] + w["b"]["CG"]) / 2, (w["a"]["top1"] + w["b"]["top1"]) / 2)
     ax.annotate(r"$\Delta$CG = %.4f" % w["dCG"] + "\n" + r"$\Delta$top-1 = %.1f" % w["dtop1"],
-                xy=((w["a"]["CG"] + w["b"]["CG"]) / 2, (w["a"]["top1"] + w["b"]["top1"]) / 2),
-                xytext=(0.42, 38), fontsize=8, arrowprops=dict(arrowstyle="->", lw=0.7))
+                xy=mid, xycoords="data",
+                xytext=(0.695, 17.0), textcoords="data",
+                fontsize=7.5, ha="left", va="bottom",
+                bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.9),
+                arrowprops=dict(arrowstyle="->", lw=0.7, shrinkA=2, shrinkB=2, connectionstyle="arc3,rad=0.15"))
     ax.set_xlabel("centroid gap CG")
     ax.set_ylabel("ImageNet-5k top-1 (%)")
     ax.set_title("(a) 72 real fine-tuned checkpoints", fontsize=9)
-    ax.legend(fontsize=6.2, frameon=False, loc="upper left", ncol=2)
+    ax.margins(x=0.02, y=0.05)
     ax.tick_params(labelsize=7.5)
     ax = axes[1]
     for tw in ("text", "both"):
