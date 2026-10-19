@@ -379,6 +379,22 @@ def main() -> int:
     claim("baseline last-epoch mean regret", 3.63, base["rules"]["last"]["mean_regret"],
           "...a1_stopping_baselines_rules", 2)
 
+    # ---- expanded-set monitoring comparison (extra seeds + fourth domain)
+    comb = load("outputs/analysis/a1_monitor_combined.json")
+    _r = comb["rules"]
+    claim("combined runs", 20, comb["n_runs"], "...a1_monitor_combined", 0)
+    claim("combined checkpoints", 200, comb["correlation"]["n_checkpoints"], "...a1_monitor_combined", 0)
+    claim("combined min-M mean regret", 1.70, _r["minM"]["mean_regret"], "...a1_monitor_combined", 2)
+    claim("combined min-M max regret", 10.00, _r["minM"]["max_regret"], "...a1_monitor_combined", 2)
+    claim("combined last-epoch mean regret", 1.32, _r["last"]["mean_regret"], "...a1_monitor_combined", 2)
+    claim("combined first-epoch mean regret", 7.25, _r["first"]["mean_regret"], "...a1_monitor_combined", 2)
+    claim("combined sequential mean regret", 3.82, _r["seqM"]["mean_regret"], "...a1_monitor_combined", 2)
+    claim("combined entropy mean regret", 1.91, _r["minEntropy"]["mean_regret"], "...a1_monitor_combined", 2)
+    claim("combined max-softmax mean regret", 2.26, _r["maxSoftmax"]["mean_regret"], "...a1_monitor_combined", 2)
+    claim("combined max-logit mean regret", 3.91, _r["maxLogit"]["mean_regret"], "...a1_monitor_combined", 2)
+    claim("combined energy mean regret", 3.74, _r["minEnergy"]["mean_regret"], "...a1_monitor_combined", 2)
+    claim("combined pooled r(M)", -0.977, comb["correlation"]["pooled_M"], "...a1_monitor_combined", 3)
+
     # ---- epoch sweep correlation (manuscript abstract/intro/epoch subsection)
     import collections
     import numpy as np

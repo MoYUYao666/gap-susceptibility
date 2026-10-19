@@ -50,10 +50,15 @@ def main() -> int:
     if qwen and qwen.get("valid", True):
         ok = {k: v for k, v in qwen.items() if isinstance(v, dict) and v.get("ok")}
         if ok:
-            parts = ", ".join("%s: $\\Delta E=%+.1f$" % (k, v["delta_E"]) for k, v in sorted(ok.items()))
+            parts = ", ".join("%s: $\\Delta E=%+.1f$ (%.1fM trainable)" % (k.replace("_", "\\_"), v["delta_E"], v["trainable_M"] or 0)
+                              for k, v in sorted(ok.items()))
             extra += (f" A local decoder-VLM check with Qwen2-VL-2B under the same blank-image protocol (ranks 5 and 6, "
-                      f"seed 42; smaller than the 7B model used in the main text) gives {parts}, i.e.\\ the same sign "
-                      f"direction as the LLaVA runs, although the magnitude is not comparable across model sizes.")
+                      f"seed 42; smaller than the 7B model used in the main text) gives {parts}. With the adapter rank "
+                      f"correctly varying, both ranks remain negative and no sign change appears up to $r=6$ in this "
+                      f"smaller model; we report it as a local boundary observation, not as a replication.")
+    elif qwen:
+        extra += (" A local decoder-VLM check with Qwen2-VL-2B was inconclusive (the adapter rank did not vary) and is "
+                  "not used as evidence.")
     bracket_txt = (f"between $r={bracket[0]}$ and $r={bracket[1]}$" if bracket else "not bracketed by these ranks")
     sec = r"""
 \section{Re-run of the Rank Crossing on the Current Protocol}

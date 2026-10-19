@@ -21,7 +21,8 @@ import numpy as np
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = os.path.join(REPO, "outputs", "analysis", "p3_rerun_protocol.json")
 EXTRA = os.path.join(REPO, "outputs", "analysis", "p3_rerun_extra.json")
-QWEN = os.path.join(REPO, "outputs", "analysis", "p3_qwen2b_crossing.json")
+QWEN = os.path.join(REPO, "outputs", "analysis", "p3_qwen2b_crossing_fixed.json")
+QWEN_OLD = os.path.join(REPO, "outputs", "analysis", "p3_qwen2b_crossing.json")
 OUT = os.path.join(REPO, "outputs", "analysis", "p3_rerun_analysis.json")
 
 
@@ -72,16 +73,19 @@ def main() -> int:
         perm.update({"observed_diff": obs, "p_two_sided": cnt / tot, "assignments": tot,
                      "min_attainable_p": 1.0 / tot, "n_seeds": [len(r5), len(r6)]})
 
-    qwen = load(QWEN)
+    qwen = load(QWEN) or load(QWEN_OLD)
     qwen_summary = None
     if qwen:
         q = qwen["runs"]
-        es = [tuple(v["E"]) for v in q.values() if v.get("ok")]
-        same = len(set(es)) == 1 and len(es) > 1
-        qwen_summary = {k: {"E": v["E"], "delta_E": v["delta_E"], "ok": v["ok"]} for k, v in q.items()}
-        qwen_summary["valid"] = not same
-        qwen_summary["note"] = ("identical trajectories across ranks: the adapter did not vary under this script/model, "
-                                "so the check is inconclusive and is not used as evidence") if same else ""
+        es = {k: tuple(v["E"]) for k, v in q.items() if v.get("ok")}
+        distinct = len({e for e in es.values()}) == len(es)
+        trs = [q[k].get("trainable_M") for k in q]
+        rank_varied = len({t for t in trs if t is not None}) > 1
+        qwen_summary = {k: {"E": q[k]["E"], "delta_E": q[k]["delta_E"], "ok": q[k]["ok"],
+                            "trainable_M": q[k].get("trainable_M")} for k in q}
+        qwen_summary["valid"] = bool(distinct and (rank_varied or len(q) == 1))
+        qwen_summary["note"] = ("" if qwen_summary["valid"] else
+                                "trajectories coincide across ranks; the check is inconclusive and is not used as evidence")
 
     out = {"curve": curve, "bracket_seed42": bracket, "permutation": perm, "qwen2b": qwen_summary}
     print("  current-protocol curve (seed 42):")
