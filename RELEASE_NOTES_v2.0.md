@@ -1,6 +1,6 @@
 # Release v2.0 — analysis addendum for the five-manuscript round
 
-Status: **prepared, not yet tagged**. This file is written before the release so that the tag can be created once, after all
+Status: **released** — https://github.com/MoYUYao666/gap-susceptibility/releases/tag/v2.0 . The Zenodo version DOI for this release is minted asynchronously and is recorded in HANDOFF.md when it appears. This file is written before the release so that the tag can be created once, after all
 local work is finished (see the checklist at the end). The tag for the previous snapshot, `v1.0-prl-revision`, is frozen and
 must not be moved.
 
