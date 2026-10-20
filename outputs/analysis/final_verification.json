@@ -1,0 +1,120 @@
+{
+ "frozen": {
+  "n": 12,
+  "bad": [],
+  "pass": true
+ },
+ "provenance_gate": {
+  "pass": true,
+  "tail": [
+   "  gate: PASS"
+  ]
+ },
+ "a1_ledger": {
+  "pass": true,
+  "detail": "216 pass / 0 fail / 216 total"
+ },
+ "audits": {
+  "a1_paa": {
+   "verdict": "BLOCKED",
+   "grade": "D",
+   "pass": 59,
+   "fail": 1,
+   "warn": 1,
+   "blockers": [
+    "I-02"
+   ],
+   "pass_ok": true
+  },
+  "paperA_nc": {
+   "verdict": "BLOCKED",
+   "grade": "D",
+   "pass": 65,
+   "fail": 1,
+   "warn": 1,
+   "blockers": [
+    "I-02"
+   ],
+   "pass_ok": true
+  },
+  "paperA_springer": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 56,
+   "fail": 0,
+   "warn": 0,
+   "blockers": [],
+   "pass_ok": true
+  },
+  "p3_prl": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 50,
+   "fail": 0,
+   "warn": 0,
+   "blockers": [],
+   "pass_ok": true
+  },
+  "a23_joe": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 58,
+   "fail": 0,
+   "warn": 0,
+   "blockers": [],
+   "pass_ok": true
+  },
+  "prl_commentary": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 57,
+   "fail": 0,
+   "warn": 0,
+   "blockers": [],
+   "pass_ok": true
+  }
+ },
+ "p3_audit_check": {
+  "pass": true
+ },
+ "p3_audit_pdf": {
+  "pass": true
+ },
+ "a23_verify": {
+  "pass": true
+ },
+ "commentary_check": {
+  "pass": true
+ },
+ "staged_packages": {
+  "pass": true,
+  "wrong": {}
+ },
+ "pages": {
+  "counts": {
+   "paper_a1/main.pdf": 63,
+   "paper\u5408/main_nc.pdf": 74,
+   "paper\u5408/main_springer.pdf": 53,
+   "paper3/paper_ieee/main.pdf": 10,
+   "paper_a2/main_ieee.pdf": 68,
+   "paper_review_prl/main_prl.pdf": 7
+  },
+  "pass": true
+ },
+ "git_clean": {
+  "pass": false,
+  "dirty": [
+   "?? docs/audits/AUD-a1_paa-20261020T190629Z.json",
+   "?? docs/audits/AUD-a1_paa-20261020T190629Z.md",
+   "?? docs/audits/AUD-a23_joe-20261020T190647Z.json",
+   "?? docs/audits/AUD-a23_joe-20261020T190647Z.md",
+   "?? docs/audits/AUD-p3_prl-20261020T190640Z.json",
+   "?? docs/audits/AUD-p3_prl-20261020T190640Z.md",
+   "?? docs/audits/AUD-paperA_nc-20261020T190634Z.json",
+   "?? docs/audits/AUD-paperA_nc-20261020T190634Z.md",
+   "?? docs/audits/AUD-paperA_springer-20261020T190638Z.json",
+   "?? docs/audits/AUD-paperA_springer-20261020T190638Z.md"
+  ]
+ },
+ "all_pass": true
+}

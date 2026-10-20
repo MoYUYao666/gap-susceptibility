@@ -91,16 +91,31 @@ def main() -> int:
         src_dir = abs_(a.source)
         tex_files = sorted(glob.glob(os.path.join(src_dir, "*.tex")))
         bib = sorted(glob.glob(os.path.join(src_dir, "*.bib")))
+        extra = []
+        for sub in ("sections", "sections_full", "supplementary"):
+            d = os.path.join(src_dir, sub)
+            if os.path.isdir(d):
+                for f in sorted(glob.glob(os.path.join(d, "**", "*.tex"), recursive=True)):
+                    extra.append((f, os.path.relpath(f, src_dir).replace(os.sep, "/")))
+        for pat in ("*.cls", "*.sty", "*.bst"):
+            for f in sorted(glob.glob(os.path.join(src_dir, pat))):
+                extra.append((f, os.path.basename(f)))
         figs = []
         if a.figures:
-            figs = sorted(glob.glob(os.path.join(abs_(a.figures), "*.pdf")))
+            fdir = abs_(a.figures)
+            for ext in ("*.pdf", "*.png", "*.jpg", "*.jpeg", "*.eps"):
+                for f in sorted(glob.glob(os.path.join(fdir, "**", ext), recursive=True)):
+                    figs.append((f, "figures/" + os.path.relpath(f, fdir).replace(os.sep, "/")))
         zpath = os.path.join(out, "latex_source.zip")
         with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
             for f in tex_files + bib:
                 z.write(f, os.path.basename(f))
                 n_source += 1
-            for f in figs:
-                z.write(f, "figures/" + os.path.basename(f))
+            for f, arc in extra:
+                z.write(f, arc)
+                n_source += 1
+            for f, arc in figs:
+                z.write(f, arc)
                 n_source += 1
         print(f"  latex_source.zip: {n_source} entries")
     import datetime
