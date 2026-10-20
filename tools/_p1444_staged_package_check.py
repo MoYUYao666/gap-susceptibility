@@ -26,7 +26,7 @@ ROOT = os.path.join(REPO, "SUBMISSION", "_venue_builds")
 OUT = os.path.join(REPO, "outputs", "analysis", "staged_package_check.json")
 
 
-def find_main(d):
+def find_main(d, want_pages=None):
     cands = []
     for f in os.listdir(d):
         if f.endswith(".tex"):
@@ -35,7 +35,14 @@ def find_main(d):
             if "\\documentclass" in t and "\\begin{document}" in t:
                 cands.append(f)
     cands.sort(key=lambda x: (0 if x.startswith("main") else 1, len(x)))
-    return cands[0] if cands else None
+    if want_pages is None:
+        return cands[0] if cands else None
+    best = cands[0] if cands else None
+    for f in cands[:3]:
+        errs, undef, over, pages, _ = compile_pdf(d, f)
+        if pages is not None and pages == want_pages:
+            return f
+    return best
 
 
 def compile_pdf(d, tex, passes=2):
@@ -84,7 +91,12 @@ def main() -> int:
         try:
             with zipfile.ZipFile(z) as zf:
                 zf.extractall(tmp)
-            main_tex = find_main(tmp)
+            shipped_pages0 = None
+            sp0 = os.path.join(pk, "Manuscript.pdf")
+            if os.path.exists(sp0):
+                from pypdf import PdfReader
+                shipped_pages0 = len(PdfReader(sp0).pages)
+            main_tex = find_main(tmp, want_pages=shipped_pages0)
             if not main_tex:
                 entry["status"] = "no main tex"
             else:
