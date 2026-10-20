@@ -395,6 +395,18 @@ def main() -> int:
     claim("combined energy mean regret", 3.74, _r["minEnergy"]["mean_regret"], "...a1_monitor_combined", 2)
     claim("combined pooled r(M)", -0.977, comb["correlation"]["pooled_M"], "...a1_monitor_combined", 3)
 
+    # ---- split-size stratified monitoring diagnosis
+    split = load("outputs/analysis/a1_monitor_split_diagnosis.json")
+    _s, _l = split["summary"]["small"], split["summary"]["large"]
+    claim("large-split runs", 16, _l["n_runs"], "...a1_monitor_split_diagnosis", 0)
+    claim("large-split min-M mean regret", 0.58, _l["mean_regret_minM"], "...a1_monitor_split_diagnosis", 2)
+    claim("large-split last-epoch mean regret", 0.52, _l["mean_regret_last_epoch"], "...a1_monitor_split_diagnosis", 2)
+    claim("large-split first-epoch mean regret", 3.55, _l["mean_regret_first_epoch"], "...a1_monitor_split_diagnosis", 2)
+    claim("small-split runs", 4, _s["n_runs"], "...a1_monitor_split_diagnosis", 0)
+    claim("small-split min-M mean regret", 6.18, _s["mean_regret_minM"], "...a1_monitor_split_diagnosis", 2)
+    claim("small-split last-epoch mean regret", 4.51, _s["mean_regret_last_epoch"], "...a1_monitor_split_diagnosis", 2)
+    claim("small-split min-M regret in SE", 1.08, _s["mean_regret_minM_in_SE"], "...a1_monitor_split_diagnosis", 2)
+
     # ---- epoch sweep correlation (manuscript abstract/intro/epoch subsection)
     import collections
     import numpy as np
