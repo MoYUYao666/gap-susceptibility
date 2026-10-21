@@ -34,3 +34,5 @@ audit pass. It contains no manuscript source, cover letter or submission-package
 
 - Manuscript source and PDFs, cover letters, title pages, highlights, and any submission-package content.
 - Model weights and datasets.
+
+Version DOI: 10.5281/zenodo.23523263
