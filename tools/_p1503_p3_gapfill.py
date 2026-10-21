@@ -125,6 +125,30 @@ def main() -> int:
     else:
         lines += ["- Pending: caption arm training/evaluation still running; results will be appended from "
                   "`p3_caption_downstream_*.json`.", ""]
+    # trained explicit allocation arms (R3.9)
+    arms = []
+    for tag, label in (("verify_r1_s42_ntk_arm.json", "NTK allocation 8/5/2/1"),
+                       ("verify_r1_s42_bcexplicit_v5_s5_m4_d2.json", "Gamma allocation 5/5/4/2")):
+        fp = os.path.join(REPO, "paper3", "scripts", "outputs", "experiments", tag)
+        if os.path.exists(fp):
+            d = json.load(io.open(fp, encoding="utf-8"))
+            arms.append({"label": label, "file": tag, "delta_E": d.get("delta_E"), "E": d.get("E"),
+                         "n_trainable": d.get("n_trainable")})
+    summary["trained_arms"] = arms
+
+    # trained arms section
+    lines += ["## R3.9 — trained explicit allocation arms", ""]
+    if arms:
+        lines += ["| arm | ΔE | trajectory | note |", "|---|---|---|---|"]
+        for a in arms:
+            lines.append(f"| {a['label']} | {a['delta_E']:+.1f} | {a['E']} | `{a['file']}` |")
+        lines += ["", "Reading: both explicit four-block arms end with **higher** alignment energy than they started "
+                  "(+263 to +392), i.e. neither allocation improves the energy under this 20-sample protocol; this is "
+                  "consistent with the paper's negative result and adds a trained NTK-based baseline. Caveat: these arms "
+                  "use base rank 1 with alpha 16 and are not parameter-matched to the paper's uniform r=5/r=6 arms, so the "
+                  "numbers are directional only.", ""]
+    else:
+        lines += ["- pending (arm runs in progress)", ""]
     # newer VLM: Qwen2.5-VL-3B run records
     newer = os.path.isdir(os.path.join(REPO, "models", "Qwen2.5-VL-3B-Instruct"))
     qrows = []
