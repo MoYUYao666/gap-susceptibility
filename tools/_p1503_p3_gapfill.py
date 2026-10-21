@@ -142,8 +142,7 @@ def main() -> int:
         lines += ["| arm | ΔE | trajectory | note |", "|---|---|---|---|"]
         for a in arms:
             lines.append(f"| {a['label']} | {a['delta_E']:+.1f} | {a['E']} | `{a['file']}` |")
-        lines += ["", "Reading: both explicit four-block arms end with **higher** alignment energy than they started "
-                  "(+263 to +392), i.e. neither allocation improves the energy under this 20-sample protocol; this is "
+        lines += ["", "Reading: both explicit four-block arms end with **higher** alignment energy than they started, i.e. neither allocation improves the energy under this 20-sample protocol; this is "
                   "consistent with the paper's negative result and adds a trained NTK-based baseline. Caveat: these arms "
                   "use base rank 1 with alpha 16 and are not parameter-matched to the paper's uniform r=5/r=6 arms, so the "
                   "numbers are directional only.", ""]
