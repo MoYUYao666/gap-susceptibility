@@ -26,7 +26,7 @@ PROFILES = ["a1_paa", "paperA_nc", "paperA_springer", "p3_prl", "a23_joe", "prl_
 EXPECTED_AUDIT_FAILS = {"a1_paa": {"I-02"}, "paperA_nc": {"I-02"}}
 EXPECTED_AUDIT_WARNS = {"a1_paa": {"I-06"}, "paperA_nc": {"I-06"}}
 PAGES = {"paper_a1/main.pdf": (64,), "paper合/main_nc.pdf": (74,), "paper合/main_springer.pdf": (53,),
-         "paper3/paper_ieee/main.pdf": (10,), "paper_a2/main_ieee.pdf": (69,),
+         "paper3/paper_ieee/main.pdf": (10,), "paper_a2/main_ieee.pdf": (70,),
          "paper_review_prl/main_prl.pdf": (7,)}
 
 
