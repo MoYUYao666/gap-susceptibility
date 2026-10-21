@@ -61,7 +61,6 @@ def main() -> int:
     summary["captioning"] = caps
     cm = load("p3_caption_metrics.json")
     summary["caption_metrics"] = cm
-    io.open(OUT, "w", encoding="utf-8", newline="").write(json.dumps(summary, indent=1, default=float))
 
     lines = ["# P3 — R1 gap-fill results (2026-10-21)", "",
              "> Source of truth: `outputs/analysis/p3_gapfill_summary.json` (this script). "
@@ -169,6 +168,7 @@ def main() -> int:
                   "Archive: `paper3/scripts/outputs/experiments/qwen_cf_uniform_rank*_seed42_q25_r*.json`.", ""]
     else:
         lines += [f"- Qwen2.5-VL-3B-Instruct download {'present' if newer else 'not present'}; run records pending.", ""]
+    io.open(OUT, "w", encoding="utf-8", newline="").write(json.dumps(summary, indent=1, default=float))
     io.open(DOC, "w", encoding="utf-8", newline="").write("\n".join(lines) + "\n")
     print("wrote", os.path.relpath(DOC, REPO))
     print({k: (v if k in ("captioning",) else "ok") for k, v in summary.items()})
