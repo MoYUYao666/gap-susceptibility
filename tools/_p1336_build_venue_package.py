@@ -36,6 +36,7 @@ README = """# {venue} submission package (built locally, {when})
 | Abstract (separate) | `{abstract_name}` | {abstract_note} |
 | Highlights | `{highlights_name}` | {highlights_note} |
 | Supplementary | `{supp_name}` | {supp_note} |
+| Authorship | `{auth_name}` | {auth_note} |
 | LaTeX source | `LaTeXSource.zip` | {n_source} files |
 
 Built by `tools/_p1336_build_venue_package.py`; page counts measured with pypdf. The submission packages under
@@ -58,6 +59,7 @@ def main() -> int:
     ap.add_argument("--source", default=None, help="directory whose .tex files and figures are zipped")
     ap.add_argument("--zip-exclude", default="", help="comma-separated file names to omit from latex_source.zip")
     ap.add_argument("--supplementary", default=None, help="supplementary PDF to copy into the package")
+    ap.add_argument("--authorship", default=None, help="authorship-confirmation PDF to copy")
     ap.add_argument("--venue", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--apply", action="store_true")
@@ -69,6 +71,8 @@ def main() -> int:
     items = [("manuscript", abs_(a.manuscript), "Manuscript.pdf")]
     if a.supplementary:
         items.append(("supplementary", abs_(a.supplementary), "Supplementary.pdf"))
+    if a.authorship:
+        items.append(("authorship", abs_(a.authorship), "AuthorshipConfirmation.pdf"))
     targets = {"title_page": "TitlePage.pdf", "cover_letter": "CoverLetter.pdf",
                "abstract": "Abstract.pdf", "highlights": "Highlights.pdf"}
     for name, rel in (("title_page", a.title_page), ("cover_letter", a.cover_letter),
@@ -143,6 +147,8 @@ def main() -> int:
         n_source=n_source,
         supp_name=facts["supplementary"]["file"] if facts.get("supplementary") else "-",
         supp_note=(f"{facts['supplementary']['pages']} pages" if facts.get("supplementary") else "not supplied"),
+        auth_name=facts["authorship"]["file"] if facts.get("authorship") else "-",
+        auth_note=(f"{facts['authorship']['pages']} pages" if facts.get("authorship") else "not supplied"),
     )
     io.open(os.path.join(out, "README.md"), "w", encoding="utf-8", newline="").write(readme)
     print("  wrote", os.path.relpath(os.path.join(out, "README.md"), REPO))

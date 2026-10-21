@@ -19,7 +19,7 @@ PKGS = [
      "--source", "paper_a1", "--figures", "paper_a1/figures",
      "--venue", "Pattern Analysis and Applications (A1)", "--out", "SUBMISSION/_venue_builds/A1_PAA_next"],
     ["--manuscript", "paper3/paper_ieee/main.pdf", "--title-page", "paper3/paper_ieee/title_page_prl.pdf",
-     "--cover-letter", "paper3/paper_ieee/cover_letter_prl_resubmission.pdf", "--highlights", "paper3/paper_ieee/highlights_resubmission.pdf", "--supplementary", "paper3/paper_ieee/supplementary/supplementary.pdf", "--source", "paper3/paper_ieee",
+     "--cover-letter", "paper3/paper_ieee/cover_letter_prl_resubmission.pdf", "--authorship", "D:\\Realdesktop\\Wan\\Important\\New\\paper3\\paper_ieee\\PRL_submission\\Authorship Confirmation (p3-02378-resubmission).pdf", "--highlights", "paper3/paper_ieee/highlights_resubmission.pdf", "--supplementary", "paper3/paper_ieee/supplementary/supplementary.pdf", "--source", "paper3/paper_ieee",
      "--figures", "paper3/paper_ieee/figures", "--venue", "Pattern Recognition Letters (P3)",
      "--out", "SUBMISSION/_venue_builds/P3_PRL_next"],
     ["--manuscript", "paper_a2/main_ieee.pdf", "--abstract", "paper_a2/abstract.pdf",
