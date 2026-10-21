@@ -36,7 +36,7 @@ README = """# {venue} submission package (built locally, {when})
 | Abstract (separate) | `{abstract_name}` | {abstract_note} |
 | Highlights | `{highlights_name}` | {highlights_note} |
 | Supplementary | `{supp_name}` | {supp_note} |
-| LaTeX source | `latex_source.zip` | {n_source} files |
+| LaTeX source | `LaTeXSource.zip` | {n_source} files |
 
 Built by `tools/_p1336_build_venue_package.py`; page counts measured with pypdf. The submission packages under
 `SUBMISSION/` and the frozen copies under `SUBMISSION/_frozen_submitted/` are untouched.
@@ -69,10 +69,12 @@ def main() -> int:
     items = [("manuscript", abs_(a.manuscript), "Manuscript.pdf")]
     if a.supplementary:
         items.append(("supplementary", abs_(a.supplementary), "Supplementary.pdf"))
+    targets = {"title_page": "TitlePage.pdf", "cover_letter": "CoverLetter.pdf",
+               "abstract": "Abstract.pdf", "highlights": "Highlights.pdf"}
     for name, rel in (("title_page", a.title_page), ("cover_letter", a.cover_letter),
                       ("abstract", a.abstract), ("highlights", a.highlights)):
         if rel:
-            items.append((name, abs_(rel), os.path.basename(rel)))
+            items.append((name, abs_(rel), targets[name]))
     out = abs_(a.out)
     print(f"  venue={a.venue} out={a.out} apply={a.apply}")
     for name, src, _ in items:
@@ -113,7 +115,7 @@ def main() -> int:
             for ext in ("*.pdf", "*.png", "*.jpg", "*.jpeg", "*.eps"):
                 for f in sorted(glob.glob(os.path.join(fdir, "**", ext), recursive=True)):
                     figs.append((f, "figures/" + os.path.relpath(f, fdir).replace(os.sep, "/")))
-        zpath = os.path.join(out, "latex_source.zip")
+        zpath = os.path.join(out, "LaTeXSource.zip")
         with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
             for f in tex_files + bib:
                 z.write(f, os.path.basename(f))
