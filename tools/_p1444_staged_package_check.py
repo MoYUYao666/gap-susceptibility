@@ -81,7 +81,9 @@ def main() -> int:
         pk = os.path.join(ROOT, name)
         if not os.path.isdir(pk):
             continue
-        z = os.path.join(pk, "latex_source.zip")
+        z = os.path.join(pk, "LaTeXSource.zip")
+        if not os.path.exists(z):
+            z = os.path.join(pk, "latex_source.zip")
         entry = {"package": name}
         if not os.path.exists(z):
             entry["status"] = "no latex_source.zip"
