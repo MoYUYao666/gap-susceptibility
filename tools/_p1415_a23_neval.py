@@ -30,7 +30,7 @@ from scipy import stats as st
 
 OUT = "outputs/analysis/a23_neval_sensitivity.json"
 LAMBDAS = [-1.0, -0.5, -0.25, 0.0, 0.25, 0.5, 1.0]
-NS = [32, 64, 128, 256, None]
+NS = [67, 134, 268, 536, None]  # 1/2/4/8 stratified images per class on the 67-class set
 
 
 def build_model(tag):

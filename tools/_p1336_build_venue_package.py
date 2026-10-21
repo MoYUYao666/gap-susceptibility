@@ -35,6 +35,7 @@ README = """# {venue} submission package (built locally, {when})
 | Cover letter | `{cover_name}` | {cover_note} |
 | Abstract (separate) | `{abstract_name}` | {abstract_note} |
 | Highlights | `{highlights_name}` | {highlights_note} |
+| Supplementary | `{supp_name}` | {supp_note} |
 | LaTeX source | `latex_source.zip` | {n_source} files |
 
 Built by `tools/_p1336_build_venue_package.py`; page counts measured with pypdf. The submission packages under
@@ -55,6 +56,8 @@ def main() -> int:
     ap.add_argument("--highlights", default=None)
     ap.add_argument("--figures", default=None)
     ap.add_argument("--source", default=None, help="directory whose .tex files and figures are zipped")
+    ap.add_argument("--zip-exclude", default="", help="comma-separated file names to omit from latex_source.zip")
+    ap.add_argument("--supplementary", default=None, help="supplementary PDF to copy into the package")
     ap.add_argument("--venue", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--apply", action="store_true")
@@ -64,6 +67,8 @@ def main() -> int:
         return os.path.join(REPO, rel) if rel else None
 
     items = [("manuscript", abs_(a.manuscript), "Manuscript.pdf")]
+    if a.supplementary:
+        items.append(("supplementary", abs_(a.supplementary), "Supplementary.pdf"))
     for name, rel in (("title_page", a.title_page), ("cover_letter", a.cover_letter),
                       ("abstract", a.abstract), ("highlights", a.highlights)):
         if rel:
@@ -89,7 +94,9 @@ def main() -> int:
     n_source = 0
     if a.source:
         src_dir = abs_(a.source)
-        tex_files = sorted(glob.glob(os.path.join(src_dir, "*.tex")))
+        excl = {x.strip() for x in a.zip_exclude.split(",") if x.strip()}
+        tex_files = [f for f in sorted(glob.glob(os.path.join(src_dir, "*.tex")))
+                     if os.path.basename(f) not in excl]
         bib = sorted(glob.glob(os.path.join(src_dir, "*.bib")))
         extra = []
         for sub in ("sections", "sections_full", "supplementary"):
@@ -132,6 +139,8 @@ def main() -> int:
         highlights_name=facts["highlights"]["file"] if facts.get("highlights") else "-",
         highlights_note=(f"{facts['highlights']['pages']} pages" if facts.get("highlights") else "not supplied"),
         n_source=n_source,
+        supp_name=facts["supplementary"]["file"] if facts.get("supplementary") else "-",
+        supp_note=(f"{facts['supplementary']['pages']} pages" if facts.get("supplementary") else "not supplied"),
     )
     io.open(os.path.join(out, "README.md"), "w", encoding="utf-8", newline="").write(readme)
     print("  wrote", os.path.relpath(os.path.join(out, "README.md"), REPO))

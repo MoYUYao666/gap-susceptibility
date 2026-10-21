@@ -15,7 +15,6 @@ MANIFEST = os.path.join(REPO, "docs", "provenance_manifest.json")
 TARGETS = [
     ("A1", "paper_a1/main.tex", "\\begin{thebibliography}"),
     ("A23", "paper_a2/main_ieee.tex", "\\begin{thebibliography}"),
-    ("P3", "paper3/paper_ieee/supplementary/supplementary.tex", "\\bibliographystyle{IEEEtran}"),
 ]
 PREAMBLES = ["paper_a1/main.tex", "paper_a2/main_ieee.tex", "paper3/paper_ieee/supplementary/supplementary.tex",
              "paper合/main_nc.tex", "paper合/main_springer.tex"]

@@ -15,10 +15,11 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 B = "tools/_p1336_build_venue_package.py"
 PKGS = [
     ["--manuscript", "paper_a1/main.pdf", "--title-page", "paper_a1/title_page.pdf",
-     "--cover-letter", "paper_a1/cover_letter.pdf", "--source", "paper_a1", "--figures", "paper_a1/figures",
+     "--cover-letter", "paper_a1/cover_letter_paa_revision.pdf", "--zip-exclude", "cover_letter.tex,cover_letter_paa.tex,cover_letter_paa_revision.tex",
+     "--source", "paper_a1", "--figures", "paper_a1/figures",
      "--venue", "Pattern Analysis and Applications (A1)", "--out", "SUBMISSION/_venue_builds/A1_PAA_next"],
     ["--manuscript", "paper3/paper_ieee/main.pdf", "--title-page", "paper3/paper_ieee/title_page_prl.pdf",
-     "--cover-letter", "paper3/paper_ieee/cover_letter_prl.pdf", "--source", "paper3/paper_ieee",
+     "--cover-letter", "paper3/paper_ieee/cover_letter_prl_revision.pdf", "--supplementary", "paper3/paper_ieee/supplementary/supplementary.pdf", "--source", "paper3/paper_ieee",
      "--figures", "paper3/paper_ieee/figures", "--venue", "Pattern Recognition Letters (P3)",
      "--out", "SUBMISSION/_venue_builds/P3_PRL_next"],
     ["--manuscript", "paper_a2/main_ieee.pdf", "--abstract", "paper_a2/abstract.pdf",
@@ -44,6 +45,9 @@ def main() -> int:
         if not a.apply:
             print("  would build", args[args.index("--out") + 1])
             continue
+        out = os.path.join(REPO, args[args.index("--out") + 1])
+        if os.path.isdir(out):
+            shutil.rmtree(out)
         r = subprocess.run([sys.executable, B] + args + ["--apply"], cwd=REPO, capture_output=True, text=True)
         print("  package:", args[args.index("--out") + 1], "exit", r.returncode)
         if r.returncode != 0:
