@@ -73,6 +73,9 @@ else:
     lora_rank, rank_pattern = 4, {}
 if args.llm_rank is not None:          # 云端补强: 显式覆盖 LLM 侧基础秩
     lora_rank = int(args.llm_rank)
+if args.block_config == 'uniform' and args.llm_rank is None:
+    # fix 2026-10-22: --rank was previously only a label; use it as the actual LoRA rank
+    lora_rank = int(args.rank)
 _attn = ["q_proj", "k_proj", "v_proj", "o_proj"] if args.attn_targets == 'qkvo' else []
 _proj_suffixes = [s.strip() for s in args.proj_targets.split(',') if s.strip()]
 _targets = list(_attn)
