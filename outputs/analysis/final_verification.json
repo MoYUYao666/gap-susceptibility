@@ -47,13 +47,15 @@
    "pass_ok": true
   },
   "p3_prl": {
-   "verdict": "READY",
-   "grade": "A",
-   "pass": 50,
-   "fail": 0,
+   "verdict": "BLOCKED",
+   "grade": "D",
+   "pass": 49,
+   "fail": 1,
    "warn": 0,
-   "blockers": [],
-   "pass_ok": true
+   "blockers": [
+    "A-04"
+   ],
+   "pass_ok": false
   },
   "a23_joe": {
    "verdict": "READY",
@@ -104,17 +106,17 @@
  "git_clean": {
   "pass": false,
   "dirty": [
-   "?? docs/audits/AUD-a1_paa-20261022T090720Z.json",
-   "?? docs/audits/AUD-a1_paa-20261022T090720Z.md",
-   "?? docs/audits/AUD-a23_joe-20261022T090741Z.json",
-   "?? docs/audits/AUD-a23_joe-20261022T090741Z.md",
-   "?? docs/audits/AUD-p3_prl-20261022T090732Z.json",
-   "?? docs/audits/AUD-p3_prl-20261022T090732Z.md",
-   "?? docs/audits/AUD-paperA_nc-20261022T090725Z.json",
-   "?? docs/audits/AUD-paperA_nc-20261022T090725Z.md",
-   "?? docs/audits/AUD-paperA_springer-20261022T090730Z.json",
-   "?? docs/audits/AUD-paperA_springer-20261022T090730Z.md"
+   "D tools/_tmp_perstep1.py",
+   "?? docs/audits/AUD-a1_paa-20261022T111013Z.json",
+   "?? docs/audits/AUD-a1_paa-20261022T111013Z.md",
+   "?? docs/audits/AUD-a23_joe-20261022T111030Z.json",
+   "?? docs/audits/AUD-a23_joe-20261022T111030Z.md",
+   "?? docs/audits/AUD-p3_prl-20261022T111023Z.json",
+   "?? docs/audits/AUD-p3_prl-20261022T111023Z.md",
+   "?? docs/audits/AUD-paperA_nc-20261022T111017Z.json",
+   "?? docs/audits/AUD-paperA_nc-20261022T111017Z.md",
+   "?? docs/audits/AUD-paperA_springer-20261022T111021Z.json"
   ]
  },
- "all_pass": true
+ "all_pass": false
 }
