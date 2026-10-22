@@ -1,0 +1,130 @@
+{
+ "meta": {
+  "script": "tools/_p1534_additivity_residual.py",
+  "task": "R3' additivity test",
+  "n_eval": 4,
+  "adapter": "probe r=8"
+ },
+ "energies": {
+  "empty": 2989.5,
+  "vision": 2985.25,
+  "text_shallow": 2995.0,
+  "text_mid": 2995.5,
+  "text_deep": 2990.75,
+  "vision+text_shallow": 2990.25,
+  "vision+text_mid": 2992.75,
+  "vision+text_deep": 2987.25,
+  "text_shallow+text_mid": 3000.5,
+  "text_shallow+text_deep": 2996.0,
+  "text_mid+text_deep": 2997.5,
+  "vision+text_shallow+text_mid": 2998.0,
+  "vision+text_shallow+text_deep": 2989.75,
+  "vision+text_mid+text_deep": 2990.5,
+  "text_shallow+text_mid+text_deep": 3000.0,
+  "vision+text_shallow+text_mid+text_deep": 2995.5
+ },
+ "pair_residuals": [
+  {
+   "A": "vision",
+   "B": "text_shallow",
+   "E_union": 2990.25,
+   "E_A": 2985.25,
+   "E_B": 2995.0,
+   "E_empty": 2989.5,
+   "residual": -0.5,
+   "relative": -0.00016721009948995327
+  },
+  {
+   "A": "vision",
+   "B": "text_mid",
+   "E_union": 2992.75,
+   "E_A": 2985.25,
+   "E_B": 2995.5,
+   "E_empty": 2989.5,
+   "residual": 1.5,
+   "relative": 0.0005012112605461528
+  },
+  {
+   "A": "vision",
+   "B": "text_deep",
+   "E_union": 2987.25,
+   "E_A": 2985.25,
+   "E_B": 2990.75,
+   "E_empty": 2989.5,
+   "residual": 0.75,
+   "relative": 0.0002510670348982338
+  },
+  {
+   "A": "text_shallow",
+   "B": "text_mid",
+   "E_union": 3000.5,
+   "E_A": 2995.0,
+   "E_B": 2995.5,
+   "E_empty": 2989.5,
+   "residual": -0.5,
+   "relative": -0.00016663889351769152
+  },
+  {
+   "A": "text_shallow",
+   "B": "text_deep",
+   "E_union": 2996.0,
+   "E_A": 2995.0,
+   "E_B": 2990.75,
+   "E_empty": 2989.5,
+   "residual": -0.25,
+   "relative": -8.344459279035933e-05
+  },
+  {
+   "A": "text_mid",
+   "B": "text_deep",
+   "E_union": 2997.5,
+   "E_A": 2995.5,
+   "E_B": 2990.75,
+   "E_empty": 2989.5,
+   "residual": 0.75,
+   "relative": 0.0002502085070891576
+  }
+ ],
+ "triple_residuals": [
+  {
+   "triple": [
+    "vision",
+    "text_shallow",
+    "text_mid"
+   ],
+   "E_union": 2998.0,
+   "residual": 1.25,
+   "relative": 0.0004169446297530297
+  },
+  {
+   "triple": [
+    "vision",
+    "text_shallow",
+    "text_deep"
+   ],
+   "E_union": 2989.75,
+   "residual": -2.25,
+   "relative": -0.0007525712852242654
+  },
+  {
+   "triple": [
+    "vision",
+    "text_mid",
+    "text_deep"
+   ],
+   "E_union": 2990.5,
+   "residual": -2.0,
+   "relative": -0.000668784484199743
+  },
+  {
+   "triple": [
+    "text_shallow",
+    "text_mid",
+    "text_deep"
+   ],
+   "E_union": 3000.0,
+   "residual": -2.25,
+   "relative": -0.00074999999999975
+  }
+ ]
+}
