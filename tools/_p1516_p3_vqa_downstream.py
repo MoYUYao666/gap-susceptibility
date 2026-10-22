@@ -57,13 +57,13 @@ def token_f1(refs, hyps):
     return sum(f1s) / len(f1s)
 
 
-def ensure_adapter(rank, train_samples, epochs):
-    d = os.path.join(ADAPTERS, f"r{rank}")
+def ensure_adapter(rank, train_samples, epochs, per_step=False):
+    d = os.path.join(ADAPTERS, f"r{rank}" + ("_step" if per_step else ""))
     if os.path.exists(os.path.join(d, "adapter_config.json")):
         return d
     r = subprocess.run([sys.executable, TRAIN_SCRIPT, "--rank", str(rank), "--seed", "42", "--epochs", str(epochs),
                         "--num-samples", str(train_samples), "--data-path", TRAIN_PARQUET,
-                        "--images-dir", IMAGES, "--save-adapter-dir", d], cwd=REPO)
+                        "--images-dir", IMAGES, "--save-adapter-dir", d] + (["--per-step"] if per_step else []), cwd=REPO)
     print("  training exit", r.returncode, flush=True)
     return d
 
@@ -76,6 +76,7 @@ def main() -> int:
     ap.add_argument("--train-samples", type=int, default=200)
     ap.add_argument("--epochs", type=int, default=3)
     ap.add_argument("--eval-n", type=int, default=50)
+    ap.add_argument("--per-step", action="store_true")
     args = ap.parse_args()
     rank = None if args.rank == "base" else int(args.rank)
     OUT = OUT_TEMPLATE % args.rank
@@ -89,7 +90,7 @@ def main() -> int:
     base = LlavaForConditionalGeneration.from_pretrained(MODEL, quantization_config=quant, device_map="auto")
     model = base
     if rank is not None:
-        d = ensure_adapter(rank, args.train_samples, args.epochs)
+        d = ensure_adapter(rank, args.train_samples, args.epochs, args.per_step)
         model = PeftModel.from_pretrained(base, d, is_trainable=False)
     hyps, refs = [], []
     model.eval()
