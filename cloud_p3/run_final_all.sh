@@ -13,7 +13,8 @@ step () { echo "===== $1 $(date +%H:%M:%S) ====="; }
 step "C1 r3/r8 ten seeds"
 for r in 3 8; do
   for s in 42 123 456 789 999 1024 7 17 27 37; do
-    $PY paper3/scripts/run_training.py --rank $r --seed $s --epochs 3 --num-samples 20 >/dev/null 2>&1 || echo "FAIL r$r s$s"
+    $PY paper3/scripts/run_training.py --rank $r --seed $s --epochs 3 --num-samples 20 \
+      --data-path paper3/train-00000-of-00001-a09b74b3ef9c3b56.parquet >/dev/null 2>&1 || echo "FAIL r$r s$s"
   done
 done
 echo "C1 DONE"
