@@ -1,0 +1,54 @@
+{
+ "meta": {
+  "script": "tools/_p1546_env_variance.py",
+  "task": "environment-vs-seed variance decomposition (r=5)",
+  "method": "one-way random-effects ANOVA on environment level (unequal n; n0-adjusted)"
+ },
+ "envs": {
+  "torch 2.9/cu130": {
+   "n": 5,
+   "values": [
+    -10.5,
+    8.0,
+    -36.5,
+    -27.0,
+    -49.0
+   ],
+   "mean": -23.0,
+   "sd": 22.31311273668468
+  },
+  "torch 2.12/cu130": {
+   "n": 10,
+   "values": [
+    -96.0,
+    -7.5,
+    -7.5,
+    -114.5,
+    -12.5,
+    -26.5,
+    -66.0,
+    -63.5,
+    -19.0,
+    -24.0
+   ],
+   "mean": -43.7,
+   "sd": 38.76653768966793
+  },
+  "torch 2.4/cu121": {
+   "n": 2,
+   "values": [
+    -2.5,
+    41.0
+   ],
+   "mean": 19.25,
+   "sd": 30.759144981614817
+  }
+ },
+ "ss_between": 6972.304411764706,
+ "ss_within": 16463.225,
+ "ms_between": 3486.152205882353,
+ "ms_within": 1175.9446428571428,
+ "sigma_env": 22.15669440920412,
+ "sigma_seed": 34.29204926593251,
+ "env_variance_share": 0.29451663769330705
+}
