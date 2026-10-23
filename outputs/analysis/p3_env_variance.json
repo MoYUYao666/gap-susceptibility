@@ -1,24 +1,26 @@
 {
  "meta": {
-  "script": "tools/_p1546_env_variance.py",
-  "task": "environment-vs-seed variance decomposition (r=5)",
-  "method": "one-way random-effects ANOVA on environment level (unequal n; n0-adjusted)"
+  "script": "tools/_p1570_env_variance_update.py",
+  "n_boot": 10000,
+  "method": "one-way random-effects ANOVA on environment level, seed bootstrap within environment"
  },
  "envs": {
   "torch 2.9/cu130": {
    "n": 5,
+   "mean": -23.0,
+   "sd": 22.31311273668468,
    "values": [
     -10.5,
     8.0,
     -36.5,
     -27.0,
     -49.0
-   ],
-   "mean": -23.0,
-   "sd": 22.31311273668468
+   ]
   },
   "torch 2.12/cu130": {
    "n": 10,
+   "mean": -43.7,
+   "sd": 38.76653768966793,
    "values": [
     -96.0,
     -7.5,
@@ -30,26 +32,28 @@
     -63.5,
     -19.0,
     -24.0
-   ],
-   "mean": -43.7,
-   "sd": 38.76653768966793
+   ]
   },
   "torch 2.4/cu121": {
-   "n": 3,
+   "n": 4,
+   "mean": 25.25,
+   "sd": 33.17252879517428,
    "values": [
     -2.5,
     41.0,
+    -2.0,
     64.5
-   ],
-   "mean": 34.333333333333336,
-   "sd": 33.99387199677808
+   ]
   }
  },
- "ss_between": 14078.17777777778,
- "ss_within": 17828.266666666666,
- "ms_between": 7039.08888888889,
- "ms_within": 1188.5511111111111,
- "sigma_env": 33.29448824307743,
- "sigma_seed": 34.47536962979674,
- "env_variance_share": 0.4825804127979092
+ "sigma_env": 31.148928826613844,
+ "sigma_seed": 34.294997813092216,
+ "env_share": 0.4520380976240466,
+ "bootstrap": {
+  "share_mean": 0.494751901851301,
+  "share_ci95": [
+   0.21198180448528658,
+   0.7471951281145658
+  ]
+ }
 }
