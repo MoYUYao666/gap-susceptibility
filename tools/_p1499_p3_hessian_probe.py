@@ -21,7 +21,7 @@ import torch
 from PIL import Image
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT_TEMPLATE = os.path.join(REPO, "outputs", "analysis", "p3_hessian_probe_r%d.json")
+OUT_TEMPLATE = os.path.join(REPO, "outputs", "analysis", "p3_hessian_probe_r%d_s%d.json")
 MODEL = os.path.join(REPO, "models", "llava-hf")
 PARQUET = os.path.join(REPO, "paper3", "train-instr-00000.parquet")
 IMAGES = os.path.join(REPO, "data", "marine_captions")
@@ -33,12 +33,13 @@ N_BATCH = 3
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--rank", type=int, default=5)
+    ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
     RANKS = [args.rank]
-    OUT = OUT_TEMPLATE % args.rank
+    OUT = OUT_TEMPLATE % (args.rank, args.seed)
     os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
-    torch.manual_seed(42)
-    np.random.seed(42)
+    torch.manual_seed(args.seed)
+    np.random.seed(args.seed)
     t0 = time.time()
     from transformers import AutoProcessor, BitsAndBytesConfig, LlavaForConditionalGeneration
     from peft import LoraConfig, TaskType, get_peft_model

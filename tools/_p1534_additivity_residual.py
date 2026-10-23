@@ -3,12 +3,13 @@ r"""Empirical test of the block-additivity assumption (R3' / R1.5) on the probe 
 
 For every subset S of the four blocks, zero the LoRA B-matrices of blocks outside S and measure the alignment energy
 E(S) on held-out instruction batches. The pair residual r(A,B) = E(A u B) - E(A) - E(B) + E(empty) quantifies the
-violation of block additivity.
+violation of block additivity. Per-prompt residuals are bootstrap-resampled for a 95% CI.
 
-    python tools/_p1534_additivity_residual.py
+    python tools/_p1534_additivity_residual.py [--n-eval 8]
 """
 from __future__ import annotations
 
+import argparse
 import itertools
 import json
 import os
@@ -23,7 +24,7 @@ MODEL = os.path.join(REPO, "models", "llava-hf")
 ADAPTER = os.path.join(REPO, "outputs", "p3_probe_adapter")
 PARQUET = os.path.join(REPO, "paper3", "train-instr-00000.parquet")
 BLOCKS = ["vision", "text_shallow", "text_mid", "text_deep"]
-N_EVAL = 4
+N_BOOT = 2000
 
 
 def block_of(name: str) -> str:
@@ -36,21 +37,21 @@ def block_of(name: str) -> str:
     return "other"
 
 
-def energy(model, eval_items):
-    vals = []
-    for inp in eval_items:
-        with torch.no_grad():
-            out = model(**inp, output_hidden_states=True)
-        hs = out.hidden_states[-1]
-        vis = hs[:, :576, :]
-        lang = hs[:, 576:, :]
-        h_vis = vis.mean(dim=1)
-        h_lang = lang.mean(dim=1)
-        vals.append(float(((h_vis - h_lang) ** 2).sum(dim=-1).mean()))
-    return float(np.mean(vals))
+def energy(model, inp):
+    with torch.no_grad():
+        out = model(**inp, output_hidden_states=True)
+    hs = out.hidden_states[-1]
+    vis = hs[:, :576, :]
+    lang = hs[:, 576:, :]
+    h_vis = vis.mean(dim=1)
+    h_lang = lang.mean(dim=1)
+    return float(((h_vis - h_lang) ** 2).sum(dim=-1).mean())
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--n-eval", type=int, default=8)
+    a = ap.parse_args()
     os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
     os.environ["HF_HUB_OFFLINE"] = "1"
     torch.manual_seed(42)
@@ -63,7 +64,7 @@ def main() -> int:
     base = LlavaForConditionalGeneration.from_pretrained(MODEL, quantization_config=quant, device_map="auto")
     model = PeftModel.from_pretrained(base, ADAPTER, is_trainable=True)
     processor = AutoProcessor.from_pretrained(MODEL)
-    df = pd.read_parquet(PARQUET).head(N_EVAL)
+    df = pd.read_parquet(PARQUET).head(a.n_eval)
     img = Image.new("RGB", (336, 336), (128, 128, 128))
     items = []
     for _, row in df.iterrows():
@@ -73,7 +74,6 @@ def main() -> int:
         inp = processor(text=text, images=img, return_tensors="pt")
         inp["labels"] = inp["input_ids"].clone()
         items.append({k: v.cuda() if torch.is_tensor(v) else v for k, v in inp.items()})
-    # identify LoRA B parameters per block
     lora_b = [(n, p) for n, p in model.named_parameters() if "lora_B" in n]
     saved = {n: p.detach().clone() for n, p in lora_b}
     energies = {}
@@ -82,32 +82,32 @@ def main() -> int:
             for n, p in lora_b:
                 if block_of(n) in BLOCKS and block_of(n) not in keep:
                     p.data.zero_()
-            energies[keep] = energy(model, items)
+            energies[keep] = [energy(model, inp) for inp in items]
             for n, p in lora_b:
                 p.data.copy_(saved[n])
-            print(f"  keep={keep} E={energies[keep]:.1f}", flush=True)
-    empty = energies[()]
+            print(f"  keep={keep} E={np.mean(energies[keep]):.1f}", flush=True)
+    empty = np.array(energies[()])
     pairs = []
-    for a, b in itertools.combinations(BLOCKS, 2):
-        ab = tuple(sorted((a, b), key=BLOCKS.index))
-        resid = energies[ab] - energies[(a,)] - energies[(b,)] + empty
-        scale = abs(energies[ab]) + 1e-9
-        pairs.append({"A": a, "B": b, "E_union": energies[ab], "E_A": energies[(a,)], "E_B": energies[(b,)],
-                      "E_empty": empty, "residual": resid, "relative": resid / scale})
-    triples = []
-    for a, b, c in itertools.combinations(BLOCKS, 3):
-        abc = tuple(sorted((a, b, c), key=BLOCKS.index))
-        resid = (energies[abc] - energies[(a,)] - energies[(b,)] - energies[(c,)] + 2 * empty)
-        triples.append({"triple": [a, b, c], "E_union": energies[abc], "residual": resid,
-                        "relative": resid / (abs(energies[abc]) + 1e-9)})
+    rng = np.random.default_rng(42)
+    for a_, b_ in itertools.combinations(BLOCKS, 2):
+        ab = tuple(sorted((a_, b_), key=BLOCKS.index))
+        resid = np.array(energies[ab]) - np.array(energies[(a_,)]) - np.array(energies[(b_,)]) + empty
+        boots = [float(np.mean(rng.choice(resid, len(resid), replace=True))) for _ in range(N_BOOT)]
+        scale = float(np.mean(energies[ab])) + 1e-9
+        pairs.append({"A": a_, "B": b_, "E_union": float(np.mean(energies[ab])),
+                      "E_A": float(np.mean(energies[(a_,)])), "E_B": float(np.mean(energies[(b_,)])),
+                      "E_empty": float(np.mean(empty)), "residual": float(resid.mean()),
+                      "relative": float(resid.mean() / scale),
+                      "ci95": [float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))]})
     out = {"meta": {"script": "tools/_p1534_additivity_residual.py", "task": "R3' additivity test",
-                    "n_eval": N_EVAL, "adapter": "probe r=8"},
-           "energies": {"+".join(k) if k else "empty": v for k, v in energies.items()},
-           "pair_residuals": pairs, "triple_residuals": triples}
+                    "n_eval": a.n_eval, "adapter": "probe r=8", "n_boot": N_BOOT},
+           "energies": {"+".join(k) if k else "empty": float(np.mean(v)) for k, v in energies.items()},
+           "pair_residuals": pairs,
+           "max_abs_relative": max(abs(p["relative"]) for p in pairs)}
     json.dump(out, open(OUT, "w", encoding="utf-8"), indent=1)
-    print("pair residuals:")
     for p in pairs:
-        print(f"  {p['A']}+{p['B']}: residual {p['residual']:+.1f} ({100*p['relative']:+.2f}%)")
+        print(f"  {p['A']}+{p['B']}: residual {p['residual']:+.1f} ({100*p['relative']:+.2f}%) "
+              f"CI95 [{p['ci95'][0]:+.2f},{p['ci95'][1]:+.2f}]")
     print("wrote", os.path.relpath(OUT, REPO))
     return 0
 
