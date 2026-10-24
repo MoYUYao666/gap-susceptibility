@@ -43,8 +43,9 @@ MAP = {
     "tab:generalization": (None, ["outputs/analysis/ode_ledger.json"]),
     "tab:grad_side": (None, ["outputs/analysis/k_remeasured_both.json"]),
     "tab:config_groups": (None, ["outputs/analysis/strict_control_summary.json"]),
-    "tab:vlm": (None, ["outputs/vlm_instruction_dynamics.json"]),
-    "tab:llava": (None, ["outputs/llava_instruction_dynamics.json"]),
+    "tab:odefit": ("tools/_p1440_paperA_ode_residuals.py", ["outputs/analysis/paperA_ode_residuals.json"]),
+    "tab:vlm": (None, ["outputs/vlm_clean_summary.json", "outputs/vlm_clean_cloud/frozen_baseline.json"]),
+    "tab:llava": (None, ["outputs/canonical_caption_metric.json"]),
 }
 EXEMPT = {"fig:site_schematic": "mechanism schematic (not measured data); generator tools/_p1333_upgrade_figures.py"}
 

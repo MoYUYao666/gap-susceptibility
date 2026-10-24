@@ -30,7 +30,8 @@ PACKAGES = [
         "profile": "a1_paa",
         "pkg": "SUBMISSION/A1_PatternAnalysisApplications",
         "src_root": "paper_a1",
-        "copy": [["paper_a1/main.pdf", "Manuscript.pdf"]],
+        "copy": [["paper_a1/main.pdf", "Manuscript.pdf"],
+                 ["paper_a1/title_page.pdf", "Title Page.pdf"]],
         "status_old": ("| Submission status | **Submitted 2026-10-18** to the Springer Nature portal "
                        "(Submission ID `0a4629f0-0a6d-45d8-b5b1-3681cc4adc8b`); Submission received, "
                        "technical check in progress; PAA manuscript number pending by email |"),
@@ -39,7 +40,7 @@ PACKAGES = [
                        "editor was assigned; **With editor since 2026-10-19**. Package refreshed 2026-10-24 so "
                        "that the shipped PDF matches the current live manuscript. |"),
         "pages_re": r"(\d+)\s*pages",
-        "words_re": None,
+        "words_re": r"(\d+)\s*words",
     },
     {
         "name": "PaperA_NEUCOM",

@@ -1,0 +1,783 @@
+{
+ "meta": {
+  "script": "tools/_p1580_paperA_decoder_confound.py",
+  "purpose": "decompose the decoder-VLM sign confound in Paper A supplement Sections E and G (manuscript NEUCOM-D-26-23760)",
+  "manuscript_tables": {
+   "tab:vlm": "paper合/sections/supplement.tex lines 264-282 (Section E, Qwen2-VL-2B)",
+   "tab:llava": "paper合/sections/supplement.tex lines 344-363 (Section G, LLaVA-1.5-7B)"
+  },
+  "sign_convention": "change_pct = (after - before) / before * 100; negative = gap narrowed",
+  "dispersion_convention": "population sd (ddof=0); sample sd recorded alongside",
+  "read_only": true,
+  "manuscript_files_modified": []
+ },
+ "models": {
+  "qwen2_vl_2b": {
+   "model": "Qwen2-VL-2B-Instruct",
+   "archive_dir": "outputs/vlm_clean_cloud",
+   "per_run_glob": "outputs/vlm_clean_cloud/{arm}_seed*.json",
+   "producer_script": "tools/_p1150_qwen_clean_sweep.py",
+   "baseline_producer_script": "tools/_p1163_qwen_frozen_baseline.py",
+   "objective": "symmetric InfoNCE contrastive loss on the unprojected pooled image-text pair",
+   "gap_field": "dg_star (3-element list, one entry per epoch; value used here is index 2 = epoch 3)",
+   "baseline_field": "dg_star",
+   "baseline_file": "outputs/vlm_clean_cloud/frozen_baseline.json",
+   "baseline_value": 0.7778259515762329,
+   "n_pairs_evaluated": 320,
+   "gpu_class": "single 32 GB cloud instance, bfloat16",
+   "arms": {
+    "text_only": {
+     "n": 13,
+     "baseline_value": 0.7778259515762329,
+     "per_seed_after": [
+      0.02409702912,
+      0.023769266903,
+      0.025162328035,
+      0.024057449773,
+      0.024300325662,
+      0.022762473673,
+      0.025240803137,
+      0.026297569275,
+      0.023965377361,
+      0.032166842371,
+      0.026383001357,
+      0.026685154065,
+      0.024381775409
+     ],
+     "mean_after": 0.025328415088,
+     "mean_signed_change_pct": -96.743691,
+     "median_signed_change_pct": -96.865394,
+     "sd_population_pct": 0.291101,
+     "sd_sample_pct": 0.302987,
+     "min_signed_change_pct": -97.073577,
+     "max_signed_change_pct": -95.864519,
+     "n_runs_gap_narrowed": 13,
+     "n_runs_gap_widened": 0,
+     "source_files": [
+      "outputs/vlm_clean_cloud/text_only_seed42.json",
+      "outputs/vlm_clean_cloud/text_only_seed123.json",
+      "outputs/vlm_clean_cloud/text_only_seed456.json",
+      "outputs/vlm_clean_cloud/text_only_seed789.json",
+      "outputs/vlm_clean_cloud/text_only_seed1011.json",
+      "outputs/vlm_clean_cloud/text_only_seed1313.json",
+      "outputs/vlm_clean_cloud/text_only_seed1616.json",
+      "outputs/vlm_clean_cloud/text_only_seed1919.json",
+      "outputs/vlm_clean_cloud/text_only_seed2323.json",
+      "outputs/vlm_clean_cloud/text_only_seed2727.json",
+      "outputs/vlm_clean_cloud/text_only_seed3131.json",
+      "outputs/vlm_clean_cloud/text_only_seed3737.json",
+      "outputs/vlm_clean_cloud/text_only_seed4141.json"
+     ],
+     "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011,
+      1313,
+      1616,
+      1919,
+      2323,
+      2727,
+      3131,
+      3737,
+      4141
+     ],
+     "legacy_projected_construction": {
+      "field": "legacy_dg_star[2]",
+      "mean_after": 2.010294,
+      "note": "superseded _p47 construction (all-non-padding text pool plus two fixed random 512-d projections); flat near 2.0 for every arm, so it cannot resolve the gap"
+     },
+     "manuscript_reduction_pct": 96.74,
+     "manuscript_sd_pct": 0.29,
+     "manuscript_seed_range_pct": [
+      95.86,
+      97.07
+     ],
+     "reduction_seed_range_pct": [
+      95.86,
+      97.07
+     ]
+    },
+    "vision_only": {
+     "n": 13,
+     "baseline_value": 0.7778259515762329,
+     "per_seed_after": [
+      0.086772255599,
+      0.077706754208,
+      0.083397805691,
+      0.087016873062,
+      0.080344669521,
+      0.073934972286,
+      0.100492931902,
+      0.072063423693,
+      0.07242128998,
+      0.082309313118,
+      0.079151578248,
+      0.081913940609,
+      0.093578159809
+     ],
+     "mean_after": 0.082392612902,
+     "mean_signed_change_pct": -89.40732,
+     "median_signed_change_pct": -89.46886,
+     "sd_population_pct": 1.014102,
+     "sd_sample_pct": 1.055511,
+     "min_signed_change_pct": -90.735277,
+     "max_signed_change_pct": -87.08028,
+     "n_runs_gap_narrowed": 13,
+     "n_runs_gap_widened": 0,
+     "source_files": [
+      "outputs/vlm_clean_cloud/vision_only_seed42.json",
+      "outputs/vlm_clean_cloud/vision_only_seed123.json",
+      "outputs/vlm_clean_cloud/vision_only_seed456.json",
+      "outputs/vlm_clean_cloud/vision_only_seed789.json",
+      "outputs/vlm_clean_cloud/vision_only_seed1011.json",
+      "outputs/vlm_clean_cloud/vision_only_seed1313.json",
+      "outputs/vlm_clean_cloud/vision_only_seed1616.json",
+      "outputs/vlm_clean_cloud/vision_only_seed1919.json",
+      "outputs/vlm_clean_cloud/vision_only_seed2323.json",
+      "outputs/vlm_clean_cloud/vision_only_seed2727.json",
+      "outputs/vlm_clean_cloud/vision_only_seed3131.json",
+      "outputs/vlm_clean_cloud/vision_only_seed3737.json",
+      "outputs/vlm_clean_cloud/vision_only_seed4141.json"
+     ],
+     "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011,
+      1313,
+      1616,
+      1919,
+      2323,
+      2727,
+      3131,
+      3737,
+      4141
+     ],
+     "legacy_projected_construction": {
+      "field": "legacy_dg_star[2]",
+      "mean_after": 2.03217,
+      "note": "superseded _p47 construction (all-non-padding text pool plus two fixed random 512-d projections); flat near 2.0 for every arm, so it cannot resolve the gap"
+     },
+     "manuscript_reduction_pct": 89.41,
+     "manuscript_sd_pct": 1.01,
+     "manuscript_seed_range_pct": [
+      87.08,
+      90.74
+     ],
+     "reduction_seed_range_pct": [
+      87.08,
+      90.74
+     ]
+    },
+    "both": {
+     "n": 13,
+     "baseline_value": 0.7778259515762329,
+     "per_seed_after": [
+      0.008883091621,
+      0.009064002894,
+      0.014653119259,
+      0.017761290073,
+      0.010404399596,
+      0.013780531473,
+      0.012913572602,
+      0.007663817611,
+      0.004331696779,
+      0.013342919759,
+      0.012077428401,
+      0.007899142802,
+      0.012084464543
+     ],
+     "mean_after": 0.011143036724,
+     "mean_signed_change_pct": -98.567413,
+     "median_signed_change_pct": -98.447284,
+     "sd_population_pct": 0.439335,
+     "sd_sample_pct": 0.457274,
+     "min_signed_change_pct": -99.443102,
+     "max_signed_change_pct": -97.716547,
+     "n_runs_gap_narrowed": 13,
+     "n_runs_gap_widened": 0,
+     "source_files": [
+      "outputs/vlm_clean_cloud/both_seed42.json",
+      "outputs/vlm_clean_cloud/both_seed123.json",
+      "outputs/vlm_clean_cloud/both_seed456.json",
+      "outputs/vlm_clean_cloud/both_seed789.json",
+      "outputs/vlm_clean_cloud/both_seed1011.json",
+      "outputs/vlm_clean_cloud/both_seed1313.json",
+      "outputs/vlm_clean_cloud/both_seed1616.json",
+      "outputs/vlm_clean_cloud/both_seed1919.json",
+      "outputs/vlm_clean_cloud/both_seed2323.json",
+      "outputs/vlm_clean_cloud/both_seed2727.json",
+      "outputs/vlm_clean_cloud/both_seed3131.json",
+      "outputs/vlm_clean_cloud/both_seed3737.json",
+      "outputs/vlm_clean_cloud/both_seed4141.json"
+     ],
+     "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011,
+      1313,
+      1616,
+      1919,
+      2323,
+      2727,
+      3131,
+      3737,
+      4141
+     ],
+     "legacy_projected_construction": {
+      "field": "legacy_dg_star[2]",
+      "mean_after": 2.01921,
+      "note": "superseded _p47 construction (all-non-padding text pool plus two fixed random 512-d projections); flat near 2.0 for every arm, so it cannot resolve the gap"
+     },
+     "manuscript_reduction_pct": 98.57,
+     "manuscript_sd_pct": 0.44,
+     "manuscript_seed_range_pct": [
+      97.72,
+      99.44
+     ],
+     "reduction_seed_range_pct": [
+      97.72,
+      99.44
+     ]
+    }
+   },
+   "dispersion_convention": "population sd (ddof=0) of the per-seed signed changes; sample sd (ddof=1) is larger by a factor sqrt(13/12)=1.041 and does not reproduce the manuscript",
+   "derived_summary_check": {
+    "file": "outputs/vlm_clean_summary.json",
+    "n_records": 39,
+    "problems": [],
+    "agrees_with_recomputation": true
+   }
+  },
+  "llava_1_5_7b": {
+   "model": "LLaVA-1.5-7B",
+   "manuscript_table": "tab:llava (supplement Section G)",
+   "archive_file": "outputs/canonical_caption_metric.json",
+   "producer_script": "tools/_p1145_clean_gap_measure.py",
+   "adapter_training_script": "tools/_p820_llava_sites.py",
+   "objective": "caption-generation causal-LM cross-entropy (out.loss with labels)",
+   "gap_field": "runs.<tag>.<kind>.dg_star",
+   "baseline_field": "runs.frozen.<kind>.dg_star",
+   "n_eval_pairs": 500,
+   "gpu_class": "single 32 GB cloud instance, bfloat16",
+   "constructions": {
+    "clean": {
+     "text_side": "caption-token positions, labels != -100",
+     "is_manuscript_construction": true,
+     "baseline_value": 0.3565603693326314,
+     "baseline_source": "outputs/canonical_caption_metric.json::runs.frozen.clean.dg_star",
+     "arms": {
+      "text_only": {
+       "n": 3,
+       "baseline_value": 0.3565603693326314,
+       "per_seed_after": [
+        0.597620748338,
+        0.655786006224,
+        0.600020847623
+       ],
+       "mean_after": 0.617809200728,
+       "mean_signed_change_pct": 73.269172,
+       "median_signed_change_pct": 68.280297,
+       "sd_population_pct": 7.536319,
+       "sd_sample_pct": 9.230068,
+       "min_signed_change_pct": 67.607171,
+       "max_signed_change_pct": 83.920049,
+       "n_runs_gap_narrowed": 0,
+       "n_runs_gap_widened": 3,
+       "source_files": [
+        "outputs/canonical_caption_metric.json::runs.text_only_s42.clean.dg_star",
+        "outputs/canonical_caption_metric.json::runs.text_only_s123.clean.dg_star",
+        "outputs/canonical_caption_metric.json::runs.text_only_s456.clean.dg_star"
+       ],
+       "manuscript_change_pct": 73.27,
+       "manuscript_sd_pct": 7.54,
+       "manuscript_spread_range_pct": [
+        67.61,
+        83.92
+       ]
+      },
+      "vision_only": {
+       "n": 3,
+       "baseline_value": 0.3565603693326314,
+       "per_seed_after": [
+        0.711438915086,
+        0.8066100762,
+        0.851031056472
+       ],
+       "mean_after": 0.789693349253,
+       "mean_signed_change_pct": 121.475357,
+       "median_signed_change_pct": 126.219778,
+       "sd_population_pct": 16.331074,
+       "sd_sample_pct": 20.001399,
+       "min_signed_change_pct": 99.52832,
+       "max_signed_change_pct": 138.677971,
+       "n_runs_gap_narrowed": 0,
+       "n_runs_gap_widened": 3,
+       "source_files": [
+        "outputs/canonical_caption_metric.json::runs.vision_only_s42.clean.dg_star",
+        "outputs/canonical_caption_metric.json::runs.vision_only_s123.clean.dg_star",
+        "outputs/canonical_caption_metric.json::runs.vision_only_s456.clean.dg_star"
+       ],
+       "manuscript_change_pct": 121.48,
+       "manuscript_sd_pct": 16.33,
+       "manuscript_spread_range_pct": [
+        99.53,
+        138.68
+       ]
+      },
+      "both": {
+       "n": 3,
+       "baseline_value": 0.3565603693326314,
+       "per_seed_after": [
+        0.663362356405,
+        0.697110845929,
+        0.732477440721
+       ],
+       "mean_after": 0.697650214352,
+       "mean_signed_change_pct": 95.661177,
+       "median_signed_change_pct": 95.509907,
+       "sd_population_pct": 7.914142,
+       "sd_sample_pct": 9.692804,
+       "min_signed_change_pct": 86.044893,
+       "max_signed_change_pct": 105.428731,
+       "n_runs_gap_narrowed": 0,
+       "n_runs_gap_widened": 3,
+       "source_files": [
+        "outputs/canonical_caption_metric.json::runs.both_s42.clean.dg_star",
+        "outputs/canonical_caption_metric.json::runs.both_s123.clean.dg_star",
+        "outputs/canonical_caption_metric.json::runs.both_s456.clean.dg_star"
+       ],
+       "manuscript_change_pct": 95.66,
+       "manuscript_sd_pct": 7.91,
+       "manuscript_spread_range_pct": [
+        86.04,
+        105.43
+       ]
+      }
+     }
+    },
+    "prompt": {
+     "text_side": "instruction prompt (no caption in the sequence)",
+     "is_manuscript_construction": false,
+     "baseline_value": 0.3885019256008996,
+     "baseline_source": "outputs/canonical_caption_metric.json::runs.frozen.prompt.dg_star",
+     "arms": {
+      "text_only": {
+       "n": 3,
+       "baseline_value": 0.3885019256008996,
+       "per_seed_after": [
+        0.600868297002,
+        0.646670553419,
+        0.584970777943
+       ],
+       "mean_after": 0.610836542788,
+       "mean_signed_change_pct": 57.228704,
+       "median_signed_change_pct": 54.662888,
+       "sd_population_pct": 6.732644,
+       "sd_sample_pct": 8.245772,
+       "min_signed_change_pct": 50.570883,
+       "max_signed_change_pct": 66.452342,
+       "n_runs_gap_narrowed": 0,
+       "n_runs_gap_widened": 3,
+       "source_files": [
+        "outputs/canonical_caption_metric.json::runs.text_only_s42.prompt.dg_star",
+        "outputs/canonical_caption_metric.json::runs.text_only_s123.prompt.dg_star",
+        "outputs/canonical_caption_metric.json::runs.text_only_s456.prompt.dg_star"
+       ]
+      },
+      "vision_only": {
+       "n": 3,
+       "baseline_value": 0.3885019256008996,
+       "per_seed_after": [
+        0.665241056965,
+        0.769388761785,
+        0.814197607457
+       ],
+       "mean_after": 0.749609142069,
+       "mean_signed_change_pct": 92.94863,
+       "median_signed_change_pct": 98.039884,
+       "sd_population_pct": 16.061419,
+       "sd_sample_pct": 19.671141,
+       "min_signed_change_pct": 71.232371,
+       "max_signed_change_pct": 109.573635,
+       "n_runs_gap_narrowed": 0,
+       "n_runs_gap_widened": 3,
+       "source_files": [
+        "outputs/canonical_caption_metric.json::runs.vision_only_s42.prompt.dg_star",
+        "outputs/canonical_caption_metric.json::runs.vision_only_s123.prompt.dg_star",
+        "outputs/canonical_caption_metric.json::runs.vision_only_s456.prompt.dg_star"
+       ]
+      },
+      "both": {
+       "n": 3,
+       "baseline_value": 0.3885019256008996,
+       "per_seed_after": [
+        0.649453406296,
+        0.680432458719,
+        0.712559331977
+       ],
+       "mean_after": 0.680815065664,
+       "mean_signed_change_pct": 75.241105,
+       "median_signed_change_pct": 75.142622,
+       "sd_population_pct": 6.631706,
+       "sd_sample_pct": 8.122148,
+       "min_signed_change_pct": 67.168645,
+       "max_signed_change_pct": 83.412046,
+       "n_runs_gap_narrowed": 0,
+       "n_runs_gap_widened": 3,
+       "source_files": [
+        "outputs/canonical_caption_metric.json::runs.both_s42.prompt.dg_star",
+        "outputs/canonical_caption_metric.json::runs.both_s123.prompt.dg_star",
+        "outputs/canonical_caption_metric.json::runs.both_s456.prompt.dg_star"
+       ]
+      }
+     }
+    }
+   },
+   "dispersion_convention": "population sd (ddof=0) of the three per-seed signed changes; the sample sd (ddof=1) is a factor sqrt(3/2)=1.225 larger and does not reproduce Table G",
+   "second_construction_same_adapters": {
+    "manuscript_table": null,
+    "archive_dir": "outputs/llava_canonical_cloud",
+    "producer_script": "tools/_p820_llava_sites.py",
+    "gap_field": "dg_star_rel_change (already a signed relative change; multiplied by 100)",
+    "baseline": "the frozen arm's own drg_star_rel_change is the measurement floor, not a zero point; the untrained value under this construction is dg_star_before = 0.814593874491178 shared by every run",
+    "untrained_dg_star_before": 0.814593874491178,
+    "frozen_arm_floor_pct": 0.649902,
+    "arms": {
+     "text_only": {
+      "n": 3,
+      "per_seed_signed_change_pct": [
+       40.764631,
+       39.097481,
+       27.17258
+      ],
+      "mean_signed_change_pct": 35.678231,
+      "sd_population_pct": 6.052791,
+      "sd_sample_pct": 7.413124,
+      "min_signed_change_pct": 27.17258,
+      "max_signed_change_pct": 40.764631,
+      "n_runs_gap_narrowed": 0,
+      "n_runs_gap_widened": 3,
+      "source_files": [
+       "outputs/llava_canonical_cloud/text_only_s42.json",
+       "outputs/llava_canonical_cloud/text_only_s123.json",
+       "outputs/llava_canonical_cloud/text_only_s456.json"
+      ]
+     },
+     "vision_only": {
+      "n": 3,
+      "per_seed_signed_change_pct": [
+       -1.507789,
+       19.896265,
+       3.322381
+      ],
+      "mean_signed_change_pct": 7.236952,
+      "sd_population_pct": 9.166107,
+      "sd_sample_pct": 11.226143,
+      "min_signed_change_pct": -1.507789,
+      "max_signed_change_pct": 19.896265,
+      "n_runs_gap_narrowed": 1,
+      "n_runs_gap_widened": 2,
+      "source_files": [
+       "outputs/llava_canonical_cloud/vision_only_s42.json",
+       "outputs/llava_canonical_cloud/vision_only_s123.json",
+       "outputs/llava_canonical_cloud/vision_only_s456.json"
+      ]
+     },
+     "both": {
+      "n": 3,
+      "per_seed_signed_change_pct": [
+       31.010911,
+       34.278757,
+       34.760527
+      ],
+      "mean_signed_change_pct": 33.350065,
+      "sd_population_pct": 1.665684,
+      "sd_sample_pct": 2.040038,
+      "min_signed_change_pct": 31.010911,
+      "max_signed_change_pct": 34.760527,
+      "n_runs_gap_narrowed": 0,
+      "n_runs_gap_widened": 3,
+      "source_files": [
+       "outputs/llava_canonical_cloud/both_s42.json",
+       "outputs/llava_canonical_cloud/both_s123.json",
+       "outputs/llava_canonical_cloud/both_s456.json"
+      ]
+     }
+    }
+   },
+   "adapters_present": [
+    "both_s123_ckpt.pt",
+    "both_s42_ckpt.pt",
+    "both_s456_ckpt.pt",
+    "text_only_s123_ckpt.pt",
+    "text_only_s42_ckpt.pt",
+    "text_only_s456_ckpt.pt",
+    "vision_only_s123_ckpt.pt",
+    "vision_only_s42_ckpt.pt",
+    "vision_only_s456_ckpt.pt"
+   ]
+  }
+ },
+ "factor_table": {
+  "controlled_identical": [
+   "arm definition (text_only / vision_only / both, split by tower name)",
+   "strict freezing (only adapter matrices trainable, backbone frozen)",
+   "LoRA rank 8",
+   "epochs 3",
+   "batch size 2",
+   "learning rate 1e-4",
+   "precision bfloat16",
+   "image side of DG* (mean pool over image-token positions, L2, no projection)",
+   "DG* as paired squared distance (mean_i ||I_i - T_i||^2)",
+   "three-arm design reported against an untrained baseline"
+  ],
+  "varies": [
+   {
+    "factor": "training objective / loss",
+    "qwen": "symmetric InfoNCE contrastive on the unprojected pooled pair (tools/_p1150_qwen_clean_sweep.py line 253)",
+    "llava": "caption-generation causal-LM cross-entropy (tools/_p820_llava_sites.py, out.loss with labels)",
+    "separated_by_archive": false
+   },
+   {
+    "factor": "parameter scale",
+    "qwen": "2B (Qwen2-VL-2B-Instruct)",
+    "llava": "7B (LLaVA-1.5-7B)",
+    "separated_by_archive": false
+   },
+   {
+    "factor": "base model family",
+    "qwen": "Qwen2-VL (Qwen vision encoder + Qwen2 language model)",
+    "llava": "LLaVA-1.5 (CLIP ViT-L/14-336 vision tower + Vicuna-7B language model)",
+    "separated_by_archive": false
+   },
+   {
+    "factor": "training dataset",
+    "qwen": "Flickr30k, 400 annotated images yielding 320 image-caption pairs",
+    "llava": "MS-COCO, 1500 training pairs and 500 held-out pairs",
+    "separated_by_archive": false
+   },
+   {
+    "factor": "training-set size (pairs)",
+    "qwen": "320",
+    "llava": "1500",
+    "separated_by_archive": false
+   },
+   {
+    "factor": "evaluation-pair count",
+    "qwen": "320 (outputs/vlm_clean_cloud/frozen_baseline.json:n_pairs)",
+    "llava": "500 (outputs/llava_canonical_cloud/frozen_s42.json:n_eval; read in 63 batches per outputs/canonical_caption_metric.json:runs.frozen.clean.n_batches)",
+    "separated_by_archive": false
+   },
+   {
+    "factor": "seeds per arm",
+    "qwen": "13",
+    "llava": "3",
+    "separated_by_archive": false
+   },
+   {
+    "factor": "adaptation site / target modules",
+    "qwen": "LoRA alpha 16, dropout 0.05, tower-specific target modules (vision attn.qkv/attn.proj/mlp.fc1/fc2; language 7 projections)",
+    "llava": "LoRA on vision_model encoder projections, language_model projections and multi_modal_projector.linear_1/linear_2",
+    "separated_by_archive": false
+   },
+   {
+    "factor": "text-side convention of the DG* measurement",
+    "qwen": "caption positions after the last image token up to <|im_end|> (tools/_p1150_qwen_clean_sweep.py)",
+    "llava": "caption-token positions, labels != -100 (tools/_p1145_clean_gap_measure.py)",
+    "separated_by_archive": true,
+    "note": "same concept, implemented independently in two scripts; both constructions are archived for LLaVA on the same nine adapters and both give an increase, so this factor does not carry the sign"
+   }
+  ],
+  "verdict": "objective, scale, family, dataset, set size, seed count and adaptation-site specification all vary together; no archived run isolates any one of them"
+ },
+ "additional_evidence": {
+  "question": "Is there archived evidence that separates the training objective from parameter scale, holding the other factors fixed?",
+  "answer": "No.",
+  "what_exists": {
+   "seed_level_variation": {
+    "qwen": {
+     "runs_total": 39,
+     "runs_per_arm": 13,
+     "runs_gap_narrowed": 39,
+     "runs_gap_widened": 0,
+     "field": "dg_star[2]",
+     "comment": "every archived Qwen run narrows the gap; the three arms have disjoint seed ranges, so the sign is not a seed artefact"
+    },
+    "llava_clean_construction": {
+     "runs_total": 9,
+     "runs_per_arm": 3,
+     "runs_gap_widened": 9,
+     "runs_gap_narrowed": 0,
+     "field": "runs.<tag>.clean.dg_star",
+     "comment": "every archived LLaVA run under the manuscript's construction widens the gap"
+    },
+    "llava_prompt_construction": {
+     "runs_total": 9,
+     "runs_gap_widened": 8,
+     "runs_gap_narrowed": 1,
+     "field": "dg_star_rel_change",
+     "comment": "under the second construction the vision-only arm has one seed that narrows the gap (vision_only_s123, -1.508%), so the arm-mean statement 'every arm widens it' is 3/3 on means but 8/9 on individual runs here"
+    }
+   },
+   "measurement_construction_within_model": {
+    "qwen": {
+     "constructions": 3,
+     "detail": [
+      "clean caption-span construction (vlm_clean_cloud::dg_star) -> large reduction",
+      "superseded _p47 projected all-token construction (vlm_clean_cloud::legacy_dg_star) -> flat near 2.0, no resolvable change",
+      "pre-2026-10-17 13-seed archive (outputs/vlm_seeds_bf16, analysed in outputs/analysis/vlm_bf16_detail.json::per_run.*.*.dg_rel_pct, baseline = epoch 1) -> 39/39 runs report a reduction, 0 report an increase"
+     ],
+     "comment": "no archived Qwen construction produces an increase"
+    },
+    "llava": {
+     "constructions": 2,
+     "detail": [
+      "caption-token text side (canonical_caption_metric.json, clean) -> increase",
+      "instruction-prompt text side (canonical_caption_metric.json, prompt) -> increase"
+     ],
+     "comment": "the sign on LLaVA is invariant to the text-side convention, so this factor does not carry the sign difference"
+    }
+   }
+  },
+  "what_is_missing": [
+   {
+    "experiment": "same base model under the other objective",
+    "status": "absent",
+    "detail": "no LLaVA-1.5-7B run under a contrastive objective exists anywhere in tools/ or exp/ (searched for InfoNCE / log_softmax / logits.T training losses in every script that names LLaVA), and no Qwen2-VL-2B run under a caption-generation objective is archived"
+   },
+   {
+    "experiment": "scale-matched decoder pair under one objective",
+    "status": "absent",
+    "detail": "the archive holds one decoder model per scale: Qwen2-VL-2B and LLaVA-1.5-7B only"
+   },
+   {
+    "experiment": "matched training budget across the two models",
+    "status": "absent",
+    "detail": "Qwen trains on 320 pairs, LLaVA on 1500; no run matches them"
+   },
+   {
+    "experiment": "Qwen2.5-VL-7B under the generation objective (tools/_p1135_qwen_sites.py, MODEL = Qwen/Qwen2.5-VL-7B-Instruct)",
+    "status": "never_archived",
+    "detail": "the runner declares OUT_DIR outputs/qwen_sites, which does not exist; no JSON for it is present under outputs/"
+   },
+   {
+    "experiment": "Qwen2.5-VL-7B feasibility pilot (generative, 7B)",
+    "status": "prose_only_not_citable",
+    "detail": "DG* 1.2879 -> 1.2424 (-3.531%) on 8 held-out pairs and 392 LoRA tensors appear only in the prose of docs/llava_canonical_2026-10-17.md and HANDOFF.md; no archived JSON or field carries them, and the arm is not stated, so under the repository's provenance rule they cannot be reported as evidence"
+   },
+   {
+    "experiment": "SmolVLM decoder run",
+    "status": "wrong_metric",
+    "detail": "outputs/analysis/p3_smolvlm_family*.json record an energy field E over 20 samples (tools/_p1568_smolvlm_run.py); there is no DG* or gap field, so it cannot enter this comparison"
+   }
+  ],
+  "dataset_flip_evidence_from_dual_encoders": {
+   "file": "outputs/analysis/dataset_flip_strict.json",
+   "fields": "r4.<dataset>|<arm>.mean",
+   "finding": "changing dataset from Flickr30k to MS-COCO flips the best arm (text_only -0.03038 against both -0.02037 on Flickr30k; both -0.08860 against text_only -0.04301 on COCO) but not the sign: every arm narrows the centroid gap on both datasets",
+   "scope": "dual-encoder strict freezing, not decoders; it shows the dataset can reorder arms, which is why dataset cannot be dismissed as a candidate explanation for the decoder sign difference"
+  }
+ },
+ "provenance_findings": {
+  "manifest": "docs/provenance_manifest.json (labels tab:vlm and tab:llava, both 'verified')",
+  "decoder_table_mapping": {
+   "tab:vlm": {
+    "kind": "table",
+    "script": "tools\\_p1432_provenance_map_paperA.py",
+    "archive": "outputs/vlm_instruction_dynamics.json",
+    "status": "verified",
+    "resolves_to_table_numbers": false,
+    "declared_archive_contains_dg_star": false,
+    "true_sources": [
+     "outputs/vlm_clean_cloud",
+     "outputs/vlm_clean_cloud/frozen_baseline.json"
+    ],
+    "defect": "manifest declares outputs/vlm_instruction_dynamics.json with status 'verified', but that file holds a tau-vs-lambda instruction-dynamics probe and none of the table's numbers (no dg_star field, no untrained baseline); the table's numbers come from outputs/vlm_clean_cloud and outputs/vlm_clean_cloud/frozen_baseline.json"
+   },
+   "tab:llava": {
+    "kind": "table",
+    "script": "tools\\_p1432_provenance_map_paperA.py",
+    "archive": "outputs/llava_instruction_dynamics.json",
+    "status": "verified",
+    "resolves_to_table_numbers": false,
+    "declared_archive_contains_dg_star": false,
+    "true_sources": [
+     "outputs/canonical_caption_metric.json"
+    ],
+    "defect": "manifest declares outputs/llava_instruction_dynamics.json with status 'verified', but that file holds a tau-vs-lambda instruction-dynamics probe and none of the table's numbers (no dg_star field, no untrained baseline); the table's numbers come from outputs/canonical_caption_metric.json"
+   }
+  },
+  "mapping_is_correct": false,
+  "sign_glyph_ambiguity": {
+   "table_E_header": "Arm & Trainable & DG* after & Reduction & Seed range & CG",
+   "table_E_values": "+98.57\\pm0.44\\%, +96.74\\pm0.29\\%, +89.41\\pm1.01\\%",
+   "table_E_meaning": "magnitude of a gap REDUCTION printed with a plus sign",
+   "table_G_header": "Arm & Trainable & DG* after & Change vs frozen",
+   "table_G_values": "+73.27\\pm7.54\\%, +121.48\\pm16.33\\%, +95.66\\pm7.91\\%",
+   "table_G_meaning": "magnitude of a gap INCREASE printed with a plus sign",
+   "risk": "the same '+' glyph denotes opposite directions in the two tables; the column headers differ ('Reduction' against 'Change vs frozen') and the prose disambiguates, but a reader comparing the two tables cell by cell can read 98.57% and 73.27% as the same kind of quantity",
+   "this_script": "reports one signed quantity for both, negative = narrowed"
+  },
+  "adapter_path_discrepancy": {
+   "file": "outputs/canonical_caption_metric.json",
+   "field": "definition.adapters",
+   "declared": "outputs/llava_canonical/*_ckpt.pt (the 2026-10-17 canonical retrain)",
+   "declared_path_exists": false,
+   "actual_local_archive": "outputs/llava_canonical_cloud",
+   "actual_adapters": [
+    "both_s123_ckpt.pt",
+    "both_s42_ckpt.pt",
+    "both_s456_ckpt.pt",
+    "text_only_s123_ckpt.pt",
+    "text_only_s42_ckpt.pt",
+    "text_only_s456_ckpt.pt",
+    "vision_only_s123_ckpt.pt",
+    "vision_only_s42_ckpt.pt",
+    "vision_only_s456_ckpt.pt"
+   ],
+   "note": "the declared adapter directory does not exist locally; the nine adapters the file was computed from are in outputs/llava_canonical_cloud/, which is also where tools/_p1145_clean_gap_measure.py's outputs were pulled back to. This is a path-label issue only: the nine adapters are present and non-empty."
+  },
+  "third_llava_construction_not_reconciled": {
+   "file": "outputs/llava_canonical_cloud",
+   "field": "dg_star_before",
+   "untrained_value_in_sweep_records": 0.814593874491178,
+   "untrained_value_caption_metric_prompt": 0.3885019256008996,
+   "untrained_value_caption_metric_clean": 0.3565603693326314,
+   "note": "the sweep's own measurement gives an untrained DG* of 0.8146, which matches neither variant of canonical_caption_metric.json (0.3885 prompt, 0.3566 clean); it is therefore a third, not yet reconciled construction. It is used here only as a qualitative check that all three LLaVA arms increase the gap, never as a source for a reported magnitude."
+  }
+ },
+ "conclusion": {
+  "bounded_claim": "Across two decoder-based VLMs the measured image-text gap moves in opposite directions: on Qwen2-VL-2B-Instruct it narrows under all three adaptation arms (DG* reduction 98.57+/-0.44% both-position, 96.74+/-0.29% text-only and 89.41+/-1.01% vision-only over thirteen seeds, with disjoint seed ranges), while on LLaVA-1.5-7B it widens under all three (DG* change +73.27+/-7.54% text-only, +121.48+/-16.33% vision-only and +95.66+/-7.91% both-position over three seeds). Both decoder experiments place the vision side in the same role from opposite directions, but they differ simultaneously in training objective (contrastive against caption generation), parameter scale (2B against 7B), pretraining family, dataset (Flickr30k against MS-COCO) and training-set size (320 against 1500 pairs), so the sign difference cannot be attributed to the objective alone; no archived run isolates any single one of these factors.",
+  "supported_by_data": [
+   "the direction of the change on each model separately, at the stated n",
+   "the ordering of the three arms within each model",
+   "the invariance of each model's sign to the text-side convention of the measurement",
+   "the absence of seed-level sign flips in the arm means on both models"
+  ],
+  "NOT_supported_by_data": [
+   "that the training objective causes the opposite sign",
+   "that parameter scale causes the opposite sign",
+   "that the dataset causes the opposite sign",
+   "any comparison of effect magnitudes between the two tables",
+   "the claim that LLaVA widens the gap on every individual run under the instruction-prompt construction (8 of 9 runs widen there)"
+  ],
+  "definitive_control_design": {
+   "executed": false,
+   "design_only": true,
+   "minimal_design": "Hold model, data, budget, seed set and adaptation-site specification fixed and vary only the loss. Use one LLaVA-1.5-7B checkpoint with the toolchain already archived in tools/_p820_llava_sites.py so the preprocessing, target modules and measurement are byte-identical to the existing run, and define two arms: (a) caption-generation cross-entropy, (b) the symmetric InfoNCE contrastive loss ported from tools/_p1150_qwen_clean_sweep.py line 253 (cross_entropy over the pooled image-text similarity matrix and its transpose). Both arms train on the same 1500 MS-COCO pairs, three epochs, batch 2, rank 8, learning rate 1e-4, bfloat16, and are evaluated with tools/_p1145_clean_gap_measure.py so the DG* definition is the one Table G already uses. Analysis is a 2x3 design (objective x arm) on the same seeds, with the frozen baseline measured once per objective, since the loss does not affect the untrained model.",
+   "decision_rule": "If the contrastive arm narrows DG* and the generation arm widens it in the same model, objective is sufficient to explain the sign and scale is excluded. If both arms move the same way, objective is excluded and scale, family or dataset must carry it, and the next control is the same objective at 2B against 7B within one family.",
+   "cost_estimate_source": "rate measured on the archived LLaVA run: 0.95 s/step at 2250 steps per run (docs/llava_canonical_2026-10-17.md), so six new training runs plus evaluation are roughly six times the existing three-seed sweep; the two objectives differ in loss only, so no change to the data pipeline is required",
+   "what_remains_uncontrolled_even_then": [
+    "the contrastive and generation objectives may need different learning rates to be compared fairly, and the archived runs use one rate for both",
+    "a single model pair still cannot separate family from scale",
+    "320-pair and 1500-pair budgets remain unequal unless the Qwen side is re-run"
+   ]
+  }
+ }
+}
