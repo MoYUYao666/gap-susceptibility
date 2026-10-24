@@ -1,0 +1,1324 @@
+{
+ "generated_by": "tools/_p1595_bootstrap_ci_round.py",
+ "analysis": "run-level percentile bootstrap of stopping-rule regret (points from the labelled oracle)",
+ "claim_under_audit": "paper_a1/main.tex Introduction: 'across 16 runs with held-out splits of 353--1212 images the minimum-mass rule lands 0.58 points from the oracle on average (0.37 binomial standard errors), against 3.55 for the first epoch; training to the end reaches 0.52'",
+ "why_this_adds_information": "the reported 0.37 is the mean of the per-run binomial SE of the held-out accuracy at the selected epoch; it quantifies within-run sampling noise, not the uncertainty of the mean over runs. The bootstrap below is computed over runs and answers the second question.",
+ "method": {
+  "resampling_unit": "run (dataset x backbone x seed), independent within each rule",
+  "statistic": "arithmetic mean of the per-run regret",
+  "resamples": 20000,
+  "rng_seed": 20261024,
+  "rng": "numpy.random.default_rng, per-comparison stream derived from the label hash",
+  "ci": "percentile, 95% (2.5th-97.5th of the bootstrap distribution)",
+  "paired_differences": "one resample of run indices applied to both rules, so the difference keeps the run pairing (same run, both rules)",
+  "dispersion": "sd reported with both ddof=1 (sample) and ddof=0 (population); the manuscript prints no dispersion for these means",
+  "monte_carlo_jitter": "max shift of the two CI endpoints when the stream is re-seeded (20000 resamples)"
+ },
+ "provenance": {
+  "raw_per_epoch": [
+   "outputs/analysis/a1_monitor_interior_v2.json",
+   "outputs/analysis/a1_monitor_interior_extra.json"
+  ],
+  "derived_per_run": "outputs/analysis/a1_monitor_diagnosis.json::per_run",
+  "stratified_summary": "outputs/analysis/a1_monitor_split_diagnosis.json::summary",
+  "minCG_and_sequential_per_run": "outputs/analysis/a1_monitor_combined.json::per_run",
+  "generating_scripts": [
+   "tools/_p1402_a1_monitor_diagnosis.py",
+   "tools/_p1404_a1_split_size.py",
+   "tools/_p1398_a1_combined.py",
+   "tools/_p1408_a1_table.py"
+  ],
+  "recomputed_from_raw": true
+ },
+ "result": {
+  "n_runs_total_recomputed": 20,
+  "n_runs_total_archived": 20,
+  "rule_definitions": {
+   "minimum_margin_mass": "epoch = argmin over epochs of mass_0.01 (earliest minimum, as archived); regret = max_epoch(top1) - top1 at that epoch",
+   "first_epoch": "regret = max_epoch(top1) - top1 at epoch 0",
+   "training_to_the_end": "regret = max_epoch(top1) - top1 at the last epoch (epoch 10)",
+   "minimum_centroid_gap": "epoch = argmin over epochs of CG (earliest minimum); tools/_p1398_a1_combined.py",
+   "sequential_minimum_mass": "walk the trajectory keeping the running minimum of mass_0.01; stop at the first epoch whose mass exceeds that minimum by more than 0.01, else at the last epoch; tools/_p1398_a1_combined.py"
+  },
+  "groups": {
+   "large": {
+    "n_runs": 16,
+    "n_eval_range": [
+     353,
+     1212
+    ],
+    "runs": [
+     "dtd|seed44",
+     "dtd|seed45",
+     "food101|seed44",
+     "food101|seed45",
+     "vit-base-patch32|dtd|seed42",
+     "vit-base-patch32|dtd|seed43",
+     "vit-base-patch32|dtd|seed44",
+     "vit-base-patch32|food101|seed42",
+     "vit-base-patch32|food101|seed43",
+     "vit-base-patch32|food101|seed44",
+     "vit-large-patch14|dtd|seed42",
+     "vit-large-patch14|dtd|seed43",
+     "vit-large-patch14|dtd|seed44",
+     "vit-large-patch14|food101|seed42",
+     "vit-large-patch14|food101|seed43",
+     "vit-large-patch14|food101|seed44"
+    ],
+    "per_rule": {
+     "regret_minM": {
+      "n": 16,
+      "mean": 0.5823195351450017,
+      "median": 0.2887788778877791,
+      "min": 0.0,
+      "max": 2.4113475177304835,
+      "sd_ddof1": 0.6843274824580993,
+      "sd_ddof0": 0.6625972357280667,
+      "se_of_mean_ddof1": 0.17108187061452482,
+      "ci95_percentile": [
+       0.2841443718839951,
+       0.934211190400954
+      ],
+      "ci95_halfwidth": 0.32503340925847946,
+      "mc_jitter_max_endpoint_shift": 0.002892177515625316,
+      "values": [
+       0.7092198581560183,
+       2.4113475177304835,
+       0.16501650165017168,
+       1.155115511551159,
+       0.0,
+       1.2765957446808613,
+       0.5673758865248146,
+       0.0,
+       0.0,
+       0.16501650165017168,
+       1.1347517730496435,
+       0.0,
+       0.0,
+       0.33003300330031493,
+       0.2475247524752433,
+       1.155115511551145
+      ]
+     },
+     "regret_last_epoch": {
+      "n": 16,
+      "mean": 0.5176514991924712,
+      "median": 0.37778245909696295,
+      "min": 0.0,
+      "max": 1.7326732673267458,
+      "sd_ddof1": 0.5566228864353246,
+      "sd_ddof0": 0.5389477923204787,
+      "se_of_mean_ddof1": 0.13915572160883116,
+      "ci95_percentile": [
+       0.2646117504037609,
+       0.7915980926550086
+      ],
+      "ci95_halfwidth": 0.26349317112562387,
+      "mc_jitter_max_endpoint_shift": 0.006320878098449612,
+      "values": [
+       0.0,
+       0.0,
+       0.08250825082508584,
+       0.9900990099009874,
+       0.7092198581560183,
+       1.2765957446808613,
+       0.425531914893611,
+       1.7326732673267458,
+       1.155115511551145,
+       0.16501650165017168,
+       0.4255319148936252,
+       0.0,
+       0.0,
+       0.33003300330031493,
+       0.0,
+       0.9900990099009732
+      ]
+     },
+     "regret_first_epoch": {
+      "n": 16,
+      "mean": 3.54537514921705,
+      "median": 3.3415841584158485,
+      "min": 0.08250825082508584,
+      "max": 7.943262411347526,
+      "sd_ddof1": 2.4031207423604464,
+      "sd_ddof0": 2.3268116535219034,
+      "se_of_mean_ddof1": 0.6007801855901116,
+      "ci95_percentile": [
+       2.4219457683800303,
+       4.70922863562952
+      ],
+      "ci95_halfwidth": 1.143641433624745,
+      "mc_jitter_max_endpoint_shift": 0.015266220771013472,
+      "values": [
+       6.666666666666671,
+       3.2624113475177197,
+       3.3003300330033056,
+       0.9900990099009874,
+       6.666666666666671,
+       7.943262411347526,
+       6.666666666666671,
+       2.062706270627075,
+       0.08250825082508584,
+       3.3828382838283915,
+       3.8297872340425556,
+       0.7092198581560325,
+       4.39716312056737,
+       1.072607260726059,
+       2.0627062706270607,
+       3.6303630363036206
+      ]
+     }
+    },
+    "extra_table_rows": {
+     "regret_minCG": {
+      "n": 16,
+      "mean": 1.450060564567095,
+      "median": 1.0726072607260804,
+      "min": 0.0,
+      "max": 4.539007092198595,
+      "sd_ddof1": 1.0938931291333278,
+      "sd_ddof0": 1.0591574679160245,
+      "se_of_mean_ddof1": 0.27347328228333195,
+      "ci95_percentile": [
+       0.9744076302577054,
+       2.009211958429885
+      ],
+      "ci95_halfwidth": 0.5174021640860897,
+      "mc_jitter_max_endpoint_shift": 0.0042323879994380365,
+      "values": [
+       0.425531914893611,
+       2.553191489361687,
+       0.82508250825083,
+       0.9900990099009874,
+       0.5673758865248146,
+       4.539007092198595,
+       0.9929078014184398,
+       1.7326732673267458,
+       1.6501650165016457,
+       1.0726072607260875,
+       0.5673758865248288,
+       2.1276595744680833,
+       2.269503546099287,
+       0.0,
+       1.0726072607260733,
+       1.8151815181518032
+      ]
+     },
+     "regret_seqM": {
+      "n": 16,
+      "mean": 0.640492240713431,
+      "median": 0.6137209465627365,
+      "min": 0.0,
+      "max": 2.4113475177304835,
+      "sd_ddof1": 0.6470935831618985,
+      "sd_ddof0": 0.6265456677559292,
+      "se_of_mean_ddof1": 0.16177339579047462,
+      "ci95_percentile": [
+       0.361324696299417,
+       0.9688602670107418
+      ],
+      "ci95_halfwidth": 0.3037677853556624,
+      "mc_jitter_max_endpoint_shift": 0.008062109402428463,
+      "values": [
+       0.7092198581560183,
+       2.4113475177304835,
+       0.16501650165017168,
+       0.9075907590759016,
+       0.7092198581560183,
+       1.5602836879432687,
+       0.5673758865248146,
+       0.24752475247525751,
+       0.82508250825083,
+       0.16501650165017168,
+       0.0,
+       0.0,
+       0.0,
+       1.072607260726059,
+       0.2475247524752433,
+       0.6600660066006583
+      ]
+     }
+    },
+    "paired_differences": {
+     "minimum_margin_mass_minus_training_to_the_end": {
+      "n_pairs": 16,
+      "mean_difference": 0.06466803595253046,
+      "sd_of_differences_ddof1": 0.8845250782082233,
+      "se_of_mean_difference_ddof1": 0.22113126955205584,
+      "ci95_percentile": [
+       -0.3422600238747301,
+       0.5040623244505266
+      ],
+      "ci95_excludes_zero": false,
+      "bootstrap_share_difference_le_zero": 0.3849,
+      "mc_jitter_max_endpoint_shift": 0.009779751246403234,
+      "per_pair_differences": [
+       0.7092198581560183,
+       2.4113475177304835,
+       0.08250825082508584,
+       0.16501650165017168,
+       -0.7092198581560183,
+       0.0,
+       0.14184397163120366,
+       -1.7326732673267458,
+       -1.155115511551145,
+       0.0,
+       0.7092198581560183,
+       0.0,
+       0.0,
+       0.0,
+       0.2475247524752433,
+       0.16501650165017168
+      ]
+     },
+     "minimum_margin_mass_minus_first_epoch": {
+      "n_pairs": 16,
+      "mean_difference": -2.9630556140720485,
+      "sd_of_differences_ddof1": 2.35765856003073,
+      "se_of_mean_difference_ddof1": 0.5894146400076825,
+      "ci95_percentile": [
+       -4.107144973140934,
+       -1.858773194473704
+      ],
+      "ci95_excludes_zero": true,
+      "bootstrap_share_difference_le_zero": 1.0,
+      "mc_jitter_max_endpoint_shift": 0.021273304192120257,
+      "per_pair_differences": [
+       -5.957446808510653,
+       -0.8510638297872362,
+       -3.135313531353134,
+       0.16501650165017168,
+       -6.666666666666671,
+       -6.666666666666664,
+       -6.099290780141857,
+       -2.062706270627075,
+       -0.08250825082508584,
+       -3.21782178217822,
+       -2.695035460992912,
+       -0.7092198581560325,
+       -4.39716312056737,
+       -0.7425742574257441,
+       -1.8151815181518174,
+       -2.4752475247524757
+      ]
+     },
+     "training_to_the_end_minus_first_epoch": {
+      "n_pairs": 16,
+      "mean_difference": -3.027723650024579,
+      "sd_of_differences_ddof1": 2.4829244143846556,
+      "se_of_mean_difference_ddof1": 0.6207311035961639,
+      "ci95_percentile": [
+       -4.208363505898464,
+       -1.8571866661400231
+      ],
+      "ci95_excludes_zero": true,
+      "bootstrap_share_difference_le_zero": 1.0,
+      "mc_jitter_max_endpoint_shift": 0.0025783828382897056,
+      "per_pair_differences": [
+       -6.666666666666671,
+       -3.2624113475177197,
+       -3.21782178217822,
+       0.0,
+       -5.957446808510653,
+       -6.666666666666664,
+       -6.24113475177306,
+       -0.33003300330032914,
+       1.072607260726059,
+       -3.21782178217822,
+       -3.4042553191489304,
+       -0.7092198581560325,
+       -4.39716312056737,
+       -0.7425742574257441,
+       -2.0627062706270607,
+       -2.6402640264026473
+      ]
+     }
+    },
+    "mean_regret_minM_in_binomial_SE_recomputed": 0.3738744124484536,
+    "per_run": {
+     "dtd|seed44": {
+      "dataset": "dtd",
+      "n_epochs": 10,
+      "n_eval": 705,
+      "oracle_top1": 64.9645390070922,
+      "regret_minM": 0.7092198581560183,
+      "regret_last_epoch": 0.0,
+      "regret_first_epoch": 6.666666666666671,
+      "regret_minCG": 0.425531914893611,
+      "regret_seqM": 0.7092198581560183,
+      "oracle_se_points": 1.7967909030738944
+     },
+     "dtd|seed45": {
+      "dataset": "dtd",
+      "n_epochs": 10,
+      "n_eval": 705,
+      "oracle_top1": 65.67375886524822,
+      "regret_minM": 2.4113475177304835,
+      "regret_last_epoch": 0.0,
+      "regret_first_epoch": 3.2624113475177197,
+      "regret_minCG": 2.553191489361687,
+      "regret_seqM": 2.4113475177304835,
+      "oracle_se_points": 1.788193463375719
+     },
+     "food101|seed44": {
+      "dataset": "food101",
+      "n_epochs": 10,
+      "n_eval": 606,
+      "oracle_top1": 75.57755775577559,
+      "regret_minM": 0.16501650165017168,
+      "regret_last_epoch": 0.08250825082508584,
+      "regret_first_epoch": 3.3003300330033056,
+      "regret_minCG": 0.82508250825083,
+      "regret_seqM": 0.16501650165017168,
+      "oracle_se_points": 1.7452379996235396
+     },
+     "food101|seed45": {
+      "dataset": "food101",
+      "n_epochs": 10,
+      "n_eval": 1212,
+      "oracle_top1": 75.74257425742574,
+      "regret_minM": 1.155115511551159,
+      "regret_last_epoch": 0.9900990099009874,
+      "regret_first_epoch": 0.9900990099009874,
+      "regret_minCG": 0.9900990099009874,
+      "regret_seqM": 0.9075907590759016,
+      "oracle_se_points": 1.2312353500831956
+     },
+     "vit-base-patch32|dtd|seed42": {
+      "dataset": "dtd",
+      "n_epochs": 10,
+      "n_eval": 705,
+      "oracle_top1": 65.1063829787234,
+      "regret_minM": 0.0,
+      "regret_last_epoch": 0.7092198581560183,
+      "regret_first_epoch": 6.666666666666671,
+      "regret_minCG": 0.5673758865248146,
+      "regret_seqM": 0.7092198581560183,
+      "oracle_se_points": 1.7951065055820983
+     },
+     "vit-base-patch32|dtd|seed43": {
+      "dataset": "dtd",
+      "n_epochs": 10,
+      "n_eval": 705,
+      "oracle_top1": 65.24822695035462,
+      "regret_minM": 1.2765957446808613,
+      "regret_last_epoch": 1.2765957446808613,
+      "regret_first_epoch": 7.943262411347526,
+      "regret_minCG": 4.539007092198595,
+      "regret_seqM": 1.5602836879432687,
+      "oracle_se_points": 1.7934046130751593
+     },
+     "vit-base-patch32|dtd|seed44": {
+      "dataset": "dtd",
+      "n_epochs": 10,
+      "n_eval": 705,
+      "oracle_top1": 65.1063829787234,
+      "regret_minM": 0.5673758865248146,
+      "regret_last_epoch": 0.425531914893611,
+      "regret_first_epoch": 6.666666666666671,
+      "regret_minCG": 0.9929078014184398,
+      "regret_seqM": 0.5673758865248146,
+      "oracle_se_points": 1.7951065055820983
+     },
+     "vit-base-patch32|food101|seed42": {
+      "dataset": "food101",
+      "n_epochs": 10,
+      "n_eval": 1212,
+      "oracle_top1": 76.23762376237624,
+      "regret_minM": 0.0,
+      "regret_last_epoch": 1.7326732673267458,
+      "regret_first_epoch": 2.062706270627075,
+      "regret_minCG": 1.7326732673267458,
+      "regret_seqM": 0.24752475247525751,
+      "oracle_se_points": 1.2225828511019496
+     },
+     "vit-base-patch32|food101|seed43": {
+      "dataset": "food101",
+      "n_epochs": 10,
+      "n_eval": 1212,
+      "oracle_top1": 75.99009900990099,
+      "regret_minM": 0.0,
+      "regret_last_epoch": 1.155115511551145,
+      "regret_first_epoch": 0.08250825082508584,
+      "regret_minCG": 1.6501650165016457,
+      "regret_seqM": 0.82508250825083,
+      "oracle_se_points": 1.2269373289299401
+     },
+     "vit-base-patch32|food101|seed44": {
+      "dataset": "food101",
+      "n_epochs": 10,
+      "n_eval": 606,
+      "oracle_top1": 75.57755775577559,
+      "regret_minM": 0.16501650165017168,
+      "regret_last_epoch": 0.16501650165017168,
+      "regret_first_epoch": 3.3828382838283915,
+      "regret_minCG": 1.0726072607260875,
+      "regret_seqM": 0.16501650165017168,
+      "oracle_se_points": 1.7452379996235396
+     },
+     "vit-large-patch14|dtd|seed42": {
+      "dataset": "dtd",
+      "n_epochs": 10,
+      "n_eval": 353,
+      "oracle_top1": 70.63829787234043,
+      "regret_minM": 1.1347517730496435,
+      "regret_last_epoch": 0.4255319148936252,
+      "regret_first_epoch": 3.8297872340425556,
+      "regret_minCG": 0.5673758865248288,
+      "regret_seqM": 0.0,
+      "oracle_se_points": 2.423948421821364
+     },
+     "vit-large-patch14|dtd|seed43": {
+      "dataset": "dtd",
+      "n_epochs": 10,
+      "n_eval": 705,
+      "oracle_top1": 69.9290780141844,
+      "regret_minM": 0.0,
+      "regret_last_epoch": 0.0,
+      "regret_first_epoch": 0.7092198581560325,
+      "regret_minCG": 2.1276595744680833,
+      "regret_seqM": 0.0,
+      "oracle_se_points": 1.7270611489067764
+     },
+     "vit-large-patch14|dtd|seed44": {
+      "dataset": "dtd",
+      "n_epochs": 10,
+      "n_eval": 705,
+      "oracle_top1": 72.05673758865248,
+      "regret_minM": 0.0,
+      "regret_last_epoch": 0.0,
+      "regret_first_epoch": 4.39716312056737,
+      "regret_minCG": 2.269503546099287,
+      "regret_seqM": 0.0,
+      "oracle_se_points": 1.6899789444092372
+     },
+     "vit-large-patch14|food101|seed42": {
+      "dataset": "food101",
+      "n_epochs": 10,
+      "n_eval": 1212,
+      "oracle_top1": 89.93399339933993,
+      "regret_minM": 0.33003300330031493,
+      "regret_last_epoch": 0.33003300330031493,
+      "regret_first_epoch": 1.072607260726059,
+      "regret_minCG": 0.0,
+      "regret_seqM": 1.072607260726059,
+      "oracle_se_points": 0.8642496942308483
+     },
+     "vit-large-patch14|food101|seed43": {
+      "dataset": "food101",
+      "n_epochs": 10,
+      "n_eval": 1212,
+      "oracle_top1": 90.0990099009901,
+      "regret_minM": 0.2475247524752433,
+      "regret_last_epoch": 0.0,
+      "regret_first_epoch": 2.0627062706270607,
+      "regret_minCG": 1.0726072607260733,
+      "regret_seqM": 0.2475247524752433,
+      "oracle_se_points": 0.8579224103486653
+     },
+     "vit-large-patch14|food101|seed44": {
+      "dataset": "food101",
+      "n_epochs": 10,
+      "n_eval": 606,
+      "oracle_top1": 89.93399339933993,
+      "regret_minM": 1.155115511551145,
+      "regret_last_epoch": 0.9900990099009732,
+      "regret_first_epoch": 3.6303630363036206,
+      "regret_minCG": 1.8151815181518032,
+      "regret_seqM": 0.6600660066006583,
+      "oracle_se_points": 1.2222336388580661
+     }
+    }
+   },
+   "small": {
+    "n_runs": 4,
+    "n_eval_range": [
+     60,
+     144
+    ],
+    "runs": [
+     "fathomnet8|seed44",
+     "fathomnet8|seed45",
+     "inat_wild|seed44",
+     "inat_wild|seed45"
+    ],
+    "per_rule": {
+     "regret_minM": {
+      "n": 4,
+      "mean": 6.180555555555555,
+      "median": 5.277777777777779,
+      "min": 4.166666666666664,
+      "max": 10.0,
+      "sd_ddof1": 2.6094853094522135,
+      "sd_ddof0": 2.259880568787914,
+      "se_of_mean_ddof1": 1.3047426547261067,
+      "ci95_percentile": [
+       4.513888888888886,
+       8.750000000000002
+      ],
+      "ci95_halfwidth": 2.118055555555558,
+      "mc_jitter_max_endpoint_shift": 0.0,
+      "values": [
+       5.000000000000007,
+       10.0,
+       5.55555555555555,
+       4.166666666666664
+      ]
+     },
+     "regret_last_epoch": {
+      "n": 4,
+      "mean": 4.5138888888888875,
+      "median": 4.583333333333336,
+      "min": 3.3333333333333286,
+      "max": 5.55555555555555,
+      "sd_ddof1": 0.9722222222222238,
+      "sd_ddof0": 0.8419691425682055,
+      "se_of_mean_ddof1": 0.4861111111111119,
+      "ci95_percentile": [
+       3.7499999999999964,
+       5.277777777777779
+      ],
+      "ci95_halfwidth": 0.7638888888888911,
+      "mc_jitter_max_endpoint_shift": 0.0,
+      "values": [
+       5.000000000000007,
+       3.3333333333333286,
+       5.55555555555555,
+       4.166666666666664
+      ]
+     },
+     "regret_first_epoch": {
+      "n": 4,
+      "mean": 22.04861111111111,
+      "median": 24.375,
+      "min": 3.3333333333333286,
+      "max": 36.11111111111111,
+      "sd_ddof1": 13.826422024068783,
+      "sd_ddof0": 11.974032716288223,
+      "se_of_mean_ddof1": 6.913211012034392,
+      "ci95_percentile": [
+       9.270833333333329,
+       32.5
+      ],
+      "ci95_halfwidth": 11.614583333333336,
+      "mc_jitter_max_endpoint_shift": 0.0,
+      "values": [
+       21.66666666666667,
+       3.3333333333333286,
+       36.11111111111111,
+       27.083333333333332
+      ]
+     }
+    },
+    "extra_table_rows": {
+     "regret_minCG": {
+      "n": 4,
+      "mean": 3.645833333333332,
+      "median": 2.430555555555557,
+      "min": 0.0,
+      "max": 9.722222222222214,
+      "sd_ddof1": 4.654159551593307,
+      "sd_ddof0": 4.030620404945796,
+      "se_of_mean_ddof1": 2.3270797757966535,
+      "ci95_percentile": [
+       0.0,
+       7.291666666666664
+      ],
+      "ci95_halfwidth": 3.645833333333332,
+      "mc_jitter_max_endpoint_shift": 0.0,
+      "values": [
+       0.0,
+       0.0,
+       9.722222222222214,
+       4.861111111111114
+      ]
+     },
+     "regret_seqM": {
+      "n": 4,
+      "mean": 16.52777777777778,
+      "median": 15.0,
+      "min": 8.333333333333336,
+      "max": 27.77777777777777,
+      "sd_ddof1": 8.244901155364346,
+      "sd_ddof0": 7.140293852237192,
+      "se_of_mean_ddof1": 4.122450577682173,
+      "ci95_percentile": [
+       10.416666666666668,
+       24.166666666666664
+      ],
+      "ci95_halfwidth": 6.874999999999998,
+      "mc_jitter_max_endpoint_shift": 0.0,
+      "values": [
+       13.333333333333336,
+       8.333333333333336,
+       27.77777777777777,
+       16.666666666666664
+      ]
+     }
+    },
+    "paired_differences": {
+     "minimum_margin_mass_minus_training_to_the_end": {
+      "n_pairs": 4,
+      "mean_difference": 1.6666666666666679,
+      "sd_of_differences_ddof1": 3.3333333333333357,
+      "se_of_mean_difference_ddof1": 1.6666666666666679,
+      "ci95_percentile": [
+       0.0,
+       5.0000000000000036
+      ],
+      "ci95_excludes_zero": false,
+      "bootstrap_share_difference_le_zero": 0.3178,
+      "mc_jitter_max_endpoint_shift": 0.0,
+      "per_pair_differences": [
+       0.0,
+       6.666666666666671,
+       0.0,
+       0.0
+      ]
+     },
+     "minimum_margin_mass_minus_first_epoch": {
+      "n_pairs": 4,
+      "mean_difference": -15.868055555555554,
+      "sd_of_differences_ddof1": 16.060895161698237,
+      "se_of_mean_difference_ddof1": 8.030447580849119,
+      "ci95_percentile": [
+       -27.083333333333332,
+       -0.7291666666666634
+      ],
+      "ci95_excludes_zero": true,
+      "bootstrap_share_difference_le_zero": 0.98085,
+      "mc_jitter_max_endpoint_shift": 0.0,
+      "per_pair_differences": [
+       -16.666666666666664,
+       6.666666666666671,
+       -30.555555555555557,
+       -22.916666666666668
+      ]
+     },
+     "training_to_the_end_minus_first_epoch": {
+      "n_pairs": 4,
+      "mean_difference": -17.53472222222222,
+      "sd_of_differences_ddof1": 12.99650505014785,
+      "se_of_mean_difference_ddof1": 6.498252525073925,
+      "ci95_percentile": [
+       -27.083333333333332,
+       -5.729166666666667
+      ],
+      "ci95_excludes_zero": true,
+      "bootstrap_share_difference_le_zero": 1.0,
+      "mc_jitter_max_endpoint_shift": 0.0,
+      "per_pair_differences": [
+       -16.666666666666664,
+       0.0,
+       -30.555555555555557,
+       -22.916666666666668
+      ]
+     }
+    },
+    "mean_regret_minM_in_binomial_SE_recomputed": 1.0792893362953329,
+    "per_run": {
+     "fathomnet8|seed44": {
+      "dataset": "fathomnet8",
+      "n_epochs": 10,
+      "n_eval": 60,
+      "oracle_top1": 61.66666666666667,
+      "regret_minM": 5.000000000000007,
+      "regret_last_epoch": 5.000000000000007,
+      "regret_first_epoch": 21.66666666666667,
+      "regret_minCG": 0.0,
+      "regret_seqM": 13.333333333333336,
+      "oracle_se_points": 6.276794416591016
+     },
+     "fathomnet8|seed45": {
+      "dataset": "fathomnet8",
+      "n_epochs": 10,
+      "n_eval": 60,
+      "oracle_top1": 58.333333333333336,
+      "regret_minM": 10.0,
+      "regret_last_epoch": 3.3333333333333286,
+      "regret_first_epoch": 3.3333333333333286,
+      "regret_minCG": 0.0,
+      "regret_seqM": 8.333333333333336,
+      "oracle_se_points": 6.364688465216445
+     },
+     "inat_wild|seed44": {
+      "dataset": "inat_wild",
+      "n_epochs": 10,
+      "n_eval": 72,
+      "oracle_top1": 48.61111111111111,
+      "regret_minM": 5.55555555555555,
+      "regret_last_epoch": 5.55555555555555,
+      "regret_first_epoch": 36.11111111111111,
+      "regret_minCG": 9.722222222222214,
+      "regret_seqM": 27.77777777777777,
+      "oracle_se_points": 5.890282708333089
+     },
+     "inat_wild|seed45": {
+      "dataset": "inat_wild",
+      "n_epochs": 10,
+      "n_eval": 144,
+      "oracle_top1": 44.44444444444444,
+      "regret_minM": 4.166666666666664,
+      "regret_last_epoch": 4.166666666666664,
+      "regret_first_epoch": 27.083333333333332,
+      "regret_minCG": 4.861111111111114,
+      "regret_seqM": 16.666666666666664,
+      "oracle_se_points": 4.14086662499961
+     }
+    }
+   }
+  },
+  "archived_summary_cross_check": {
+   "large": {
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large",
+    "n_runs": [
+     16,
+     16
+    ],
+    "n_eval_range": [
+     [
+      353,
+      1212
+     ],
+     [
+      353,
+      1212
+     ]
+    ],
+    "mean_regret_minM": [
+     0.5823195351450017,
+     0.5823195351450017
+    ],
+    "mean_regret_last_epoch": [
+     0.5176514991924712,
+     0.5176514991924712
+    ],
+    "mean_regret_first_epoch": [
+     3.54537514921705,
+     3.54537514921705
+    ],
+    "mean_regret_minM_in_SE": [
+     0.37375,
+     0.3738744124484536
+    ]
+   },
+   "small": {
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small",
+    "n_runs": [
+     4,
+     4
+    ],
+    "n_eval_range": [
+     [
+      60,
+      144
+     ],
+     [
+      60,
+      144
+     ]
+    ],
+    "mean_regret_minM": [
+     6.180555555555555,
+     6.180555555555555
+    ],
+    "mean_regret_last_epoch": [
+     4.5138888888888875,
+     4.5138888888888875
+    ],
+    "mean_regret_first_epoch": [
+     22.04861111111111,
+     22.04861111111111
+    ],
+    "mean_regret_minM_in_SE": [
+     1.08,
+     1.0792893362953329
+    ]
+   }
+  },
+  "manuscript_digits": [
+   {
+    "claim": "A1/large: archived n_runs == recomputed",
+    "manuscript": 16,
+    "computed": null,
+    "matches": true,
+    "tolerance": null,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_runs",
+    "note": ""
+   },
+   {
+    "claim": "A1/large: archived n_eval_range == recomputed",
+    "manuscript": [
+     353,
+     1212
+    ],
+    "computed": null,
+    "matches": true,
+    "tolerance": null,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_eval_range",
+    "note": ""
+   },
+   {
+    "claim": "A1/small: archived n_runs == recomputed",
+    "manuscript": 4,
+    "computed": null,
+    "matches": true,
+    "tolerance": null,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_runs",
+    "note": ""
+   },
+   {
+    "claim": "A1/small: archived n_eval_range == recomputed",
+    "manuscript": [
+     60,
+     144
+    ],
+    "computed": null,
+    "matches": true,
+    "tolerance": null,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_eval_range",
+    "note": ""
+   },
+   {
+    "claim": "A1 large: runs",
+    "manuscript": 16,
+    "computed": 16.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_runs",
+    "note": ""
+   },
+   {
+    "claim": "A1 large: min held-out images",
+    "manuscript": 353,
+    "computed": 353.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_eval_range[0]",
+    "note": ""
+   },
+   {
+    "claim": "A1 large: max held-out images",
+    "manuscript": 1212,
+    "computed": 1212.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_eval_range[1]",
+    "note": ""
+   },
+   {
+    "claim": "A1 large: min-mass mean regret (0.58)",
+    "manuscript": 0.58,
+    "computed": 0.58231954,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.mean_regret_minM",
+    "note": ""
+   },
+   {
+    "claim": "A1 large: min-mass regret in binomial SE (0.37)",
+    "manuscript": 0.37,
+    "computed": 0.37387441,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.mean_regret_minM_in_SE",
+    "note": "mean of the per-run regret/SE ratios"
+   },
+   {
+    "claim": "A1 large: first-epoch mean regret (3.55)",
+    "manuscript": 3.55,
+    "computed": 3.54537515,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.mean_regret_first_epoch",
+    "note": ""
+   },
+   {
+    "claim": "A1 large: training-to-the-end mean regret (0.52)",
+    "manuscript": 0.52,
+    "computed": 0.5176515,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.mean_regret_last_epoch",
+    "note": ""
+   },
+   {
+    "claim": "A1 small: runs",
+    "manuscript": 4,
+    "computed": 4.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_runs",
+    "note": ""
+   },
+   {
+    "claim": "A1 small: min held-out images",
+    "manuscript": 60,
+    "computed": 60.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_eval_range[0]",
+    "note": ""
+   },
+   {
+    "claim": "A1 small: max held-out images",
+    "manuscript": 144,
+    "computed": 144.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_eval_range[1]",
+    "note": ""
+   },
+   {
+    "claim": "A1 small: min-mass mean regret (6.18)",
+    "manuscript": 6.18,
+    "computed": 6.18055556,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.mean_regret_minM",
+    "note": ""
+   },
+   {
+    "claim": "A1 small: min-mass regret in binomial SE (1.08)",
+    "manuscript": 1.08,
+    "computed": 1.07928934,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.mean_regret_minM_in_SE",
+    "note": ""
+   },
+   {
+    "claim": "A1 small: first-epoch mean regret (22.05)",
+    "manuscript": 22.05,
+    "computed": 22.04861111,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.mean_regret_first_epoch",
+    "note": ""
+   },
+   {
+    "claim": "A1 small: training-to-the-end mean regret (4.51)",
+    "manuscript": 4.51,
+    "computed": 4.51388889,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.mean_regret_last_epoch",
+    "note": ""
+   },
+   {
+    "claim": "A1/large: minimum centroid gap (1.45)",
+    "manuscript": 1.45,
+    "computed": 1.45006056,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_combined.json::per_run[*].{oracle,minCG} (recomputed)",
+    "note": "NOT in the archive the provenance appendix names for tab:monitor_regret"
+   },
+   {
+    "claim": "A1/small: minimum centroid gap (3.65)",
+    "manuscript": 3.65,
+    "computed": 3.64583333,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_combined.json::per_run[*].{oracle,minCG} (recomputed)",
+    "note": "NOT in the archive the provenance appendix names for tab:monitor_regret"
+   },
+   {
+    "claim": "A1/large: sequential minimum mass (0.64)",
+    "manuscript": 0.64,
+    "computed": 0.64049224,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_combined.json::per_run[*].{oracle,seqM} (recomputed)",
+    "note": "NOT in the archive the provenance appendix names for tab:monitor_regret"
+   },
+   {
+    "claim": "A1/small: sequential minimum mass (16.53)",
+    "manuscript": 16.53,
+    "computed": 16.52777778,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/analysis/a1_monitor_combined.json::per_run[*].{oracle,seqM} (recomputed)",
+    "note": "NOT in the archive the provenance appendix names for tab:monitor_regret"
+   },
+   {
+    "claim": "A1: provenance appendix also names the archive carrying the minCG/seqM cells",
+    "manuscript": "a1_monitor_combined.json",
+    "computed": null,
+    "matches": false,
+    "tolerance": null,
+    "required": true,
+    "source": "paper_a1/main.tex (Appendix: Data and code provenance, tab:monitor_regret row)",
+    "note": "the appendix names tools/_p1408_a1_table.py + a1_monitor_split_diagnosis.json for tab:monitor_regret; that file carries only minM / last / first (6 of the 10 cells). The minimum-centroid-gap and sequential-minimum-mass cells reproduce from a1_monitor_combined.json (tools/_p1398_a1_combined.py)"
+   }
+  ],
+  "provenance_appendix_citation": {
+   "appendix_row": "\\raggedright tab:monitor\\_regret & \\raggedright\\path{tools/_p1408_a1_table.py} & \\raggedright\\path{a1_monitor_split_diagnosis.json} & \\texttt{verified} \\\\",
+   "names_a1_monitor_split_diagnosis": true,
+   "names_a1_monitor_combined": false,
+   "cells_covered_by_named_archive": 6,
+   "cells_total": 10,
+   "finding": "the appendix names tools/_p1408_a1_table.py + a1_monitor_split_diagnosis.json for tab:monitor_regret; that file carries only minM / last / first (6 of the 10 cells). The minimum-centroid-gap and sequential-minimum-mass cells reproduce from a1_monitor_combined.json (tools/_p1398_a1_combined.py)"
+  }
+ },
+ "manuscript_digits": [
+  {
+   "claim": "A1/large: archived n_runs == recomputed",
+   "manuscript": 16,
+   "computed": null,
+   "matches": true,
+   "tolerance": null,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_runs",
+   "note": ""
+  },
+  {
+   "claim": "A1/large: archived n_eval_range == recomputed",
+   "manuscript": [
+    353,
+    1212
+   ],
+   "computed": null,
+   "matches": true,
+   "tolerance": null,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_eval_range",
+   "note": ""
+  },
+  {
+   "claim": "A1/small: archived n_runs == recomputed",
+   "manuscript": 4,
+   "computed": null,
+   "matches": true,
+   "tolerance": null,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_runs",
+   "note": ""
+  },
+  {
+   "claim": "A1/small: archived n_eval_range == recomputed",
+   "manuscript": [
+    60,
+    144
+   ],
+   "computed": null,
+   "matches": true,
+   "tolerance": null,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_eval_range",
+   "note": ""
+  },
+  {
+   "claim": "A1 large: runs",
+   "manuscript": 16,
+   "computed": 16.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_runs",
+   "note": ""
+  },
+  {
+   "claim": "A1 large: min held-out images",
+   "manuscript": 353,
+   "computed": 353.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_eval_range[0]",
+   "note": ""
+  },
+  {
+   "claim": "A1 large: max held-out images",
+   "manuscript": 1212,
+   "computed": 1212.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.n_eval_range[1]",
+   "note": ""
+  },
+  {
+   "claim": "A1 large: min-mass mean regret (0.58)",
+   "manuscript": 0.58,
+   "computed": 0.58231954,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.mean_regret_minM",
+   "note": ""
+  },
+  {
+   "claim": "A1 large: min-mass regret in binomial SE (0.37)",
+   "manuscript": 0.37,
+   "computed": 0.37387441,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.mean_regret_minM_in_SE",
+   "note": "mean of the per-run regret/SE ratios"
+  },
+  {
+   "claim": "A1 large: first-epoch mean regret (3.55)",
+   "manuscript": 3.55,
+   "computed": 3.54537515,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.mean_regret_first_epoch",
+   "note": ""
+  },
+  {
+   "claim": "A1 large: training-to-the-end mean regret (0.52)",
+   "manuscript": 0.52,
+   "computed": 0.5176515,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.large.mean_regret_last_epoch",
+   "note": ""
+  },
+  {
+   "claim": "A1 small: runs",
+   "manuscript": 4,
+   "computed": 4.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_runs",
+   "note": ""
+  },
+  {
+   "claim": "A1 small: min held-out images",
+   "manuscript": 60,
+   "computed": 60.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_eval_range[0]",
+   "note": ""
+  },
+  {
+   "claim": "A1 small: max held-out images",
+   "manuscript": 144,
+   "computed": 144.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.n_eval_range[1]",
+   "note": ""
+  },
+  {
+   "claim": "A1 small: min-mass mean regret (6.18)",
+   "manuscript": 6.18,
+   "computed": 6.18055556,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.mean_regret_minM",
+   "note": ""
+  },
+  {
+   "claim": "A1 small: min-mass regret in binomial SE (1.08)",
+   "manuscript": 1.08,
+   "computed": 1.07928934,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.mean_regret_minM_in_SE",
+   "note": ""
+  },
+  {
+   "claim": "A1 small: first-epoch mean regret (22.05)",
+   "manuscript": 22.05,
+   "computed": 22.04861111,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.mean_regret_first_epoch",
+   "note": ""
+  },
+  {
+   "claim": "A1 small: training-to-the-end mean regret (4.51)",
+   "manuscript": 4.51,
+   "computed": 4.51388889,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_split_diagnosis.json::summary.small.mean_regret_last_epoch",
+   "note": ""
+  },
+  {
+   "claim": "A1/large: minimum centroid gap (1.45)",
+   "manuscript": 1.45,
+   "computed": 1.45006056,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_combined.json::per_run[*].{oracle,minCG} (recomputed)",
+   "note": "NOT in the archive the provenance appendix names for tab:monitor_regret"
+  },
+  {
+   "claim": "A1/small: minimum centroid gap (3.65)",
+   "manuscript": 3.65,
+   "computed": 3.64583333,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_combined.json::per_run[*].{oracle,minCG} (recomputed)",
+   "note": "NOT in the archive the provenance appendix names for tab:monitor_regret"
+  },
+  {
+   "claim": "A1/large: sequential minimum mass (0.64)",
+   "manuscript": 0.64,
+   "computed": 0.64049224,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_combined.json::per_run[*].{oracle,seqM} (recomputed)",
+   "note": "NOT in the archive the provenance appendix names for tab:monitor_regret"
+  },
+  {
+   "claim": "A1/small: sequential minimum mass (16.53)",
+   "manuscript": 16.53,
+   "computed": 16.52777778,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/analysis/a1_monitor_combined.json::per_run[*].{oracle,seqM} (recomputed)",
+   "note": "NOT in the archive the provenance appendix names for tab:monitor_regret"
+  },
+  {
+   "claim": "A1: provenance appendix also names the archive carrying the minCG/seqM cells",
+   "manuscript": "a1_monitor_combined.json",
+   "computed": null,
+   "matches": false,
+   "tolerance": null,
+   "required": true,
+   "source": "paper_a1/main.tex (Appendix: Data and code provenance, tab:monitor_regret row)",
+   "note": "the appendix names tools/_p1408_a1_table.py + a1_monitor_split_diagnosis.json for tab:monitor_regret; that file carries only minM / last / first (6 of the 10 cells). The minimum-centroid-gap and sequential-minimum-mass cells reproduce from a1_monitor_combined.json (tools/_p1398_a1_combined.py)"
+  }
+ ]
+}

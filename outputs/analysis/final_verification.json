@@ -25,14 +25,12 @@
    "pass_ok": true
   },
   "paperA_nc": {
-   "verdict": "BLOCKED",
-   "grade": "D",
-   "pass": 66,
-   "fail": 1,
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 67,
+   "fail": 0,
    "warn": 0,
-   "blockers": [
-    "I-02"
-   ],
+   "blockers": [],
    "pass_ok": true
   },
   "paperA_springer": {
@@ -91,27 +89,57 @@
  "pages": {
   "counts": {
    "paper_a1/main.pdf": 64,
-   "paper\u5408/main_nc.pdf": 75,
+   "paper\u5408/main_nc.pdf": 77,
    "paper\u5408/main_springer.pdf": 54,
    "paper3/paper_ieee/main.pdf": 10,
-   "paper_a2/main_ieee.pdf": 70,
+   "paper_a2/main_ieee.pdf": 72,
    "paper_review_prl/main_prl.pdf": 7
   },
   "pass": true
  },
+ "bootstrap_integration": {
+  "pass": true,
+  "checks": {
+   "sd_range_dual_encoder_rows": true,
+   "sd_range_bioclip_arms": true,
+   "sd_blanket_claim_absent": true,
+   "sd_claim_checked_against_archive": true,
+   "bioclip_sds_reproduce": true,
+   "caption_points_to_section_f": true,
+   "vlm_caption_population_sd": true,
+   "llava_caption_population_sd": true,
+   "vlm_sd_convention_reproduces": true,
+   "llava_sd_convention_reproduces": true,
+   "vlm_printed_sds_unchanged": true,
+   "llava_printed_sds_unchanged": true,
+   "llava_paired_bootstrap_added": true,
+   "llava_paired_ci_reproduces": true,
+   "llava_unpaired_caveat_kept": true,
+   "section_f_bootstrap_paragraph": true,
+   "section_f_arm_intervals": true,
+   "section_f_siglip_reversal": true,
+   "section_f_eighteen_cells": true,
+   "siglip_reversal_ci_reproduces": true,
+   "design_states_bootstrap_source": true,
+   "section_h_untouched_in_source": true,
+   "section_h_block_present": true,
+   "section_h_not_edited": true
+  },
+  "section_h_first_line": 421
+ },
  "git_clean": {
   "pass": false,
   "dirty": [
-   "?? docs/audits/AUD-a1_paa-20261024T070955Z.json",
-   "?? docs/audits/AUD-a1_paa-20261024T070955Z.md",
-   "?? docs/audits/AUD-a1_paa-20261024T071023Z.json",
-   "?? docs/audits/AUD-a1_paa-20261024T071023Z.md",
-   "?? docs/audits/AUD-a23_joe-20261024T071016Z.json",
-   "?? docs/audits/AUD-a23_joe-20261024T071016Z.md",
-   "?? docs/audits/AUD-a23_joe-20261024T071045Z.json",
-   "?? docs/audits/AUD-a23_joe-20261024T071045Z.md",
-   "?? docs/audits/AUD-p3_prl-20261024T071007Z.json",
-   "?? docs/audits/AUD-p3_prl-20261024T071007Z.md"
+   "M tools/_p1454_final_verify.py",
+   "?? docs/audits/AUD-a1_paa-20261024T091935Z.json",
+   "?? docs/audits/AUD-a1_paa-20261024T091935Z.md",
+   "?? docs/audits/AUD-a1_paa-20261024T092002Z.json",
+   "?? docs/audits/AUD-a1_paa-20261024T092002Z.md",
+   "?? docs/audits/AUD-a1_paa-20261024T092143Z.json",
+   "?? docs/audits/AUD-a1_paa-20261024T092143Z.md",
+   "?? docs/audits/AUD-a23_joe-20261024T091956Z.json",
+   "?? docs/audits/AUD-a23_joe-20261024T091956Z.md",
+   "?? docs/audits/AUD-a23_joe-20261024T092023Z.json"
   ]
  },
  "all_pass": true
