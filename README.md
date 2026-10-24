@@ -105,10 +105,10 @@ A versioned snapshot of this repository is archived on Zenodo:
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23609295.svg)](https://doi.org/10.5281/zenodo.23609295)
 
-**Version DOI of the `v2.3` release: [10.5281/zenodo.23609295](https://doi.org/10.5281/zenodo.23609295)** — cite a
-version DOI for a fixed snapshot. The `v2.4` release (24 October 2026) is published on GitHub; its Zenodo version
-DOI will be added here once the deposit is published. The earlier `v1.0-prl-revision` snapshot remains available
-under [10.5281/zenodo.23341223](https://doi.org/10.5281/zenodo.23341223).
+**Latest version DOI: [10.5281/zenodo.23614290](https://doi.org/10.5281/zenodo.23614290)** — this resolves to the
+`v2.4` release and is the persistent identifier to cite for the current code and results. Earlier snapshots remain
+available under [10.5281/zenodo.23609295](https://doi.org/10.5281/zenodo.23609295) (`v2.3`) and
+[10.5281/zenodo.23341223](https://doi.org/10.5281/zenodo.23341223) (`v1.0-prl-revision`).
 
 ## Reproducing a reported number
 
