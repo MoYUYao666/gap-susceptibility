@@ -103,7 +103,7 @@ hyper-parameters, so a rewritten aggregate file cannot silently change a cited n
 
 A versioned snapshot of this repository is archived on Zenodo:
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23609295.svg)](https://doi.org/10.5281/zenodo.23609295)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23614290.svg)](https://doi.org/10.5281/zenodo.23614290)
 
 **Latest version DOI: [10.5281/zenodo.23614290](https://doi.org/10.5281/zenodo.23614290)** — this resolves to the
 `v2.4` release and is the persistent identifier to cite for the current code and results. Earlier snapshots remain
