@@ -89,8 +89,8 @@
  "pages": {
   "counts": {
    "paper_a1/main.pdf": 64,
-   "paper\u5408/main_nc.pdf": 77,
-   "paper\u5408/main_springer.pdf": 54,
+   "paper\u5408/main_nc.pdf": 79,
+   "paper\u5408/main_springer.pdf": 56,
    "paper3/paper_ieee/main.pdf": 10,
    "paper_a2/main_ieee.pdf": 72,
    "paper_review_prl/main_prl.pdf": 7
@@ -123,23 +123,63 @@
    "design_states_bootstrap_source": true,
    "section_h_untouched_in_source": true,
    "section_h_block_present": true,
-   "section_h_not_edited": true
+   "edits_confined_to_section_h": true
   },
   "section_h_first_line": 421
+ },
+ "decoder_ladder_integration": {
+  "pass": true,
+  "checks": {
+   "qwen2vl-2b_contrastive_archive_present": true,
+   "qwen2vl-2b_contrastive_protocol_match": true,
+   "qwen2vl-2b_contrastive_source_cited": true,
+   "qwen2vl-2b_generative_archive_present": true,
+   "qwen2vl-2b_generative_protocol_match": true,
+   "qwen2vl-2b_generative_source_cited": true,
+   "llava15-7b_contrastive_archive_present": true,
+   "llava15-7b_contrastive_protocol_match": true,
+   "llava15-7b_contrastive_source_cited": true,
+   "llava15-7b_generative_archive_present": true,
+   "llava15-7b_generative_protocol_match": true,
+   "llava15-7b_generative_source_cited": true,
+   "qwen25vl-7b_generative_archive_present": true,
+   "qwen25vl-7b_generative_protocol_match": true,
+   "qwen25vl-7b_generative_source_cited": true,
+   "ladder_table_has_five_rungs": true,
+   "qwen2vl-2b_contrastive_row_matches_archive": true,
+   "qwen2vl-2b_generative_row_matches_archive": true,
+   "llava15-7b_contrastive_row_matches_archive": true,
+   "llava15-7b_generative_row_matches_archive": true,
+   "qwen25vl-7b_generative_row_matches_archive": true,
+   "caveat_single_seed_direction": true,
+   "llava_trajectory_reproduces": true,
+   "llava_frozen_mismatch_reproduces": true,
+   "llava_lr_difference_reproduces": true,
+   "llava_mismatch_verdict_stated": true,
+   "caveat_llava_lr_and_trajectory": true,
+   "caveat_local_control_cap_correction": true,
+   "caveat_3b_rung_not_run": true,
+   "bounded_reading_present": true,
+   "table_referenced_and_labelled": true,
+   "source_line_names_script": true,
+   "cap_correction_cites_public_paths": true,
+   "local_control_contrastive_archive_unchanged": true,
+   "local_control_generative_archive_unchanged": true
+  }
  },
  "git_clean": {
   "pass": false,
   "dirty": [
-   "M tools/_p1454_final_verify.py",
-   "?? docs/audits/AUD-a1_paa-20261024T091935Z.json",
-   "?? docs/audits/AUD-a1_paa-20261024T091935Z.md",
-   "?? docs/audits/AUD-a1_paa-20261024T092002Z.json",
-   "?? docs/audits/AUD-a1_paa-20261024T092002Z.md",
-   "?? docs/audits/AUD-a1_paa-20261024T092143Z.json",
-   "?? docs/audits/AUD-a1_paa-20261024T092143Z.md",
-   "?? docs/audits/AUD-a23_joe-20261024T091956Z.json",
-   "?? docs/audits/AUD-a23_joe-20261024T091956Z.md",
-   "?? docs/audits/AUD-a23_joe-20261024T092023Z.json"
+   "?? docs/audits/AUD-a1_paa-20261024T112956Z.json",
+   "?? docs/audits/AUD-a1_paa-20261024T112956Z.md",
+   "?? docs/audits/AUD-a1_paa-20261024T113029Z.json",
+   "?? docs/audits/AUD-a1_paa-20261024T113029Z.md",
+   "?? docs/audits/AUD-a23_joe-20261024T113021Z.json",
+   "?? docs/audits/AUD-a23_joe-20261024T113021Z.md",
+   "?? docs/audits/AUD-a23_joe-20261024T113054Z.json",
+   "?? docs/audits/AUD-a23_joe-20261024T113054Z.md",
+   "?? docs/audits/AUD-p3_prl-20261024T113010Z.json",
+   "?? docs/audits/AUD-p3_prl-20261024T113010Z.md"
   ]
  },
  "all_pass": true

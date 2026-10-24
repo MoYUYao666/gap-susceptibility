@@ -25,8 +25,18 @@ OUT = os.path.join(REPO, "outputs", "analysis", "final_verification.json")
 PROFILES = ["a1_paa", "paperA_nc", "paperA_springer", "p3_prl", "a23_joe", "prl_commentary"]
 EXPECTED_AUDIT_FAILS = {"a1_paa": {"I-02"}, "paperA_nc": {"I-02"}}
 EXPECTED_AUDIT_WARNS = {"a1_paa": {"I-06"}, "paperA_nc": {"I-06"}}
-PAGES = {"paper_a1/main.pdf": (64,), "paper合/main_nc.pdf": (77,), "paper合/main_springer.pdf": (54,),
+PAGES = {"paper_a1/main.pdf": (64,), "paper合/main_nc.pdf": (79,), "paper合/main_springer.pdf": (56,),
          "paper3/paper_ieee/main.pdf": (10,), "paper_a2/main_ieee.pdf": (72,), "paper_review_prl/main_prl.pdf": (7,)}
+# The 2026-10-24 decoder-ladder round (Paper A supplement Section H.2): one archived per-run record
+# per rung, in table order.
+LADDER_RUNGS = [
+    ("qwen2vl-2b", "contrastive", "Qwen2-VL-2B", "Contrastive"),
+    ("qwen2vl-2b", "generative", "Qwen2-VL-2B", "Generation"),
+    ("llava15-7b", "contrastive", "LLaVA-1.5-7B", "Contrastive"),
+    ("llava15-7b", "generative", "LLaVA-1.5-7B", "Generation"),
+    ("qwen25vl-7b", "generative", "Qwen2.5-VL-7B", "Generation"),
+]
+LADDER_3B = "outputs/analysis/decoder_attribution_qwen25vl-3b_generative_seed42.json"
 
 
 def run(cmd, timeout=2400):
@@ -108,20 +118,116 @@ def check_bootstrap_integration():
         "siglip_reversal_ci_reproduces": [round(x, 4) for x in siglip["ci95_percentile"]] == [0.0081, 0.0181]
                                          and siglip["ci95_excludes_zero"] is True,
         "design_states_bootstrap_source": "paperA\\_strict\\_bootstrap.json" in emp and "\\_p1595\\_bootstrap\\_ci\\_round.py" in emp,
-        # 5. write-scope guard: Section H and its label must be untouched by this round
+        # 5. Section H must still be present and carry its label
         "section_h_untouched_in_source": "\\label{sec:decoderconfound}" in sup,
     }
-    # write-scope guard: no hunk of the supplement diff may reach into the Section H block
+    # Write-scope guard. The bootstrap round (2026-10-24a) owned Sections A--G and had to leave
+    # Section H alone; the decoder-ladder round (2026-10-24b) owns Section H and must leave
+    # Sections A--G alone, so the guard is inverted rather than dropped. Every hunk of the
+    # supplement diff must start at or after the Section H heading.
     code, diff = run(["git", "diff", "--unified=0", "--", "paper合/sections/supplement.tex"])
     h_start = sup.find("\\section*{H.")
     h_line = sup[:h_start].count("\n") + 1 if h_start > 0 else None
     checks["section_h_block_present"] = h_start > 0 and "decoderconfound" in sup[h_start:]
-    checks["section_h_not_edited"] = bool(
-        code == 0 and h_line is not None and not [1 for ln in diff.splitlines()
-                                                  if ln.startswith("@@") and re.search(r"\+(\d+)", ln)
-                                                  and int(re.search(r"\+(\d+)", ln).group(1)) >= h_line])
+    starts = [int(re.search(r"\+(\d+)", ln).group(1)) for ln in diff.splitlines()
+              if ln.startswith("@@") and re.search(r"\+(\d+)", ln)]
+    checks["edits_confined_to_section_h"] = bool(
+        code == 0 and h_line is not None and all(s >= h_line for s in starts))
     checked = {k: bool(v) for k, v in checks.items()}
     return {"pass": all(checked.values()), "checks": checked, "section_h_first_line": h_line}
+
+
+def check_decoder_ladder_integration():
+    """2026-10-24b decoder-ladder round. Every rung of the new Table~\ref{tab:decoderladder} must
+    reproduce from its archived per-run record, the superseded description of the local control must
+    be gone, all four stated caveats must be present, and the ladder must not outrun its archives."""
+    sup = io.open(os.path.join(REPO, "paper合", "sections", "supplement.tex"), encoding="utf-8").read()
+    flat = sup.replace("\\allowbreak ", "").replace("\\allowbreak", "").replace("\\_", "_")
+    checks, recs = {}, {}
+    for model, objective, _m_label, _o_label in LADDER_RUNGS:
+        rel = "outputs/analysis/decoder_attribution_%s_%s_seed42.json" % (model, objective)
+        tag = "%s_%s" % (model, objective)
+        p = os.path.join(REPO, rel)
+        if not os.path.exists(p):
+            checks[tag + "_archive_present"] = False
+            continue
+        rec = json.load(io.open(p, encoding="utf-8"))
+        recs[(model, objective)] = rec
+        m = rec["meta"]
+        checks[tag + "_archive_present"] = True
+        checks[tag + "_protocol_match"] = (m.get("mode") == "apply" and m.get("protocol") == "match"
+                                           and m.get("seed") == 42 and m.get("arm") == "both")
+        checks[tag + "_source_cited"] = rel.split("/")[-1] in flat
+    # 1. the table body must carry exactly the five rungs, with the archived numbers, in place
+    rows = {}
+    if "\\label{tab:decoderladder}" in sup:
+        body = sup.split("\\label{tab:decoderladder}", 1)[1].split("\\end{tabular}", 1)[0]
+        for ln in body.splitlines():
+            cells = [c.strip().rstrip("\\").strip() for c in ln.split("&")]
+            if len(cells) == 5 and cells[1] in ("Contrastive", "Generation"):
+                rows[(cells[0], cells[1])] = cells[2:]
+    checks["ladder_table_has_five_rungs"] = len(rows) == 5
+    for model, objective, m_label, o_label in LADDER_RUNGS:
+        rec = recs.get((model, objective))
+        if rec is None:
+            continue
+        want = ["$%.4f$" % rec["frozen_dg_star"], "$%.4f$" % rec["dg_star"][-1],
+                "$%+.1f\\%%$" % rec["delta_DG_percent"]]
+        checks["%s_%s_row_matches_archive" % (model, objective)] = rows.get((m_label, o_label)) == want
+    # 2. caveat (i): single seed, four-bit, direction rather than effect size
+    checks["caveat_single_seed_direction"] = ("Each rung is a single seed" in sup
+                                              and "no spread across seeds is claimed" in sup)
+    # 3. caveat (ii): LLaVA learning rate, the frozen-baseline mismatch, and the zero crossing
+    if ("llava15-7b", "contrastive") in recs and ("llava15-7b", "generative") in recs:
+        lc, lg = recs[("llava15-7b", "contrastive")], recs[("llava15-7b", "generative")]
+        traj = [round((v - lg["frozen_dg_star"]) / lg["frozen_dg_star"] * 100, 1) for v in lg["dg_star"]]
+        rel = abs(lc["frozen_dg_star"] - lg["frozen_dg_star"]) / lg["frozen_dg_star"] * 100
+        checks["llava_trajectory_reproduces"] = traj == [-14.2, 6.7, 16.1]
+        checks["llava_frozen_mismatch_reproduces"] = round(rel, 1) == 5.7
+        checks["llava_lr_difference_reproduces"] = (
+            abs(lc["meta"]["lr"] - 5e-05) < 1e-12
+            and all(abs(r["meta"]["lr"] - 1e-04) < 1e-12 for k, r in recs.items()
+                    if k != ("llava15-7b", "contrastive")))
+        checks["llava_mismatch_verdict_stated"] = ("MISMATCH" in lc["meta"]["ab_check"].get("verdict", "")
+                                                   and "\\texttt{MISMATCH}" in sup)
+        checks["caveat_llava_lr_and_trajectory"] = (
+            "$5\\times10^{-5}$ rather than the ladder's $10^{-4}$" in sup
+            and "$-14.2\\%$, then $+6.7\\%$, then $+16.1\\%$" in sup)
+    # 4. caveat (iii): the local control ran at the processor default, not at the budget it advertised
+    checks["caveat_local_control_cap_correction"] = (
+        "never enforced the image-token budget it" in sup
+        and "$1200$--$2500$ image tokens per image" in sup
+        and "$64$ image tokens/image" in sup
+        and "at a reduced image resolution" not in sup)
+    # 5. caveat (iv): the 3B rung was not run, which is what the text and the archive tree both say
+    checks["caveat_3b_rung_not_run"] = ("$3$B rung of the Qwen2.5-VL family was not run" in sup
+                                        and not os.path.exists(os.path.join(REPO, LADDER_3B)))
+    # 6. the bounded reading, the float wiring and the Source line
+    checks["bounded_reading_present"] = ("not set the sign: the contrastive loss narrows" in sup
+                                         and "widening therefore tracks the" in sup
+                                         and "narrowed rather than overturned" in sup)
+    checks["table_referenced_and_labelled"] = ("\\ref{tab:decoderladder}" in sup
+                                               and "\\label{tab:decoderladder}" in sup)
+    checks["source_line_names_script"] = ("\\textbf{Source:}" in sup
+                                          and "_p1612_objective_control_multimodel.py" in flat)
+    # no manuscript path may point into the internal docs/ directory, which the public mirror
+    # (publish_clean) ignores: such a pointer is unreachable for a reader of the released snapshot
+    checks["cap_correction_cites_public_paths"] = (
+        "_p1595_qwen_objective_control.py" in flat and "docs/" not in flat)
+    # 7. the archived local control is untouched and still declares the budget it never applied
+    for name, want_delta, want_last in (("contrastive", -73.54014598540147, 0.283203125),
+                                        ("generative", -14.233576642335766, 0.91796875)):
+        p = os.path.join(REPO, "outputs/analysis/qwen_objective_control_%s_both_seed42.json" % name)
+        ok = os.path.exists(p)
+        if ok:
+            old = json.load(io.open(p, encoding="utf-8"))
+            ok = (old["frozen_dg_star"] == 1.0703125 and old["dg_star"][-1] == want_last
+                  and abs(old["delta_DG_percent"] - want_delta) < 1e-6
+                  and old["meta"]["max_image_tokens"] == 12
+                  and "64 image tokens/image" in old["meta"]["reduced_budget_note"])
+        checks["local_control_%s_archive_unchanged" % name] = ok
+    checked = {k: bool(v) for k, v in checks.items()}
+    return {"pass": all(checked.values()), "checks": checked}
 
 
 def main() -> int:
@@ -186,6 +292,10 @@ def main() -> int:
     rep["bootstrap_integration"] = check_bootstrap_integration()
     bad = [k for k, v in rep["bootstrap_integration"]["checks"].items() if not v]
     print("  bootstrap integration:", rep["bootstrap_integration"]["pass"], "failed:", bad)
+    # 9c. decoder-ladder integration text and archive reproduction guards (2026-10-24b round)
+    rep["decoder_ladder_integration"] = check_decoder_ladder_integration()
+    bad = [k for k, v in rep["decoder_ladder_integration"]["checks"].items() if not v]
+    print("  decoder ladder integration:", rep["decoder_ladder_integration"]["pass"], "failed:", bad)
     # 10. git clean
     code, out = run(["git", "status", "--porcelain"])
     dirty = [l for l in out.strip().splitlines() if "final_verification.json" not in l]
@@ -195,7 +305,7 @@ def main() -> int:
               and all(r.get("pass_ok") for r in rep["audits"].values())
               and rep["p3_audit_check"]["pass"] and rep["p3_audit_pdf"]["pass"] and rep["a23_verify"]["pass"]
               and rep["commentary_check"]["pass"] and rep["staged_packages"]["pass"] and rep["pages"]["pass"]
-              and rep["bootstrap_integration"]["pass"])
+              and rep["bootstrap_integration"]["pass"] and rep["decoder_ladder_integration"]["pass"])
     rep["all_pass"] = all_ok
     print("  ALL:", "PASS" if all_ok else "FAIL")
     if a.apply:
