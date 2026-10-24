@@ -32,3 +32,5 @@ archives and provenance metadata only.
 ## Excluded (by repository policy)
 
 - Model weights and datasets.
+
+Version DOI: 10.5281/zenodo.23609295
