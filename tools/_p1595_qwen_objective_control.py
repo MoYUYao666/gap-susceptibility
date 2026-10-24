@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 r"""Paper A control: isolate the TRAINING OBJECTIVE at fixed model, data, budget and site.
 
+CORRECTION (2026-10-24): the image-token cap below is NOT honoured by transformers 5.x (the attribute
+is silently discarded), so the runs archived as `outputs/analysis/qwen_objective_control_*.json`
+happened at the processor default resolution (~1200-2500 tokens per image), not at 64/144. The archives
+are kept as the record of what was actually run; the properly capped, matched ladder that supersedes them
+is `tools/_p1612_objective_control_multimodel.py`. See docs/DECODER_CONTROL_CAP_CORRECTION_2026-10-24.md.
 Motivation (see `docs/paperA_decoder_confound_paragraph.md`): the paper's two decoder experiments differ in
 objective *and* scale *and* data *and* budget, so the opposite signs cannot be attributed. This script runs the
 missing control on a third setup that is fully fixed except for the loss:

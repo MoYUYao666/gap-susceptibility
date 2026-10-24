@@ -1,0 +1,67 @@
+{
+  "note": "Single source of truth for a completed cloud round. Consumed by cloud_next/verify_cloud_artifacts.py and quoted in docs/CLOUD_RUNBOOK_2026-10-24.md. Paths are relative to the repository root (on the instance: the p3work checkout).",
+  "phases": {
+    "phase1": {
+      "title": "Decoder objective x scale ladder",
+      "artifacts": [
+        {"path": "outputs/analysis/decoder_attribution_llava15-7b_contrastive_seed42.json", "required_keys": ["meta", "frozen_dg_star", "dg_star", "delta_DG_percent", "loss"], "min_epochs": 3, "priority": "decisive"},
+        {"path": "outputs/analysis/decoder_attribution_llava15-7b_generative_seed42.json", "required_keys": ["meta", "frozen_dg_star", "dg_star", "delta_DG_percent", "loss"], "min_epochs": 3, "priority": "decisive"},
+        {"path": "outputs/analysis/decoder_attribution_qwen2vl-2b_contrastive_seed42.json", "required_keys": ["meta", "frozen_dg_star", "dg_star", "delta_DG_percent"], "min_epochs": 3, "priority": "ladder"},
+        {"path": "outputs/analysis/decoder_attribution_qwen2vl-2b_generative_seed42.json", "required_keys": ["meta", "frozen_dg_star", "dg_star", "delta_DG_percent"], "min_epochs": 3, "priority": "ladder"},
+        {"path": "outputs/analysis/decoder_attribution_qwen25vl-3b_generative_seed42.json", "required_keys": ["meta", "frozen_dg_star", "dg_star", "delta_DG_percent"], "min_epochs": 3, "priority": "ladder", "optional": true, "optional_reason": "not run on 2026-10-24: the 3B weights are 7 GB and the data disk had ~14 GB free; the ladder ran 2B and 7B within the Qwen family instead. Run it when disk allows - it only adds an intermediate scale rung."},
+        {"path": "outputs/analysis/decoder_attribution_qwen25vl-7b_generative_seed42.json", "required_keys": ["meta", "frozen_dg_star", "dg_star", "delta_DG_percent"], "min_epochs": 3, "priority": "ladder"}
+      ],
+      "cross_checks": [
+        "for every (model, seed) pair, frozen_dg_star must be identical between the contrastive and the generative run",
+        "meta.protocol must be 'match' for every rung of the ladder",
+        "meta.lora_arm must be 'both' and both adapter counts must be > 0"
+      ]
+    },
+    "phase2": {
+      "title": "P3 environment-stack seeds",
+      "artifacts": [
+        {"glob": "paper3/scripts/outputs/experiments/verify_r5_s*_torch26.json", "min_count": 4, "required_keys": ["delta_E"]},
+        {"glob": "paper3/scripts/outputs/experiments/verify_r6_s*_torch26.json", "min_count": 4, "required_keys": ["delta_E"]},
+        {"path": "outputs/analysis/p3_env_stack_seeds.json", "required_keys": ["ranks", "sigma_env", "rows"]}
+      ],
+      "cross_checks": [
+        "each rank has at least 4 distinct seeds on the torch26 stack (seed 42 plus the three new ones)",
+        "the aggregation lists which rows are single-seed, and no stack is reported as multi-seed unless it is"
+      ]
+    },
+    "phase3": {
+      "title": "P3 VQA on the full test set",
+      "artifacts": [
+        {"path": "outputs/analysis/cloud_vqa_full451_base.json", "min_records": 451, "record_key": "questions"},
+        {"path": "outputs/analysis/cloud_vqa_full451_5.json", "min_records": 451, "record_key": "questions"},
+        {"path": "outputs/analysis/cloud_vqa_full451_6.json", "min_records": 451, "record_key": "questions"},
+        {"path": "outputs/analysis/p3_vqa_full_equivalence.json", "required_keys": ["vqa_equivalence", "rank5_equivalence"]}
+      ],
+      "cross_checks": [
+        "the reference-answer lists of the three arms must be byte-identical",
+        "the paired comparisons must be computed per question, not per arm mean"
+      ]
+    },
+    "phase4": {
+      "title": "A23 multi-encoder transfer",
+      "artifacts": [
+        {"path": "outputs/analysis/a23_multiencoder_transfer.json", "required_keys": ["meta", "encoders", "correlations", "transfer", "conclusion", "limits"]}
+      ],
+      "cross_checks": [
+        "every registered encoder has one cache per corpus and one row per corpus",
+        "the conclusion states whether any ordered pair beat chance by a margin surviving the paired bootstrap"
+      ]
+    }
+  },
+  "retrieval": {
+    "globs": [
+      "outputs/analysis/decoder_attribution_*.json",
+      "outputs/analysis/p3_env_stack_seeds.json",
+      "outputs/analysis/cloud_vqa_full451_*.json",
+      "outputs/analysis/p3_vqa_full_equivalence.json",
+      "outputs/analysis/a23_multiencoder_transfer.json",
+      "outputs/analysis/_cache/a23_multiencoder/*.npz",
+      "paper3/scripts/outputs/experiments/verify_r[56]_s*_torch26.json"
+    ]
+  }
+}
