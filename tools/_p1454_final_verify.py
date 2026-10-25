@@ -26,7 +26,7 @@ PROFILES = ["a1_paa", "paperA_nc", "paperA_springer", "p3_prl", "a23_joe", "prl_
 EXPECTED_AUDIT_FAILS = {"a1_paa": {"I-02"}, "paperA_nc": {"I-02"}}
 EXPECTED_AUDIT_WARNS = {"a1_paa": {"I-06"}, "paperA_nc": {"I-06"}}
 PAGES = {"paper_a1/main.pdf": (64,), "paper合/main_nc.pdf": (79,), "paper合/main_springer.pdf": (56,),
-         "paper3/paper_ieee/main.pdf": (10,), "paper_a2/main_ieee.pdf": (72,), "paper_review_prl/main_prl.pdf": (7,)}
+         "paper3/paper_ieee/main.pdf": (10,), "paper_a2/main_ieee.pdf": (73,), "paper_review_prl/main_prl.pdf": (7,)}
 # The 2026-10-24 decoder-ladder round (Paper A supplement Section H.2): one archived per-run record
 # per rung, in table order.
 LADDER_RUNGS = [

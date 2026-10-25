@@ -1,0 +1,1787 @@
+{
+ "meta": {
+  "script": "tools/_p1613_p3_cloud_runner.py",
+  "job": "env-seeds --aggregate",
+  "task": "S29/S37 environment-stack seeds: per-stack per-rank summaries and the updated environment-vs-seed variance decomposition at r=5 (and r=6)",
+  "field": "delta_E",
+  "protocol": "paper3/scripts/run_training.py, archived seed-42 configuration; blank-image (text-only) LLaVA-1.5-7B LoRA protocol; alpha = 2 * rank",
+  "stack_registry": [
+   {
+    "id": "torch29_cu130",
+    "label": "torch 2.9/cu130",
+    "machine": "RTX 4060 Laptop (local)",
+    "torch": "2.9.1+cu130",
+    "cuda": "13.0",
+    "evidence": "outputs/analysis/p3_seeds_combined.json (values.r5 / values.r6)"
+   },
+   {
+    "id": "torch212_cu130",
+    "label": "torch 2.12/cu130",
+    "machine": "RTX 4080 SUPER (cloud)",
+    "torch": "2.12.1+cu130",
+    "cuda": "13.0",
+    "evidence": "paper3/scripts/outputs/experiments/cloud_verify_r<R>_s*.json, excluding partial / imgs / _e1_ rows (same rule as tools/_p1595_p3_rank_separation.py)"
+   },
+   {
+    "id": "torch24_cu121",
+    "label": "torch 2.4/cu121",
+    "machine": "RTX 4060 Laptop (local)",
+    "torch": "2.4.1+cu121",
+    "cuda": "12.1",
+    "evidence": "archive bucket 'torch 2.4/cu121' of outputs/analysis/p3_env_variance.json: the untagged _a10/_a12 rows for seeds 123/789/999 (which carry that bucket's values -2.5 / -2.0 / 64.5) plus the rows carrying the explicit _torch24 suffix; when both filenames exist for one (rank, seed) cell they are two different runs of the same cell and the untagged archive is the one the bucket kept"
+   },
+   {
+    "id": "torch26_cu124",
+    "label": "torch 2.6/cu124",
+    "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "evidence": "files carrying the explicit _torch26 suffix; seed 42 already archived, seeds 7/123/999 produced by this round"
+   }
+  ],
+  "registry_notes": [
+   "torch29_cu130: outputs/analysis/p3_seeds_combined.json -> values.r5 (5 seeds)",
+   "torch29_cu130: outputs/analysis/p3_seeds_combined.json -> values.r6 (5 seeds)",
+   "torch212_cu130: cloud_verify_r5_s*.json excluding partial/imgs/_e1_ (10 rows)",
+   "torch212_cu130: cloud_verify_r6_s*.json excluding partial/imgs/_e1_ (10 rows)",
+   "torch24_cu121: frozen pattern verify_r5_s*_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json (+ the explicit _torch24 suffix) -> 7 candidate row(s), deduplicated below",
+   "torch24_cu121: frozen pattern verify_r6_s*_lr5e-05_nw_float1_adamw_e3_bcuniform_a12.json (+ the explicit _torch24 suffix) -> 4 candidate row(s), deduplicated below",
+   "torch26_cu124: explicit _torch26 suffix for rank 5 (4 rows)",
+   "torch26_cu124: explicit _torch26 suffix for rank 6 (4 rows)",
+   "torch24_cu121 rank 5 seed 123: 2 rows name this one cell; kept the untagged archived row (the row the frozen three-stack reference bucket holds); the tagged row of this round is a second run of the same cell",
+   "    discarded duplicate delta_E -50.0 from paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json (kept paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json delta_E -2.5; a different run of the same cell)",
+   "torch24_cu121 rank 5 seed 999: 2 rows name this one cell; kept the untagged archived row (the row the frozen three-stack reference bucket holds); the tagged row of this round is a second run of the same cell",
+   "    discarded duplicate delta_E +58.5 from paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json (kept paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json delta_E +64.5; a different run of the same cell)"
+  ],
+  "method": "one-way random-effects ANOVA on environment level with the unequal-n correction n0, identical to tools/_p1570_env_variance_update.py; the environment factor is the torch/CUDA stack",
+  "bootstrap": "seed bootstrap within environment, 10000 replicates, rng seed 7; the same replicates give the percentile intervals of sigma_env and sigma_seed",
+  "hardware_caveat": "the torch26 bucket mixes hardware: seed 42 was run on an RTX 4060 Laptop, the new seeds on the cloud GPU; the archive records the per-run gpu/torch/cuda triples in outputs/analysis/p3_env_seeds_runlog.json, and S29's machine column must be updated accordingly",
+  "single_seed_definition": "a (stack, rank) block with exactly one archived seed",
+  "deduplication": "one row per (stack, rank, seed): the torch24 registry matches two filename patterns (untagged archived rows and rows carrying the explicit _torch24 suffix) and a cell named by both is one measurement.  The kept row is the untagged archived one (the row the frozen three-stack reference bucket of outputs/analysis/p3_env_variance.json holds); discarded_duplicate_rows carries every discarded value, its file and the kept row",
+  "frozen_three_stack_reference": {
+   "archived_bucket": {
+    "torch29_cu130": {
+     "n": 5,
+     "mean": -23.0,
+     "values": [
+      -10.5,
+      8.0,
+      -36.5,
+      -27.0,
+      -49.0
+     ]
+    },
+    "torch212_cu130": {
+     "n": 10,
+     "mean": -43.7,
+     "values": [
+      -96.0,
+      -7.5,
+      -7.5,
+      -114.5,
+      -12.5,
+      -26.5,
+      -66.0,
+      -63.5,
+      -19.0,
+      -24.0
+     ]
+    },
+    "torch24_cu121": {
+     "n": 4,
+     "mean": 25.25,
+     "values": [
+      -2.5,
+      41.0,
+      -2.0,
+      64.5
+     ]
+    }
+   },
+   "kept": [
+    {
+     "stack": "torch29_cu130",
+     "seeds": [
+      42,
+      123,
+      789,
+      999,
+      1024
+     ],
+     "values": [
+      -10.5,
+      8.0,
+      -36.5,
+      -27.0,
+      -49.0
+     ],
+     "source_files": [
+      "outputs/analysis/p3_seeds_combined.json",
+      "outputs/analysis/p3_seeds_combined.json",
+      "outputs/analysis/p3_seeds_combined.json",
+      "outputs/analysis/p3_seeds_combined.json",
+      "outputs/analysis/p3_seeds_combined.json"
+     ]
+    },
+    {
+     "stack": "torch212_cu130",
+     "seeds": [
+      7,
+      17,
+      27,
+      37,
+      42,
+      123,
+      456,
+      789,
+      999,
+      1024
+     ],
+     "values": [
+      -63.5,
+      -7.5,
+      -114.5,
+      -12.5,
+      -26.5,
+      -7.5,
+      -66.0,
+      -19.0,
+      -24.0,
+      -96.0
+     ],
+     "source_files": [
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s7.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s17.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s27.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s37.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s123.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s456.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s789.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s999.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s1024.json"
+     ]
+    },
+    {
+     "stack": "torch24_cu121",
+     "seeds": [
+      42,
+      123,
+      789,
+      999
+     ],
+     "values": [
+      41.0,
+      -2.5,
+      -2.0,
+      64.5
+     ],
+     "source_files": [
+      "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s789_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json"
+     ]
+    }
+   ],
+   "excluded": [
+    {
+     "stack": "torch24_cu121",
+     "seeds": [
+      7
+     ],
+     "reason": "not part of the frozen rank-5 bucket in outputs/analysis/p3_env_variance.json (the bucket's n and mean are reproduced exactly without these rows); the row stays in the four-stack design",
+     "rows": [
+      {
+       "seed": 7,
+       "rank": 5,
+       "delta_E": 19.0,
+       "source_file": "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json"
+      }
+     ]
+    }
+   ],
+   "reference_rank": 5,
+   "n_rank_rows": {
+    "5": {
+     "torch212_cu130": 10,
+     "torch24_cu121": 4,
+     "torch29_cu130": 5
+    },
+    "6": {
+     "torch212_cu130": 10,
+     "torch24_cu121": 4,
+     "torch29_cu130": 5
+    }
+   }
+  },
+  "deterministic": true,
+  "note": "no wall-clock field is written, so re-running this aggregation on unchanged inputs reproduces this file byte for byte"
+ },
+ "rows": [
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 7,
+   "delta_E": -63.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s7.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 17,
+   "delta_E": -7.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s17.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 27,
+   "delta_E": -114.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s27.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 37,
+   "delta_E": -12.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s37.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 42,
+   "delta_E": -26.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": -7.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s123.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 456,
+   "delta_E": -66.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s456.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 789,
+   "delta_E": -19.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s789.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": -24.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s999.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 1024,
+   "delta_E": -96.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s1024.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 7,
+   "delta_E": 95.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s7.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 17,
+   "delta_E": 132.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s17.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 27,
+   "delta_E": 43.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s27.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 37,
+   "delta_E": 90.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s37.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 42,
+   "delta_E": 56.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s42.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 123,
+   "delta_E": 46.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s123.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 456,
+   "delta_E": 104.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s456.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 789,
+   "delta_E": 118.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s789.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 999,
+   "delta_E": 94.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s999.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch212_cu130",
+   "stack_label": "torch 2.12/cu130",
+   "machine": "RTX 4080 SUPER (cloud)",
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 1024,
+   "delta_E": 92.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s1024.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 5,
+   "seed": 7,
+   "delta_E": 19.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 5,
+   "seed": 42,
+   "delta_E": 41.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": -2.5,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 5,
+   "seed": 789,
+   "delta_E": -2.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s789_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": 64.5,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 6,
+   "seed": 7,
+   "delta_E": 86.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 6,
+   "seed": 42,
+   "delta_E": 89.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 6,
+   "seed": 123,
+   "delta_E": 99.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 6,
+   "seed": 999,
+   "delta_E": 55.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch26_cu124",
+   "stack_label": "torch 2.6/cu124",
+   "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+   "torch": "2.6.0+cu124",
+   "cuda": "12.4",
+   "rank": 5,
+   "seed": 7,
+   "delta_E": -104.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch26_cu124",
+   "stack_label": "torch 2.6/cu124",
+   "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+   "torch": "2.6.0+cu124",
+   "cuda": "12.4",
+   "rank": 5,
+   "seed": 42,
+   "delta_E": -35.5,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch26_cu124",
+   "stack_label": "torch 2.6/cu124",
+   "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+   "torch": "2.6.0+cu124",
+   "cuda": "12.4",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": -51.5,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch26_cu124",
+   "stack_label": "torch 2.6/cu124",
+   "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+   "torch": "2.6.0+cu124",
+   "cuda": "12.4",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": -64.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch26_cu124",
+   "stack_label": "torch 2.6/cu124",
+   "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+   "torch": "2.6.0+cu124",
+   "cuda": "12.4",
+   "rank": 6,
+   "seed": 7,
+   "delta_E": -7.5,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch26_cu124",
+   "stack_label": "torch 2.6/cu124",
+   "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+   "torch": "2.6.0+cu124",
+   "cuda": "12.4",
+   "rank": 6,
+   "seed": 42,
+   "delta_E": 42.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch26_cu124",
+   "stack_label": "torch 2.6/cu124",
+   "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+   "torch": "2.6.0+cu124",
+   "cuda": "12.4",
+   "rank": 6,
+   "seed": 123,
+   "delta_E": 15.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch26_cu124",
+   "stack_label": "torch 2.6/cu124",
+   "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+   "torch": "2.6.0+cu124",
+   "cuda": "12.4",
+   "rank": 6,
+   "seed": 999,
+   "delta_E": -31.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "source_field": "delta_E"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 42,
+   "delta_E": -10.5,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.42"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": 8.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.123"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 789,
+   "delta_E": -36.5,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.789"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": -27.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.999"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 5,
+   "seed": 1024,
+   "delta_E": -49.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.1024"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 42,
+   "delta_E": 115.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.42"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 123,
+   "delta_E": 25.5,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.123"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 789,
+   "delta_E": 32.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.789"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 999,
+   "delta_E": 62.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.999"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.9.1+cu130",
+   "cuda": "13.0",
+   "rank": 6,
+   "seed": 1024,
+   "delta_E": 93.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.1024"
+  }
+ ],
+ "ranks": {
+  "5": {
+   "stacks": {
+    "torch29_cu130": {
+     "label": "torch 2.9/cu130",
+     "machine": "RTX 4060 Laptop (local)",
+     "torch": "2.9.1+cu130",
+     "cuda": "13.0",
+     "evidence": "outputs/analysis/p3_seeds_combined.json (values.r5 / values.r6)",
+     "n": 5,
+     "mean": -23.0,
+     "sd": 22.31311273668468,
+     "min": -49.0,
+     "max": 8.0,
+     "median": -27.0,
+     "values_by_seed": {
+      "42": -10.5,
+      "123": 8.0,
+      "789": -36.5,
+      "999": -27.0,
+      "1024": -49.0
+     },
+     "seeds": [
+      42,
+      123,
+      789,
+      999,
+      1024
+     ],
+     "single_seed": false,
+     "source_files": [
+      "outputs/analysis/p3_seeds_combined.json"
+     ]
+    },
+    "torch212_cu130": {
+     "label": "torch 2.12/cu130",
+     "machine": "RTX 4080 SUPER (cloud)",
+     "torch": "2.12.1+cu130",
+     "cuda": "13.0",
+     "evidence": "paper3/scripts/outputs/experiments/cloud_verify_r<R>_s*.json, excluding partial / imgs / _e1_ rows (same rule as tools/_p1595_p3_rank_separation.py)",
+     "n": 10,
+     "mean": -43.7,
+     "sd": 38.766537689667935,
+     "min": -114.5,
+     "max": -7.5,
+     "median": -25.25,
+     "values_by_seed": {
+      "7": -63.5,
+      "17": -7.5,
+      "27": -114.5,
+      "37": -12.5,
+      "42": -26.5,
+      "123": -7.5,
+      "456": -66.0,
+      "789": -19.0,
+      "999": -24.0,
+      "1024": -96.0
+     },
+     "seeds": [
+      7,
+      17,
+      27,
+      37,
+      42,
+      123,
+      456,
+      789,
+      999,
+      1024
+     ],
+     "single_seed": false,
+     "source_files": [
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s1024.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s123.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s17.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s27.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s37.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s456.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s7.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s789.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s999.json"
+     ]
+    },
+    "torch24_cu121": {
+     "label": "torch 2.4/cu121",
+     "machine": "RTX 4060 Laptop (local)",
+     "torch": "2.4.1+cu121",
+     "cuda": "12.1",
+     "evidence": "archive bucket 'torch 2.4/cu121' of outputs/analysis/p3_env_variance.json: the untagged _a10/_a12 rows for seeds 123/789/999 (which carry that bucket's values -2.5 / -2.0 / 64.5) plus the rows carrying the explicit _torch24 suffix; when both filenames exist for one (rank, seed) cell they are two different runs of the same cell and the untagged archive is the one the bucket kept",
+     "n": 5,
+     "mean": 24.0,
+     "sd": 28.86390479474321,
+     "min": -2.5,
+     "max": 64.5,
+     "median": 19.0,
+     "values_by_seed": {
+      "7": 19.0,
+      "42": 41.0,
+      "123": -2.5,
+      "789": -2.0,
+      "999": 64.5
+     },
+     "seeds": [
+      7,
+      42,
+      123,
+      789,
+      999
+     ],
+     "single_seed": false,
+     "source_files": [
+      "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s789_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json"
+     ]
+    },
+    "torch26_cu124": {
+     "label": "torch 2.6/cu124",
+     "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+     "torch": "2.6.0+cu124",
+     "cuda": "12.4",
+     "evidence": "files carrying the explicit _torch26 suffix; seed 42 already archived, seeds 7/123/999 produced by this round",
+     "n": 4,
+     "mean": -63.75,
+     "sd": 29.25890177934458,
+     "min": -104.0,
+     "max": -35.5,
+     "median": -57.75,
+     "values_by_seed": {
+      "7": -104.0,
+      "42": -35.5,
+      "123": -51.5,
+      "999": -64.0
+     },
+     "seeds": [
+      7,
+      42,
+      123,
+      999
+     ],
+     "single_seed": false,
+     "source_files": [
+      "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json"
+     ]
+    }
+   },
+   "n_stacks": 4,
+   "sigma": {
+    "torch29_cu130": {
+     "n": 5,
+     "mean": -23.0,
+     "sd": 22.31311273668468,
+     "min": -49.0,
+     "max": 8.0,
+     "single_seed": false
+    },
+    "torch212_cu130": {
+     "n": 10,
+     "mean": -43.7,
+     "sd": 38.766537689667935,
+     "min": -114.5,
+     "max": -7.5,
+     "single_seed": false
+    },
+    "torch24_cu121": {
+     "n": 5,
+     "mean": 24.0,
+     "sd": 28.86390479474321,
+     "min": -2.5,
+     "max": 64.5,
+     "single_seed": false
+    },
+    "torch26_cu124": {
+     "n": 4,
+     "mean": -63.75,
+     "sd": 29.25890177934458,
+     "min": -104.0,
+     "max": -35.5,
+     "single_seed": false
+    }
+   }
+  },
+  "6": {
+   "stacks": {
+    "torch29_cu130": {
+     "label": "torch 2.9/cu130",
+     "machine": "RTX 4060 Laptop (local)",
+     "torch": "2.9.1+cu130",
+     "cuda": "13.0",
+     "evidence": "outputs/analysis/p3_seeds_combined.json (values.r5 / values.r6)",
+     "n": 5,
+     "mean": 65.5,
+     "sd": 38.53894134508627,
+     "min": 25.5,
+     "max": 115.0,
+     "median": 62.0,
+     "values_by_seed": {
+      "42": 115.0,
+      "123": 25.5,
+      "789": 32.0,
+      "999": 62.0,
+      "1024": 93.0
+     },
+     "seeds": [
+      42,
+      123,
+      789,
+      999,
+      1024
+     ],
+     "single_seed": false,
+     "source_files": [
+      "outputs/analysis/p3_seeds_combined.json"
+     ]
+    },
+    "torch212_cu130": {
+     "label": "torch 2.12/cu130",
+     "machine": "RTX 4080 SUPER (cloud)",
+     "torch": "2.12.1+cu130",
+     "cuda": "13.0",
+     "evidence": "paper3/scripts/outputs/experiments/cloud_verify_r<R>_s*.json, excluding partial / imgs / _e1_ rows (same rule as tools/_p1595_p3_rank_separation.py)",
+     "n": 10,
+     "mean": 87.3,
+     "sd": 29.882361947402277,
+     "min": 43.0,
+     "max": 132.5,
+     "median": 93.5,
+     "values_by_seed": {
+      "7": 95.0,
+      "17": 132.5,
+      "27": 43.0,
+      "37": 90.5,
+      "42": 56.0,
+      "123": 46.5,
+      "456": 104.5,
+      "789": 118.0,
+      "999": 94.5,
+      "1024": 92.5
+     },
+     "seeds": [
+      7,
+      17,
+      27,
+      37,
+      42,
+      123,
+      456,
+      789,
+      999,
+      1024
+     ],
+     "single_seed": false,
+     "source_files": [
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s1024.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s123.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s17.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s27.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s37.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s42.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s456.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s7.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s789.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s999.json"
+     ]
+    },
+    "torch24_cu121": {
+     "label": "torch 2.4/cu121",
+     "machine": "RTX 4060 Laptop (local)",
+     "torch": "2.4.1+cu121",
+     "cuda": "12.1",
+     "evidence": "archive bucket 'torch 2.4/cu121' of outputs/analysis/p3_env_variance.json: the untagged _a10/_a12 rows for seeds 123/789/999 (which carry that bucket's values -2.5 / -2.0 / 64.5) plus the rows carrying the explicit _torch24 suffix; when both filenames exist for one (rank, seed) cell they are two different runs of the same cell and the untagged archive is the one the bucket kept",
+     "n": 4,
+     "mean": 82.25,
+     "sd": 18.99780689097209,
+     "min": 55.0,
+     "max": 99.0,
+     "median": 87.5,
+     "values_by_seed": {
+      "7": 86.0,
+      "42": 89.0,
+      "123": 99.0,
+      "999": 55.0
+     },
+     "seeds": [
+      7,
+      42,
+      123,
+      999
+     ],
+     "single_seed": false,
+     "source_files": [
+      "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json"
+     ]
+    },
+    "torch26_cu124": {
+     "label": "torch 2.6/cu124",
+     "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (new seeds)",
+     "torch": "2.6.0+cu124",
+     "cuda": "12.4",
+     "evidence": "files carrying the explicit _torch26 suffix; seed 42 already archived, seeds 7/123/999 produced by this round",
+     "n": 4,
+     "mean": 4.625,
+     "sd": 31.201963079267944,
+     "min": -31.0,
+     "max": 42.0,
+     "median": 3.75,
+     "values_by_seed": {
+      "7": -7.5,
+      "42": 42.0,
+      "123": 15.0,
+      "999": -31.0
+     },
+     "seeds": [
+      7,
+      42,
+      123,
+      999
+     ],
+     "single_seed": false,
+     "source_files": [
+      "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json"
+     ]
+    }
+   },
+   "n_stacks": 4,
+   "sigma": {
+    "torch29_cu130": {
+     "n": 5,
+     "mean": 65.5,
+     "sd": 38.53894134508627,
+     "min": 25.5,
+     "max": 115.0,
+     "single_seed": false
+    },
+    "torch212_cu130": {
+     "n": 10,
+     "mean": 87.3,
+     "sd": 29.882361947402277,
+     "min": 43.0,
+     "max": 132.5,
+     "single_seed": false
+    },
+    "torch24_cu121": {
+     "n": 4,
+     "mean": 82.25,
+     "sd": 18.99780689097209,
+     "min": 55.0,
+     "max": 99.0,
+     "single_seed": false
+    },
+    "torch26_cu124": {
+     "n": 4,
+     "mean": 4.625,
+     "sd": 31.201963079267944,
+     "min": -31.0,
+     "max": 42.0,
+     "single_seed": false
+    }
+   }
+  }
+ },
+ "sigma_env": 32.460194760697895,
+ "sigma_seed": 32.72449388455076,
+ "env_variance_share": 0.4959454469392248,
+ "sigma_by_rank": {
+  "5": {
+   "all_rows": {
+    "k": 4,
+    "n": 24,
+    "n_per_env": {
+     "torch29_cu130": 5,
+     "torch212_cu130": 10,
+     "torch24_cu121": 5,
+     "torch26_cu124": 4
+    },
+    "grand_mean": -28.625,
+    "ss_between": 21212.775,
+    "ss_within": 21417.85,
+    "df_between": 3,
+    "df_within": 20,
+    "ms_between": 7070.925,
+    "ms_within": 1070.8925,
+    "n0": 5.694444444444444,
+    "sigma_env": 32.460194760697895,
+    "sigma_seed": 32.72449388455076,
+    "env_variance_share": 0.4959454469392248,
+    "bootstrap": {
+     "n_boot": 10000,
+     "rng_seed": 7,
+     "share_mean": 0.5568005586039051,
+     "share_ci95": [
+      0.3582484627737049,
+      0.7486574284047108
+     ],
+     "sigma_env_point": 32.460194760697895,
+     "sigma_env_mean": 34.15168968268875,
+     "sigma_env_ci95": [
+      21.410748451029942,
+      47.920273978828085
+     ],
+     "sigma_seed_point": 32.72449388455076,
+     "sigma_seed_mean": 30.005937083128508,
+     "sigma_seed_ci95": [
+      20.67485943118352,
+      36.962171298924574
+     ]
+    }
+   },
+   "three_stack_reference": {
+    "k": 3,
+    "n": 19,
+    "n_per_env": {
+     "torch29_cu130": 5,
+     "torch212_cu130": 10,
+     "torch24_cu121": 4
+    },
+    "grand_mean": -23.736842105263158,
+    "ss_between": 13586.834210526316,
+    "ss_within": 18818.35,
+    "df_between": 2,
+    "df_within": 16,
+    "ms_between": 6793.417105263158,
+    "ms_within": 1176.146875,
+    "n0": 5.789473684210526,
+    "sigma_env": 31.148928826613844,
+    "sigma_seed": 34.294997813092216,
+    "env_variance_share": 0.4520380976240466
+   },
+   "common_seed_design": {
+    "k": 4,
+    "n": 12,
+    "n_per_env": {
+     "torch29_cu130": 3,
+     "torch212_cu130": 3,
+     "torch24_cu121": 3,
+     "torch26_cu124": 3
+    },
+    "grand_mean": -11.291666666666666,
+    "ss_between": 11018.062500000002,
+    "ss_within": 3545.6666666666665,
+    "df_between": 3,
+    "df_within": 8,
+    "ms_between": 3672.6875000000005,
+    "ms_within": 443.2083333333333,
+    "n0": 3.0,
+    "sigma_env": 32.80995360489794,
+    "sigma_seed": 21.052513705810366,
+    "env_variance_share": 0.7083582757943128,
+    "seeds": [
+     42,
+     123,
+     999
+    ],
+    "bootstrap": {
+     "n_boot": 10000,
+     "rng_seed": 7,
+     "share_mean": 0.7803460698019766,
+     "share_ci95": [
+      0.5357233726884585,
+      0.9658173840974459
+     ],
+     "sigma_env_point": 32.80995360489794,
+     "sigma_env_mean": 34.15466856068033,
+     "sigma_env_ci95": [
+      19.694836228668525,
+      48.756528527716924
+     ],
+     "sigma_seed_point": 21.052513705810366,
+     "sigma_seed_mean": 16.610320416652133,
+     "sigma_seed_ci95": [
+      8.111206239929217,
+      23.26164582884596
+     ]
+    }
+   },
+   "frozen_bucket_exclusions_not_in_design": [],
+   "envs_all_rows": {
+    "torch29_cu130": [
+     -10.5,
+     8.0,
+     -36.5,
+     -27.0,
+     -49.0
+    ],
+    "torch212_cu130": [
+     -63.5,
+     -7.5,
+     -114.5,
+     -12.5,
+     -26.5,
+     -7.5,
+     -66.0,
+     -19.0,
+     -24.0,
+     -96.0
+    ],
+    "torch24_cu121": [
+     19.0,
+     41.0,
+     -2.5,
+     -2.0,
+     64.5
+    ],
+    "torch26_cu124": [
+     -104.0,
+     -35.5,
+     -51.5,
+     -64.0
+    ]
+   },
+   "envs_three_stack": {
+    "torch29_cu130": [
+     -10.5,
+     8.0,
+     -36.5,
+     -27.0,
+     -49.0
+    ],
+    "torch212_cu130": [
+     -63.5,
+     -7.5,
+     -114.5,
+     -12.5,
+     -26.5,
+     -7.5,
+     -66.0,
+     -19.0,
+     -24.0,
+     -96.0
+    ],
+    "torch24_cu121": [
+     41.0,
+     -2.5,
+     -2.0,
+     64.5
+    ]
+   },
+   "envs_three_stack_frozen": {
+    "torch29_cu130": [
+     -10.5,
+     8.0,
+     -36.5,
+     -27.0,
+     -49.0
+    ],
+    "torch212_cu130": [
+     -63.5,
+     -7.5,
+     -114.5,
+     -12.5,
+     -26.5,
+     -7.5,
+     -66.0,
+     -19.0,
+     -24.0,
+     -96.0
+    ],
+    "torch24_cu121": [
+     41.0,
+     -2.5,
+     -2.0,
+     64.5
+    ]
+   },
+   "envs_common_seed": {
+    "torch29_cu130": [
+     -10.5,
+     8.0,
+     -27.0
+    ],
+    "torch212_cu130": [
+     -26.5,
+     -7.5,
+     -24.0
+    ],
+    "torch24_cu121": [
+     41.0,
+     -2.5,
+     64.5
+    ],
+    "torch26_cu124": [
+     -35.5,
+     -51.5,
+     -64.0
+    ]
+   }
+  },
+  "6": {
+   "all_rows": {
+    "k": 4,
+    "n": 23,
+    "n_per_env": {
+     "torch29_cu130": 5,
+     "torch212_cu130": 10,
+     "torch24_cu121": 4,
+     "torch26_cu124": 4
+    },
+    "grand_mean": 67.30434782608695,
+    "ss_between": 20622.83206521739,
+    "ss_within": 17981.0375,
+    "df_between": 3,
+    "df_within": 19,
+    "ms_between": 6874.277355072463,
+    "ms_within": 946.3703947368421,
+    "n0": 5.391304347826087,
+    "sigma_env": 33.15917866503439,
+    "sigma_seed": 30.763133695006463,
+    "env_variance_share": 0.5374311112168556,
+    "bootstrap": {
+     "n_boot": 10000,
+     "rng_seed": 7,
+     "share_mean": 0.5955714514782084,
+     "share_ci95": [
+      0.3356828520983808,
+      0.8202525006351185
+     ],
+     "sigma_env_point": 33.15917866503439,
+     "sigma_env_mean": 34.80965754615695,
+     "sigma_env_ci95": [
+      20.806174044838624,
+      48.43796921003956
+     ],
+     "sigma_seed_point": 30.763133695006463,
+     "sigma_seed_mean": 27.9186535951367,
+     "sigma_seed_ci95": [
+      20.484939058249278,
+      34.088261021222344
+     ]
+    }
+   },
+   "three_stack_reference": {
+    "k": 3,
+    "n": 19,
+    "n_per_env": {
+     "torch29_cu130": 5,
+     "torch212_cu130": 10,
+     "torch24_cu121": 4
+    },
+    "grand_mean": 80.5,
+    "ss_between": 1599.6499999999996,
+    "ss_within": 15060.349999999999,
+    "df_between": 2,
+    "df_within": 16,
+    "ms_between": 799.8249999999998,
+    "ms_within": 941.2718749999999,
+    "n0": 5.789473684210526,
+    "sigma_env": 0.0,
+    "sigma_seed": 30.68015441616942,
+    "env_variance_share": 0.0
+   },
+   "common_seed_design": {
+    "k": 4,
+    "n": 12,
+    "n_per_env": {
+     "torch29_cu130": 3,
+     "torch212_cu130": 3,
+     "torch24_cu121": 3,
+     "torch26_cu124": 3
+    },
+    "grand_mean": 55.708333333333336,
+    "ss_between": 9272.395833333334,
+    "ss_within": 9131.333333333334,
+    "df_between": 3,
+    "df_within": 8,
+    "ms_between": 3090.7986111111113,
+    "ms_within": 1141.4166666666667,
+    "n0": 3.0,
+    "sigma_env": 25.49105689220205,
+    "sigma_seed": 33.78485854146302,
+    "env_variance_share": 0.3627680430290397,
+    "seeds": [
+     42,
+     123,
+     999
+    ],
+    "bootstrap": {
+     "n_boot": 10000,
+     "rng_seed": 7,
+     "share_mean": 0.5332185828069034,
+     "share_ci95": [
+      0.07971475821911014,
+      0.8792756947261635
+     ],
+     "sigma_env_point": 25.49105689220205,
+     "sigma_env_mean": 30.22846245521305,
+     "sigma_env_ci95": [
+      8.749910510540682,
+      51.38437667877919
+     ],
+     "sigma_seed_point": 33.78485854146302,
+     "sigma_seed_mean": 26.980994731337216,
+     "sigma_seed_ci95": [
+      14.394477396437892,
+      36.48915363958629
+     ]
+    }
+   },
+   "frozen_bucket_exclusions_not_in_design": [],
+   "envs_all_rows": {
+    "torch29_cu130": [
+     115.0,
+     25.5,
+     32.0,
+     62.0,
+     93.0
+    ],
+    "torch212_cu130": [
+     95.0,
+     132.5,
+     43.0,
+     90.5,
+     56.0,
+     46.5,
+     104.5,
+     118.0,
+     94.5,
+     92.5
+    ],
+    "torch24_cu121": [
+     86.0,
+     89.0,
+     99.0,
+     55.0
+    ],
+    "torch26_cu124": [
+     -7.5,
+     42.0,
+     15.0,
+     -31.0
+    ]
+   },
+   "envs_three_stack": {
+    "torch29_cu130": [
+     115.0,
+     25.5,
+     32.0,
+     62.0,
+     93.0
+    ],
+    "torch212_cu130": [
+     95.0,
+     132.5,
+     43.0,
+     90.5,
+     56.0,
+     46.5,
+     104.5,
+     118.0,
+     94.5,
+     92.5
+    ],
+    "torch24_cu121": [
+     86.0,
+     89.0,
+     99.0,
+     55.0
+    ]
+   },
+   "envs_three_stack_frozen": {
+    "torch29_cu130": [
+     115.0,
+     25.5,
+     32.0,
+     62.0,
+     93.0
+    ],
+    "torch212_cu130": [
+     95.0,
+     132.5,
+     43.0,
+     90.5,
+     56.0,
+     46.5,
+     104.5,
+     118.0,
+     94.5,
+     92.5
+    ],
+    "torch24_cu121": [
+     86.0,
+     89.0,
+     99.0,
+     55.0
+    ]
+   },
+   "envs_common_seed": {
+    "torch29_cu130": [
+     115.0,
+     25.5,
+     62.0
+    ],
+    "torch212_cu130": [
+     56.0,
+     46.5,
+     94.5
+    ],
+    "torch24_cu121": [
+     89.0,
+     99.0,
+     55.0
+    ],
+    "torch26_cu124": [
+     42.0,
+     15.0,
+     -31.0
+    ]
+   }
+  }
+ },
+ "sigma_env_before_this_round": 31.148928826613844,
+ "sigma_seed_before_this_round": 34.294997813092216,
+ "env_variance_share_before_this_round": 0.4520380976240466,
+ "single_seed_rows": [],
+ "discarded_duplicate_rows": [
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": -50.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+   "source_field": "delta_E",
+   "kept_source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "kept_delta_E": -2.5,
+   "reason": "duplicate row for the same (stack, rank, seed) cell"
+  },
+  {
+   "stack": "torch24_cu121",
+   "stack_label": "torch 2.4/cu121",
+   "machine": "RTX 4060 Laptop (local)",
+   "torch": "2.4.1+cu121",
+   "cuda": "12.1",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": 58.5,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+   "source_field": "delta_E",
+   "kept_source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "kept_delta_E": 64.5,
+   "reason": "duplicate row for the same (stack, rank, seed) cell"
+  }
+ ],
+ "duplicate_cells": [
+  {
+   "stack": "torch24_cu121",
+   "rank": 5,
+   "seed": 123,
+   "n_rows": 2,
+   "resolution": "kept the untagged archived row (the row the frozen three-stack reference bucket holds); the tagged row of this round is a second run of the same cell",
+   "kept": {
+    "delta_E": -2.5,
+    "source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+    "source_field": "delta_E"
+   },
+   "discarded": [
+    {
+     "delta_E": -50.0,
+     "source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+     "source_field": "delta_E",
+     "same_measurement": false
+    }
+   ],
+   "distinct_runs": true
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 5,
+   "seed": 999,
+   "n_rows": 2,
+   "resolution": "kept the untagged archived row (the row the frozen three-stack reference bucket holds); the tagged row of this round is a second run of the same cell",
+   "kept": {
+    "delta_E": 64.5,
+    "source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+    "source_field": "delta_E"
+   },
+   "discarded": [
+    {
+     "delta_E": 58.5,
+     "source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+     "source_field": "delta_E",
+     "same_measurement": false
+    }
+   ],
+   "distinct_runs": true
+  }
+ ],
+ "acceptance": {
+  "new_rows_present": true,
+  "missing_new_rows": [],
+  "torch26_seeds_per_rank": {
+   "5": 4,
+   "6": 4
+  },
+  "torch26_at_least_three_seeds_per_rank": true,
+  "all_rows_have_finite_delta_E": true,
+  "three_stack_reference_reproduced": true,
+  "one_row_per_stack_rank_seed_cell": true,
+  "repeated_cells": [],
+  "duplicate_cells_resolved": 2,
+  "discarded_duplicate_rows": [
+   {
+    "stack": "torch24_cu121",
+    "stack_label": "torch 2.4/cu121",
+    "machine": "RTX 4060 Laptop (local)",
+    "torch": "2.4.1+cu121",
+    "cuda": "12.1",
+    "rank": 5,
+    "seed": 123,
+    "delta_E": -50.0,
+    "E0": 3930.5,
+    "source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+    "source_field": "delta_E",
+    "kept_source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+    "kept_delta_E": -2.5,
+    "reason": "duplicate row for the same (stack, rank, seed) cell"
+   },
+   {
+    "stack": "torch24_cu121",
+    "stack_label": "torch 2.4/cu121",
+    "machine": "RTX 4060 Laptop (local)",
+    "torch": "2.4.1+cu121",
+    "cuda": "12.1",
+    "rank": 5,
+    "seed": 999,
+    "delta_E": 58.5,
+    "E0": 3930.5,
+    "source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+    "source_field": "delta_E",
+    "kept_source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+    "kept_delta_E": 64.5,
+    "reason": "duplicate row for the same (stack, rank, seed) cell"
+   }
+  ],
+  "single_seed_rows": [],
+  "single_seed_row_count": 0
+ }
+}

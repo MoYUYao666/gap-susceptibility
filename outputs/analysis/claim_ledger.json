@@ -1,5 +1,5 @@
 {
- "passed": 80,
+ "passed": 96,
  "failed": 0,
  "claims": [
   {
@@ -560,6 +560,118 @@
    "manuscript": 18.0,
    "computed": 18.0,
    "source": "ode_loco2.json:per_config(LoRA 子集) ← tools/_p1_ode_loco2.py",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA-7B bf16 frozen DG__ 相对变化(%) mean, n=3",
+   "manuscript": 0.2971,
+   "computed": 0.297115,
+   "source": "llava_bf16_sites_cloud/frozen_s*.json: (dg_after-dg_before)/dg_before",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA-7B bf16 frozen DG__ 相对变化(%) sd, n=3",
+   "manuscript": 0.0,
+   "computed": 0.0,
+   "source": "llava_bf16_sites_cloud/frozen_s*.json: 总体标准差",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA-7B bf16 text_only DG__ 相对变化(%) mean, n=3",
+   "manuscript": 0.2971,
+   "computed": 0.297115,
+   "source": "llava_bf16_sites_cloud/text_only_s*.json: (dg_after-dg_before)/dg_before",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA-7B bf16 text_only DG__ 相对变化(%) sd, n=3",
+   "manuscript": 0.0,
+   "computed": 0.0,
+   "source": "llava_bf16_sites_cloud/text_only_s*.json: 总体标准差",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA-7B bf16 vision_only DG__ 相对变化(%) mean, n=3",
+   "manuscript": 13.3334,
+   "computed": 13.33342,
+   "source": "llava_bf16_sites_cloud/vision_only_s*.json: (dg_after-dg_before)/dg_before",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA-7B bf16 vision_only DG__ 相对变化(%) sd, n=3",
+   "manuscript": 4.7368,
+   "computed": 4.736787,
+   "source": "llava_bf16_sites_cloud/vision_only_s*.json: 总体标准差",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA-7B bf16 both DG__ 相对变化(%) mean, n=3",
+   "manuscript": 6.0676,
+   "computed": 6.067555,
+   "source": "llava_bf16_sites_cloud/both_s*.json: (dg_after-dg_before)/dg_before",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA-7B bf16 both DG__ 相对变化(%) sd, n=3",
+   "manuscript": 6.5465,
+   "computed": 6.546544,
+   "source": "llava_bf16_sites_cloud/both_s*.json: 总体标准差",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA 汇总文件与逐条记录一致的 run 数",
+   "manuscript": 12.0,
+   "computed": 12.0,
+   "source": "llava_sites.json:runs[] 与各 {arm}_s{seed}.json 的 dg_after 逐位比较",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA 汇总文件登记的精度档",
+   "manuscript": 1.0,
+   "computed": 1.0,
+   "source": "llava_sites.json:precision（已由 tools/_p1053 修正为 bf16）",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA text_only 与 frozen 末态 DG__ 逐位相同的 seed 数",
+   "manuscript": 3.0,
+   "computed": 3.0,
+   "source": "llava_bf16_sites_cloud: text_only_s*.json vs frozen_s*.json 的 dg_after",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA 起始 DG__（四臂共用同一值）",
+   "manuscript": 0.261161,
+   "computed": 0.261161,
+   "source": "llava_bf16_sites_cloud/*.json:dg_before",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA 起始 CG（四臂共用同一值）",
+   "manuscript": 0.743283,
+   "computed": 0.743283,
+   "source": "llava_bf16_sites_cloud/*.json:cg_before",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA text_only 可训练参数",
+   "manuscript": 19988480.0,
+   "computed": 19988480.0,
+   "source": "llava_sites.json:isolation_verified.text_only.n_trainable",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA vision_only 可训练参数",
+   "manuscript": 3645440.0,
+   "computed": 3645440.0,
+   "source": "llava_sites.json:isolation_verified.vision_only.n_trainable",
+   "pass": true
+  },
+  {
+   "claim": "LLaVA both 可训练参数",
+   "manuscript": 23633920.0,
+   "computed": 23633920.0,
+   "source": "llava_sites.json:isolation_verified.both.n_trainable",
    "pass": true
   }
  ]

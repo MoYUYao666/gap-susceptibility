@@ -58,11 +58,14 @@ import glob
 import hashlib
 import importlib.util
 import io
+import itertools
 import json
 import os
 import subprocess
 import sys
 from contextlib import contextmanager, redirect_stdout
+
+import numpy as np
 
 # ------------------------------------------------------------------------------------------------
 # Paths and frozen protocol constants
@@ -155,8 +158,10 @@ STACKS = (
         "torch": "2.4.1+cu121",
         "cuda": "12.1",
         "evidence": "archive bucket 'torch 2.4/cu121' of outputs/analysis/p3_env_variance.json: "
-                    "the _a10/_a12 rows for seeds 123/789/999 plus the rows carrying the explicit "
-                    "_torch24 suffix",
+                    "the untagged _a10/_a12 rows for seeds 123/789/999 (which carry that bucket's "
+                    "values -2.5 / -2.0 / 64.5) plus the rows carrying the explicit _torch24 suffix; "
+                    "when both filenames exist for one (rank, seed) cell they are two different runs "
+                    "of the same cell and the untagged archive is the one the bucket kept",
     },
     {
         "id": "torch26_cu124",
@@ -906,10 +911,175 @@ def _run_vqa_arm(args, tag: str) -> int:
 # ------------------------------------------------------------------------------------------------
 # Aggregation A: environment-stack seeds
 # ------------------------------------------------------------------------------------------------
+def dedupe_cells(rows: list) -> tuple:
+    """Count every (stack, rank, seed) cell once.
+
+    The torch 2.4/cu121 registry collects two filename patterns (the untagged archived rows and the
+    rows carrying the explicit `_torch24` suffix).  run_training.py cannot write a stack suffix, so
+    the round copies its untagged output to the tagged name and restores the untagged file it
+    overwrote; for a cell whose untagged file did not pre-exist, the untagged output of this round's
+    own run stays on disk next to the tagged copy and the cell is then named by two files that are
+    two *different* runs of the same cell (different `delta_E` and `E`).
+
+    A cell is one measurement, so exactly one row per (stack, rank, seed) is kept.  The kept row is
+    the untagged archived one, because that is the row the frozen three-stack reference bucket of
+    outputs/analysis/p3_env_variance.json holds: the torch 2.4/cu121 bucket is
+    [-2.5, 41.0, -2.0, 64.5] and -2.5 / -2.0 / 64.5 are the untagged rows of seeds 123 / 789 / 999
+    (the loose glob of tools/_p1570_env_variance_update.py sorted the untagged name before the
+    suffixed one, which is how the published bucket was formed).  Preferring the tagged duplicate
+    would silently re-point the published reference at a different run.  Every discarded row is
+    returned with its value and file, so nothing is dropped without a record.
+
+    Returns (kept_rows, duplicates, discarded_rows).
+    """
+    by_cell: dict = {}
+    for row in rows:
+        by_cell.setdefault((row["stack"], row["rank"], row["seed"]), []).append(row)
+    kept, duplicates, discarded = [], [], []
+    for cell in sorted(by_cell):
+        group = by_cell[cell]
+        if len(group) == 1:
+            kept.append(group[0])
+            continue
+        untagged = [r for r in group if "_torch24." not in r["source_file"]]
+        tagged = [r for r in group if "_torch24." in r["source_file"]]
+        if not untagged:
+            # No archived row to protect: the tagged measurement of this round is the cell.
+            kept.extend(tagged)
+            if len(tagged) > 1:
+                duplicates.append({"stack": cell[0], "rank": cell[1], "seed": cell[2],
+                                   "n_rows": len(group),
+                                   "resolution": "kept every row: no untagged archive exists for "
+                                                 "this cell",
+                                   "kept": [{"delta_E": r["delta_E"],
+                                             "source_file": r["source_file"]} for r in tagged]})
+            continue
+        winner = untagged[0]
+        kept.append(winner)
+        losers = [r for r in group if r is not winner]
+        record = {
+            "stack": cell[0], "rank": cell[1], "seed": cell[2], "n_rows": len(group),
+            "resolution": "kept the untagged archived row (the row the frozen three-stack "
+                          "reference bucket holds); the tagged row of this round is a second run of "
+                          "the same cell",
+            "kept": {"delta_E": winner["delta_E"], "source_file": winner["source_file"],
+                     "source_field": winner["source_field"]},
+            "discarded": [{"delta_E": r["delta_E"], "source_file": r["source_file"],
+                           "source_field": r["source_field"],
+                           "same_measurement": bool(abs(float(r["delta_E"])
+                                                        - float(winner["delta_E"])) < 1e-12)}
+                          for r in losers],
+            "distinct_runs": bool(any(abs(float(r["delta_E"]) - float(winner["delta_E"])) >= 1e-12
+                                      for r in losers)),
+        }
+        duplicates.append(record)
+        for r in losers:
+            discarded.append({**r, "kept_source_file": winner["source_file"],
+                              "kept_delta_E": winner["delta_E"],
+                              "reason": "duplicate row for the same (stack, rank, seed) cell"})
+    return kept, duplicates, discarded
+
+
+def reference_three_stack(rows: list) -> tuple:
+    """The rows of the frozen three-stack reference design, plus the audit of that composition.
+
+    The frozen reference is the row set that produced the archived
+    outputs/analysis/p3_env_variance.json decomposition, and it is what a change in sigma_env must be
+    attributable to.  The archived file decomposes rank 5 only, so the composition is selected on the
+    archived file's own per-stack fields `envs.<stack label>.n` and `envs.<stack label>.mean`; on
+    rank 6 the registry is the reference (there is no frozen rank-6 bucket to reproduce).
+
+    For torch 2.4/cu121 the cell registry is not the frozen one.  That bucket holds n = 4 rows with
+    mean 25.25, which is exactly the four cells seeds 123/42/789/999, while the archive also carries
+    a rank-5 seed-7 measurement that this round produced and which the bucket never contained.  The
+    frozen composition is therefore the `n` rows whose mean equals the archived bucket mean; the
+    seed-7 row is reported as excluded and stays in the four-stack design, so the comparison isolates
+    the fourth stack instead of mixing it with a new torch-2.4 cell.
+
+    Returns (reference_rows, audit) where audit records the composition and what it excludes.
+    """
+    reference, audit = [], {"archived_bucket": None, "kept": [], "excluded": [],
+                            "reference_rank": NEW_RANKS[0],
+                            "n_rank_rows": {}}
+    ref_path = os.path.join(AN, "p3_env_variance.json")
+    ref = load_json(ref_path) if os.path.exists(ref_path) else None
+    for stack in STACKS:
+        sid = stack["id"]
+        if sid == "torch26_cu124":
+            continue
+        group = [r for r in rows if r["stack"] == sid and r["rank"] == NEW_RANKS[0]]
+        if not group:
+            continue
+        bucket = None
+        if ref:
+            for label, block in (ref.get("envs") or {}).items():
+                if label == stack["label"]:
+                    bucket = block
+        if bucket is None:
+            audit["excluded"].append({"stack": sid, "seeds": sorted(r["seed"] for r in group),
+                                      "reason": "no bucket in outputs/analysis/p3_env_variance.json; "
+                                                "the rank-5 registry is the reference"})
+            continue
+        want_n = int(bucket["n"])
+        want_mean = float(bucket["mean"])
+        chosen = None
+        seed_list = sorted({r["seed"] for r in group})
+        if len(seed_list) >= want_n:
+            for combo in itertools.combinations(seed_list, want_n):
+                pick = [r for r in group if r["seed"] in combo]
+                if len(pick) == want_n and abs(float(np.mean([r["delta_E"] for r in pick]))
+                                               - want_mean) < 1e-9:
+                    chosen = pick
+                    break
+        audit["archived_bucket"] = audit["archived_bucket"] or {}
+        audit["archived_bucket"][sid] = {"n": want_n, "mean": want_mean,
+                                         "values": [float(x) for x in bucket.get("values", [])]}
+        if chosen is None:
+            audit["excluded"].append({"stack": sid, "seeds": seed_list,
+                                      "reason": "no %d-row subset reproduces the archived mean %.4f; "
+                                                "the rank-5 registry is the reference"
+                                                % (want_n, want_mean)})
+            continue
+        kept_seeds = sorted(r["seed"] for r in chosen)
+        excluded_seeds = [s for s in seed_list if s not in kept_seeds]
+        audit["kept"].append({"stack": sid, "seeds": kept_seeds,
+                              "values": [r["delta_E"] for r in chosen],
+                              "source_files": [r["source_file"] for r in chosen]})
+        if excluded_seeds:
+            audit["excluded"].append({
+                "stack": sid, "seeds": excluded_seeds,
+                "reason": "not part of the frozen rank-%d bucket in "
+                          "outputs/analysis/p3_env_variance.json (the bucket's n and mean are "
+                          "reproduced exactly without these rows); the row stays in the four-stack "
+                          "design" % NEW_RANKS[0],
+                "rows": [{"seed": r["seed"], "rank": r["rank"], "delta_E": r["delta_E"],
+                          "source_file": r["source_file"]}
+                         for r in group if r["seed"] in excluded_seeds]})
+    # Rank 5 is the decomposition the archived file froze: use the selected rows.  Rank 6 has no
+    # frozen bucket, so its reference is the three stacks' full rank-6 registries.
+    for rank in NEW_RANKS:
+        if rank == NEW_RANKS[0]:
+            for entry in audit["kept"]:
+                reference.extend(r for r in rows
+                                 if r["stack"] == entry["stack"] and r["rank"] == rank
+                                 and r["seed"] in entry["seeds"])
+        else:
+            reference.extend(r for r in rows if r["rank"] == rank
+                             and r["stack"] != "torch26_cu124")
+    audit["n_rank_rows"] = {str(rank): {sid: len([r for r in reference
+                                                  if r["stack"] == sid and r["rank"] == rank])
+                                        for sid in sorted({r["stack"] for r in reference})}
+                            for rank in NEW_RANKS}
+    return reference, audit
+
+
 def collect_env_rows() -> tuple:
     """Build the per-stack rows from an explicit registry (no loose globs).
 
     Returns (rows, registry_notes).  Each row is one archived run: stack, rank, seed, delta_E, E0.
+    Every (stack, rank, seed) cell appears exactly once; see dedupe_cells() for the resolution of the
+    two torch 2.4/cu121 rank-5 cells that are named by both an untagged and a tagged file.  The
+    discarded rows travel in the notes so the caller can archive them.
     """
     rows, notes = [], []
     for stack in STACKS:
@@ -960,7 +1130,8 @@ def collect_env_rows() -> tuple:
                         continue
                     entries.append({"file": rel(path), "field": "delta_E", "seed": int(d["seed"]),
                                     "value": float(value), "E0": float(d["E"][0]) if d.get("E") else None})
-                notes.append("%s: frozen pattern %s (+ the explicit _torch24 suffix) -> %d rows"
+                notes.append("%s: frozen pattern %s (+ the explicit _torch24 suffix) -> %d candidate "
+                             "row(s), deduplicated below"
                              % (sid, os.path.basename(plain), len(entries)))
             elif sid == "torch26_cu124":
                 pattern = os.path.join(
@@ -980,7 +1151,18 @@ def collect_env_rows() -> tuple:
                              "torch": stack["torch"], "cuda": stack["cuda"],
                              "rank": rank, "seed": e["seed"], "delta_E": e["value"], "E0": e["E0"],
                              "source_file": e["file"], "source_field": e["field"]})
-    return rows, notes
+    rows, duplicates, discarded = dedupe_cells(rows)
+    for record in duplicates:
+        notes.append("%s rank %d seed %d: %d rows name this one cell; %s"
+                     % (record["stack"], record["rank"], record["seed"], record["n_rows"],
+                        record["resolution"]))
+        for row in record.get("discarded", []):
+            notes.append("    discarded duplicate delta_E %+.1f from %s (kept %s delta_E %+.1f; %s)"
+                         % (row["delta_E"], row["source_file"], record["kept"]["source_file"],
+                            record["kept"]["delta_E"],
+                            "same measurement" if row["same_measurement"] else
+                            "a different run of the same cell"))
+    return rows, notes, duplicates, discarded
 
 
 def decomposition(vals_by_env: dict) -> dict:
@@ -1049,15 +1231,32 @@ def stack_summary(rows: list, rank: int) -> dict:
 
 
 def bootstrap_share(vals_by_env: dict, n_boot: int, rng_seed: int) -> dict:
-    """Seed bootstrap within environment, share CI (same procedure as tools/_p1570_env_variance_update.py)."""
+    """Seed bootstrap within environment, share CI (same procedure as tools/_p1570_env_variance_update.py).
+
+    The same 10,000 replicates give the percentile intervals of sigma_env and sigma_seed as well, so a
+    reader is not handed an interval for the share alone.
+    """
     import numpy as np
     rng = np.random.default_rng(rng_seed)
-    shares = []
+    shares, env_sigmas, seed_sigmas = [], [], []
     for _ in range(n_boot):
         resampled = {k: [float(x) for x in rng.choice(v, len(v))] for k, v in vals_by_env.items()}
-        shares.append(decomposition(resampled)["env_variance_share"])
-    return {"n_boot": int(n_boot), "share_mean": float(np.mean(shares)),
-            "share_ci95": [float(np.percentile(shares, 2.5)), float(np.percentile(shares, 97.5))]}
+        dec = decomposition(resampled)
+        shares.append(dec["env_variance_share"])
+        env_sigmas.append(dec["sigma_env"])
+        seed_sigmas.append(dec["sigma_seed"])
+    point = decomposition(vals_by_env)
+    return {"n_boot": int(n_boot), "rng_seed": int(rng_seed),
+            "share_mean": float(np.mean(shares)),
+            "share_ci95": [float(np.percentile(shares, 2.5)), float(np.percentile(shares, 97.5))],
+            "sigma_env_point": float(point["sigma_env"]),
+            "sigma_env_mean": float(np.mean(env_sigmas)),
+            "sigma_env_ci95": [float(np.percentile(env_sigmas, 2.5)),
+                               float(np.percentile(env_sigmas, 97.5))],
+            "sigma_seed_point": float(point["sigma_seed"]),
+            "sigma_seed_mean": float(np.mean(seed_sigmas)),
+            "sigma_seed_ci95": [float(np.percentile(seed_sigmas, 2.5)),
+                                float(np.percentile(seed_sigmas, 97.5))]}
 
 
 def strict_unmet(acceptance: dict) -> list:
@@ -1073,13 +1272,14 @@ def aggregate_env_stack(args, _capture: list | None = None) -> int:
     if not os.path.exists(ENV_STACK_OUT.rsplit(os.sep, 1)[0]):
         print("ERROR: %s does not exist" % rel(AN))
         return 2
-    rows, notes = collect_env_rows()
+    rows, notes, duplicates, discarded = collect_env_rows()
     print("\n[1] registry (explicit per-stack file lists)")
     for n in notes:
         print("   ", n)
 
     ref_path = os.path.join(AN, "p3_env_variance.json")
     ref = load_json(ref_path) if os.path.exists(ref_path) else None
+    ref_rows, ref_audit = reference_three_stack(rows)
 
     per_rank, sigmas = {}, {}
     for rank in NEW_RANKS:
@@ -1096,8 +1296,13 @@ def aggregate_env_stack(args, _capture: list | None = None) -> int:
         dec = decomposition(envs)
         dec["bootstrap"] = bootstrap_share(envs, 10000, 7) if len(envs) >= 2 else None
         # Three-stack reference design: the stacks available before this round, with the torch26
-        # bucket removed.  This must reproduce the archived S37 numbers exactly.
-        envs3 = {k: v for k, v in envs.items() if k != "torch26_cu124"}
+        # bucket removed, each restricted to the frozen row set of reference_three_stack() (the rows
+        # the archived p3_env_variance.json decomposition was computed from).  This must reproduce
+        # the archived S37 numbers exactly, so that the change in sigma_env is attributable to the
+        # new seeds and not to a change of inputs.
+        envs3 = {sid: [r["delta_E"] for r in ref_rows if r["stack"] == sid and r["rank"] == rank]
+                 for sid in envs if sid != "torch26_cu124"}
+        envs3 = {k: v for k, v in envs3.items() if v}
         dec3 = decomposition(envs3) if len(envs3) >= 2 else None
         # Balanced common-seed design: only the seeds present on every populated stack.
         common = set.intersection(*[set(r["seed"] for r in rows
@@ -1107,11 +1312,30 @@ def aggregate_env_stack(args, _capture: list | None = None) -> int:
                              if r["stack"] == sid and r["rank"] == rank and r["seed"] in common]
                        for sid in envs}
         dec_common = decomposition(envs_common) if common and len(envs) >= 2 else None
+        if dec_common:
+            dec_common = dict(dec_common, seeds=sorted(common),
+                              bootstrap=bootstrap_share(envs_common, 10000, 7))
+        # The cells the frozen bucket left out need no separate fit: the deduplicated design of this rank
+        # already holds every one of them (each is a (stack, rank, seed) cell of the current registry),
+        # so all_rows is the "frozen bucket plus the cells it excluded" design and no second variant is
+        # archived.  This is asserted rather than assumed.
+        excluded_cells = [(entry["stack"], r)
+                          for entry in ref_audit["excluded"] for r in entry.get("rows", [])]
+        not_held = [(sid, row) for sid, row in excluded_cells
+                    if not [x for x in rows if x["stack"] == sid and x["rank"] == rank
+                            and x["seed"] == row.get("seed")]]
+        ref_envs = {sid: [r["delta_E"] for r in ref_rows
+                          if r["stack"] == sid and r["rank"] == rank]
+                    for sid in envs if sid != "torch26_cu124"}
+        ref_envs = {k: v for k, v in ref_envs.items() if v}
         sigmas[str(rank)] = {"all_rows": dec, "three_stack_reference": dec3,
-                             "common_seed_design": (dict(dec_common, seeds=sorted(common))
-                                                    if dec_common else None),
+                             "common_seed_design": dec_common,
+                             "frozen_bucket_exclusions_not_in_design":
+                                 [{"stack": sid, "seed": row.get("seed"),
+                                   "source_file": row.get("source_file")} for sid, row in not_held],
                              "envs_all_rows": {k: v for k, v in envs.items()},
                              "envs_three_stack": {k: v for k, v in envs3.items()},
+                             "envs_three_stack_frozen": ref_envs,
                              "envs_common_seed": envs_common if dec_common else None}
 
     print("\n[2] per-stack per-rank summary (field delta_E)")
@@ -1138,12 +1362,22 @@ def aggregate_env_stack(args, _capture: list | None = None) -> int:
              bool(ref_ok),
              "archived %.4f / %.4f / %.4f" % (float(ref["sigma_env"]), float(ref["sigma_seed"]),
                                               float(ref["env_share"])))
+    for entry in ref_audit["excluded"]:
+        print("      frozen reference excludes %s: %s" % (entry.get("stack"), entry["reason"]))
+        for row in entry.get("rows", []):
+            print("          seed %s delta_E %+.1f  %s" % (row["seed"], row["delta_E"],
+                                                           row["source_file"]))
     sig = sigmas["5"]["all_rows"]
     show("four-stack sigma_env at r=5 (the S37 estimate for the next revision)",
          "%.2f" % sig["sigma_env"] if sig["sigma_env"] is not None else "-",
          sig["sigma_env"] is not None, "k=%s n=%s; sigma_seed %.2f, share %.3f"
          % (sig["k"], sig["n"], sig["sigma_seed"] or float("nan"),
             sig["env_variance_share"] or float("nan")))
+
+    cells = {}
+    for r in rows:
+        cells.setdefault((r["stack"], r["rank"], r["seed"]), []).append(r)
+    repeated = sorted("%s r%d s%d" % (k[0], k[1], k[2]) for k, v in cells.items() if len(v) > 1)
 
     expected = env_seed_targets(NEW_RANKS, NEW_SEEDS, args.stack_suffix)
     missing = [rel(t["target"]) for t in expected if not os.path.exists(t["target"])]
@@ -1159,9 +1393,27 @@ def aggregate_env_stack(args, _capture: list | None = None) -> int:
         "torch26_at_least_three_seeds_per_rank": all(v >= 3 for v in rank_seed_counts.values()),
         "all_rows_have_finite_delta_E": all(r["delta_E"] == r["delta_E"] for r in rows),
         "three_stack_reference_reproduced": bool(ref_ok) if ref_ok is not None else None,
+        "one_row_per_stack_rank_seed_cell": len(repeated) == 0,
+        "repeated_cells": repeated,
+        "duplicate_cells_resolved": len(duplicates),
+        "discarded_duplicate_rows": discarded,
         "single_seed_rows": single,
         "single_seed_row_count": len(single),
     }
+    show("every (stack, rank, seed) cell is counted once", "%d cell(s) repeated" % len(repeated),
+         len(repeated) == 0,
+         "%d cell(s) were named by more than one file; each discarded row is archived in "
+         "discarded_duplicate_rows with its value and file" % len(duplicates))
+    missing_excluded = [(str(rank), e["stack"], e["seed"])
+                        for rank in NEW_RANKS
+                        for e in sigmas[str(rank)].get("frozen_bucket_exclusions_not_in_design", [])]
+    show("the deduplicated design holds every cell the frozen bucket excluded",
+         "%d cell(s) missing" % len(missing_excluded), not missing_excluded,
+         "the frozen three-stack reference leaves out %s; each of those cells is a row of the "
+         "four-stack design, so the four-stack fit is the frozen bucket plus the cells it excluded "
+         "and no second variant is needed" % (", ".join(
+             "%s seed %s" % (e["stack"], e["seeds"]) for e in ref_audit["excluded"]
+             if e.get("rows")) or "-"))
 
     result = {
         "meta": {
@@ -1179,13 +1431,22 @@ def aggregate_env_stack(args, _capture: list | None = None) -> int:
             "method": "one-way random-effects ANOVA on environment level with the unequal-n "
                       "correction n0, identical to tools/_p1570_env_variance_update.py; the "
                       "environment factor is the torch/CUDA stack",
-            "bootstrap": "seed bootstrap within environment, 10000 replicates, rng seed 7",
+            "bootstrap": "seed bootstrap within environment, 10000 replicates, rng seed 7; the same replicates "
+                       "give the percentile intervals of sigma_env and sigma_seed",
             "hardware_caveat": "the torch26 bucket mixes hardware: seed 42 was run on an RTX 4060 "
                                "Laptop, the new seeds on the cloud GPU; the archive records the "
                                "per-run gpu/torch/cuda triples in outputs/analysis/"
                                "p3_env_seeds_runlog.json, and S29's machine column must be updated "
                                "accordingly",
             "single_seed_definition": "a (stack, rank) block with exactly one archived seed",
+            "deduplication": "one row per (stack, rank, seed): the torch24 registry matches two "
+                             "filename patterns (untagged archived rows and rows carrying the "
+                             "explicit _torch24 suffix) and a cell named by both is one measurement.  "
+                             "The kept row is the untagged archived one (the row the frozen "
+                             "three-stack reference bucket of outputs/analysis/p3_env_variance.json "
+                             "holds); discarded_duplicate_rows carries every discarded value, its "
+                             "file and the kept row",
+            "frozen_three_stack_reference": ref_audit,
             "deterministic": True,
             "note": "no wall-clock field is written, so re-running this aggregation on unchanged "
                     "inputs reproduces this file byte for byte",
@@ -1200,6 +1461,8 @@ def aggregate_env_stack(args, _capture: list | None = None) -> int:
         "sigma_seed_before_this_round": (float(ref["sigma_seed"]) if ref else None),
         "env_variance_share_before_this_round": (float(ref["env_share"]) if ref else None),
         "single_seed_rows": single,
+        "discarded_duplicate_rows": discarded,
+        "duplicate_cells": duplicates,
         "acceptance": acceptance,
     }
     if args.dry_run:
@@ -1655,7 +1918,7 @@ def check_reconstruction() -> dict:
 
 def check_env_aggregate() -> None:
     print("\n[B] environment-stack aggregation")
-    rows, notes = collect_env_rows()
+    rows, notes, duplicates, discarded = collect_env_rows()
     for n in notes:
         print("     ", n)
     by_stack_rank = {}
@@ -1664,9 +1927,23 @@ def check_env_aggregate() -> None:
     for key in sorted(by_stack_rank):
         print("      %-16s rank %d: %d seed(s) %s" % (key[0], key[1], len(by_stack_rank[key]),
                                                       sorted(by_stack_rank[key])))
+    cells = {}
+    for r in rows:
+        cells.setdefault((r["stack"], r["rank"], r["seed"]), []).append(r)
+    repeated = sorted("%s r%d s%d" % (k[0], k[1], k[2]) for k, v in cells.items() if len(v) > 1)
+    show("no (stack, rank, seed) cell is counted twice", "%d repeated" % len(repeated),
+         not repeated,
+         "%d duplicated cell(s) resolved, %d row(s) discarded and recorded: %s"
+         % (len(duplicates), len(discarded),
+            ", ".join("%s r%d s%d (kept %+.1f, discarded %s)"
+                      % (d["stack"], d["rank"], d["seed"], d["kept"]["delta_E"],
+                         "/".join("%+.1f" % x["delta_E"] for x in d["discarded"]))
+                      for d in duplicates) or "-"))
+
+    ref_rows, ref_audit = reference_three_stack(rows)
     envs3 = {}
     for sid in ("torch29_cu130", "torch212_cu130", "torch24_cu121"):
-        envs3[sid] = [r["delta_E"] for r in rows if r["stack"] == sid and r["rank"] == 5]
+        envs3[sid] = [r["delta_E"] for r in ref_rows if r["stack"] == sid and r["rank"] == 5]
     dec3 = decomposition(envs3)
     ref = load_json(os.path.join(AN, "p3_env_variance.json"))
     show("frozen three-stack registry reproduces the archived S37 decomposition",
@@ -1675,13 +1952,16 @@ def check_env_aggregate() -> None:
          and abs(dec3["sigma_seed"] - float(ref["sigma_seed"])) < 1e-9
          and abs(dec3["env_variance_share"] - float(ref["env_share"])) < 1e-9,
          "archived %s / %s / %s" % (ref["sigma_env"], ref["sigma_seed"], ref["env_share"]))
-    show("archived torch 2.4/cu121 bucket is the frozen registry's bucket",
+    show("frozen registry's torch 2.4/cu121 bucket is the archived bucket",
          "%s" % sorted(envs3["torch24_cu121"]),
          sorted(envs3["torch24_cu121"]) == sorted(
              [float(x) for x in ref["envs"]["torch 2.4/cu121"]["values"]]),
-         "archived values %s; note that today's loose glob 'verify_r5_s*_a10*.json' also matches the "
-         "_a10_torch26 row, which is why the archived file is NOT reproducible by re-running "
-         "tools/_p1570_env_variance_update.py" % sorted(ref["envs"]["torch 2.4/cu121"]["values"]))
+         "archived values %s; the frozen composition is selected as the %d rows whose mean equals "
+         "the archived bucket mean %s, so the rounded rank-5 seed-7 measurement of the torch 2.4 "
+         "stack is deliberately not part of the reference and stays in the four-stack design "
+         "(both facts are archived in meta.frozen_three_stack_reference)"
+         % (sorted(ref["envs"]["torch 2.4/cu121"]["values"]),
+            int(ref["envs"]["torch 2.4/cu121"]["n"]), ref["envs"]["torch 2.4/cu121"]["mean"]))
     envs4 = dict(envs3)
     envs4["torch26_cu124"] = [r["delta_E"] for r in rows
                               if r["stack"] == "torch26_cu124" and r["rank"] == 5]

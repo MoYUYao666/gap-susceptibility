@@ -23,6 +23,17 @@ The two adapted encoders are the ones the published negative claim rests on; the
 claim can be reproduced and extended in one table, and they are excluded from the default selection
 (`--include-adapted` adds them).
 
+Encoder API note (transformers 5.16.1). The CLIP chain `vision_model -> pooler_output ->
+visual_projection` exists on CLIPModel only. On `SiglipModel` there is no `visual_projection` /
+`text_projection` at all: the image embedding is `vision_model.head(last_hidden_state)` (an
+attention-pooling head over the patch sequence -- `pooler_output` is a plain mean and is NOT the
+embedding) and the text embedding is `text_model.head(text_model.pooler_output)`. `Dinov2Model` has
+neither a projection nor a text tower (`vision_model` does not exist either): image features are the
+[patch-layernorm'ed] [CLS] token with no projection, and top-1 comes from the declared linear probe.
+Every one of those paths is declared per encoder in the registry (`kind` / `image_path` / `text_path` /
+`probe`) and asserted on the first batch, so the embedding TYPE and dimensionality convention of the
+cached units is enforced rather than assumed.
+
 Corpora (the same three image sets for every encoder):
 
     marine_optical    data/fathomnet8           343 images,  7 classes, chance 14.29 %
@@ -159,6 +170,8 @@ ENCODERS = {
         "probe": False,
         "probe_protocol": None,
         "kind": "transformers_dual",
+        "image_path": "vision_model",
+        "text_path": "text_projection",
         "assets": {
             "snapshot": {"local": "clip-vit-base-patch32", "repo_id": "openai/clip-vit-base-patch32",
                          "files": ["config.json", "preprocessor_config.json"]},
@@ -170,12 +183,16 @@ ENCODERS = {
     "siglip-base-patch16-224": {
         "group": "generic",
         "repo_id": "google/siglip-base-patch16-224",
-        "loader": "transformers AutoModel (SiglipModel): vision_model + visual_projection, text_model + text_projection",
+        "loader": ("transformers AutoModel (SiglipModel): visual_projection does NOT exist on this class in "
+                   "transformers 5.16.1; image embedding = vision_model.head(last_hidden_state), text embedding "
+                   "= text_model.head(text_model.pooler_output)"),
         "preprocess": "auto processor from the snapshot: RGB, resize to 224x224 (bicubic), rescale 1/255, mean/std 0.5",
         "embed_dim": 768,
         "probe": False,
         "probe_protocol": None,
         "kind": "transformers_dual",
+        "image_path": "vision_model",
+        "text_path": "text_model_head",
         "assets": {
             "snapshot": {"local": "siglip-base-patch16-224", "repo_id": "google/siglip-base-patch16-224",
                          "files": ["config.json", "preprocessor_config.json"]},
@@ -193,6 +210,8 @@ ENCODERS = {
         "probe": False,
         "probe_protocol": None,
         "kind": "transformers_dual",
+        "image_path": "vision_model",
+        "text_path": "text_projection",
         "assets": {
             "snapshot": {"local": "clip-vit-large-patch14", "repo_id": "openai/clip-vit-large-patch14",
                          "files": ["config.json", "preprocessor_config.json", "tokenizer.json", "vocab.json", "merges.txt"]},
@@ -204,12 +223,15 @@ ENCODERS = {
     "dinov2-base": {
         "group": "generic",
         "repo_id": "facebook/dinov2-base",
-        "loader": "transformers AutoModel (Dinov2Model, vision tower only) + a linear probe for top-1",
+        "loader": ("transformers AutoModel (Dinov2Model, vision tower only: the model IS the vision encoder and "
+                   "there is no text tower) + a linear probe for top-1"),
         "preprocess": "auto image processor from the snapshot: RGB, resize shortest side 256 (bicubic), centre crop 224, ImageNet mean/std",
         "embed_dim": 768,
         "probe": True,
         "probe_protocol": PROBE_PROTOCOL,
         "kind": "transformers_vision_probe",
+        "image_path": "model",
+        "text_path": None,
         "assets": {
             "snapshot": {"local": "dinov2-base", "repo_id": "facebook/dinov2-base",
                          "files": ["config.json", "preprocessor_config.json"]},
@@ -657,7 +679,90 @@ def corpus_plan(data_root: str, subset_json: str) -> dict:
 # encoders
 # --------------------------------------------------------------------------------------------------
 class ImageTextEncoder:
-    """Thin adapter over the three loader kinds; image() and text() return L2-normalized float32 rows."""
+    """Thin adapter over the three loader kinds; image() and text() return L2-normalized float32 rows.
+
+    Image and text extraction are EXPLICIT, never a CLIP-shaped guess: the CLIP chain
+    `vision_model -> pooler_output -> visual_projection` only holds for CLIPModel. In transformers 5.16.1
+    `SiglipModel` has no `visual_projection` at all (its image embedding is the attention-pooling head
+    applied to the full patch sequence, and its text embedding is a linear head on the pooled text state),
+    and `Dinov2Model` is a plain vision tower with neither projection nor text tower. Each such path is
+    declared by the encoder registry and asserted on the first batch (`assert_dim`), so a future
+    transformers release that renames a module fails loudly instead of silently changing an embedding.
+    """
+
+    # Declared by the registry; each helper raises when its path is unavailable rather than guessing.
+    def _feature_dim(self):
+        """Embedding width as this model's own config reports it (top level or nested tower config)."""
+        def probe(cfg):
+            for attr in ("projection_dim", "hidden_size"):
+                val = getattr(cfg, attr, None)
+                if isinstance(val, int) and val > 0:
+                    return int(val)
+            return None
+        for cfg in (getattr(self.model, "config", None),
+                    getattr(getattr(self.model, "config", None), "text_config", None),
+                    getattr(getattr(self.model, "config", None), "vision_config", None)):
+            dim = probe(cfg) if cfg is not None else None
+            if dim is not None:
+                return dim
+        raise RuntimeError("encoder %s: cannot infer a feature dimension from its config" % self.enc_id)
+
+    def assert_dim(self, f, n_rows: int, what: str = "features") -> None:
+        """Every embedding keeps the registry's dimensionality convention; a mismatch is a hard error."""
+        expected = int(self.enc["embed_dim"])
+        got = tuple(int(x) for x in f.shape)
+        if len(got) != 2 or got[1] != expected:
+            raise RuntimeError(
+                "encoder %s: %s have shape %s, expected (%d, %d) -- the extraction path declared in the "
+                "registry does not match this model" % (self.enc_id, what, got, n_rows, expected))
+
+    def _transformers_image_raw(self, pixel_values):
+        """Return the raw image embedding for the transformers kinds, along the declared path."""
+        path = self.enc.get("image_path") or ("vision_model" if self.kind == "transformers_dual" else "model")
+        if path == "vision_model":
+            out = self.model.vision_model(pixel_values=pixel_values)
+            head, proj = getattr(self.model.vision_model, "head", None), getattr(self.model, "visual_projection", None)
+            if head is not None and head.__class__.__name__.endswith("PoolingHead"):
+                # SigLIP: the attention-pooling head consumes the full patch sequence (pooler_output is the
+                # mean over patches and is NOT the embedding); CLIP's vision head is absent or a linear head.
+                return head(out.last_hidden_state)
+            if proj is not None:
+                # CLIP: pooled [CLS] then the shared embedding projection (the cached units' convention).
+                return proj(out.pooler_output)
+            if head is not None and out.pooler_output is not None:
+                return head(out.pooler_output)
+            if out.pooler_output is not None:
+                return out.pooler_output
+            raise RuntimeError("encoder %s: vision tower exposes neither a head nor a pooler output" % self.enc_id)
+        if path == "model":
+            # DINOv2 and any plain vision tower: the model IS the vision encoder, and the embedding is the
+            # [CLS] token of the last hidden state (equal to pooler_output on this checkpoint); no text tower.
+            out = self.model(pixel_values=pixel_values)
+            if getattr(out, "pooler_output", None) is not None:
+                return out.pooler_output
+            hidden = out.last_hidden_state
+            ln = getattr(self.model, "layernorm", None) or getattr(self.model, "norm", None)
+            return ln(hidden[:, 0]) if ln is not None else hidden[:, 0]
+        raise RuntimeError("encoder %s: unknown image_path '%s'" % (self.enc_id, path))
+
+    def _transformers_text_raw(self, input_ids, attention_mask):
+        """Return the raw text embedding for the transformers dual encoders, along the declared path."""
+        path = self.enc.get("text_path") or "text_projection"
+        if path == "text_model_head":
+            # SigLIP: pooled text state (last position) through the linear text head.
+            if not hasattr(self.model, "text_model"):
+                raise RuntimeError("encoder %s declares text_path=text_model_head but has no text_model"
+                                   % self.enc_id)
+            out = self.model.text_model(input_ids=input_ids, attention_mask=attention_mask)
+            head = getattr(self.model.text_model, "head", None)
+            if head is None:
+                raise RuntimeError("encoder %s: text tower has no head" % self.enc_id)
+            return head(out.pooler_output)
+        out = self.model.text_model(input_ids=input_ids, attention_mask=attention_mask)
+        proj = getattr(self.model, "text_projection", None)
+        if proj is None:
+            raise RuntimeError("encoder %s: text tower has no text_projection" % self.enc_id)
+        return proj(out.pooler_output)
 
     def __init__(self, enc_id: str, resolved: dict, device: str, batch: int = 32):
         self.enc_id, self.device, self.batch = enc_id, device, batch
@@ -680,9 +785,28 @@ class ImageTextEncoder:
                 self.processor = AutoProcessor.from_pretrained(snap, local_files_only=True)
             else:
                 self.processor = AutoImageProcessor.from_pretrained(snap, local_files_only=True)
+            # Record what this installation actually exposes, so a path that only worked because of a
+            # fallback is visible in the archive instead of being invisible.
+            has = lambda name: bool(hasattr(self.model, name))  # noqa: E731
+            vm = getattr(self.model, "vision_model", None)
+            self.detected_paths = {
+                "model_class": type(self.model).__name__,
+                "has_vision_model": bool(vm is not None),
+                "has_text_model": has("text_model"),
+                "has_visual_projection": has("visual_projection"),
+                "has_text_projection": has("text_projection"),
+                "vision_head_class": (None if getattr(vm, "head", None) is None
+                                      else type(vm.head).__name__),
+                "text_head_class": (None if getattr(getattr(self.model, "text_model", None), "head", None) is None
+                                    else type(self.model.text_model.head).__name__),
+                "feature_dim_from_config": self._feature_dim(),
+                "declared_image_path": self.enc.get("image_path") or "vision_model",
+                "declared_text_path": self.enc.get("text_path") or "text_projection",
+            }
         else:
             import open_clip
             self.open_clip = open_clip
+            self.detected_paths = None
             arch = self.enc["arch"]
             model, _, preprocess = open_clip.create_model_and_transforms(arch, pretrained=None,
                                                                         device=self.device)
@@ -724,19 +848,15 @@ class ImageTextEncoder:
         with t.no_grad():
             for i in range(0, len(images), self.batch):
                 chunk = images[i:i + self.batch]
-                if self.kind == "transformers_dual":
+                if self.kind in ("transformers_dual", "transformers_vision_probe"):
                     inp = self.processor(images=chunk, return_tensors="pt").to(self.device)
-                    out = self.model.vision_model(pixel_values=inp["pixel_values"])
-                    pooled = out.pooler_output if hasattr(out, "pooler_output") else out[1]
-                    f = self.model.visual_projection(pooled)
-                elif self.kind == "transformers_vision_probe":
-                    inp = self.processor(images=chunk, return_tensors="pt").to(self.device)
-                    out = self.model(pixel_values=inp["pixel_values"])
-                    f = out.last_hidden_state[:, 0]           # DINOv2 CLS token
+                    f = self._transformers_image_raw(inp["pixel_values"])
                 else:
                     xs = t.stack([self.preprocess(im) for im in chunk]).to(self.device)
                     f = self.model.encode_image(xs)
-                feats.append(t.nn.functional.normalize(f.float(), dim=-1).cpu().numpy())
+                f = t.nn.functional.normalize(f.float(), dim=-1)
+                self.assert_dim(f, len(chunk), "image features")
+                feats.append(f.cpu().numpy())
         return np.concatenate(feats, 0).astype(np.float32)
 
     def text(self, prompts):
@@ -745,17 +865,15 @@ class ImageTextEncoder:
             if self.kind == "transformers_dual":
                 inp = self.processor(text=list(prompts), return_tensors="pt", padding=True,
                                      truncation=True).to(self.device)
-                out = self.model.text_model(input_ids=inp["input_ids"],
-                                            attention_mask=inp.get("attention_mask"))
-                pooled = out.pooler_output if hasattr(out, "pooler_output") else out[1]
-                f = self.model.text_projection(pooled)
+                f = self._transformers_text_raw(inp["input_ids"], inp.get("attention_mask"))
             elif self.kind == "transformers_vision_probe":
                 raise RuntimeError("encoder %s has no text tower; top-1 goes through the linear probe"
                                    % self.enc_id)
             else:
                 f = self.model.encode_text(self.tokenizer(list(prompts)).to(self.device))
-            f = t.nn.functional.normalize(f.float(), dim=-1).cpu().numpy()
-        return f.astype(np.float32)
+            f = t.nn.functional.normalize(f.float(), dim=-1)
+            self.assert_dim(f, len(prompts), "text/probe-head rows")
+        return f.cpu().numpy().astype(np.float32)
 
     # ---- linear probe (frozen features) --------------------------------------------------------
     def fit_probe(self, ifeat: np.ndarray, labels: np.ndarray, seed: int = PROBE_SEED):
@@ -1140,6 +1258,9 @@ def encode_unit(enc_id: str, corpus_id: str, args, corpus_cache: dict, quiet: bo
         "prompts_first3": prompts[:3], "n_prompts": len(prompts),
         "image_fingerprint": corpus["fingerprint"],
         "model": {"repo_id": enc["repo_id"], "loader": enc["loader"], "preprocess": enc["preprocess"],
+                  "extraction": {"image_path": enc.get("image_path"), "text_path": enc.get("text_path"),
+                                 "probe": bool(enc["probe"]),
+                                 "detected": getattr(enc_obj, "detected_paths", None)},
                   "assets": prov, "load_report": enc_obj.load_report, "device": device,
                   "batch": int(args.batch)},
         "image_order": ("sorted class directories, files sorted within a class" if CORPORA[corpus_id]["kind"] == "class_dirs"
@@ -1658,6 +1779,12 @@ def build_plan(args, doc=None) -> dict:
         "cache_files": [os.path.relpath(cache_path(args.cache_root, u.split("__")[0], u.split("__", 1)[1]), REPO)
                         .replace("\\", "/") for u in json_units],
         "expected_rows_per_unit": len(LAMBDAS) + 1,
+        # Numbers the --analyze pass prints at the end of a run, echoed from the JSON so --dry-run can
+        # assert them; None (=> UNASSERTED) when no JSON has been written yet.
+        "printed_scored_cross_unit": _get(doc, ("conclusion", "n_scored_entries_cross_unit")),
+        "printed_above_chance": _get(doc, ("conclusion", "n_entries_above_chance")),
+        "printed_survivors": _get(doc, ("conclusion", "n_entries_surviving_bootstrap")),
+        "printed_answer": _get(doc, ("conclusion", "answer")),
     }
     return plan
 
@@ -1709,6 +1836,23 @@ def assert_plan(args, plan, doc, quiet: bool = False) -> tuple[int, int]:
     add("unit list", sorted(plan["units"]), ("transfer", "units"))
     add("registry: statistic keys", plan["statistic_keys"], ("meta", "statistic_keys"))
     add("registered encoders", plan["n_registered_encoders"], ("meta", "models"), transform=len)
+    # Conclusion numbers: --analyze prints these four in its last two lines, so they are asserted here
+    # against the JSON the run wrote (same source as the archived counts, no second code path).
+    add("units analyzed", plan["n_units_in_json"], ("meta", "n_units_analyzed"))
+    add("units expected for the selection", plan["n_units_in_json"], ("meta", "n_units_expected_for_selection"))
+    add("complete for the selection", True, ("meta", "complete_for_selection"))
+    add("conclusion: encoders", plan["n_encoders_selected"], ("conclusion", "n_encoders"))
+    add("conclusion: corpora", plan["n_corpora_selected"], ("conclusion", "n_corpora"))
+    add("conclusion: units", plan["n_units_in_json"], ("conclusion", "n_units"))
+    add("conclusion: ordered pairs", plan["n_pairs_in_json"], ("conclusion", "n_ordered_pairs"))
+    add("conclusion: statistics per pair", plan["n_statistic_keys"], ("conclusion", "n_statistics_per_pair"))
+    add("scored cross-unit entries printed by --analyze", plan.get("printed_scored_cross_unit"),
+        ("conclusion", "n_scored_entries_cross_unit"))
+    add("entries above chance printed by --analyze", plan.get("printed_above_chance"),
+        ("conclusion", "n_entries_above_chance"))
+    add("bootstrap survivors printed by --analyze", plan.get("printed_survivors"),
+        ("conclusion", "n_entries_surviving_bootstrap"))
+    add("verdict printed by --analyze", plan.get("printed_answer"), ("conclusion", "answer"))
     for cid, spec in plan["corpora"].items():
         if cid not in plan["json_selection"]["corpora"]:
             continue
