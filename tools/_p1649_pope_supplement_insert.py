@@ -25,6 +25,7 @@ Output: outputs/analysis/p3_pope_tex_insert.json (line ranges + the rendered blo
 import json
 import os
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -34,6 +35,11 @@ OUT = ANA / "p3_pope_tex_insert.json"
 
 ANCHOR = "\\section{Second-environment reproducibility}"
 LABEL = "\\label{app:pope}"
+
+# Re-run with --force after editing the template below: it replaces the whole subsection block
+# instead of skipping, so the manuscript can never drift from this generator.
+if not os.path.exists(SUPP):
+    raise SystemExit("supplementary.tex not found: %s" % SUPP)
 
 agg = json.loads((ANA / "p3_second_downstream.json").read_text(encoding="utf-8"))
 rep = json.loads((ANA / "p3_pope_corrected_metrics.json").read_text(encoding="utf-8"))
@@ -115,29 +121,37 @@ archives \allowbreak\texttt{outputs/analysis/\allowbreak p3\_second\_downstream\
 \label{tab:pope}
 \end{table}
 
-The two adapters are clearly better than the base model on exact-match accuracy (base minus $r=5$:
-$%s$, 95\%% CI $[%s,%s]$; base minus $r=6$: $%s$, 95\%% CI $[%s,%s]$) and on token F1 (base minus
-$r=5$: $%s$, 95\%% CI $[%s,%s]$; base minus $r=6$: $%s$, 95\%% CI $[%s,%s]$); those differences lie
-far outside the pre-declared margin, so they are resolved differences rather than equivalences.
-POPE's own yes-class F1 moves the other way: base minus $r=5$ is $%s$ (95\%% CI $[%s,%s]$), inside the
-$0.05$ margin and declared equivalent, whereas base minus $r=6$ is $%s$ (95\%% CI $[%s,%s]$), beyond
-the margin and not declared equivalent. The mechanism is a shift of the yes/no prior: on a set whose
-gold yes rate is exactly $0.5$, the predicted-yes rate falls from $%s$ (base) to $%s$ ($r=5$) and
-$%s$ ($r=6$), the false negatives on the $%d$ yes questions rise from $%d$ to $%d$ and $%d$, and the
-false positives fall from $%d$ to $%d$ and $%d$. The ranking of the two adapters is consistent across
-all three metrics, with $r=5$ better than $r=6$ on accuracy ($%s$, 95\%% CI $[%s,%s]$), on token F1
-($%s$, 95\%% CI $[%s,%s]$) and on yes-class F1 ($%s$, 95\%% CI $[%s,%s]$).
-\textbf{Boundary.} The downstream effect is therefore \emph{metric-dependent}: both adapters improve
-answer accuracy and token overlap, but at $r=6$ the yes/no prior shifts far enough that the balanced
-yes-class F1 that POPE measures also degrades beyond the pre-declared margin, while at $r=5$ that F1
-stays equivalent to the base model. We make no claim that a downstream accuracy gain certifies the
-alignment-energy ordering; what the second task supports is the weaker and more specific statement
-that the $r=5$ adapter is the better of the two on all three POPE metrics, the same direction as its
-smaller alignment damage. Source: \texttt{tools/\_p1640\_p3\_second\_downstream.py} $\to$
+The pre-declared criterion is met. Before the run we fixed the rule that an adapter is accepted on
+POPE if it is equivalent to or better than the base model on accuracy, that is, if the $0.05$ TOST
+margin is satisfied or the $95$\%% interval of the base-minus-adapter difference lies entirely below
+zero. Both adapters satisfy it: base minus $r=5$ is $%s$ (95\%% CI $[%s,%s]$) and base minus $r=6$ is
+$%s$ (95\%% CI $[%s,%s]$), and the same direction holds on token F1 ($%s$, 95\%% CI $[%s,%s]$ for
+$r=5$; $%s$, 95\%% CI $[%s,%s]$ for $r=6$). The archived verdict is therefore
+\texttt{supports\_the\_adapters} (field \texttt{claim\_verdict.second\_task\_verdict}), and those
+differences lie far outside the margin, so they are resolved improvements rather than equivalences.
+
+That verdict is stated on the accuracy criterion, and it must be read together with the metric split
+recorded in the same archive. POPE's own yes-class F1 moves the other way: base minus $r=5$ is $%s$
+(95\%% CI $[%s,%s]$), inside the $0.05$ margin and declared equivalent, whereas base minus $r=6$ is
+$%s$ (95\%% CI $[%s,%s]$), beyond the margin and not declared equivalent. The mechanism is a shift of
+the yes/no prior: on a set whose gold yes rate is exactly $0.5$, the predicted-yes rate falls from
+$%s$ (base) to $%s$ ($r=5$) and $%s$ ($r=6$), the false negatives on the $%d$ yes questions rise from
+$%d$ to $%d$ and $%d$, and the false positives fall from $%d$ to $%d$ and $%d$.
+\texttt{claim\_verdict.metric\_directions} records this split explicitly (accuracy: adapter better
+for both adapters; yes-class F1: base better for both), so \texttt{supports\_the\_adapters} is a
+statement about the pre-declared accuracy criterion, not about every metric.
+
+Two limits remain. First, the second task does not show the alignment-energy ordering transferring
+downstream: we make no claim that a downstream accuracy gain certifies that ordering. Second, the
+ranking of the two adapters is consistent across all three metrics, with $r=5$ better than $r=6$ on
+accuracy ($%s$, 95\%% CI $[%s,%s]$), on token F1 ($%s$, 95\%% CI $[%s,%s]$) and on yes-class F1
+($%s$, 95\%% CI $[%s,%s]$), the same direction as its smaller alignment damage; this is the weaker
+directional statement that the second task supports. Source:
+\texttt{tools/\_p1640\_p3\_second\_downstream.py} $\to$
 \texttt{outputs/analysis/p3\_second\_downstream.json}
 (\texttt{contrasts.base\_minus\_5.*}, \texttt{contrasts.base\_minus\_6.*},
-\texttt{contrasts.5\_minus\_6.*}, \texttt{claim\_verdict.metric\_directions}), with the confusion
-counts from the per-arm archives.
+\texttt{contrasts.5\_minus\_6.*}, \texttt{claim\_verdict.second\_task\_verdict},
+\texttt{claim\_verdict.metric\_directions}), with the confusion counts from the per-arm archives.
 
 """ % (
     n,
@@ -161,13 +175,38 @@ counts from the per-arm archives.
 )
 
 text = SUPP.read_text(encoding="utf-8")
+FORCE = "--force" in sys.argv
 if LABEL in text:
     m = re.search(re.escape(LABEL), text)
     start = text.rfind("\\subsection{A second downstream task: POPE}", 0, m.start())
     line = text[:start].count("\n") + 1
-    print("already inserted (%s at line %d) -- nothing to do" % (LABEL, line))
-    OUT.write_text(json.dumps({"status": "already_present", "subsection_start_line": line},
-                              indent=1), encoding="utf-8")
+    if not FORCE:
+        print("already inserted (%s at line %d) -- nothing to do (pass --force to re-render)"
+              % (LABEL, line))
+        OUT.write_text(json.dumps({"status": "already_present", "subsection_start_line": line},
+                                  indent=1), encoding="utf-8")
+        raise SystemExit(0)
+    idx = text.index(ANCHOR)
+    assert 0 <= start < idx, "cannot locate the inserted block boundaries"
+    old_n = text[start:idx].count("\n")
+    new = text[:start] + block + text[idx:]
+    SUPP.write_text(new, encoding="utf-8", newline="")
+    end_line = line + block.count("\n") - 1
+    rec = {"status": "replaced", "subsection_anchor": ANCHOR,
+           "inserted_start_line": line, "inserted_end_line": end_line,
+           "n_lines_added": block.count("\n"), "n_lines_replaced": old_n,
+           "label": LABEL, "table_label": "tab:pope",
+           "aggregate_sha256": __import__("hashlib").sha256(
+               (ANA / "p3_second_downstream.json").read_bytes()).hexdigest(),
+           "numbers_source": {
+               "aggregate": "outputs/analysis/p3_second_downstream.json",
+               "per_arm": ["outputs/analysis/p3_second_downstream_%s.json" % t
+                           for t in ("base", "5", "6")],
+               "independent_cross_check": "outputs/analysis/p3_pope_corrected_metrics.json"},
+           "rendered_block": block}
+    OUT.write_text(json.dumps(rec, indent=1, ensure_ascii=False), encoding="utf-8")
+    print("replaced subsection block at lines %d-%d (%d -> %d lines)"
+          % (line, end_line, old_n, block.count("\n")))
     raise SystemExit(0)
 assert ANCHOR in text, "anchor section not found: %s" % ANCHOR
 idx = text.index(ANCHOR)
