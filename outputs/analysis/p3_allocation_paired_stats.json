@@ -2,7 +2,7 @@
  "meta": {
   "script": "tools/_p1634_p3_allocation_paired.py",
   "purpose": "standalone paired re-analysis of Paper 3's Gamma-guided vs uniform allocation claim, including reproduction of the cross-paper addendum",
-  "git_commit": "5b865a94bd3882a38594e8cab0c96bcadecbdd00",
+  "git_commit": "7bed09ee180431946edf04f3f81ba60925f3f769",
   "git_commit_note": "informational only and excluded from the idempotency hash, because committing the script changes the commit while the analysis result must not change",
   "archive_paths": {
    "runs_by_tag": "outputs/analysis/p3_alloc_runs/<tag>/summary.json::runs.<plan>__seed<seed>.delta_E / .loss_last",
@@ -60,7 +60,7 @@
    "timestamps_inside_hashed_part": false,
    "hash_definition": "sha256 of the canonical JSON serialization (sort_keys=True, separators=(',',':')) of this document without meta.result_sha256"
   },
-  "result_sha256": "e5a802c3d8e1446741e38941bd2c07b5a2919a20bbaec087a95fc40c24e07d72"
+  "result_sha256": "249d805f66c106108ab3b4a39ddaeec400023652ab27f0594f1ada77395631ea"
  },
  "arms": {
   "exp_beta_paper_0.137": {
@@ -1128,7 +1128,7 @@
     "levene_mixed_pool_p": 0.18169308013137084,
     "levene_within_resid_W": 1.9160076009853246,
     "levene_within_resid_p": 0.17531641592308767,
-    "levene_note": "方差判据用 within_resid（Γ-guided vs 组内残差池）；mixed_pool 版本含组间差异，不应直接比"
+    "levene_note": "inherited from outputs/analysis/p3_alloc_random_pool.json :: levene_note, translated from the Chinese original for repository language compliance; the variance criterion uses within_resid (the Gamma-guided arm against the within-group residual pool); the mixed_pool version mixes between-plan differences and must not be compared directly"
    },
    "archived_verdict": "UNDERPOWERED_TO_DISTINGUISH",
    "archived_variance_claim_allowed": false,
@@ -1149,7 +1149,7 @@
     "between_plan_mean_diff": 1869.9802734374998,
     "ratio": 7.663940722970946,
     "underpowered": true,
-    "rule": "同分配内 seed 极差 ≥ 方案间均值差 ⇒ 判为功效不足"
+    "rule": "inherited from outputs/analysis/p3_alloc_random_pool.json :: rule, translated from the Chinese original for repository language compliance; if the within-plan seed range is at least the between-plan mean difference, the comparison is called underpowered"
    },
    "paired_by_seed_with_gamma": {
     "n_pairs": 3,

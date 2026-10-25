@@ -34,6 +34,11 @@ Archives read (field paths are recorded next to every number)
   paper3/scripts/outputs/experiments/all_results.json                          earlier LLaVA counterfactual
                                                                                groups (Theory/Random/Violation)
 
+Two prose leaves copied out of ``p3_alloc_random_pool.json`` (``tests.levene_note`` and
+``power_diagnosis.rule``) are Chinese in that archive; this archive re-emits them in English. The
+field names, the nesting and every number stay identical, and each English leaf names the source
+field it was translated from (see ``inherited_note`` below).
+
 Statistics conventions
 ----------------------
 * ``delta_E`` is the archived per-run energy change (E1 - E0 in the run record); it is never
@@ -122,8 +127,9 @@ def load_json_readable(relpath):
     """Load a JSON that stores its foreign-language notes as raw UTF-8 (not \\uXXXX escapes).
 
     ``outputs/analysis/p3_alloc_random_pool.json`` (written by tools/_p458_random_pool_test.py)
-    contains invalid JSON escape sequences: the Chinese notes embed a literal backslash-G. The
-    note fields are not used by this analysis, so the escape is neutralised before parsing and the
+    contains invalid JSON escape sequences: the Chinese notes embed a literal backslash-G. No note
+    field is used as a number by this analysis, and the two notes that are copied into the output are
+    re-emitted in English by ``inherited_note``, so the escape is neutralised before parsing and the
     fact is recorded in the output under ``meta.archive_repairs``.
     """
     with io.open(os.path.join(REPO, relpath), encoding="utf-8") as fh:
@@ -135,6 +141,24 @@ def load_json_readable(relpath):
         doc = json.loads(repaired)
         return doc, "invalid escape sequence %r (%s); replaced '\\\\G' with 'G' before parsing" % (
             "\\G", str(exc)[:120])
+
+
+def inherited_note(block, field, english):
+    """Copy an archived block, re-emitting one Chinese prose leaf in English.
+
+    ``A_POOL`` (``outputs/analysis/p3_alloc_random_pool.json``, written by
+    ``tools/_p458_random_pool_test.py``) is a frozen historical archive whose ``tests.levene_note`` and
+    ``power_diagnosis.rule`` leaves are Chinese. That archive keeps its Chinese: it is a pre-existing
+    artefact, and the repository language rule grandfathers existing artefacts while requiring every
+    newly created one to be English. This script writes a *new* archive, so the two blocks it copies
+    out of ``A_POOL`` are re-emitted with those leaves translated. Only the prose changes -- the field
+    name, the nesting and every number are copied verbatim -- and the English leaf names the source
+    archive and field, so the translation can never be mistaken for the archived wording.
+    """
+    out = dict(block)
+    out[field] = ("inherited from %s :: %s, translated from the Chinese original for repository "
+                  "language compliance; %s" % (A_POOL, field, english))
+    return out
 
 
 def mean(xs):
@@ -786,10 +810,17 @@ def analyse(resamples, rng_seed, checks):
         "gamma_percentile_definition": ("percent of the individual random runs below the Gamma-guided mean "
                                         "(the archived definition, tools/_p458_random_pool_test.py)"),
         "gamma_percentile_archived": pool_doc["gamma_mean_percentile_in_random_pool"],
-        "archived_tests": tests,
+        "archived_tests": inherited_note(
+            tests, "levene_note",
+            "the variance criterion uses within_resid (the Gamma-guided arm against the within-group "
+            "residual pool); the mixed_pool version mixes between-plan differences and must not be "
+            "compared directly"),
         "archived_verdict": pool_doc["verdict"],
         "archived_variance_claim_allowed": pool_doc["variance_claim_allowed"],
-        "archived_power_diagnosis": pool_doc["power_diagnosis"],
+        "archived_power_diagnosis": inherited_note(
+            pool_doc["power_diagnosis"], "rule",
+            "if the within-plan seed range is at least the between-plan mean difference, the "
+            "comparison is called underpowered"),
         "paired_by_seed_with_gamma": plan_paired,
         "paired_by_plan_with_gamma": plan_level,
     }
