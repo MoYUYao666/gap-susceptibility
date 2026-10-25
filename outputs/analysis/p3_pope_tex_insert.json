@@ -1,0 +1,122 @@
+{
+ "status": "inserted",
+ "subsection_anchor": "\\section{Second-environment reproducibility}",
+ "inserted_start_line": 1405,
+ "inserted_end_line": 1467,
+ "n_lines_added": 63,
+ "label": "\\label{app:pope}",
+ "table_label": "tab:pope",
+ "aggregate_sha256": "52e4e7bd377d85cdf9cc1343a5dfe5bcb04c0b513864acb0bd3d2941e3f8f2fe",
+ "numbers_source": {
+  "aggregate": "outputs/analysis/p3_second_downstream.json",
+  "per_arm": [
+   "outputs/analysis/p3_second_downstream_base.json",
+   "outputs/analysis/p3_second_downstream_5.json",
+   "outputs/analysis/p3_second_downstream_6.json"
+  ],
+  "independent_cross_check": "outputs/analysis/p3_pope_corrected_metrics.json"
+ },
+ "printed_values": {
+  "n": 3000,
+  "n_yes_gold": 1500,
+  "binomial_se_accuracy": 0.009128709291752768,
+  "arms": {
+   "base": {
+    "accuracy": 0.6256666666666667,
+    "token_f1": 0.6826015299515299,
+    "pope_f1": 0.8849177984274482,
+    "yes_ratio": 0.43266666666666664,
+    "fn": 262.0,
+    "fp": 60.0
+   },
+   "5": {
+    "accuracy": 0.8716666666666667,
+    "token_f1": 0.8716666666666667,
+    "pope_f1": 0.8593350383631714,
+    "yes_ratio": 0.41233333333333333,
+    "fn": 324.0,
+    "fp": 61.0
+   },
+   "6": {
+    "accuracy": 0.8396666666666667,
+    "token_f1": 0.8409513227513229,
+    "pope_f1": 0.8236641221374046,
+    "yes_ratio": 0.37333333333333335,
+    "fn": 421.0,
+    "fp": 41.0
+   }
+  },
+  "contrasts": {
+   "base_minus_5": {
+    "accuracy": {
+     "delta": -0.246,
+     "ci95": [
+      -0.2626666666666667,
+      -0.22965833333333396
+     ]
+    },
+    "token_f1": {
+     "delta": -0.1890651367151368,
+     "ci95": [
+      -0.20301374098124095,
+      -0.17519785903910903
+     ]
+    },
+    "pope_f1": {
+     "delta": 0.025582760064276844,
+     "ci95": [
+      0.015219617938250812,
+      0.0363730526634445
+     ]
+    }
+   },
+   "base_minus_6": {
+    "accuracy": {
+     "delta": -0.21399999999999997,
+     "ci95": [
+      -0.23099999999999998,
+      -0.19699999999999995
+     ]
+    },
+    "token_f1": {
+     "delta": -0.158349792799793,
+     "ci95": [
+      -0.1730649094424094,
+      -0.14383564754689745
+     ]
+    },
+    "pope_f1": {
+     "delta": 0.061253676290043635,
+     "ci95": [
+      0.048066039313167275,
+      0.0747014215799793
+     ]
+    }
+   },
+   "5_minus_6": {
+    "accuracy": {
+     "delta": 0.03200000000000003,
+     "ci95": [
+      0.02299999999999991,
+      0.04133333333333333
+     ]
+    },
+    "token_f1": {
+     "delta": 0.030715343915343807,
+     "ci95": [
+      0.021785105820105767,
+      0.0397894973544974
+     ]
+    },
+    "pope_f1": {
+     "delta": 0.03567091622576679,
+     "ci95": [
+      0.0250744259356859,
+      0.046487168558517436
+     ]
+    }
+   }
+  }
+ },
+ "rendered_block": "\\subsection{A second downstream task: POPE}\n\\label{app:pope}\n\nThe downstream check is repeated on a second, independent task: POPE (Li et al.,\narXiv:2305.10355), config \\texttt{Full}, split \\texttt{random}, revision \\texttt{4db12766},\n$n=3000$ held-out questions, an object-hallucination probe whose label space is exactly the yes/no\nsubset that the VQA-RAD check already scores. The \\texttt{r5\\_step}/\\texttt{r6\\_step} adapters are\nreused unchanged (their \\texttt{adapter\\_model.safetensors} hashes match the archived VQA-RAD round),\nwith the same prompt prefix, the same greedy decoding, and the \\texttt{norm()}/\\texttt{token\\_f1()}\ndefinitions imported from that check, so no new answer-parsing rule enters the comparison. All three\narms answer the same $3000$ questions in the same order (the reference arrays are byte-identical across\nthe three archives). The equivalence margin of $0.05$ is pre-declared and carried over unchanged from\nthe 451-question analysis; at $3000$ questions the binomial standard error of accuracy is about\n$0.0091$, so this set is not at its resolution limit and the margin is not re-fitted.\nTable~\\ref{tab:pope} reports the arms.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\begin{tabular}{@{}lrrrrr@{}}\n\\toprule\narm & $n$ & accuracy & token F1 & yes-class F1 & yes rate \\\\\n\\midrule\nbase & 3000 & 0.6257 & 0.6826 & 0.8849 & 0.4327 \\\\\n$r=5$ (per-step) & 3000 & 0.8717 & 0.8717 & 0.8593 & 0.4123 \\\\\n$r=6$ (per-step) & 3000 & 0.8397 & 0.8410 & 0.8237 & 0.3733 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{POPE second downstream task (real images, all 3000 questions, paired by question across arms;\nthe gold yes rate is exactly $0.5$). The adapters improve exact-match accuracy and token F1 but move\nthe yes/no prior, and the yes-class F1 therefore moves the other way at $r=6$. Source:\n\\texttt{tools/\\_p1640\\_p3\\_second\\_downstream.py} $\\to$\n\\texttt{outputs/analysis/p3\\_second\\_downstream.json} (\\texttt{arms.*.accuracy},\n\\texttt{arms.*.token\\_f1}, \\texttt{arms.*.pope\\_f1}, \\texttt{arms.*.yes\\_ratio}; dataset and protocol\nfields in \\texttt{meta.dataset} and \\texttt{meta.declared\\_margins}; confusion counts in the per-arm\narchives \\texttt{outputs/analysis/p3\\_second\\_downstream\\_\\{base,5,6\\}.json}).}\n\\label{tab:pope}\n\\end{table}\n\nThe two adapters are clearly better than the base model on exact-match accuracy (base minus $r=5$:\n$-0.2460$, 95\\% CI $[-0.2627,-0.2297]$; base minus $r=6$: $-0.2140$, 95\\% CI $[-0.2310,-0.1970]$) and on token F1 (base minus\n$r=5$: $-0.1891$, 95\\% CI $[-0.2030,-0.1752]$; base minus $r=6$: $-0.1583$, 95\\% CI $[-0.1731,-0.1438]$); those differences lie\nfar outside the pre-declared margin, so they are resolved differences rather than equivalences.\nPOPE's own yes-class F1 moves the other way: base minus $r=5$ is $+0.0256$ (95\\% CI $[+0.0152,+0.0364]$), inside the\n$0.05$ margin and declared equivalent, whereas base minus $r=6$ is $+0.0613$ (95\\% CI $[+0.0481,+0.0747]$), beyond\nthe margin and not declared equivalent. The mechanism is a shift of the yes/no prior: on a set whose\ngold yes rate is exactly $0.5$, the predicted-yes rate falls from $0.4327$ (base) to $0.4123$ ($r=5$) and\n$0.3733$ ($r=6$), the false negatives on the $1500$ yes questions rise from $262$ to $324$ and $421$, and the\nfalse positives fall from $60$ to $61$ and $41$. The ranking of the two adapters is consistent across\nall three metrics, with $r=5$ better than $r=6$ on accuracy ($+0.0320$, 95\\% CI $[+0.0230,+0.0413]$), on token F1\n($+0.0307$, 95\\% CI $[+0.0218,+0.0398]$) and on yes-class F1 ($+0.0357$, 95\\% CI $[+0.0251,+0.0465]$).\n\\textbf{Boundary.} The downstream effect is therefore \\emph{metric-dependent}: both adapters improve\nanswer accuracy and token overlap, but at $r=6$ the yes/no prior shifts far enough that the balanced\nyes-class F1 that POPE measures also degrades beyond the pre-declared margin, while at $r=5$ that F1\nstays equivalent to the base model. We make no claim that a downstream accuracy gain certifies the\nalignment-energy ordering; what the second task supports is the weaker and more specific statement\nthat the $r=5$ adapter is the better of the two on all three POPE metrics, the same direction as its\nsmaller alignment damage. Source: \\texttt{tools/\\_p1640\\_p3\\_second\\_downstream.py} $\\to$\n\\texttt{outputs/analysis/p3\\_second\\_downstream.json}\n(\\texttt{contrasts.base\\_minus\\_5.*}, \\texttt{contrasts.base\\_minus\\_6.*},\n\\texttt{contrasts.5\\_minus\\_6.*}, \\texttt{claim\\_verdict.metric\\_directions}), with the confusion\ncounts from the per-arm archives.\n\n"
+}

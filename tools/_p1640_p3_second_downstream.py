@@ -321,25 +321,47 @@ def paired_bootstrap_set(a: dict, b: dict, rng, n_boot: int, margin: float) -> d
 
 
 def _interval(d, delta: float, margin: float, n_boot: int) -> dict:
-    """The interval/TOST block, computed exactly as the imported vqa_contrast() does."""
-    lo90, hi90 = float(np.percentile(d, 5.0)), float(np.percentile(d, 95.0))
+    """The interval/TOST block, computed exactly as the imported vqa_contrast() does.
+
+    Percentile conventions (one convention, stated once, asserted below):
+
+      * ``ci95`` = the 2.5th/97.5th percentiles: a two-sided 95% interval on the difference.
+      * ``ci90`` = the 5th/95th percentiles: the interval that corresponds to the two
+        one-sided 5% tests that TOST performs, so ``min_equivalent_margin`` is derived from
+        the 90% bounds ("the smallest margin at which equivalence can be declared").
+      * ``tost_p_lower`` = P(d <= -margin), ``tost_p_upper`` = P(d >= +margin); equivalence
+        at the declared margin requires max(...) < ALPHA.
+
+    Both conventions are intentional and are the ones the archived VQA-RAD analysis used;
+    the cloud POPE aggregate is self-consistent with them (verified in
+    tools/_p1648_probe_bootstrap_variants.py: the archived ci95 bounds are exactly the
+    2.5/97.5 percentiles).
+    """
+    q05, q95 = float(np.percentile(d, 5.0)), float(np.percentile(d, 95.0))
+    q025, q975 = float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))
+    assert q025 <= q05 <= q95 <= q975, "percentile ordering violated"
+    assert -1.0 <= delta <= 1.0, "metric differences are bounded by 1"
     p_lower = float(np.mean(d <= -margin))
     p_upper = float(np.mean(d >= +margin))
-    return {
+    assert 0.0 <= p_lower <= 1.0 and 0.0 <= p_upper <= 1.0
+    out = {
         "n_boot": int(n_boot),
         "delta": float(delta),
         "boot_mean": float(d.mean()),
         "boot_se": float(d.std(ddof=1)),
-        "ci95": [float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))],
-        "ci90": [lo90, hi90],
-        "excludes_zero_95": bool(np.percentile(d, 2.5) > 0 or np.percentile(d, 97.5) < 0),
+        "ci95": [q025, q975],
+        "ci90": [q05, q95],
+        "excludes_zero_95": bool(q025 > 0 or q975 < 0),
         "tost_margin": float(margin),
         "tost_p_lower": p_lower,
         "tost_p_upper": p_upper,
         "tost_p": max(p_lower, p_upper),
         "equivalent_at_declared_margin": bool(max(p_lower, p_upper) < ALPHA),
-        "min_equivalent_margin": max(-lo90, hi90),
+        "min_equivalent_margin": max(-q05, q95),
     }
+    # the declared margin is the smallest margin at which the rule can fire, by construction
+    assert abs(out["min_equivalent_margin"] - max(-q05, q95)) < 1e-15
+    return out
 
 
 # ------------------------------------------------------------------------------------------------
@@ -912,7 +934,18 @@ def arm_from_payload(d: dict, archive: str) -> dict:
     nref = [norm(x) for x in refs]
     nhyp = [norm(x) for x in hyps]
     correct = np.array([1.0 if a == b else 0.0 for a, b in zip(nhyp, nref)])
-    f1 = np.array([float(token_f1(a, b)) for a, b in zip(nref, nhyp)])
+    # token_f1() takes TWO SEQUENCES (refs, hyps) and zips them; passing the two strings
+    # directly zips their CHARACTERS instead, which on a yes/no label space degenerates to
+    # exact match on the leading characters and silently returns relaxed accuracy.  The
+    # --eval path calls it correctly as token_f1([nref], [nhyp]); this call must mirror it.
+    f1 = np.array([float(token_f1([a], [b])) for a, b in zip(nref, nhyp)])
+    # Invariant: the aggregate's token F1 must equal the arm archive's token_f1 field.  The
+    # cloud aggregate of 2026-10-25 violated this because of the character-zip bug above
+    # (base 0.8926667 = relaxed_accuracy instead of 0.6826015); this assertion makes the
+    # regression impossible to reintroduce silently.
+    if "token_f1" in d and abs(float(d["token_f1"]) - float(f1.mean())) > 1e-9:
+        raise SystemExit("token_f1 mismatch against the arm archive: %.10f vs %.10f"
+                         % (float(f1.mean()), float(d["token_f1"])))
     pred_yes = np.array([h.split()[:1] == ["yes"] for h in nhyp])
     ref_yes = np.array([r.split()[:1] == ["yes"] for r in nref])
     meta = d.get("meta") or {}
@@ -922,6 +955,8 @@ def arm_from_payload(d: dict, archive: str) -> dict:
         "hypotheses": hyps,
         "adapter_dir": meta.get("adapter_dir"), "adapter_source": meta.get("adapter_source"),
         "adapter_sha256": meta.get("adapter_sha256"),
+        "prepared_parquet_sha256": meta.get("prepared_parquet_sha256"),
+        "prepared_parquet": meta.get("prepared_parquet"),
         "archived_accuracy": float(d.get("accuracy", float(correct.mean()))),
         "archived_token_f1": float(d.get("token_f1", float(f1.mean()))),
         "archived_pope_f1": float(d.get("pope_f1", pope_f1_from_flags(pred_yes, ref_yes))),
@@ -980,14 +1015,26 @@ def aggregate(args) -> int:
     print("=" * 118)
     prepared = PREPARED % args.split
     print("\n[1] arms")
-    if not os.path.exists(prepared):
-        if args.dry_run:
+    allow_missing = bool(getattr(args, "allow_missing_prepared", False))
+    parquet_present = os.path.exists(prepared)
+    if not parquet_present:
+        if allow_missing:
+            # Local re-aggregation of an already-completed cloud round: the prepared parquet was
+            # not retrieved, so one acceptance sub-check cannot be re-verified on this machine.
+            # It is recorded as NOT_VERIFIED_LOCALLY (a string, never True) in the archive's
+            # acceptance block, and the per-arm meta hashes must agree with each other instead.
+            print("  [WARN] prepared parquet absent: %s" % rel(prepared))
+            print("         --allow-missing-prepared given: the row-order sub-check is recorded")
+            print("         as not verified locally; every other check still runs.")
+        elif args.dry_run:
             pending("prepared parquet present", "run --prepare first; nothing to aggregate yet")
             print("  (dry run: the real mode stops here with exit code 2)")
             return 0
-        show("prepared parquet present", rel(prepared), False, "run --prepare first")
-        return 2
-    show("prepared parquet present", rel(prepared), True, "written by --prepare")
+        else:
+            show("prepared parquet present", rel(prepared), False, "run --prepare first")
+            return 2
+    else:
+        show("prepared parquet present", rel(prepared), True, "written by --prepare")
     present = [t for t in ARMS if os.path.exists(ARM_OUT % t)]
     missing = [t for t in ARMS if t not in present]
     if missing and args.dry_run:
@@ -1013,17 +1060,35 @@ def aggregate(args) -> int:
         return 2
     same_refs = len({tuple(arms[t]["refs"]) for t in ARMS}) <= 1
     same_sha = len({arms[t]["refs_sha256"] for t in ARMS}) <= 1
-    match_parquet = refs_match_parquet(arms, prepared)
     show("reference arrays identical across arms", "%s" % same_refs, same_refs,
          "same questions in the same order => the pairing is legitimate")
     show("reference sha256 identical across arms",
          "%s" % sorted({arms[t]["refs_sha256"] for t in ARMS})[0][:16], same_sha,
          "sha256 of the JSON encoding of the refs array")
-    show("references match the prepared parquet in row order", "%s" % match_parquet, match_parquet,
-         "%s" % rel(prepared))
+    if parquet_present:
+        match_parquet = refs_match_parquet(arms, prepared)
+        show("references match the prepared parquet in row order", "%s" % match_parquet,
+             match_parquet, "%s" % rel(prepared))
+        prepared_sha = sha256_file(prepared)
+        prepared_rel = rel(prepared)
+        prepared_order_check = bool(match_parquet)
+    elif allow_missing:
+        # the row-order check is impossible without the parquet; verify the weaker but real
+        # invariant instead: all three arms must report the SAME prepared-parquet sha256
+        prepared_shas = sorted({str((arms[t].get("prepared_parquet_sha256") or "")) for t in ARMS})
+        prepared_sha = prepared_shas[0]
+        prepared_rel = "not retrieved locally (see the per-arm meta)"
+        prepared_order_check = "NOT_VERIFIED_LOCALLY (prepared parquet absent on this machine)"
+        show("per-arm meta agree on one prepared-parquet sha256",
+             "%s" % (prepared_sha[:16] + "..." if prepared_sha else "<absent>"),
+             len(prepared_shas) == 1 and bool(prepared_sha),
+             "the strongest substitute available without the parquet itself")
+    else:
+        return 2
 
-    result, acceptance = aggregate_core(arms, n_seen, rel(prepared), sha256_file(prepared),
-                                        args.n_boot, args.split, missing, same_sha, match_parquet)
+    result, acceptance = aggregate_core(arms, n_seen, prepared_rel, prepared_sha,
+                                        args.n_boot, args.split, missing, same_sha,
+                                        prepared_order_check)
     if args.dry_run:
         print("\n[3] dry run: computed in memory, nothing was written")
         print("    would write %s" % rel(AGG_OUT))
@@ -1087,12 +1152,54 @@ def aggregate_core(arms: dict, n_seen: dict, prepared_rel: str, prepared_sha: st
     f1_b5 = contrasts["base_minus_5"]["pope_f1"]
     f1_b6 = contrasts["base_minus_6"]["pope_f1"]
     acc_56 = contrasts["5_minus_6"]["accuracy"]
-    both_keep = all(d["equivalent_at_declared_margin"] or d["ci95"][0] > 0 for d in (acc_b5, acc_b6))
-    both_lose = any(d["ci95"][1] < -MARGIN_ACC for d in (acc_b5, acc_b6))
+    # ---------------------------------------------------------------------------------------
+    # VERDICT RULE -- sign convention fixed 2026-10-25 (defect D2 of the cloud aggregate).
+    #
+    # Every contrast is delta = arm_a - arm_b with a = "base" (e.g. base_minus_5 = base - r5).
+    # A NEGATIVE accuracy delta therefore means the ADAPTER is BETTER.  The pre-declared prose
+    # criterion (docs/p3_second_downstream_plan.md section 7) is about "the adapters relative to
+    # base", and the previous implementation tested the delta as if it were adapter - base,
+    # which inverted both branches: an adapter that was better by more than the margin fired
+    # the "loses" branch.  The corrected tests, in terms of base - adapter:
+    #
+    #   equivalent_or_better(adapter) = TOST equivalence at the pre-declared margin
+    #                                   OR ci95 high < 0   (base is below the adapter => adapter better)
+    #   loses(adapter)                = ci95 low > +margin (base is above the adapter by > margin)
+    #
+    # supports_the_adapters = both adapters are equivalent_or_better on ACCURACY
+    # task_dependent_effect = either adapter loses by more than the margin on ACCURACY
+    # inconclusive          = neither
+    #
+    # The rule is an accuracy-only decision, exactly as pre-declared; the yes-class F1 can move
+    # the other way and is reported separately in claim_verdict.metric_directions so the label
+    # is never read as a blanket endorsement of every metric.
+    equivalent_or_better = [bool(d["equivalent_at_declared_margin"] or d["ci95"][1] < 0)
+                            for d in (acc_b5, acc_b6)]
+    loses = [bool(d["ci95"][0] > MARGIN_ACC) for d in (acc_b5, acc_b6)]
+    both_keep = all(equivalent_or_better)
+    both_lose = any(loses)
     verdict = ("task_dependent_effect" if both_lose
                else ("supports_the_adapters" if both_keep else "inconclusive"))
-    note("second-task verdict", verdict, "keep=%s lose=%s" % (both_keep, both_lose),
+    # self-check: the labels must be mutually exclusive and exhaustive
+    assert not (both_keep and both_lose), "the verdict rule must not fire both branches"
+    # metric-wise directions, so the label cannot hide a metric that moves the other way
+    def direction(d):
+        if d["ci95"][0] > 0:
+            return "base_better"
+        if d["ci95"][1] < 0:
+            return "adapter_better"
+        return "indistinguishable"
+    metric_directions = {
+        "accuracy": {"base_minus_r5": direction(acc_b5), "base_minus_r6": direction(acc_b6)},
+        "pope_f1": {"base_minus_r5": direction(f1_b5), "base_minus_r6": direction(f1_b6)},
+    }
+    note("second-task verdict", verdict,
+         "equivalent_or_better=%s loses=%s" % (equivalent_or_better, loses),
          [("claim_verdict.second_task_verdict", verdict)])
+    note("metric directions", " ".join("%s:%s" % (m, d["base_minus_r5"])
+                                      for m, d in metric_directions.items()),
+         "accuracy and pope_f1 can move in opposite directions",
+         [("claim_verdict.metric_directions", metric_directions)])
     note("n questions per arm", "%d" % n, "identical across the three arms",
          [("meta.dataset.n_questions", n)])
 
@@ -1106,7 +1213,12 @@ def aggregate_core(arms: dict, n_seen: dict, prepared_rel: str, prepared_sha: st
         "records_per_arm": n_seen,
         "equal_question_counts": len(set(n_seen.values())) == 1,
         "refs_byte_identical_across_arms": bool(same_sha),
-        "refs_match_prepared_parquet_order": bool(match_parquet),
+        # honesty fix (2026-10-25): the not-verified sentinel is a STRING and
+        # bool("NOT_VERIFIED...") is True, so the archive used to claim a row-order check that
+        # never ran. Record the boolean honestly (False when unverified) and keep the sentinel.
+        "refs_match_prepared_parquet_order": (match_parquet if isinstance(match_parquet, bool)
+                                              else False),
+        "prepared_parquet_order_check": match_parquet,
         "adapters_reused_not_trained": all(
             arms[t]["adapter_source"] == "reused_from_archived_round"
             and arms[t]["adapter_sha256"] == ADAPTER_REFERENCE[t] for t in ("5", "6")),
@@ -1137,6 +1249,27 @@ def aggregate_core(arms: dict, n_seen: dict, prepared_rel: str, prepared_sha: st
                       "separation.py vqa_contrast()",
             "field_names_shared_with_the_vqa_archives": ["accuracy", "token_f1", "yes_no_accuracy",
                                                          "refs", "hypotheses", "relaxed_accuracy"],
+            "metric_definitions": {
+                "accuracy": "normalised exact match: norm(hypothesis) == norm(reference)",
+                "token_f1": ("mean over questions of the per-question token F1 of "
+                             "tools/_p1516_p3_vqa_downstream.py token_f1([ref], [hyp]); this is "
+                             "the same field the per-arm archives carry, and arm_from_payload "
+                             "asserts the two agree"),
+                "pope_f1": "yes-class F1 = 2TP / (2TP + FP + FN) with yes as the positive class",
+                "yes_ratio": "share of questions whose predicted answer starts with 'yes'",
+                "labels": "POPE Full/random is balanced: the gold yes rate is exactly 0.5",
+            },
+            "verdict_rule": ("see claim_verdict.rule; corrected 2026-10-25 so the sign of the "
+                             "contrast (base - adapter) matches the pre-declared prose criterion"),
+            "supersedes": {
+                "path": "outputs/analysis/p3_second_downstream_pre_correction.json",
+                "sha256": "1c389125f0c3ce55056dea67ca5a3ded0ac09740465e37b640989ad66fcfb947",
+                "defects_fixed": ["D1 arms.*.token_f1 carried relaxed_accuracy",
+                                  "D2 verdict rule tested the contrast with the opposite sign"],
+                "why_no_gpu_rerun": ("the aggregate is CPU-side and consumes only the three "
+                                     "per-arm archives, so it can be regenerated without a GPU or "
+                                     "a cloud round"),
+            },
             "archives": [arms[t]["archive"] for t in ARMS],
             "deterministic": True,
             "note": "no wall-clock field is written, so re-running this aggregation on unchanged "
@@ -1157,9 +1290,19 @@ def aggregate_core(arms: dict, n_seen: dict, prepared_rel: str, prepared_sha: st
             "base_minus_r5": {"accuracy": acc_b5, "pope_f1": f1_b5},
             "base_minus_r6": {"accuracy": acc_b6, "pope_f1": f1_b6},
             "r5_minus_r6": {"accuracy": acc_56},
-            "rule": ("supports_the_adapters = both adapters are equivalent to or better than the base "
-                     "model on accuracy; task_dependent_effect = an adapter loses more than the "
-                     "margin on accuracy; inconclusive = neither statement holds"),
+            "metric_directions": metric_directions,
+            "equivalent_or_better_accuracy": {"base_minus_r5": equivalent_or_better[0],
+                                              "base_minus_r6": equivalent_or_better[1]},
+            "loses_accuracy": {"base_minus_r5": loses[0], "base_minus_r6": loses[1]},
+            "rule": ("deltas are arm_a - arm_b with a = base, so a negative accuracy delta means "
+                     "the adapter is better.  equivalent_or_better(adapter) = TOST equivalence at "
+                     "the pre-declared margin or ci95 high < 0 (base below the adapter); loses = "
+                     "ci95 low > +margin (base above the adapter by more than the margin).  "
+                     "supports_the_adapters = both adapters are equivalent-or-better on ACCURACY; "
+                     "task_dependent_effect = either adapter loses by more than the margin on "
+                     "accuracy; inconclusive = neither.  The rule is accuracy-only, as "
+                     "pre-declared; metric_directions records metrics that move the other way, so "
+                     "this label is not a blanket endorsement of every metric."),
         },
         "acceptance": acceptance,
         "caveat_sentences": {
@@ -1167,9 +1310,15 @@ def aggregate_core(arms: dict, n_seen: dict, prepared_rel: str, prepared_sha: st
                          "config Full/split random, 3000 held-out questions, the adapters reused "
                          "unchanged), so the downstream evidence rests on two task families rather "
                          "than one.",
-            "task_dependent": "The downstream check on a second task (POPE) does not reproduce the "
-                              "VQA-RAD direction: the adapters lose accuracy or yes-class F1 beyond "
-                              "the pre-declared margin, so the downstream effect is task-dependent.",
+            "metric_dependent": ("On a second downstream task (POPE, 3000 balanced yes/no "
+                                 "questions) the adapters improve exact-match accuracy and token F1 "
+                                 "but move the yes/no prior toward 'no', and the yes-class F1 falls "
+                                 "for r=6 beyond the pre-declared margin; the downstream effect is "
+                                 "therefore metric-dependent rather than uniformly positive."),
+            "task_dependent": ("DEPRECATED 2026-10-25: the cloud aggregate's task_dependent label "
+                               "came from a sign-inverted verdict rule and its token F1 field was "
+                               "relaxed_accuracy; the accuracy contrasts in fact favour both "
+                               "adapters.  Use metric_dependent instead."),
             "not_run": "The downstream check remains a single task (VQA-RAD); POPE was prepared "
                        "(tools/_p1640_p3_second_downstream.py) but not run.",
         },
@@ -1342,6 +1491,11 @@ def main(argv=None) -> int:
                     help="redo work whose output already exists")
     ap.add_argument("--strict", action="store_true",
                     help="with --aggregate: exit non-zero when an acceptance criterion is unmet")
+    ap.add_argument("--allow-missing-prepared", action="store_true",
+                    help="with --aggregate: proceed when the prepared parquet was not retrieved, "
+                         "recording the row-order acceptance sub-check as NOT_VERIFIED_LOCALLY and "
+                         "verifying that all three per-arm meta agree on one prepared-parquet "
+                         "sha256 instead (used to re-aggregate a completed cloud round on CPU)")
     args = ap.parse_args(argv)
 
     if args.self_test:

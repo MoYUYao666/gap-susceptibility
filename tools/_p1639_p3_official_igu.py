@@ -81,8 +81,10 @@ import glob
 import io
 import json
 import os
+import shutil
 import subprocess
 import sys
+import tempfile
 
 import numpy as np
 
@@ -195,7 +197,17 @@ CHECKS: list = []
 # Small helpers
 # ------------------------------------------------------------------------------------------------
 def rel(path: str) -> str:
-    return os.path.relpath(path, REPO).replace(os.sep, "/")
+    """Repo-relative POSIX path for display.
+
+    2026-10-25 portability defect: os.path.relpath raises
+    `ValueError: path is on mount 'C:', start on mount 'D:'` when the two locations are on different
+    Windows drives (e.g. a tempfile.mkdtemp() that lands on C: while the repo is on D:). Display must
+    never crash a run, so fall back to the absolute path.
+    """
+    try:
+        return os.path.relpath(path, REPO).replace(os.sep, "/")
+    except ValueError:
+        return os.path.abspath(path).replace(os.sep, "/")
 
 
 def load_json(path: str) -> dict:
@@ -842,6 +854,23 @@ def restore_owned(label: str, path: str, prev) -> None:
         print("      restored the pre-existing %s %s" % (label, rel(path)))
 
 
+def restore_side_effects(expected: list, saved: dict) -> None:
+    """Undo run_training.py's side effects on the files this round does NOT own.
+
+    `expected` is predict_side_effects(): [target arm archive, per-epoch partial by-product].
+    The FIRST entry is this round's product and must NEVER be restored or removed.
+
+    2026-10-25 defect: the pre-fix code applied restore_owned() to *every* entry, so when the
+    target arm was a new filename (prev is None) it was deleted immediately after training, and
+    run_one_arm then failed with "no usable archive ... after training". The restore belongs to
+    the by-products only; that is what this helper isolates (and what --self-test now exercises).
+    """
+    if not expected:
+        return
+    for path in expected[1:]:
+        restore_owned("training by-product", path, saved.get(path))
+
+
 def train_command(allocation: dict, seed: int, python: str) -> list:
     """The exact argv of one arm: identical to the archived bcexplicit arm except the allocation."""
     return [python, TRAIN_SCRIPT,
@@ -882,12 +911,20 @@ def run_one_arm(config: str, allocation: dict, seed: int, python: str, force: bo
     cmd = train_command(allocation, seed, python)
     print("      %s" % printable_command(cmd))
     proc = subprocess.run(cmd, cwd=REPO)
-    for path in expected:
-        restore_owned("training by-product", path, saved.get(path))
+    # Only the by-products are restored; the target arm archive is this round's product.
+    restore_side_effects(expected, saved)
     if proc.returncode != 0:
         raise RuntimeError("run_training.py exited %d for config=%s seed=%d"
                            % (proc.returncode, config, seed))
+    # Regression guard (2026-10-25 defect): the target must exist AND parse before it is
+    # interpreted. Without this, a restore-logic regression silently deletes a finished arm.
+    if not os.path.exists(target):
+        raise RuntimeError("training finished but the target archive %s is missing; the "
+                           "side-effect restore must never touch it" % rel(target))
     arm = read_arm(target)
+    if arm.get("delta_E") is None:
+        raise RuntimeError("target archive %s did not parse into a usable arm after training"
+                           % rel(target))
     if not arm or arm.get("delta_E") is None:
         raise RuntimeError("no usable archive at %s after training" % rel(target))
     if arm.get("seed") != seed or arm.get("epochs") != EPOCHS or arm.get("num_samples") != NUM_SAMPLES:
@@ -895,6 +932,34 @@ def run_one_arm(config: str, allocation: dict, seed: int, python: str, force: bo
     return {"config": config, "side": CONFIGS[config]["side"], "seed": seed,
             "allocation": dict(allocation), "from_cache": False, **arm,
             "archive_preserved": bool(saved.get(target))}
+
+
+def merge_block_maps(run: dict, payload: dict) -> dict:
+    """Preserve/refresh the per-block maps when --stage train rewrites the run archive.
+
+    2026-10-25 defect #2: this used to read `run["module_ranks"]` only. The allocate stage stores
+    the ranks under `allocation_stage.module_ranks`, so the lookup returned {} -> block_sums was
+    all zeros -> allocate_from_sums(zeros) wrote a uniform [4,4,4,4] over the correct
+    [11,1,2,2]; the next --stage train then refused with "corrected allocation differs from the
+    pinned". The fixed precedence is: explicit top-level maps, else module_ranks (either
+    location), else keep whatever the payload already carries (never overwrite with zeros).
+    """
+    payload["block_maps"] = payload.get("block_maps") or {}
+    for name in ("archived", "corrected"):
+        src = run.get(name) if run else None
+        if src:
+            payload["block_maps"][name] = {"block_rank_sum": src["block_rank_sum"],
+                                           "allocation": src["allocation"],
+                                           "matches_archive": src["matches_archive"]}
+            continue
+        ranks = (run.get("module_ranks")
+                 or (run.get("allocation_stage") or {}).get("module_ranks") or {}) if run else {}
+        if ranks:
+            sums = block_sums(ranks, name)
+            payload["block_maps"][name] = {"block_rank_sum": sums,
+                                           "allocation": allocate_from_sums(sums)}
+        # else: nothing authoritative to refresh from -> keep payload["block_maps"][name] as-is
+    return payload
 
 
 def stage_train(configs, seeds, python: str, dry_run: bool, force: bool) -> int:
@@ -969,17 +1034,7 @@ def stage_train(configs, seeds, python: str, dry_run: bool, force: bool) -> int:
         "note": "no wall-clock field is written; re-running --stage train on unchanged inputs "
                 "reproduces this file byte for byte",
     }
-    payload["block_maps"] = payload.get("block_maps") or {}
-    for name in ("archived", "corrected"):
-        sums = block_sums(run.get("module_ranks") or {}, name) if run else None
-        src = run.get(name) if run else None
-        if src:
-            payload["block_maps"][name] = {"block_rank_sum": src["block_rank_sum"],
-                                          "allocation": src["allocation"],
-                                          "matches_archive": src["matches_archive"]}
-        if sums is not None and not src:
-            payload["block_maps"][name] = {"block_rank_sum": sums,
-                                           "allocation": allocate_from_sums(sums)}
+    merge_block_maps(run, payload)
     payload["runs"] = sorted(records, key=lambda r: (str(r.get("config")), int(r.get("seed", -1))))
     payload["runs_sha256"] = sha256_json(payload["runs"])
     write_json(RUN_ARCHIVE, payload)
@@ -1432,7 +1487,74 @@ def self_test() -> int:
     show("one paired seed yields no interval", "ci95=%s" % stat["ci95"], stat["ci95"] is None,
          "the script reports the reason instead of a number: %s" % stat["unavailable_reason"])
 
-    print("\n[C] inputs on this machine (read-only)")
+    print("\n[C] the training side-effect restore logic (2026-10-25 defect regression test)")
+    tmp = tempfile.mkdtemp(prefix="p1639_selftest_", dir=REPO)
+    try:
+        def old_restore_side_effects(expected, saved):  # the pre-fix behaviour, for the contrast
+            for p in expected:
+                restore_owned("training by-product", p, saved.get(p))
+
+        def scenario(fn):
+            """Return (target_survives, byproduct_state) for one restore implementation."""
+            d = tempfile.mkdtemp(prefix="case_", dir=tmp)
+            target = os.path.join(d, "verify_r1_s42_bcexplicit_v11_s1_m2_d2.json")
+            byprod = os.path.join(d, "verify_r1_s42_b1_partial.json")
+            with open(target, "w", encoding="utf-8") as fh:
+                fh.write('{"delta_E": 250.5, "ok": true}')          # fresh arm just trained
+            with open(byprod, "w", encoding="utf-8") as fh:
+                fh.write("OVERWRITTEN-BY-TRAINING")                 # training rewrote it
+            saved = {byprod: b'{"transient": "pre-existing"}'}      # it pre-existed this round
+            fn([target, byprod], saved)
+            survives = os.path.exists(target)
+            with open(byprod, "rb") as fh:
+                restored = fh.read()
+            return survives, restored
+
+        new_survives, new_byprod = scenario(restore_side_effects)
+        old_survives, old_byprod = scenario(old_restore_side_effects)
+        show("restore keeps the freshly trained target arm", "exists" if new_survives else "deleted",
+             new_survives, "the target is this round's product and must never be restored away")
+        show("pre-fix logic would delete that same target arm (the defect)",
+             "deleted" if not old_survives else "exists", not old_survives,
+             "reproducing the 2026-10-25 failure: fresh target removed -> 'no usable archive'")
+        show("restore still reverts the pre-existing by-product after training",
+             "reverted" if new_byprod == b'{"transient": "pre-existing"}' else "NOT reverted",
+             new_byprod == b'{"transient": "pre-existing"}',
+             "the fix narrows the loop to expected[1:]; by-product handling is unchanged")
+        show("by-product handling identical between the fixed and the pre-fix logic",
+             "same" if new_byprod == old_byprod else "differs", new_byprod == old_byprod,
+             "only the target-arm behaviour changed")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    print("\n[D] the run-archive block_maps merge logic (2026-10-25 defect #2 regression test)")
+    good_maps = {"archived": {"block_rank_sum": ARCHIVED_MODULE_SUMS["archived"],
+                              "allocation": ARCHIVED_ALLOCATIONS["archived"]},
+                 "corrected": {"block_rank_sum": ARCHIVED_MODULE_SUMS["corrected"],
+                               "allocation": ARCHIVED_ALLOCATIONS["corrected"]}}
+    # Shape of the archive as --stage allocate leaves it: no top-level module_ranks, and an empty
+    # allocation_stage.module_ranks (worst case). The pre-fix code recomputed all-zero sums here
+    # and wrote a uniform [4,4,4,4]; the fixed code must keep the payload's correct maps.
+    archive_no_ranks = {"allocation_stage": {"module_ranks": {}}}
+    merged = merge_block_maps(archive_no_ranks, {"block_maps": dict(good_maps), "runs": []})
+    c = merged["block_maps"]["corrected"]["allocation"]
+    a = merged["block_maps"]["archived"]["allocation"]
+    show("block_maps survive a --stage train rewrite (no zero-sum overwrite)",
+         "corrected=%s" % [c[b] for b in BLOCKS], c == ARCHIVED_ALLOCATIONS["corrected"],
+         "pre-fix code read run['module_ranks'] (absent here) -> all-zero sums -> [4,4,4,4]")
+    show("archived block map also preserved", "archived=%s" % [a[b] for b in BLOCKS],
+         a == ARCHIVED_ALLOCATIONS["archived"],
+         "both maps are written back, not just the research-variable one")
+    # Explicit top-level maps take precedence when present.
+    merged2 = merge_block_maps({"archived": dict(good_maps["archived"], matches_archive=True),
+                                "corrected": dict(good_maps["corrected"], matches_archive=True)},
+                               {"block_maps": {}, "runs": []})
+    show("explicit top-level maps take precedence",
+         "corrected=%s" % [merged2["block_maps"]["corrected"]["allocation"][b] for b in BLOCKS],
+         merged2["block_maps"]["corrected"]["allocation"] == ARCHIVED_ALLOCATIONS["corrected"],
+         "a --stage allocate rewrite still wins over a stale payload copy")
+
+    print("\n[E] inputs on this machine (read-only)")
     rc = verify_inputs()
     print("\n  assertion ledger: %d checks, %d failed"
           % (len(CHECKS), sum(1 for _, ok in CHECKS if not ok)))
