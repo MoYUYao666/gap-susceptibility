@@ -1,0 +1,200 @@
+{
+ "experiment": "p3d_qwen_resolution_check",
+ "script": "tools/_p469_qwen_resolution_check.py",
+ "generated_at_utc": "2026-10-12T19:20:41+00:00",
+ "sources": {
+  "max_pixels_16384": "p3d_qwen_ranksweep.json",
+  "max_pixels_50176": "p3d_qwen_ranksweep_mp50176.json"
+ },
+ "visual_tokens": {
+  "16384": 15.0,
+  "50176": 54.0
+ },
+ "sign_summary": {
+  "16384": {
+   "real": {
+    "n": 21,
+    "n_positive": 21,
+    "n_negative": 0,
+    "mean": 339.7697904761905,
+    "min": 188.8456,
+    "max": 499.4443
+   },
+   "blank": {
+    "n": 21,
+    "n_positive": 0,
+    "n_negative": 21,
+    "mean": -359.22003333333333,
+    "min": -541.4349,
+    "max": -113.9873
+   }
+  },
+  "50176": {
+   "real": {
+    "n": 2,
+    "n_positive": 0,
+    "n_negative": 2,
+    "mean": -512.6759,
+    "min": -554.1862,
+    "max": -471.1656
+   },
+   "blank": {
+    "n": 2,
+    "n_positive": 0,
+    "n_negative": 2,
+    "mean": -118.81035,
+    "min": -188.504,
+    "max": -49.1167
+   }
+  }
+ },
+ "pattern_holds": {
+  "16384": true,
+  "50176": false
+ },
+ "paired": {
+  "16384": [
+   {
+    "rank": 4,
+    "seed": 42,
+    "dE_train_blank_minus_real": -728.5553,
+    "dE_eval_blank_minus_real": 94.4422
+   },
+   {
+    "rank": 4,
+    "seed": 123,
+    "dE_train_blank_minus_real": -479.33889999999997,
+    "dE_eval_blank_minus_real": 256.62739999999997
+   },
+   {
+    "rank": 4,
+    "seed": 999,
+    "dE_train_blank_minus_real": -709.126,
+    "dE_eval_blank_minus_real": 195.295
+   },
+   {
+    "rank": 16,
+    "seed": 42,
+    "dE_train_blank_minus_real": -584.8775,
+    "dE_eval_blank_minus_real": 401.69370000000004
+   },
+   {
+    "rank": 16,
+    "seed": 123,
+    "dE_train_blank_minus_real": -735.6014,
+    "dE_eval_blank_minus_real": 216.60809999999998
+   },
+   {
+    "rank": 16,
+    "seed": 999,
+    "dE_train_blank_minus_real": -582.8522,
+    "dE_eval_blank_minus_real": 321.88009999999997
+   },
+   {
+    "rank": 1,
+    "seed": 42,
+    "dE_train_blank_minus_real": -713.4232,
+    "dE_eval_blank_minus_real": -106.1149
+   },
+   {
+    "rank": 1,
+    "seed": 123,
+    "dE_train_blank_minus_real": -722.6368,
+    "dE_eval_blank_minus_real": -23.185900000000004
+   },
+   {
+    "rank": 1,
+    "seed": 999,
+    "dE_train_blank_minus_real": -701.3782,
+    "dE_eval_blank_minus_real": 56.715299999999985
+   },
+   {
+    "rank": 2,
+    "seed": 42,
+    "dE_train_blank_minus_real": -885.7266,
+    "dE_eval_blank_minus_real": 4.659300000000002
+   },
+   {
+    "rank": 2,
+    "seed": 123,
+    "dE_train_blank_minus_real": -766.0976,
+    "dE_eval_blank_minus_real": 105.28680000000003
+   },
+   {
+    "rank": 2,
+    "seed": 999,
+    "dE_train_blank_minus_real": -735.3394000000001,
+    "dE_eval_blank_minus_real": 85.58229999999998
+   },
+   {
+    "rank": 5,
+    "seed": 42,
+    "dE_train_blank_minus_real": -586.4637,
+    "dE_eval_blank_minus_real": 339.4348
+   },
+   {
+    "rank": 5,
+    "seed": 123,
+    "dE_train_blank_minus_real": -546.3265,
+    "dE_eval_blank_minus_real": 159.3204
+   },
+   {
+    "rank": 5,
+    "seed": 999,
+    "dE_train_blank_minus_real": -858.8159,
+    "dE_eval_blank_minus_real": -28.788899999999984
+   },
+   {
+    "rank": 6,
+    "seed": 42,
+    "dE_train_blank_minus_real": -665.8972,
+    "dE_eval_blank_minus_real": 144.4271
+   },
+   {
+    "rank": 6,
+    "seed": 123,
+    "dE_train_blank_minus_real": -822.4455,
+    "dE_eval_blank_minus_real": 221.19760000000002
+   },
+   {
+    "rank": 6,
+    "seed": 999,
+    "dE_train_blank_minus_real": -771.3736,
+    "dE_eval_blank_minus_real": 295.40229999999997
+   },
+   {
+    "rank": 8,
+    "seed": 42,
+    "dE_train_blank_minus_real": -756.7227,
+    "dE_eval_blank_minus_real": 290.9941
+   },
+   {
+    "rank": 8,
+    "seed": 123,
+    "dE_train_blank_minus_real": -613.8908,
+    "dE_eval_blank_minus_real": 359.5894
+   },
+   {
+    "rank": 8,
+    "seed": 999,
+    "dE_train_blank_minus_real": -711.8973,
+    "dE_eval_blank_minus_real": 304.6128
+   }
+  ],
+  "50176": [
+   {
+    "rank": 4,
+    "seed": 42,
+    "dE_train_blank_minus_real": 365.68219999999997,
+    "dE_eval_blank_minus_real": 440.5382
+   },
+   {
+    "rank": 16,
+    "seed": 42,
+    "dE_train_blank_minus_real": 422.0489,
+    "dE_eval_blank_minus_real": 592.0974000000001
+   }
+  ]
+ },
+ "conclusion": "「real 全正 / blank 全负」只在 max_pixels=16384（15 visual token）下成立；在 50176（54 token）下 real 的 dE_train 变为负 → 该符号模式对视觉 token 预算敏感，不能作为一般性主张。"
+}

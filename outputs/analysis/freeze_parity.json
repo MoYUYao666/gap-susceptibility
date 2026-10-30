@@ -1,0 +1,92 @@
+{
+ "archive_fields": [
+  "backbone_delta",
+  "batch_size",
+  "effective_rank_final",
+  "effective_rank_init",
+  "elapsed_sec",
+  "epochs",
+  "experiment",
+  "final_gap",
+  "final_task_metrics",
+  "final_train_loss",
+  "final_val_loss",
+  "initial_gap",
+  "lora_update_norm",
+  "max_samples",
+  "n_trainable_params",
+  "n_trainable_reported_by_trainer",
+  "seed",
+  "strict_freeze"
+ ],
+ "script_hashes": {
+  "experiments/strict_freeze_control.py": "e221141b08aeaf9ed05f612a1a992d9c9f5306b4d98ed9937c9814df92195bf2",
+  "src/trainer.py": "3b60379ad1fdc21a860daf7f6caeaf51480ea98cfb70cee135451a420d47892e",
+  "src/dataset.py": "b63276fa5f59afbb9c422faf8fa72361a504f7a2834cdf276021ee82b7d5ad77"
+ },
+ "rows": [
+  {
+   "arm": "both",
+   "seed": "seed123",
+   "cg0": 0.818911075592041,
+   "cg1": 0.7996681332588196,
+   "delta": -0.019242942333221436
+  },
+  {
+   "arm": "both",
+   "seed": "seed42",
+   "cg0": 0.8187280297279358,
+   "cg1": 0.8001600503921509,
+   "delta": -0.018567979335784912
+  },
+  {
+   "arm": "both",
+   "seed": "seed456",
+   "cg0": 0.8192614316940308,
+   "cg1": 0.800635814666748,
+   "delta": -0.018625617027282715
+  },
+  {
+   "arm": "text_only",
+   "seed": "seed123",
+   "cg0": 0.8189385533332825,
+   "cg1": 0.7915796041488647,
+   "delta": -0.027358949184417725
+  },
+  {
+   "arm": "text_only",
+   "seed": "seed42",
+   "cg0": 0.8187096118927002,
+   "cg1": 0.7890539765357971,
+   "delta": -0.029655635356903076
+  },
+  {
+   "arm": "text_only",
+   "seed": "seed456",
+   "cg0": 0.8183220028877258,
+   "cg1": 0.788857102394104,
+   "delta": -0.029464900493621826
+  },
+  {
+   "arm": "vision_only",
+   "seed": "seed123",
+   "cg0": 0.8183557987213135,
+   "cg1": 0.8288959264755249,
+   "delta": 0.010540127754211426
+  },
+  {
+   "arm": "vision_only",
+   "seed": "seed42",
+   "cg0": 0.819088876247406,
+   "cg1": 0.8315058946609497,
+   "delta": 0.012417018413543701
+  },
+  {
+   "arm": "vision_only",
+   "seed": "seed456",
+   "cg0": 0.8190459609031677,
+   "cg1": 0.8342652916908264,
+   "delta": 0.015219330787658691
+  }
+ ]
+}

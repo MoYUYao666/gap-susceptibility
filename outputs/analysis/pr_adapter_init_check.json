@@ -1,0 +1,74 @@
+{
+ "script": "tools/_p296_adapter_init_check.py",
+ "script_sha1": "16c874f3478c86e7f445720389622bcf6f19e5a7",
+ "purpose": "measure whether the bottleneck Adapter's non-zero up.bias explains the insertion damage recorded in task-6",
+ "config": {
+  "bottleneck_dim": 64,
+  "positions": "both towers",
+  "targets": "self_attn + mlp",
+  "n_trainable_params": 3965952
+ },
+ "bias_stats": {
+  "n_adapter_layers": 48,
+  "up_bias_abs_mean": 0.06297564506530762,
+  "up_bias_abs_max": 0.12499941885471344,
+  "up_bias_default_init_bound": 0.125,
+  "up_weight_all_zero": true,
+  "down_bias_abs_mean": 0.0200492050498724,
+  "down_weight_all_zero": false
+ },
+ "as_shipped": {
+  "zero_shot_top1_pct": 0.15,
+  "zero_shot_n_images": 14288,
+  "CG": 1.206477,
+  "DG": 1.211986,
+  "R@1_i2t": 0.001,
+  "R@1_t2i": 0.002,
+  "R@1_mean": 0.0015,
+  "n_pairs": 1000
+ },
+ "up_bias_zeroed": {
+  "zero_shot_top1_pct": 59.91,
+  "zero_shot_n_images": 14288,
+  "CG": 0.815481,
+  "DG": 0.863336,
+  "R@1_i2t": 0.179,
+  "R@1_t2i": 0.138,
+  "R@1_mean": 0.1585,
+  "n_pairs": 1000
+ },
+ "task6_post_injection_reference": {
+  "CG": 1.261692,
+  "R@1_mean": 0.001,
+  "source": "pr_peft_lr_sweep.json :: runs[*].post_injection_gap_retrieval"
+ },
+ "frozen_reference": {
+  "zero_shot_top1_pct": 59.910414333706605,
+  "CG": 0.8156740665435791,
+  "DG": 0.8635778492678873,
+  "R@1_mean": 0.15550000965595245
+ },
+ "repo_evidence": {
+  "main_path": {
+   "file": "src/peft_methods.py",
+   "line": 18,
+   "code": "nn.init.zeros_(self.up.weight)   # up.bias untouched",
+   "mtime": "2026-06-19T13:51:24.381319"
+  },
+  "second_implementation": {
+   "file": "tools/clip_peft_gamma_ordering.py",
+   "line": 75,
+   "code": "nn.init.normal_(self.up.weight, std=up_scale); nn.init.zeros_(self.up.bias)",
+   "mtime": "2026-09-13T06:06:59.343608"
+  },
+  "note": "a later, independent Adapter implementation in the same repository explicitly zeroes up.bias; the main training path does not"
+ },
+ "verdict": {
+  "delta_CG_zeroing_bias": 0.391,
+  "delta_R1_zeroing_bias": 0.157,
+  "bias_is_the_cause": true,
+  "statement": "zeroing up.bias restores the insertion geometry to the frozen model (CG 1.2065 -> 0.8155, R@1 0.0015 -> 0.1585), so the non-zero up.bias alone explains task-6's post-injection damage"
+ },
+ "timestamp_utc": "2026-10-12T05:47:33.033909+00:00",
+ "elapsed_s": 222.8
+}

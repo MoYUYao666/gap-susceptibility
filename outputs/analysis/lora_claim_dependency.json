@@ -1,0 +1,82 @@
+{
+ "Paper A": {
+  "rank sweep / rank dependence": [
+   {
+    "file": "discussion.tex",
+    "text": "Ninth, the trajectories analysed here are a subset of those originally produced for the rank sweep: $55$ LoRA runs are archived and reproducible ($49$ on Flickr30k, $6$ on MS-COCO) at three seeds per configuration, against the larger set of runs the sweep originally comprised at five seeds."
+   },
+   {
+    "file": "empirical.tex",
+    "text": "\\subsection{Experimental Design} We systematically explore the PEFT configuration space across five dimensions: \\textbf{method} (LoRA, Adapter, full fine-tuning), \\textbf{rank} $r \\in \\{1,2,4,8,16,32,64\\}$, \\textbf{position} (text-only, vision-only, both), \\textbf{scaling factor} $\\alpha \\in \\{4,8,16,32,64\\}$, and \\textbf{target modules} (q, qv, qvko)."
+   },
+   {
+    "file": "empirical.tex",
+    "text": "At the shared learning rate full fine-tuning inflates the gap while text-only and low-rank configurations preserve alignment; a learning-rate sweep shows the inflation to be rate-dependent (Section~\\ref{sec:empirical})."
+   },
+   {
+    "file": "empirical.tex",
+    "text": "128$), while text-only with rank-8 remains effective ($-0."
+   },
+   {
+    "file": "empirical.tex",
+    "text": "Text-only LoRA and Adapter both preserve alignment, but scale with capacity in opposite directions: under the earlier protocol the LoRA benefit peaks in the middle of the rank range and reverses beyond it, whereas larger Adapter bottleneck dimensions reduce the gap more effectively."
+   },
+   {
+    "file": "empirical.tex",
+    "text": "Section~\\ref{sec:validation} shows that the LoRA side of that comparison is an artefact of the protocol rather than a property of rank: once the backbone is frozen and only the adapter matrices are trained, the text-only arm improves monotonically with rank."
+   }
+  ],
+  "alpha / scaling-factor dependence": [],
+  "target-module choice": [
+   {
+    "file": "empirical.tex",
+    "text": "\\subsection{Experimental Design} We systematically explore the PEFT configuration space across five dimensions: \\textbf{method} (LoRA, Adapter, full fine-tuning), \\textbf{rank} $r \\in \\{1,2,4,8,16,32,64\\}$, \\textbf{position} (text-only, vision-only, both), \\textbf{scaling factor} $\\alpha \\in \\{4,8,16,32,64\\}$, and \\textbf{target modules} (q, qv, qvko)."
+   },
+   {
+    "file": "empirical.tex",
+    "text": "2927$ / --- \\\\ \\bottomrule \\end{tabular} \\end{table} \\subsection{LoRA Configuration Space} Figure~\\ref{fig:ablation} shows the effect of scaling factor $\\alpha$ and target modules."
+   },
+   {
+    "file": "empirical.tex",
+    "text": "pdf} \\caption{Ablation of LoRA scaling factor $\\alpha$ (left) and target modules (right)."
+   }
+  ],
+  "low-rank specifically": [
+   {
+    "file": "empirical.tex",
+    "text": "At the shared learning rate full fine-tuning inflates the gap while text-only and low-rank configurations preserve alignment; a learning-rate sweep shows the inflation to be rate-dependent (Section~\\ref{sec:empirical})."
+   }
+  ],
+  "parameter-efficiency claim": [
+   {
+    "file": "empirical.tex",
+    "text": "} We track the effective rank of the per-layer image embeddings under a strictly frozen protocol, in which the optimizer sees only the adapter matrices ($196{,}608$ trainable parameters for the text-only arm) and the vision side registers zero non-zero updates across all $199$ vision tensors."
+   }
+  ]
+ },
+ "P3": {
+  "rank sweep / rank dependence": [
+   {
+    "file": "discussion.tex",
+    "text": "\\subsection{Rank Scaling Behavior} The monotonic $\\Delta E$ growth on LLaVA (to $+2860$ at $r=20$, collapse at $r\\geq24$) contrasts with Effective Rank Saturation on CLIP~\\cite{wan2026gap}, where $\\|g_v\\|$ was flat across ranks: in decoder VLMs higher rank provides capacity disproportionately allocated to language-token processing, amplifying damage rather than saturating it."
+   },
+   {
+    "file": "experiments.tex",
+    "text": "What we cannot do is put $r_c$ on a rank: with three seeds the smallest effect we could detect exceeds the one we observe, and an exact permutation test between $r=5$ and $r=6$ gives $p=0."
+   },
+   {
+    "file": "experiments.tex",
+    "text": "} We repeated the rank sweep on CLIP ViT-B/32 with real Flickr30k pairs and compared it against the blank-image protocol."
+   }
+  ],
+  "alpha / scaling-factor dependence": [],
+  "target-module choice": [],
+  "low-rank specifically": [],
+  "parameter-efficiency claim": [
+   {
+    "file": "introduction.tex",
+    "text": "\\section{Introduction} Parameter-efficient fine-tuning (PEFT) of large vision-language models is the dominant way to adapt pretrained multimodal systems: LoRA~\\cite{hu2021} injects low-rank adapters into a frozen backbone, reducing trainable parameters to a fraction of a percent."
+   }
+  ]
+ }
+}

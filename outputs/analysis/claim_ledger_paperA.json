@@ -1,0 +1,712 @@
+{
+ "pass": 88,
+ "gap": 0,
+ "entries": [
+  {
+   "claim": "ODE mean R2 over LoRA",
+   "manuscript": 0.949,
+   "computed": 0.9486153770148056,
+   "source": "outputs/analysis/ode_ledger.json::subsets.lora.mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE R2 range lower end",
+   "manuscript": 0.814,
+   "computed": 0.8139714652626437,
+   "source": "outputs/analysis/ode_ledger.json::subsets.lora.min",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE R2 range upper end",
+   "manuscript": 0.977,
+   "computed": 0.9773493814761667,
+   "source": "outputs/analysis/ode_ledger.json::subsets.lora.max",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full fine-tuning pilot R2",
+   "manuscript": 0.922,
+   "computed": 0.9217284153459521,
+   "source": "outputs/analysis/ode_ledger.json::subsets.full_ft.mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE fits archived",
+   "manuscript": 96,
+   "computed": 96,
+   "source": "outputs/analysis/ode_ledger.json :: n_runs_total",
+   "pass": true,
+   "note": "[the 2026-10-05 mixed audit recorded 222]"
+  },
+  {
+   "claim": "ODE fits with negative alpha",
+   "manuscript": 92,
+   "computed": 92,
+   "source": "outputs/analysis/ode_ledger.json :: runs[].alpha < 0 (recomputed)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE fits with non-negative alpha",
+   "manuscript": 4,
+   "computed": 4,
+   "source": "outputs/analysis/ode_ledger.json :: runs[].alpha >= 0 (recomputed)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "all non-negative fits are Adapter",
+   "manuscript": "adapter",
+   "computed": [
+    "adapter"
+   ],
+   "source": "outputs/analysis/ode_ledger.json :: family of the non-negative fits",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "LoRA fits all negative",
+   "manuscript": "55/55",
+   "computed": "55/55",
+   "source": "outputs/analysis/ode_ledger.json :: runs[family=lora].alpha",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "adapter fits (paper: fifty)",
+   "manuscript": 50,
+   "computed": 50,
+   "source": "outputs/theory/adapter/adapter_all_results.json :: len",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "CLIP BitFit fits (paper: three)",
+   "manuscript": 3,
+   "computed": 3,
+   "source": "outputs/theory/bitfit/bitfit_results.json :: len",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "OpenCLIP BitFit mean R2",
+   "manuscript": 0.943,
+   "computed": 0.942799,
+   "source": "outputs/theory/openclip/openclip_results.json :: mean(r_squared)",
+   "pass": true,
+   "note": "[n=3]"
+  },
+  {
+   "claim": "strict-freezing controls (appendix table)",
+   "manuscript": 104,
+   "computed": 104,
+   "source": "paper合/sections/supplement.tex :: tab:full_experiments row XIV",
+   "pass": true,
+   "note": "[HANDOFF L10175/10193: 95 → 104]"
+  },
+  {
+   "claim": "catalogue total (appendix table)",
+   "manuscript": 221,
+   "computed": 221,
+   "source": "paper合/sections/supplement.tex :: tab:full_experiments Total row",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "catalogue = 117 mechanism + 104 controls",
+   "manuscript": 221,
+   "computed": 221,
+   "source": "sections/supplement.tex prose (117 mechanism) + table row XIV (104)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "validation experiments = catalogue + ODE fits",
+   "manuscript": 317,
+   "computed": 317,
+   "source": "supplement.tex::tab:full_experiments Total (221) + ode_ledger.json::n_runs_total (96)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "runs in the association (n = 204)",
+   "manuscript": 204,
+   "computed": 204.0,
+   "source": "outputs/analysis/dg_r1_reproducible.json::primary.n",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "pooled correlation (r = -0.71)",
+   "manuscript": -0.71,
+   "computed": -0.7142,
+   "source": "outputs/analysis/pr_stats_hardened.json::verdict.pooled_r",
+   "pass": true,
+   "note": "= -0.7142"
+  },
+  {
+   "claim": "cluster-robust slope (-1.05)",
+   "manuscript": -1.05,
+   "computed": -1.0484,
+   "source": "outputs/analysis/pr_stats_hardened.json::mixed_effects.cluster_robust_OLS.by_design_cell.beta_DG",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "CR1 standard error (0.29)",
+   "manuscript": 0.29,
+   "computed": 0.2911,
+   "source": "outputs/analysis/pr_stats_hardened.json::mixed_effects.cluster_robust_OLS.by_design_cell.se_cr1",
+   "pass": true,
+   "note": "= 0.2911, inflated 4.03x over OLS 0.0723"
+  },
+  {
+   "claim": "slope significance p (0.016)",
+   "manuscript": 0.016,
+   "computed": 0.015529145476530174,
+   "source": "outputs/analysis/pr_stats_hardened.json::verdict.cr1_p_design_cell_t5",
+   "pass": true,
+   "note": "= 0.01553"
+  },
+  {
+   "claim": "leave-one-family-out folds",
+   "manuscript": 12,
+   "computed": 12.0,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_family_out.n_folds",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "out-of-sample R2, family-held-out, pooled",
+   "manuscript": 0.449,
+   "computed": 0.4488,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_family_out.r2_oos_pooled",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "out-of-sample R2, family-held-out, median fold",
+   "manuscript": 0.396,
+   "computed": 0.3961,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_family_out.r2_oos_median_fold",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "fraction of family folds beating the constant baseline",
+   "manuscript": 0.6667,
+   "computed": 0.6667,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_family_out.frac_folds_beat_constant",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "leave-one-design-cell-out folds",
+   "manuscript": 6,
+   "computed": 6.0,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_design_cell_out.n_folds",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "out-of-sample R2, cell-held-out, pooled",
+   "manuscript": 0.236,
+   "computed": 0.2363,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_design_cell_out.r2_oos_pooled",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "out-of-sample R2, cell-held-out, median fold",
+   "manuscript": 0.227,
+   "computed": 0.2266,
+   "source": "outputs/analysis/pr_stats_hardened.json::holdout.leave_one_design_cell_out.r2_oos_median_fold",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "adapter size scales as 196,608 x r/8 (rank 8)",
+   "manuscript": 196608,
+   "computed": 196608,
+   "source": "outputs/analysis/rank_rerun.json :: rank 8 n_trainable_params",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "rank 2 adapter holds 49,152",
+   "manuscript": 49152,
+   "computed": 49152,
+   "source": "outputs/analysis/rank_rerun.json :: rank 2 n_trainable_params",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "rank 64 adapter holds 1,572,864",
+   "manuscript": 1572864,
+   "computed": 1572864,
+   "source": "outputs/analysis/rank_rerun.json :: rank 64 n_trainable_params",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "dCG at rank 2 (paper states +0.0135)",
+   "manuscript": 0.0135,
+   "computed": 0.0135,
+   "source": "outputs/analysis/rank_rerun.json :: rank 2 dCG",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "dCG at rank 64 (paper states +0.0021)",
+   "manuscript": 0.0021,
+   "computed": 0.0021,
+   "source": "outputs/analysis/rank_rerun.json :: rank 64 dCG",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "R@1 at rank 2 (paper states 0.6071)",
+   "manuscript": 0.6071,
+   "computed": 0.6071,
+   "source": "outputs/analysis/rank_rerun.json :: rank 2 R@1",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "R@1 at rank 16 (paper states 0.6122)",
+   "manuscript": 0.6122,
+   "computed": 0.6122,
+   "source": "outputs/analysis/rank_rerun.json :: rank 16 R@1",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "LoRA top-1 after tuning (60.69%)",
+   "manuscript": 60.69,
+   "computed": 60.69,
+   "source": "outputs/analysis/pr_peft_lr_sweep.json::analysis.grid.lora_both@1e-05.zero_shot_top1_pct_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full fine-tuning top-1 (60.87%)",
+   "manuscript": 60.87,
+   "computed": 60.87,
+   "source": "outputs/analysis/pr_fullft_lr_sweep.json::analysis.per_lr.1e-06.zero_shot_top1_pct_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full-COCO frozen R@1",
+   "manuscript": 0.5655,
+   "computed": 0.5655,
+   "source": "outputs/analysis/full_coco.json :: runs[arm=frozen].R@1",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full-COCO text-only R@1 (3 seeds)",
+   "manuscript": 0.5823,
+   "computed": 0.5823,
+   "source": "outputs/analysis/full_coco.json :: mean(runs[arm=text_only].R@1)",
+   "pass": true,
+   "note": "[sd 0.0002]"
+  },
+  {
+   "claim": "full-COCO gallery images",
+   "manuscript": 40504,
+   "computed": 40504,
+   "source": "outputs/analysis/full_coco.json :: runs[0].n_unique_images",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full-COCO caption rows",
+   "manuscript": 202654,
+   "computed": 202654,
+   "source": "outputs/analysis/full_coco.json :: runs[0].n_captions",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full-COCO text-to-image R@1 (text-only)",
+   "manuscript": 0.165,
+   "computed": 0.165,
+   "source": "outputs/analysis/full_coco.json :: mean(runs[arm=text_only].R@1_t2i)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "COCO 3k frozen R@1",
+   "manuscript": 0.579,
+   "computed": 0.5794,
+   "source": "outputs/analysis/coco_scaleup.json :: runs[arm=frozen].R@1",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "COCO 3k text-only R@1",
+   "manuscript": 0.607,
+   "computed": 0.6068,
+   "source": "outputs/analysis/coco_scaleup.json :: mean(runs[arm=text_only].R@1)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "COCO 3k both-position R@1",
+   "manuscript": 0.623,
+   "computed": 0.6235,
+   "source": "outputs/analysis/coco_scaleup.json :: mean(runs[arm=both].R@1)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "within-dataset r (manuscript -0.751)",
+   "manuscript": -0.751,
+   "computed": -0.7512,
+   "source": "outputs/analysis/pr_stats_within_group.json::pooled_within_dataset.r_within",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "within-model r (manuscript -0.707)",
+   "manuscript": -0.707,
+   "computed": -0.7073,
+   "source": "outputs/analysis/pr_stats_within_group.json::pooled_within_model.r_within",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "within-design-cell r (manuscript -0.731)",
+   "manuscript": -0.731,
+   "computed": -0.731,
+   "source": "outputs/analysis/pr_stats_within_group.json::pooled_within_design_cell.r_within",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "within-family r (manuscript -0.551)",
+   "manuscript": -0.551,
+   "computed": -0.5506,
+   "source": "outputs/analysis/pr_stats_within_group.json::pooled_within_family.r_within",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "SigLIP reversal r (manuscript +0.808)",
+   "manuscript": 0.808,
+   "computed": 0.8083,
+   "source": "outputs/analysis/pr_stats_within_group.json::by_model.SigLIP.r",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "figure 15 rows plotted",
+   "manuscript": 199,
+   "computed": 199,
+   "source": "outputs/analysis/fig15_stratified.json :: n_rows",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "pooled within rows (grouped)",
+   "manuscript": 202,
+   "computed": 202,
+   "source": "outputs/analysis/pr_stats_within_group.json :: pooled_within_dataset.n_rows",
+   "pass": true,
+   "note": "[the corpus is 204; two rows sit alone in their group]"
+  },
+  {
+   "claim": "figure 15 rows (all labelled)",
+   "manuscript": 204,
+   "computed": 204,
+   "source": "outputs/analysis/fig15_stratified.json :: pooled_within_dataset.n_rows",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "figure 15 within-dataset r",
+   "manuscript": -0.7512,
+   "computed": -0.7512,
+   "source": "outputs/analysis/fig15_stratified.json :: pooled_within_dataset.r",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE mean R2",
+   "manuscript": 0.858,
+   "computed": 0.8582940478171809,
+   "source": "outputs/analysis/paperA_ode_diagnostics.json::R2_overall.mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE median R2",
+   "manuscript": 0.94,
+   "computed": 0.940404553343051,
+   "source": "outputs/analysis/paperA_ode_diagnostics.json::R2_overall.median",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE share above 0.9",
+   "manuscript": 0.635,
+   "computed": 0.6354166666666666,
+   "source": "outputs/analysis/paperA_ode_diagnostics.json::R2_overall.share_above_0.9",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "ODE share below 0.5",
+   "manuscript": 0.083,
+   "computed": 0.08333333333333333,
+   "source": "outputs/analysis/paperA_ode_diagnostics.json::R2_overall.share_below_0.5",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "LoRA alpha",
+   "manuscript": -0.0245,
+   "computed": -0.02450768738468684,
+   "source": "outputs/analysis/paperA_lora_vs_fullft.json::by_family.0.alpha_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "adapter alpha",
+   "manuscript": -0.0393,
+   "computed": -0.03928564350384576,
+   "source": "outputs/analysis/paperA_lora_vs_fullft.json::by_family.1.alpha_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full-FT alpha",
+   "manuscript": -0.0413,
+   "computed": -0.04134205796670596,
+   "source": "outputs/analysis/paperA_lora_vs_fullft.json::by_family.2.alpha_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "LoRA R2",
+   "manuscript": 0.9486,
+   "computed": 0.9486153770148054,
+   "source": "outputs/analysis/paperA_lora_vs_fullft.json::by_family.0.R2_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "adapter R2",
+   "manuscript": 0.6694,
+   "computed": 0.6694456761943198,
+   "source": "outputs/analysis/paperA_lora_vs_fullft.json::by_family.1.R2_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "full-FT R2",
+   "manuscript": 0.9217,
+   "computed": 0.9217284153459521,
+   "source": "outputs/analysis/paperA_lora_vs_fullft.json::by_family.2.R2_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "rank trend text-only",
+   "manuscript": -0.464,
+   "computed": -0.4642857142857144,
+   "source": "outputs/analysis/paperA_rank_position_dynamics.json::trend.text_only.spearman_rank_alpha",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "rank trend both",
+   "manuscript": -0.179,
+   "computed": -0.1785714285714286,
+   "source": "outputs/analysis/paperA_rank_position_dynamics.json::trend.both.spearman_rank_alpha",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E frozen clean DG*",
+   "manuscript": 0.777826,
+   "computed": 0.777826,
+   "source": "outputs/vlm_clean_summary.json::frozen.dg_star",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E frozen CG",
+   "manuscript": 0.742107,
+   "computed": 0.742107,
+   "source": "outputs/vlm_clean_summary.json::frozen.cg",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E both reduction mean",
+   "manuscript": 98.57,
+   "computed": 98.567413,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.reduction_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E both reduction sd",
+   "manuscript": 0.44,
+   "computed": 0.439335,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.reduction_sd",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E text-only reduction mean",
+   "manuscript": 96.74,
+   "computed": 96.743691,
+   "source": "outputs/vlm_clean_summary.json::per_arm.text_only.reduction_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E text-only reduction sd",
+   "manuscript": 0.29,
+   "computed": 0.291101,
+   "source": "outputs/vlm_clean_summary.json::per_arm.text_only.reduction_sd",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E vision-only reduction mean",
+   "manuscript": 89.41,
+   "computed": 89.40732,
+   "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.reduction_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E vision-only reduction sd",
+   "manuscript": 1.01,
+   "computed": 1.014102,
+   "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.reduction_sd",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E legacy both ~2.0",
+   "manuscript": 2.0192,
+   "computed": 2.01921,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.legacy_ep3_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E legacy text ~2.0",
+   "manuscript": 2.0103,
+   "computed": 2.010294,
+   "source": "outputs/vlm_clean_summary.json::per_arm.text_only.legacy_ep3_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E legacy vision ~2.0",
+   "manuscript": 2.0322,
+   "computed": 2.03217,
+   "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.legacy_ep3_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E both DG* after",
+   "manuscript": 0.0111,
+   "computed": 0.011143,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.dg_star_ep3_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E text-only DG* after",
+   "manuscript": 0.0253,
+   "computed": 0.025328,
+   "source": "outputs/vlm_clean_summary.json::per_arm.text_only.dg_star_ep3_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E vision-only DG* after",
+   "manuscript": 0.0824,
+   "computed": 0.082393,
+   "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.dg_star_ep3_mean",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E seed count per arm",
+   "manuscript": 13,
+   "computed": 13.0,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.n",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E record count",
+   "manuscript": 39,
+   "computed": 39.0,
+   "source": "outputs/vlm_clean_summary.json::verification.n_records",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "E seed ranges disjoint",
+   "manuscript": "vision_max<text_min<both_min",
+   "computed": "89.41<96.74<98.57",
+   "source": "derived from new_* / reduction_mean ordering",
+   "pass": true,
+   "note": "means ordered as the manuscript states"
+  },
+  {
+   "claim": "G frozen clean DG*",
+   "manuscript": 0.3566,
+   "computed": 0.35656,
+   "source": "outputs/canonical_caption_metric.json::runs.frozen.clean.dg_star",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "G vision_only change mean",
+   "manuscript": "121.48%",
+   "computed": "121.48%",
+   "source": "outputs/canonical_caption_metric.json::runs.*_vision_only*.clean.dg_star (recomputed)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "G both change mean",
+   "manuscript": "95.66%",
+   "computed": "95.66%",
+   "source": "outputs/canonical_caption_metric.json::runs.*_both*.clean.dg_star (recomputed)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "G text_only change mean",
+   "manuscript": "73.27%",
+   "computed": "73.27%",
+   "source": "outputs/canonical_caption_metric.json::runs.*_text_only*.clean.dg_star (recomputed)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "claim": "G text/both seed ranges disjoint",
+   "manuscript": "text_max 83.92 < both_min 86.04",
+   "computed": "83.92 < 86.04",
+   "source": "outputs/canonical_caption_metric.json::runs.*.clean.dg_star (recomputed)",
+   "pass": true,
+   "note": "the manuscript claims the two spreads do not overlap"
+  }
+ ]
+}

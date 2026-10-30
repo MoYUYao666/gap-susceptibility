@@ -1,0 +1,117 @@
+{
+ "note": "same grid, 2 versus 6 epochs; site = both; budget = 10k pairs",
+ "rows": [
+  {
+   "dataset": "nwpu_captions",
+   "arm": "human",
+   "epochs2": {
+    "R@1_i2t": 0.1653,
+    "R@1_t2i": 0.1634,
+    "n": 3
+   },
+   "epochs6": {
+    "R@1_i2t": 0.1937,
+    "R@1_t2i": 0.1869,
+    "n": 1
+   }
+  },
+  {
+   "dataset": "nwpu_captions",
+   "arm": "templated",
+   "epochs2": {
+    "R@1_i2t": 0.1164,
+    "R@1_t2i": 0.1103,
+    "n": 3
+   },
+   "epochs6": {
+    "R@1_i2t": 0.1434,
+    "R@1_t2i": 0.1394,
+    "n": 1
+   }
+  },
+  {
+   "dataset": "nwpu_captions",
+   "arm": "metadata",
+   "epochs2": {
+    "R@1_i2t": 0.0746,
+    "R@1_t2i": 0.0681,
+    "n": 3
+   },
+   "epochs6": {
+    "R@1_i2t": 0.1652,
+    "R@1_t2i": 0.1486,
+    "n": 1
+   }
+  },
+  {
+   "dataset": "rsicd",
+   "arm": "human",
+   "epochs2": {
+    "R@1_i2t": 0.1483,
+    "R@1_t2i": 0.1552,
+    "n": 3
+   },
+   "epochs6": {
+    "R@1_i2t": 0.1463,
+    "R@1_t2i": 0.1532,
+    "n": 1
+   }
+  },
+  {
+   "dataset": "rsicd",
+   "arm": "templated",
+   "epochs2": {
+    "R@1_i2t": 0.0812,
+    "R@1_t2i": 0.0779,
+    "n": 3
+   },
+   "epochs6": {
+    "R@1_i2t": 0.0776,
+    "R@1_t2i": 0.0707,
+    "n": 1
+   }
+  },
+  {
+   "dataset": "rsicd",
+   "arm": "metadata",
+   "epochs2": {
+    "R@1_i2t": 0.0476,
+    "R@1_t2i": 0.0544,
+    "n": 3
+   },
+   "epochs6": {
+    "R@1_i2t": 0.2442,
+    "R@1_t2i": 0.229,
+    "n": 1
+   }
+  }
+ ],
+ "ordering": {
+  "nwpu_captions": {
+   "epochs2": [
+    "human",
+    "templated",
+    "metadata"
+   ],
+   "epochs6": [
+    "human",
+    "metadata",
+    "templated"
+   ],
+   "same_ordering": false
+  },
+  "rsicd": {
+   "epochs2": [
+    "human",
+    "templated",
+    "metadata"
+   ],
+   "epochs6": [
+    "metadata",
+    "human",
+    "templated"
+   ],
+   "same_ordering": false
+  }
+ }
+}

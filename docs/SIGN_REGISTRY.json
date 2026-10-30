@@ -1,0 +1,35 @@
+{
+ "schema": 1,
+ "built_at": "2026-10-25",
+ "semantics": {
+  "energy_paired_difference": {
+   "description": "paired difference of retrieval/matching energy; a NEGATIVE value means the arm is better (lower energy).",
+   "lower_is": "better"
+  },
+  "gap_paired_difference": {
+   "description": "paired difference of a modality gap / centroid distance; the gap has no monotone health meaning for classification (neutral).",
+   "lower_is": "neutral"
+  },
+  "accuracy_paired_difference": {
+   "description": "paired difference of accuracy / top-1 / F1: a POSITIVE value means the arm is better.",
+   "lower_is": "worse"
+  }
+ },
+ "manuscripts": {
+  "p3_prl": {
+   "energy paired difference": {
+    "keyword": "paired difference|pairwise difference|energy",
+    "lower_is": "better",
+    "field": "matching energy (lower is better)",
+    "note": "P3 residual: a negative paired difference (-3570.10) is BETTER, not 'opposite'."
+   }
+  },
+  "a23_joe": {
+   "paired difference": {
+    "keyword": "paired difference|pairwise difference|\\bdelta E\\b|\\u0394E",
+    "lower_is": "better",
+    "field": "paired energy difference (lower is better)"
+   }
+  }
+ }
+}

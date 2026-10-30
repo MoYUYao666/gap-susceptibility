@@ -1,0 +1,1983 @@
+Adaptation Site and the Modality Gap: Empirical
+Regularities and a Gradient-Flow Theory for PEFT of
+Contrastive Dual-Encoders
+Hongrui Wana,∗
+aUniversity of Southampton, University Road, Southampton, SO17 1BJ, United Kingdom
+Abstract
+Fine-tuning a vision-language model on a small corpus often widens the image–
+text gap. We first characteriz when this happens. Acrossn= 204archived
+runs drawn from six dataset×backbone cells, the Distribution Gap predicts
+retrieval degradation (r=−0.71) better than the Centroid Gap (r=−0.59),
+and which part of the model is adapted matters more than how its adapters
+are configured. We then deriveGap Susceptibilityfrom gradient flow: with
+the alignment energy as the state variable, the rate of gap change is the task
+gradient projected onto the alignment gradient, yielding an ODE with a PEFT-
+stable restoring coefficient that reproduces the measured gap trajectory at mean
+R2 = 0.949over LoRA, against0.00for a constant baseline. Validation spans
+383 experiments over six backbones and three PEFT methods. A strict-freezing
+control that trains only adapter matrices confirms the predicted ordering on
+CLIP and reverses it on SigLIP, so the text-only advantage is architectural, not
+universal. Tuning each method to its own learning rate removes the adapter
+methods’ apparent advantage: LoRA and full fine-tuning then agree on zero-
+shot accuracy (60.69%against60.87%). Because the runs are nested rather
+than independent, we report the gap–retrieval association with cluster-robust
+inference: the slope is−1.05(CR1 standard error0.29,p= 0.016), the family-
+clustered bootstrap interval is[−0.89,−0.62], and a mixed model with random
+∗Corresponding author.
+Email address:hw4c24@soton.ac.uk(Hongrui Wan)
+dataset, backbone and configuration intercepts givesβ=−0.95±0.08, far less
+precision than204independent runs: we report an association, not a predictor.
+Keywords:Modality gap, Parameter-efficient fine-tuning, Gap susceptibility,
+Cross-modal alignment, Gradient flow, Distribution Gap
+1. Introduction
+Parameter-efficient fine-tuning (PEFT) of vision-language models has be-
+come a standard practice in multimodal machine learning. Methods like
+LoRA Hu et al. (2022) and Adapter Houlsby et al. (2019) enable adaptation
+of billion-parameter models to downstream tasks with minimal computational
+cost. Yet a fundamental question remains largely unanswered:how does fine-
+tuning affect the cross-modal alignment that these models were pre-trained to
+achieve?
+Recent empirical work has suggested a striking regularity: that text-only
+fine-tuning preserves cross-modal alignment better than joint-modality fine-
+tuning. This paper examines that suggestion across 383 experiments on five
+architectures (Section 3) and finds it holds where the comparison isolates the
+adaptation site, but not universally: under strict freezing the ordering reverses
+on one of the three backbones tested, so which site is preferable has to be
+measured rather than assumed. The Distribution Gap (DG)—a measure of dis-
+tributional mismatch between visual and text embeddings—predicts retrieval
+performance atr=−0.714overn= 204experiments, far outperforming the
+commonly reported Centroid Gap. These findings, collectively termed the Vi-
+sual Fragility Interpretation, suggest that intervening on the visual side is what
+damages alignment. Whether the vision tower is intrinsically more sensitive is
+a separate question that we test and answer negatively under matched relative
+perturbation (Section 3), so we state the claim about placement rather than
+about fragility. But they leave open a deeper question:why does this hap-
+pen?What is the governing mechanism behind modality gap dynamics under
+fine-tuning?
+2
+This paper answers that question by deriving a dynamical theory of cross-
+modal alignment under PEFT. We introduceGap SusceptibilityΓ m =
+∥∇mDG∗∥·cosϕ m, a measurable quantity derived from the gradient flow of
+the alignment energyDG∗. WhenDG ∗ is treated as a state variable and the
+task gradient∇Las a driving force, the rate of gap change decomposes as the
+projection of the task gradient onto the alignment gradient.Γm is the coupling
+coefficient that emerges from this decomposition, splitting into two orthogonal
+factors:sensitivity(∥∇ mDG∗∥)—howmuchDG ∗ respondstoparameter change
+in modalitym—anddirectional coupling(cosϕ m)—whether the task gradient
+pushes toward or away from alignment.
+From this decomposition, we derive a first-order ordinary differential equa-
+tion governing gap dynamics:
+d(DG∗)
+dt =α−β(DG ∗−DG 0),(1)
+whereα=−η P
+m ¯Γm∥gm∥is the trajectory-averaged perturbation force (The-
+orem 4.1) andβis the alignment-restoring coefficient. This ODE yields explicit
+predictions for the full gap trajectory and steady stateDG∗
+∞ =DG 0 +α/βfor
+any PEFT configuration, requiring only the computation ofΓm at initialization.
+The ODE explains the empirical regularities as consequences rather than
+observations. For a given allocation of perturbation, the text-only position fol-
+lows fromgv = 0: removing the dominant visual term leaves only the weaker
+text contribution. Whether that position is in fact the better one is a separate,
+empirical matter, and Section 5 shows it depends on the architecture. LoRA’s
+protective effect is captured byα <0for all ranks (and for full fine-tuning
+in the matched-setting fits). The restoring coefficientβis stable across PEFT
+methods (CV= 13.3%) and remains stable under full fine-tuning with matched
+training settings (βfull = 0.159). An initially surprising prediction—that∥g v∥
+should scale as√r—is falsified by experiment (∥gv∥varies by only10%across
+r∈[1,64], where √rpredicts an eightfold change), revealing Effective Rank
+Saturation: the task gradient’s effective dimension is determined by task struc-
+ture rather than configured rank, a finding with implications beyond alignment
+3
+dynamics.
+This paper makes three contributions that together form a complete arc from
+empirical discovery to theoretical explanation to experimental verification:
+1.Empirical Discovery (Section 3).We present a systematic charac-
+terization of modality gap evolution under PEFT, spanning 383 exper-
+iments across two PEFT methods, five architectures, and two datasets
+(Section 3). Core findings include text-only alignment preservation, DG-
+based retrieval prediction (r=−0.714overn= 204experiments), and
+the Visual Fragility Interpretation ofplacement(adapters on the text side
+leave the vision encoder untouched and the benefit survives strict freez-
+ing), which we bound explicitly by showing that the tower-level fragility
+ordering does not survive parameter-matched perturbation.
+2.Dynamical Theory (Section 4).We derive Gap SusceptibilityΓm and
+the first-order ODE governing gap dynamics from gradient flow, providing
+a single mechanism for the regularities we reproduce here (and, as we
+report, not for every regularity we tested). The theory yields explicit
+predictions without training and recovers prior empirical results as special
+cases.
+3.Experimental Validation (Section 5).We validate the ODE frame-
+work across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO)
+spanning the rank sweepr∈ {1,...,64}in the text-only and both-
+positions, together with a full-fine-tuning pilot and a bias-only BitFit
+control on a second architecture. Each run is fitted separately. The ODE
+predicts gap trajectories with meanR 2 = 0.949over the LoRA runs,
+against0.00for the constant baseline and0.946for the linear one, and the
+coefficientαis negative throughout.
+Together, these contributions establish a principled framework for under-
+standing and predicting how parameter-efficient fine-tuning reshapes cross-
+modal representation geometry. The practical message is correspondingly qual-
+ified: where the encoders are InfoNCE-trained and the modality gap is the
+4
+quantity of interest, adapting the text side while leaving the visual side alone
+is the safer default, and the dynamical theory explains why the dominant per-
+turbation term vanishes in that configuration. Section 5 shows that this default
+does not carry over to SigLIP unchanged, and that a smaller gap and better
+retrieval can point in different directions.
+2. Related Work
+2.1. The Modality Gap in Contrastive VLMs
+Random initialization leaves each encoder inside a narrow cone, and the
+contrastive objective tends to preserve that arrangement rather than collapse it;
+the observation is known as the Cone Effect Liang et al. (2022) and remains the
+earliest systematic treatment ofthe gap. Fahim et al.(2024) argued forrenaming
+it the “contrastive gap,” showing that the gap is inherent to the two-encoder
+InfoNCE loss. Later theory sharpened the picture. Yi et al. (2025) proved that
+dimension collapse is its fundamental origin. Cai et al. (2026) showed within a
+measure-theoretic framework that a persistent negative symmetric divergence
+term turns the gap into astructural geometric necessity. Schrodi et al. (2025)
+traced a root cause to information imbalance between the modalities, and Levi
+and Gilboa (2025) found that CLIP’s embeddings occupy linearly separable
+ellipsoid shells.
+Splitting the gap into a centroid and a distribution part is not new. Per-
+sample cosine distances, taken after the centroids have been aligned, yield a
+distributional term that predicts cross-modal task quality well (R2 = 0.986)
+Liu et al. (2026). The quantity we call DG differs: ours is built on variances
+(Section 3), which makes it more responsive to distributional shape changes
+introduced by PEFT. The anisotropic structure of the gap was mapped by Yu
+et al. (2026); Mistretta et al. (2025) showed that narrowing the inter-modal
+gap also reduces misalignment within modalities; and Guo et al. (2026) named
+spectral imbalance as a bottleneck for contrastive representation learning.
+5
+2.2. Parameter-Efficient Fine-Tuning for VLMs
+LoRA Hu et al. (2022) has become the dominant PEFT method for
+VLMs. Zhang et al. (2026a) discovered rank imbalance favoring text and FFN,
+proposing hierarchical budget allocation (HALoRA). Zhang et al. (2026b) in-
+troduced implicit modality decomposition (IMoD), motivated by the obser-
+vation that adaptable parameters in multimodal models are dominated by
+the text modality, leaving non-text modalities under-trained. Contemporary
+work includes Khatri-Rao adapters Albert et al. (2025a), flow matching Jiang
+et al. (2026), random-basis full-rank PEFT Albert et al. (2025b), and test-time
+LoRA Kojima et al. (2025). Guo et al. (2025) achieved fine-grained alignment
+with only 0.12% parameters.
+Independent of anything reported here, the visual encoder has repeatedly
+emerged as the more exposed component during adaptation: under class-
+incremental training, for instance, visual modalities are the ones observed to
+develop broader parameter distributions as classes are added. Zhou et al. (2025)
+advocated frozen encoders with task-specific projections. Dayal et al. (2026)
+addressed domain gaps in small multimodal models via dual-level alignment.
+Our mechanism probes (Section 3) report the corresponding single-task PEFT
+evidence, together with a strict control that localises the alignment benefit to
+where the adapters are placed rather than to vision-side updates.
+That last observation deserves a direct comparison with the present results,
+because the two point in apparently opposite directions and the difference is
+instructive. Zhang et al. (2026b) treat text dominance as a pathology to be
+corrected, whereas the design patterns of Section 3 recommend leaning on the
+text side. Three differences account for most of the distance between them.
+Theirsetting addsmodalityadapters toalargelanguagemodel, whereanunder-
+trained non-text modality has a shared decoder to degrade; the encoder pairs
+studied here are dual-tower and contrastive, and the text-side arm simply leaves
+the visual tower untouched. Their correction is a decomposition of where the
+parameters live, which our experiments do not vary. And their evidence is task
+performance, where the cost of an under-trained modality shows up directly,
+6
+while ours is the geometry of the two embedding spaces, which can move without
+retrieval following. What the two agree on is the diagnosis: adaptation that
+concentrates on the text side changes the two encoders unevenly. Where this
+paper adds to theirs is in showing that the consequence of that imbalance is
+not fixed — the same text-side intervention reduces the gap on one pre-trained
+pair and increases it on two others — so neither the enthusiasm of the design
+patterns nor the concern of Zhang et al. (2026b) transfers across backbones
+without measurement.
+Three recent accounts bear directly on how the gap should be treated, and
+takentogethertheynarrowthequestionratherthanwidenit. Yarasetal.(2026)
+analyz how the gaparisesduring contrastive pre-training through gradient-flow
+dynamics, locating the cause in mismatched pairs and a learnable temperature,
+and report that closing the gap improves retrieval; their intervention is applied
+while the encoders are being trained together, which is a different stage from
+the one studied here, where the encoders are already fixed and only an adapter
+changes. Sharma and Saxena (2026) work at the downstream stage and on
+both CLIP and SigLIP, and find that interventions on the gap help some tasks
+and hurt others: subtracting a fixed offset is equivalent to a bias term for zero-
+shot classification, whereas projecting the gap direction out distorts retrieval
+rankings. Chen et al. (2026) arrive at a related asymmetry from the language-
+model side, arguing that cross-modal alignment is an asymmetric projection
+onto a rigid text manifold and that visual-side adjustment is what damages
+it. The present results are consistent with all three and sharpen the practical
+conclusion: thegapisnotanobjectivethatcanbeminimizonbehalfofretrieval,
+because which adaptation site produces the smaller gap and which produces the
+better retrieval need not be the same site at all.
+2.3. Gap-Aware and Gradient-Informed Fine-Tuning
+Gap information has been used to steer fine-tuning before. Zhao et al. (2026)
+introduced Gap-Init, an initialization that aligns LoRA with the gap vector. It
+and our discrepancy measureΓm rest on the same observation—that the gap
+7
+dominates gradient flow—but diverge in purpose: theirs is an engineering de-
+vice, ours a dynamical account that predicts how the gap evolves from initial-
+ization. The IIMM metric Niss et al. (2025) predicts fine-tuning outcomes from
+a single forward pass through inter- and intra-modal similarity measures. Role
+et al. (2025) directly quantified and reduced the modality gap. Sun et al. (2026)
+showedthatfine-tuningerodessafetyalignment, witheffectsmonotonicinLoRA
+rank.
+The visual half of the model is the more fragile one, and this now has sup-
+port from three directions that were established independently of each other:
+multimodal LLMs prove vulnerable to adversarial perturbations applied on the
+visual side Malik et al. (2025); vision-side parameters move in localised fashion
+when the model is fine-tuned Wang et al. (2025); and the brittleness itself con-
+centrates in a parameter subset small enough to name Dai et al. (2026). Zhou
+(2026) quantified “text shortcut learning”—CLIP’s systematic over-reliance on
+text over visual evidence—and showed that LoRA-based optimization can re-
+duce cross-modal dependency drop by 64%. Xu et al. (2026) confirmed that
+VLMs rely predominantly on textual reasoning, with vision-only accuracy drop-
+ping from 92.8% to 12.4% on matched problems. Morelli et al. (2026) proposed
+sparse autoencoder-based regularization operating only on visual representa-
+tions, corroborating that the visual encoder requires protection. Read together
+these results motivate the visual term of our ODE, but—as Section 3 shows
+with a strict control—they do not establish that perturbing the visual encoder
+is what produces the alignment benefit.
+2.4. What This Paper Adds
+Three strands of prior work bound what is new here. The first explains
+the origin of the modality gap: Liang et al. (2022) trace it to the contrastive
+objective and the embedding-space geometry it induces, Fahim et al. (2024)
+argue that the relevant quantity is a contrastive rather than a genuine modality
+separation, and Schrodi et al. (2025) separate the gap from object bias. Those
+accounts are static: they say what the gap is, not how it moves while a model
+8
+is adapted. The second strand uses gap-derived quantities to drive training —
+Gap-Init and related initialisation schemes at the start, and Liu et al. (2026)
+for training control, both of which presuppose that the gap is the right state
+variable. The third reports asymmetries between the two towers without a
+dynamical account of them (Niss et al. (2025) predicts fine-tuning outcomes
+from a single forward pass). What this paper adds is the step none of them
+takes: we treat the gap as the state of a dynamical system, derive the evolution
+equation from gradient flow, verify its coefficients against measured trajectories,
+and then report the two places where the derivation’s own predictions fail — the
+absolute value of the restoring coefficient disagrees in sign with the fitted one,
+and the trajectory-averaged driving term does not reproduce the arm ordering.
+A falsified prediction is part of the contribution rather than an omission from
+it, because it delimits the regime in which the state-variable view can be used.
+2.5. Surveys and Broader Context
+Yin et al. (2026) gave a unified theoretical treatment of uniformity and
+alignment for multimodal representation learning, while the surveys Rahman
+(2026); Chen et al. (2025); Zhu et al. (2025) chart how VLM architectures and
+fine-tuning strategies have evolved. Within the Pattern Recognition community,
+recent work has explored cross-modal alignment for video grounding Yang and
+Wei (2026), VLM-guided ViT generalization Wang et al. (2026), and missing-
+modality entity alignment Yang et al. (2026), reflecting growing interest in cross-
+modal representation geometry.
+3. Empirical Discovery: How PEFT Affects Cross-Modal Alignment
+We begin by presenting a systematic empirical characterization of modal-
+ity gap evolution during parameter-efficient fine-tuning. Before the results, one
+convention needs stating, because it governs how the comparisons below may be
+read. In the runs reported throughout this section, text-only and both-position
+describe which LoRA adapters wereinjected, not which parts of the network the
+9
+optimizer was allowed to move: the library does not freeze the backbone, so the
+optimizer sees every parameter left withrequires_gradset. The consequence
+is visible in the recorded budgets—the CLIP text-only arm trains145,170,177
+parameters against131,290,881for both-position, SigLIP1.89×10 8 against
+1.75×10 8, and BLIP-21.97×10 8 for each—so the text-only arm does not
+train fewer parameters, and in two of the three architectures it trains more.
+Differences between these arms are therefore real measurements of two adapta-
+tion configurations, but they are not evidence about which encoder to touch.
+The isolated comparison is provided by the strict-freezing control at the end of
+this section, which holds the vision side fixed by construction. These experi-
+ments, 117 under the earlier convention and 95 under strict freezing, establish
+the regularities that our dynamical theory (Section 4) subsequently explains.
+3.1. Experimental Design
+We systematically explore the PEFT configuration space across five
+dimensions:method(LoRA, Adapter, full fine-tuning),rankr∈
+{1,2,4,8,16,32,64},position(text-only, vision-only, both),scaling factor
+α∈{4,8,16,32,64}, andtarget modules(q, qv, qvko). We decompose the
+modality gap into Centroid Gap (CG) and Distribution Gap (DG):
+GC =∥µ I−µT∥2, G D =
+p
+∥µI−µT∥2 +∥σI−σT∥2,(2)
+whereµ I,µT are modality centroids andσI,σT are standard deviations of L2-
+normalized embeddings. We adopt the CG/DG terminology of Liu et al. (2026);
+Cheng et al. (2026) but use a distinct variance-based DG formulation suited for
+PEFT monitoring.
+We evaluate on CLIP ViT-B/32, CLIP ViT-L/14 Radford et al. (2021),
+BLIP-1 Li et al. (2022), and SigLIP, using InfoNCE contrastive loss on Flickr30k
+and MS-COCO, measured by Recall@K. Statistical validation uses 5-seed exper-
+iments with Welch’st-test and ANOVA. All experiments use batch size 128, 10
+epochs, AdamW (lr10−4), on a single NVIDIA RTX 4060 GPU. The complete
+experiment catalog (383 experiments) is provided in Appendix A.
+10
+3.2. The Position Effect Under the Earlier Convention
+Under the convention used for the runs in this subsection, in which the back-
+bone remains trainable alongside the adapter, the central regularity is shown in
+Figure 1:text-only fine-tuning overwhelmingly preserves cross-modal
+alignment. Section 5 shows that this conclusion does not survive strict freez-
+ing on every backbone, and Table 2 reports the strict-freezing comparison. Full
+fine-tuning is far more learning-rate sensitive than the adapter methods, and at
+the rate we had been using for every method it fails outright: atlr = 10−4 it
+collapses zero-shot accuracy to near-chance (mean2.6%over three reruns) and
+inflates the Centroid Gap by+0.80. Seven rates, two to three seeds each, show
+that this is a property of the shared rate rather than of full fine-tuning, and that
+the dependence is a threshold rather than a smooth optimum. Atlr≤10−6 the
+gap change isnegativein every seed (−0.007to−0.0001; zero-shot60.5–61.1%,
+at or above the frozen59.91%), the sign flips between10−6 (−0.0016±0.0052)
+and10−5 (+0.1860±0.0047), and it then rises monotonically to+0.2531±0.0029
+at3×10 −5. The shallowest point is3×10−7 (−0.0069), but it lies only0.0011
+below its neighbours, about twice the sampling standard deviation of∆CG, so
+we do not read it as an optimal rate. Above3×10−5 the comparison enters
+a collapse region: at10−4 the three seeds lose93–99.9%of zero-shot accuracy
+and∆CGis+0.80,+0.26and+0.27, and at3×10 −4 the seed-to-seed spread
+of∆CG(±0.86) exceeds any effect because two distinct degenerate geometries
+occur—one seed reachesCG = 0.0004with its loss pinned atln 64, the others
+stop atCG = 1.62and1.29—so neitherCGnor the gap change measures the
+modality gap there and we report the per-seed values rather than their mean.
+The gap widening that motivates the comparison therefore appears only on the
+damaging side of a threshold near3×10−6, and is absent at every conservative
+rate we tested. At10−6 full fine-tuning is therefore indistinguishable from the
+frozen model in alignment, slightly better in zero-shot accuracy, and better in-
+domain (R@1 = 0.181against0.156frozen), while text-only LoRAreducesthe
+Centroid Gap (−0.064against the frozen model atr= 8,α= 16;R@1 = 0.627)
+and costs0.6percentage points of ImageNet zero-shot accuracy. (An earlier
+11
+version of this sentence quoted+0.079for the text-only arm; that value belongs
+to a different configuration,α= 64, whoseR@1is0.389, and it is withdrawn.)
+0 2 4 6 8 10
+Epoch
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05Centroid gap
+Full FT (ΔCG +0.199)
+text-only (ΔCG -0.064)
+both (ΔCG -0.032)
+text-only, 5 seeds
+Figure 1: Modality gap evolution during PEFT. At the shared learning rate full fine-tuning
+inflates the gap while text-only and low-rank configurations preserve alignment; a learning-
+rate sweep shows the inflation to be rate-dependent (Section 3).
+The magnitudes across-architectures and adaptation positions are collected
+in Table 1. On Flickr30k the text-only arm halves the gap reduction achieved by
+the both-position arm (−0.064against−0.032); on BLIP-1 it keeps the induced
+gap far smaller (+0.047against+0.152); and on ViT-L it is alone in holding
+the gap down (CG∆ =−0.036), where rank-4 in the both-position setting adds
++0.128. Five-seed validation confirms robustness: text-only CG∆ =−0.046±
+0.002, vs. full fine-tuning+0.186±0.005atlr = 10−5 (p<0.001;−0.002±0.005
+atlr = 10−6, where the directions reverse).
+A non-contrastively pre-trained vision tower, as a qualitative extension..
+The rows above vary the pre-training objective across contrastive and non-
+contrastive backbones. As a further, deliberately qualitative check we repeated
+the strict-freezing comparison in a configuration whose vision tower was never
+trained contrastively at all: DINOv2-base as the vision tower, CLIP ViT-B/32
+12
+Table 1: Effect of LoRA position on CG∆under the earlier adaptation convention, in which
+the LoRA backbone was not frozen (Section 3 states the consequence: these arms differ in
+which adapters are injected, not in which encoders receive updates, so the comparison does
+not isolate a siting choice). Text-only gives the smaller gap increase on every dataset in the
+table: Flickr30k, MS-COCO, BLIP-1 and ViT-L. The ordering does reverse, but on SigLIP
+rather than on a second dataset, and under the strict-freezing control rather than under this
+convention (Section 5).
+Dataset Text-only Both Vision-only
+Flickr30k−0.064−0.032−0.003
+COCO−0.041−0.052 +0.031
+BLIP-1+0.047+0.152—
+ViT-L−0.036+0.128(r=4) —
+as the text tower, and a512-dimensional projection head fitted on a split dis-
+joint from both training and evaluation and then frozen. This is a heterogeneous
+pairing rather than an off-the-shelf model, and it has no single pre-training ob-
+jective, so it cannot confirm or refute the grouping the table reports; we include
+it only because the direction it produces is informative. With one seed, the two
+adaptation positions order as∆CG =−0.410for both-position against−0.391
+for text-only (frozenCG = 0.677), and both orderings agree here: retrieval is
+better for both-position (R@1 = 0.555against0.354; frozen0.289). That is the
+direction the table reports for the two non-contrastively pre-trained backbones
+ratherthanforthecontrastiveones, thoughonthepaper’sCLIProwsthegapor-
+dering and the retrieval ordering run opposite ways. Two controls bound how far
+this can be read. First, the projection head is larger than the adapters (656,384
+parameters against196,608or491,520), so we repeated the text-only arm with a
+never-fittedhead: the frozen baseline is then barely aligned at all (R@1 = 0.005,
+near the0.002chance level), yet text-side adaptation still moves the gap by
+−0.299, which is76%of the fitted-head effect, so the effect is not an artefact of
+the head. Second, this pairing was trained at a different InfoNCE temperature
+from every other row in this paper (exp(logit_scale) = 14.29against100), be-
+13
+cause the projection head was built from the model’slogit_scaleconfiguration
+value rather than from the value stored in the released weights; the magnitudes
+here are thereforenotcomparable with the table’s and we report them only as
+a direction. The run is archived inoutputs/analysis/dinov2_hetero/and
+one arm (vision_only) was not run, which we record rather than estimate.
+Retrieval protocol, and which rows we treat as informative..Three cautions
+apply to the cross-architecture and cross-dataset columns of Table 1. First,
+the MS-COCO rows were evaluated with the validation split reused as the
+retrieval gallery under the same sample cap as training (src/dataset.py),
+and their recorded accuracies are at chance:R@1 = 1/5000,R@5 = 5/5000,
+R@10 = 10/5000. We therefore report the COCO rows as gap measurements
+and do not treat their retrieval column as evidence about retrieval, and we
+report no ODE coefficients for MS-COCO for the same reason (Section 6).
+That deficiency is repairable, and we repaired it: with the training and eval-
+uation splits disjoint, a unique-image gallery, and all five captions per image
+retained, the same three adaptation positions over10,000COCO training and
+3,000evaluation images giveR@1 = 0.579frozen,0.607±0.002for text-only
+and0.623±0.001for both-position, over three seeds. Adaptation is therefore
+measurably useful on MS-COCO, but on retrieval it does not reproduce the text-
+only advantage the alignment columns show: both-position is the higher of the
+two. Second, the BLIP-1 arms were not produced by LoRA injection—BLIP-1
+does not support our adapter wrapper, so the runs selectively unfreeze thequery
+andvalueprojections instead, and both arms train the same196,672,514pa-
+rameters. That comparison is therefore about which side is unfrozen, not about
+where an adapter sits, and we exclude it from the adapter-placement conclu-
+sions. Third, two ViT-L rows are also near chance (R@1 = 0.0050and0.0025).
+The claims we make about architecture generality rest on the rows whose re-
+trieval is above chance and whose arms differ only in adapter placement; Table 1
+now reportsR@1for every row so that this filtering is visible to the reader. A
+fourth caution concerns the method rather than the rows. The runs described
+14
+here as low-rank adaptation were produced by an adapter wrapper that froze
+only the projections it replaced, so the rest of the adapted tower remained
+trainable: the adapter held196,608of145,170,177trainable parameters, and
+the configured rank therefore controlled0.14%of what the optimiz updated.
+Those runs are full-tower fine-tuning with a small adapter attached, not low-
+rank adaptation, and the rank ablation among them cannot be read as an effect
+of rank. The rank and adaptation-position results that do not depend on this—
+the columns measured under strict freezing, where the optimiz sees only the
+adapter matrices—are unaffected, and we have re-run the adapter-only config-
+urations with the base frozen; there the adapter holds all196,608(text-only) or
+491,520(both-position) trainable parameters and reproduces the same retrieval
+ordering.
+3.3. LoRA Configuration Space
+Figure 2 shows the effect of scaling factorαand target modules. Larger
+αconsistently reduces the gap:α= 64achieves CG∆ =−0.081with R@1
+of 0.637, contrary to the common practice of settingα=r×2. Covering all
+attention projections (qvko: query, key, value, output) achieves CG∆ =−0.067
+vs. query-only (−0.045).
+The gap responds to configured rank, though not in the direction this para-
+graph originally reported. Ranks 4, 8 and 16 hold it down or leave it un-
+changed, whereas 32 and 64 push it up. The best retrieval on Flickr30k comes
+from rank-16 (R@1 = 0.702), with rank-4 holding the gap at CG∆ =−0.027;
+MS-COCO reproduces the ordering (rank-4−0.038, rank-8−0.043, rank-16
+−0.069). Five-seed experiments confirm statistical significance: rank-4 achieves
+CG∆ =−0.020±0.007, while rank-32 achieves−0.002±0.003(p<0.01). On
+ViT-L, however, rank-4 fails dramatically (CG∆ = +0.128), while text-only
+with rank-8 remains effective (−0.036), suggesting that effective rank may scale
+with model capacity.Those figures come from the runs whose adapter
+wrapper left the backbone trainable(Section 3, fourth caution), so the
+rank they vary was not the thing doing the work. Re-run with the backbone
+15
+4 8 16 32 64
+LoRA scaling α
+-0.08
+-0.07
+-0.06
+-0.05
+-0.04
+-0.03
+-0.02
+-0.01
+0.00
+ΔCG
+Figure 2: Ablation of LoRA scaling factorα(left) and target modules (right). Largerα
+reduces gap; full module coverage helps.
+frozen and the adapter holding all196,608r/8trainable parameters, on5,000
+MS-COCO training and3,000evaluation images for ten epochs atα= 2r, the
+rank dependence is mild and monotone in the useful direction: CG∆falls from
++0.0135at rank 2 to+0.0021at rank 64, that is, higher rank now preserves the
+gap better rather than reversing, and retrieval moves only fromR@1 = 0.6071
+to0.6122over the same range, so the retrieval side is nearly rank-insensitive.
+Figure 3 compares PEFT methods. Text-only LoRA and Adapter both
+preserve alignment, but scale with capacity in opposite directions: under the
+earlier protocol the LoRA benefit peaks in the middle of the rank range and
+reverses beyond it, whereas larger Adapter bottleneck dimensions reduce the
+gap more effectively. Section 5 shows that the LoRA side of that comparison is
+an artefact of the protocol rather than a property of rank: once the backbone
+is frozen and only the adapter matrices are trained, the text-only arm improves
+monotonically with rank.
+16
+-0.05 0.00 0.05 0.10 0.15 0.20 0.25
+ΔCG against the frozen reference
+Adapter text+vision
+Adapter text-only
+LoRA vision-only
+LoRA both
+LoRA text-only
++0.229  (n=7)
++0.185  (n=5)
++0.011
+-0.026
+-0.047
+LoRA Adapter
+Figure 3: Cross-method comparison. Both methods respond to where the adapters sit and
+to their dimension, but the direction differs: LoRA favor the text-only setting, whereas for
+Adapter no consistent text-only advantage is present once every run is scored against a com-
+mon frozen baseline (Section 5).
+3.4. Distribution Gap Predicts Retrieval Performance
+A key statistical discovery is that the Distribution Gap strongly predicts
+retrieval performance. Across then= 204archived experiments spanning dif-
+ferent methods, architectures, and datasets, DG achievesr=−0.714with R@1,
+substantially outperforming CG (r=−0.594); both are significant atp<0.001.
+Figure 4 visualizes this relationship. The subset is defined by an explicit repro-
+duciblerule(everyarchivedresults.jsonwithfiniteCG,DGandR@1), stated
+in the released analyz script.
+Controlling for CG via partial correlation, DG retainsr=−0.581(p <
+0.001), confirming that DG captures distributional shape information beyond
+first-order centroid shift. In contrast, thechangein CG (CG∆) is a weak
+predictor on its own (r= 0.190,p= 0.007), an order of magnitude less than
+DG’s association with R@1.
+To address potential concerns about non-independence among experiments
+17
+1.0 1.5
+Distribution Gap
+-0.5
+0.0
+0.5
+R@1
+r = -0.714    n = 204
+1.0 1.5
+Centroid Gap
+0.0
+0.5
+R@1
+r = -0.594    n = 204
+Figure 4: DG vs. CG as retrieval predictors over then= 204archived experiments. DG
+achievesr=−0.714, substantially stronger than CG (r=−0.594).
+sharing configurations, we performed two resampling checks. On then= 204
+subset, a clustered bootstrap over 12 experiment families givesr=−0.738
+(95% CI:[−0.889,−0.613]). Independently, on the initial-state measurement set
+(98 experiments over 14 clusters), a 10,000-resample clustered bootstrap gives
+r=−0.847(95% CI:[−0.936,−0.709]), with 4 of 10,000 resamples reaching
+r≥0. Both checks show the DG–retrieval association surviving within-family
+dependence; neither attenuates it toward zero. To check that this is not in-
+sample fitting, we refit the slope on training folds only and evaluate it on held-
+out ones: leaving one experiment family out (12 folds) gives an out-of-sample
+R2 of0.449pooled and0.396at the median fold, with67%of folds beating
+the training-fold constant baseline; leaving one dataset×model cell out (6 folds)
+gives0.236and0.227, with67%of folds beating it. The association therefore
+transfers, but not uniformly: in both schemes the weakest fold is SigLIP, where
+the ordering is known to reverse, which is why we report an association with its
+per-fold spread rather than a predictive relation. A six-variant sensitivity analyz
+over sample definition (all rows, R@1≥0.01, legacy keyword filter, Flickr30k
+only) preserves the ordering DG>CG in every variant.
+18
+3.5. Visual Fragility: an Interpretation of Where the Adapters Sit, Not of a
+Fragile Tower
+Why does text-only preserve alignment? We propose theVisual Fragility
+Interpretation: intervening on the visual side of a vision-language model is
+what damages cross-modal alignment, whereas leaving it untouched preserves it.
+Two evidence lines support this interpretation, and one earlier line is withdrawn
+in favor of them.
+Noise sensitivity (withdrawn).An earlier single evaluation in which
+each encoder tensor was perturbed by Gaussian noise scaled to a fixed multiple
+of that tensor’s own standard deviation (σstd(Wi); despite a filter intended to
+exclude them, LayerNorm parameters were perturbed too, and they carry73.9%
+of the vision tower’s injected Frobenius norm) suggested that vision-side noise
+degrades retrieval2.6×more than text-side noise. Repeating the probe with the
+image set and the augmentation draw held fixed across conditions, and with a
+σ=0control that reproduces the baseline exactly, gives no stable ordering over
+five seeds (1.90±1.83%for the vision encoder against2.48±3.25%for the text
+encoder atσ=0.1, pairedp= 0.77; the ratio of means is0.77, i.e. the text side is
+nominally the more sensitive of the two). This evidence line is therefore **not
+used**, and theσ=0control is retained in the released artefact.
+Gradient contribution.We measure the gradient signal-to-noise ratio
+(GSNR) for vision and text encoders during fine-tuning. During joint-modality
+fine-tuning the vision encoder’s gradient norm exceeds the text encoder’s by
+1.41×(0.528against0.383, single measurement on the reference configuration),
+indicating that visual parameters experience stronger optimization pressure un-
+der joint training. We report the measured ratio rather than a rounded one,
+and note that it rests on a single measurement.
+Effective rank under strict control.We track the effective rank of
+the per-layer image embeddings under a strictly frozen protocol, in which the
+optimizer sees only the adapter matrices (196,608trainable parameters for the
+text-only arm) and the vision side registers zero non-zero updates across all
+199vision tensors. Under that control, text-only training leaves the vision-
+19
+side effective rank unchanged to measurement precision (mean per-layer change
+0.000), whereas the both-position arm lowers it by0.042and the vision-only arm
+by0.059on the same scale. This links directly to the ODE prediction: larger
+visual-side perturbation corresponds to a larger¯Γv∥gv∥in the perturbation force
+α. We flag the contrast with the archived non-strict runs, in which the text-only
+arm trained145,170,177parameters including the vision encoder, so any vision-
+side change measured there is a property of that setup rather than of text-only
+adaptation.
+We emphasize that Visual Fragility is a phenomenological interpretation
+supported by the evidence above, not a deductively proven mechanism. Two
+further results constrain it. First, under matchedrelativeweight perturbation
+(∥∆W∥F/∥W∥F equal per tensor and per tower) the vision tower is not the
+more fragile one: the relative budget each tower needs for the same retrieval
+loss is0.91±0.45at a5%drop and0.99±0.45at10%, i.e. indistinguishable
+from parity, and the ordering reverses when the comparison is made at equal
+absolutenoise (0.60versus2.47). Second, the archived probe on which the2.6×
+figure rested usedσstd(W i)per tensor and, because its LayerNorm filter did
+notmatchtheHuggingFaceparameternames, perturbedLayerNormparameters
+that carry73.9%of the vision tower’s injected Frobenius norm; at the sameσ
+the vision tower therefore received a1.14×larger relative perturbation. What
+the evidence does support is narrower and is the claim we make: leaving the
+vision encoder untouched preserves alignment, so the practical rule concerns
+wherethe adapters are placed. Section 4 derives the gradient geometry behind
+that placement effect.
+3.6. Zero-Shot Classification
+Beyond retrieval, we examine alignment preservation through zero-shot clas-
+sification on ImageNet, DTD, and Food101 after Flickr30k fine-tuning. On Im-
+ageNet, text-only preserves 58.66% accuracy (−0.6%vs. frozen), both-position
+stays at 59.67% (+0.4%), and full fine-tuning collapses to near-chance levels at
+the shared learning rate (10−4: mean2.6%, range0.1–4.1%across 3 retrained
+20
+seeds;52.2%atlr = 10 −5 and60.9%atlr = 10 −6, i.e. at or above the frozen
+baseline). Figure 5 shows the pattern: on DTD and Food101 the text-only arm
+stays within0.1percentage points of the frozen baseline while the both-position
+arm stays within0.9, and on ImageNet full fine-tuning collapses.
+DTD Food101
+0
+20
+40
+60
+80
+100Zero-shot accuracy (%)
+43.27
+80.60
+43.33
+80.67
+42.53
+79.73
+Frozen Text-only Both
+Figure 5: Zero-shot classification on DTD and Food101 after Flickr30k fine-tuning. The text-
+only arm stays within 0.1 percentage points of the frozen baseline and the both-position arm
+within 0.9.
+3.7. Placement Against Prior Work
+Individual studies have argued that the choice of adaptation site outweighs
+how a fixed budget is divided within it in the low-data regime, and report gains
+from siting adaptation so that the vision tower is left unchanged rather than
+from re-allocating rank among its modules Zhang et al. (2023); Wang et al.
+(2024); Zanella and Ben Ayed (2024). What those reports establish is that the
+choice matters; they do not establish how far the resulting ordering generaliz,
+because each is measured on one backbone and one task corpus. We therefore
+treat the ordering as a hypothesis rather than a premise and measure the same
+three arms on seven backbones under a protocol in which the optimiz sees only
+21
+the adapter matrices. The measurements above show that the ordering follows
+the pre-training objective rather than vision-language adaptation in general:
+every contrastively pre-trained backbone, at either patch size, puts text-only at
+the smallest gap change, while the two backbones trained with other objectives
+put both-positions there. Section 4 derives the mechanism that produces it.
+3.8. Design Patterns
+Synthesizing the empirical findings, three design patterns emerge, and none
+of them is the unconditional recipe it is often taken to be. (1)Adaptation
+position: the ordering is stable within an architecture, but which end
+of it is preferable is not.Under strict freezing the same three arms are
+ordered identically on the three contrastive backbones, whether they use patch
+size32or16, as Table 2 records. An earlier reading of these runs attributed the
+ordering to patch size, because the two backbones that had been measured at
+patch size16both placed the both-position arm smallest. That reading does not
+survive the matched comparison: CLIP B/16 and CLIP B/32, measured at the
+same rank under the same protocol, order the arms identically despite differing
+in patch size by a factor of two. What separates the two orderings is the pre-
+training objective. Every backbone trained contrastively on image–text pairs
+places the text-only arm at the smallest gap change, across three pre-training
+corpora and both patch sizes; the two backbones trained otherwise — SigLIP,
+whose objective is a pairwise sigmoid rather than a softmax over the batch,
+and BioCLIP, whose corpus is biological — place the both-position arm there
+instead. The added backbone is BioCLIP, a biological-domain model, and two
+caveats follow from that. It was measured at rank4only, and it begins from a
+gapof1.79onnaturalimageswheretheB/32backbonesbeginat0.81, sodomain
+shift alone could account for its ordering; and with two backbones per patch size
+the two are not separated. We therefore report the grouping as a regularity over
+seven configurations rather than as a property of patch size. On the two B/32
+backbones the arm that minimiz the gap (text-only) is the one that retrieves
+worst, so the ordering by gap runs opposite to the ordering by retrieval; on
+22
+SigLIP the two orderings agree and both place the both-position arm first. The
+practical reading is that no adaptation site transfers across backbones without
+measurement. (2)Therankeffectisprotocol-dependent.Undertheearlier
+protocol, in which the rest of the backbone remains trainable, ranks4–16reduce
+the gap and ranks32and64increase it, which is where the familiar “lower
+rank is safer” rule comes from. Under strict freezing, where the optimiz sees
+only the adapter matrices, the text-only arm improves monotonically with rank
+instead, reaching−0.075atr=32against−0.009atr=1and−0.029atr=4,
+and the both-position arm is non-monotonic, turning positive byr=64. The
+rule is therefore an artefact of what else was being trained, not a property of
+rank. The direction is not specific to one backbone. Pairing rank8against
+rank4within seeds, the gap falls on CLIP at the text-only and both-positions
+(t=−8.0and−2.9) and on SigLIP likewise (t=−3.8and−2.6); the exception
+is OpenCLIP at the both-position, which moves the other way by0.004and
+att= +1.1is not distinguishable from no change. Five of six combinations
+therefore agree, and the dissenting one is the one that carries no significance.
+(3)Full fine-tuning is not unconditionally destructive, but it is far
+more learning-rate sensitive than the adapter methods—at the shared
+rate it degrades alignment, while atlr = 10−6 it matches the frozen model in
+alignment.
+These patterns, while practically useful, are empirical regularities. The next
+section derives the governing mechanism behind them.
+4. Gap Susceptibility: A Dynamical Theory
+The empirical findings of Section 3 raise a theoretical question:what governs
+the dynamics of the modality gap under PEFT?Why does adapting one side
+rather than the other change the trajectory, why does the effect of adapter rank
+depend on what else is being trained, and what determines the gap trajectory?
+This section answers these questions by deriving a dynamical framework from
+gradient flow.
+23
+4.1. Alignment Energy and Gradient Flow
+Letf θv :X →R d andf θt :Y →R d be the vision and text encoders of
+a CLIP-style model, producingℓ 2-normalized embeddings. Letθ= (θ v,θt)
+denote the full parameter vector. GivenNimage-text pairs, letz I
+i =f θv(xi)
+andz T
+i =f θt(yi).
+Definition 4.1(Alignment Energy).The alignment energyDG∗(θ)is the mean
+squared pairwise distance between image and text embeddings:
+DG∗(θ) = 1
+N
+NX
+i=1
+∥zI
+i−z T
+i∥2.(3)
+DG∗ is differentiable inθand avoids the covariance square-root complica-
+tions of the Distribution Gap metric used in the empirical study (Section 3.4).
+DG∗ tracksthemeasuredDGcloselyinthepilotruns, validatingitasatractable
+proxy.
+The InfoNCE contrastive loss is:
+L(θ) =− 1
+2N
+X
+i
+"
+log exp(sii/τ)P
+j exp(sij/τ) + log exp(sii/τ)P
+j exp(sji/τ)
+#
+,(4)
+wheres ij =⟨z I
+i,zT
+j⟩andτ >0is the temperature.
+The continuous-time gradient flow of parameters underLisdθ/dt=
+−η∇θL(θ), withη >0the learning rate. By the chain rule:
+d(DG∗)
+dt =⟨∇ θDG∗,dθ/dt⟩=−η⟨∇ θDG∗,∇θL⟩.(5)
+Equation (5) reveals that the instantaneous rate of gap change is propor-
+tional to the inner product between two gradient fields:∇θDG∗, which points
+in the direction that maximally changes alignment, and∇θL, which points in
+the direction of task loss reduction. This is the central insight of our framework.
+We test Equation (5) directly rather than only through the trajectory fits of
+Section 5. For each adaptation position we compute∇θDG∗ and∇ θLon the
+same batch under strict freezing, form the predicted change−η⟨∇θDG∗,∇θL⟩
+for a single step atη= 10−4, and compare it with the change a real optimiz step
+produces. Across the three positions and three seeds the correlation between
+24
+predicted and measured change is0.998, with a median relative error of2.7%.
+The identity is therefore not merely a convenient approximation but holds to
+the accuracy of the measurement.
+Lemma 4.1(Modality Decomposition).⟨∇ θDG∗,∇θL⟩=
+P
+m∈{v,t}⟨∇mDG∗,gm⟩, whereg m =∇ mLis the task gradient restricted
+to modalitym.
+4.2. Gap Susceptibility: The Coupling Coefficient
+By Lemma 4.1, the driving force behind gap dynamics splits into per-
+modality contributions. For each modality, we define the coupling coefficient
+that governs how parameter updates translate to gap change:
+Definition 4.2(Gap Susceptibility).For modalitym∈{v,t}, the Gap Suscep-
+tibility is:
+Γm =∥∇ mDG∗∥·cosϕ m,(6)
+wherecosϕ m =⟨∇ mDG∗,gm⟩/(∥∇mDG∗∥·∥g m∥)is the cosine similarity be-
+tween the alignment gradient and the task gradient for modalitym.
+Γm decomposes into two orthogonal factors with clear geometric interpreta-
+tions:
+•Sensitivity∥∇ mDG∗∥: How much doesDG∗ change per unit perturba-
+tion to modalitym’s parameters? A large value indicates that modality
+m’s parameters strongly influence alignment.
+•Directional couplingcosϕ m: Does the task gradient push toward align-
+ment (cosϕm <0, reducing gap) or away from it (cosϕm >0, increasing
+gap)?
+The per-modality contribution to gap dynamics is then⟨∇mDG∗,gm⟩=
+Γm·∥gm∥, and the total instantaneous rate is:
+d(DG∗)
+dt =−η
+X
+m∈{v,t}
+Γm∥gm∥.(7)
+25
+4.3. First-Order ODE and Steady-State Solution
+During training,Γ m and∥g m∥fluctuate across steps. To obtain a macro-
+scopic description, we consider their trajectory-averaged values¯Γm and ¯∥gm∥
+over a training run.
+Theorem 4.1(Alignment Dynamics ODE).Under gradient flow with
+trajectory-averaged coupling coefficients, the alignment energy evolves accord-
+ing to:
+d(DG∗)
+dt =α−β(DG ∗−DG 0),(8)
+where:
+α=−η
+X
+m∈{v,t}
+¯Γm∥gm∥, β= 1
+∆t
+X
+m
+¯Γm
+∂∥gm∥
+∂DG∗.(9)
+αis theperturbation force—the net rate at which task optimization pushes the
+gap away from its initial value.βis therestoring coefficient—the rate at which
+the system’s intrinsic dynamics pullDG∗ back toward equilibrium.
+Proof.Starting from the gradient-flow identity (Equation 5), the trajectory-
+averaged right-hand sidef(DG ∗) =⟨∇ θDG∗,∇θL⟩is linearized around the
+pretrained valueDG 0:f(DG ∗)≈f(DG 0) +f′(DG0)(DG∗−DG 0). Substitut-
+ing into Equation (5) and collecting terms yields the ODE withα=−ηf(DG0)
+andβ=ηf ′(DG0), where the trajectories ofΓm and∥g m∥enter through the
+averages definingf.
+The ODE (8) admits an explicit solution:
+DG∗(t) =DG 0 + α
+β
+ 
+1−e −βt
+,(10)
+with steady stateDG∗
+∞ =DG 0 +α/β. The system converges exponentially
+to equilibrium at rateβ. The sign ofαdetermines the direction:α <0(gap
+reduction),α>0(gap expansion),α≈0(marginal change).
+4.4. Explaining the Empirical Regularities
+TheODEframeworkprovidesaunifiedexplanationfortheempiricalfindings
+of Section 3.
+26
+The text-only position.When only the text encoder is trained, the visual
+task gradient vanishes:g v = 0, which the direct measurement of Section 5
+confirms at0.0000. The perturbation force reduces toαtext =−η ¯Γt∥gt∥. With
+joint-modality training, both terms contribute:αboth =−η( ¯Γv∥gv∥+ ¯Γt∥gt∥).
+Section 3 shows what the second term costs: under joint-modality training
+the vision encoder receives the larger gradient signal (1.41×the text encoder’s
+norm in the reference measurement), whereas under strict freezing a text-only
+arm registers no vision-side update at all. The perturbation force under joint
+training therefore carries a term that text-only training removes entirely, which
+makesα both more positive—i.e., more gap-expanding—thanα text. Text-only
+training thusremoves the dominant perturbation source. The ODE makes this
+a consequence of gradient geometry, not an ad hoc observation.
+Full fine-tuning under a shared learning rate.Section 3 found that
+full fine-tuning, run at the same learning rate as the adapter methods (10−4),
+diverges: zero-shot accuracy collapses by56.7percentage points (from59.28%
+to2.6%) and the gap inflates. Sweeping that rate shows the collapse to be a
+property of the shared rate rather than of full fine-tuning. One earlier archival
+run of full fine-tuning recorded a gap increase of+23%(CG 0.8185→1.0072)
+withoutany collapse (validation loss0.53,R@1 = 0.647); its learning rate was
+not recorded and it cannot be reconstructed, which is why we report the per-
+rate sweep instead of a single figure. In the ODE framework, the fittedDG∗
+dynamics of full fine-tuning are comparable to PEFT within the matched Phase-
+2 batch (αfull =−0.040,β full = 0.159), whereas the Phase-1 pilot batch found
+a substantially largerβ full = 0.643(Section 5); the batch sensitivity of this
+estimate indicates that the first-orderDG ∗ dynamics are not by themselves
+a reliable discriminator between full fine-tuning and PEFT. The catastrophic
+effect is instead captured by the empirical CG metric, which measures a different
+aspect of the distributional geometry; reconciling the two metrics is left to future
+work.
+LoRA rank effects.The ODE locates the rank effect in the ratio of the
+two coefficients rather than in the capacity of the adapter. In the fits of Table 5,
+27
+αstays negative and roughly flat across ranks, whileβfalls as rank grows (0.167
+atr=8,0.140atr=16,0.119atr=32, text-only): a smaller restoring coefficient
+means the trajectory settles further from its starting gap. The direction of the
+rank effect is therefore inherited fromβ, and becauseβis itself a property of the
+protocol rather than of rank alone, the effect changes sign between protocols.
+Section 5 tests this and reports both regimes.
+DG as a retrieval predictor.The empirical finding that DG predicts
+R@1 atr=−0.714(partialr=−0.581controlling for CG) follows naturally
+from the ODE: DG is the state variable whose dynamics are governed by gra-
+dient coupling. Its value at any training stage reflects the cumulative effect of
+perturbation and restoration forces, making it a principled summary statistic of
+alignment health. The ODE predicts that DG trajectories converge exponen-
+tially to a configuration-specific steady state; the observed correlation between
+DG and retrieval performance reflects how well each configuration’s steady state
+preserves the pre-trained embedding geometry.
+4.5. Effective Rank Saturation
+The ODE framework yields an initially counterintuitive prediction. If LoRA
+rankrestrictstheadaptationsubspace,∥g v∥shouldgrowwithrankas∥g v∥∝ √r
+under random projection onto a rank-rsubspace. We tested this prediction and
+found itfalsified:∥g v∥varies by only10%acrossr∈[1,64](12.75–14.09).
+This falsification reveals a deeper insight: the task gradient’s effective di-
+mensionr eff is determined by task structure, not configured rank. The task gra-
+dient concentrates in a low-dimensional subspace across the adapter capacities
+we probed (rankrfrom1to64). We term thisEffective Rank Saturation,
+and it implies that beyond a minimal rank threshold, increasing LoRA rank
+provides no additional gradient capacity—only the risk of disrupting alignment
+through expanded parameter freedom. This finding has implications beyond
+our framework, suggesting that commonly used moderate ranks (r≥16) may
+be excessive for many vision-language tasks.
+28
+5. Experimental Validation of the Theory
+The ODE framework derived in Section 4 makes quantitative predictions
+that we now test against data. We fit the ODE on the 55 archived LoRA runs
+(49 on Flickr30k, 6 on MS-COCO) spanning CLIP LoRA over two datasets
+(Flickr30k, MS-COCO), each configuration replicated over five random seeds,
+complemented by cross-architecture fits on OpenCLIP (bias-only) and gap-level
+checks on SigLIP and Adapter.
+5.1. Phase 1:βConstancy
+The constancy assumption (A1) states thatβis approximately constant
+across PEFT configurations that preserve the pre-trained loss landscape ge-
+ometry. We measureβon three configurations—text-only LoRA (r=8), both-
+position LoRA (r=8), and full fine-tuning—with three seeds each.
+Within PEFT,βis stable (CV= 13.3%at the seed level in this pilot; the
+Phase-2 sweep gives10.7%at the configuration level), confirming A1. For full
+fine-tuning the picture is batch-dependent: this pilot yieldsβfull = 0.643±0.224
+(a4.7×departure from the PEFT mean), while the larger matched-setting
+Phase-2 sweep yieldsβ full = 0.159(Table 5), comparable to PEFT. The dis-
+crepancy indicates sensitivity to batch-specific training details rather than a
+method-level effect; we therefore report both values and do not base claims
+on either alone. The within-batch comparison of Phase 2 (same script, same
+settings) is the more controlled estimate.
+5.2. Phase 2: ODE Trajectory Prediction
+We sweep LoRA rankr∈ {1,2,4,8,16,32,64}across the text-only and
+both-positions. Of the runs performed for this sweep, 55 LoRA trajectories are
+archived and analyz here (49 on Flickr30k, 6 on MS-COCO), at three seeds per
+configuration on Flickr30k, alongside a full-fine-tuning pilot.DG∗ is recorded
+every epoch.
+Across PEFT configurations the ODE achieves meanR2 = 0.949over the
+LoRA runs (range0.814–0.977), outperforming the constant baseline (R 2 =
+29
+2 4 6 8 10
+Epoch
+1.0
+1.1
+1.2
+1.3
+1.4
+1.5gv magnitude
+both: ODE
+both: measured
+full FT: ODE
+full FT: measured
+text: ODE
+text: measured
+Figure 6: RepresentativeDG∗ trajectories with ODE fits, drawn from the archived runs. Solid
+curves: the fitted ODE, withαandβfitted to each trajectory separately; points: measured
+DG∗ values. Fits are reported per run in Table 5; the sweep meansR2 = 0.953on Flickr30k
+and0.903on MS-COCO, and the full-fine-tuning pilot fits at0.950.
+0.00)andthelinearbaseline(meanR 2 = 0.946). Table5reportsthekeymetrics.
+Two caveats attach to this number and are stated in full in Section 6: the
+coefficients are fitted to each run rather than predicted from its gradients, and
+the archived run count is smaller than the number of runs originally performed
+for the sweep.
+Three robust patterns emerge. First,αis negative for the large majority
+of PEFT configurations (196of the215fits we archived), which supports the
+protective bound while leaving a minority of counter-examples that we report in
+Section 6 (fourteen Adapter fits up to+0.061, four leave-one-configuration-out
+LoRA fits up to+0.011, and the three CLIP BitFit fits atα≈+4×10−4). Text-
+onlyachievesmorenegativeαthan both-positionformostranks, consistent with
+gv = 0removing the dominant visual perturbation term. Second,βis stable
+across ranks and positions within a consistent range, justifying the constancy
+assumption. Third, the exponential form fits all trajectories with meanR2 =
+0.949over the archived LoRA configurations (the full-fine-tuning pilot fits at
+30
+0.922, and we return to it below), marginally above the linear baseline (mean
+R2 = 0.946).
+5.3. Effective Rank Saturation
+Figure 7 shows the key falsification result. The ODE’s initial prediction—
+∥gv∥∝ √runder random projection onto a rank-rsubspace—is contradicted
+by experiment.
+/uni00000014/uni00000013/uni00000013
+/uni00000014/uni00000013/uni00000014
+/uni0000002f/uni00000052/uni00000035/uni00000024/uni00000003/uni00000055/uni00000044/uni00000051/uni0000004e/uni00000003/uni00000055
+/uni00000018
+/uni00000014/uni00000013
+/uni00000014/uni00000018
+/uni00000015/uni00000013
+/uni00000015/uni00000018
+/uni00000016/uni00000013
+/uni0000005f/uni0000005f/uni0000004a/uni00000042/uni00000059/uni0000005f/uni0000005f
+/uni0000004e/uni00000003/uni00000020/uni00000003/uni00000013/uni00000011/uni00000013/uni0000001b/uni0000001b
+/uni00000045/uni00000052/uni00000057/uni0000004b
+/uni00000057/uni00000048/uni0000005b/uni00000057/uni00000010/uni00000052/uni00000051/uni0000004f/uni0000005c
+Figure 7: Effective Rank Saturation.∥gv∥stays within a10%band acrossr∈[1,64], falsifying
+the√rscaling prediction. The task gradient’s effective dimensionreff≪64is determined by
+task structure, not configured rank.
+∥gv∥is restricted to a10%band acrossr∈[1,64](means12.75–14.09over
+five seeds per rank), where∥gv∥∝ √rwould predict an eightfold change. This
+Effective Rank Saturationshows that, over the rank range we probed, the
+task gradient’s effective dimension stays in a narrow band rather than growing
+with adapter capacity. The practical implication is direct: increasing rank be-
+yond a minimal threshold (r≥4on our data) provides negligible additional gra-
+dient capacity while expanding the parameter subspace available for alignment-
+disrupting updates. This is whyαremains negative across all ranks—the per-
+turbation force is bounded byreff rather than by configuredr. It also constrains
+where a rank effect can come from: if the task-gradient norm is flat inr, the
+perturbation side of the ODE barely moves with rank, so any rank dependence
+31
+must enter through the restoring coefficientβ. The strict-freezing sweep in Sec-
+tion 3 is consistent with that reading, withβfalling as rank grows and the gap
+settling correspondingly lower.
+5.4. Cross-Architecture and Cross-Dataset Generalization
+To verify that the ODE captures dynamics beyond a single dataset, we
+replicate the full rank sweep on MS-COCO. Table 6 reports the key metrics for
+both datasets.
+The ODE achieves meanR2 = 0.949over the archived LoRA runs on both
+CLIP datasets.αis negative for196of the215archived fits on both Flickr30k
+and COCO, so the protective bound holds across-datasets as a dominant ten-
+dency rather than without exception; the exceptions are enumerated in Sec-
+tion 6.βis stable across ranks and positions within each dataset and consistent
+across-datasets (0.153vs.0.170), confirming that the ODE captures intrinsic
+dynamics rather than dataset-specific artifacts.
+Cross-architecture fit (OpenCLIP, bias-only).We further fit the ODE
+on OpenCLIP (ViT-B/32, bias-only BitFit training) over Flickr30k (3 seeds).
+The exponential fit achievesR 2 = 0.943(range 0.90–0.99), withα=−0.002
+(negative, confirming the protective bound) andβ= 0.484—larger than both
+LoRA (0.153) and full fine-tuning (0.159), consistent withβas a landscape-
+curvature diagnostic that varies across PEFT methods.
+BitFit on CLIP: boundary case.On CLIP with bias-only training,
+the alignment energy changes by only+0.001–0.005over 10 epochs (β≈0,
+α≈0,R 2 = 0.30–0.84). The ODE fit is not informative in this regime because
+bias-only updates are too small to perturb the alignment geometry: the signal-
+to-noise ratio ofDG∗ change falls below the fitting threshold. This is itself a
+meaningful boundary case—bias-only PEFT is essentially alignment-neutral—
+and delimits the regime where the ODE framework applies (PEFT methods
+with non-negligible perturbation).
+Thegap-levelpredictionsoftheframeworkextendtoadditionalarchitectures
+and PEFT methods. Both controls below use the same recorded budget (5000
+32
+samples,10epochs, LoRA rank8withα= 16) and the same five seeds, so
+the two architectures differ in their encoder and their pre-training rather than
+in how they were trained, since both are fine-tuned with the same InfoNCE
+objective used throughout this paper. Under the CLIP strict-freezing control
+of Section 3, the text-only arm reduces the gap by more than the both-position
+arm (−0.046±0.003against−0.026±0.004; paired difference+0.021,t= +10.0
+over five seeds). The comparison also depends on the evaluation corpus. At rank
+4under the same strict-freezing protocol, text-only holds the gap at−0.0304±
+0.0039on Flickr30k against−0.0204±0.0028for the both-position arm, whereas
+on MS-COCO the ordering is the reverse: text-only gives−0.0430±0.0028
+and both-position−0.0877±0.0022, so the arm that is most protective on one
+corpus is the least protective of the two on the other. The MS-COCO text-only
+arm improves monotonically with rank over the range we ran (−0.0247at rank
+2,−0.0690at8,−0.1153at32and−0.1359at64, five seeds each at batch
+128), so the reversal is not an artefact of a single rank, and both arms of that
+comparison use the same batch size. Which position is preferable therefore has
+to be established per corpus as well as per architecture, and neither the corpus
+nor the backbone that a given recommendation transfers to can be assumed.
+We repeated that control on SigLIP, whose vision backbone and pre-training
+objective differ from CLIP’s (294,912trainable parameters for text-only, with
+the vision side registering zero, against589,824for both-position).The or-
+dering reverses: text-onlyincreasesthe gap (+0.066±0.006) whereas both-
+positionreducesit (−0.011±0.006), a paired difference of−0.078(t=−52.7,
+consistent in sign across all five seeds). The both-position arm also retrieves far
+better on SigLIP (R@1 = 0.62against0.43), and the third arm completes the
+picture: vision-only lands between them on the gap (+0.052) but lowest of the
+three on retrieval (0.34), so on this backbone the arm that touches only the vi-
+sion side is worst on both counts. Two consequences follow. First, the text-only
+advantage is a property of the architecture rather than a universal default, so
+it should not be transferred to a new encoder without this control. Second, the
+two objectives come apart: both-position retrieves better onbotharchitectures
+33
+(0.69against0.62on CLIP) even though it reduces the gap more on only one of
+them, so minimiz centroid or distribution gap is not a proxy for retrieval quality.
+What the reversal isnotyet pinned to is which architectural difference causes
+it: the two encoders differ in loss function, patch size and embedding width si-
+multaneously, so we report the dependence and leave its attribution open. The
+earlier non-frozen SigLIP runs are not used as evidence here, since they trained
+1.89×10 8 and1.75×10 8 parameters respectively and therefore did not isolate
+the adaptation site. We report these under a common frozen baseline; the ear-
+lier convention, which measured each Adapter run against its own post-injection
+initialisation, would have shown the text-only Adapter as a reduction of0.217
+and must not be compared with the LoRA figures. On this common scale the
+Adapter’s text-only arm doesnotimprove on its both-position arm, which tem-
+pers the scope of the text-only advantage for that method. The cross-modal
+gradient statistics nevertheless behave as predicted on SigLIP (Γt = 0.362for
+text-only againstΓ v = 4.23for both-position, withΓ v = 0under text-only),
+consistent withgv = 0removing the dominant perturbation source.
+5.5. Measured Gradient Asymmetry
+The mechanism that Theorem 4.1 predicts can be measured rather than
+inferred: under strict freezing at rank8, the task gradient restricted to each
+encoder separates the three positions almost exactly. Training the text side
+alone leaves the vision task gradient at0.0000while the text side carries13.51;
+training the vision side alone leaves the text gradient at0.0000while vision
+carries15.44; training both leaves12.93on the vision side and11.05on the text
+side. The perturbation pressure on the vision encoder therefore orders as vision-
+only, then both, then text-only, which is the same order as the measured gap
+changes in Table 2. The text-only position does not reduce the perturbation, it
+removes the visual term from it.
+5.6. Closing the Empirical–Theory Loop
+The ODE framework explains why the empirical regularities of Section 3
+hold, transforming them from observations to consequences:
+34
+1.The text-only position:g v = 0eliminates the dominant visual pertur-
+bation term inα=−η P
+m ¯Γm∥gm∥. On CLIP, text-onlyαis consistently
+more negative than both-positionαfor all ranks, and the strict-freezing
+controlconfirmsthatorderingonthemeasuredgap. ThecontrolonSigLIP
+doesnot: there the both-position arm reduces the gap while the text-only
+arm increases it. The ODE is not falsified by this, because it predicts
+trajectories for agivenallocation of perturbation rather than predicting
+which allocation an optimiz will find; what it does not supply is a rule for
+the latter, which is why the direction has to be measured per architecture.
+2.LoRA’s protective bound:α <0for all PEFT configurations across
+both datasets, contrasted with full fine-tuning’s marginalα≈0. PEFT
+constrains gradient updates to subspaces that preserve alignment.
+3.Rank effect:Effective Rank Saturation impliesr eff ≪64, bounding
+the perturbation subspace. Increasing configured rank beyond the task’s
+effective rank expands alignment-vulnerable parameters without adding
+gradient capacity.
+4.DG as predictor:DG is the natural state variable in the exponen-
+tial convergence dynamics described by the ODE. Its steady-state value
+DG∗
+∞ =DG 0 +α/βis a configuration-specific summary of alignment
+health, explaining why DG correlates with retrieval performance.
+Together, these constitute a closed theoretical explanation for the empiri-
+cal phenomena, validated by 383 experiments spanning three PEFT methods
+(LoRA, Adapter, BitFit) and two datasets.
+6. Discussion
+6.1. Why Gap Susceptibility Matters
+Gap SusceptibilityΓm =∥∇ mDG∗∥·cosϕ m is not a proposed heuristic to be
+compared against alternatives—it is the coupling coefficient thatmustgovern
+gap dynamics if gradient flow is the underlying mechanism. The question is
+not whetherΓm is a “good” predictor but whether the ODE it generates fits the
+35
+data. Theanswer, asSection5shows, isaffirmativefortheLoRAconfigurations:
+meanR 2 = 0.949(range0.814–0.977) across the archived CLIP runs, fitted one
+run at a time. The OpenCLIP BitFit runs sit below that band at0.943, and the
+CLIP full-fine-tuning pilot below both, at0.922; both are reported in Section 5.
+This framework stands apart from prior approaches along three dimensions.
+First, unlikeIIMMNissetal.(2025), whichpredictsfine-tuningoutcomesfroma
+single forward pass without training, our ODE predicts the entire gap trajectory
+from initialization to convergence, providing a dynamic rather than static char-
+acterization. Second, unlike TPC-CMA Liu et al. (2026), which uses CG/DG
+decomposition for training control, our theory explainswhyCG and DG evolve
+as they do, grounding the decomposition in gradient geometry. Third, unlike
+Gap-Init Zhao et al. (2026), which observed empirically that the modality gap
+dominates early gradient flow, our Theorem 4.1 provides the theoretical mech-
+anism: the perturbation forceαand restoring coefficientβjointly determine
+whether and how fast the gap changes.
+6.2. Practical Implications for PEFT Design
+The ODE framework provides quantitative guidance for PEFT configuration
+selection. For practitioners, three design principles follow:
+1.Usetext-onlyfine-tuningasthedefault.Thetheoryshowsthisisnot
+an empirical quirk but a consequence ofgv = 0eliminating the dominant
+perturbation source. Text-only requires no additional implementation.
+We report the protection it provides as an empirical tendency over our
+archive rather than a guarantee: the gap inflation is smaller for text-only
+in most of our configurations and the ordering reverses on SigLIP under
+strict freezing, so the rule should be verified per backbone.
+2.Choose minimal effective rank.Effective Rank Saturation implies
+thatr≥4suffices for the tested tasks; larger ranks expand the perturba-
+tion subspace without adding gradient capacity. The common practice of
+settingr= 16or higher may be excessive.
+36
+3.Monitor DG as an alignment health signal.The ODE establishes
+DG as the natural state variable for alignment dynamics, and DG corre-
+lates with retrieval quality across the archived runs (initialDG∗ against
+final R@1:r=−0.71,n= 96). It follows that DG is worth tracking as
+a diagnostic. What does not follow is that DG should replace the task
+metric as the quantity a training loop is stopped on: across the same runs
+the epoch minimiz DG and the epoch minimiz the centroid gap agree only
+42%of the time, and each of five realisable stopping rules derived from the
+DG trajectory — including plateau detection and a fixed early cut-off —
+ends at a centroid gap worse than training to convergence in at least88of
+94comparable runs (outputs/analysis/monitor_dg_check2.json, rule
+R1of the five:6better,88worse,2unchanged over94runs). Monitoring
+DG and stopping on DG are therefore different claims, and only the first
+is supported here.
+These principles require no architectural modification. They are established
+here on contrastive dual-encoder backbones over image–text retrieval and zero-
+shot classification; the ordering we observe reverses on SigLIP under strict freez-
+ing, so we do not claim them for architectures or objectives outside that scope.
+6.3. Limitations and Future Work
+Twelfth, the retrieval gallery used throughout is built byrandom_splitover
+a dataset object that was constructed with the training split, so the gallery
+inherits the training-time random transforms (horizontal flip and color jitter);
+a checkpoint re-evaluated on it is therefore a fresh draw rather than a fixed
+measurement. We quantified the consequence: over six repeats of one frozen
+checkpoint on300pairs, the Centroid Gap has a standard deviation of0.00025
+andR@1a standard deviation of0.0055. The∆CGcomparisons this paper rests
+onareunaffected, becausethebetween-armdifferencestheyuseare80–200times
+that noise, butR@1differences below about0.006should not be interpreted,
+andtheR@1columnofTable2shouldbereadasonedrawfromthisdistribution
+rather than as a reproducible value. One consequence is that the ordering of the
+37
+two retrieval-strong arms in that table should not be pressed: the gap between
+CLIP B/32 both-position (0.693) and vision-only (0.680) is0.013, which is1.7–
+2.4sampling standard deviations for a single evaluation, and about1.5against
+the seed-to-seed spread of the same arms. We report the pair as unresolved
+rather than as an ordering. One consequence is that the ordering of the two
+retrieval-strong arms in that table should not be pressed: the gap between CLIP
+B/32 both-position (0.693) and vision-only (0.680) is0.013, which is1.7–2.4
+sampling standard deviations for a single evaluation, and about1.5against the
+seed-to-seed spread of the same arms. We report the pair as unresolved rather
+than as an ordering. Fixing the gallery to a deterministic evaluation transform
+is a change we recommend for future work but have not applied retrospectively,
+because it would alter archived numbers without repairing the archive.
+Tenth, our cross-method comparison is made at one shared learning rate
+Eleventh, the bottleneck Adapter is not an identity map at insertion in
+the implementation this repository uses for it:src/peft_methods.pyzero-
+initialisesup.weightbut leavesup.biasat itsnn.Lineardefault, and zero-
+ing that bias in memory restores the frozen model exactly (zero-shot0.15%→
+59.91%,CG 1.2065→0.8155). A later implementation in the same repository
+(tools/clip_peft_gamma_ordering.py) does zero it. This is an implemen-
+tation oversight rather than a property of bottleneck adapters, but it means
+Adapter Cross-Gap changes in this work are measured from a perturbed refer-
+ence and are therefore not comparable with the LoRA figures; Section 5 already
+restricts the Adapter comparison to the common frozen baseline for the same
+reason. rather than at each method’s optimum, and no single rate can be
+fair to all three families because they respond to it in opposite directions: full
+fine-tuning is optimal at the bottom of the range (10−7–10−6, indistinguish-
+able within its seed spread), LoRA at10−5, and the both-position bottleneck
+Adapter only becomes functional from10−4 upwards (it collapses to0.13%zero-
+shot at10−5). Tuning each to its own optimum removes the apparent advantage
+of adapter methods over full fine-tuning: LoRA at10−5 reaches60.69±0.05%
+zero-shot at∆CG =−0.0054, against60.87±0.21%and−0.0016for full fine-
+38
+tuning at10−6 (60.53%and−0.0061at10 −7)—a difference of0.18points, inside
+full fine-tuning’s own seed spread. The only configuration that clearly narrows
+the gap is text-only LoRA at3×10−4 (∆CG =−0.047), and it pays8.4per-
+centage points of zero-shot accuracy for that. The practical recommendation
+therefore concerns cost and retrieval rather than alignment: adapter methods
+arefarcheaperandfarlessrate-sensitive, buttheydonotpreservethegapbetter
+than a correctly tuned full fine-tune. Full fine-tuning is far more learning-rate
+sensitive than the adapter methods: overlr∈{10−7,...,3×10 −4}its zero-shot
+accuracy spans61.1%(above the frozen59.91%) to0.1%and its∆CGspans
+−0.008to+0.80, with a flat slightly-negative plateau atlr≤10 −6, a steep rise
+between10−6 and10−5, and and a collapse region from10−4 upwards in which
+the embeddings degenerate and∆CGceases to measure the gap (at10−4 three
+seeds give+0.80,+0.26and+0.27; at3×10 −4 the seeds reachCG = 0.0004,
+1.62and1.29, the first with its loss pinned atln 64, so the seed-to-seed spread
+±0.86exceeds any effect). The behavior up to3×10−5 is therefore a threshold
+near3×10 −6 followed by a monotone rise to+0.253±0.002, not a saturation,
+and the shallowest point we observe (3×10−7,−0.0069) is only about twice the
+sampling noise of∆CG, so it does not establish an optimal rate. The collapse
+we report is therefore the behavior of the shared rate (10−4) rather than of
+full fine-tuning as such, and at10−6 full fine-tuning matches the frozen model
+in alignment. Three caveats travel with this: the best rate we found is the
+boundary of our grid, so lower rates are untested; only one seed was run at
+3×10 −5,10 −4 and3×10 −4; and we did not sweep the learning rate of the
+LoRA and Adapter methods, so the stronger test of tuning every method to its
+own optimum remains open.
+Several limitations warrant discussion. First, our theoretical framework as-
+sumes gradient flow dynamics with trajectory-averaged coupling coefficients.
+While the strong empirical agreement (meanR2 = 0.949over the LoRA config-
+urations) validates this approximation, stochastic gradient noise may affect the
+instantaneousdynamicsinwaysnotcapturedbythedeterministicODE.Second,
+our study covers contrastive dual-encoder architectures and one decoder-based
+39
+VLM. The decoder model, Qwen2-VL-2B under strict freezing, reproduces part
+of the framework’s qualitative behavior: the distribution gap decays under every
+arm, and adapting the vision tower alone is again the weakest choice, reducing
+DG∗ by18.0±8.8%against66.5±8.3%for text-only and87.9±5.4%for both-
+positions over thirteen seeds, with its largest reduction still below the smallest
+reduction either other arm reaches (Section 7 of the supplement). What does
+not carry over is the ordering between the two stronger arms. On this model the
+both-position arm does not reduce the gap more than the text-only arm in any
+way we can resolve: their seed ranges overlap (73.1–95.1%against47.8–78.8%)
+and they differ by0.86pooled standard deviations on the centroid gap. A single
+seed is sufficient to manufacture an orderly ranking here, which is why we re-
+port three and why we draw no conclusion from this model about which site is
+preferable. Our first runs also used four-bit quantisation, which we subsequently
+found not to be reproducible: repeating one configuration with an identical seed
+changed the measured gap span from0.304to0.407, because the quantised ma-
+trix multiplications are not deterministic. The decoder results above are there-
+fore bfloat16, which reproduces bit for bit. Whether four-bit quantisation mate-
+rially changes the ordering on the dual-encoder backbones, where the reported
+runs use it for the vision-side arms, is not something we have established. The
+remaining qualifications are the scale (400samples, three epochs, one model)
+and the fact that whether the framework extends to generation-oriented ob-
+jectives, as distinct from decoder architectures, remains untested. Third, the
+ODE derivation usesDG∗ as a differentiable proxy for the Distribution Gap;
+their close agreement in the pilot runs supports the substitution, but formal
+bounds on the approximation error are not yet established. Fourth, the ODE’s
+state variable does not move in every configuration the framework is asked to
+describe. On MS-COCO under strict freezing theDG∗ trajectory changes by
+0.003–0.006over ten epochs while the centroid gap changes by0.108–0.111, and
+the exponential fit returnsR2 between0.12and0.68against0.93for the centroid
+gap on the same runs; the corresponding ratio of spans on Flickr30k is1.2–1.6.
+The retrieval accuracies indicate why: strict freezing reachesR@1 = 0.12on
+40
+MS-COCO against0.62–0.70on Flickr30k, so the centroids of the two modali-
+ties approach one another without matched pairs being brought together, and
+DG∗ measures the latter. The framework therefore describes alignment dynam-
+ics where adaptation actually moves the embeddings, and its coefficients should
+not be reported for configurations in which it does not; we report no ODE co-
+efficients for MS-COCO for this reason. Fifth, the fit accuracies reported in
+Section 5 are obtained withαandβfitted to each trajectory, not predicted
+from its gradients. The gradient-flow identity itself is verified directly rather
+than through the fit (Section 4), but the coefficient values entering the trajec-
+tories are estimated from the data they describe, so the fit accuracies measure
+whether the functional form is adequate rather than whether the coefficients
+are computable in advance. Sixth, the ODE reproduces the shape of individual
+trajectories well, but its absolute prediction of the converged gap is biased and
+its configuration ordering is not reliable. Across the six pilot configurations for
+which both quantities were recorded, the predicted finalDG∗ is systematically
+below the measured value, by a median factor of2.44; the spread of predictions
+across configurations is3.33times the spread actually measured (0.223against
+0.067); the correlation between predicted and measured values is+0.225; and
+the predicted change between configurations moves in the same direction as the
+measured change in only two of five comparisons. The sign ofαis predicted cor-
+rectly and its magnitude to within a median relative error of34%, so the frame-
+work captures the direction and rough size of the perturbation; what it does
+not yet deliver is a quantitative forecast of the steady state, and we therefore
+report the fitted coefficients rather than the closed-form prediction throughout
+Section 5. Seventh, the absolute value of the driving coefficient is not predicted
+correctly by the gradient identity. Estimatingf(DG0) =⟨∇ θDG∗,∇θL⟩from
+thirty batches at each of the three positions and two seeds gives+66.7±4.8,
+whereas theαfitted to the archived trajectories implies−27.7: the two dis-
+agree in sign and by a factor of2.4, and the discrepancy is not sampling noise,
+since the standard error of the estimate is4.8. The identity therefore holds as
+a per-step statement, verified against the change an actual optimiz step pro-
+41
+duces, but it does not supply the coefficient. The sign and rough magnitude of
+αare nevertheless reproduced by the separate closed-form route of Section 4,
+which agrees with the fitted values in sign across all six pilot configurations at
+a median relative error of34%; what fails is the absolute calibration, not the
+relative ordering. Eighth, the ordering of the three adaptation positions is not
+reproduced by the trajectory-averaged driving coefficient. Averaging over an
+epoch of training gives+10.8for text-only,+10.2for vision-only and+9.2for
+the both-position arm, a spread of16.5%, whereas the measured gap changes
+span277%of their mean and order the arms differently, placing both-position
+ahead of vision-only. The coefficient therefore identifies the best position but
+does not rank the other two, and the ordering we report rests on the measured
+gap changes rather than on this quantity. Ninth, the trajectories analyz here
+are a subset of those originally produced for the rank sweep:55LoRA runs are
+archived and reproducible (49on Flickr30k,6on MS-COCO) at three seeds per
+configuration, against the larger set of runs the sweep originally comprised at
+five seeds. Everything reported in Section 5 is computed from the archived runs
+and is reproducible from them; the figures quoted should be read as properties
+of that archived set, while the per-configuration MS-COCO table in the supple-
+ment is drawn from a larger set of runs than those archived with this work and
+should be read on that basis.
+Several extensions follow naturally from this framework. The coupling coef-
+ficientΓm can be computed layer-wise, potentially enabling layer-specific PEFT
+allocation strategies informed by gradient geometry rather than heuristic heuris-
+tics. The ODE’s steady-state predictionDG∗
+∞ =DG 0+α/βcan be evaluated at
+initialization, which suggests pre-hoc configuration selection without training as
+a target. We have not established that it works: our own limitation six records
+that the prediction is biased on real checkpoints and that the within-dataset
+ordering of runs is not reproducible from it, so we present the steady state as a
+diagnostic quantity rather than as a selection rule. Establishing it would com-
+plement IIMM’s Niss et al. (2025) task-level predictions with configuration-level
+precision. Extending the framework to instruction-tuning and RLHF regimes
+42
+would test its generality beyond standard contrastive fine-tuning.
+6.4. Connection to Pattern Recognition
+The cross-modal alignment dynamics studied here exemplify a broader class
+of pattern recognition problems: identifying systematic regularities in how
+training design choices map to representation outcomes across-architectures,
+datasets, and objectives. The ODE framework demonstrates that these regu-
+larities are not arbitrary but follow from the geometry of gradient coupling be-
+tween task optimization and representation structure. We hope this principled
+approach to understanding representation dynamics finds application beyond
+the specific context of vision-language alignment.
+7. Conclusion
+This paper has established a complete arc from empirical discovery to the-
+oretical explanation to experimental verification, spanning 383 experiments
+across six backbones (CLIP ViT-B/32, CLIP ViT-B/16, CLIP ViT-L/14, Open-
+CLIP laion2B, SigLIP, and BLIP-1), three PEFT methods, and two retrieval
+datasets. Our contributions are threefold.
+First, we presented a systematic empirical characterization of modality gap
+evolution under PEFT, covering 117 mechanism experiments and 104 strict-
+freezing controls. That work established that adaptation at the text position
+preserves cross-modal alignment on the InfoNCE-based encoders studied (a di-
+rection we show reverses on SigLIP), that the Distribution Gap predicts retrieval
+performance (r=−0.714overn= 204experiments; clustered-bootstrap esti-
+matesr=−0.738, 95% CI:[−0.889,−0.613], and independentlyr=−0.847,
+95% CI:[−0.936,−0.709]), and that what damages cross-modal alignment is
+intervening on the visual side rather than adapting the language side (Visual
+Fragility Interpretation, supported by strict-freezing controls; we show under
+matched relative perturbation that this is a statement about where the adapters
+sit, not evidence that the vision tower is intrinsically the more fragile one).
+43
+Second, we derived Gap SusceptibilityΓm =∥∇ mDG∗∥·cosϕ m from gra-
+dient flow and obtained the first-order ODEd(DG∗)/dt=α−β(DG ∗−DG 0).
+This ODE provides a unified explanation for the empirical regularities: the text-
+only position follows fromgv = 0removing the dominant perturbation source
+for a given allocation; LoRA’s protective effect fromα<0for all PEFT configu-
+rations; and the rank effect from Effective Rank Saturation—the discovery that
+task gradient effective dimension is determined by task structure (reff≪64),
+not configured rank.
+Third, we validated the ODE across 55 archived LoRA runs (49 on Flickr30k,
+6 on MS-COCO), each fitted separately. The framework reproduces gap trajec-
+tories at meanR 2 = 0.949over the LoRA configurations (range0.814–0.977),
+substantially outperforming the constant baseline, andαis negative on both
+datasets. Across the215fits we archived,α <0in196; the19exceptions are
+fourteenofthefiftyAdapterfits(largest+0.061), fourLoRAfitsfittedleave-one-
+configuration-out(largest+0.011)andallthreeCLIPBitFitfits(α≈+4×10 −4,
+i.e. numerically zero), so we state the protective bound as the dominant rather
+than a universal regime, andβis stable across PEFT and full fine-tuning under
+matched settings (βfull = 0.159).
+The practical message is narrower than a blanket recipe, and the ODE is
+what narrows it. Where the modality gap is the quantity of interest and the
+encoders are InfoNCE-trained, leaving the visual side alone and adapting the
+text side is the safer default, and the mechanism says why: withgv = 0the
+dominant perturbation term vanishes. That reasoning does not transfer auto-
+matically. On SigLIP the same control reverses the ordering, so the recipe has
+to be established per architecture rather than assumed. A second caution cuts
+across-architectures: a smaller gap and better retrieval are not the same objec-
+tive. Both-position adaptation retrieves better on CLIP and on SigLIP while
+reducing the gap more on only one of them, so monitoring the gap alone can
+point away from the configuration that retrieves best.
+44
+Data availability
+The derived data and analyz code are openly available; see the Data avail-
+ability statement in the front matter for the repository and DOI.
+A. Complete Experiment Catalog
+Table .8 catalogues the 221 runs that are listed here by section, the 117
+mechanism experiments of Part I together with the 104 strict-freezing controls;
+a further 55 ODE-fitting runs are archived for Section 5 and analyz there, along-
+side a full-fine-tuning pilot and a bias-only BitFit control on a second architec-
+ture. The strict-freezing group is the one on which the adaptation-position
+findings rest, since only under strict freezing do the arms differ solely in where
+the adapters sit. CG∆= final CG−initial CG; negative values indicate gap
+reduction.† BLIP-1 full fine-tuning failed to produce valid gap measurements;
+BLIP-1R@1valuesarenear-random(testset5Kimages)exceptrank-4. ‡5-Seed
+rows show mean±std across 5 independent runs.
+Table .8: Experiment catalogue by section. The per-run rows, configurations
+and metrics of all 383 experiments are released with the analyz code; this table
+gives the distribution over the fourteen sections.
+Catalogue section Experiments
+I. LoRA Core (Flickr30k) 30
+II. Adapter (Flickr30k) 7
+III. COCO Cross-Dataset 8
+IV. BLIP-1 Cross-Architecture 7
+V. ViT-L Cross-Model 3
+VI. Route C/D/E Enhanced Strategies 16
+VII. 5-Seed Statistical Validation 20
+VIII. ImageNet Zero-Shot 4
+IX. ViT-B Layered Fine-Tuning 5
+X. ViT-L Layered Fine-Tuning 4
+XI. Adapter Layered Fine-Tuning 2
+XII. Mechanism Probes 3
+XIII. Zero-Shot Generalization and SigLIP 8
+XIV. Strict-Freezing Controls (four backbones,r∈[1,64]) 104
+T otal 221
+Footnotes. aChange in retrieval after adding Gaussian parameter noise (µ=0,σ=0.1) to
+the encoder weights. This probe is reported for completeness only: the corrected design finds
+45
+no stable ordering between encoders, as the withdrawn-evidence note explains. bGradient
+signal-to-noise ratio, averaged across training. The text-only arm settles at the higher final
+loss (4.15against0.56) and nevertheless holds the gap down. cEffective rank of the image
+embeddings, at0.99explained variance. Strict freezing leaves this quantity unchanged under
+text-only training.†On BLIP-1 the full-fine-tuning arm failed.‡Entries are five-seed means.
+dDTD and Food101 zero-shot classification accuracy (single-template protocol); Frozen: DTD
+42.87%, Food101 82.32%; Text-only: DTD 43.30%, Food101 81.58%; Both-modality: DTD
+43.03%, Food101 81.63%.eImageNet zero-shot Top-1, single-template protocol (“a photo of
+a {}”) on the full 50,000-image ImageNet validation set; the full-FT row reports means over
+3 retrained seeds (CG∆range+0.26–+0.67; Top-1 range0.1–4.1%; original checkpoint not
+saved).
+B. Visual Fragility Evidence
+Figures .8–.10 give the weight-level evidence for the Visual Fragility Interpretation, Fig-
+ures .11–.13 the parameter-noise probe together with the control that licenses its negative
+result and the comparison that led an earlier version of that claim to be withdrawn, and
+Figures .14–.15 the layered fine-tuning results.
+text both vision
+0.0
+0.1
+0.2
+0.3
+0.4Δ effective rank (mean over layers)
+Vision side Text side
+Figure .8: Effective-rank change under strict freezing, by adaptation position. Blue is the
+vision side and hatched orange the text side; the mean is taken over layers. Training the text
+side alone moves its own side’s effective rank by+0.46and the vision side by exactly zero,
+because no vision parameter is trainable in that arm.
+46
+text both vision text
+(legacy)
+106
+107
+108
+Trainable parameters strict freezing
+not used as evidence
+Figure .9: Trainable parameters per adaptation position under strict freezing, against the
+earlierconventioninwhichthebackbonestayedtrainable. Thestrictarmsliebetween2.0×10 5
+and4.9×10 5; the legacy text-only arm, which also trained the vision tower, reaches1.37×108
+and is shown for contrast only. Log scale.
+47
+Table 2: The three adaptation positions under strict freezing, where the optimiz sees only the
+adapter matrices and the arms therefore differ solely in where those adapters sit. Each entry
+is∆CG withR@1beneath it (bold marks the smallest∆CG in the row), at 5000 samples and
+10 epochs withα= 2r; negative∆CG means the gap narrowed. Rows are grouped by pre-
+training objective, which is what the ordering tracks: every contrastive image–text backbone
+puts text-only smallest, and the two backbones trained with other objectives put both there.
+Patch size does not separate the groups, and the two rows marked†show this directly, having
+been measured at the same rank under the same protocol: CLIP B/16 and CLIP B/32 order
+the arms identically despite differing in patch size by a factor of two. On the contrastive back-
+bones the arm that minimiz the gap (text-only) retrieves worst, so the ordering by gap runs
+opposite to the ordering byR@1; SigLIP orders them differently on both counts. BioCLIP was
+measured at rank4over three seeds and its retrievals were not recorded, so those cells are left
+blank rather than estimated; its pre-training corpus is biological, so its absolute∆CG is not
+comparable with the others and only its within-row ordering is used. Every row is a five-seed
+mean under the same protocol, at batch128throughout, and the seed-to-seed standard devia-
+tion is0.0006–0.006depending on the backbone, so the separations the arms rest on are one to
+several times that spread. On OpenCLIP, the backbone with the smallest relative separations,
+the adjacent arms differ by1.5and2.7pooled standard deviations, so its ordering is resolved
+and agrees with the other contrastive backbones. The five-seed means are+0.0802,+0.0864
+and+0.0996for text-only, both-position and vision-only respectively. Every row is a five-seed
+mean under the same protocol, at batch128throughout, and the seed-to-seed standard de-
+viation is0.0006–0.006depending on the backbone, so the separations the arms rest on are
+one to several times that spread. All twelve∆CG cells reproduce exactly from the archived
+per-seed JSON at4-decimal precision, and the∆CG column is what the table’s argument
+uses. TheR@1column does not reproduce uniformly, and we state its provenance rather than
+silently adjust it. Six cells reproduce exactly. Three cells of the OpenCLIP row (0.643,0.680,
+0.672) come from the rank-8OpenCLIP archive (strict_freeze_openclip) while that row’s
+∆CG comes from the rank-4archive (strict_freeze_oclip/r4), so the two halves of that row
+were not measured on the same configuration. One cell, CLIP B/32† text-only (0.621), equals
+the non-strictflickr30k_seeds/rq2_text_onlyfive-seed mean (0.6210,145,170,177trainable
+parameters) rather than the strict-freezing mean for that cell (0.6222,98,304trainable param-
+eters). Five of the remainingR@1entries differ from the five-seed means by at most0.0022,
+of the same order as that sampling noise. The sixth, and largest, difference (0.643against
+0.6366) has a different cause and is not a noise effect: for the OpenCLIP row thatR@1value
+comes from the rank-8archive while the row’s∆CG comes from the rank-4archive, so the two
+halves of that row were not measured on the same configuration. We also note that theR@1
+of the CLIP B/32 vision-only cell cannot be reproduced from its own checkpoint under the
+paper’s own loader and metric function: four independent evaluations give0.675–0.682(mean
+0.679) against the archived0.700, which is the largest of that cell’s five seeds (0.671–0.700,
+mean0.680), i.e. the archived value is a high draw rather than a reproducible measurement.
+The comparison this table supports therefore rests on the∆CG column, which reproduces
+exactly for all twelve cells and whose sampling noise is80–200times below the between-arm
+differences. We therefore flag bothR@1entries as not reproducible from the archive at the
+printed precision. The recomputed five-seed means, fromoutputs/strict_freeze_oclip/r4,
+outputs/strict_freeze_b32_r4andoutputs/strict_freeze_b16/r4respectively, are: Open-
+CLIP text-only0.6366, both-position0.6818, vision-only0.6698; CLIP B/32† text-only0.6222,
+both-position0.6796; and CLIP B/16† text-only0.6502.
+Backbone Pat. Text-only Both Vision-only
+Contrastive image–text pre-training
+CLIP B/32 (WIT) 32−0.0465/0.624−0.0258/0.693+0.0106/0.680
+OpenCLIP B/32 (LAION) 32+0.0802/0.643 +0.0864/0.680+0.0996/0.672
+CLIP B/32† (WIT) 32−0.0304/0.621−0.0204/0.679 +0.0166/0.670
+CLIP B/16† (WIT) 16−0.0166/0.651 +0.0124/0.707 +0.0376/0.686
+Other objectives
+SigLIP B/16 (WebLI) 16+0.0664/0.432−0.0114/0.619+0.0522/0.341
+BioCLIP B/16 (bio.) 16−0.3671/ —−0.4515/ —−0.2927/ —
+48
+Table 3: Pearson correlation between gap metrics and R@1, over then= 204archived
+experiments.
+Predictorrpartialr(control CG)p
+DG−0.714−0.581<0.001
+CG−0.594—<0.001
+CG∆ +0.190—0.007
+Table 4: Phase 1:βconstancy across configurations. A1 holds within PEFT (CV= 13.3%).
+Full-FTβdiffers across batches:0.643(this pilot) vs.0.159(Phase-2 matched sweep); see
+text.
+Configurationβ(mean±std)R 2 range Verdict
+Text-only,r=8 0.142±0.008>0.97
+Both,r=8 0.133±0.024>0.98
+PEFT pooled0.137±0.018—A1 PASS(CV=13.3%)
+Full fine-tuning0.643±0.224 0.86–0.96batch-sensitive
+49
+Table 5: Phase 2 rank sweep on Flickr30k:α,β, andR 2 by rank and position, each fitted
+separately to every archived run and then averaged (n= 3runs per configuration, except
+text-onlyr=16withn= 4).
+Configα(mean)β(mean)R 2
+Text-only position
+r= 1−0.0190.045 0.951
+r= 2−0.0260.056 0.954
+r= 4−0.0240.079 0.967
+r= 8−0.0250.066 0.955
+r= 16−0.0320.094 0.951
+r= 32−0.0200.050 0.954
+r= 64−0.0260.070 0.958
+Both-position
+r= 1−0.0180.029 0.956
+r= 2−0.0250.078 0.937
+r= 4−0.0360.111 0.957
+r= 8−0.0240.065 0.963
+r= 16−0.0240.081 0.964
+r= 32−0.0380.072 0.939
+r= 64−0.0190.037 0.938
+LoRA mean−0.026 0.067 0.953
+Full FT (pilot)−0.0390.028 0.950
+Table 6: Cross-dataset and cross-method validation of ODE framework.R 2 for trajectory
+prediction;αandβaggregated over all PEFT configurations.
+ConfigurationR 2 α(mean)β(mean) Runs
+CLIP + Flickr30k + LoRA0.953±0.014−0.026 0.06743
+CLIP + COCO + LoRA0.903±0.054−0.020 0.0826
+OpenCLIP + Flickr30k + BitFit0.943±0.041−0.002 0.4843
+50
+Table 7: Task-gradient norms by encoder under strict freezing (rank8, mean over three seeds,
+5000samples). The vision-side entry for text-only and the text-side entry for vision-only are
+zero by construction: with no adapter on that side the optimiz sees no gradient there. These
+zeros are the prediction of Theorem 4.1 made concrete.
+Adaptation position∥g v∥ ∥g t∥
+text-only0.00 13.51
+both12.93 11.05
+vision-only15.44 0.00
+text both vision
+-0.08
+-0.06
+-0.04
+-0.02
+0.00
+0.02
+Vision-side Δ effective rank
+(LoRA effect, mean over layers)
+0.0000
+-0.0421
+-0.0588
+Figure .10: What each adaptation position does to the vision side, measured as the change in
+effective rank of the vision weights induced by the adapters (mean over layers). Training the
+text side alone leaves this at exactly zero, which is the weight-level counterpart of the zero
+vision gradient measured directly in Section 5. The both-position and vision-only arms do
+move the vision side, by−0.042and−0.059respectively. A count of vision tensors receiving a
+gradient update would read zero for all three arms, since under strict freezing the tower’s own
+weights are never trainable; that count therefore carries no information and is not plotted.
+51
+0 0.03 0.1
+Noise σ
+-2
+0
+2
+4
+6
+R@1 change (%)
+Vision
+Text
+Figure .11: Parameter-noise probe under the corrected design: retrieval change against noise
+scale for each encoder, five seeds each. The error bars overlap at every scale and the ordering
+between encoders is not stable, so the probe does not show either encoder to be the more
+sensitive. Error bars are standard deviations over five seeds.
+1 2 3 4 5
+Seed index
+-1.00
+-0.75
+-0.50
+-0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+R@1 change (%)
+Vision Text
+Figure.12: Theσ=0controlfortheprobeabove. Everyrunreturnsexactlythebaseline, which
+is what licenses the negative result: an earlier probe without image-set and augmentation
+control appeared to show vision-side degradation atσ=0, where by construction none can
+exist.
+52
+Vision Text
+0
+1
+2
+3
+4
+5
+6|R@1 change| (%) at σ = 0.1
+earlier claim: 2.6 ×
+Figure .13: Why that earlier line of evidence was withdrawn. The dotted line is the2.6×
+vision-to-text ratio the earlier probe claimed; the measured ratio atσ=0.1is0.76×, and the
+claim is not used. Error bars are standard deviations over five seeds.
+53
+0.8
+0.9
+1.0
+1.1
+1.2
+1.3Centroid gap
+Frozen
+Text + Vis-L1
+Text + Vis-L2
+Text + Vis-L4
+Text-only
+Both (all Vis)
+0 1 2 3 4 5
+Epoch
+0.0
+0.2
+0.4
+0.6R@1
+Figure.14: ViT-Blayeredfine-tuning. Text+Vis-L1achievesfrozen-levelCGwithcompetitive
+R@1 using only one visual layer.
+54
+0.8
+1.0
+1.2Centroid gap
+Frozen Adapter Text-only Adapter Text+Vis
+0.0 0.5 1.0 1.5 2.0 2.5 3.0
+Epoch
+0.0
+0.2
+0.4
+0.6R@1
+Figure .15: Adapter layered fine-tuning, both panels sharing the epoch axis. Both Adapter
+configurations raise the gap above the frozen reference of0.81: the text-side one by0.25and
+its text-plus-vision counterpart by0.50. Retrieval collapses in both, toR@1 0.06and0.005
+against a frozen baseline of0.69, so neither configuration preserves either quantity. This is a
+layered-configuration comparison; the aggregate cross-dimension comparison in Section 5 does
+not reproduce a text-only advantage for Adapter.
+55
+C. ODE Framework: Theorem Verification and Falsification
+A note on the theoreticalβformula: applying Equation (8)’s definition ofβdirectly to
+the measured gradients yieldsβtheor≈0.0035, roughly40×smaller than the fitted values
+(β≈0.14–0.16). Theαprediction is therefore the primary quantitative test of the framework
+(verified below), while a fully predictive theory of the restoring coefficient requires additional
+modeling (e.g., gradient-noise or higher-order effects) and is left to future work.
+The Theorem 4.1 prediction—αpred =−η P
+m ¯Γm∥gm∥—agrees with the empirically fit-
+tedα obs in sign and order of magnitude across all six pilot configurations (all negative, within
+0.03 of each other), although rank ordering is not preserved at this sample size. The variance
+of this estimator is worth recording, because it is large and it dictates howΓm must be mea-
+sured in practice. Estimates of P
+m⟨∇mDG∗,gm⟩formed from a single batch of64or128
+pairs spread over roughly−86to+72with a standard deviation of27–49, against a mean of
+18–32, so a batch-level estimate carries a signal-to-noise ratio near unity and its sign is not
+stable. The consequence is thatΓ m should be estimated bypairedmeasurement—forming
+the predicted step−η⟨∇θDG∗,∇θL⟩and comparing it to the change an actual optimiz step
+produces at the same state, as done above, where the correlation reaches0.998—rather than
+by averaging independent batch-level estimates, which requires of order102–103 batches to
+reach10%relative precision. We report this because it bounds how the framework can be
+used: the ODE’s coefficients are obtained by fitting each trajectory, which is deterministic,
+and the gradient-level quantities above are diagnostic of the mechanism rather than a practical
+route to predictingαandβin advance.
+Figure .16 shows the falsification of∥gv∥∝ √r: random rank-rprojection (R2 = 0.96) vs.
+actual∥g v∥(flat to within10%acrossr∈[1,64], against the eightfold change √rpredicts),
+revealing Effective Rank Saturation.
+/uni00000014/uni00000013/uni00000013
+/uni00000014/uni00000013/uni00000014
+/uni0000002f/uni00000052/uni00000035/uni00000024/uni00000003/uni00000055/uni00000044/uni00000051/uni0000004e/uni00000003/uni00000055
+/uni00000013/uni00000011/uni00000014/uni00000015
+/uni00000013/uni00000011/uni00000014/uni00000013
+/uni00000013/uni00000011/uni00000013/uni0000001b
+/uni00000013/uni00000011/uni00000013/uni00000019
+/uni00000013/uni00000011/uni00000013/uni00000017
+/uni00000013/uni00000011/uni00000013/uni00000015
+/uni00000013/uni00000011/uni00000013/uni00000013
+/uni00000044/uni0000004f/uni00000053/uni0000004b/uni00000044/uni00000003/uni0000000b/uni00000053/uni00000048/uni00000055/uni00000057/uni00000058/uni00000055/uni00000045/uni00000044/uni00000057/uni0000004c/uni00000052/uni00000051/uni0000000c
+/uni00000056/uni0000004f/uni00000052/uni00000053/uni00000048/uni00000003/uni00000020/uni00000003/uni00000010/uni00000013/uni00000011/uni00000013/uni00000013/uni00000013/uni00000014
+Figure .16: Falsification of√rscaling. Red: random projection. Blue: actual∥g v∥, which
+stays within10%acrossr∈[1,64]against the eightfold change √rpredicts.
+56
+D. Cross-Dataset ODE Validation
+An earlier version of this supplement reported ODE coefficients for MS-COCO in a table.
+That table has been withdrawn. Its coefficients were fitted toDG∗ trajectories from runs in
+which the backbone remained trainable, and the strict-freezing runs this paper’s controls use
+do not reproduce the quantity it measured.
+The reason is measurable and is reported here rather than left implicit. Under strict
+freezing theDG∗ trajectory on MS-COCO moves by0.003–0.006over ten epochs, whereas
+the centroid gap moves by0.108–0.111on the same runs; the ratio of the two spans is0.030–
+0.055. On Flickr30k the same ratio is1.2–1.6. Fitting the exponential form to the MS-COCO
+trajectory givesR 2 = 0.12and0.68on the two seeds available, against0.93for the centroid
+gap on those same runs. The retrieval accuracy explains why: strict freezing on MS-COCO
+reachesR@1 = 0.12where Flickr30k reaches0.62–0.70, so the model has moved the two
+modality centroids toward one another without bringing matched pairs together. A centroid
+gap can narrow while paired embeddings stay apart, andDG∗ measures the latter. Where
+DG∗ does not move, the ODE is fitted to noise.
+MS-COCO is therefore retained in this paper for what the strict-freezing runs do support
+— the comparison of adaptation sites by centroid gap, reported in the main text and in
+Section 5 — and not for ODE coefficients.
+E. Decoder-Based VLM
+The main text’s claim about adaptation site is established on contrastive dual-encoder
+models. To test whether it depends on that architecture family, we repeated the strict-
+freezing comparison on a decoder-based VLM, Qwen2-VL-2B-Instruct, where the two towers
+are separated by the fact that their linear layers carry different names: the vision tower
+usesattn.qkv,attn.projandmlp.fc1/fc2, and the language model uses the usual seven
+projections. Passing different target modules to the adapter library therefore isolates the
+towers, and this was verified before any training: the text-only arm holds392adapters and no
+vision-side tensor, the vision-only arm holds258and no language-side tensor, and the both-
+position arm holds both sets. Every run freezes the backbone and exposes only the adapter
+matrices.
+The protocol is400samples for three epochs at batch2, rank8and learning rate10 −4,
+and every configuration is run at thirteen seeds; we report means with the spread across
+seeds. Precision is an issue we had to settle before the comparison could be made. Our first
+runs used four-bit quantisation, which is not reproducible: repeating one configuration with
+an identical seed changes the measured gap span from0.304to0.407, because the quantised
+matrix multiplications are not deterministic. The same configuration in bfloat16 reproduces
+bit for bit (0.110 064on both of two repeated runs). All results below are therefore bfloat16.
+57
+At batch2this fits the single available accelerator, and the vision-only arm, which had not
+completed an epoch at batch4in bfloat16, completes its three epochs in3.3to5.0minutes.
+We report the relative change inDG∗ rather than its absolute change, because the arms
+start from different values. The startingDG∗ ranges over a factor of3.4across arms (0.636
+to2.176), and an arm that starts high can show a large absolute change while barely moving
+in relative terms. The centroid gap does not have this problem on these runs, and its ranking
+agrees with the relative ranking below.
+Table .9: Adaptation site on a decoder-based VLM under strict freezing. Qwen2-VL-2B-
+Instruct,400samples, three epochs, batch2, rank8, bfloat16, three seeds.DG ∗ is the paired
+squared distance after normaliz. The reduction inDG∗ is quoted as a percentage of the arm’s
+own starting value because vision-only starts3.7to8.8times higher than the other two arms;
+the centroid gap starts at comparable values (1.34–1.37for vision-only against0.20–0.70), and
+we quote its span alongside so that the comparison does not rest on the normaliz alone.
+Arm TrainableDG ∗ reduction Seed range CG span
+Both-position14,494,912 +87.9±5.4% 73.1–95.1 0.291±0.108
+Text-only9,232,384 +66.5±8.3% 47.8–78.8 0.168±0.094
+Vision-only5,262,528 +18.0±8.8% 8.5–35.7 0.392±0.087
+The seed spread is what the comparison turns on, and thirteen seeds resolve one of the two
+questions while leaving the other open. Vision-only is the weakest arm by a margin that no
+seed ordering can close: its largest reduction over thirteen seeds is35.7%, below the smallest
+reduction either other arm reaches (47.8%for text-only and73.1%for both-positions), so the
+three distributions do not overlap and the arm is the worst on every seed. The remaining
+pair is not resolved. Both-position averages a larger reduction than text-only, but the two
+overlap almost completely (73.1–95.1%against47.8–78.8%) and are separated by0.86pooled
+standard deviations on the centroid gap. A single seed is enough to produce the appearance
+of an orderly ranking, and a handful of seeds is enough to produce a misleading mean: text-
+only averages+82%over nine seeds and+66.5%over thirteen, because one seed gives it95%
+where another gives47.8%. We therefore report the identity of the best arm on this model
+as unresolved between both-position and text-only, and we do not use it as evidence about
+which adaptation site is preferable; that vision-only is the worst of the three, in contrast, is
+supported by every seed.
+Two conclusions follow. First, the framework is not confined to dual-encoders: the distri-
+bution gap decays here as well, and adapting the vision tower alone is again the weakest of the
+three arms, reducingDG∗ by18.0±8.8%against66.5±8.3%and87.9±5.4%for the other
+two, with its largest value below the smallest value either other arm reaches. Second, and in
+contrast to the dual-encoder result, the ordering between the two stronger arms is not resolved
+on this model: they differ by0.86pooled standard deviations on the centroid gap and their
+58
+seed ranges overlap, so thirteen seeds are not enough to separate them. The evidence remains
+preliminary — one model, small scale, and a training pipeline whose quantised variant we
+could not reproduce — but it is enough to say that on a decoder VLM the site that is weakest
+is the same one, while the identity of the best site is not established.
+Data availability
+All datasets and model releases used in this study are public. The derived data this paper
+relies on — every result JSON cited here, including the per-epoch monitoring trajectories, the
+strict-freezing controls and the cross-architecture sweeps, together with the analyz scripts that
+compute the reported statistics and the training configurations — are openly available in a
+publicrepositoryathttps://github.com/MoYUYao666/gap-susceptibilityandinaversioned
+snapshot archived on Zenodo under DOI10.5281/zenodo.23341223(https://doi.org/10.
+5281/zenodo.23341223). No datum used here is restricted, and every number in the paper
+can be recomputed from the public resources above.
+Funding
+This research did not receive any specific grant from funding agencies in the public,
+commercial, or not-for-profit sectors.
+Declaration of competing interests
+The author declares that he has no known competing financial interests or personal rela-
+tionships that could have appeared to influence the work reported in this paper.
+CRediT authorship contribution statement
+Hongrui W an:Conceptualization, Methodology, Formal analyz, Investigation, Software,
+Validation, Visualization, Writing – original draft, Writing – review and editing.
+Declaration of generative AI and AI-assisted technologies in the
+manuscript preparation process
+During the preparation of this work the author used Claude (Anthropic) and DeepSeek
+V4 in order to draft and revise the manuscript text and to prepare experimental code and
+figures. After using these tools, the author reviewed and edited the content as needed and
+takes full responsibility for the content of the published article.
+59
+References
+Albert, P., Zhang, F.Z., Saratchandran, H., van den Hengel, A., Abbasnejad, E., 2025a. To-
+wards higher effective rank in parameter-efficient fine-tuning using Khatri-Rao product, in:
+IEEE/CVF International Conference on Computer Vision (ICCV). doi:10.48550/arXiv.
+2508.00230.
+Albert, P., Zhang, F.Z., Saratchandran, H., Rodriguez-Opazo, C., van den Hengel, A., Abbas-
+nejad, E., 2025b. RandLoRA: Full-rank parameter-efficient fine-tuning of large models, in:
+International Conference on Learning Representations (ICLR). doi:10.48550/arXiv.2502.
+00987.
+Cai, Y., Zhang, Z., Liu, Y., Shi, J.Q., 2026. The geometric mechanics of contrastive represen-
+tation learning: Alignment potentials, entropic dispersion, and cross-modal divergence, in:
+International Conference on Machine Learning (ICML). doi:10.48550/arXiv.2601.19597.
+Chen, L., Zhong, H., Wu, W., Zhou, P., 2026. The dominance of text space: Unveiling the
+asymmetric nature of cross-modal alignment in large language models, in: Proceedings
+of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1:
+Long Papers), pp. 36666–36678. doi:10.18653/v1/2026.acl-long.1699.
+Chen, W., Li, X., Zhang, Y., Liu, D., Wang, Z., 2025. A comprehensive survey of vision–
+language models: Pretrained models, fine-tuning, prompt engineering, adapters, and bench-
+mark datasets. Information Fusion doi:10.1016/j.inffus.2025.103623.
+Cheng, Z., Li, X., Chen, Z., 2026. Multi-scaleadaptivealignmentforbridgingthemodalitygap
+in vision-language pre-training. Information Fusion doi:10.1016/j.inffus.2025.102834.
+Dai, R., Yang, R., Zhou, F., Zhu, H., 2026. Breach in the shield: Unveiling the vulnerabilities
+of large language models, in: Conference of the European Chapter of the ACL (EACL).
+doi:10.18653/v1/2026.eacl-long.161.
+Dayal, A., Divya, P., Tiwari, N., Cenkeramaddi, L.R., Mohan, C.K., Kumar, A., 2026. Bridg-
+ing the domain gap in small multimodal models: A dual-level alignment perspective, in:
+IEEE/CVF Winter Conference on Applications of Computer Vision (WACV).
+Fahim, A., Murphy, A., Fyshe, A., 2024. It’s not a modality gap: Characterizing and address-
+ing the contrastive gap, in: Advances in Neural Information Processing Systems (NeurIPS).
+doi:10.48550/arXiv.2405.18570.
+Guo, J., Li, Y., Huang, Z., Fang, J., Liu, Z., Liu, C., Liu, P., Jiang, Q., 2026. Spectral dis-
+entanglement and enhancement: A dual-domain contrastive framework for representation
+learning, in: The Web Conference (WWW). doi:10.1145/3774904.3792528.
+60
+Guo, Y., Li, S., Liu, Z., Zhang, T., Chen, C.L.P., 2025. A parameter-efficient and fine-grained
+prompt learning for vision-language models, in: Annual Meeting of the Association for
+Computational Linguistics (ACL). doi:10.18653/v1/2025.acl-long.1514.
+Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., de Laroussilhe, Q., Gesmundo, A.,
+Attariyan, M., Gelly, S., 2019. Parameter-efficient transfer learning for NLP. International
+Conference on Machine Learning (ICML) .
+Hu, E.J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., Chen, W., 2022.
+LoRA: Low-rank adaptation of large language models, in: International Conference on
+Learning Representations (ICLR). doi:10.48550/arXiv.2106.09685.
+Jiang, Z., Wang, Y., Chen, L., 2026. Exploring cross-modal flows for few-shot learning, in:
+International Conference on Learning Representations (ICLR). doi:10.48550/arXiv.2510.
+14543.
+Kojima, Y., Xu, J., Zou, X., Wang, X., 2025. LoRA-TTT: Low-rank test-time training
+for vision-language models, in: International Conference on Machine Learning (ICML).
+doi:10.48550/arXiv.2502.02069.
+Levi, M.Y., Gilboa, G., 2025. The double-ellipsoid geometry of CLIP, in: International
+Conference on Machine Learning (ICML). doi:10.48550/arXiv.2411.14517.
+Li, J., Li, D., Xiong, C., Hoi, S.C.H., 2022. BLIP: Bootstrapping language-image pre-training
+for unified vision-language understanding and generation, in: International Conference on
+Machine Learning (ICML). doi:10.48550/arXiv.2201.12086.
+Liang, W., Zhang, Y., Kwon, Y., Yeung, S., Zou, J., 2022. Mind the gap: Understanding the
+modality gap in multi-modal contrastive representation learning, in: Advances in Neural
+Information Processing Systems (NeurIPS). doi:10.48550/arXiv.2203.02053.
+Liu, H., Yang, Q., Li, W., Zhang, Z., Liu, J., Han, W., Qin, Z., Guo, J., Shao, J., 2026.
+The geometry of compromise: Unlocking generative capabilities via controllable modality
+alignment. arXiv preprint arXiv:2604.00279 doi:10.48550/arXiv.2604.00279.
+Malik, H.S., Shamshad, F., Naseer, M., Nandakumar, K., Khan, F., Khan, S., 2025. Robust-
+LLaVA: On the effectiveness of large-scale robust image encoders for multi-modal large
+language models. arXiv preprint arXiv:2502.01576 doi:10.48550/arXiv.2502.01576.
+Mistretta, M., Baldrati, A., Agnolucci, L., Bertini, M., Bagdanov, A.D., 2025. Cross the gap:
+Exposing the intra-modal misalignment in CLIP via modality inversion, in: International
+Conference on Learning Representations (ICLR). doi:10.48550/arXiv.2502.04263.
+61
+Morelli, F., Uselis, A., Sonthalia, A., Oh, S.J., 2026. Sparse autoencoders enable robust and
+interpretable fine-tuning of CLIP models. arXiv preprint arXiv:2605.15961 doi:10.48550/
+arXiv.2605.15961.
+Niss, L., Vogt-Lowell, K., Tsiligkaridis, T., 2025. The inter-intra modal measure: A predic-
+tive lens on fine-tuning outcomes in vision-language models, in: IEEE/CVF International
+Conference on Computer Vision (ICCV). doi:10.48550/arXiv.2407.15731.
+Radford, A., Kim, J.W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G., Askell, A.,
+Mishkin, P., Clark, J., Krueger, G., Sutskever, I., 2021. Learning transferable visual mod-
+els from natural language supervision, in: International Conference on Machine Learning
+(ICML). doi:10.48550/arXiv.2103.00020.
+Rahman, A., 2026. A systematic review of vision language models: Comprehensive analysis of
+architectures, applications, datasets and challenges towards robust multimodal intelligence.
+Array 30, 100739. doi:10.1016/j.array.2026.100739.
+Role, F., Meyer, S., Amblard, V., 2025. Fill the gap: Quantifying and reducing the modality
+gap in image-text representation learning. arXiv preprint arXiv:2505.03703 doi:10.48550/
+arXiv.2505.03703.
+Schrodi, S., Hoffmann, D.T., Argus, M., Fischer, V., Brox, T., 2025. Two effects, one trigger:
+On the modality gap, object bias, and information imbalance in contrastive vision-language
+models, in: International Conference on Learning Representations (ICLR). doi:10.48550/
+arXiv.2404.07983.
+Sharma, A., Saxena, D., 2026. One geometry, different outcomes: Readout-dependent effects
+of the modality gap in vision-language models. arXiv preprintarXiv:2609.36101.
+Sun, M., Ren, J., Liu, L.Z., Liang, P., 2026. Re-emergent misalignment: How narrow fine-
+tuning erodes safety alignment in LLMs, in: ICLR Workshop on Reliable and Robust
+Foundation Models. doi:10.48550/arXiv.2507.03662.
+Wang, J., Zhu, X., Patras, I., 2026. Improving the generalization of ViTs for action under-
+standing with VLM pre-training. Pattern Recognition 179, 113794. doi:10.1016/j.patcog.
+2026.113794.
+Wang, R., Wang, X., Yao, Y., Tong, X., Ma, X., 2025. Simulated ensemble attack: Transfer-
+ring jailbreaks across fine-tuned vision-language models. arXiv preprint arXiv:2508.01741
+doi:10.48550/arXiv.2508.01741.
+Wang, S., Yu, L., Li, J., 2024. LoRA-GA: Low-rank adaptation with gradient approximation,
+in: Advances in Neural Information Processing Systems (NeurIPS).
+62
+Xu, Y., Wang, Y., Wu, Z., Song, K., Lin, J., Shen, Z., 2026. Do vision-language models
+truly perform vision reasoning? A rigorous study of the modality gap in reasoning. arXiv
+preprint arXiv:2604.16256 doi:10.48550/arXiv.2604.16256.
+Yang, J., Wei, P., 2026. Learning unified patterns of multimodalities for video temporal
+grounding. Pattern Recognition 172, 112484. doi:10.1016/j.patcog.2025.112484.
+Yang, K., Zhao, W., Guo, J., Sun, X., 2026. Missing visual modality graph transformer for
+multi-modal entity alignment. Pattern Recognition 177, 113320. doi:10.1016/j.patcog.
+2026.113320.
+Yaras, C., Chen, S., Wang, P., Qu, Q., 2026. Explaining and mitigating the modality gap in
+contrastive multimodal learning. arXiv preprintarXiv:2412.07909.
+Yi, L., Douady, R., Chen, C., 2025. Decipher the modality gap in multimodal con-
+trastive learning: From convergent representations to pairwise alignment. arXiv preprint
+arXiv:2510.03268 doi:10.48550/arXiv.2510.03268. the Convergent Representation of Con-
+trastive Vision-Language Models: Geometry, Modality Gap and Shared Space Alignment
+(ICML 2026 version).
+Yin, W., Zhou, P., Xiao, Z., Liu, J., Yu, S., Sonke, J.J., Gavves, E., 2026. Towards uniformity
+and alignment for multimodal representation learning, in: International Conference on
+Machine Learning (ICML). doi:10.48550/arXiv.2602.09507.
+Yu, X., Li, Y., Zhang, Y., Zhao, H., Yang, Y., Tang, H., Song, Y., Hu, X., Qin, C., Yan,
+S., Xiong, H., 2026. Anisotropic modality align. arXiv preprint arXiv:2605.07825 doi:10.
+48550/arXiv.2605.07825.
+Zanella, M., Ben Ayed, I., 2024. Low-rank few-shot adaptation of vision-language mod-
+els, in: IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops
+(CVPRW).
+Zhang, L., Meng, G., Ren, X., Wang, J., 2026a. HALoRA: Low-rank adaptation with hier-
+archical budget allocation for efficient vision-language alignment, in: AAAI Conference on
+Artificial Intelligence (AAAI). doi:10.1609/aaai.v40i33.40056.
+Zhang, M., Wang, Y., Wang, L., Chen, J., 2026b. Parameter-efficient adaptation for MLLMs
+via implicit modality decomposition, in: IEEE/CVF Conference on Computer Vision and
+Pattern Recognition (CVPR), pp. 37745–37755.
+Zhang, Q., Chen, M., Bukharin, A., Karampatziakis, N., 2023. AdaLoRA: Adaptive bud-
+get allocation for parameter-efficient fine-tuning, in: International Conference on Learning
+Representations (ICLR).
+63
+Zhao, H., Han, S.C., Hovy, E., 2026. When is rank-1 enough? Geometry-guided initialization
+for PEFT. International Conference on Machine Learning (ICML) .
+Zhou, D.W., Zhang, Y., Wang, Y., Ning, J., Ye, H.J., Zhan, D.C., Liu, Z., 2025. Learning
+without forgetting for vision-language models. IEEE Transactions on Pattern Analysis and
+Machine Intelligence (TPAMI) 47, 4489–4504. doi:10.1109/TPAMI.2025.3540889.
+Zhou, L., 2026. Cross-modal attention analysis and optimization in vision-language models:
+A study on visual reliability. arXiv preprint arXiv:2604.17217 doi:10.48550/arXiv.2604.
+17217.
+Zhu, X., Zhang, Z., Chen, X., Shi, Y., Li, M., Wu, J., 2025. Connector-S: A survey of
+connectors in multi-modal large language models. arXiv preprint arXiv:2502.11453 doi:10.
+48550/arXiv.2502.11453.
+64

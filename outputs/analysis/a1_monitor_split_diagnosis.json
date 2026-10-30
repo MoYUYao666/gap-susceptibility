@@ -1,0 +1,208 @@
+{
+ "summary": {
+  "small": {
+   "n_runs": 4,
+   "n_eval_range": [
+    60,
+    144
+   ],
+   "mean_regret_minM": 6.180555555555555,
+   "mean_regret_last_epoch": 4.5138888888888875,
+   "mean_regret_first_epoch": 22.04861111111111,
+   "mean_regret_minM_in_SE": 1.08
+  },
+  "large": {
+   "n_runs": 16,
+   "n_eval_range": [
+    353,
+    1212
+   ],
+   "mean_regret_minM": 0.5823195351450017,
+   "mean_regret_last_epoch": 0.5176514991924712,
+   "mean_regret_first_epoch": 3.54537514921705,
+   "mean_regret_minM_in_SE": 0.37375
+  }
+ },
+ "per_run": {
+  "vit-base-patch32|dtd|seed42": {
+   "dataset": "dtd",
+   "n_eval": 705,
+   "se_points": 1.8,
+   "regret_minM": 0.0,
+   "regret_last": 0.7092198581560183,
+   "regret_first_epoch": 6.666666666666671,
+   "regret_minM_in_SE": 0.0
+  },
+  "vit-base-patch32|dtd|seed43": {
+   "dataset": "dtd",
+   "n_eval": 705,
+   "se_points": 1.79,
+   "regret_minM": 1.2765957446808613,
+   "regret_last": 1.2765957446808613,
+   "regret_first_epoch": 7.943262411347526,
+   "regret_minM_in_SE": 0.71
+  },
+  "vit-base-patch32|dtd|seed44": {
+   "dataset": "dtd",
+   "n_eval": 705,
+   "se_points": 1.8,
+   "regret_minM": 0.5673758865248146,
+   "regret_last": 0.425531914893611,
+   "regret_first_epoch": 6.666666666666671,
+   "regret_minM_in_SE": 0.32
+  },
+  "vit-base-patch32|food101|seed42": {
+   "dataset": "food101",
+   "n_eval": 1212,
+   "se_points": 1.22,
+   "regret_minM": 0.0,
+   "regret_last": 1.7326732673267458,
+   "regret_first_epoch": 2.062706270627075,
+   "regret_minM_in_SE": 0.0
+  },
+  "vit-base-patch32|food101|seed43": {
+   "dataset": "food101",
+   "n_eval": 1212,
+   "se_points": 1.23,
+   "regret_minM": 0.0,
+   "regret_last": 1.155115511551145,
+   "regret_first_epoch": 0.08250825082508584,
+   "regret_minM_in_SE": 0.0
+  },
+  "vit-base-patch32|food101|seed44": {
+   "dataset": "food101",
+   "n_eval": 606,
+   "se_points": 1.75,
+   "regret_minM": 0.16501650165017168,
+   "regret_last": 0.16501650165017168,
+   "regret_first_epoch": 3.3828382838283915,
+   "regret_minM_in_SE": 0.09
+  },
+  "vit-large-patch14|dtd|seed42": {
+   "dataset": "dtd",
+   "n_eval": 353,
+   "se_points": 2.42,
+   "regret_minM": 1.1347517730496435,
+   "regret_last": 0.4255319148936252,
+   "regret_first_epoch": 3.8297872340425556,
+   "regret_minM_in_SE": 0.47
+  },
+  "vit-large-patch14|dtd|seed43": {
+   "dataset": "dtd",
+   "n_eval": 705,
+   "se_points": 1.73,
+   "regret_minM": 0.0,
+   "regret_last": 0.0,
+   "regret_first_epoch": 0.7092198581560325,
+   "regret_minM_in_SE": 0.0
+  },
+  "vit-large-patch14|dtd|seed44": {
+   "dataset": "dtd",
+   "n_eval": 705,
+   "se_points": 1.69,
+   "regret_minM": 0.0,
+   "regret_last": 0.0,
+   "regret_first_epoch": 4.39716312056737,
+   "regret_minM_in_SE": 0.0
+  },
+  "vit-large-patch14|food101|seed42": {
+   "dataset": "food101",
+   "n_eval": 1212,
+   "se_points": 0.86,
+   "regret_minM": 0.33003300330031493,
+   "regret_last": 0.33003300330031493,
+   "regret_first_epoch": 1.072607260726059,
+   "regret_minM_in_SE": 0.38
+  },
+  "vit-large-patch14|food101|seed43": {
+   "dataset": "food101",
+   "n_eval": 1212,
+   "se_points": 0.86,
+   "regret_minM": 0.2475247524752433,
+   "regret_last": 0.0,
+   "regret_first_epoch": 2.0627062706270607,
+   "regret_minM_in_SE": 0.29
+  },
+  "vit-large-patch14|food101|seed44": {
+   "dataset": "food101",
+   "n_eval": 606,
+   "se_points": 1.22,
+   "regret_minM": 1.155115511551145,
+   "regret_last": 0.9900990099009732,
+   "regret_first_epoch": 3.6303630363036206,
+   "regret_minM_in_SE": 0.95
+  },
+  "dtd|seed44": {
+   "dataset": "dtd",
+   "n_eval": 705,
+   "se_points": 1.8,
+   "regret_minM": 0.7092198581560183,
+   "regret_last": 0.0,
+   "regret_first_epoch": 6.666666666666671,
+   "regret_minM_in_SE": 0.39
+  },
+  "dtd|seed45": {
+   "dataset": "dtd",
+   "n_eval": 705,
+   "se_points": 1.79,
+   "regret_minM": 2.4113475177304835,
+   "regret_last": 0.0,
+   "regret_first_epoch": 3.2624113475177197,
+   "regret_minM_in_SE": 1.35
+  },
+  "food101|seed44": {
+   "dataset": "food101",
+   "n_eval": 606,
+   "se_points": 1.75,
+   "regret_minM": 0.16501650165017168,
+   "regret_last": 0.08250825082508584,
+   "regret_first_epoch": 3.3003300330033056,
+   "regret_minM_in_SE": 0.09
+  },
+  "food101|seed45": {
+   "dataset": "food101",
+   "n_eval": 1212,
+   "se_points": 1.23,
+   "regret_minM": 1.155115511551159,
+   "regret_last": 0.9900990099009874,
+   "regret_first_epoch": 0.9900990099009874,
+   "regret_minM_in_SE": 0.94
+  },
+  "fathomnet8|seed44": {
+   "dataset": "fathomnet8",
+   "n_eval": 60,
+   "se_points": 6.28,
+   "regret_minM": 5.000000000000007,
+   "regret_last": 5.000000000000007,
+   "regret_first_epoch": 21.66666666666667,
+   "regret_minM_in_SE": 0.8
+  },
+  "fathomnet8|seed45": {
+   "dataset": "fathomnet8",
+   "n_eval": 60,
+   "se_points": 6.36,
+   "regret_minM": 10.0,
+   "regret_last": 3.3333333333333286,
+   "regret_first_epoch": 3.3333333333333286,
+   "regret_minM_in_SE": 1.57
+  },
+  "inat_wild|seed44": {
+   "dataset": "inat_wild",
+   "n_eval": 72,
+   "se_points": 5.89,
+   "regret_minM": 5.55555555555555,
+   "regret_last": 5.55555555555555,
+   "regret_first_epoch": 36.11111111111111,
+   "regret_minM_in_SE": 0.94
+  },
+  "inat_wild|seed45": {
+   "dataset": "inat_wild",
+   "n_eval": 144,
+   "se_points": 4.14,
+   "regret_minM": 4.166666666666664,
+   "regret_last": 4.166666666666664,
+   "regret_first_epoch": 27.083333333333332,
+   "regret_minM_in_SE": 1.01
+  }
+ }
+}

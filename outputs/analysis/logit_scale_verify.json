@@ -1,0 +1,10 @@
+{
+ "script": "tools/_p386_verify_logit_scale.py",
+ "sha256_pytorch_model.bin": "A63082132BA4F97A80BEA76823F544493BFFA8082296D62D71581A4FEFF1576F",
+ "logit_scale_pytorch_model.bin": 4.605170249938965,
+ "logit_scale_exp_pytorch_model.bin": 100.00000762939453,
+ "transformers_logit_scale": 4.605170249938965,
+ "transformers_exp": 100.00000762939453,
+ "config_logit_scale_init_value": 2.6592,
+ "verdict": "权重 logit_scale 与代码硬编码不一致 → 论文臂与本实验的 logit 尺度不同"
+}

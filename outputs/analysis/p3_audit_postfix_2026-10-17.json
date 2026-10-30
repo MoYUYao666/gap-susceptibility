@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-10-17",
+  "audits": {
+    "audit_check.py": {
+      "script": "audit_check.py",
+      "exit_code": 0,
+      "counts": {
+        "pass": 72,
+        "fail": 0,
+        "warn": 1
+      },
+      "summary": "RESULT: 0 hard failure(s), 1 warning(s)",
+      "tail": [
+        "PASS  supplement: environment balanced: proof  [begin=3 end=3]",
+        "PASS  supplement: environment balanced: equation  [begin=1 end=1]",
+        "PASS  supplement: all \\ref targets defined  [1:1]",
+        "PASS  supplement: all cited keys present in supplementary/references.bib  [6 keys]",
+        "------------------------------------------------------------------------",
+        "RESULT: 0 hard failure(s), 1 warning(s)"
+      ]
+    },
+    "audit_pdf.py": {
+      "script": "audit_pdf.py",
+      "exit_code": 0,
+      "counts": {
+        "pass": 98,
+        "fail": 0,
+        "warn": 0
+      },
+      "summary": "RESULT: 0 hard failure(s), 0 warning(s)",
+      "tail": [
+        "PASS  supplementary.pdf contains: Gamma vision r=64 -66945",
+        "PASS  supplementary.pdf contains: ERS r=4 -46.5",
+        "PASS  supplementary.pdf contains: ERS r=32 -129.8",
+        "PASS  supplementary.pdf contains: ERS r=64 151.7",
+        "------------------------------------------------------------------------",
+        "RESULT: 0 hard failure(s), 0 warning(s)"
+      ]
+    }
+  },
+  "pdfs": {
+    "main.pdf": {
+      "path": "paper3\\paper_ieee\\main.pdf",
+      "pages": 10,
+      "expected": 10
+    },
+    "main_full.pdf": {
+      "path": "paper3\\paper_ieee\\main_full.pdf",
+      "pages": 13,
+      "expected": 13
+    },
+    "supplementary.pdf": {
+      "path": "paper3\\paper_ieee\\supplementary\\supplementary.pdf",
+      "pages": 6,
+      "expected": 6
+    }
+  },
+  "freeze": {
+    "main": {
+      "working": {
+        "path": "paper3\\paper_ieee\\main.pdf",
+        "sha256": "d2a0116839dceb28ce3742549af3d1800b8d7892746dd0507de1c2cdb59e70af",
+        "bytes": 415494
+      },
+      "submitted_sha": "b96f4dcb007b2e99c390ccb9aee9de7a57d347e947de0bd22ce684c517943010",
+      "corrected": {
+        "path": "SUBMISSION\\P3_PRL_revision\\CORRECTED_2026-10-15\\main_corrected.pdf",
+        "sha256": "b96f4dcb007b2e99c390ccb9aee9de7a57d347e947de0bd22ce684c517943010",
+        "bytes": 416070
+      },
+      "upload": {
+        "path": "SUBMISSION\\P3_PRL_revision\\UPLOAD_2026-10-15\\P3_PRLETTERS-D-26-02378_Manuscript.pdf",
+        "sha256": "b96f4dcb007b2e99c390ccb9aee9de7a57d347e947de0bd22ce684c517943010",
+        "bytes": 416070
+      },
+      "drift": true
+    },
+    "supplement": {
+      "working": {
+        "path": "paper3\\paper_ieee\\supplementary\\supplementary.pdf",
+        "sha256": "4f7c940fbdb26c8e3587b1d2c024cb3cad01710aae3a7ecb98f72c8618e40655",
+        "bytes": 271229
+      },
+      "submitted_sha": "e9b754e44d29392a4f021b625dc0902cd5c1736919000f4e0fa40bf5038c1031",
+      "corrected": {
+        "path": "SUBMISSION\\P3_PRL_revision\\CORRECTED_2026-10-15\\supplementary_corrected.pdf",
+        "sha256": "e9b754e44d29392a4f021b625dc0902cd5c1736919000f4e0fa40bf5038c1031",
+        "bytes": 271237
+      },
+      "upload": {
+        "path": "SUBMISSION\\P3_PRL_revision\\UPLOAD_2026-10-15\\P3_PRLETTERS-D-26-02378_Supplementary.pdf",
+        "sha256": "e9b754e44d29392a4f021b625dc0902cd5c1736919000f4e0fa40bf5038c1031",
+        "bytes": 271237
+      },
+      "drift": true
+    }
+  },
+  "summary": {
+    "hard_failures": 0,
+    "warnings": 0,
+    "audits_pass": true
+  }
+}

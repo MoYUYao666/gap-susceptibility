@@ -1,0 +1,106 @@
+{
+ "table": {
+  "outputs/strict_freeze_b32_r4|both": {
+   "r4|seed123": 128,
+   "r4|seed42": 128,
+   "r4|seed456": 128
+  },
+  "outputs/strict_freeze_b32_r4|text_only": {
+   "r4|seed123": 128,
+   "r4|seed42": 128,
+   "r4|seed456": 128
+  },
+  "outputs/strict_freeze_b32_r4|vision_only": {
+   "r4|seed123": 128,
+   "r4|seed42": 128,
+   "r4|seed456": 128
+  },
+  "outputs/strict_freeze_b16/r4|both": {
+   "r4|seed123": 128,
+   "r4|seed42": 128,
+   "r4|seed456": 64
+  },
+  "outputs/strict_freeze_b16/r4|text_only": {
+   "r4|seed123": 128,
+   "r4|seed42": 128,
+   "r4|seed456": 128
+  },
+  "outputs/strict_freeze_b16/r4|vision_only": {
+   "r4|seed123": 128,
+   "r4|seed42": 128,
+   "r4|seed456": 64
+  },
+  "outputs/strict_freeze_oclip/r4|both": {
+   "r4|seed123": 64,
+   "r4|seed42": 128,
+   "r4|seed456": 64
+  },
+  "outputs/strict_freeze_oclip/r4|text_only": {
+   "r4|seed123": 64,
+   "r4|seed42": 128,
+   "r4|seed456": 64
+  },
+  "outputs/strict_freeze_oclip/r4|vision_only": {
+   "r4|seed123": 64,
+   "r4|seed42": 128,
+   "r4|seed456": 64
+  },
+  "outputs/coco_sweep_text_only|text_only": {
+   "coco_sweep_text_only|seed123": 64,
+   "coco_sweep_text_only|seed456": 64,
+   "coco_sweep_text_only|seed42": 64
+  },
+  "outputs/coco_sweep|both": {
+   "coco_sweep|seed123": 128,
+   "coco_sweep|seed42": 128,
+   "coco_sweep|seed456": 128
+  },
+  "outputs/coco_sweep|text_only": {
+   "coco_sweep|seed123": 128,
+   "coco_sweep|seed42": 128,
+   "coco_sweep|seed456": 128
+  }
+ },
+ "inconsistent": [
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "both",
+   "batches": [
+    64,
+    128
+   ]
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "vision_only",
+   "batches": [
+    64,
+    128
+   ]
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "both",
+   "batches": [
+    64,
+    128
+   ]
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "text_only",
+   "batches": [
+    64,
+    128
+   ]
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "vision_only",
+   "batches": [
+    64,
+    128
+   ]
+  }
+ ]
+}

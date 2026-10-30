@@ -1,0 +1,62 @@
+{
+ "status": "integrated",
+ "section": "app:iguofficial (S41)",
+ "inserted_start_line": 1958,
+ "inserted_lines": 73,
+ "subsection_label": "app:igucompare",
+ "table_label": "tab:igucompare",
+ "archives": {
+  "comparison": {
+   "path": "outputs/analysis/p3_official_vs_reimpl.json",
+   "sha256_prefix": "4698a6e7da4e9c61"
+  },
+  "replicates": {
+   "path": "outputs/analysis/p3_official_igu_replicates.json",
+   "sha256_prefix": "e38f65ab00a4b248"
+  },
+  "runs": {
+   "path": "outputs/analysis/p3_official_igu_run.json",
+   "sha256_prefix": "8f4546edff677b46"
+  }
+ },
+ "printed_values": {
+  "mean_gap_delta_E": -59.5,
+  "ci95": [
+   -150.5,
+   -8.0
+  ],
+  "margin": 196.05,
+  "margin_fraction_of_E0": 0.05,
+  "E0": 3921.0,
+  "tost_p": 0.0,
+  "min_equivalent_margin": 107.0,
+  "allocation_l1": 2,
+  "allocation_l1_tolerance": 2,
+  "l1_archived": 2,
+  "l1_corrected": 2,
+  "n_pairs": 3,
+  "n_runs": 6,
+  "same_stack_for_every_pair": true,
+  "stack_mix_warning": null,
+  "replicate_max_spread": 132.0,
+  "replicate_mean_spread": 76.08333333333333,
+  "archived_gap": 92.5,
+  "stack": {
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER"
+  },
+  "official_allocation_pdf": {
+   "vision": 11,
+   "text_shallow": 1,
+   "text_mid": 2,
+   "text_deep": 2
+  },
+  "reimpl_allocation_pdf": {
+   "vision": 11,
+   "text_shallow": 1,
+   "text_mid": 3,
+   "text_deep": 1
+  }
+ }
+}

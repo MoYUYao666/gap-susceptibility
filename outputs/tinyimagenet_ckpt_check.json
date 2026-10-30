@@ -1,0 +1,23 @@
+{
+  "dataset": "TinyImageNet-200 val (zh-plus/tiny-imagenet arrow, 10000 张)",
+  "protocol": {
+    "templates": [
+      "a photo of a {}",
+      "a photo of the {}",
+      "a photo of a {} in a photo"
+    ],
+    "n_images": 10000,
+    "class_names": "data/tiny_wnid_names.json",
+    "checkpoint": "best_checkpoint.pt"
+  },
+  "results": {
+    "frozen": 60.03,
+    "text_only_r8": 61.19,
+    "both_r8": 61.79
+  },
+  "paper_values": {
+    "frozen": 60.72,
+    "text_only": 59.06,
+    "both": 56.14
+  }
+}

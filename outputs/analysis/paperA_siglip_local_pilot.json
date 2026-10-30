@@ -1,0 +1,98 @@
+{
+  "note": "synthetic corpus local pilot; not paper data",
+  "per_site": {
+    "both": {
+      "n": 3,
+      "mean": -0.017775972684224445,
+      "sd": 0.000666417101373151,
+      "abs_mean": 0.017775972684224445
+    },
+    "text_only": {
+      "n": 3,
+      "mean": -0.037404934565226235,
+      "sd": 0.0016798248326363285,
+      "abs_mean": 0.037404934565226235
+    },
+    "vision_only": {
+      "n": 3,
+      "mean": -0.08595454692840576,
+      "sd": 0.01074203966409157,
+      "abs_mean": 0.08595454692840576
+    }
+  },
+  "ordering_abs": [
+    "both",
+    "text_only",
+    "vision_only"
+  ],
+  "ordering_signed": [
+    "vision_only",
+    "text_only",
+    "both"
+  ],
+  "rows": [
+    {
+      "tag": "both",
+      "dCG": -0.017154335975646973,
+      "r1": 0.010172839742153883,
+      "r1_init": null,
+      "epochs": 10
+    },
+    {
+      "tag": "both",
+      "dCG": -0.018479585647583008,
+      "r1": 0.006469136103987694,
+      "r1_init": null,
+      "epochs": 10
+    },
+    {
+      "tag": "both",
+      "dCG": -0.01769399642944336,
+      "r1": 0.007172839599661529,
+      "r1_init": null,
+      "epochs": 10
+    },
+    {
+      "tag": "text_only",
+      "dCG": -0.03608298301696777,
+      "r1": 0.007703703828155994,
+      "r1_init": null,
+      "epochs": 10
+    },
+    {
+      "tag": "text_only",
+      "dCG": -0.039295196533203125,
+      "r1": 0.011407407466322184,
+      "r1_init": null,
+      "epochs": 10
+    },
+    {
+      "tag": "text_only",
+      "dCG": -0.03683662414550781,
+      "r1": 0.005703703733161092,
+      "r1_init": null,
+      "epochs": 10
+    },
+    {
+      "tag": "vision_only",
+      "dCG": -0.08273506164550781,
+      "r1": 0.0024691359139978886,
+      "r1_init": null,
+      "epochs": 10
+    },
+    {
+      "tag": "vision_only",
+      "dCG": -0.0979381799697876,
+      "r1": 0.00693827192299068,
+      "r1_init": null,
+      "epochs": 10
+    },
+    {
+      "tag": "vision_only",
+      "dCG": -0.07719039916992188,
+      "r1": 0.0022345680044963956,
+      "r1_init": null,
+      "epochs": 10
+    }
+  ]
+}

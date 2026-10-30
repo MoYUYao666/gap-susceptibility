@@ -1,0 +1,1109 @@
+{
+ "paperA": [
+  {
+   "kind": "figure",
+   "label": "fig:overview",
+   "caption": "Modality gap evolution during PEFT. At the shared learning rate full fine-tuning inflates the gap while text-only and low-rank configurations preserve alignment; a learning-rate sweep shows the inflation to be rate-depen",
+   "scripts": [
+    "tools\\_p1_patch_c.py",
+    "tools\\figure_style.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:position",
+   "caption": "Effect of LoRA position on CG$\\Delta$ under the earlier adaptation convention, in which the LoRA backbone was not frozen (Section~\\ref{sec:empirical",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:position_strict",
+   "caption": "The three adaptation positions under strict freezing, where the optimizer sees only the adapter matrices, so the arms differ solely in where those adapters sit. Each entry is $\\Delta$CG with $R@1$ beneath it (bold marks ",
+   "scripts": [],
+   "archive": "outputs\\analysis\\lit_pool.json",
+   "archive_score": 4,
+   "tokens": [
+    "5000",
+    "10",
+    "128",
+    "0.0006",
+    "0.006"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:family",
+   "caption": "First-order ODE parameters by adaptation family on the archived CLIP runs. $\\alpha$ is the initial gap velocity, $\\beta$ the restoring coefficient, $R^2$ the fit of the ODE trajectory. Means over runs; three seeds per co",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:ablation",
+   "caption": "Ablation of LoRA scaling factor $\\alpha$ (left) and target modules (right). Larger $\\alpha$ reduces gap; full module coverage helps.",
+   "scripts": [
+    "tools\\clip_a1_fig4.py",
+    "tools\\figure_style.py"
+   ],
+   "archive": "outputs/a1_tau_trajectory.json",
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:crossmethod",
+   "caption": "Cross-method comparison. Both methods respond to where the adapters sit and to their dimension, but the direction differs: LoRA favor the text-only setting, whereas for Adapter no consistent text-only advantage is presen",
+   "scripts": [
+    "tools\\_p1_patch_c.py",
+    "tools\\clip_a1_fig4.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:corr",
+   "caption": "DG vs.\\ CG as retrieval predictors over the $n=204$ archived experiments. DG achieves $r=-0.714$, substantially stronger than CG ($r=-0.594$).",
+   "scripts": [
+    "tools\\_pa_fig2_corr.py",
+    "tools\\clip_a1_figures.py"
+   ],
+   "archive": "outputs/analysis/dg_r1_reproducible.json",
+   "archive_score": 0,
+   "tokens": [
+    "204",
+    "0.714",
+    "0.594"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:corr",
+   "caption": "Pearson correlation between gap metrics and R@1, over the $n=204$ archived experiments.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "204"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:stratified",
+   "caption": "The DG--retrieval association stratified by dataset (a) and by model (b). Panel (a) plots every run against its own cell's fit, which is the within-setting relation the pooled correlation is often suspected of hiding; pa",
+   "scripts": [
+    "tools\\_p860_fig_stratified.py",
+    "tools\\_p861_add_stratified.py"
+   ],
+   "archive": "outputs/analysis/pr_stats_within_group.json",
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:zeroshot",
+   "caption": "Zero-shot classification on DTD and Food101 after Flickr30k fine-tuning. The text-only arm stays within 0.1 percentage points of the frozen baseline and the both-position arm within 0.9.",
+   "scripts": [
+    "tools\\_pa_rebuild_fig12.py",
+    "tools\\_add_p1_package_spec.py"
+   ],
+   "archive": "outputs/zeroshot_extra.json",
+   "archive_score": 0,
+   "tokens": [
+    "0.1"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:site_schematic",
+   "caption": "The mechanism in one line. The adaptation site decides which component of the task gradient reaches the shared embedding space; that component sets the projection of the gradient flow onto the gap axis, and therefore the",
+   "scripts": [
+    "tools\\_p1333_upgrade_figures.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:beta_pilot",
+   "caption": "Phase~1: $\\beta$ constancy across configurations. A1 holds within PEFT ($\\text{CV",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:ode",
+   "caption": "Representative $DG^*$ trajectories with ODE fits, drawn from the archived runs. Solid curves: the fitted ODE, with $\\alpha$ and $\\beta$ fitted to each trajectory separately; points: measured $DG^*$ values. Fits are repor",
+   "scripts": [
+    "tools\\_docs_20261003_night.py",
+    "tools\\_docs_figure_rebuild.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:phase2",
+   "caption": "Phase 2 rank sweep on Flickr30k: $\\alpha$, $\\beta$, and $R^2$ by rank and position, each fitted separately to every archived run and then averaged ($n=3$ runs per configuration, except text-only $r{=",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:diagnostics",
+   "caption": "First-order ODE fit quality by condition (archived CLIP runs). ``$>0.9$'' is the share of runs whose $R^2$ exceeds 0.9.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "0.9"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:ers",
+   "caption": "Effective Rank Saturation. $\\|g_v\\|$ stays within a $10\\%$ band across $r \\in [1,64]$, falsifying the $\\sqrt{r",
+   "scripts": [
+    "tools\\_docs_20261003_night.py",
+    "tools\\_docs_figure_rebuild.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "10",
+    "64"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:generalization",
+   "caption": "Cross-dataset and cross-method validation of ODE framework. $R^2$ for trajectory prediction; $\\alpha$ and $\\beta$ aggregated over all PEFT configurations.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:grad_side",
+   "caption": "Task-gradient norms by encoder under strict freezing (rank~$8$, mean over three seeds, $5000$ samples). The vision-side entry for text-only and the text-side entry for vision-only are zero by construction: with no adapte",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "5000"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:config_groups",
+   "caption": "The four configuration groups behind the paper's numbers. ``Settings'' gives the nominal configuration; ``what separates it'' is why a number from one group cannot be substituted for another. Core entries from \\texttt{ou",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:weight_svd",
+   "caption": "Effective-rank change under strict freezing, by adaptation position. Blue is the vision side and hatched orange the text side; the mean is taken over layers. Training the text side alone moves its own side's effective ra",
+   "scripts": [
+    "tools\\_pa_split_cleanup.py",
+    "tools\\_pa_split_appendix_figs.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "0.46"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:budget",
+   "caption": "Trainable parameters per adaptation position under strict freezing, against the earlier convention in which the backbone stayed trainable. The strict arms lie between $2.0\\times10^5$ and $4.9\\times10^5$; the legacy text-",
+   "scripts": [
+    "tools\\_pa_split_cleanup.py",
+    "tools\\_pa_split_appendix_figs.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "2.0",
+    "4.9",
+    "1.37"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:vision_untouched",
+   "caption": "What each adaptation position does to the vision side, measured as the change in effective rank of the vision weights induced by the adapters (mean over layers). Training the text side alone leaves this at exactly zero, ",
+   "scripts": [
+    "tools\\_pa_fig8c.py",
+    "tools\\_pa_split_cleanup.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:noise_sensitivity",
+   "caption": "Parameter-noise probe under the corrected design: retrieval change against noise scale for each encoder, five seeds each. The error bars overlap at every scale and the ordering between encoders is not stable, so the prob",
+   "scripts": [
+    "tools\\_pa_split_cleanup.py",
+    "tools\\_pa_split_appendix_figs.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:sigma0_control",
+   "caption": "The $\\sigma{=",
+   "scripts": [
+    "tools\\_pa_split_cleanup.py",
+    "tools\\_pa_split_appendix_figs.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:ratio",
+   "caption": "Why that earlier line of evidence was withdrawn. The dotted line is the $2.6\\times$ vision-to-text ratio the earlier probe claimed; the measured ratio at $\\sigma{=",
+   "scripts": [
+    "tools\\_pa_split_cleanup.py",
+    "tools\\_p746_record_pr_audit.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "2.6"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:layered_ft",
+   "caption": "ViT-B layered fine-tuning. Text+Vis-L1 achieves frozen-level CG with competitive R@1 using only one visual layer.",
+   "scripts": [
+    "tools\\_pa_fig10_tall.py",
+    "tools\\_pa_rebuild_fig10.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:adapter_layered",
+   "caption": "Adapter layered fine-tuning, both panels sharing the epoch axis. Both Adapter configurations raise the gap above the frozen reference of $0.81$: the text-side one by $0.25$ and its text-plus-vision counterpart by $0.50$.",
+   "scripts": [
+    "tools\\_pa_fig14_tall.py",
+    "tools\\_pa_fix_fig14_title.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "0.81",
+    "0.25",
+    "0.50",
+    "0.06",
+    "0.005",
+    "0.69"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:falsification",
+   "caption": "Falsification of $\\sqrt{r",
+   "scripts": [
+    "tools\\_docs_20261003_night.py",
+    "tools\\_docs_figure_rebuild.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:vlm",
+   "caption": "Adaptation site on a decoder-based VLM under strict freezing. Qwen2-VL-2B-Instruct, $320$ training pairs, three epochs, batch $2$, rank $8$, bfloat16, thirteen seeds per arm. $DG^*$ is the paired squared distance after $",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "320",
+    "0.7778"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:llava",
+   "caption": "Strict freezing on a larger decoder VLM under a generation objective. LLaVA-1.5-7B, $1500$ training pairs and $500$ held-out pairs, three epochs, batch $2$, rank $8$, bfloat16, three seeds per arm. $DG^*$ is the paired s",
+   "scripts": [],
+   "archive": "outputs\\llava_bf16_sites_cloud\\llava_sites.json",
+   "archive_score": 3,
+   "tokens": [
+    "1.5",
+    "1500",
+    "500",
+    "0.3566"
+   ]
+  }
+ ],
+ "A1": [
+  {
+   "kind": "figure",
+   "label": "fig:lambda",
+   "caption": "Zero-shot top-1 under three surgery families. Gap-direction shifts are strongly destructive; centroid contraction is near-neutral at small $a$; the frozen baseline is dashed.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:matchedgap",
+   "caption": "Top-1 is not a function of the centroid gap. Each family traces its own curve; open circles mark the matched-gap pair ($\\mathrm{CG",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:matchedgap",
+   "caption": "Matched-gap control on 5{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:tau",
+   "caption": "Top-1 as a function of order preservation $\\tau$. Gray circles: the 20 surgery-grid conditions (translation, orthogonal, contraction, including the frozen baseline), scored on the full 50{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:spectrum",
+   "caption": "Perturbation spectrum at matched magnitude $\\|g\\|$. Within the class-agnostic families (Gaussian, global and per-image low-rank) the dose--response is monotone in $\\tau$: accuracy falls only as the coefficient falls, reg",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "78.6"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:asym",
+   "caption": "Asymmetry of the surgery: image-side vs.\\ text-side translation at matched $\\lambda$, measured in a dedicated re-run (hence slight deviations from Table~\\ref{tab:cross",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:pointwise",
+   "caption": "Point-wise prediction of $\\tau(\\lambda)$ from frozen-model statistics, compared with measured $\\tau$ on the \\emph{same",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:topk",
+   "caption": "Top-$k$ ablation of $\\tau$, where $k$ is the size of the frozen class set. $\\rho(\\tau,\\text{top-1",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:multiseed",
+   "caption": "Headline Spearman correlations vs.\\ top-1: single-run value and 5-seed mean $\\pm$ std.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:traj",
+   "caption": "Training-time trajectories (10 epochs, Flickr30k): $\\tau$ and Centroid Gap (top), zero-shot top-1 with the frozen baseline dashed (bottom). Both-position LoRA grows the gap and erodes $\\tau$ early while top-1 stays flat ",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:earlystop",
+   "caption": "Per-epoch monitoring signals for strictly LoRA-only fine-tuning (both-position LoRA, rank 8; $\\lambda_{\\mathrm{reg",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:spectrum",
+   "caption": "Performance retained at $\\lambda=+1$ across task families. Centroid classification is gap-insensitive; zero-shot tracks order; retrieval tracks the gap.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:cross",
+   "caption": "Cross-model replication of the surgery signature (gap-direction translation). Top-1 (\\%) / $\\tau$; CG in parentheses.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:qwen",
+   "caption": "Gap surgery on Qwen2-VL-2B (5{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:benchmarks",
+   "caption": "The surgery signature on four further benchmarks (primary, caption-derived gap direction). ``frozen'' and top-1 columns are accuracy in per cent; the last two columns are the class-contraction result at $a=0.5$. Source: ",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "0.5"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:ckpt_transfer",
+   "caption": "LoRA checkpoints fine-tuned on data other than Flickr30k, against a same-code Flickr30k control and the frozen model. $\\tau_5$ is Kendall order preservation on the frozen top-5 sets (5{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:hard_tpl",
+   "caption": "Prompt-template sensitivity. Ranges are across the five templates of the frozen top-1 (\\%), of $\\tau$ at $\\lambda=0.5/1/2$ (each on its own template's frozen top-5 sets), the largest spread over $\\lambda\\in\\{0.5,1,2\\",
+   "scripts": [],
+   "archive": "outputs\\watertank_protocol.json",
+   "archive_score": 2,
+   "tokens": [
+    "0.5",
+    "0.5"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:hard_k",
+   "caption": "A fixed tripwire level is $k$-specific. Absolute $\\tau$ from the bootstrap point estimates (2{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:hard_seed",
+   "caption": "Seed spread over three seeds per dataset (seeds 42/43/44, one trainer, only the seed changing). $\\tau_5$ is Kendall order preservation on the frozen top-5 sets (5{,",
+   "scripts": [],
+   "archive": "outputs\\dynamics_seed.json",
+   "archive_score": 3,
+   "tokens": [
+    "42",
+    "43",
+    "44"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:hard_offset",
+   "caption": "Why the offset is not explained by geometry. Twelve vision-LoRA checkpoints; the vision-frozen text-only checkpoint is excluded because gap surgery on a frozen vision tower is a no-op and its synthetic reference is degen",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:dense",
+   "caption": "Dense sweep on ImageNet-5k: widest matched-gap pair at $|\\Delta\\mathrm{CG",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:campaign",
+   "caption": "Real LoRA checkpoints at matched gap. Every row compares two checkpoints from the campaign; $\\Delta$top-1 is measured on the same 5{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:campaign",
+   "caption": "Real fine-tuning at scale. (a) The campaign checkpoints on the ImageNet-5k holdout; the dashed segment joins the widest matched pair, which differs by $48.5$ accuracy points at $|\\Delta\\mathrm{CG",
+   "scripts": [
+    "tools\\_p1335_insert_a1_upgrade.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "48.5"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:realpairs",
+   "caption": "Real fine-tuned checkpoints at matched gap (Flickr30k gap, ImageNet-5k top-1). Each pair is two archived training runs whose gaps agree to $0.03$; the last column is the top-1 difference measured on the same 5{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "0.03"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:prompt",
+   "caption": "Prompt-template control on ImageNet-5k (5{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:showdown",
+   "caption": "Correlation of each candidate statistic with accuracy, measured on the same configurations. Classification: 17 configurations from the three perturbation families on ImageNet-5k. Retrieval: 17 configurations of the same ",
+   "scripts": [],
+   "archive": "outputs\\analysis\\publish_chinese_tracked.json",
+   "archive_score": 5,
+   "tokens": [
+    "17",
+    "17",
+    "536",
+    "72",
+    "18"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:selection",
+   "caption": "Label-free selection with the margin mass. Synthetic row: choose one of 17 configurations. Template rows: choose one of ten prompt templates per backbone; the column ``default'' is the first template. Regret is relative ",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "17"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:monitor_regret",
+   "caption": "Stopping-rule regret (mean points from the labelled oracle) stratified by held-out size. Large: 353--1212 images (16 runs); small: 60--144 images (4 runs). The certificate rule selects the epoch by the smallest margin ma",
+   "scripts": [],
+   "archive": "outputs\\analysis\\provenance_map_draft.json",
+   "archive_score": 5,
+   "tokens": [
+    "353",
+    "1212",
+    "16",
+    "60",
+    "144"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:controls",
+   "caption": "The four-control falsification protocol for gap-based health claims, with the measured outcomes reported in this paper. All controls use frozen convolutional encoders and a single labelled holdout.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:protocol",
+   "caption": "Checkpoint-selection rules on ten archived trajectories (ten epochs each). Regret is the gap to the labelled oracle's top-1 within the same trajectory. The mean stop epoch is reported because a rule that stops early has ",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:morebench",
+   "caption": "Matched-gap spread and contraction gain on further benchmarks (frozen CLIP ViT-B/32, same protocol as Section~\\ref{sec:matchedgap",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "32"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:standard",
+   "caption": "Minimum reporting standard for a gap-based monitoring claim. The right column states the failure that the item is designed to expose.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:ga",
+   "caption": "Graphical abstract. (A) Centroid gap against zero-shot top-1 for the three perturbation families on ImageNet-5k; the open circles mark the matched-gap pair that differs by 32.7 points. (B) Ten prompt templates on five ba",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  }
+ ],
+ "P3": [
+  {
+   "kind": "table",
+   "label": "tab:sample",
+   "caption": "Sample size robustness. The crossing of $\\Delta E$ occurs between $r=5$ and $r=6$ in the multi-seed sweep and for $n \\in \\{64,128,256\\",
+   "scripts": [],
+   "archive": "outputs\\phase_stats_recompute.json",
+   "archive_score": 3,
+   "tokens": [
+    "64",
+    "128",
+    "256"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:phase_transition",
+   "caption": "Alignment phase transition on LLaVA-1.5-7B vs. stability on Qwen2-VL-7B. On LLaVA the sign of $\\Delta E$ changes between $r=5$ and $r=6$---a crossing bracketed by those two ranks rather than a sharp threshold---followed ",
+   "scripts": [
+    "tools\\_p627_record_doi.py",
+    "tools\\_p935_record_source_zip.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "1.5",
+    "24",
+    "78",
+    "214"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:phase",
+   "caption": "Alignment phase transition: LLaVA vs. Qwen-VL. Mean $\\pm$ population std over 3 seeds (LLaVA values from the E2 and supplementary batches, verified by local re-runs; a legacy dense-sweep batch recorded under an older env",
+   "scripts": [],
+   "archive": "outputs\\phase_stats_recompute.json",
+   "archive_score": 2,
+   "tokens": [
+    "45",
+    "45"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:counterfactual",
+   "caption": "Counterfactual validation. Theory (r=4) achieves low alignment degradation with small variance; the Random group's larger spread across its 15 runs ($808$ vs.\\ $27$ in sample std) is confounded with capacity, since that ",
+   "scripts": [
+    "tools\\_p627_record_doi.py",
+    "tools\\_p935_record_source_zip.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "15",
+    "808",
+    "27",
+    "16",
+    "16",
+    "1508"
+   ]
+  }
+ ],
+ "A23": [
+  {
+   "kind": "figure",
+   "label": "fig:tau",
+   "caption": "Predicted vs measured order preservation $\\tau$ across the 38 conditions plotted (four model families $\\times$ seven non-trivial $\\lambda$; two further class sets at $\\lambda{=",
+   "scripts": [
+    "tools\\clip_a2_figures.py",
+    "tools\\_organize_archive2.py"
+   ],
+   "archive": "outputs/ocean_sigma_other.json",
+   "archive_score": 0,
+   "tokens": [
+    "38"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:lambda",
+   "caption": "Gap surgery dose--response in the marine domain. (a) $\\tau$ vs $\\lambda$, image side, four models; (b) zero-shot retention; inset: text-side $\\tau$ for base and marine models.",
+   "scripts": [
+    "tools\\clip_a1_figures.py",
+    "tools\\clip_a2_figures.py"
+   ],
+   "archive": "outputs/a1_tau_trajectory.json",
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "figure",
+   "label": "fig:sonar-tau",
+   "caption": "Sonar gap-surgery dose--response (full 2{,",
+   "scripts": [
+    "tools\\build_submission_packages.py"
+   ],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:sonar-exact",
+   "caption": "Sonar exact-predictor verification (full 2{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:sonar-sigma",
+   "caption": "Sonar domain affinity (matched 10-epoch schedule; balanced and full protocols separately; terrestrial control evaluated on the full protocol). The balanced-protocol row is archived in \\texttt{sonar\\_protocol.json",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "10"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:sonar-peft",
+   "caption": "Sonar adaptation (three fine-tuning seeds; full-protocol SonarCLIP baseline top-1 $99.89$, $\\tau{=",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "99.89"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:sonar-sigma",
+   "caption": "Sonar bias-field structure. (a) $\\sigma_m$ of CLIP frozen, the terrestrial control (CLIP + Flickr fine-tuning) and SonarCLIP under the balanced 650-image and full 2{,",
+   "scripts": [
+    "tools\\clip_a2_fig7.py",
+    "tools\\_organize_archive2.py"
+   ],
+   "archive": "outputs/sonar_protocol_full.json",
+   "archive_score": 0,
+   "tokens": [
+    "650"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:sigma",
+   "caption": "Bias-field spread. (a) $\\sigma_m$ of frozen models on fish-67 (OceanCLIP is 8--10$\\times$ below); (b) matched-scale $2\\times2$: marine fine-tuning flattens $3.6\\times$ (BioCLIP) and $2.2\\times$ (CLIP) more than terrestri",
+   "scripts": [
+    "tools\\clip_a2_figures.py",
+    "tools\\clip_a3_figures.py"
+   ],
+   "archive": "outputs/ocean_sigma_other.json",
+   "archive_score": 0,
+   "tokens": [
+    "67",
+    "10",
+    "3.6",
+    "2.2",
+    "50",
+    "10"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:spectrum",
+   "caption": "Task-sensitivity spectrum on fish-67 (image-side surgery). NCC = nearest class-centroid classification (centroids frozen); $R@1$ = class-conditional image--text retrieval.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "67"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:portrait",
+   "caption": "Marine model portrait (fish-67). $\\Delta\\tau=\\tau_{\\text{text",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "67"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:disc",
+   "caption": "Matched-scale $2\\times2$ discrimination. $^{*",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:peft",
+   "caption": "Adaptation results (Flickr30k task, marine zero-shot probe; frozen baselines 21.70/24.19; three fine-tuning seeds).",
+   "scripts": [],
+   "archive": "outputs\\analysis\\provenance_map_draft.json",
+   "archive_score": 2,
+   "tokens": [
+    "21.70",
+    "24.19"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:peft",
+   "caption": "Adaptation trade-off: task performance vs zero-shot retention (3 seeds, $\\pm$sd). PEFT occupies the upper right; full fine-tuning the lower right.",
+   "scripts": [
+    "tools\\clip_a2_figures.py",
+    "tools\\build_submission_packages.py"
+   ],
+   "archive": "outputs/ocean_sigma_other.json",
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:rank1",
+   "caption": "Top-1 loss bounds (fish-67, four model families; selected $\\lambda$; full grid in the result JSON). Bold marks the violations of the Gaussian correlated-structure bound that fall inside this selected-$\\lambda$ subset (Oc",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "67"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:dir-op",
+   "caption": "Direction-resolved operator v1: prediction error of the exact inversion condition under the mean-degradation direction versus the gap axis (per-image amplitudes $\\alpha_i$; PCA variant consistently worse, see text). Resi",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:ml16k",
+   "caption": "Natural-text retrieval on MarineLife-16K (3{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:watertank",
+   "caption": "Acoustic replication (three instruments, identical protocol; same frozen backbone, same 10-epoch schedule, same terrestrial control). ``exact $\\tau$'' = predicted equals measured to four decimals in all conditions of tha",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "10"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:replica",
+   "caption": "The text-type discrimination. A fine-tune on public \\emph{natural",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:monitor",
+   "caption": "Worked example of the training-time monitor (BioCLIP, 10 epochs; frozen baseline: top-1 21.70, $\\tau=1.0$).",
+   "scripts": [],
+   "archive": "outputs\\analysis\\provenance_map_draft.json",
+   "archive_score": 3,
+   "tokens": [
+    "10",
+    "21.70",
+    "1.0"
+   ]
+  },
+  {
+   "kind": "figure",
+   "label": "fig:degrad",
+   "caption": "Real degradation as an off-axis stressor. (a) Ordering damage from haze and colour cast (both models; every condition has gap-axis projection $\\lambda_{\\rm eff",
+   "scripts": [
+    "tools\\clip_a2_figures.py",
+    "tools\\_organize_archive2.py"
+   ],
+   "archive": "outputs/ocean_sigma_other.json",
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:degrad",
+   "caption": "Degradation-surgery stress test (fish-67; frozen baselines: top-1 21.70/24.19). $\\lambda_{\\rm eff",
+   "scripts": [],
+   "archive": "outputs\\analysis\\provenance_map_draft.json",
+   "archive_score": 3,
+   "tokens": [
+    "67",
+    "21.70",
+    "24.19"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:eng",
+   "caption": "Engineering procedure distilled from the measurements.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:calib",
+   "caption": "Tripwire calibration (118 matrix grid points, five domains, four model families; 2{,",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "118"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:theory-stack",
+   "caption": "Theory stack. ``Validation'' refers to the canonical ImageNet-5k model; all numbers are recomputed from archived JSON in the repository.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:matrix",
+   "caption": "Domain--model matrix (frozen models, identical protocol). $\\sigma_m$: class bias-field spread; $\\tau@\\lambda{=",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:dynamics",
+   "caption": "Per-epoch monitor trajectories (10-epoch matched schedules, three seeds for the first two directions---BioCLIP+Marine seeds $0,1,42$ and CLIP+Sonar seeds $42,0,1$; a fourth sonar seed collapsed and is reported separately",
+   "scripts": [],
+   "archive": "outputs\\tier_a_analysis.json",
+   "archive_score": 3,
+   "tokens": [
+    "10",
+    "42",
+    "42"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:degmap",
+   "caption": "Degradation map (frozen models). Every condition has $|\\lambda_{\\rm eff",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:subspace",
+   "caption": "Subspace operator ($k{=",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:perimage",
+   "caption": "Per-image functional operator (paired $\\delta_i$): prediction error vs the shared-subspace $k{=",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  },
+  {
+   "kind": "table",
+   "label": "tab:qa-layers",
+   "caption": "MarineLife-16K QA layers (video-level $R@1$; chance $0.23\\%$). The specialization cost is structured: object semantics retain a trace, scene/environment semantics are erased.",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": [
+    "0.23"
+   ]
+  },
+  {
+   "kind": "table",
+   "label": "tab:classlaw",
+   "caption": "$\\sigma_m$ as a function of model-domain pairing. The spread is largest when the model is \\emph{far",
+   "scripts": [],
+   "archive": null,
+   "archive_score": 0,
+   "tokens": []
+  }
+ ]
+}

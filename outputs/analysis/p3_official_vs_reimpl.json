@@ -1,0 +1,697 @@
+{
+ "meta": {
+  "script": "tools/_p1639_p3_official_igu.py",
+  "task": "P3 task A: official IGU-LoRA allocator vs the block-level reimplementation",
+  "official_code": {
+   "url": "https://github.com/withyou12/igulora.git",
+   "commit": "3f5ba10a6646c81c557e4669b14b072f76822085",
+   "paper": "IGU-LoRA: Adaptive Rank Allocation via Integrated Gradients and Uncertainty-Aware Scoring; ICLR 2026 (Fourteenth International Conference on Learning Representations); OpenReview MnToYQx9My; repo README bib key Cui2026igulora",
+   "vendored_at": "external/igulora"
+  },
+  "n_boot": 20000,
+  "rng_seed": 20261024,
+  "alpha": 0.05,
+  "margin": 196.05,
+  "margin_fraction_of_E0": 0.05,
+  "allocation_l1_tolerance": 2,
+  "protocol": "blank-image protocol: 20 samples, 3 epochs, lr 5e-05, batch 1, base rank 1, alpha 16, seeds 42,123,789",
+  "method": "paired (by seed) percentile bootstrap of the mean delta_E difference plus TOST against the pre-declared margin; identical resampling rule to tools/_p1595_p3_rank_separation.py vqa_contrast()",
+  "inputs": {
+   "run_archive": "outputs/analysis/p3_official_igu_run.json",
+   "run_archive_sha256": "8f4546edff677b46182f6482c4b9a30c9b1d700b0346f662c777c037508ee35f",
+   "archived_official_allocation": "outputs/analysis/p3_official_igu_clip.json",
+   "archived_reimpl_allocation": "outputs/analysis/p3_baseline_rules.json",
+   "archived_official_arm": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v12_s1_m2_d1.json",
+   "archived_reimpl_arm": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v11_s1_m3_d1.json"
+  },
+  "deterministic": true,
+  "note": "no wall-clock field is written, so re-running this comparison on unchanged inputs reproduces this file byte for byte"
+ },
+ "official_side": {
+  "config": "official_corrected_map",
+  "allocation": {
+   "vision": 11,
+   "text_shallow": 1,
+   "text_mid": 2,
+   "text_deep": 2
+  },
+  "allocation_source": "outputs/analysis/p3_official_igu_run.json",
+  "runs": [
+   {
+    "config": "official_corrected_map",
+    "side": "official",
+    "seed": 42,
+    "allocation": {
+     "vision": 11,
+     "text_shallow": 1,
+     "text_mid": 2,
+     "text_deep": 2
+    },
+    "from_cache": false,
+    "path": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v11_s1_m2_d2.json",
+    "sha256": "62c7cb546635a9440d8f8cedcb1f63f29863a50456a7443ebbeb7991fd17405f",
+    "rank": 1,
+    "lora_alpha": 16.0,
+    "epochs": 3,
+    "num_samples": 20,
+    "E": [
+     3926.0,
+     3831.0,
+     3844.5,
+     4108.5
+    ],
+    "E0": 3926.0,
+    "delta_E": 182.5,
+    "trainable": {
+     "vision": 1622016,
+     "proj": 0,
+     "llm": 1835008
+    },
+    "ok": true,
+    "archive_preserved": false,
+    "command": [
+     "/root/miniconda3/bin/python",
+     "/root/autodl-tmp/p3work/paper3/scripts/run_training.py",
+     "--rank",
+     "1",
+     "--rank-vision",
+     "11",
+     "--rank-shallow",
+     "1",
+     "--rank-mid",
+     "2",
+     "--rank-deep",
+     "2",
+     "--seed",
+     "42",
+     "--epochs",
+     "3",
+     "--num-samples",
+     "20",
+     "--lora-alpha",
+     "16",
+     "--data-path",
+     "/root/autodl-tmp/p3work/paper3/train-00000-of-00001-a09b74b3ef9c3b56.parquet"
+    ]
+   },
+   {
+    "config": "official_corrected_map",
+    "side": "official",
+    "seed": 123,
+    "allocation": {
+     "vision": 11,
+     "text_shallow": 1,
+     "text_mid": 2,
+     "text_deep": 2
+    },
+    "from_cache": false,
+    "path": "paper3/scripts/outputs/experiments/verify_r1_s123_bcexplicit_v11_s1_m2_d2.json",
+    "sha256": "b86e2e19fadd7d4767ea7282c4fc45b17629e7ba63247445db5733b990607457",
+    "rank": 1,
+    "lora_alpha": 16.0,
+    "epochs": 3,
+    "num_samples": 20,
+    "E": [
+     3926.0,
+     3835.5,
+     3783.0,
+     4104.0
+    ],
+    "E0": 3926.0,
+    "delta_E": 178.0,
+    "trainable": {
+     "vision": 1622016,
+     "proj": 0,
+     "llm": 1835008
+    },
+    "ok": true,
+    "archive_preserved": false,
+    "command": [
+     "/root/miniconda3/bin/python",
+     "/root/autodl-tmp/p3work/paper3/scripts/run_training.py",
+     "--rank",
+     "1",
+     "--rank-vision",
+     "11",
+     "--rank-shallow",
+     "1",
+     "--rank-mid",
+     "2",
+     "--rank-deep",
+     "2",
+     "--seed",
+     "123",
+     "--epochs",
+     "3",
+     "--num-samples",
+     "20",
+     "--lora-alpha",
+     "16",
+     "--data-path",
+     "/root/autodl-tmp/p3work/paper3/train-00000-of-00001-a09b74b3ef9c3b56.parquet"
+    ]
+   },
+   {
+    "config": "official_corrected_map",
+    "side": "official",
+    "seed": 789,
+    "allocation": {
+     "vision": 11,
+     "text_shallow": 1,
+     "text_mid": 2,
+     "text_deep": 2
+    },
+    "from_cache": false,
+    "path": "paper3/scripts/outputs/experiments/verify_r1_s789_bcexplicit_v11_s1_m2_d2.json",
+    "sha256": "bdba76ea6d6a8bd3c7cb799062375d631875e9ca4acc6bf56fb9a8125f3c4ff6",
+    "rank": 1,
+    "lora_alpha": 16.0,
+    "epochs": 3,
+    "num_samples": 20,
+    "E": [
+     3926.0,
+     3831.0,
+     3869.5,
+     4168.0
+    ],
+    "E0": 3926.0,
+    "delta_E": 242.0,
+    "trainable": {
+     "vision": 1622016,
+     "proj": 0,
+     "llm": 1835008
+    },
+    "ok": true,
+    "archive_preserved": false,
+    "command": [
+     "/root/miniconda3/bin/python",
+     "/root/autodl-tmp/p3work/paper3/scripts/run_training.py",
+     "--rank",
+     "1",
+     "--rank-vision",
+     "11",
+     "--rank-shallow",
+     "1",
+     "--rank-mid",
+     "2",
+     "--rank-deep",
+     "2",
+     "--seed",
+     "789",
+     "--epochs",
+     "3",
+     "--num-samples",
+     "20",
+     "--lora-alpha",
+     "16",
+     "--data-path",
+     "/root/autodl-tmp/p3work/paper3/train-00000-of-00001-a09b74b3ef9c3b56.parquet"
+    ]
+   }
+  ]
+ },
+ "reimpl_side": {
+  "config": "reimpl_igu_style",
+  "allocation": {
+   "vision": 11,
+   "text_shallow": 1,
+   "text_mid": 3,
+   "text_deep": 1
+  },
+  "allocation_source": "outputs/analysis/p3_official_igu_run.json",
+  "runs": [
+   {
+    "config": "reimpl_igu_style",
+    "side": "reimpl",
+    "seed": 42,
+    "allocation": {
+     "vision": 11,
+     "text_shallow": 1,
+     "text_mid": 3,
+     "text_deep": 1
+    },
+    "from_cache": true,
+    "path": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v11_s1_m3_d1.json",
+    "sha256": "212e9c75e7fcad2e2f4b6e544ad394014771ed20f814ba48677b7a38b61f248a",
+    "rank": 1,
+    "lora_alpha": 16,
+    "epochs": 3,
+    "num_samples": 20,
+    "E": [
+     3921.0,
+     3814.5,
+     3904.5,
+     4254.0
+    ],
+    "E0": 3921.0,
+    "delta_E": 333.0,
+    "trainable": {
+     "vision": 1622016,
+     "proj": 0,
+     "llm": 2097152
+    },
+    "ok": true,
+    "archive_preserved": false,
+    "reproduction": {
+     "archived_delta_E": 333.0,
+     "delta": 0.0,
+     "equal": true
+    },
+    "command": [
+     "/root/miniconda3/bin/python",
+     "/root/autodl-tmp/p3work/paper3/scripts/run_training.py",
+     "--rank",
+     "1",
+     "--rank-vision",
+     "11",
+     "--rank-shallow",
+     "1",
+     "--rank-mid",
+     "3",
+     "--rank-deep",
+     "1",
+     "--seed",
+     "42",
+     "--epochs",
+     "3",
+     "--num-samples",
+     "20",
+     "--lora-alpha",
+     "16",
+     "--data-path",
+     "/root/autodl-tmp/p3work/paper3/train-00000-of-00001-a09b74b3ef9c3b56.parquet"
+    ]
+   },
+   {
+    "config": "reimpl_igu_style",
+    "side": "reimpl",
+    "seed": 123,
+    "allocation": {
+     "vision": 11,
+     "text_shallow": 1,
+     "text_mid": 3,
+     "text_deep": 1
+    },
+    "from_cache": false,
+    "path": "paper3/scripts/outputs/experiments/verify_r1_s123_bcexplicit_v11_s1_m3_d1.json",
+    "sha256": "1a1e3e8bedcb7a8ff4b30b1ef9c49f51268de0118fd1163b2ef0fb6c9f2e85f9",
+    "rank": 1,
+    "lora_alpha": 16.0,
+    "epochs": 3,
+    "num_samples": 20,
+    "E": [
+     3926.0,
+     3813.5,
+     3776.5,
+     4112.0
+    ],
+    "E0": 3926.0,
+    "delta_E": 186.0,
+    "trainable": {
+     "vision": 1622016,
+     "proj": 0,
+     "llm": 2097152
+    },
+    "ok": true,
+    "archive_preserved": false,
+    "command": [
+     "/root/miniconda3/bin/python",
+     "/root/autodl-tmp/p3work/paper3/scripts/run_training.py",
+     "--rank",
+     "1",
+     "--rank-vision",
+     "11",
+     "--rank-shallow",
+     "1",
+     "--rank-mid",
+     "3",
+     "--rank-deep",
+     "1",
+     "--seed",
+     "123",
+     "--epochs",
+     "3",
+     "--num-samples",
+     "20",
+     "--lora-alpha",
+     "16",
+     "--data-path",
+     "/root/autodl-tmp/p3work/paper3/train-00000-of-00001-a09b74b3ef9c3b56.parquet"
+    ]
+   },
+   {
+    "config": "reimpl_igu_style",
+    "side": "reimpl",
+    "seed": 789,
+    "allocation": {
+     "vision": 11,
+     "text_shallow": 1,
+     "text_mid": 3,
+     "text_deep": 1
+    },
+    "from_cache": true,
+    "path": "paper3/scripts/outputs/experiments/verify_r1_s789_bcexplicit_v11_s1_m3_d1.json",
+    "sha256": "c7a7bd6ec39ac200876d73b96c0fe19e419aad37b03cfabca77ce6226d451e28",
+    "rank": 1,
+    "lora_alpha": 16.0,
+    "epochs": 3,
+    "num_samples": 20,
+    "E": [
+     3926.0,
+     3827.0,
+     3824.0,
+     4188.0
+    ],
+    "E0": 3926.0,
+    "delta_E": 262.0,
+    "trainable": {
+     "vision": 1622016,
+     "proj": 0,
+     "llm": 2097152
+    },
+    "ok": true,
+    "archive_preserved": false,
+    "command": [
+     "/root/miniconda3/bin/python",
+     "/root/autodl-tmp/p3work/paper3/scripts/run_training.py",
+     "--rank",
+     "1",
+     "--rank-vision",
+     "11",
+     "--rank-shallow",
+     "1",
+     "--rank-mid",
+     "3",
+     "--rank-deep",
+     "1",
+     "--seed",
+     "789",
+     "--epochs",
+     "3",
+     "--num-samples",
+     "20",
+     "--lora-alpha",
+     "16",
+     "--data-path",
+     "/root/autodl-tmp/p3work/paper3/train-00000-of-00001-a09b74b3ef9c3b56.parquet"
+    ]
+   }
+  ]
+ },
+ "pairing": "paired by seed; the same seed value is used on both sides",
+ "seeds_common": [
+  42,
+  123,
+  789
+ ],
+ "n_pairs": 3,
+ "same_stack_for_every_pair": true,
+ "stack_mix_warning": null,
+ "pairs": [
+  {
+   "seed": 42,
+   "official": {
+    "delta_E": 182.5,
+    "E": [
+     3926.0,
+     3831.0,
+     3844.5,
+     4108.5
+    ],
+    "archive": null,
+    "from_archive": false,
+    "env": {
+     "python": "3.12.3",
+     "numpy": "2.4.6",
+     "torch": "2.12.1+cu130",
+     "cuda": "13.0",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "transformers": "5.16.1",
+     "peft": "0.20.0"
+    }
+   },
+   "reimpl": {
+    "delta_E": 333.0,
+    "E": [
+     3921.0,
+     3814.5,
+     3904.5,
+     4254.0
+    ],
+    "archive": null,
+    "from_archive": false,
+    "env": {
+     "python": "3.12.3",
+     "numpy": "2.4.6",
+     "torch": "2.12.1+cu130",
+     "cuda": "13.0",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "transformers": "5.16.1",
+     "peft": "0.20.0"
+    }
+   },
+   "gap": -150.5,
+   "same_stack": true
+  },
+  {
+   "seed": 123,
+   "official": {
+    "delta_E": 178.0,
+    "E": [
+     3926.0,
+     3835.5,
+     3783.0,
+     4104.0
+    ],
+    "archive": null,
+    "from_archive": false,
+    "env": {
+     "python": "3.12.3",
+     "numpy": "2.4.6",
+     "torch": "2.12.1+cu130",
+     "cuda": "13.0",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "transformers": "5.16.1",
+     "peft": "0.20.0"
+    }
+   },
+   "reimpl": {
+    "delta_E": 186.0,
+    "E": [
+     3926.0,
+     3813.5,
+     3776.5,
+     4112.0
+    ],
+    "archive": null,
+    "from_archive": false,
+    "env": {
+     "python": "3.12.3",
+     "numpy": "2.4.6",
+     "torch": "2.12.1+cu130",
+     "cuda": "13.0",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "transformers": "5.16.1",
+     "peft": "0.20.0"
+    }
+   },
+   "gap": -8.0,
+   "same_stack": true
+  },
+  {
+   "seed": 789,
+   "official": {
+    "delta_E": 242.0,
+    "E": [
+     3926.0,
+     3831.0,
+     3869.5,
+     4168.0
+    ],
+    "archive": null,
+    "from_archive": false,
+    "env": {
+     "python": "3.12.3",
+     "numpy": "2.4.6",
+     "torch": "2.12.1+cu130",
+     "cuda": "13.0",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "transformers": "5.16.1",
+     "peft": "0.20.0"
+    }
+   },
+   "reimpl": {
+    "delta_E": 262.0,
+    "E": [
+     3926.0,
+     3827.0,
+     3824.0,
+     4188.0
+    ],
+    "archive": null,
+    "from_archive": false,
+    "env": {
+     "python": "3.12.3",
+     "numpy": "2.4.6",
+     "torch": "2.12.1+cu130",
+     "cuda": "13.0",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "transformers": "5.16.1",
+     "peft": "0.20.0"
+    }
+   },
+   "gap": -20.0,
+   "same_stack": true
+  }
+ ],
+ "per_configuration": {
+  "allocation": {
+   "per_block": {
+    "vision": {
+     "official": 11,
+     "reimpl": 11,
+     "gap": 0,
+     "abs_gap": 0
+    },
+    "text_shallow": {
+     "official": 1,
+     "reimpl": 1,
+     "gap": 0,
+     "abs_gap": 0
+    },
+    "text_mid": {
+     "official": 2,
+     "reimpl": 3,
+     "gap": -1,
+     "abs_gap": 1
+    },
+    "text_deep": {
+     "official": 2,
+     "reimpl": 1,
+     "gap": 1,
+     "abs_gap": 1
+    }
+   },
+   "l1": 2,
+   "share_l1": 0.125,
+   "tolerance": 2,
+   "within_tolerance": true,
+   "same_budget": true,
+   "exact_match": false
+  },
+  "trained_arm_delta_E": {
+   "n_pairs": 3,
+   "mean_gap": -59.5,
+   "n_boot": 20000,
+   "margin": 196.05,
+   "method": "paired (by seed) percentile bootstrap of the mean difference + TOST; the resampling rule is tools/_p1595_p3_rank_separation.py vqa_contrast()",
+   "boot_mean": -59.374175,
+   "boot_se": 37.17611308002172,
+   "ci95": [
+    -150.5,
+    -8.0
+   ],
+   "ci90": [
+    -107.0,
+    -12.0
+   ],
+   "excludes_zero_95": true,
+   "tost_p_lower": 0.0,
+   "tost_p_upper": 0.0,
+   "tost_p": 0.0,
+   "equivalent_at_declared_margin": true,
+   "min_equivalent_margin": 107.0,
+   "unavailable_reason": null
+  },
+  "arm_verdict": "equivalent",
+  "trajectory_gap": [
+   {
+    "seed": 42,
+    "gap_per_epoch": [
+     5.0,
+     16.5,
+     -60.0,
+     -145.5
+    ],
+    "note": "descriptive only: epochs inside a seed are not independent"
+   },
+   {
+    "seed": 123,
+    "gap_per_epoch": [
+     0.0,
+     22.0,
+     6.5,
+     -8.0
+    ],
+    "note": "descriptive only: epochs inside a seed are not independent"
+   },
+   {
+    "seed": 789,
+    "gap_per_epoch": [
+     0.0,
+     4.0,
+     45.5,
+     -20.0
+    ],
+    "note": "descriptive only: epochs inside a seed are not independent"
+   }
+  ]
+ },
+ "allocation_sensitivity_to_the_block_mapping": {
+  "archived": {
+   "official": {
+    "vision": 12,
+    "text_shallow": 1,
+    "text_mid": 2,
+    "text_deep": 1
+   },
+   "reimpl": {
+    "vision": 11,
+    "text_shallow": 1,
+    "text_mid": 3,
+    "text_deep": 1
+   },
+   "l1": 2,
+   "within_tolerance": true
+  },
+  "corrected": {
+   "official": {
+    "vision": 11,
+    "text_shallow": 1,
+    "text_mid": 2,
+    "text_deep": 2
+   },
+   "reimpl": {
+    "vision": 11,
+    "text_shallow": 1,
+    "text_mid": 3,
+    "text_deep": 1
+   },
+   "l1": 2,
+   "within_tolerance": true
+  }
+ },
+ "overall": {
+  "official_config": "official_corrected_map",
+  "official_allocation_source": "outputs/analysis/p3_official_igu_run.json",
+  "reimpl_allocation_source": "outputs/analysis/p3_official_igu_run.json",
+  "mean_gap_delta_E": -59.5,
+  "ci95": [
+   -150.5,
+   -8.0
+  ],
+  "margin": 196.05,
+  "margin_fraction_of_E0": 0.05,
+  "allocation_l1": 2,
+  "allocation_within_tolerance": true,
+  "arm_verdict": "equivalent",
+  "verdict": "small",
+  "rule": "small = arm equivalent (|mean gap| <= 0.05 x E0 and TOST equivalent) AND allocation L1 <= 2; large = the arm gap exceeds the margin or its CI excludes equivalence; mixed = exactly one of the two holds",
+  "ci_unavailable_reason": null
+ },
+ "caveat_sentences": {
+  "small": "The official IGU-LoRA allocator and our block-level reimplementation were trained under the identical protocol and their alignment-energy changes differ by less than the pre-declared 5% margin, so the allocation-rule baseline is reported from the official implementation.",
+  "mixed": "The official IGU-LoRA allocator and our block-level reimplementation agree on the trained-arm outcome within the pre-declared margin but disagree on the block ranks, so the baseline is reported from the official implementation and the rank difference is stated explicitly.",
+  "large": "The official IGU-LoRA allocator and our block-level reimplementation differ by more than the pre-declared 5% margin on the identical protocol, so the block-level numbers are not a substitute for the official implementation and are reported as a separate, clearly labelled arm."
+ }
+}

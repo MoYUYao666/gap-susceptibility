@@ -1,0 +1,102 @@
+{
+ "archive": {
+  "outputs/analysis/p3_second_downstream.json": false,
+  "outputs/analysis/p3_second_downstream_base.json": false,
+  "outputs/analysis/p3_second_downstream_5.json": false,
+  "outputs/analysis/p3_second_downstream_6.json": false
+ },
+ "archive_all_present": false,
+ "audit_check": {
+  "S46_mentions": 21,
+  "S43_mentions": 3,
+  "pages_18_mentions": 1,
+  "pages_10_mentions": 1,
+  "supplementary_tex_pointer_lines": [
+   "audited. The supplement is audited from supplementary/supplementary.tex.",
+   "# supplementary.tex; the deltas are quoted unsigned and the TOST p-values are pinned because",
+   "# Every needle is the exact LaTeX form in supplementary.tex. Section numbering is positional, so the",
+   "    \"\"\"Split supplementary.tex into its numbered sections, in file order.",
+   "    text = (SUPP / \"supplementary.tex\").read_text(encoding=\"utf-8\")"
+  ]
+ },
+ "audit_pdf": {
+  "S46_mentions": 16,
+  "S43_mentions": 6,
+  "pages_18_mentions": 2,
+  "pages_10_mentions": 4,
+  "supplementary_tex_pointer_lines": []
+ },
+ "manifest": {
+  "type": "dict",
+  "top_keys": [
+   "rule",
+   "generated",
+   "manuscripts"
+  ]
+ },
+ "reproduce_all": {
+  "lines": 4177,
+  "has_MISMATCH_token": true,
+  "has_UNSOURCED_token": true,
+  "def_lines": [
+   "def _load(rel: str):",
+   "def _descend(cur, part):",
+   "def dig(obj, path: str):",
+   "def env_node(env, key):",
+   "def dE(rec):",
+   "def rank_values(rel, key, ranks, label=\"rank\"):",
+   "def agg(vals, how):",
+   "def phase(rank, how):",
+   "def qwen_phase(rank, how):",
+   "def cf(group, how):",
+   "def pooled_group(ranks, how):",
+   "def welch(a, b):",
+   "def t_sf_two_sided(t, df):",
+   "def betainc_reg(a, b, x):",
+   "def pearson(xs, ys):",
+   "def spearman(xs, ys):",
+   "def rankify(v):",
+   "def add(eid, section, where, printed, src, field, rule, expected,",
+   "def calc(eid, section, where, printed, src, field, rule, expected, fn, tol=T_EXACT, note=\"\"):",
+   "def unsourced(eid, section, where, printed, reason):",
+   "def marked(kind, eid, section, where, printed, reason):",
+   "def analytic(eid, section, where, printed, reason):",
+   "def third_party(eid, section, where, printed, reason):",
+   "def approximate(eid, section, where, printed, reason):",
+   "def external(eid, section, where, printed, reason):"
+  ],
+  "top_level_consts": [
+   "REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))",
+   "EXP = \"paper3/scripts/outputs/experiments\"",
+   "ANA = \"outputs/analysis\"",
+   "RUNS = \"outputs/analysis/p3_alloc_runs\"",
+   "OUT = \"outputs/analysis/p3_reproduce_manifest.json\"",
+   "SUPP = \"paper3/paper_ieee/supplementary/supplementary.tex\"",
+   "HARD = ANA + \"/p3_stats_hardened.json\"",
+   "PAIRED = ANA + \"/p3_allocation_paired_stats.json\"",
+   "T_EXACT = 5e-7",
+   "T_R1 = 0.05      # printed to one decimal",
+   "T_R2 = 0.005     # printed to two decimals",
+   "T_R3 = 5e-4      # printed to three decimals",
+   "T_R4 = 5e-5      # printed to four decimals",
+   "T_INT = 0.5      # printed as an integer",
+   "T_HALF = 0.051   # printed to one decimal where the archive value is x.x5",
+   "T_ABS = T_EXACT  # a count that carries no rounding",
+   "T_PCT = 0.6      # printed to one decimal after a 100x rescale",
+   "_MAIN_SAMPLE = {",
+   "_QG = EXP + \"/qwen_gamma_fp32_verify.json\"",
+   "STACK_SEEDS = ANA + \"/p3_env_stack_seeds.json\""
+  ]
+ },
+ "provenance_gate": {
+  "lines": 88,
+  "mentions_manifest": true,
+  "def_lines": [
+   "def collect_tex(path, seen=None):",
+   "def manuscript_floats(name):",
+   "def main() -> int:"
+  ]
+ },
+ "main_pointer": "S13.\n\n\\section*{Supplementary material}\nThe full axiom derivation, the technical lemmas and proofs, the experimental\ndetails, the error-bound derivation and the complete per-block coupling values are\nprovided as Supplementary Material (Supplementary Sections~S1--S46",
+ "main_pages": 2
+}

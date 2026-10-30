@@ -1,0 +1,416 @@
+{
+ "theory_vs_random": {
+  "n_pairs": 4,
+  "pairs": [
+   {
+    "seed": 42,
+    "rank": 4,
+    "theory_name": "T_r4_s42",
+    "random_name": "R_s42_d0",
+    "E_theory": 3778.0,
+    "E_random": 3759.5,
+    "diff": 18.5,
+    "dE_theory": 149.0,
+    "dE_random": 167.5
+   },
+   {
+    "seed": 456,
+    "rank": 4,
+    "theory_name": "T_r4_s456",
+    "random_name": "R_s456_d1",
+    "E_theory": 3851.0,
+    "E_random": 3837.5,
+    "diff": 13.5,
+    "dE_theory": 76.0,
+    "dE_random": 89.5
+   },
+   {
+    "seed": 789,
+    "rank": 4,
+    "theory_name": "T_r4_s789",
+    "random_name": "R_s789_d2",
+    "E_theory": 3825.0,
+    "E_random": 3815.5,
+    "diff": 9.5,
+    "dE_theory": 102.0,
+    "dE_random": 111.5
+   },
+   {
+    "seed": 999,
+    "rank": 4,
+    "theory_name": "T_r4_s999",
+    "random_name": "R_s999_d2",
+    "E_theory": 3828.0,
+    "E_random": 3823.5,
+    "diff": 4.5,
+    "dE_theory": 99.0,
+    "dE_random": 103.5
+   }
+  ],
+  "mean_diff_end_E": 11.5,
+  "ci95": [
+   6.75,
+   16.25
+  ],
+  "interpretation": "positive diff means the theory allocation ends at higher alignment energy than random"
+ },
+ "rank_sweep": {
+  "rows": [
+   {
+    "rank": 4,
+    "n": 3,
+    "n_diverged": 0,
+    "E0": 3927.0,
+    "mean_final": 3896.8333333333335,
+    "min_final": 3887.0,
+    "max_final": 3903.5,
+    "diverged_majority": false
+   },
+   {
+    "rank": 5,
+    "n": 3,
+    "n_diverged": 0,
+    "E0": 3927.0,
+    "mean_final": 3878.3333333333335,
+    "min_final": 3871.5,
+    "max_final": 3886.0,
+    "diverged_majority": false
+   },
+   {
+    "rank": 6,
+    "n": 3,
+    "n_diverged": 0,
+    "E0": 3927.0,
+    "mean_final": 3872.5,
+    "min_final": 3869.0,
+    "max_final": 3876.0,
+    "diverged_majority": false
+   },
+   {
+    "rank": 7,
+    "n": 3,
+    "n_diverged": 0,
+    "E0": 3927.0,
+    "mean_final": 3866.1666666666665,
+    "min_final": 3864.0,
+    "max_final": 3869.0,
+    "diverged_majority": false
+   },
+   {
+    "rank": 8,
+    "n": 3,
+    "n_diverged": 0,
+    "E0": 3927.0,
+    "mean_final": 3855.3333333333335,
+    "min_final": 3849.0,
+    "max_final": 3861.5,
+    "diverged_majority": false
+   },
+   {
+    "rank": 10,
+    "n": 3,
+    "n_diverged": 0,
+    "E0": 3927.0,
+    "mean_final": 3842.5,
+    "min_final": 3837.5,
+    "max_final": 3847.5,
+    "diverged_majority": false
+   },
+   {
+    "rank": 12,
+    "n": 3,
+    "n_diverged": 0,
+    "E0": 3927.0,
+    "mean_final": 3828.0,
+    "min_final": 3824.5,
+    "max_final": 3830.0,
+    "diverged_majority": false
+   },
+   {
+    "rank": 14,
+    "n": 3,
+    "n_diverged": 0,
+    "E0": 3927.0,
+    "mean_final": 3821.0,
+    "min_final": 3817.0,
+    "max_final": 3824.0,
+    "diverged_majority": false
+   },
+   {
+    "rank": 16,
+    "n": 3,
+    "n_diverged": 2,
+    "E0": 3927.0,
+    "mean_final": 4877.666666666667,
+    "min_final": 3810.0,
+    "max_final": 5464.0,
+    "diverged_majority": true
+   },
+   {
+    "rank": 20,
+    "n": 3,
+    "n_diverged": 3,
+    "E0": 3927.0,
+    "mean_final": 6786.666666666667,
+    "min_final": 6585.0,
+    "max_final": 7114.0,
+    "diverged_majority": true
+   },
+   {
+    "rank": 24,
+    "n": 3,
+    "n_diverged": 3,
+    "E0": 3927.0,
+    "mean_final": 5229.333333333333,
+    "min_final": 4941.0,
+    "max_final": 5431.0,
+    "diverged_majority": true
+   },
+   {
+    "rank": 28,
+    "n": 3,
+    "n_diverged": 3,
+    "E0": 3927.0,
+    "mean_final": 5726.333333333333,
+    "min_final": 5627.0,
+    "max_final": 5832.0,
+    "diverged_majority": true
+   },
+   {
+    "rank": 32,
+    "n": 3,
+    "n_diverged": 3,
+    "E0": 3927.0,
+    "mean_final": 6409.333333333333,
+    "min_final": 6258.0,
+    "max_final": 6552.0,
+    "diverged_majority": true
+   },
+   {
+    "rank": 48,
+    "n": 3,
+    "n_diverged": 3,
+    "E0": 3927.0,
+    "mean_final": 3690.0,
+    "min_final": 3682.0,
+    "max_final": 3702.5,
+    "diverged_majority": true
+   },
+   {
+    "rank": 64,
+    "n": 3,
+    "n_diverged": 3,
+    "E0": 3927.0,
+    "mean_final": 4071.8333333333335,
+    "min_final": 4022.0,
+    "max_final": 4129.0,
+    "diverged_majority": true
+   }
+  ],
+  "critical_rank": {
+   "first_majority_diverged_rank": 16,
+   "last_converged_rank": 14,
+   "boundary_interval": [
+    14,
+    16
+   ],
+   "partial_divergence_ranks": [
+    16
+   ]
+  }
+ },
+ "adalora_comparison": {
+  "adalora_runs": [
+   {
+    "name": "adalora__seed42",
+    "seed": 42,
+    "lr": 5e-05,
+    "delta_E_per_sample_mean": -181.630859375,
+    "delta_E_per_sample_sd": 0.0,
+    "E_trajectory": [
+     23470.845703125,
+     23440.43359375,
+     23285.1640625,
+     23461.40234375,
+     23289.21484375
+    ]
+   },
+   {
+    "name": "adalora__seed123",
+    "seed": 123,
+    "lr": 5e-05,
+    "delta_E_per_sample_mean": -84.341796875,
+    "delta_E_per_sample_sd": 0.0,
+    "E_trajectory": [
+     23470.845703125,
+     23498.2421875,
+     23490.22265625,
+     23447.5546875,
+     23386.50390625
+    ]
+   }
+  ],
+  "our_runs": [
+   {
+    "group": "Theory",
+    "name": "T_r4_s42",
+    "rank": 4,
+    "seed": 42,
+    "dE": 149.0,
+    "end_E": 3778.0
+   },
+   {
+    "group": "Theory",
+    "name": "T_r4_s123",
+    "rank": 4,
+    "seed": 123,
+    "dE": 114.0,
+    "end_E": 3813.0
+   },
+   {
+    "group": "Theory",
+    "name": "T_r4_s456",
+    "rank": 4,
+    "seed": 456,
+    "dE": 76.0,
+    "end_E": 3851.0
+   },
+   {
+    "group": "Theory",
+    "name": "T_r4_s789",
+    "rank": 4,
+    "seed": 789,
+    "dE": 102.0,
+    "end_E": 3825.0
+   },
+   {
+    "group": "Theory",
+    "name": "T_r4_s999",
+    "rank": 4,
+    "seed": 999,
+    "dE": 99.0,
+    "end_E": 3828.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s42_d0",
+    "rank": 4,
+    "seed": 42,
+    "dE": 167.5,
+    "end_E": 3759.5
+   },
+   {
+    "group": "Random",
+    "name": "R_s42_d1",
+    "rank": 4,
+    "seed": 42,
+    "dE": 130.5,
+    "end_E": 3796.5
+   },
+   {
+    "group": "Random",
+    "name": "R_s42_d2",
+    "rank": 32,
+    "seed": 42,
+    "dE": -2518.0,
+    "end_E": 6445.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s123_d0",
+    "rank": 16,
+    "seed": 123,
+    "dE": -1571.0,
+    "end_E": 5498.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s123_d1",
+    "rank": 16,
+    "seed": 123,
+    "dE": -1315.0,
+    "end_E": 5242.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s123_d2",
+    "rank": 16,
+    "seed": 123,
+    "dE": -1659.0,
+    "end_E": 5586.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s456_d0",
+    "rank": 4,
+    "seed": 456,
+    "dE": 92.0,
+    "end_E": 3835.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s456_d1",
+    "rank": 4,
+    "seed": 456,
+    "dE": 89.5,
+    "end_E": 3837.5
+   },
+   {
+    "group": "Random",
+    "name": "R_s456_d2",
+    "rank": 64,
+    "seed": 456,
+    "dE": -167.0,
+    "end_E": 4094.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s789_d0",
+    "rank": 4,
+    "seed": 789,
+    "dE": 139.0,
+    "end_E": 3788.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s789_d1",
+    "rank": 4,
+    "seed": 789,
+    "dE": 122.0,
+    "end_E": 3805.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s789_d2",
+    "rank": 4,
+    "seed": 789,
+    "dE": 111.5,
+    "end_E": 3815.5
+   },
+   {
+    "group": "Random",
+    "name": "R_s999_d0",
+    "rank": 16,
+    "seed": 999,
+    "dE": -1350.0,
+    "end_E": 5277.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s999_d1",
+    "rank": 16,
+    "seed": 999,
+    "dE": -1441.0,
+    "end_E": 5368.0
+   },
+   {
+    "group": "Random",
+    "name": "R_s999_d2",
+    "rank": 4,
+    "seed": 999,
+    "dE": 103.5,
+    "end_E": 3823.5
+   }
+  ]
+ }
+}

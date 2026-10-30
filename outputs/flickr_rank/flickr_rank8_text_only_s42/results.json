@@ -1,0 +1,47 @@
+{
+  "experiment": "flickr_rank8_text_only_s42",
+  "lora_rank": 8,
+  "final_train_loss": 0.47908580876132356,
+  "final_val_loss": 2.2417502122320188,
+  "best_val_loss": 2.2417502122320188,
+  "final_task_metrics": {
+    "R@1_i2t": 0.8859999775886536,
+    "R@1_t2i": 0.6355999708175659,
+    "R@1": 0.7607999742031097,
+    "R@5_i2t": 0.9800000190734863,
+    "R@5_t2i": 0.878000020980835,
+    "R@5": 0.9290000200271606,
+    "R@10_i2t": 0.9919999837875366,
+    "R@10_t2i": 0.9327999949455261,
+    "R@10": 0.9623999893665314,
+    "n_unique_images": 1000.0,
+    "n_captions": 5000.0
+  },
+  "initial_gap": {
+    "epoch": 0,
+    "step": 0,
+    "centroid_gap": 0.8001711368560791,
+    "distribution_gap": 0.8514764039981382,
+    "centroid_gap_norm": 0.03536290231129265,
+    "mean_cosine_pos": 0.3176614046096802,
+    "mean_cosine_neg": 0.17376279830932617,
+    "cosine_separation": 0.143898606300354,
+    "std_cosine_pos": 0.03638748079538345,
+    "std_cosine_neg": 0.04533438757061958,
+    "per_layer": null
+  },
+  "final_gap": {
+    "epoch": 5,
+    "step": 395,
+    "centroid_gap": 0.7825599908828735,
+    "distribution_gap": 0.8401831590121689,
+    "centroid_gap_norm": 0.03458459226491017,
+    "mean_cosine_pos": 0.31523171067237854,
+    "mean_cosine_neg": 0.15691626071929932,
+    "cosine_separation": 0.15831544995307922,
+    "std_cosine_pos": 0.03419311344623566,
+    "std_cosine_neg": 0.04843227565288544,
+    "per_layer": null
+  },
+  "n_trainable_params": 196608
+}

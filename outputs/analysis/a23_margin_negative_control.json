@@ -1,0 +1,689 @@
+{
+ "artifact": "A23 margin-quality certificate - negative-control evidence summary",
+ "purpose": "Evidence and provenance for the sentence(s) stating that the margin-mass certificate is informative where it was validated and saturates (uninformative) on the generic-CLIP A23 control, with no advantage claimed from it.",
+ "generated_by": "tools/_p1585_a23_margin_negative_control.py",
+ "certificate_definition": "mass(eps) = mean(1[margin <= 2 eps]) with margin = s_i(y_i) - max_{c != y_i} s_i(c); mass is therefore the empirical CDF of the top-1 margin evaluated at 2 eps.",
+ "control_generic_clip": {
+  "archive": "outputs/analysis/a23_certificate_control.json",
+  "script": "tools/_p1344_a23_certificate_control.py",
+  "model_field": "openai/clip-vit-base-patch32",
+  "protocol": "gap surgery, lambda translation along the gap direction",
+  "eps_grid": [
+   0.02,
+   0.05,
+   0.1
+  ],
+  "domains": {
+   "marine_optical": {
+    "n_configurations": 7,
+    "lambdas": [
+     -1.0,
+     -0.5,
+     -0.25,
+     0.0,
+     0.25,
+     0.5,
+     1.0
+    ],
+    "top1_percent_at_lambda_0_frozen": 21.574344023323615,
+    "top1_percent_range_across_lambdas": [
+     19.825072886297377,
+     23.61516034985423
+    ],
+    "CG_at_lambda_0": 1.0461392402648926,
+    "mass": {
+     "mass_0.02": {
+      "n": 7,
+      "min": 0.9825072886297376,
+      "max": 1.0,
+      "n_unique": 3,
+      "constant": false,
+      "value_if_constant": null,
+      "values": [
+       1.0,
+       0.9912536443148688,
+       0.9912536443148688,
+       0.9912536443148688,
+       0.9912536443148688,
+       0.9825072886297376,
+       1.0
+      ]
+     },
+     "mass_0.05": {
+      "n": 7,
+      "min": 1.0,
+      "max": 1.0,
+      "n_unique": 1,
+      "constant": true,
+      "value_if_constant": 1.0,
+      "values": [
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ]
+     },
+     "mass_0.1": {
+      "n": 7,
+      "min": 1.0,
+      "max": 1.0,
+      "n_unique": 1,
+      "constant": true,
+      "value_if_constant": 1.0,
+      "values": [
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ]
+     }
+    },
+    "inferred_n_images_candidates": [
+     343,
+     686,
+     1029,
+     1372
+    ]
+   },
+   "acoustic_sonar": {
+    "n_configurations": 7,
+    "lambdas": [
+     -1.0,
+     -0.5,
+     -0.25,
+     0.0,
+     0.25,
+     0.5,
+     1.0
+    ],
+    "top1_percent_at_lambda_0_frozen": 22.041503084688728,
+    "top1_percent_range_across_lambdas": [
+     2.523836231071228,
+     27.53785754346607
+    ],
+    "CG_at_lambda_0": 1.0998772382736206,
+    "mass": {
+     "mass_0.02": {
+      "n": 7,
+      "min": 1.0,
+      "max": 1.0,
+      "n_unique": 1,
+      "constant": true,
+      "value_if_constant": 1.0,
+      "values": [
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ]
+     },
+     "mass_0.05": {
+      "n": 7,
+      "min": 1.0,
+      "max": 1.0,
+      "n_unique": 1,
+      "constant": true,
+      "value_if_constant": 1.0,
+      "values": [
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ]
+     },
+     "mass_0.1": {
+      "n": 7,
+      "min": 1.0,
+      "max": 1.0,
+      "n_unique": 1,
+      "constant": true,
+      "value_if_constant": 1.0,
+      "values": [
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ]
+     }
+    },
+    "inferred_n_images_candidates": [
+     1783,
+     3566
+    ]
+   }
+  },
+  "pooled": {
+   "n_configurations": 14,
+   "top1_percent_range": [
+    2.523836231071228,
+    27.53785754346607
+   ],
+   "mass_0.05_all_equal_1": true,
+   "mass_0.1_all_equal_1": true,
+   "mass_0.02_range": [
+    0.9825072886297376,
+    1.0
+   ]
+  },
+  "correlation_archived": {
+   "CG": -0.18772453810551262,
+   "M(0.01)": NaN,
+   "M(0.05)": NaN,
+   "n": 14
+  },
+  "correlation_recomputed": {
+   "pearson_top1_vs_mass_0.02": -0.3266656533378187,
+   "pearson_top1_vs_mass_0.05": null,
+   "pearson_top1_vs_mass_0.1": null,
+   "pearson_top1_vs_CG": -0.18772453810551268
+  },
+  "threshold_transfer_archived": {
+   "marine_optical->acoustic_sonar": {
+    "threshold": 0.0,
+    "fit_ba": 0.5,
+    "test_ba": 0.5
+   },
+   "acoustic_sonar->marine_optical": {
+    "threshold": 0.0,
+    "fit_ba": 0.5,
+    "test_ba": 0.5
+   }
+  },
+  "field_name_caveat": "tools/_p1344_a23_certificate_control.py:123-125 fills the archive keys 'M(0.01)' and 'M(0.05)' from the same mass_0.05 column, so no M(0.01) value exists in this archive; both keys are NaN because mass_0.05 is identically 1.0 across all 14 configurations (zero variance)."
+ },
+ "adapted_marine_encoders": {
+  "archive": "outputs/analysis/a23_certificate_adapted.json",
+  "script": "tools/_p1352_a23_certificate_adapted.py",
+  "protocol": "gap surgery on the 67-class marine subset; image-side translations, plus text-side at lambda=1",
+  "n_images": 1608,
+  "n_classes": 67,
+  "eps_grid": [
+   0.02,
+   0.05,
+   0.1
+  ],
+  "models": {
+   "bioclip": {
+    "n_lambda_rows": 8,
+    "top1_percent_at_lambda_0": 21.766169154228855,
+    "top1_percent_range": [
+     15.049751243781095,
+     21.766169154228855
+    ],
+    "mass_0.02": {
+     "n": 8,
+     "min": 0.9129353233830846,
+     "max": 0.9390547263681592,
+     "n_unique": 8,
+     "constant": false,
+     "value_if_constant": null
+    },
+    "mass_0.05": {
+     "n": 8,
+     "min": 0.9825870646766169,
+     "max": 0.9950248756218906,
+     "n_unique": 8,
+     "constant": false,
+     "value_if_constant": null
+    },
+    "mass_0.1": {
+     "n": 8,
+     "min": 1.0,
+     "max": 1.0,
+     "n_unique": 1,
+     "constant": true,
+     "value_if_constant": 1.0
+    },
+    "r_M005_archived": -0.34618813632054685,
+    "r_M005_recomputed": -0.34618813632054696,
+    "r_CG_archived": 0.3444561394417955,
+    "r_CG_recomputed": 0.3444561394417955
+   },
+   "oceanclip": {
+    "n_lambda_rows": 8,
+    "top1_percent_at_lambda_0": 24.129353233830848,
+    "top1_percent_range": [
+     19.776119402985074,
+     24.378109452736318
+    ],
+    "mass_0.02": {
+     "n": 8,
+     "min": 0.9129353233830846,
+     "max": 0.9763681592039801,
+     "n_unique": 7,
+     "constant": false,
+     "value_if_constant": null
+    },
+    "mass_0.05": {
+     "n": 8,
+     "min": 0.9800995024875622,
+     "max": 1.0,
+     "n_unique": 6,
+     "constant": false,
+     "value_if_constant": null
+    },
+    "mass_0.1": {
+     "n": 8,
+     "min": 1.0,
+     "max": 1.0,
+     "n_unique": 1,
+     "constant": true,
+     "value_if_constant": 1.0
+    },
+    "r_M005_archived": -0.5639752234681974,
+    "r_M005_recomputed": -0.5639752234681973,
+    "r_CG_archived": 0.3271282805955001,
+    "r_CG_recomputed": 0.3271282805955001
+   }
+  },
+  "threshold_transfer_archived": {
+   "bioclip->oceanclip": {
+    "threshold": 0.9832089552238806,
+    "fit_BA": 0.75,
+    "test_BA": 0.125
+   },
+   "oceanclip->bioclip": {
+    "threshold": 1.0,
+    "fit_BA": 0.5,
+    "test_BA": 0.5
+   }
+  }
+ },
+ "order_preservation_counterpart": {
+  "archive": "outputs/analysis/a23_tau_control.json",
+  "script": "tools/_p1370_a23_tau_control.py",
+  "n_images": 1608,
+  "models": {
+   "bioclip": {
+    "r_tau": 0.8457925920311087,
+    "r_mass": -0.34618813632054685,
+    "r_cg": 0.3444561394417955
+   },
+   "oceanclip": {
+    "r_tau": 0.8142873385775028,
+    "r_mass": -0.5639752234681974,
+    "r_cg": 0.3271282805955001
+   }
+  },
+  "threshold_transfer_archived": {
+   "tau|bioclip->oceanclip": {
+    "fit_BA": 0.5,
+    "test_BA": 0.375
+   },
+   "tau|oceanclip->bioclip": {
+    "fit_BA": 0.5,
+    "test_BA": 0.5
+   },
+   "mass|bioclip->oceanclip": {
+    "fit_BA": 0.75,
+    "test_BA": 0.125
+   },
+   "mass|oceanclip->bioclip": {
+    "fit_BA": 0.5,
+    "test_BA": 0.5
+   }
+  }
+ },
+ "informative_reference_a1": {
+  "archive": "outputs/analysis/a1_margin_mass.json",
+  "script": "tools/_p1299_margin_mass.py",
+  "benchmark": "imagenet5k",
+  "n_images": 5000,
+  "model": "openai/clip-vit-base-patch32",
+  "n_configurations": 17,
+  "definition": "margin = s_i(y_i) - max_{c!=y_i} s_i(c); mass(eps) = mean(1[margin <= 2 eps])",
+  "frozen_row": {
+   "family": "frozen",
+   "top1": 59.099999999999994,
+   "CG": 0.8554955124855042,
+   "margin_mean": 0.0052278609946370125,
+   "margin_median": 0.006343260407447815,
+   "mass_eps_0.01": 0.681,
+   "mass_eps_0.02": 0.8748,
+   "mass_eps_0.05": 0.9998,
+   "mass_eps_0.1": 1.0
+  },
+  "mass_eps_0.01_range": [
+   0.5388,
+   0.9984
+  ],
+  "mass_eps_0.05_range": [
+   0.9992,
+   1.0
+  ],
+  "mass_eps_0.1": {
+   "n": 17,
+   "min": 1.0,
+   "max": 1.0,
+   "n_unique": 1,
+   "constant": true,
+   "value_if_constant": 1.0
+  },
+  "mass_eps_0.2": {
+   "n": 17,
+   "min": 1.0,
+   "max": 1.0,
+   "n_unique": 1,
+   "constant": true,
+   "value_if_constant": 1.0
+  },
+  "mass_eps_0.5": {
+   "n": 17,
+   "min": 1.0,
+   "max": 1.0,
+   "n_unique": 1,
+   "constant": true,
+   "value_if_constant": 1.0
+  },
+  "correlation_with_top1_archived": {
+   "CG": -0.1541158608444842,
+   "mass_eps_0.01": -0.9955754509543606,
+   "mass_eps_0.02": -0.9876833103482462,
+   "mass_eps_0.05": -0.3118100114998573,
+   "mass_eps_0.1": NaN,
+   "mass_eps_0.2": NaN,
+   "mass_eps_0.5": NaN
+  },
+  "correlation_with_top1_recomputed": {
+   "mass_eps_0.01": -0.9955754509543608,
+   "mass_eps_0.02": -0.987683310348246,
+   "mass_eps_0.05": -0.3118100114998572
+  },
+  "template_control": {
+   "archive": "outputs/analysis/a1_margin_templates.json",
+   "eps": [
+    0.01,
+    0.02
+   ],
+   "models": {
+    "clip32": {
+     "n_templates": 10,
+     "mass_0.01_range": [
+      0.6772,
+      0.72
+     ]
+    },
+    "clip16": {
+     "n_templates": 10,
+     "mass_0.01_range": [
+      0.6152,
+      0.6618
+     ]
+    },
+    "openclip": {
+     "n_templates": 10,
+     "mass_0.01_range": [
+      0.5706,
+      0.603
+     ]
+    },
+    "siglip": {
+     "n_templates": 10,
+     "mass_0.01_range": [
+      0.502,
+      0.538
+     ]
+    },
+    "vitl": {
+     "n_templates": 10,
+     "mass_0.01_range": [
+      0.506,
+      0.5438
+     ]
+    }
+   }
+  }
+ },
+ "saturation_across_all_archived_arms": {
+  "n_arms_scanned": 286,
+  "archives": [
+   "outputs/analysis/a1_lower_bound_constants.json",
+   "outputs/analysis/a1_margin_mass.json",
+   "outputs/analysis/a1_retrieval_monitor.json",
+   "outputs/analysis/a23_certificate_adapted.json",
+   "outputs/analysis/a23_certificate_control.json",
+   "outputs/analysis/a23_tau_control.json",
+   "outputs/analysis/a23_uatd_domain.json",
+   "outputs/analysis/a23_watertank_domain.json"
+  ],
+  "by_eps": {
+   "0.01": {
+    "n": 28,
+    "min": 0.5388,
+    "max": 0.9984,
+    "n_below_1": 28,
+    "n_exactly_1": 0
+   },
+   "0.02": {
+    "n": 50,
+    "min": 0.8112,
+    "max": 1.0,
+    "n_below_1": 40,
+    "n_exactly_1": 10
+   },
+   "0.05": {
+    "n": 108,
+    "min": 0.9763681592039801,
+    "max": 1.0,
+    "n_below_1": 43,
+    "n_exactly_1": 65
+   },
+   "0.1": {
+    "n": 66,
+    "min": 1.0,
+    "max": 1.0,
+    "n_below_1": 0,
+    "n_exactly_1": 66
+   },
+   "0.2": {
+    "n": 17,
+    "min": 1.0,
+    "max": 1.0,
+    "n_below_1": 0,
+    "n_exactly_1": 17
+   },
+   "0.5": {
+    "n": 17,
+    "min": 1.0,
+    "max": 1.0,
+    "n_below_1": 0,
+    "n_exactly_1": 17
+   }
+  },
+  "claim_check": {
+   "M(0.05)_min_over_all_arms": 0.9763681592039801,
+   "M(0.05)_at_least_0.97_everywhere": true,
+   "M(0.05)_at_least_0.98_everywhere": false,
+   "M(0.10)_equals_1_everywhere": true
+  }
+ },
+ "datasets": {
+  "control_marine_optical": {
+   "path": "data/fathomnet8",
+   "exists": true,
+   "n_classes": 7,
+   "n_images_direct": 343,
+   "per_class": {
+    "55-gallon drum": 57,
+    "Actinopterygii": 61,
+    "Decapoda": 60,
+    "crab": 59,
+    "sea star": 59,
+    "sponge": 7,
+    "urchin": 40
+   }
+  },
+  "control_acoustic_sonar": {
+   "path": "data\\NKSID\\NKSID",
+   "exists": true,
+   "n_classes": 7,
+   "n_images_direct": 1783,
+   "per_class": {
+    "big_propeller": 203,
+    "cylinder": 288,
+    "fishing_net": 20,
+    "floats": 951,
+    "iron_pipeline": 112,
+    "small_propeller": 94,
+    "soft_pipeline": 115
+   }
+  },
+  "note": "Both control datasets carry 7 class directories on disk although the directory name 'fathomnet8' and the script docstring say 8 classes; the control archive stores no class count, so chance level is 1/7 = 14.29% under the loader's own class list (sorted subdirectories).",
+  "adapted_subset": {
+   "archive": "outputs/ocean_subset.json",
+   "n_classes_field": 67,
+   "n_subset_idx_field": 1608
+  }
+ },
+ "manuscript_state": {
+  "working_copy": {
+   "file": "paper_a2/ext_partII_domains.tex",
+   "n_lines_and_mtime": {
+    "n_lines": 121,
+    "mtime": "2026-10-24 15:03:55"
+   },
+   "lines_with_certificate_text": [
+    94
+   ],
+   "lines_with_validated_reference_numbers": [
+    98
+   ],
+   "lines_citing_control_archive": [
+    109
+   ],
+   "included_from_main_at": {
+    "paper_a2/main_ieee.tex": [
+     637
+    ]
+   },
+   "position": "Results body (Part II of the domain-model matrix section), not an appendix",
+   "introduced_by_commit": "93aa30d (2026-10-19 18:10, i.e. after the 2026-09-21 submission)",
+   "note": "The paragraph was rewritten on 2026-10-24 (workspace mtime above) with the corrected wording: 'margin-mass variant' is the pre-edit phrase from commit 93aa30d, 'The margin mass M(eps)' is the current one."
+  },
+  "frozen_submitted_26_0663": {
+   "file": "SUBMISSION/A23_JOE/current/ext_partII_domains.tex",
+   "lines_with_margin": [
+    68,
+    70
+   ],
+   "lines_with_certificate": [],
+   "lines_with_saturation": [],
+   "main_file": "SUBMISSION/A23_JOE/current/main_ieee.tex",
+   "main_lines_with_certificate": [],
+   "verdict": "absent from the submitted manuscript (26-0663, submitted 2026-09-21)"
+  },
+  "notes_lines": {
+   "HANDOFF.md": {
+    "A23-P0-1": [],
+    "饱和失效": [
+     922
+    ],
+    "negative control": [
+     922
+    ],
+    "M\\approx1": [
+     922
+    ],
+    "升级为适配模型实验并写入正文": [],
+    "写入正文": [
+     656,
+     764,
+     1747,
+     16560,
+     16564,
+     17049,
+     17068,
+     17127,
+     17207,
+     17644,
+     19154
+    ],
+    "Certificate control": []
+   },
+   "docs/UPGRADE_PLAN_P3_A23_COMMENTARY_2026-10-19.md": {
+    "A23-P0-1": [
+     34,
+     88,
+     109
+    ],
+    "饱和失效": [],
+    "negative control": [
+     88
+    ],
+    "M\\approx1": [],
+    "升级为适配模型实验并写入正文": [
+     109
+    ],
+    "写入正文": [
+     108,
+     109,
+     110
+    ],
+    "Certificate control": []
+   },
+   "docs/A23_REVIEWER_OBJECTIONS.md": {
+    "A23-P0-1": [],
+    "饱和失效": [],
+    "negative control": [
+     10,
+     21
+    ],
+    "M\\approx1": [
+     21
+    ],
+    "升级为适配模型实验并写入正文": [],
+    "写入正文": [
+     32
+    ],
+    "Certificate control": [
+     21
+    ]
+   },
+   "文件地图.md": {
+    "A23-P0-1": [],
+    "饱和失效": [],
+    "negative control": [],
+    "M\\approx1": [],
+    "升级为适配模型实验并写入正文": [],
+    "写入正文": [
+     963
+    ],
+    "Certificate control": []
+   }
+  }
+ },
+ "verdict": {
+  "saturation_is_expected_consequence": true,
+  "saturation_is_a_genuine_failure_at_the_tested_operating_point": true,
+  "failure_of_the_definition": false,
+  "why": "M(eps) is a CDF evaluated at 2 eps, so it saturates by construction once 2 eps exceeds the bulk of the margin distribution. In CLIP score units that bulk lies below ~0.02 in every archived domain: on the A1 ImageNet-5k reference the frozen model has margin median 0.0063 and reaches M(0.05) = 0.9998 / M(0.1) = 1.0 at 59.1% top-1, and the A23 adapted encoders (21.8% / 24.1% top-1) also have M(0.1) = 1.0. Within the control, M(0.05) and M(0.1) are identically 1.0 in all 14 configurations, which makes the archived correlation NaN and the threshold classifier degenerate to chance (BA 0.50); that is a real loss of usefulness at that operating point.",
+  "low_frozen_accuracy_causal_claim_supported": false,
+  "low_frozen_accuracy_caveat": "The claim 'saturation happens because frozen accuracy is too low' is not supported by the archives: the 59.1%-accuracy ImageNet-5k reference saturates identically at eps >= 0.05, and the adapted marine encoders at 21.8-24.1% top-1 are not saturated at eps = 0.02. Frozen accuracy in the control is 21.57% (marine_optical) and 22.04% (acoustic_sonar) on 7 classes, i.e. above the 14.29% chance level, which is why the manuscript's current wording ('the frozen accuracy is too low for small margins to separate rows') should be replaced by the eps-grid explanation.",
+  "informative_operating_point": "eps = 0.01 (never evaluated in the A23 control, whose grid starts at 0.02): A1 ImageNet-5k gives M(0.01) = 0.681 frozen and Pearson -0.9956 between M(0.01) and top-1 across 17 configurations, and 0.6772-0.7200 across the 10 prompt templates of the clip32 arm.",
+  "notes_paraphrase_check": "The project notes' phrase 'frozen accuracy only 20-27%' is a paraphrase of the near-frozen band, not a single archived field: the archived lambda = 0 values are 21.5743% (marine_optical) and 22.0415% (acoustic_sonar); the full lambda grids span 19.8251-23.6152% and 2.5238-27.5379% respectively. The 'M approx 1' part of the notes is exact for eps >= 0.05 (constant 1.0 in all 14 configurations) and approximate at eps = 0.02 (0.9825-1.0).",
+  "holds_on": "generic CLIP ViT-B/32 (openai/clip-vit-base-patch32) on fathomnet8 and NKSID; near-saturated and weakly correlated on BioCLIP-base and OceanCLIP over the 67-class marine subset; saturated at eps = 0.05 in every arm of every archive that records a margin mass (M(0.05) >= 0.976 in 108 arms, M(0.10) = 1.0 in 66 arms, across the control, both adapted encoders, the UATD and water-tank OOD probes, the A1 ImageNet-5k and marine-retrieval monitors); not saturated at eps = 0.01 on the A1 ImageNet-5k references.",
+  "advantage_claimed": false
+ },
+ "conclusion": "The margin-quality certificate M(eps) does not transfer as a portable scalar to the A23 control domains at the eps grid that was tested: on generic CLIP ViT-B/32 (fathomnet8 tree, 343 images, 7 classes; NKSID class directories, 1783 images, 7 classes) M(0.05) and M(0.1) equal 1.0 in all 14 surgery configurations, so the archived correlation with top-1 is undefined (NaN) and the fitted threshold degenerates to chance (BA 0.50 in both directions), while the adapted encoders (BioCLIP, OceanCLIP; 1608 images, 67 classes) show only weak within-family correlations (r = -0.346 / -0.564 at eps = 0.05) and a threshold fitted on one encoder fails on the other (BA 0.125-0.50). This saturation is an expected consequence of evaluating a margin CDF at a fixed coarse eps: in CLIP score units the margin bulk lies below ~0.02 in every archived domain, including the higher-accuracy ImageNet-5k reference (M(0.05) = 0.9998 at 59.1% top-1, M(0.1) = 1.0). It is therefore a failure of the tested operating point, not of the certificate's definition, and it must not be explained by low frozen accuracy alone, because the high-accuracy reference saturates identically. No advantage is claimed from the certificate anywhere in the A23 manuscript; the informative regime (eps = 0.01, where M(0.01) tracks top-1 at r = -0.996 on ImageNet-5k) has not been evaluated on the A23 domains.",
+ "provenance_gaps": [
+  "The control archive stores no per-domain image or class counts; n = 343 (fathomnet8) is recovered from the accuracy fractions (74/343 = 21.5743...%) and n = 1783 (NKSID) from the loader's own glob over 7 class directories. The script docstring's '8 classes' is not what the loader collected (7 subdirectories in both trees).",
+  "The control's two domains are the raw data trees, not the manuscript's canonical protocols: fathomnet8 is 7 classes / 343 images (the paper's shipboard FathomNet subset is 6 concepts / 144 frames, and its marine reference domain is the 67-class rare-species subset with 1608 images), and the NKSID arm is 7 classes / 1783 imbalanced images (floats 951 of 1783) against the paper's balanced 8-class / 650-image sonar protocol. The NKSID tree holds 834 further loose img_*.jpg files at its root that the loader skipped.",
+  "The archive key 'M(0.01)' in a23_certificate_control.json is a duplicate of mass_0.05 (script lines 123-125); the control never measured M(0.01).",
+  "The control's threshold-transfer labels are a per-domain median split (script lines 128-133), so BA = 0.50 there reflects a degenerate constant predictor, not a validated transfer failure."
+ ]
+}

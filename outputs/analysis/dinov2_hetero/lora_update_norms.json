@@ -1,0 +1,51 @@
+{
+  "script": "tools/_p365_lora_update_norms.py",
+  "formula": "per group: sqrt(sum_layers ||scaling * (A @ B)||_F^2), scaling = alpha/rank = 16/8 = 2",
+  "source_paper_definition": "experiments/strict_freeze_control.py:210-217 lora_update_norms()",
+  "arms": {
+    "clip_b32_text_only": {
+      "value": {
+        "text": 5.441560344550104
+      },
+      "source": "outputs\\strict_freeze\\text_only\\seed42\\results.json :: lora_update_norm",
+      "measured_by": "experiments/strict_freeze_control.py (the paper's control)"
+    },
+    "clip_b32_both": {
+      "value": {
+        "vision": 6.231963279537036,
+        "text": 4.348446382708836
+      },
+      "source": "outputs\\strict_freeze\\both\\seed42\\results.json :: lora_update_norm",
+      "measured_by": "experiments/strict_freeze_control.py (the paper's control)"
+    },
+    "clip_b32_vision_only": {
+      "value": {
+        "vision": 6.90144517330605
+      },
+      "source": "outputs\\strict_freeze\\vision_only\\seed42\\results.json :: lora_update_norm",
+      "measured_by": "experiments/strict_freeze_control.py (the paper's control)"
+    },
+    "dinov2_het_text_only": {
+      "value": {
+        "text": 8.337108577024438
+      },
+      "source": "outputs\\analysis\\dinov2_hetero\\fitted\\text_only\\seed42\\last_checkpoint.pt :: lora_state_dict -> ||scaling*(A@B)||_F summed per tower",
+      "measured_by": "tools/_p365_lora_update_norms.py (audit recovery; the experiment's own field for this run predates the field's introduction)",
+      "detail": {
+        "n_layers": 24,
+        "checkpoint_epoch": 10,
+        "per_layer_mean": 1.6710365116596222,
+        "per_layer_max": 2.7025673389434814
+      }
+    }
+  },
+  "comparison": {
+    "clip_b32_text_only": {
+      "text": 5.441560344550104
+    },
+    "dinov2_het_text_only": {
+      "text": 8.337108577024438
+    },
+    "note": "same arm definition, same rank/alpha, same 24 text layers, same 512-wide tower, same 5000-sample Flickr30k slice -- so the two numbers are directly comparable as 'how far the text tower was moved'"
+  }
+}

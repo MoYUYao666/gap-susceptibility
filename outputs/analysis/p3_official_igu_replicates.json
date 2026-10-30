@@ -1,0 +1,148 @@
+{
+ "experiment": "p3_official_igu_replicates",
+ "script": "tools/_p1646_p3_arm_replicates.py",
+ "purpose": "quantify run-to-run spread of delta_E for the six arms; 4-bit training is not bit-reproducible, so a single-seed delta_E is not a reproducible reading",
+ "cache_defeat_method": "--force (retrains despite an existing archive and ignores runs[] entries); the primaries and both pinned anchors are restored byte-identically before and after every pass",
+ "primary_preserved": true,
+ "passes_requested": 2,
+ "passes_completed": 2,
+ "pinned_anchors_sha256_before": {
+  "verify_r1_s42_bcexplicit_v11_s1_m3_d1.json": "212e9c75e7fcad2e2f4b6e544ad394014771ed20f814ba48677b7a38b61f248a",
+  "verify_r1_s42_bcexplicit_v12_s1_m2_d1.json": "a060e2a880a638cb81c54ca8b444936c0d6612e3eccee98231ad79cc00338e7f"
+ },
+ "pinned_anchors_sha256_after": {
+  "verify_r1_s42_bcexplicit_v11_s1_m3_d1.json": "212e9c75e7fcad2e2f4b6e544ad394014771ed20f814ba48677b7a38b61f248a",
+  "verify_r1_s42_bcexplicit_v12_s1_m2_d1.json": "a060e2a880a638cb81c54ca8b444936c0d6612e3eccee98231ad79cc00338e7f"
+ },
+ "arms": [
+  {
+   "config": "official_corrected_map",
+   "seed": 42,
+   "primary_delta_E": 182.5,
+   "replicate_delta_E": [
+    64.5,
+    115.0
+   ],
+   "all_values": [
+    182.5,
+    64.5,
+    115.0
+   ],
+   "n_runs": 3,
+   "max_minus_min": 118.0,
+   "mean": 120.66666666666667,
+   "sd": 59.203744250962146,
+   "arm_archive": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v11_s1_m2_d2.json",
+   "arm_sha256": "62c7cb546635a9440d8f8cedcb1f63f29863a50456a7443ebbeb7991fd17405f"
+  },
+  {
+   "config": "official_corrected_map",
+   "seed": 123,
+   "primary_delta_E": 178.0,
+   "replicate_delta_E": [
+    179.0,
+    71.0
+   ],
+   "all_values": [
+    178.0,
+    179.0,
+    71.0
+   ],
+   "n_runs": 3,
+   "max_minus_min": 108.0,
+   "mean": 142.66666666666666,
+   "sd": 62.06716791777544,
+   "arm_archive": "paper3/scripts/outputs/experiments/verify_r1_s123_bcexplicit_v11_s1_m2_d2.json",
+   "arm_sha256": "b86e2e19fadd7d4767ea7282c4fc45b17629e7ba63247445db5733b990607457"
+  },
+  {
+   "config": "official_corrected_map",
+   "seed": 789,
+   "primary_delta_E": 242.0,
+   "replicate_delta_E": [
+    261.5,
+    297.5
+   ],
+   "all_values": [
+    242.0,
+    261.5,
+    297.5
+   ],
+   "n_runs": 3,
+   "max_minus_min": 55.5,
+   "mean": 267.0,
+   "sd": 28.155816450602174,
+   "arm_archive": "paper3/scripts/outputs/experiments/verify_r1_s789_bcexplicit_v11_s1_m2_d2.json",
+   "arm_sha256": "bdba76ea6d6a8bd3c7cb799062375d631875e9ca4acc6bf56fb9a8125f3c4ff6"
+  },
+  {
+   "config": "reimpl_igu_style",
+   "seed": 42,
+   "primary_delta_E": 333.0,
+   "replicate_delta_E": [
+    201.0,
+    243.0
+   ],
+   "all_values": [
+    333.0,
+    201.0,
+    243.0
+   ],
+   "n_runs": 3,
+   "max_minus_min": 132.0,
+   "mean": 259.0,
+   "sd": 67.43886120034946,
+   "arm_archive": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v11_s1_m3_d1.json",
+   "arm_sha256": "212e9c75e7fcad2e2f4b6e544ad394014771ed20f814ba48677b7a38b61f248a"
+  },
+  {
+   "config": "reimpl_igu_style",
+   "seed": 123,
+   "primary_delta_E": 186.0,
+   "replicate_delta_E": [
+    178.5,
+    180.0
+   ],
+   "all_values": [
+    186.0,
+    178.5,
+    180.0
+   ],
+   "n_runs": 3,
+   "max_minus_min": 7.5,
+   "mean": 181.5,
+   "sd": 3.968626966596886,
+   "arm_archive": "paper3/scripts/outputs/experiments/verify_r1_s123_bcexplicit_v11_s1_m3_d1.json",
+   "arm_sha256": "1a1e3e8bedcb7a8ff4b30b1ef9c49f51268de0118fd1163b2ef0fb6c9f2e85f9"
+  },
+  {
+   "config": "reimpl_igu_style",
+   "seed": 789,
+   "primary_delta_E": 262.0,
+   "replicate_delta_E": [
+    226.5,
+    236.5
+   ],
+   "all_values": [
+    262.0,
+    226.5,
+    236.5
+   ],
+   "n_runs": 3,
+   "max_minus_min": 35.5,
+   "mean": 241.66666666666666,
+   "sd": 18.305281569354058,
+   "arm_archive": "paper3/scripts/outputs/experiments/verify_r1_s789_bcexplicit_v11_s1_m3_d1.json",
+   "arm_sha256": "c7a7bd6ec39ac200876d73b96c0fe19e419aad37b03cfabca77ce6226d451e28"
+  }
+ ],
+ "summary": {
+  "n_arms": 6,
+  "n_replicate_passes": 2,
+  "max_spread_across_arms": 132.0,
+  "mean_spread_across_arms": 76.08333333333333,
+  "declared_equivalence_margin": 196.05,
+  "archived_official_minus_reimpl_gap": 92.5
+ },
+ "how_to_reproduce": "python tools/_p1646_p3_arm_replicates.py --passes 2 --apply  (on the instance, after the six-arm consolidation)"
+}

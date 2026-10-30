@@ -1,0 +1,58 @@
+{
+ "meta": {
+  "script": "tools/_p1524_record_bugfix.py",
+  "date": "2026-10-22",
+  "finding": "run_training_qwen25.py ignored --rank; every 2026-10-22 Qwen2.5 record had the default rank 4 (trainable_params=1,843,200). Fixed by using args.rank for uniform block config; invalid records moved to outputs/analysis/_invalid_qwen25_rank_bug/."
+ },
+ "corrected_qwen": [
+  {
+   "file": "qwen_cf_uniform_rank5_seed123_q25_r5_s123.json",
+   "rank": 5,
+   "seed": 123,
+   "trainable_params": 2304000,
+   "delta_E": 384.0
+  },
+  {
+   "file": "qwen_cf_uniform_rank5_seed42_q25_r5_s42.json",
+   "rank": 5,
+   "seed": 42,
+   "trainable_params": 2304000,
+   "delta_E": 448.0
+  },
+  {
+   "file": "qwen_cf_uniform_rank5_seed789_q25_r5_s789.json",
+   "rank": 5,
+   "seed": 789,
+   "trainable_params": 2304000,
+   "delta_E": -64.0
+  },
+  {
+   "file": "qwen_cf_uniform_rank6_seed123_q25_r6_s123.json",
+   "rank": 6,
+   "seed": 123,
+   "trainable_params": 2764800,
+   "delta_E": -32.0
+  },
+  {
+   "file": "qwen_cf_uniform_rank6_seed42_q25_r6_s42.json",
+   "rank": 6,
+   "seed": 42,
+   "trainable_params": 2764800,
+   "delta_E": 432.0
+  },
+  {
+   "file": "qwen_cf_uniform_rank6_seed789_q25_r6_s789.json",
+   "rank": 6,
+   "seed": 789,
+   "trainable_params": 2764800,
+   "delta_E": -80.0
+  }
+ ],
+ "checks": {
+  "adapters": "p3_vqa/instr/caption adapters have r=5/6 and alpha=10/12; probe r=8",
+  "baseline_arms": "trainable counts differ across explicit block allocations (verified)",
+  "vqa_metrics": "stored accuracy reproduces under the script's own normalisation",
+  "hessian": "stored share at 1e-3 probe = 0.5*1e-3*gHg/g2 (recomputed); share at lr = 0.5*5e-5*gHg/g2",
+  "gamma": "CV values reproduce from the stored conditions"
+ }
+}

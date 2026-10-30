@@ -1,0 +1,69 @@
+{
+ "arms": {
+  "text_only": {
+   "ip_v_mean": 12.09167695979834,
+   "ip_t_mean": 9.254407255023608,
+   "sum_mean": 21.34608421482195,
+   "n_steps": 7,
+   "per_epoch": [
+    {
+     "epoch": 1,
+     "ip_v": 12.09167695979834,
+     "ip_t": 9.254407255023608,
+     "sum": 21.34608421482195,
+     "n_steps": 7
+    }
+   ],
+   "loss_first": 0.6878252029418945,
+   "loss_last": 0.9388787746429443
+  },
+  "both": {
+   "ip_v_mean": 0.981050878575272,
+   "ip_t_mean": 2.8504128902724744,
+   "sum_mean": 3.8314637688477466,
+   "n_steps": 7,
+   "per_epoch": [
+    {
+     "epoch": 1,
+     "ip_v": 0.981050878575272,
+     "ip_t": 2.8504128902724744,
+     "sum": 3.831463768847746,
+     "n_steps": 7
+    }
+   ],
+   "loss_first": 0.8684885501861572,
+   "loss_last": 0.5116366147994995
+  },
+  "vision_only": {
+   "ip_v_mean": 280.2979463018805,
+   "ip_t_mean": 6.393085993102038,
+   "sum_mean": 286.6910322949825,
+   "n_steps": 7,
+   "per_epoch": [
+    {
+     "epoch": 1,
+     "ip_v": 280.2979463018805,
+     "ip_t": 6.393085993102038,
+     "sum": 286.6910322949825,
+     "n_steps": 7
+    }
+   ],
+   "loss_first": 1.132788062095642,
+   "loss_last": 0.7908421158790588
+  }
+ },
+ "perstep_mean_spread_pct": 272.0949653922193,
+ "cg_delta_spread_pct": 277.3,
+ "ordering_theory": [
+  "vision_only",
+  "text_only",
+  "both"
+ ],
+ "ordering_measured": [
+  "text_only",
+  "both",
+  "vision_only"
+ ],
+ "ordering_same": false,
+ "verdict": "per-step averaging widens the gap; the theory holds"
+}

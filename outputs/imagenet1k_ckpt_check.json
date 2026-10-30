@@ -1,0 +1,30 @@
+{
+  "dataset": "ImageNet-1K val (HF ILSVRC/imagenet-1k)",
+  "protocol": {
+    "templates": [
+      "a photo of a {}"
+    ],
+    "n_images": 14288,
+    "class_names": "data/imagenet_1k_names.json",
+    "shards": [
+      "data/imagenet_hf\\validation-00000-of-00014.parquet",
+      "data/imagenet_hf\\validation-00001-of-00014.parquet",
+      "data/imagenet_hf\\validation-00002-of-00014.parquet",
+      "data/imagenet_hf\\validation-00003-of-00014.parquet"
+    ]
+  },
+  "results": {
+    "frozen": 59.37,
+    "text_only_r8": 58.76,
+    "both_r8": 59.67
+  },
+  "paper_values": {
+    "frozen": 60.72,
+    "text_only": 59.06,
+    "both": 56.14
+  },
+  "extra": {
+    "frozen_synset_names_single_template": 60.05,
+    "paper_frozen": 60.72
+  }
+}

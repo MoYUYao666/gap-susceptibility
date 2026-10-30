@@ -1,0 +1,18 @@
+{
+ "p3_withdrawals": [
+  "In particular we have withdrawn the \"architecture-dependent\" reading entirely: the difference between LLaVA and Qwen2-VL tracked the visual token budget rather than the architecture (see R3.11).",
+  "Two of the results go against the paper as submitted, and we report them as such rather than as qualifications: the allocation rule's advantage does not survive our own controls, and the alignment energy is not a proxy for downstream performance.",
+  "We have therefore withdrawn the claim that the rule beats the uniform baseline on Delta E.",
+  "Several of your questions exposed claims we could not sustain, and we have withdrawn or downgraded four of them: the \"sharp phase transition\", the \"architecture-dependent\" finding, the 30x variance ratio, and the claim that our allocation rule beats the uniform baseline.",
+  "We no longer claim uniqueness under non-orthogonal parameterizations, and we no longer claim that R3 alone implies additivity — a counterexample (|grad E|^2) is now in the paper.",
+  "- We do not claim that any particular beta is optimal for cross-architecture transfer, and we do not calibrate it on the target.",
+  "We have withdrawn the claim (full table in our reply to R2.2).",
+  "Since the paper reports that Qwen2-VL exhibits substantially different behavior from LLaVA, does this result challenge the claim that (|Gamma_k|) ordering is architecture- transferable, and under what conditions does the proposed partial-order preservation actually hold? Response: The reviewer's question exposed a claim we could not sustain, and we have withdrawn it.",
+  "- Qwen2-VL-2B, real COCO validation pairs: rank behaviour is stable (no sign flip at any rank in either condition), but the condition comparison does not survive a change of visual budget.",
+  "The alignment energy is defined as the mean squared distance between visual and language hidden states; what evidence demonstrates that this quantity is sufficiently correlated with actual downstream multimodal task performance? Response: None, and we no longer claim it.",
+  "The paper now describes E as a diagnostic of representation geometry, not a proxy for task accuracy.",
+  "The reported critical rank (r_cin[5,6]) is based on only three seeds per rank; is this sample size sufficient to support such a sharp phase-transition claim, particularly given the reported environmental sensitivity? Response: The reviewer is right, and we have both downgraded the claim and quantified the limitation.",
+  "- We do not claim a catastrophic-tail guarantee either.",
+  "The earlier comparison that mixed capacities (the Random group drawing rank from 4,16,32,64, a 16-fold spread) is retained in the paper only as the reason the original variance claim was withdrawn."
+ ]
+}

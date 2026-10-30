@@ -1,0 +1,211 @@
+{
+ "sentence": "To check that this is not in-sample fitting, we refit the slope on training folds only and evaluate it on held-out ones: leaving one experiment family out (12 folds) gives an out-of-sample $R^2$ of $0.449$ pooled and $0.396$ at the median fold, with $67\\%$ of folds beating the training-fold constant baseline; leaving one dataset$\\times$model cell out (6 folds) gives $0.236$ and $0.227$, with $67\\%$ of folds beating it. The association therefore transfers, but not uniformly: in both schemes the weakest fold is SigLIP, where the ordering is known to reverse, which is why we report an association with its per-fold spread rather than a predictive relation.",
+ "family": {
+  "grouping": "family",
+  "n_folds": 12,
+  "r2_oos_pooled": 0.4488,
+  "r2_oos_median_fold": 0.3961,
+  "frac_folds_r2_positive": 0.6667,
+  "frac_folds_beat_constant": 0.6667,
+  "worst_fold": "siglip",
+  "sse_model": 8.473208,
+  "sse_constant_baseline": 15.372219,
+  "folds": [
+   {
+    "group": "blip2",
+    "n_train": 199,
+    "n_test": 5,
+    "slope": -1.348,
+    "intercept": 1.8144,
+    "train_mean_R1": 0.4609,
+    "r2_oos": -0.7683,
+    "r2_insample": 0.5564
+   },
+   {
+    "group": "coco",
+    "n_train": 197,
+    "n_test": 7,
+    "slope": -0.9924,
+    "intercept": 1.4685,
+    "train_mean_R1": 0.4665,
+    "r2_oos": 0.8253,
+    "r2_insample": 0.4709
+   },
+   {
+    "group": "flickr30k",
+    "n_train": 175,
+    "n_test": 29,
+    "slope": -1.0189,
+    "intercept": 1.483,
+    "train_mean_R1": 0.4155,
+    "r2_oos": 0.9446,
+    "r2_insample": 0.455
+   },
+   {
+    "group": "flickr30k_seeds",
+    "n_train": 184,
+    "n_test": 20,
+    "slope": -1.0293,
+    "intercept": 1.4918,
+    "train_mean_R1": 0.4284,
+    "r2_oos": 0.8109,
+    "r2_insample": 0.4881
+   },
+   {
+    "group": "imagenet_zs",
+    "n_train": 201,
+    "n_test": 3,
+    "slope": -1.0467,
+    "intercept": 1.515,
+    "train_mean_R1": 0.447,
+    "r2_oos": 0.4319,
+    "r2_insample": 0.511
+   },
+   {
+    "group": "phase1",
+    "n_train": 197,
+    "n_test": 7,
+    "slope": -1.0191,
+    "intercept": 1.4941,
+    "train_mean_R1": 0.4603,
+    "r2_oos": 0.7648,
+    "r2_insample": 0.4919
+   },
+   {
+    "group": "route_c",
+    "n_train": 196,
+    "n_test": 8,
+    "slope": -1.0455,
+    "intercept": 1.5107,
+    "train_mean_R1": 0.4456,
+    "r2_oos": 0.0936,
+    "r2_insample": 0.5241
+   },
+   {
+    "group": "route_d",
+    "n_train": 199,
+    "n_test": 5,
+    "slope": -1.05,
+    "intercept": 1.5178,
+    "train_mean_R1": 0.447,
+    "r2_oos": -0.0724,
+    "r2_insample": 0.5164
+   },
+   {
+    "group": "route_e",
+    "n_train": 201,
+    "n_test": 3,
+    "slope": -1.0532,
+    "intercept": 1.5239,
+    "train_mean_R1": 0.45,
+    "r2_oos": -0.3245,
+    "r2_insample": 0.5212
+   },
+   {
+    "group": "siglip",
+    "n_train": 199,
+    "n_test": 5,
+    "slope": -1.0649,
+    "intercept": 1.5319,
+    "train_mean_R1": 0.4501,
+    "r2_oos": -94.826,
+    "r2_insample": 0.5189
+   },
+   {
+    "group": "theory",
+    "n_train": 94,
+    "n_test": 110,
+    "slope": -0.9425,
+    "intercept": 1.4513,
+    "train_mean_R1": 0.4992,
+    "r2_oos": 0.3602,
+    "r2_insample": 0.6645
+   },
+   {
+    "group": "vitl",
+    "n_train": 202,
+    "n_test": 2,
+    "slope": -1.0353,
+    "intercept": 1.507,
+    "train_mean_R1": 0.4549,
+    "r2_oos": 0.9011,
+    "r2_insample": 0.4982
+   }
+  ],
+  "note": "slope fitted on the training folds only; baseline is the training-fold mean of R@1; SSE pooled over all folds. The pooled figure is dominated by folds with many test rows and can be dragged to -inf by a fold where the constant baseline already fits almost perfectly, so read r2_oos_median_fold and frac_folds_r2_positive alongside it."
+ },
+ "cell": {
+  "grouping": "design_cell (dataset|model)",
+  "n_folds": 6,
+  "r2_oos_pooled": 0.2363,
+  "r2_oos_median_fold": 0.2266,
+  "frac_folds_r2_positive": 0.6667,
+  "frac_folds_beat_constant": 0.6667,
+  "worst_fold": "flickr30k | SigLIP",
+  "sse_model": 27.129904,
+  "sse_constant_baseline": 35.521994,
+  "folds": [
+   {
+    "group": "DISPUTED | CLIP ViT-B/32",
+    "n_train": 201,
+    "n_test": 3,
+    "slope": -1.0467,
+    "intercept": 1.515,
+    "train_mean_R1": 0.447,
+    "r2_oos": 0.4319,
+    "r2_insample": 0.511
+   },
+   {
+    "group": "UNDOCUMENTED | ViT-L",
+    "n_train": 202,
+    "n_test": 2,
+    "slope": -1.0353,
+    "intercept": 1.507,
+    "train_mean_R1": 0.4549,
+    "r2_oos": 0.9011,
+    "r2_insample": 0.4982
+   },
+   {
+    "group": "coco | CLIP ViT-B/32",
+    "n_train": 188,
+    "n_test": 16,
+    "slope": -1.0503,
+    "intercept": 1.5521,
+    "train_mean_R1": 0.4881,
+    "r2_oos": 0.1861,
+    "r2_insample": 0.6197
+   },
+   {
+    "group": "flickr30k | BLIP",
+    "n_train": 199,
+    "n_test": 5,
+    "slope": -1.348,
+    "intercept": 1.8144,
+    "train_mean_R1": 0.4609,
+    "r2_oos": -0.7683,
+    "r2_insample": 0.5564
+   },
+   {
+    "group": "flickr30k | CLIP ViT-B/32",
+    "n_train": 31,
+    "n_test": 173,
+    "slope": -0.2703,
+    "intercept": 0.4715,
+    "train_mean_R1": 0.1507,
+    "r2_oos": 0.2671,
+    "r2_insample": 0.0981
+   },
+   {
+    "group": "flickr30k | SigLIP",
+    "n_train": 199,
+    "n_test": 5,
+    "slope": -1.0649,
+    "intercept": 1.5319,
+    "train_mean_R1": 0.4501,
+    "r2_oos": -94.826,
+    "r2_insample": 0.5189
+   }
+  ],
+  "note": "slope fitted on the training folds only; baseline is the training-fold mean of R@1; SSE pooled over all folds. The pooled figure is dominated by folds with many test rows and can be dragged to -inf by a fold where the constant baseline already fits almost perfectly, so read r2_oos_median_fold and frac_folds_r2_positive alongside it."
+ }
+}

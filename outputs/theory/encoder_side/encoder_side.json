@@ -1,0 +1,157 @@
+{
+  "rank": 8,
+  "alpha": 16,
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "batch": 64,
+  "checks": {
+    "text_only_vision_zero": true,
+    "vision_only_text_zero": true,
+    "both_both_nonzero": true
+  },
+  "summary": {
+    "text_only": {
+      "norm_gradDG_vision": 0.0,
+      "norm_g_vision": 0.0,
+      "cos_phi_vision": NaN,
+      "ratio_vision": NaN,
+      "norm_gradDG_text": 1.516144,
+      "norm_g_text": 13.507651,
+      "cos_phi_text": 0.212756,
+      "ratio_text": 0.112891
+    },
+    "both": {
+      "norm_gradDG_vision": 1.761264,
+      "norm_g_vision": 12.92894,
+      "cos_phi_vision": 0.107172,
+      "ratio_vision": 0.142622,
+      "norm_gradDG_text": 1.602517,
+      "norm_g_text": 11.045594,
+      "cos_phi_text": 0.156667,
+      "ratio_text": 0.15232
+    },
+    "vision_only": {
+      "norm_gradDG_vision": 1.859937,
+      "norm_g_vision": 15.437072,
+      "cos_phi_vision": 0.119791,
+      "ratio_vision": 0.122284,
+      "norm_gradDG_text": 0.0,
+      "norm_g_text": 0.0,
+      "cos_phi_text": NaN,
+      "ratio_text": NaN
+    }
+  },
+  "records": [
+    {
+      "arm": "text_only",
+      "seed": 42,
+      "norm_gradDG_vision": 0.0,
+      "norm_g_vision": 0.0,
+      "cos_phi_vision": NaN,
+      "ratio_vision": NaN,
+      "norm_gradDG_text": 1.474157452583313,
+      "norm_g_text": 11.899383544921875,
+      "cos_phi_text": 0.11293169856071472,
+      "ratio_text": 0.12388519514629961
+    },
+    {
+      "arm": "text_only",
+      "seed": 123,
+      "norm_gradDG_vision": 0.0,
+      "norm_g_vision": 0.0,
+      "cos_phi_vision": NaN,
+      "ratio_vision": NaN,
+      "norm_gradDG_text": 1.5089585781097412,
+      "norm_g_text": 14.1797456741333,
+      "cos_phi_text": 0.39941132068634033,
+      "ratio_text": 0.10641647690920043
+    },
+    {
+      "arm": "text_only",
+      "seed": 456,
+      "norm_gradDG_vision": 0.0,
+      "norm_g_vision": 0.0,
+      "cos_phi_vision": NaN,
+      "ratio_vision": NaN,
+      "norm_gradDG_text": 1.5653170347213745,
+      "norm_g_text": 14.443822860717773,
+      "cos_phi_text": 0.1259254813194275,
+      "ratio_text": 0.10837276597863146
+    },
+    {
+      "arm": "both",
+      "seed": 42,
+      "norm_gradDG_vision": 1.9171966314315796,
+      "norm_g_vision": 14.544262886047363,
+      "cos_phi_vision": 0.10628966242074966,
+      "ratio_vision": 0.13181806781495878,
+      "norm_gradDG_text": 1.5871180295944214,
+      "norm_g_text": 11.413090705871582,
+      "cos_phi_text": 0.19840098917484283,
+      "ratio_text": 0.13906119477153653
+    },
+    {
+      "arm": "both",
+      "seed": 123,
+      "norm_gradDG_vision": 1.6290689706802368,
+      "norm_g_vision": 14.957744598388672,
+      "cos_phi_vision": 0.11845225095748901,
+      "ratio_vision": 0.10891140438751233,
+      "norm_gradDG_text": 1.6358895301818848,
+      "norm_g_text": 13.762407302856445,
+      "cos_phi_text": 0.13917945325374603,
+      "ratio_text": 0.1188665248878624
+    },
+    {
+      "arm": "both",
+      "seed": 456,
+      "norm_gradDG_vision": 1.7375270128250122,
+      "norm_g_vision": 9.284811019897461,
+      "cos_phi_vision": 0.0967729315161705,
+      "ratio_vision": 0.18713649735050839,
+      "norm_gradDG_text": 1.5845433473587036,
+      "norm_g_text": 7.961284637451172,
+      "cos_phi_text": 0.13242188096046448,
+      "ratio_text": 0.1990311136351984
+    },
+    {
+      "arm": "vision_only",
+      "seed": 42,
+      "norm_gradDG_vision": 1.6720318794250488,
+      "norm_g_vision": 17.48540496826172,
+      "cos_phi_vision": 0.0800694152712822,
+      "ratio_vision": 0.09562442977214447,
+      "norm_gradDG_text": 0.0,
+      "norm_g_text": 0.0,
+      "cos_phi_text": NaN,
+      "ratio_text": NaN
+    },
+    {
+      "arm": "vision_only",
+      "seed": 123,
+      "norm_gradDG_vision": 1.876928687095642,
+      "norm_g_vision": 13.737034797668457,
+      "cos_phi_vision": 0.13157732784748077,
+      "ratio_vision": 0.13663273877811005,
+      "norm_gradDG_text": 0.0,
+      "norm_g_text": 0.0,
+      "cos_phi_text": NaN,
+      "ratio_text": NaN
+    },
+    {
+      "arm": "vision_only",
+      "seed": 456,
+      "norm_gradDG_vision": 2.030850887298584,
+      "norm_g_vision": 15.088776588439941,
+      "cos_phi_vision": 0.14772740006446838,
+      "ratio_vision": 0.13459347584578146,
+      "norm_gradDG_text": 0.0,
+      "norm_g_text": 0.0,
+      "cos_phi_text": NaN,
+      "ratio_text": NaN
+    }
+  ]
+}

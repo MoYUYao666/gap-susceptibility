@@ -1,0 +1,43 @@
+{
+ "model": "Qwen2-VL-2B-Instruct",
+ "protocol": "single batch, rank 8, strict freeze",
+ "arms": {
+  "text_only": {
+   "arm": "text_only",
+   "n_lora_tensors": 392,
+   "norm_g_vision": 0.0,
+   "norm_g_text": 0.1060894784362407,
+   "cos_phi_vision": NaN,
+   "cos_phi_text": 1.0000000000000002,
+   "Gamma_vision": 0.0,
+   "Gamma_text": 0.10608947843624073,
+   "note": "single-batch instantaneous grad; paper Gamma_m is trajectory-averaged",
+   "elapsed_sec": 1.3
+  },
+  "vision_only": {
+   "arm": "vision_only",
+   "n_lora_tensors": 258,
+   "norm_g_vision": 14.542368583170662,
+   "norm_g_text": 0.0,
+   "cos_phi_vision": 0.9999999999999999,
+   "cos_phi_text": NaN,
+   "Gamma_vision": 14.54236858317066,
+   "Gamma_text": 0.0,
+   "note": "single-batch instantaneous grad; paper Gamma_m is trajectory-averaged",
+   "elapsed_sec": 5.8
+  },
+  "both": {
+   "arm": "both",
+   "n_lora_tensors": 650,
+   "norm_g_vision": 14.534382012939073,
+   "norm_g_text": 0.1149697498128748,
+   "cos_phi_vision": 0.9999689057685268,
+   "cos_phi_text": 0.007909945865913964,
+   "Gamma_vision": 14.533930077500443,
+   "Gamma_text": 0.0009094044972375117,
+   "note": "single-batch instantaneous grad; paper Gamma_m is trajectory-averaged",
+   "elapsed_sec": 6.0
+  }
+ },
+ "hard_checks_passed": true
+}

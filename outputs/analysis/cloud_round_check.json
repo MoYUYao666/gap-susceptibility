@@ -1,0 +1,208 @@
+{
+ "checked": [
+  {
+   "phase": "phase1",
+   "artifact": "outputs/analysis/decoder_attribution_llava15-7b_contrastive_seed42.json",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "phase": "phase1",
+   "artifact": "outputs/analysis/decoder_attribution_llava15-7b_generative_seed42.json",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "phase": "phase1",
+   "artifact": "outputs/analysis/decoder_attribution_qwen2vl-2b_contrastive_seed42.json",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "phase": "phase1",
+   "artifact": "outputs/analysis/decoder_attribution_qwen2vl-2b_generative_seed42.json",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "phase": "phase1",
+   "artifact": "outputs/analysis/decoder_attribution_qwen25vl-3b_generative_seed42.json",
+   "ok": false,
+   "detail": "outputs/analysis/decoder_attribution_qwen25vl-3b_generative_seed42.json: missing"
+  },
+  {
+   "phase": "phase1",
+   "artifact": "outputs/analysis/decoder_attribution_qwen25vl-7b_generative_seed42.json",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "phase": "phase2",
+   "artifact": "paper3/scripts/outputs/experiments/verify_r5_s*_torch26.json",
+   "ok": false,
+   "detail": "1 file(s) matched paper3/scripts/outputs/experiments/verify_r5_s*_torch26.json, need >= 4"
+  },
+  {
+   "phase": "phase2",
+   "artifact": "paper3/scripts/outputs/experiments/verify_r6_s*_torch26.json",
+   "ok": false,
+   "detail": "1 file(s) matched paper3/scripts/outputs/experiments/verify_r6_s*_torch26.json, need >= 4"
+  },
+  {
+   "phase": "phase2",
+   "artifact": "outputs/analysis/p3_env_stack_seeds.json",
+   "ok": false,
+   "detail": "outputs/analysis/p3_env_stack_seeds.json: missing"
+  },
+  {
+   "phase": "phase3",
+   "artifact": "outputs/analysis/cloud_vqa_full451_base.json",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "phase": "phase3",
+   "artifact": "outputs/analysis/cloud_vqa_full451_5.json",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "phase": "phase3",
+   "artifact": "outputs/analysis/cloud_vqa_full451_6.json",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "phase": "phase3",
+   "artifact": "outputs/analysis/p3_vqa_full_equivalence.json",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "phase": "phase4",
+   "artifact": "outputs/analysis/a23_multiencoder_transfer.json",
+   "ok": false,
+   "detail": "outputs/analysis/a23_multiencoder_transfer.json: missing"
+  }
+ ],
+ "failures": [
+  {
+   "phase": "phase1",
+   "artifact": "outputs/analysis/decoder_attribution_qwen25vl-3b_generative_seed42.json",
+   "detail": "outputs/analysis/decoder_attribution_qwen25vl-3b_generative_seed42.json: missing"
+  },
+  {
+   "phase": "phase2",
+   "artifact": "paper3/scripts/outputs/experiments/verify_r5_s*_torch26.json",
+   "detail": "1 file(s) matched paper3/scripts/outputs/experiments/verify_r5_s*_torch26.json, need >= 4"
+  },
+  {
+   "phase": "phase2",
+   "artifact": "paper3/scripts/outputs/experiments/verify_r6_s*_torch26.json",
+   "detail": "1 file(s) matched paper3/scripts/outputs/experiments/verify_r6_s*_torch26.json, need >= 4"
+  },
+  {
+   "phase": "phase2",
+   "artifact": "outputs/analysis/p3_env_stack_seeds.json",
+   "detail": "outputs/analysis/p3_env_stack_seeds.json: missing"
+  },
+  {
+   "phase": "phase4",
+   "artifact": "outputs/analysis/a23_multiencoder_transfer.json",
+   "detail": "outputs/analysis/a23_multiencoder_transfer.json: missing"
+  }
+ ],
+ "phases": {
+  "phase1": {
+   "ok": false,
+   "rows": [
+    {
+     "artifact": "outputs/analysis/decoder_attribution_llava15-7b_contrastive_seed42.json",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "artifact": "outputs/analysis/decoder_attribution_llava15-7b_generative_seed42.json",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "artifact": "outputs/analysis/decoder_attribution_qwen2vl-2b_contrastive_seed42.json",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "artifact": "outputs/analysis/decoder_attribution_qwen2vl-2b_generative_seed42.json",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "artifact": "outputs/analysis/decoder_attribution_qwen25vl-3b_generative_seed42.json",
+     "ok": false,
+     "detail": "outputs/analysis/decoder_attribution_qwen25vl-3b_generative_seed42.json: missing"
+    },
+    {
+     "artifact": "outputs/analysis/decoder_attribution_qwen25vl-7b_generative_seed42.json",
+     "ok": true,
+     "detail": "ok"
+    }
+   ]
+  },
+  "phase2": {
+   "ok": false,
+   "rows": [
+    {
+     "artifact": "paper3/scripts/outputs/experiments/verify_r5_s*_torch26.json",
+     "ok": false,
+     "detail": "1 file(s) matched paper3/scripts/outputs/experiments/verify_r5_s*_torch26.json, need >= 4"
+    },
+    {
+     "artifact": "paper3/scripts/outputs/experiments/verify_r6_s*_torch26.json",
+     "ok": false,
+     "detail": "1 file(s) matched paper3/scripts/outputs/experiments/verify_r6_s*_torch26.json, need >= 4"
+    },
+    {
+     "artifact": "outputs/analysis/p3_env_stack_seeds.json",
+     "ok": false,
+     "detail": "outputs/analysis/p3_env_stack_seeds.json: missing"
+    }
+   ]
+  },
+  "phase3": {
+   "ok": true,
+   "rows": [
+    {
+     "artifact": "outputs/analysis/cloud_vqa_full451_base.json",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "artifact": "outputs/analysis/cloud_vqa_full451_5.json",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "artifact": "outputs/analysis/cloud_vqa_full451_6.json",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "artifact": "outputs/analysis/p3_vqa_full_equivalence.json",
+     "ok": true,
+     "detail": "ok"
+    }
+   ]
+  },
+  "phase4": {
+   "ok": false,
+   "rows": [
+    {
+     "artifact": "outputs/analysis/a23_multiencoder_transfer.json",
+     "ok": false,
+     "detail": "outputs/analysis/a23_multiencoder_transfer.json: missing"
+    }
+   ]
+  }
+ },
+ "ok": false
+}

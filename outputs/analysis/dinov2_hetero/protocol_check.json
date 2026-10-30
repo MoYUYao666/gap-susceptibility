@@ -1,0 +1,48 @@
+{
+  "script": "tools/_p293c_protocol_check.py",
+  "source": "src/dataset.py:374-437 (create_dataloaders + random_split generator seed 42)",
+  "data_dir_resolution": [
+    {
+      "data_dir": ".",
+      "data_root": ".\\flickr30k",
+      "annotations_found": true
+    },
+    {
+      "data_dir": "",
+      "data_root": "flickr30k",
+      "annotations_found": true
+    },
+    {
+      "data_dir": "flickr30k",
+      "data_root": "flickr30k\\flickr30k",
+      "annotations_found": false
+    },
+    {
+      "data_dir": "data",
+      "data_root": "data\\flickr30k",
+      "annotations_found": false
+    },
+    {
+      "data_dir": "data/flickr30k",
+      "data_root": "data/flickr30k\\flickr30k",
+      "annotations_found": false
+    }
+  ],
+  "data_dir_used": ".",
+  "corpus_captions_total": 158915,
+  "max_samples": 5000,
+  "cap_applied_before_split": true,
+  "split_sizes": {
+    "train": 4000,
+    "val": 500,
+    "test": 500
+  },
+  "loader_dataset_sizes": {
+    "train": 4000,
+    "val": 500,
+    "test": 500
+  },
+  "retrieval_gallery_pairs": 500,
+  "chance_R@1": 0.002,
+  "why_it_matters": "the published R@1 column of the strict-freeze table is measured on a 500-pair gallery (chance 0.002), because max_samples caps the dataset before the split"
+}

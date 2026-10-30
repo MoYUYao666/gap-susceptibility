@@ -1,0 +1,2083 @@
+{
+ "script": "tools/_p420_arch_probe.py",
+ "model": "models/Qwen2-VL-2B-Instruct",
+ "model_dtype": "bfloat16",
+ "quantization": null,
+ "n_llm_layers": 28,
+ "llm_hidden_size": 1536,
+ "blocks": [
+  "vision",
+  "llm_shallow",
+  "llm_mid",
+  "llm_deep"
+ ],
+ "block_split_rule": "layers < round(7N/32) -> shallow; < round(23N/32) -> mid; else deep",
+ "target_modules": [
+  "q_proj",
+  "k_proj",
+  "v_proj",
+  "o_proj",
+  "gate_proj",
+  "up_proj",
+  "down_proj",
+  "qkv",
+  "proj",
+  "fc1",
+  "fc2"
+ ],
+ "excluded_substr": [
+  "patch_embed"
+ ],
+ "cost_definition": "cost_per_rank_k = sum over adapted Linears in block k of (in_features + out_features)",
+ "per_block": {
+  "vision": {
+   "n_modules": 128,
+   "cost_per_rank": 655360,
+   "modules": [
+    {
+     "name": "base_model.model.model.visual.blocks.0.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.0.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.0.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.0.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.1.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.1.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.1.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.1.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.2.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.2.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.2.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.2.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.3.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.3.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.3.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.3.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.4.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.4.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.4.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.4.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.5.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.5.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.5.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.5.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.6.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.6.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.6.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.6.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.7.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.7.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.7.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.7.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.8.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.8.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.8.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.8.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.9.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.9.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.9.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.9.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.10.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.10.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.10.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.10.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.11.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.11.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.11.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.11.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.12.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.12.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.12.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.12.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.13.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.13.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.13.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.13.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.14.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.14.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.14.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.14.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.15.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.15.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.15.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.15.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.16.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.16.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.16.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.16.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.17.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.17.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.17.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.17.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.18.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.18.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.18.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.18.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.19.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.19.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.19.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.19.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.20.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.20.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.20.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.20.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.21.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.21.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.21.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.21.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.22.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.22.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.22.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.22.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.23.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.23.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.23.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.23.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.24.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.24.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.24.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.24.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.25.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.25.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.25.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.25.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.26.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.26.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.26.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.26.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.27.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.27.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.27.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.27.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.28.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.28.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.28.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.28.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.29.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.29.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.29.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.29.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.30.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.30.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.30.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.30.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.31.attn.qkv",
+     "in_features": 1280,
+     "out_features": 3840,
+     "cost_per_rank": 5120
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.31.attn.proj",
+     "in_features": 1280,
+     "out_features": 1280,
+     "cost_per_rank": 2560
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.31.mlp.fc1",
+     "in_features": 1280,
+     "out_features": 5120,
+     "cost_per_rank": 6400
+    },
+    {
+     "name": "base_model.model.model.visual.blocks.31.mlp.fc2",
+     "in_features": 5120,
+     "out_features": 1280,
+     "cost_per_rank": 6400
+    }
+   ]
+  },
+  "llm_shallow": {
+   "n_modules": 42,
+   "cost_per_rank": 247296,
+   "modules": [
+    {
+     "name": "base_model.model.model.language_model.layers.0.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.0.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.0.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.0.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.0.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.0.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.0.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.1.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.1.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.1.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.1.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.1.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.1.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.1.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.2.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.2.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.2.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.2.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.2.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.2.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.2.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.3.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.3.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.3.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.3.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.3.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.3.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.3.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.4.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.4.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.4.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.4.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.4.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.4.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.4.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.5.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.5.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.5.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.5.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.5.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.5.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.5.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    }
+   ]
+  },
+  "llm_mid": {
+   "n_modules": 98,
+   "cost_per_rank": 577024,
+   "modules": [
+    {
+     "name": "base_model.model.model.language_model.layers.6.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.6.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.6.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.6.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.6.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.6.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.6.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.7.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.7.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.7.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.7.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.7.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.7.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.7.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.8.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.8.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.8.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.8.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.8.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.8.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.8.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.9.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.9.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.9.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.9.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.9.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.9.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.9.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.10.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.10.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.10.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.10.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.10.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.10.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.10.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.11.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.11.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.11.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.11.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.11.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.11.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.11.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.12.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.12.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.12.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.12.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.12.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.12.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.12.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.13.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.13.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.13.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.13.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.13.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.13.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.13.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.14.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.14.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.14.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.14.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.14.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.14.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.14.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.15.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.15.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.15.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.15.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.15.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.15.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.15.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.16.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.16.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.16.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.16.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.16.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.16.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.16.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.17.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.17.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.17.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.17.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.17.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.17.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.17.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.18.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.18.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.18.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.18.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.18.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.18.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.18.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.19.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.19.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.19.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.19.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.19.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.19.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.19.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    }
+   ]
+  },
+  "llm_deep": {
+   "n_modules": 56,
+   "cost_per_rank": 329728,
+   "modules": [
+    {
+     "name": "base_model.model.model.language_model.layers.20.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.20.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.20.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.20.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.20.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.20.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.20.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.21.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.21.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.21.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.21.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.21.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.21.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.21.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.22.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.22.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.22.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.22.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.22.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.22.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.22.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.23.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.23.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.23.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.23.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.23.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.23.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.23.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.24.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.24.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.24.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.24.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.24.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.24.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.24.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.25.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.25.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.25.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.25.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.25.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.25.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.25.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.26.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.26.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.26.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.26.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.26.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.26.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.26.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.27.self_attn.q_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.27.self_attn.k_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.27.self_attn.v_proj",
+     "in_features": 1536,
+     "out_features": 256,
+     "cost_per_rank": 1792
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.27.self_attn.o_proj",
+     "in_features": 1536,
+     "out_features": 1536,
+     "cost_per_rank": 3072
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.27.mlp.gate_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.27.mlp.up_proj",
+     "in_features": 1536,
+     "out_features": 8960,
+     "cost_per_rank": 10496
+    },
+    {
+     "name": "base_model.model.model.language_model.layers.27.mlp.down_proj",
+     "in_features": 8960,
+     "out_features": 1536,
+     "cost_per_rank": 10496
+    }
+   ]
+  }
+ },
+ "hard_assert_cost_model": [
+  {
+   "block": "vision",
+   "predicted_8x_cost": 5242880,
+   "real_trainable": 5242880,
+   "match": true
+  },
+  {
+   "block": "llm_shallow",
+   "predicted_8x_cost": 1978368,
+   "real_trainable": 1978368,
+   "match": true
+  },
+  {
+   "block": "llm_mid",
+   "predicted_8x_cost": 4616192,
+   "real_trainable": 4616192,
+   "match": true
+  },
+  {
+   "block": "llm_deep",
+   "predicted_8x_cost": 2637824,
+   "real_trainable": 2637824,
+   "match": true
+  }
+ ],
+ "cost_model_verified": true,
+ "min_feasible_params_all_blocks_rank1": 1809408,
+ "sum_cost_per_rank": 1809408,
+ "budget_table_uniform": [
+  {
+   "uniform_rank": 1,
+   "trainable_params_all_blocks": 1809408,
+   "feasible": true
+  },
+  {
+   "uniform_rank": 2,
+   "trainable_params_all_blocks": 3618816,
+   "feasible": true
+  },
+  {
+   "uniform_rank": 3,
+   "trainable_params_all_blocks": 5428224,
+   "feasible": true
+  },
+  {
+   "uniform_rank": 4,
+   "trainable_params_all_blocks": 7237632,
+   "feasible": true
+  },
+  {
+   "uniform_rank": 6,
+   "trainable_params_all_blocks": 10856448,
+   "feasible": true
+  },
+  {
+   "uniform_rank": 8,
+   "trainable_params_all_blocks": 14475264,
+   "feasible": true
+  },
+  {
+   "uniform_rank": 12,
+   "trainable_params_all_blocks": 21712896,
+   "feasible": true
+  },
+  {
+   "uniform_rank": 16,
+   "trainable_params_all_blocks": 28950528,
+   "feasible": true
+  }
+ ],
+ "n_lora_tensors": {
+  "vision": 256,
+  "llm_shallow": 84,
+  "llm_mid": 196,
+  "llm_deep": 112
+ },
+ "real_trainable_incl_patch_embed": 14494912,
+ "real_trainable_scoped": 14475264,
+ "excluded_patch_embed_params": 19648,
+ "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}

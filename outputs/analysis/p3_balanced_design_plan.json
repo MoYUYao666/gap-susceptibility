@@ -1,0 +1,1729 @@
+{
+ "meta": {
+  "script": "tools/_p1638_p3_balanced_env_design.py",
+  "generated_by": "tools\\_p1638_p3_balanced_env_design.py --audit --plan --common-seeds 42,7,123,999",
+  "modes": {
+   "audit": true,
+   "plan": true,
+   "power": false,
+   "dry_run": false
+  },
+  "common_seeds": [
+   42,
+   7,
+   123,
+   999
+  ],
+  "ranks": [
+   5,
+   6
+  ],
+  "main_hypothesis_rank": 5,
+  "protocol": {
+   "epochs": 3,
+   "num_samples": 20,
+   "lr": 5e-05,
+   "lr_flag": "5e-5",
+   "batch_size": 1,
+   "block_config": "uniform",
+   "opt": "adamw",
+   "compute_dtype": "float16",
+   "attn_targets": "qkvo",
+   "grad_mask": "none",
+   "warmup": false
+  },
+  "protocol_fields_validated_per_file": [
+   "rank",
+   "seed",
+   "epochs",
+   "num_samples",
+   "lr",
+   "warmup",
+   "compute_dtype",
+   "opt",
+   "block_config",
+   "grad_mask",
+   "lora_alpha",
+   "attn_targets",
+   "batch_size",
+   "proj_rank",
+   "data_offset",
+   "target_proj",
+   "lang_only",
+   "ok",
+   "delta_E"
+  ],
+  "stack_registry": [
+   {
+    "id": "torch29_cu130",
+    "label": "torch 2.9/cu130",
+    "machine": "RTX 4060 Laptop (local)",
+    "torch": "2.9.1+cu130",
+    "cuda": "13.0",
+    "place": "LOCAL",
+    "interpreter": "D:\\Anaconda\\envs\\pytorch\\python.exe",
+    "evidence": "p3_seeds_combined.json values.r5/r6; its source_archives name p3_rerun_protocol.json, p3_rerun_seeds.json and p3_rerun_extra.json, whose runs recorded E0 3921 and the same deltas"
+   },
+   {
+    "id": "torch212_cu130",
+    "label": "torch 2.12/cu130",
+    "machine": "RTX 4080 SUPER (cloud)",
+    "torch": "2.12.1+cu130",
+    "cuda": "13.0",
+    "place": "CLOUD",
+    "interpreter": "python (instance interpreter, torch 2.12.x)",
+    "evidence": "cloud_verify_r<R>_s*.json delta_E, excluding partial/imgs/_e1_ rows (the rule of tools/_p1595_p3_rank_separation.py); E0 of these rows is 3926"
+   },
+   {
+    "id": "torch24_cu121",
+    "label": "torch 2.4/cu121",
+    "machine": "RTX 4060 Laptop (local)",
+    "torch": "2.4.1+cu121",
+    "cuda": "12.1",
+    "place": "LOCAL",
+    "interpreter": "D:\\Anaconda\\envs\\torch24\\python.exe",
+    "evidence": "the explicit `_torch24` filename suffix (run_training.py cannot write a stack suffix; the label is in the name by construction) plus the rank-5 `_a10` rows for seeds 123/999, which are exactly the four values of the archived bucket 'torch 2.4/cu121' in outputs/analysis/p3_env_variance.json ([-2.5, 41.0, -2.0, 64.5]); the stack's own metadata is p3_env_matrix3.json.env3_local_torch24_cu121 (torch 2.4.1+cu121, cuda 12.1)"
+   },
+   {
+    "id": "torch26_cu124",
+    "label": "torch 2.6/cu124",
+    "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (seeds 7/123/999)",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "place": "LOCAL",
+    "interpreter": "D:\\Anaconda\\envs\\torch26\\python.exe",
+    "evidence": "the explicit `_torch26` filename suffix (same explicit-suffix argument as torch24); seed 42 archived, seeds 7/123/999 produced by the round of tools/_p1613_p3_cloud_runner.py --job env-seeds"
+   }
+  ],
+  "stack_metadata_archive": "outputs/analysis/p3_env_matrix3.json fields env1_local_torch29_cu130 / env2_cloud_torch212_cu130 / env3_local_torch24_cu121: `torch`, `cuda`, `gpu`",
+  "no_loose_globs": "stack membership comes from the explicit registry above; the loose glob of tools/_p1570_env_variance_update.py (verify_r5_s*_a10*.json) is known to be wrong today and is not reused",
+  "deterministic": "integer rng seed 7, no wall-clock field",
+  "n_boot": 10000,
+  "rng_seed": 7
+ },
+ "existing_cells": [
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 7,
+   "delta_E": -63.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s7.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 17,
+   "delta_E": -7.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s17.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 27,
+   "delta_E": -114.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s27.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 37,
+   "delta_E": -12.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s37.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 42,
+   "delta_E": -26.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": -7.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s123.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 456,
+   "delta_E": -66.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s456.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 789,
+   "delta_E": -19.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s789.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": -24.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s999.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 5,
+   "seed": 1024,
+   "delta_E": -96.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r5_s1024.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 7,
+   "delta_E": 95.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s7.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 17,
+   "delta_E": 132.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s17.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 27,
+   "delta_E": 43.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s27.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 37,
+   "delta_E": 90.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s37.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 42,
+   "delta_E": 56.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s42.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 123,
+   "delta_E": 46.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s123.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 456,
+   "delta_E": 104.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s456.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 789,
+   "delta_E": 118.0,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s789.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 999,
+   "delta_E": 94.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s999.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch212_cu130",
+   "rank": 6,
+   "seed": 1024,
+   "delta_E": 92.5,
+   "E0": 3926.0,
+   "source_file": "paper3/scripts/outputs/experiments/cloud_verify_r6_s1024.json",
+   "source_field": "delta_E",
+   "place": "CLOUD"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 5,
+   "seed": 7,
+   "delta_E": 19.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 5,
+   "seed": 42,
+   "delta_E": 41.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": -50.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": -2.5,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 5,
+   "seed": 789,
+   "delta_E": -2.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s789_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": 58.5,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": 64.5,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 6,
+   "seed": 7,
+   "delta_E": 86.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 6,
+   "seed": 42,
+   "delta_E": 89.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 6,
+   "seed": 123,
+   "delta_E": 99.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch24_cu121",
+   "rank": 6,
+   "seed": 999,
+   "delta_E": 55.0,
+   "E0": 3930.5,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 5,
+   "seed": 7,
+   "delta_E": -104.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 5,
+   "seed": 42,
+   "delta_E": -35.5,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": -51.5,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": -64.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 6,
+   "seed": 7,
+   "delta_E": -7.5,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 6,
+   "seed": 42,
+   "delta_E": 42.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 6,
+   "seed": 123,
+   "delta_E": 15.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 6,
+   "seed": 999,
+   "delta_E": -31.0,
+   "E0": 3917.0,
+   "source_file": "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "source_field": "delta_E",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 5,
+   "seed": 42,
+   "delta_E": -10.5,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.<seed>.42",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 5,
+   "seed": 123,
+   "delta_E": 8.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.<seed>.123",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 5,
+   "seed": 789,
+   "delta_E": -36.5,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.<seed>.789",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 5,
+   "seed": 999,
+   "delta_E": -27.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.<seed>.999",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 5,
+   "seed": 1024,
+   "delta_E": -49.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r5.<seed>.1024",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 6,
+   "seed": 42,
+   "delta_E": 115.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.<seed>.42",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 6,
+   "seed": 123,
+   "delta_E": 25.5,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.<seed>.123",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 6,
+   "seed": 789,
+   "delta_E": 32.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.<seed>.789",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 6,
+   "seed": 999,
+   "delta_E": 62.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.<seed>.999",
+   "place": "LOCAL"
+  },
+  {
+   "stack": "torch29_cu130",
+   "rank": 6,
+   "seed": 1024,
+   "delta_E": 93.0,
+   "E0": null,
+   "source_file": "outputs/analysis/p3_seeds_combined.json",
+   "source_field": "values.r6.<seed>.1024",
+   "place": "LOCAL"
+  }
+ ],
+ "in_flight_cells": [
+  {
+   "stack": "torch26_cu124",
+   "rank": 5,
+   "seed": 7,
+   "target": "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "untagged": "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "target_exists": true,
+   "untagged_exists": false
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 5,
+   "seed": 123,
+   "target": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "untagged": "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "target_exists": true,
+   "untagged_exists": true
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 5,
+   "seed": 999,
+   "target": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+   "untagged": "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+   "target_exists": true,
+   "untagged_exists": true
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 6,
+   "seed": 7,
+   "target": "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "untagged": "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12.json",
+   "target_exists": true,
+   "untagged_exists": false
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 6,
+   "seed": 123,
+   "target": "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "untagged": "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12.json",
+   "target_exists": true,
+   "untagged_exists": false
+  },
+  {
+   "stack": "torch26_cu124",
+   "rank": 6,
+   "seed": 999,
+   "target": "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+   "untagged": "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12.json",
+   "target_exists": true,
+   "untagged_exists": false
+  }
+ ],
+ "missing_cells": [
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "rank": 5,
+   "seed": 7,
+   "alpha": 10.0,
+   "place": "LOCAL",
+   "interpreter": "D:\\Anaconda\\envs\\pytorch\\python.exe",
+   "in_flight": false,
+   "target_archive": "outputs/analysis/p3_seeds_combined.json",
+   "target_archive_note": "this stack's rows are seed->value fields in the map archive, added by the analysis of its runs"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "rank": 6,
+   "seed": 7,
+   "alpha": 12.0,
+   "place": "LOCAL",
+   "interpreter": "D:\\Anaconda\\envs\\pytorch\\python.exe",
+   "in_flight": false,
+   "target_archive": "outputs/analysis/p3_seeds_combined.json",
+   "target_archive_note": "this stack's rows are seed->value fields in the map archive, added by the analysis of its runs"
+  }
+ ],
+ "commands": [
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "rank": 5,
+   "seed": 7,
+   "alpha": 10.0,
+   "place": "LOCAL",
+   "in_flight": false,
+   "interpreter": "D:\\Anaconda\\envs\\pytorch\\python.exe",
+   "cwd": ".",
+   "command": "D:\\Anaconda\\envs\\pytorch\\python.exe paper3/scripts/run_training.py --rank 5 --seed 7 --epochs 3 --num-samples 20 --lr 5e-5 --batch-size 1 --block-config uniform --opt adamw --compute-dtype float16 --attn-targets qkvo --grad-mask none --lora-alpha 10",
+   "argv": [
+    "D:\\Anaconda\\envs\\pytorch\\python.exe",
+    "D:\\Realdesktop\\Wan\\Important\\New\\paper3/scripts/run_training.py",
+    "--rank",
+    "5",
+    "--seed",
+    "7",
+    "--epochs",
+    "3",
+    "--num-samples",
+    "20",
+    "--lr",
+    "5e-5",
+    "--batch-size",
+    "1",
+    "--block-config",
+    "uniform",
+    "--opt",
+    "adamw",
+    "--compute-dtype",
+    "float16",
+    "--attn-targets",
+    "qkvo",
+    "--grad-mask",
+    "none",
+    "--lora-alpha",
+    "10"
+   ],
+   "target_archive": "outputs/analysis/p3_seeds_combined.json",
+   "expected_runtime": "~22.6 min (measured median of this protocol)",
+   "local_note": "run with this stack's own interpreter; the file's payload records the protocol, which is what makes the stack label trustworthy"
+  },
+  {
+   "stack": "torch29_cu130",
+   "stack_label": "torch 2.9/cu130",
+   "rank": 6,
+   "seed": 7,
+   "alpha": 12.0,
+   "place": "LOCAL",
+   "in_flight": false,
+   "interpreter": "D:\\Anaconda\\envs\\pytorch\\python.exe",
+   "cwd": ".",
+   "command": "D:\\Anaconda\\envs\\pytorch\\python.exe paper3/scripts/run_training.py --rank 6 --seed 7 --epochs 3 --num-samples 20 --lr 5e-5 --batch-size 1 --block-config uniform --opt adamw --compute-dtype float16 --attn-targets qkvo --grad-mask none --lora-alpha 12",
+   "argv": [
+    "D:\\Anaconda\\envs\\pytorch\\python.exe",
+    "D:\\Realdesktop\\Wan\\Important\\New\\paper3/scripts/run_training.py",
+    "--rank",
+    "6",
+    "--seed",
+    "7",
+    "--epochs",
+    "3",
+    "--num-samples",
+    "20",
+    "--lr",
+    "5e-5",
+    "--batch-size",
+    "1",
+    "--block-config",
+    "uniform",
+    "--opt",
+    "adamw",
+    "--compute-dtype",
+    "float16",
+    "--attn-targets",
+    "qkvo",
+    "--grad-mask",
+    "none",
+    "--lora-alpha",
+    "12"
+   ],
+   "target_archive": "outputs/analysis/p3_seeds_combined.json",
+   "expected_runtime": "~22.6 min (measured median of this protocol)",
+   "local_note": "run with this stack's own interpreter; the file's payload records the protocol, which is what makes the stack label trustworthy"
+  }
+ ],
+ "cost_estimate": {
+  "n_missing_cells": 2,
+  "n_missing_by_place": {
+   "LOCAL": 2
+  },
+  "per_run_minutes_by_stack": {
+   "torch29_cu130": {
+    "per_run_min": 22.566666666666666,
+    "basis": "median of the 31 per-run `elapsed_min` values recorded by outputs/analysis/p3_rerun_protocol.json, outputs/analysis/p3_rerun_seeds.json, outputs/analysis/p3_rerun_extra.json for this protocol (ranks 5/6): 20.9, 21.1, 21.1, 21.2, 21.3, 21.4, 21.4, 21.5, 21.5, 21.7, 21.8, 21.9, 22.2, 22.2, 22.3, 22.6, 22.9, 23.0, 23.2, 23.4, 23.5, 23.9, 24.8, 25.9, 26.5, 26.6, 26.9, 32.8, 43.7, 65.8, 85.1 minutes; the runs are on the same machine as the stack"
+   }
+  },
+  "measured_local_runs": [
+   {
+    "rank": 5,
+    "seed": 42,
+    "elapsed_min": 22.9,
+    "source_file": "outputs/analysis/p3_rerun_protocol.json",
+    "source_field": "runs.r5_s42.elapsed_min"
+   },
+   {
+    "rank": 6,
+    "seed": 42,
+    "elapsed_min": 23.0,
+    "source_file": "outputs/analysis/p3_rerun_protocol.json",
+    "source_field": "runs.r6_s42.elapsed_min"
+   },
+   {
+    "rank": 5,
+    "seed": 1024,
+    "elapsed_min": 21.5,
+    "source_file": "outputs/analysis/p3_rerun_seeds.json",
+    "source_field": "runs.r5_s1024.elapsed_min"
+   },
+   {
+    "rank": 5,
+    "seed": 789,
+    "elapsed_min": 65.8,
+    "source_file": "outputs/analysis/p3_rerun_seeds.json",
+    "source_field": "runs.r5_s789.elapsed_min"
+   },
+   {
+    "rank": 5,
+    "seed": 999,
+    "elapsed_min": 26.6,
+    "source_file": "outputs/analysis/p3_rerun_seeds.json",
+    "source_field": "runs.r5_s999.elapsed_min"
+   },
+   {
+    "rank": 6,
+    "seed": 1024,
+    "elapsed_min": 21.4,
+    "source_file": "outputs/analysis/p3_rerun_seeds.json",
+    "source_field": "runs.r6_s1024.elapsed_min"
+   },
+   {
+    "rank": 6,
+    "seed": 789,
+    "elapsed_min": 21.3,
+    "source_file": "outputs/analysis/p3_rerun_seeds.json",
+    "source_field": "runs.r6_s789.elapsed_min"
+   },
+   {
+    "rank": 6,
+    "seed": 999,
+    "elapsed_min": 21.4,
+    "source_file": "outputs/analysis/p3_rerun_seeds.json",
+    "source_field": "runs.r6_s999.elapsed_min"
+   },
+   {
+    "rank": 5,
+    "seed": 123,
+    "elapsed_min": 43.7,
+    "source_file": "outputs/analysis/p3_rerun_extra.json",
+    "source_field": "runs.r5_s123.elapsed_min"
+   },
+   {
+    "rank": 6,
+    "seed": 123,
+    "elapsed_min": 25.9,
+    "source_file": "outputs/analysis/p3_rerun_extra.json",
+    "source_field": "runs.r6_s123.elapsed_min"
+   }
+  ],
+  "measured_local_log_runs": [
+   {
+    "source_file": "outputs/run_bf16_r5.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 22.216666666666665
+   },
+   {
+    "source_file": "outputs/run_bf16_r6.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 23.166666666666668
+   },
+   {
+    "source_file": "outputs/run_cap_blank_r5.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 22.283333333333335
+   },
+   {
+    "source_file": "outputs/run_cap_blank_r6.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 21.85
+   },
+   {
+    "source_file": "outputs/run_cap_real_r5.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 21.5
+   },
+   {
+    "source_file": "outputs/run_cap_real_r6.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 21.666666666666668
+   },
+   {
+    "source_file": "outputs/run_instr_real_r5.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 21.083333333333332
+   },
+   {
+    "source_file": "outputs/run_instr_real_r6.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 21.066666666666666
+   },
+   {
+    "source_file": "outputs/run_lang_r5.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 21.833333333333332
+   },
+   {
+    "source_file": "outputs/run_lang_r6.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 22.566666666666666
+   },
+   {
+    "source_file": "outputs/run_policy_exp.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 20.883333333333333
+   },
+   {
+    "source_file": "outputs/run_policy_greedy.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 21.216666666666665
+   },
+   {
+    "source_file": "outputs/run_policy_uniform.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 22.25
+   },
+   {
+    "source_file": "outputs/run_proj_r4.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 26.866666666666667
+   },
+   {
+    "source_file": "outputs/run_s10ep_r5.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 85.06666666666666
+   },
+   {
+    "source_file": "outputs/run_sgd_r5_lr1e-3.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 23.933333333333334
+   },
+   {
+    "source_file": "outputs/run_sgd_r5_lr5e-5.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 24.833333333333332
+   },
+   {
+    "source_file": "outputs/run_sgd_r6_lr1e-3.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 23.483333333333334
+   },
+   {
+    "source_file": "outputs/run_sgd_r6_lr5e-5.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 32.8
+   },
+   {
+    "source_file": "outputs/run_tf457_r5.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 23.35
+   },
+   {
+    "source_file": "outputs/run_tf457_r6.log",
+    "source_field": "Training time (seconds)",
+    "elapsed_min": 26.483333333333334
+   }
+  ],
+  "measured_median_min_per_run": 22.566666666666666,
+  "measured_n_runs": 31,
+  "gpu_hours_measured_only": 0.75,
+  "gpu_hours_if_unknown_priced_at_measured_median": 0.75,
+  "n_cells_with_unknown_per_run_time": 0,
+  "note": "every emitted cell is the archived 20-sample / 3-epoch protocol; the measured per-run times are the ones this protocol recorded on the local machine, and the cloud rows of the same protocol carry no elapsed field, so the cloud share of the estimate is reported as unknown rather than priced by assumption.  The in-flight torch26 round logs its own wall time to outputs/analysis/p3_env_seeds_runlog.json (elapsed_seconds) and will replace the unknown for that stack."
+ },
+ "power_comparison": {
+  "method": {
+   "estimator": "one-way random-effects ANOVA on the environment level, with the unequal-n correction n0 = (n - sum(n_i^2)/n)/(k - 1); sigma_seed^2 = MS_within, sigma_env^2 = max(0, (MS_between - MS_within)/n0)",
+   "cited_implementation": "tools/_p1613_p3_cloud_runner.py decomposition() (the same one-way random-effects ANOVA with the unequal-n correction n0 as tools/_p1570_env_variance_update.py)",
+   "cited_archive_fields": {
+    "outputs/analysis/p3_env_variance.json": [
+     "meta.method",
+     "sigma_env",
+     "sigma_seed",
+     "env_share",
+     "bootstrap.share_mean",
+     "bootstrap.share_ci95"
+    ],
+    "outputs/analysis/p3_env_stack_seeds.json": [
+     "sigma_env",
+     "sigma_seed",
+     "env_variance_share",
+     "sigma_by_rank.<rank>.all_rows",
+     "sigma_by_rank.<rank>.balanced_common_seed"
+    ],
+    "outputs/analysis/p3_balanced_design_plan.json (this file)": [
+     "power_comparison.designs.*"
+    ]
+   },
+   "bootstrap": "percentile bootstrap, 10000 replicates, fixed rng seed 7; the archive-consistent variant resamples seeds within each environment, the cell variant resamples cells with one shared index set (possible only for a common-seed design) -- both are reported"
+  },
+  "rank": 5,
+  "common_seeds": [
+   42,
+   7,
+   123,
+   999
+  ],
+  "archived_reference_today": {
+   "source_file": "outputs/analysis/p3_env_variance.json",
+   "sigma_env": 31.148928826613844,
+   "sigma_seed": 34.294997813092216,
+   "env_share": 0.4520380976240466,
+   "bootstrap_share_ci95": [
+    0.21198180448528658,
+    0.7471951281145658
+   ],
+   "bootstrap_share_ci95_width": 0.5352133236292792,
+   "note": "the archived three-stack value; it is NOT reproducible today because that script's torch 2.4/cu121 bucket uses the loose glob verify_r5_s*_a10*.json, which now also matches the _a10_torch26 rows"
+  },
+  "designs": {
+   "unbalanced_today": {
+    "definition": "every seed each stack happens to have at rank 5",
+    "n_per_stack": {
+     "torch29_cu130": 5,
+     "torch212_cu130": 10,
+     "torch24_cu121": 7,
+     "torch26_cu124": 4
+    },
+    "values_by_stack": {
+     "torch29_cu130": [
+      -10.5,
+      8.0,
+      -36.5,
+      -27.0,
+      -49.0
+     ],
+     "torch212_cu130": [
+      -96.0,
+      -7.5,
+      -7.5,
+      -114.5,
+      -12.5,
+      -26.5,
+      -66.0,
+      -63.5,
+      -19.0,
+      -24.0
+     ],
+     "torch24_cu121": [
+      -50.0,
+      41.0,
+      19.0,
+      58.5,
+      -2.5,
+      -2.0,
+      64.5
+     ],
+     "torch26_cu124": [
+      -51.5,
+      -35.5,
+      -104.0,
+      -64.0
+     ]
+    },
+    "decomposition": {
+     "k": 4,
+     "n": 26,
+     "n_per_env": {
+      "torch29_cu130": 5,
+      "torch212_cu130": 10,
+      "torch24_cu121": 7,
+      "torch26_cu124": 4
+     },
+     "grand_mean": -26.096153846153847,
+     "ss_between": 22650.80247252747,
+     "ss_within": 27861.207142857143,
+     "df_between": 3,
+     "df_within": 22,
+     "ms_between": 7550.26749084249,
+     "ms_within": 1266.4185064935066,
+     "n0": 6.230769230769231,
+     "sigma_env": 31.757187734381493,
+     "sigma_seed": 35.58677431987208,
+     "env_variance_share": 0.4433172260678529,
+     "sigma_env_squared_raw": 1008.5189727967504,
+     "clamped_at_zero": false
+    },
+    "bootstrap_within": {
+     "mode": "within",
+     "n_boot": 10000,
+     "rng_seed": 7,
+     "share_mean": 0.49420974883336166,
+     "share_ci95": [
+      0.18925226694595595,
+      0.746732346776369
+     ],
+     "share_ci95_width": 0.557480079830413,
+     "share_sd": 0.14614088798036853,
+     "sigma_env_mean": 33.1580808885896,
+     "sigma_env_ci95": [
+      15.822329845999246,
+      49.569922162907595
+     ],
+     "sigma_env_ci95_width": 33.74759231690835,
+     "sigma_seed_mean": 32.792140803439054,
+     "sigma_seed_ci95": [
+      23.73550200838032,
+      40.48356540331426
+     ],
+     "sigma_seed_ci95_width": 16.74806339493394,
+     "sigma_env_squared_raw_ci95": [
+      250.34612247641763,
+      2457.177186840294
+     ],
+     "sigma_env_neg_raw_fraction": 0.0013,
+     "note": "percentile bootstrap over the cells of the design; the fixed rng seed makes the archive deterministic"
+    },
+    "bootstrap_archived_method_same_inputs": {
+     "mode": "within",
+     "n_boot": 10000,
+     "rng_seed": 7,
+     "share_mean": 0.49420974883336166,
+     "share_ci95": [
+      0.18925226694595595,
+      0.746732346776369
+     ],
+     "share_ci95_width": 0.557480079830413,
+     "share_sd": 0.14614088798036853,
+     "sigma_env_mean": 33.1580808885896,
+     "sigma_env_ci95": [
+      15.822329845999246,
+      49.569922162907595
+     ],
+     "sigma_env_ci95_width": 33.74759231690835,
+     "sigma_seed_mean": 32.792140803439054,
+     "sigma_seed_ci95": [
+      23.73550200838032,
+      40.48356540331426
+     ],
+     "sigma_seed_ci95_width": 16.74806339493394,
+     "sigma_env_squared_raw_ci95": [
+      250.34612247641763,
+      2457.177186840294
+     ],
+     "sigma_env_neg_raw_fraction": 0.0013,
+     "note": "percentile bootstrap over the cells of the design; the fixed rng seed makes the archive deterministic"
+    }
+   },
+   "balanced_common_seed": {
+    "definition": "the 4 common seeds on every stack at rank 5",
+    "n_per_stack": {
+     "torch29_cu130": 3,
+     "torch212_cu130": 4,
+     "torch24_cu121": 6,
+     "torch26_cu124": 4
+    },
+    "values_by_stack": {
+     "torch29_cu130": [
+      -10.5,
+      8.0,
+      -27.0
+     ],
+     "torch212_cu130": [
+      -7.5,
+      -26.5,
+      -63.5,
+      -24.0
+     ],
+     "torch24_cu121": [
+      -50.0,
+      41.0,
+      19.0,
+      58.5,
+      -2.5,
+      64.5
+     ],
+     "torch26_cu124": [
+      -51.5,
+      -35.5,
+      -104.0,
+      -64.0
+     ]
+    },
+    "stacks_with_all_common_seeds": [
+     "torch212_cu130",
+     "torch26_cu124"
+    ],
+    "missing_common_seed_cells": [
+     {
+      "stack": "torch29_cu130",
+      "rank": 5,
+      "seed": 7
+     },
+     {
+      "stack": "torch29_cu130",
+      "rank": 6,
+      "seed": 7
+     }
+    ],
+    "decomposition": {
+     "k": 4,
+     "n": 17,
+     "n_per_env": {
+      "torch29_cu130": 3,
+      "torch212_cu130": 4,
+      "torch24_cu121": 6,
+      "torch26_cu124": 4
+     },
+     "grand_mean": -16.205882352941178,
+     "ss_between": 18610.55024509804,
+     "ss_within": 14149.979166666666,
+     "df_between": 3,
+     "df_within": 13,
+     "ms_between": 6203.5167483660125,
+     "ms_within": 1088.4599358974358,
+     "n0": 4.1568627450980395,
+     "sigma_env": 35.07861100684187,
+     "sigma_seed": 32.991816195799764,
+     "env_variance_share": 0.5306276240111232,
+     "sigma_env_squared_raw": 1230.5089501693274,
+     "clamped_at_zero": false
+    },
+    "bootstrap_cells_paired": {
+     "mode": "paired",
+     "n_boot": 0,
+     "note": "paired bootstrap needs an equal number of observations per environment (got [3, 4, 6])"
+    },
+    "bootstrap_within": {
+     "mode": "within",
+     "n_boot": 10000,
+     "rng_seed": 7,
+     "share_mean": 0.5925468177141019,
+     "share_ci95": [
+      0.20151212414334754,
+      0.8902629038682135
+     ],
+     "share_ci95_width": 0.688750779724866,
+     "share_sd": 0.18716658758502372,
+     "sigma_env_mean": 36.66883088664075,
+     "sigma_env_ci95": [
+      16.526897298907997,
+      55.44942548648982
+     ],
+     "sigma_env_ci95_width": 38.922528187581825,
+     "sigma_seed_mean": 28.938266999816815,
+     "sigma_seed_ci95": [
+      16.837147717023928,
+      38.96241614367167
+     ],
+     "sigma_seed_ci95_width": 22.12526842664774,
+     "sigma_env_squared_raw_ci95": [
+      273.13833454281576,
+      3074.6387880986927
+     ],
+     "sigma_env_neg_raw_fraction": 0.0022,
+     "note": "percentile bootstrap over the cells of the design; the fixed rng seed makes the archive deterministic"
+    }
+   },
+   "anchor_seed_today": {
+    "definition": "the seed set common to every populated stack at rank 5: the strongest environment statement today's design permits",
+    "common_seed_intersection": [
+     42,
+     123,
+     999
+    ],
+    "n_common_anchor_seeds": 3,
+    "seed": null,
+    "seeds": [
+     42,
+     123,
+     999
+    ],
+    "n_per_stack": {
+     "torch29_cu130": 3,
+     "torch212_cu130": 3,
+     "torch24_cu121": 5,
+     "torch26_cu124": 3
+    },
+    "values_by_stack": {
+     "torch29_cu130": [
+      -10.5,
+      8.0,
+      -27.0
+     ],
+     "torch212_cu130": [
+      -7.5,
+      -26.5,
+      -24.0
+     ],
+     "torch24_cu121": [
+      -50.0,
+      41.0,
+      58.5,
+      -2.5,
+      64.5
+     ],
+     "torch26_cu124": [
+      -51.5,
+      -35.5,
+      -64.0
+     ]
+    },
+    "decomposition": {
+     "k": 4,
+     "n": 14,
+     "n_per_env": {
+      "torch29_cu130": 3,
+      "torch212_cu130": 3,
+      "torch24_cu121": 5,
+      "torch26_cu124": 3
+     },
+     "grand_mean": -9.071428571428571,
+     "ss_between": 10346.128571428573,
+     "ss_within": 10517.800000000001,
+     "df_between": 3,
+     "df_within": 10,
+     "ms_between": 3448.7095238095244,
+     "ms_within": 1051.7800000000002,
+     "n0": 3.4285714285714284,
+     "sigma_env": 26.440583284875633,
+     "sigma_seed": 32.43115785783789,
+     "env_variance_share": 0.3992864558610379,
+     "sigma_env_squared_raw": 699.1044444444447,
+     "clamped_at_zero": false
+    },
+    "identified": true,
+    "estimability_note": "identified"
+   }
+  },
+  "planned_design_shape": {
+   "note": "what the plan produces once every missing cell is archived; no value is predicted for a cell that does not exist yet",
+   "seeds_per_stack_at_rank5_now": {
+    "torch29_cu130": 3,
+    "torch212_cu130": 4,
+    "torch24_cu121": 6,
+    "torch26_cu124": 4
+   },
+   "seeds_per_stack_at_rank5_after_plan": {
+    "torch29_cu130": 4,
+    "torch212_cu130": 4,
+    "torch24_cu121": 4,
+    "torch26_cu124": 4
+   },
+   "cells_still_missing_at_rank5": [
+    {
+     "stack": "torch29_cu130",
+     "rank": 5,
+     "seed": 7
+    }
+   ],
+   "cells_still_missing_at_rank6": [
+    {
+     "stack": "torch29_cu130",
+     "rank": 6,
+     "seed": 7
+    }
+   ]
+  },
+  "ci_width_change": {
+   "basis": "the archive-consistent bootstrap (resample seeds within each environment, fixed rng seed) is the one comparable to the archived bootstrap.share_ci95",
+   "unbalanced_today_share_ci95": [
+    0.18925226694595595,
+    0.746732346776369
+   ],
+   "unbalanced_today_share_ci95_width": 0.557480079830413,
+   "balanced_common_seed_share_ci95": [
+    0.20151212414334754,
+    0.8902629038682135
+   ],
+   "balanced_common_seed_share_ci95_width": 0.688750779724866,
+   "width_ratio_balanced_over_today": 1.2354715525160753,
+   "width_change_pct": 23.547155251607528,
+   "sigma_env_ci95_today": [
+    15.822329845999246,
+    49.569922162907595
+   ],
+   "sigma_env_ci95_balanced": [
+    16.526897298907997,
+    55.44942548648982
+   ],
+   "sigma_env_ci95_width_today": 33.74759231690835,
+   "sigma_env_ci95_width_balanced": 38.922528187581825,
+   "cell_bootstrap_note": "paired bootstrap needs an equal number of observations per environment (got [3, 4, 6])",
+   "reading_the_width_change": "Today's share CI95 width 0.557 comes from a design in which the stacks contribute {'torch29_cu130': 5, 'torch212_cu130': 10, 'torch24_cu121': 7, 'torch26_cu124': 4} seeds; the balanced width 0.689 comes from a design in which every stack contributes exactly 4. The balanced width is the one estimated from matched seed sets, so it is the one that can be read as an environment effect; today's narrower or wider interval is not comparable because it mixes the between-stack contrast with which seeds each stack happens to carry. sigma_env itself moves from 31.8 to 35.1 (sigma_env CI95 width 33.7 -> 38.9), and the share from 0.443 to 0.531.",
+   "clamped_estimate_note": "sigma_env of the unbalanced design is 31.757187734381493 (sigma_env^2 raw 1008.5); the balanced design gives 35.07861100684187 (raw 1230.5). A clamped value means the moment estimate could not be formed (negative numerator), which is itself a consequence of the imbalance and not evidence that the environment variance is zero"
+  }
+ },
+ "audit": {
+  "imbalance": {
+   "n_cells": 49,
+   "seed_count_min": 4,
+   "seed_count_max": 10,
+   "seed_count_range": 6,
+   "per_rank_seed_counts": {
+    "5": {
+     "torch29_cu130": 5,
+     "torch212_cu130": 10,
+     "torch24_cu121": 7,
+     "torch26_cu124": 4
+    },
+    "6": {
+     "torch29_cu130": 5,
+     "torch212_cu130": 10,
+     "torch24_cu121": 4,
+     "torch26_cu124": 4
+    }
+   },
+   "n_cells_with_one_seed": 0,
+   "common_seed_overlap": {
+    "5": {
+     "torch29_cu130": 3,
+     "torch212_cu130": 4,
+     "torch24_cu121": 6,
+     "torch26_cu124": 4
+    },
+    "6": {
+     "torch29_cu130": 3,
+     "torch212_cu130": 4,
+     "torch24_cu121": 4,
+     "torch26_cu124": 4
+    }
+   },
+   "design": "4 stacks x 2 ranks x (4 common seeds) = 32 cells for a balanced design"
+  },
+  "single_seed_cells": [],
+  "seeds_by_stack_and_rank": {
+   "5": {
+    "torch29_cu130": [
+     42,
+     123,
+     789,
+     999,
+     1024
+    ],
+    "torch212_cu130": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     123,
+     456,
+     789,
+     999,
+     1024
+    ],
+    "torch24_cu121": [
+     7,
+     42,
+     123,
+     123,
+     789,
+     999,
+     999
+    ],
+    "torch26_cu124": [
+     7,
+     42,
+     123,
+     999
+    ]
+   },
+   "6": {
+    "torch29_cu130": [
+     42,
+     123,
+     789,
+     999,
+     1024
+    ],
+    "torch212_cu130": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     123,
+     456,
+     789,
+     999,
+     1024
+    ],
+    "torch24_cu121": [
+     7,
+     42,
+     123,
+     999
+    ],
+    "torch26_cu124": [
+     7,
+     42,
+     123,
+     999
+    ]
+   }
+  },
+  "common_seed_overlap": {
+   "5": {
+    "torch29_cu130": [
+     42,
+     123,
+     999
+    ],
+    "torch212_cu130": [
+     7,
+     42,
+     123,
+     999
+    ],
+    "torch24_cu121": [
+     7,
+     42,
+     123,
+     123,
+     999,
+     999
+    ],
+    "torch26_cu124": [
+     7,
+     42,
+     123,
+     999
+    ]
+   },
+   "6": {
+    "torch29_cu130": [
+     42,
+     123,
+     999
+    ],
+    "torch212_cu130": [
+     7,
+     42,
+     123,
+     999
+    ],
+    "torch24_cu121": [
+     7,
+     42,
+     123,
+     999
+    ],
+    "torch26_cu124": [
+     7,
+     42,
+     123,
+     999
+    ]
+   }
+  },
+  "census": [
+   {
+    "id": "torch29_cu130",
+    "kind": "analysis_map",
+    "label": "torch 2.9/cu130",
+    "machine": "RTX 4060 Laptop (local)",
+    "torch": "2.9.1+cu130",
+    "cuda": "13.0",
+    "place": "LOCAL",
+    "evidence": "p3_seeds_combined.json values.r5/r6; its source_archives name p3_rerun_protocol.json, p3_rerun_seeds.json and p3_rerun_extra.json, whose runs recorded E0 3921 and the same deltas",
+    "source_field": "values.r%d.<seed>",
+    "protocol": {
+     "epochs": 3,
+     "num_samples": 20,
+     "lr": 5e-05,
+     "lr_flag": "5e-5",
+     "batch_size": 1,
+     "block_config": "uniform",
+     "opt": "adamw",
+     "compute_dtype": "float16",
+     "attn_targets": "qkvo",
+     "grad_mask": "none",
+     "warmup": false,
+     "lora_alpha": "2*rank"
+    },
+    "notes": [
+     "torch29_cu130: rank 5 -> 5 row(s) from outputs/analysis/p3_seeds_combined.json (values.r5)",
+     "torch29_cu130: rank 6 -> 5 row(s) from outputs/analysis/p3_seeds_combined.json (values.r6)"
+    ],
+    "contradictions": [],
+    "files": [
+     "outputs/analysis/p3_seeds_combined.json"
+    ]
+   },
+   {
+    "id": "torch212_cu130",
+    "kind": "files",
+    "label": "torch 2.12/cu130",
+    "machine": "RTX 4080 SUPER (cloud)",
+    "torch": "2.12.1+cu130",
+    "cuda": "13.0",
+    "place": "CLOUD",
+    "evidence": "cloud_verify_r<R>_s*.json delta_E, excluding partial/imgs/_e1_ rows (the rule of tools/_p1595_p3_rank_separation.py); E0 of these rows is 3926",
+    "source_field": "delta_E",
+    "protocol": {
+     "epochs": 3,
+     "num_samples": 20,
+     "lr": 5e-05,
+     "lr_flag": "5e-5",
+     "batch_size": 1,
+     "block_config": "uniform",
+     "opt": "adamw",
+     "compute_dtype": "float16",
+     "attn_targets": "qkvo",
+     "grad_mask": "none",
+     "warmup": false,
+     "lora_alpha": "2*rank"
+    },
+    "notes": [
+     "torch212_cu130: rank 5 -> 10 row(s) from cloud_verify_r5_s*.json",
+     "torch212_cu130: rank 6 -> 10 row(s) from cloud_verify_r6_s*.json"
+    ],
+    "contradictions": [],
+    "files": [
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s1024.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s123.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s17.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s27.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s37.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s456.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s7.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s789.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s999.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s1024.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s123.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s17.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s27.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s37.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s42.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s456.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s7.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s789.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s999.json"
+    ]
+   },
+   {
+    "id": "torch24_cu121",
+    "kind": "files",
+    "label": "torch 2.4/cu121",
+    "machine": "RTX 4060 Laptop (local)",
+    "torch": "2.4.1+cu121",
+    "cuda": "12.1",
+    "place": "LOCAL",
+    "evidence": "the explicit `_torch24` filename suffix (run_training.py cannot write a stack suffix; the label is in the name by construction) plus the rank-5 `_a10` rows for seeds 123/999, which are exactly the four values of the archived bucket 'torch 2.4/cu121' in outputs/analysis/p3_env_variance.json ([-2.5, 41.0, -2.0, 64.5]); the stack's own metadata is p3_env_matrix3.json.env3_local_torch24_cu121 (torch 2.4.1+cu121, cuda 12.1)",
+    "source_field": "delta_E",
+    "protocol": {
+     "epochs": 3,
+     "num_samples": 20,
+     "lr": 5e-05,
+     "lr_flag": "5e-5",
+     "batch_size": 1,
+     "block_config": "uniform",
+     "opt": "adamw",
+     "compute_dtype": "float16",
+     "attn_targets": "qkvo",
+     "grad_mask": "none",
+     "warmup": false,
+     "lora_alpha": "2*rank"
+    },
+    "notes": [
+     "torch24_cu121: rank 5 -> 7 row(s) from verify_r5_s*_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json, verify_r5_s*_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+     "torch24_cu121: rank 6 -> 4 row(s) from verify_r6_s*_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json, verify_r6_s*_lr5e-05_nw_float1_adamw_e3_bcuniform_a12.json"
+    ],
+    "contradictions": [],
+    "files": [
+     "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch24.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s789_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch24.json"
+    ]
+   },
+   {
+    "id": "torch26_cu124",
+    "kind": "files",
+    "label": "torch 2.6/cu124",
+    "machine": "RTX 4060 Laptop (seed 42) + cloud GPU (seeds 7/123/999)",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "place": "LOCAL",
+    "evidence": "the explicit `_torch26` filename suffix (same explicit-suffix argument as torch24); seed 42 archived, seeds 7/123/999 produced by the round of tools/_p1613_p3_cloud_runner.py --job env-seeds",
+    "source_field": "delta_E",
+    "protocol": {
+     "epochs": 3,
+     "num_samples": 20,
+     "lr": 5e-05,
+     "lr_flag": "5e-5",
+     "batch_size": 1,
+     "block_config": "uniform",
+     "opt": "adamw",
+     "compute_dtype": "float16",
+     "attn_targets": "qkvo",
+     "grad_mask": "none",
+     "warmup": false,
+     "lora_alpha": "2*rank"
+    },
+    "notes": [
+     "torch26_cu124: rank 5 -> 4 row(s) from verify_r5_s*_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+     "torch26_cu124: rank 6 -> 4 row(s) from verify_r6_s*_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json"
+    ],
+    "contradictions": [],
+    "files": [
+     "paper3/scripts/outputs/experiments/verify_r5_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s123_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s7_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s999_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json"
+    ]
+   }
+  ],
+  "archive_overlaps": []
+ },
+ "conclusion": {
+  "gpu_hours_for_a_balanced_design": {
+   "measured_only": 0.75,
+   "with_unknown_per_run_times_priced_at_the_measured_median": 0.75,
+   "n_cells_with_unknown_per_run_time": 0,
+   "n_missing_cells": 2,
+   "n_missing_cells_already_scheduled_by_the_round_in_flight": 0,
+   "n_missing_cells_that_need_a_new_run": 2,
+   "basis": "every emitted cell is the archived 20-sample / 3-epoch protocol; the measured per-run times are the ones this protocol recorded on the local machine, and the cloud rows of the same protocol carry no elapsed field, so the cloud share of the estimate is reported as unknown rather than priced by assumption.  The in-flight torch26 round logs its own wall time to outputs/analysis/p3_env_seeds_runlog.json (elapsed_seconds) and will replace the unknown for that stack."
+  },
+  "what_it_buys": "A balanced common-seed design removes the confounding between the environment term and the seeds a stack happens to have: with 4 seeds on all 4 stacks at rank 5 the between-environment and within-environment sums of squares are no longer driven by which stack has more seeds, and the environment share is estimated from matched seed sets (the seed set common to every populated stack today is 42,123,999). 2/4 stacks currently carry all 4 common seeds; after the plan the environment share is 0.531 with CI95 [0.202, 0.890] (width 0.689) against 0.443 with CI95 [0.189, 0.747] (width 0.557) today, and sigma_env is 35.1 against 31.8.",
+  "caveats": [
+   "the rank-6 side of the design is planned and priced the same way; S37's headline decomposition is the rank-5 one",
+   "the torch26 rows are produced by the training script and only become stack-tagged rows after the runner copies them to the _torch26 name; run_training.py overwrites the untagged name, which belongs to another stack's archived row, so that name must be preserved (the runner saves and restores it)",
+   "a common-seed design does not remove the hardware mixing inside the torch26 stack (seed 42 on the workstation, seeds 7/123/999 on the cloud GPU), which the S29 machine column must state",
+   "the per-run wall clock of the torch24 and cloud stacks is not recorded by any archive of this protocol, so their share of the GPU-hour estimate is stated as unknown"
+  ]
+ }
+}

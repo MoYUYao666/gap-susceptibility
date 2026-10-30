@@ -1,0 +1,256 @@
+{
+ "local_device": "local 8 GB box (torch 2.9.1+cu130, E0=3921 for LLaVA reference protocol)",
+ "cloud_device": "autodl RTX 4080 SUPER 32760 MiB, driver 580.142, torch 2.12.1+cu130 (E0=3926)",
+ "records": [
+  {
+   "name": "r=4 s=42 e10",
+   "local": {
+    "file": "verify_r4_s42_lr5e-05_nw_float1_adamw_e10_bcuniform.json",
+    "E": [
+     3921.0,
+     3880.5,
+     3805.0,
+     3848.5,
+     4071.0,
+     4387.5,
+     4767.0,
+     5553.0,
+     6925.0,
+     NaN,
+     NaN
+    ],
+    "E0": 3921.0,
+    "delta_E": NaN,
+    "first_nan_index": 9
+   },
+   "cloud": {
+    "file": "verify_r4_s42_lr5e-05_nw_float1_adamw_e10_bcuniform_cloud.json",
+    "E": [
+     3926.0,
+     3871.5,
+     3802.0,
+     3850.0,
+     4064.5,
+     4425.0,
+     4930.0,
+     5949.0,
+     7278.0,
+     NaN,
+     NaN
+    ],
+    "E0": 3926.0,
+    "delta_E": NaN,
+    "first_nan_index": 9
+   },
+   "E0_offset": 5.0,
+   "E0_offset_pct": 0.12751849018107625,
+   "rel_diff_pct_by_epoch": [
+    0.12751849018107625,
+    -0.23192887514495555,
+    -0.07884362680683311,
+    0.03897622450305314,
+    -0.15966592974699093,
+    0.8547008547008548,
+    3.41934130480386,
+    7.13128038897893,
+    5.097472924187726
+   ],
+   "max_abs_rel_diff_before_epoch5_pct": 0.23192887514495555,
+   "max_abs_rel_diff_pct": 7.13128038897893,
+   "same_first_nan_epoch": true,
+   "same_delta_sign": null
+  },
+  {
+   "name": "r=5 s=42 e10",
+   "local": {
+    "file": "verify_r5_s42_e10.json",
+    "E": [
+     3921.0,
+     3844.5,
+     3777.0,
+     3907.0,
+     4248.5,
+     4508.0,
+     5170.0,
+     6369.0,
+     NaN,
+     NaN,
+     NaN
+    ],
+    "E0": 3921.0,
+    "delta_E": NaN,
+    "first_nan_index": 8
+   },
+   "cloud": {
+    "file": "verify_r5_s42_lr5e-05_nw_float1_adamw_e10_bcuniform.json",
+    "E": [
+     3926.0,
+     3860.0,
+     3789.5,
+     3884.0,
+     4185.5,
+     4475.5,
+     5028.0,
+     6182.0,
+     NaN,
+     NaN,
+     NaN
+    ],
+    "E0": 3926.0,
+    "delta_E": NaN,
+    "first_nan_index": 8
+   },
+   "E0_offset": 5.0,
+   "E0_offset_pct": 0.12751849018107625,
+   "rel_diff_pct_by_epoch": [
+    0.12751849018107625,
+    0.4031733645467551,
+    0.3309504898067249,
+    -0.5886869721013566,
+    -1.4828763092856303,
+    -0.7209405501330968,
+    -2.746615087040619,
+    -2.936096718480138
+   ],
+   "max_abs_rel_diff_before_epoch5_pct": 0.5886869721013566,
+   "max_abs_rel_diff_pct": 2.936096718480138,
+   "same_first_nan_epoch": true,
+   "same_delta_sign": null
+  },
+  {
+   "name": "r=6 s=42 e10",
+   "local": {
+    "file": "verify_r6_s42_e10.json",
+    "E": [
+     3921.0,
+     3831.5,
+     3815.5,
+     4025.0,
+     4412.5,
+     5020.0,
+     6202.0,
+     NaN,
+     NaN,
+     NaN,
+     NaN
+    ],
+    "E0": 3921.0,
+    "delta_E": NaN,
+    "first_nan_index": 7
+   },
+   "cloud": {
+    "file": "verify_r6_s42_lr5e-05_nw_float1_adamw_e10_bcuniform.json",
+    "E": [
+     3926.0,
+     3843.5,
+     3833.0,
+     3988.0,
+     4355.0,
+     5086.0,
+     6622.0,
+     NaN,
+     NaN,
+     NaN,
+     NaN
+    ],
+    "E0": 3926.0,
+    "delta_E": NaN,
+    "first_nan_index": 7
+   },
+   "E0_offset": 5.0,
+   "E0_offset_pct": 0.12751849018107625,
+   "rel_diff_pct_by_epoch": [
+    0.12751849018107625,
+    0.3131932663447736,
+    0.4586554842091469,
+    -0.9192546583850932,
+    -1.3031161473087818,
+    1.3147410358565739,
+    6.772009029345373
+   ],
+   "max_abs_rel_diff_before_epoch5_pct": 0.9192546583850932,
+   "max_abs_rel_diff_pct": 6.772009029345373,
+   "same_first_nan_epoch": true,
+   "same_delta_sign": null
+  },
+  {
+   "name": "r=5 s=42 e3 b2",
+   "local": {
+    "file": "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+    "E": [
+     3921.0,
+     3838.0,
+     3757.5,
+     3847.5
+    ],
+    "E0": 3921.0,
+    "delta_E": -73.5,
+    "first_nan_index": null
+   },
+   "cloud": {
+    "file": "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json",
+    "E": [
+     3926.0,
+     3847.5,
+     3789.0,
+     3876.5
+    ],
+    "E0": 3926.0,
+    "delta_E": -49.5,
+    "first_nan_index": null
+   },
+   "E0_offset": 5.0,
+   "E0_offset_pct": 0.12751849018107625,
+   "rel_diff_pct_by_epoch": [
+    0.12751849018107625,
+    0.24752475247524752,
+    0.8383233532934131,
+    0.7537361923326835
+   ],
+   "max_abs_rel_diff_before_epoch5_pct": 0.8383233532934131,
+   "max_abs_rel_diff_pct": 0.8383233532934131,
+   "same_first_nan_epoch": true,
+   "same_delta_sign": true
+  },
+  {
+   "name": "r=6 s=42 e3 b2",
+   "local": {
+    "file": "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+    "E": [
+     3921.0,
+     3837.5,
+     3763.5,
+     3957.0
+    ],
+    "E0": 3921.0,
+    "delta_E": 36.0,
+    "first_nan_index": null
+   },
+   "cloud": {
+    "file": "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json",
+    "E": [
+     3926.0,
+     3839.0,
+     3822.0,
+     3948.0
+    ],
+    "E0": 3926.0,
+    "delta_E": 22.0,
+    "first_nan_index": null
+   },
+   "E0_offset": 5.0,
+   "E0_offset_pct": 0.12751849018107625,
+   "rel_diff_pct_by_epoch": [
+    0.12751849018107625,
+    0.03908794788273615,
+    1.5544041450777202,
+    -0.22744503411675512
+   ],
+   "max_abs_rel_diff_before_epoch5_pct": 1.5544041450777202,
+   "max_abs_rel_diff_pct": 1.5544041450777202,
+   "same_first_nan_epoch": true,
+   "same_delta_sign": true
+  }
+ ],
+ "conclusion": "NaN epoch 是设备不变量；稳定段一致性 ≤0.3%；发散段为混沌放大 3–7%；跨设备不可混用 ΔE 绝对值（本仓库因此把云端文件与本地文件分开命名与统计）。"
+}

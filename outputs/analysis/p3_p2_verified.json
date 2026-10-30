@@ -1,0 +1,49 @@
+{
+ "exp_beta_paper_0.137": {
+  "n": 6,
+  "mean": 1477.45,
+  "sd": 1563.34
+ },
+ "uniform": {
+  "n": 6,
+  "mean": 5047.55,
+  "sd": 1899.9
+ },
+ "corner": {
+  "n": 6,
+  "mean": 2343.9,
+  "sd": 2426.09
+ },
+ "inverse_beta_paper_0.137": {
+  "n": 6,
+  "mean": 2470.21,
+  "sd": 4111.22
+ },
+ "welch_exp_beta_paper_0.137_vs_uniform": {
+  "t": -3.5542,
+  "df": 9.643,
+  "p": 0.005537,
+  "passes_bonferroni3": true
+ },
+ "welch_corner_vs_uniform": {
+  "t": -2.1491,
+  "df": 9.457,
+  "p": 0.058682,
+  "passes_bonferroni3": false
+ },
+ "welch_inverse_beta_paper_0.137_vs_uniform": {
+  "t": -1.3939,
+  "df": 7.042,
+  "p": 0.205737,
+  "passes_bonferroni3": false
+ },
+ "pool_sd": {
+  "between": 3010.09,
+  "within_median": 3196.58,
+  "mixed": 4771.18,
+  "n_plans": 10,
+  "n_runs": 30
+ },
+ "delta": 3570.1,
+ "gamma_percentile": 46.67
+}
