@@ -1,0 +1,202 @@
+{
+ "n_large_runs": 20,
+ "n_small_runs": 4,
+ "eps_grid": [
+  0.005,
+  0.01,
+  0.02,
+  0.05
+ ],
+ "rules": {
+  "0.005": {
+   "mean_regret": 0.7443473070711327,
+   "max_regret": 2.4113475177304835,
+   "mean_epochs_saved": 4.25,
+   "frac_regret_le_0.5": 0.3
+  },
+  "0.01": {
+   "mean_regret": 0.6582227371673326,
+   "max_regret": 2.4113475177304835,
+   "mean_epochs_saved": 3.5,
+   "frac_regret_le_0.5": 0.4
+  },
+  "0.02": {
+   "mean_regret": 0.6470051260445178,
+   "max_regret": 2.4113475177304835,
+   "mean_epochs_saved": 1.8,
+   "frac_regret_le_0.5": 0.45
+  },
+  "0.05": {
+   "mean_regret": 0.5029843409872885,
+   "max_regret": 2.4113475177304835,
+   "mean_epochs_saved": 0.0,
+   "frac_regret_le_0.5": 0.6
+  }
+ },
+ "per_run_eps_0.01": {
+  "dtd|seed42": {
+   "selected_epoch": 6,
+   "stop_epoch": 7,
+   "selected_top1": 64.25531914893618,
+   "oracle_top1": 65.1063829787234,
+   "regret": 0.851063829787222,
+   "epochs_saved": 1
+  },
+  "dtd|seed43": {
+   "selected_epoch": 4,
+   "stop_epoch": 5,
+   "selected_top1": 63.262411347517734,
+   "oracle_top1": 64.25531914893618,
+   "regret": 0.9929078014184469,
+   "epochs_saved": 3
+  },
+  "food101|seed42": {
+   "selected_epoch": 2,
+   "stop_epoch": 3,
+   "selected_top1": 75.9075907590759,
+   "oracle_top1": 76.23762376237624,
+   "regret": 0.33003300330034335,
+   "epochs_saved": 5
+  },
+  "food101|seed43": {
+   "selected_epoch": 3,
+   "stop_epoch": 4,
+   "selected_top1": 75.41254125412541,
+   "oracle_top1": 76.15511551155116,
+   "regret": 0.7425742574257441,
+   "epochs_saved": 4
+  },
+  "dtd|seed44": {
+   "selected_epoch": 9,
+   "stop_epoch": 10,
+   "selected_top1": 64.25531914893618,
+   "oracle_top1": 64.9645390070922,
+   "regret": 0.7092198581560183,
+   "epochs_saved": 0
+  },
+  "dtd|seed45": {
+   "selected_epoch": 6,
+   "stop_epoch": 8,
+   "selected_top1": 63.262411347517734,
+   "oracle_top1": 65.67375886524822,
+   "regret": 2.4113475177304835,
+   "epochs_saved": 2
+  },
+  "food101|seed44": {
+   "selected_epoch": 6,
+   "stop_epoch": 7,
+   "selected_top1": 75.41254125412541,
+   "oracle_top1": 75.57755775577559,
+   "regret": 0.16501650165017168,
+   "epochs_saved": 3
+  },
+  "food101|seed45": {
+   "selected_epoch": 2,
+   "stop_epoch": 3,
+   "selected_top1": 74.83498349834984,
+   "oracle_top1": 75.74257425742574,
+   "regret": 0.9075907590759016,
+   "epochs_saved": 7
+  },
+  "vit-base-patch32|dtd|seed42": {
+   "selected_epoch": 6,
+   "stop_epoch": 7,
+   "selected_top1": 64.39716312056738,
+   "oracle_top1": 65.1063829787234,
+   "regret": 0.7092198581560183,
+   "epochs_saved": 3
+  },
+  "vit-base-patch32|dtd|seed43": {
+   "selected_epoch": 4,
+   "stop_epoch": 5,
+   "selected_top1": 63.68794326241135,
+   "oracle_top1": 65.24822695035462,
+   "regret": 1.5602836879432687,
+   "epochs_saved": 5
+  },
+  "vit-base-patch32|dtd|seed44": {
+   "selected_epoch": 9,
+   "stop_epoch": 10,
+   "selected_top1": 64.53900709219859,
+   "oracle_top1": 65.1063829787234,
+   "regret": 0.5673758865248146,
+   "epochs_saved": 0
+  },
+  "vit-base-patch32|food101|seed42": {
+   "selected_epoch": 2,
+   "stop_epoch": 3,
+   "selected_top1": 75.99009900990099,
+   "oracle_top1": 76.23762376237624,
+   "regret": 0.24752475247525751,
+   "epochs_saved": 7
+  },
+  "vit-base-patch32|food101|seed43": {
+   "selected_epoch": 3,
+   "stop_epoch": 4,
+   "selected_top1": 75.16501650165016,
+   "oracle_top1": 75.99009900990099,
+   "regret": 0.82508250825083,
+   "epochs_saved": 6
+  },
+  "vit-base-patch32|food101|seed44": {
+   "selected_epoch": 6,
+   "stop_epoch": 7,
+   "selected_top1": 75.41254125412541,
+   "oracle_top1": 75.57755775577559,
+   "regret": 0.16501650165017168,
+   "epochs_saved": 3
+  },
+  "vit-large-patch14|dtd|seed42": {
+   "selected_epoch": 4,
+   "stop_epoch": 5,
+   "selected_top1": 70.63829787234043,
+   "oracle_top1": 70.63829787234043,
+   "regret": 0.0,
+   "epochs_saved": 5
+  },
+  "vit-large-patch14|dtd|seed43": {
+   "selected_epoch": 10,
+   "stop_epoch": 10,
+   "selected_top1": 69.9290780141844,
+   "oracle_top1": 69.9290780141844,
+   "regret": 0.0,
+   "epochs_saved": 0
+  },
+  "vit-large-patch14|dtd|seed44": {
+   "selected_epoch": 10,
+   "stop_epoch": 10,
+   "selected_top1": 72.05673758865248,
+   "oracle_top1": 72.05673758865248,
+   "regret": 0.0,
+   "epochs_saved": 0
+  },
+  "vit-large-patch14|food101|seed42": {
+   "selected_epoch": 1,
+   "stop_epoch": 3,
+   "selected_top1": 88.86138613861387,
+   "oracle_top1": 89.93399339933993,
+   "regret": 1.072607260726059,
+   "epochs_saved": 7
+  },
+  "vit-large-patch14|food101|seed43": {
+   "selected_epoch": 6,
+   "stop_epoch": 7,
+   "selected_top1": 89.85148514851485,
+   "oracle_top1": 90.0990099009901,
+   "regret": 0.2475247524752433,
+   "epochs_saved": 3
+  },
+  "vit-large-patch14|food101|seed44": {
+   "selected_epoch": 2,
+   "stop_epoch": 4,
+   "selected_top1": 89.27392739273927,
+   "oracle_top1": 89.93399339933993,
+   "regret": 0.6600660066006583,
+   "epochs_saved": 6
+  }
+ },
+ "small_holdouts_note": {
+  "n": 4,
+  "mean_regret_eps_0.01": 16.52777777777778
+ }
+}

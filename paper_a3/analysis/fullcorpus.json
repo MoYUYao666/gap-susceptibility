@@ -1,0 +1,49 @@
+{
+ "note": "full corpus vs 10k pairs, joint site, seed 0",
+ "rows": [
+  {
+   "dataset": "nwpu_captions",
+   "arm": "human",
+   "pairs": 125721,
+   "full_R1_i2t": 0.2119,
+   "full_R1_t2i": 0.1807,
+   "full_gap": 0.9947,
+   "tenk_R1_i2t": 0.1653,
+   "tenk_std": 0.0123,
+   "delta": 0.0466
+  },
+  {
+   "dataset": "nwpu_captions",
+   "arm": "metadata",
+   "pairs": 25200,
+   "full_R1_i2t": 0.1865,
+   "full_R1_t2i": 0.1807,
+   "full_gap": 0.7745,
+   "tenk_R1_i2t": 0.0746,
+   "tenk_std": 0.0015,
+   "delta": 0.1119
+  },
+  {
+   "dataset": "rsicd",
+   "arm": "human",
+   "pairs": 31167,
+   "full_R1_i2t": 0.127,
+   "full_R1_t2i": 0.123,
+   "full_gap": 0.784,
+   "tenk_R1_i2t": 0.1483,
+   "tenk_std": 0.0017,
+   "delta": -0.021299999999999986
+  },
+  {
+   "dataset": "rsicd",
+   "arm": "metadata",
+   "pairs": 8734,
+   "full_R1_i2t": 0.0615,
+   "full_R1_t2i": 0.0557,
+   "full_gap": 1.0094,
+   "tenk_R1_i2t": 0.0476,
+   "tenk_std": 0.015,
+   "delta": 0.013899999999999996
+  }
+ ]
+}

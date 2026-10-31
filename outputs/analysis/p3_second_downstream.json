@@ -1,0 +1,486 @@
+{
+ "meta": {
+  "script": "tools/_p1640_p3_second_downstream.py",
+  "job": "second downstream task -- POPE",
+  "task": "P3 second downstream task: POPE object-hallucination probing, paired by question, with the metric conventions of the archived VQA-RAD check",
+  "dataset": {
+   "id": "lmms-lab-encoder/POPE",
+   "alias": "lmms-lab/POPE",
+   "revision": "4db1276663dfa5eb8ad16a52d24c31a09e470896",
+   "config": "Full",
+   "split": "random",
+   "n_questions": 3000,
+   "paper": "Li et al., Evaluating Object Hallucination in Large Vision-Language Models, arXiv:2305.10355; original code RUCAIBox/POPE",
+   "prepared_parquet": "paper3/test-pope-random.parquet",
+   "prepared_parquet_sha256": "66faa5e6de3be2374be68b8794a14cf660ff14670575ea47b9b77da8b43a71d4"
+  },
+  "n_boot": 20000,
+  "rng_seed": 20261024,
+  "alpha": 0.05,
+  "declared_margins": {
+   "accuracy": 0.05,
+   "token_f1": 0.05,
+   "pope_f1": 0.05
+  },
+  "margin_rule": "0.05 on every metric, pre-declared and carried over unchanged from the 451-question VQA-RAD analysis.  A 3000-question arm has a binomial standard error of ~0.009 in accuracy, so this evaluation set is not at its resolution limit; the margin is not re-fitted, and the smallest equivalent margin is reported alongside every contrast.",
+  "method": "paired (by question) percentile bootstrap of the difference plus TOST; the resampling rule and the interval definitions are tools/_p1595_p3_rank_separation.py vqa_contrast()",
+  "field_names_shared_with_the_vqa_archives": [
+   "accuracy",
+   "token_f1",
+   "yes_no_accuracy",
+   "refs",
+   "hypotheses",
+   "relaxed_accuracy"
+  ],
+  "metric_definitions": {
+   "accuracy": "normalised exact match: norm(hypothesis) == norm(reference)",
+   "token_f1": "mean over questions of the per-question token F1 of tools/_p1516_p3_vqa_downstream.py token_f1([ref], [hyp]); this is the same field the per-arm archives carry, and arm_from_payload asserts the two agree",
+   "pope_f1": "yes-class F1 = 2TP / (2TP + FP + FN) with yes as the positive class",
+   "yes_ratio": "share of questions whose predicted answer starts with 'yes'",
+   "labels": "POPE Full/random is balanced: the gold yes rate is exactly 0.5"
+  },
+  "verdict_rule": "see claim_verdict.rule; corrected 2026-10-25 so the sign of the contrast (base - adapter) matches the pre-declared prose criterion",
+  "supersedes": {
+   "path": "outputs/analysis/p3_second_downstream_pre_correction.json",
+   "sha256": "1c389125f0c3ce55056dea67ca5a3ded0ac09740465e37b640989ad66fcfb947",
+   "defects_fixed": [
+    "D1 arms.*.token_f1 carried relaxed_accuracy",
+    "D2 verdict rule tested the contrast with the opposite sign"
+   ],
+   "why_no_gpu_rerun": "the aggregate is CPU-side and consumes only the three per-arm archives, so it can be regenerated without a GPU or a cloud round"
+  },
+  "archives": [
+   "outputs/analysis/p3_second_downstream_base.json",
+   "outputs/analysis/p3_second_downstream_5.json",
+   "outputs/analysis/p3_second_downstream_6.json"
+  ],
+  "deterministic": true,
+  "note": "no wall-clock field is written, so re-running this aggregation on unchanged inputs reproduces this file byte for byte"
+ },
+ "arms": {
+  "base": {
+   "rank": null,
+   "n": 3000,
+   "accuracy": 0.6256666666666667,
+   "token_f1": 0.6826015299515299,
+   "pope_f1": 0.8849177984274482,
+   "yes_ratio": 0.43266666666666664,
+   "archive": "outputs/analysis/p3_second_downstream_base.json",
+   "adapter_dir": null,
+   "adapter_source": "none",
+   "adapter_sha256": null
+  },
+  "5": {
+   "rank": 5,
+   "n": 3000,
+   "accuracy": 0.8716666666666667,
+   "token_f1": 0.8716666666666667,
+   "pope_f1": 0.8593350383631714,
+   "yes_ratio": 0.41233333333333333,
+   "archive": "outputs/analysis/p3_second_downstream_5.json",
+   "adapter_dir": "outputs/p3_vqa_adapters/r5_step",
+   "adapter_source": "reused_from_archived_round",
+   "adapter_sha256": "1615d21ecf2d6200effa9b1c180d1256934d22d3cbb16f6b8695ea902b64767b"
+  },
+  "6": {
+   "rank": 6,
+   "n": 3000,
+   "accuracy": 0.8396666666666667,
+   "token_f1": 0.8409513227513229,
+   "pope_f1": 0.8236641221374046,
+   "yes_ratio": 0.37333333333333335,
+   "archive": "outputs/analysis/p3_second_downstream_6.json",
+   "adapter_dir": "outputs/p3_vqa_adapters/r6_step",
+   "adapter_source": "reused_from_archived_round",
+   "adapter_sha256": "5f681f3f80ee0fa2db1626b98f64113554305fd133f41a3867ebf74c2affee42"
+  }
+ },
+ "refs_identical_across_arms": true,
+ "refs_sha256": {
+  "base": "8500aa46cde5744ac5020f6879ea8b0e673f177a835b01e66f7a879b905af849",
+  "5": "8500aa46cde5744ac5020f6879ea8b0e673f177a835b01e66f7a879b905af849",
+  "6": "8500aa46cde5744ac5020f6879ea8b0e673f177a835b01e66f7a879b905af849"
+ },
+ "contrasts": {
+  "base_minus_5": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": -0.246,
+    "boot_mean": -0.24596493333333333,
+    "boot_se": 0.008484780682927767,
+    "ci95": [
+     -0.2626666666666667,
+     -0.22965833333333396
+    ],
+    "ci90": [
+     -0.26,
+     -0.23199999999999998
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.26
+   },
+   "token_f1": {
+    "n_boot": 20000,
+    "delta": -0.1890651367151368,
+    "boot_mean": -0.18902159422050172,
+    "boot_se": 0.007109695522352858,
+    "ci95": [
+     -0.20301374098124095,
+     -0.17519785903910903
+    ],
+    "ci90": [
+     -0.20076481768231766,
+     -0.1773405962555963
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.20076481768231766
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.025582760064276844,
+    "boot_mean": 0.025683292291958856,
+    "boot_se": 0.005397415913024208,
+    "ci95": [
+     0.015219617938250812,
+     0.0363730526634445
+    ],
+    "ci90": [
+     0.016845784611482218,
+     0.034586939765831964
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 0.0,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.034586939765831964,
+    "arm_values": {
+     "a": 0.8849177984274482,
+     "b": 0.8593350383631714
+    }
+   }
+  },
+  "base_minus_6": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": -0.21399999999999997,
+    "boot_mean": -0.2139506166666667,
+    "boot_se": 0.008713514203528906,
+    "ci95": [
+     -0.23099999999999998,
+     -0.19699999999999995
+    ],
+    "ci90": [
+     -0.22835000000000003,
+     -0.19966666666666666
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.22835000000000003
+   },
+   "token_f1": {
+    "n_boot": 20000,
+    "delta": -0.158349792799793,
+    "boot_mean": -0.15830323386696638,
+    "boot_se": 0.007437878956069094,
+    "ci95": [
+     -0.1730649094424094,
+     -0.14383564754689745
+    ],
+    "ci90": [
+     -0.17063867105117117,
+     -0.14604386326636334
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.17063867105117117
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.061253676290043635,
+    "boot_mean": 0.06130840916008624,
+    "boot_se": 0.006780890018546222,
+    "ci95": [
+     0.048066039313167275,
+     0.0747014215799793
+    ],
+    "ci90": [
+     0.05023411741165363,
+     0.07247324965540317
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.95355,
+    "tost_p": 0.95355,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.07247324965540317,
+    "arm_values": {
+     "a": 0.8849177984274482,
+     "b": 0.8236641221374046
+    }
+   }
+  },
+  "5_minus_6": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": 0.03200000000000003,
+    "boot_mean": 0.03204424999999999,
+    "boot_se": 0.004680859217623015,
+    "ci95": [
+     0.02299999999999991,
+     0.04133333333333333
+    ],
+    "ci90": [
+     0.024333333333333318,
+     0.03966666666666674
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0002,
+    "tost_p": 0.0002,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.03966666666666674
+   },
+   "token_f1": {
+    "n_boot": 20000,
+    "delta": 0.030715343915343807,
+    "boot_mean": 0.030759575925925913,
+    "boot_se": 0.0046025329441118906,
+    "ci95": [
+     0.021785105820105767,
+     0.0397894973544974
+    ],
+    "ci90": [
+     0.023155396825396864,
+     0.03828269841269821
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 5e-05,
+    "tost_p": 5e-05,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.03828269841269821
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.03567091622576679,
+    "boot_mean": 0.03573941146187624,
+    "boot_se": 0.005499307969496856,
+    "ci95": [
+     0.0250744259356859,
+     0.046487168558517436
+    ],
+    "ci90": [
+     0.026708791585522546,
+     0.044773645166584164
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0057,
+    "tost_p": 0.0057,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.044773645166584164,
+    "arm_values": {
+     "a": 0.8593350383631714,
+     "b": 0.8236641221374046
+    }
+   }
+  }
+ },
+ "smallest_equivalent_margin": {
+  "base_minus_5/accuracy": 0.26,
+  "base_minus_5/token_f1": 0.20076481768231766,
+  "base_minus_5/pope_f1": 0.034586939765831964,
+  "base_minus_6/accuracy": 0.22835000000000003,
+  "base_minus_6/token_f1": 0.17063867105117117,
+  "base_minus_6/pope_f1": 0.07247324965540317,
+  "5_minus_6/accuracy": 0.03966666666666674,
+  "5_minus_6/token_f1": 0.03828269841269821,
+  "5_minus_6/pope_f1": 0.044773645166584164
+ },
+ "claim_verdict": {
+  "second_task_verdict": "supports_the_adapters",
+  "base_minus_r5": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": -0.246,
+    "boot_mean": -0.24596493333333333,
+    "boot_se": 0.008484780682927767,
+    "ci95": [
+     -0.2626666666666667,
+     -0.22965833333333396
+    ],
+    "ci90": [
+     -0.26,
+     -0.23199999999999998
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.26
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.025582760064276844,
+    "boot_mean": 0.025683292291958856,
+    "boot_se": 0.005397415913024208,
+    "ci95": [
+     0.015219617938250812,
+     0.0363730526634445
+    ],
+    "ci90": [
+     0.016845784611482218,
+     0.034586939765831964
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 0.0,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.034586939765831964,
+    "arm_values": {
+     "a": 0.8849177984274482,
+     "b": 0.8593350383631714
+    }
+   }
+  },
+  "base_minus_r6": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": -0.21399999999999997,
+    "boot_mean": -0.2139506166666667,
+    "boot_se": 0.008713514203528906,
+    "ci95": [
+     -0.23099999999999998,
+     -0.19699999999999995
+    ],
+    "ci90": [
+     -0.22835000000000003,
+     -0.19966666666666666
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.22835000000000003
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.061253676290043635,
+    "boot_mean": 0.06130840916008624,
+    "boot_se": 0.006780890018546222,
+    "ci95": [
+     0.048066039313167275,
+     0.0747014215799793
+    ],
+    "ci90": [
+     0.05023411741165363,
+     0.07247324965540317
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.95355,
+    "tost_p": 0.95355,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.07247324965540317,
+    "arm_values": {
+     "a": 0.8849177984274482,
+     "b": 0.8236641221374046
+    }
+   }
+  },
+  "r5_minus_r6": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": 0.03200000000000003,
+    "boot_mean": 0.03204424999999999,
+    "boot_se": 0.004680859217623015,
+    "ci95": [
+     0.02299999999999991,
+     0.04133333333333333
+    ],
+    "ci90": [
+     0.024333333333333318,
+     0.03966666666666674
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0002,
+    "tost_p": 0.0002,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.03966666666666674
+   }
+  },
+  "metric_directions": {
+   "accuracy": {
+    "base_minus_r5": "adapter_better",
+    "base_minus_r6": "adapter_better"
+   },
+   "pope_f1": {
+    "base_minus_r5": "base_better",
+    "base_minus_r6": "base_better"
+   }
+  },
+  "equivalent_or_better_accuracy": {
+   "base_minus_r5": true,
+   "base_minus_r6": true
+  },
+  "loses_accuracy": {
+   "base_minus_r5": false,
+   "base_minus_r6": false
+  },
+  "rule": "deltas are arm_a - arm_b with a = base, so a negative accuracy delta means the adapter is better.  equivalent_or_better(adapter) = TOST equivalence at the pre-declared margin or ci95 high < 0 (base below the adapter); loses = ci95 low > +margin (base above the adapter by more than the margin).  supports_the_adapters = both adapters are equivalent-or-better on ACCURACY; task_dependent_effect = either adapter loses by more than the margin on accuracy; inconclusive = neither.  The rule is accuracy-only, as pre-declared; metric_directions records metrics that move the other way, so this label is not a blanket endorsement of every metric."
+ },
+ "acceptance": {
+  "three_arms_present": true,
+  "records_per_arm": {
+   "base": 3000,
+   "5": 3000,
+   "6": 3000
+  },
+  "equal_question_counts": true,
+  "refs_byte_identical_across_arms": true,
+  "refs_match_prepared_parquet_order": true,
+  "prepared_parquet_order_check": true,
+  "adapters_reused_not_trained": true,
+  "contrasts_computed": true,
+  "every_contrast_reports_a_minimum_equivalent_margin": true
+ },
+ "caveat_sentences": {
+  "two_tasks": "The downstream check is repeated on a second, independent task (POPE, config Full/split random, 3000 held-out questions, the adapters reused unchanged), so the downstream evidence rests on two task families rather than one.",
+  "metric_dependent": "On a second downstream task (POPE, 3000 balanced yes/no questions) the adapters improve exact-match accuracy and token F1 but move the yes/no prior toward 'no', and the yes-class F1 falls for r=6 beyond the pre-declared margin; the downstream effect is therefore metric-dependent rather than uniformly positive.",
+  "task_dependent": "DEPRECATED 2026-10-25: the cloud aggregate's task_dependent label came from a sign-inverted verdict rule and its token F1 field was relaxed_accuracy; the accuracy contrasts in fact favour both adapters.  Use metric_dependent instead.",
+  "not_run": "The downstream check remains a single task (VQA-RAD); POPE was prepared (tools/_p1640_p3_second_downstream.py) but not run."
+ }
+}

@@ -1,0 +1,107 @@
+# 本仓库的忽略规则（2026-09-24 重建：修掉两处非法 UTF-8 字节 E2 80 3F，本应为 em dash E2 80 94；
+# 规则逐条保留原文，仅统一行尾为 LF 并补上 backups/ 与 publish_clean/）。
+# 规则语义不变：outputs/ 配合下面的 negation 只让 JSON/TXT/CSV 结果入库，权重与大件排除。
+
+# Large data files — do not commit raw datasets
+flickr30k/
+coco/
+data/
+
+# Model checkpoints (too large for git)
+*.pt
+models/
+
+# Generated PDFs
+*.pdf
+
+# LaTeX temp files
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.synctex(busy)
+
+# Experimental outputs (except analysis summaries)
+# Experiment outputs — track JSON analysis, exclude checkpoints
+outputs/**
+!outputs/**/
+!outputs/**/*.json
+!outputs/**/*.txt
+!outputs/**/*.csv
+!outputs/**/*.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+.codegraph/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude
+CLAUDE.md
+
+# Git worktrees
+.worktrees/
+
+# Temp/recovery files
+check_env.py
+recover_siglip.py
+
+# HuggingFace dataset shards / parquet artifacts
+*.parquet
+
+# git filter-repo history-rewrite artifacts
+.git-rewrite/
+
+*.spl
+main.log
+main_zh.log
+SUBMISSION/
+abstract.log
+
+# Local archive of unused scratch (91 MB of check residue) - never commit
+备选/
+
+# 本地归档与备份（2026-09-24 新增：13.7 GB 快照与重建的发布仓库不入库）
+backups/
+publish_clean/
+
+# Python 虚拟环境（机器相关、可由 requirements 重建；envs/tf457 = transformers 4.57 对照环境，102.7 MB）
+envs/
+
+# 一次性临时产物
+tools/_tmp_*.json
+external/
+
+# Audit run artifacts: regenerated on every run (N-07). Keep the directory, ignore
+# the timestamped reports so gate runs leave no untracked files.
+docs/audits/*
+!docs/audits/.gitkeep
+
+# A3 corpora: frozen JSONL subsets are large; manifests and build scripts are tracked, the JSONL are regenerated
+paper_a3/data/
+paper_a3/corpora/**/*.jsonl
+!paper_a3/corpora/**/provenance_manifest.json
+!paper_a3/corpora/**/budget_manifest.json
+
+# A3 run outputs and weights are large / regenerable
+paper_a3/runs/
+paper_a3/models/
+paper_a3/data/
+
+local_runs/

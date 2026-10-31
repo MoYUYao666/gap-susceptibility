@@ -1,0 +1,1767 @@
+{
+ "meta": {
+  "script": "tools/_p443_p3_stats_harden.py",
+  "task": "task-11 (P3 I-group, items R3.17 / R3.19 / R3.20)",
+  "manuscript": "PRLETTERS-D-26-02378",
+  "dE_convention": "dE = E[-1] - E[0] from the archived E trajectories",
+  "bootstrap": {
+   "n": 20000,
+   "rng_seed": 20261012,
+   "method": "nonparametric resample of the archived runs, percentile CI"
+  },
+  "permutation": {
+   "exact": "full enumeration where feasible",
+   "monte_carlo": {
+    "n": 200000,
+    "rng_seed": 20261012
+   }
+  },
+  "nan_handling": "NaN runs are excluded from mean/sd (matching the paper's own computation, which reproduces exactly) and separately counted and reported as the worst-case failure mode",
+  "archive_files": {
+   "E2": "paper3/scripts/outputs/experiments/E2_results.json",
+   "all_results": "paper3/scripts/outputs/experiments/all_results.json",
+   "sample_size": "paper3/scripts/outputs/experiments/sample_size_results.json",
+   "sharegpt": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+   "Qwen": "paper3/scripts/outputs/experiments/Qwen_results.json",
+   "ers": "paper3/scripts/outputs/experiments/ers_1epoch_results.json"
+  }
+ },
+ "paper_numbers_reproduced": {
+  "r4": {
+   "paper_mean": -105,
+   "archive_mean": -105.16666666666667,
+   "paper_sd": 21,
+   "archive_sd_population": 21.064715099479084,
+   "archive_sd_sample": 25.798901785411978,
+   "mean_match": true,
+   "sd_pop_match": true,
+   "sd_sample_match": false,
+   "n": 3,
+   "values": [
+    -114.5,
+    -125.0,
+    -76.0
+   ],
+   "src": "paper3/scripts/outputs/experiments/E2_results.json",
+   "field": "$.E2[*].E (dE = E[-1]-E[0])",
+   "batch": "E2",
+   "paper_sd_label": "mean +- population std over 3 seeds (Table 1 caption)"
+  },
+  "r5": {
+   "paper_mean": -21,
+   "archive_mean": -21.0,
+   "paper_sd": 26,
+   "archive_sd_population": 26.213864016330493,
+   "archive_sd_sample": 32.10529551335729,
+   "mean_match": true,
+   "sd_pop_match": true,
+   "sd_sample_match": false,
+   "n": 3,
+   "values": [
+    -24.0,
+    -51.5,
+    12.5
+   ],
+   "src": "paper3/scripts/outputs/experiments/E2_results.json",
+   "field": "$.extra[*].E (dE = E[-1]-E[0])",
+   "batch": "extra",
+   "paper_sd_label": "mean +- population std over 3 seeds (Table 1 caption)"
+  },
+  "r6": {
+   "paper_mean": 62,
+   "archive_mean": 62.333333333333336,
+   "paper_sd": 42,
+   "archive_sd_population": 41.87746675984857,
+   "archive_sd_sample": 51.28921264099629,
+   "mean_match": true,
+   "sd_pop_match": true,
+   "sd_sample_match": false,
+   "n": 3,
+   "values": [
+    30.5,
+    121.5,
+    35.0
+   ],
+   "src": "paper3/scripts/outputs/experiments/E2_results.json",
+   "field": "$.extra[*].E (dE = E[-1]-E[0])",
+   "batch": "extra",
+   "paper_sd_label": "mean +- population std over 3 seeds (Table 1 caption)"
+  },
+  "r7": {
+   "paper_mean": 192,
+   "archive_mean": 191.5,
+   "paper_sd": 44,
+   "archive_sd_population": 43.567954584380786,
+   "archive_sd_sample": 53.35962893424204,
+   "mean_match": false,
+   "sd_pop_match": true,
+   "sd_sample_match": false,
+   "n": 3,
+   "values": [
+    204.0,
+    133.0,
+    237.5
+   ],
+   "src": "paper3/scripts/outputs/experiments/E2_results.json",
+   "field": "$.extra[*].E (dE = E[-1]-E[0])",
+   "batch": "extra",
+   "paper_sd_label": "mean +- population std over 3 seeds (Table 1 caption)"
+  },
+  "r8": {
+   "paper_mean": 311,
+   "archive_mean": 311.3333333333333,
+   "paper_sd": 49,
+   "archive_sd_population": 48.609555530665865,
+   "archive_sd_sample": 59.53430383680767,
+   "mean_match": true,
+   "sd_pop_match": true,
+   "sd_sample_match": false,
+   "n": 3,
+   "values": [
+    253.0,
+    309.0,
+    372.0
+   ],
+   "src": "paper3/scripts/outputs/experiments/E2_results.json",
+   "field": "$.extra[*].E (dE = E[-1]-E[0])",
+   "batch": "extra",
+   "paper_sd_label": "mean +- population std over 3 seeds (Table 1 caption)"
+  },
+  "r16": {
+   "paper_mean": 1572,
+   "archive_mean": 1571.5,
+   "paper_sd": 67,
+   "archive_sd_population": 67.47345156924068,
+   "archive_sd_sample": 82.63776376451628,
+   "mean_match": false,
+   "sd_pop_match": true,
+   "sd_sample_match": false,
+   "n": 3,
+   "values": [
+    1664.5,
+    1506.5,
+    1543.5
+   ],
+   "src": "paper3/scripts/outputs/experiments/E2_results.json",
+   "field": "$.E2[*].E (dE = E[-1]-E[0])",
+   "batch": "E2",
+   "paper_sd_label": "mean +- population std over 3 seeds (Table 1 caption)"
+  },
+  "r20": {
+   "paper_mean": 2860,
+   "archive_mean": 2859.6666666666665,
+   "paper_sd": 234,
+   "archive_sd_population": 233.5299171888309,
+   "archive_sd_sample": 286.0145683935231,
+   "mean_match": true,
+   "sd_pop_match": true,
+   "sd_sample_match": false,
+   "n": 3,
+   "values": [
+    2658.0,
+    3187.0,
+    2734.0
+   ],
+   "src": "paper3/scripts/outputs/experiments/E2_results.json",
+   "field": "$.sweep[*].E (dE = E[-1]-E[0])",
+   "batch": "sweep",
+   "paper_sd_label": "mean +- population std over 3 seeds (Table 1 caption)",
+   "epoch3_values": [
+    4382.0,
+    4427.0,
+    4402.5
+   ],
+   "epoch3_minus_E0": [
+    455.0,
+    500.0,
+    475.5
+   ],
+   "note": "final epoch is NaN at r=20 in the sweep batch; the paper's +2860 is compared against epoch-3-minus-baseline as well"
+  }
+ },
+ "phase_transition": {
+  "r4": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.E2[*].E -> dE=E[-1]-E[0]"
+   },
+   "batch": "E2",
+   "seeds": [
+    42,
+    123,
+    999
+   ],
+   "n": 3,
+   "mean": -105.16666666666667,
+   "sd_sample": 25.798901785411978,
+   "sd_population": 21.064715099479084,
+   "median": -114.5,
+   "mad": 10.5,
+   "iqr": 24.5,
+   "min": -125.0,
+   "max": -76.0,
+   "range": 49.0,
+   "cv": 0.24531443853006635,
+   "mean_ci": {
+    "point": -105.16666666666667,
+    "lo": -125.0,
+    "hi": -76.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": -114.5,
+    "lo": -125.0,
+    "hi": -76.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    -114.5,
+    -125.0,
+    -76.0
+   ],
+   "t_vs_zero": {
+    "t": -7.060533484891445,
+    "p": 0.019475631740189278,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 0,
+    "n": 3,
+    "p_one_sided": 1.0,
+    "p_two_sided": 1.0
+   }
+  },
+  "r5": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.extra[*].E -> dE=E[-1]-E[0]"
+   },
+   "batch": "extra",
+   "seeds": [
+    42,
+    123,
+    999
+   ],
+   "n": 3,
+   "mean": -21.0,
+   "sd_sample": 32.10529551335729,
+   "sd_population": 26.213864016330493,
+   "median": -24.0,
+   "mad": 27.5,
+   "iqr": 32.0,
+   "min": -51.5,
+   "max": 12.5,
+   "range": 64.0,
+   "cv": 1.5288235958741567,
+   "mean_ci": {
+    "point": -21.0,
+    "lo": -51.5,
+    "hi": 12.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": -24.0,
+    "lo": -51.5,
+    "hi": 12.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    -24.0,
+    -51.5,
+    12.5
+   ],
+   "t_vs_zero": {
+    "t": -1.1329304520437613,
+    "p": 0.374780286809388,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 1,
+    "n": 3,
+    "p_one_sided": 0.875,
+    "p_two_sided": 1.0
+   }
+  },
+  "r6": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.extra[*].E -> dE=E[-1]-E[0]"
+   },
+   "batch": "extra",
+   "seeds": [
+    42,
+    123,
+    999
+   ],
+   "n": 3,
+   "mean": 62.333333333333336,
+   "sd_sample": 51.28921264099629,
+   "sd_population": 41.87746675984857,
+   "median": 35.0,
+   "mad": 4.5,
+   "iqr": 45.5,
+   "min": 30.5,
+   "max": 121.5,
+   "range": 91.0,
+   "cv": 0.8228215931710634,
+   "mean_ci": {
+    "point": 62.333333333333336,
+    "lo": 30.5,
+    "hi": 121.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 35.0,
+    "lo": 30.5,
+    "hi": 121.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    30.5,
+    121.5,
+    35.0
+   ],
+   "t_vs_zero": {
+    "t": 2.105013798791722,
+    "p": 0.16993350050934405,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r7": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.extra[*].E -> dE=E[-1]-E[0]"
+   },
+   "batch": "extra",
+   "seeds": [
+    42,
+    123,
+    999
+   ],
+   "n": 3,
+   "mean": 191.5,
+   "sd_sample": 53.35962893424204,
+   "sd_population": 43.567954584380786,
+   "median": 204.0,
+   "mad": 33.5,
+   "iqr": 52.25,
+   "min": 133.0,
+   "max": 237.5,
+   "range": 104.5,
+   "cv": 0.2786403599699323,
+   "mean_ci": {
+    "point": 191.5,
+    "lo": 133.0,
+    "hi": 237.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 204.0,
+    "lo": 133.0,
+    "hi": 237.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    204.0,
+    133.0,
+    237.5
+   ],
+   "t_vs_zero": {
+    "t": 6.216080139129093,
+    "p": 0.024916936603533668,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r8": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.extra[*].E -> dE=E[-1]-E[0]"
+   },
+   "batch": "extra",
+   "seeds": [
+    42,
+    123,
+    999
+   ],
+   "n": 3,
+   "mean": 311.3333333333333,
+   "sd_sample": 59.53430383680767,
+   "sd_population": 48.609555530665865,
+   "median": 309.0,
+   "mad": 56.0,
+   "iqr": 59.5,
+   "min": 253.0,
+   "max": 372.0,
+   "range": 119.0,
+   "cv": 0.19122367399402895,
+   "mean_ci": {
+    "point": 311.3333333333333,
+    "lo": 253.0,
+    "hi": 372.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 309.0,
+    "lo": 253.0,
+    "hi": 372.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    253.0,
+    309.0,
+    372.0
+   ],
+   "t_vs_zero": {
+    "t": 9.057721627202715,
+    "p": 0.011970412427039386,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r16": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.E2[*].E -> dE=E[-1]-E[0]"
+   },
+   "batch": "E2",
+   "seeds": [
+    42,
+    123,
+    999
+   ],
+   "n": 3,
+   "mean": 1571.5,
+   "sd_sample": 82.63776376451628,
+   "sd_population": 67.47345156924068,
+   "median": 1543.5,
+   "mad": 37.0,
+   "iqr": 79.0,
+   "min": 1506.5,
+   "max": 1664.5,
+   "range": 158.0,
+   "cv": 0.052585277610255346,
+   "mean_ci": {
+    "point": 1571.5,
+    "lo": 1506.5,
+    "hi": 1664.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 1543.5,
+    "lo": 1506.5,
+    "hi": 1664.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    1664.5,
+    1506.5,
+    1543.5
+   ],
+   "t_vs_zero": {
+    "t": 32.93794168790481,
+    "p": 0.0009204646960305572,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r20": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/E2_results.json",
+    "field": "$.sweep[*].E -> dE=E[-1]-E[0]"
+   },
+   "batch": "sweep",
+   "seeds": [
+    42,
+    123,
+    999
+   ],
+   "n": 3,
+   "mean": 2859.6666666666665,
+   "sd_sample": 286.0145683935231,
+   "sd_population": 233.5299171888309,
+   "median": 2734.0,
+   "mad": 76.0,
+   "iqr": 264.5,
+   "min": 2658.0,
+   "max": 3187.0,
+   "range": 529.0,
+   "cv": 0.10001675080785283,
+   "mean_ci": {
+    "point": 2859.6666666666665,
+    "lo": 2658.0,
+    "hi": 3187.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 2734.0,
+    "lo": 2658.0,
+    "hi": 3187.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    2658.0,
+    3187.0,
+    2734.0
+   ],
+   "t_vs_zero": {
+    "t": 17.317607236575864,
+    "p": 0.003317864458778985,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  }
+ },
+ "sharegpt_phase": {
+  "r4": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r4.dE[*]"
+   },
+   "n": 3,
+   "mean": -60.0,
+   "sd_sample": 28.146935890075138,
+   "sd_population": 22.981876917838253,
+   "median": -44.0,
+   "mad": 0.5,
+   "iqr": 24.5,
+   "min": -92.5,
+   "max": -43.5,
+   "range": 49.0,
+   "cv": 0.469115598167919,
+   "mean_ci": {
+    "point": -60.0,
+    "lo": -92.5,
+    "hi": -43.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": -44.0,
+    "lo": -92.5,
+    "hi": -43.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    -43.5,
+    -44.0,
+    -92.5
+   ],
+   "t_vs_zero": {
+    "t": -3.6921620477622517,
+    "p": 0.06615964201409784,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 0,
+    "n": 3,
+    "p_one_sided": 1.0,
+    "p_two_sided": 1.0
+   }
+  },
+  "r5": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r5.dE[*]"
+   },
+   "n": 3,
+   "mean": 2.6666666666666665,
+   "sd_sample": 38.71154005375313,
+   "sd_population": 31.607840096336155,
+   "median": -2.0,
+   "mad": 31.5,
+   "iqr": 38.5,
+   "min": -33.5,
+   "max": 43.5,
+   "range": 77.0,
+   "cv": 14.516827520157426,
+   "mean_ci": {
+    "point": 2.6666666666666665,
+    "lo": -33.5,
+    "hi": 43.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": -2.0,
+    "lo": -33.5,
+    "hi": 43.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    -33.5,
+    43.5,
+    -2.0
+   ],
+   "t_vs_zero": {
+    "t": 0.11931331450785841,
+    "p": 0.9159314088280034,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 1,
+    "n": 3,
+    "p_one_sided": 0.875,
+    "p_two_sided": 1.0
+   }
+  },
+  "r6": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r6.dE[*]"
+   },
+   "n": 3,
+   "mean": 133.5,
+   "sd_sample": 26.781523481684157,
+   "sd_population": 21.867022354830727,
+   "median": 132.0,
+   "mad": 24.5,
+   "iqr": 26.75,
+   "min": 107.5,
+   "max": 161.0,
+   "range": 53.5,
+   "cv": 0.200610662784151,
+   "mean_ci": {
+    "point": 133.5,
+    "lo": 107.5,
+    "hi": 161.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 132.0,
+    "lo": 107.5,
+    "hi": 161.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    132.0,
+    161.0,
+    107.5
+   ],
+   "t_vs_zero": {
+    "t": 8.633892055042429,
+    "p": 0.013150837833306011,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r7": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r7.dE[*]"
+   },
+   "n": 3,
+   "mean": 282.3333333333333,
+   "sd_sample": 40.8207463593371,
+   "sd_population": 33.32999983331666,
+   "median": 298.0,
+   "mad": 15.0,
+   "iqr": 38.5,
+   "min": 236.0,
+   "max": 313.0,
+   "range": 77.0,
+   "cv": 0.14458351721134746,
+   "mean_ci": {
+    "point": 282.3333333333333,
+    "lo": 236.0,
+    "hi": 313.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 298.0,
+    "lo": 236.0,
+    "hi": 313.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    298.0,
+    236.0,
+    313.0
+   ],
+   "t_vs_zero": {
+    "t": 11.979586891893229,
+    "p": 0.006896134526945054,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r8": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r8.dE[*]"
+   },
+   "n": 3,
+   "mean": 282.6666666666667,
+   "sd_sample": 41.48895435333763,
+   "sd_population": 33.87558937576667,
+   "median": 290.0,
+   "mad": 30.0,
+   "iqr": 41.0,
+   "min": 238.0,
+   "max": 320.0,
+   "range": 82.0,
+   "cv": 0.14677696115567557,
+   "mean_ci": {
+    "point": 282.6666666666667,
+    "lo": 238.0,
+    "hi": 320.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 290.0,
+    "lo": 238.0,
+    "hi": 320.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    238.0,
+    320.0,
+    290.0
+   ],
+   "t_vs_zero": {
+    "t": 11.800563207817184,
+    "p": 0.007104719540725281,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r10": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r10.dE[*]"
+   },
+   "n": 3,
+   "mean": 374.6666666666667,
+   "sd_sample": 124.94932306072464,
+   "sd_population": 102.02069506831553,
+   "median": 341.0,
+   "mad": 71.0,
+   "iqr": 121.5,
+   "min": 270.0,
+   "max": 513.0,
+   "range": 243.0,
+   "cv": 0.3334946345037134,
+   "mean_ci": {
+    "point": 374.6666666666667,
+    "lo": 270.0,
+    "hi": 513.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 341.0,
+    "lo": 270.0,
+    "hi": 513.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    341.0,
+    270.0,
+    513.0
+   ],
+   "t_vs_zero": {
+    "t": 5.193639202460965,
+    "p": 0.03513092614297387,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r12": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r12.dE[*]"
+   },
+   "n": 3,
+   "mean": 719.0,
+   "sd_sample": 23.302360395462088,
+   "sd_population": 19.026297590440446,
+   "median": 712.0,
+   "mad": 12.0,
+   "iqr": 22.5,
+   "min": 700.0,
+   "max": 745.0,
+   "range": 45.0,
+   "cv": 0.03240940249716563,
+   "mean_ci": {
+    "point": 719.0,
+    "lo": 700.0,
+    "hi": 745.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 712.0,
+    "lo": 700.0,
+    "hi": 745.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    745.0,
+    700.0,
+    712.0
+   ],
+   "t_vs_zero": {
+    "t": 53.44284911517126,
+    "p": 0.0003499393513404007,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r14": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r14.dE[*]"
+   },
+   "n": 3,
+   "mean": 1264.0,
+   "sd_sample": 57.262553208881634,
+   "sd_population": 46.75467891024384,
+   "median": 1242.0,
+   "mad": 21.0,
+   "iqr": 54.0,
+   "min": 1221.0,
+   "max": 1329.0,
+   "range": 108.0,
+   "cv": 0.04530265285512788,
+   "mean_ci": {
+    "point": 1264.0,
+    "lo": 1221.0,
+    "hi": 1329.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 1242.0,
+    "lo": 1221.0,
+    "hi": 1329.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    1329.0,
+    1242.0,
+    1221.0
+   ],
+   "t_vs_zero": {
+    "t": 38.2328781739947,
+    "p": 0.0006834089080523866,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r16": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r16.dE[*]"
+   },
+   "n": 3,
+   "mean": 1710.6666666666667,
+   "sd_sample": 331.1137770213335,
+   "sd_population": 270.35326683598424,
+   "median": 1742.0,
+   "mad": 283.0,
+   "iqr": 330.0,
+   "min": 1365.0,
+   "max": 2025.0,
+   "range": 660.0,
+   "cv": 0.19355832639594708,
+   "mean_ci": {
+    "point": 1710.6666666666667,
+    "lo": 1365.0,
+    "hi": 2025.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 1742.0,
+    "lo": 1365.0,
+    "hi": 2025.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    2025.0,
+    1365.0,
+    1742.0
+   ],
+   "t_vs_zero": {
+    "t": 8.94846964126853,
+    "p": 0.01225910472397291,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r20": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r20.dE[*]"
+   },
+   "n": 3,
+   "mean": 1907.0,
+   "sd_sample": 314.1321378019129,
+   "sd_population": 256.48781647477915,
+   "median": 1930.0,
+   "mad": 279.0,
+   "iqr": 313.5,
+   "min": 1582.0,
+   "max": 2209.0,
+   "range": 627.0,
+   "cv": 0.16472581950808227,
+   "mean_ci": {
+    "point": 1907.0,
+    "lo": 1582.0,
+    "hi": 2209.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 1930.0,
+    "lo": 1582.0,
+    "hi": 2209.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    1582.0,
+    1930.0,
+    2209.0
+   ],
+   "t_vs_zero": {
+    "t": 10.514749981158202,
+    "p": 0.008923971903972955,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r24": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r24.dE[*]"
+   },
+   "n": 3,
+   "mean": 2730.6666666666665,
+   "sd_sample": 560.630300049269,
+   "sd_population": 457.75272315471324,
+   "median": 2780.0,
+   "mad": 485.0,
+   "iqr": 559.0,
+   "min": 2147.0,
+   "max": 3265.0,
+   "range": 1118.0,
+   "cv": 0.20530894777194908,
+   "mean_ci": {
+    "point": 2730.6666666666665,
+    "lo": 2147.0,
+    "hi": 3265.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 2780.0,
+    "lo": 2147.0,
+    "hi": 3265.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    3265.0,
+    2147.0,
+    2780.0
+   ],
+   "t_vs_zero": {
+    "t": 8.436314278385892,
+    "p": 0.013761227801682869,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r28": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r28.dE[*]"
+   },
+   "n": 3,
+   "mean": 1834.3333333333333,
+   "sd_sample": 206.0396401989999,
+   "sd_population": 168.23066175806227,
+   "median": 1884.0,
+   "mad": 127.0,
+   "iqr": 201.5,
+   "min": 1608.0,
+   "max": 2011.0,
+   "range": 403.0,
+   "cv": 0.11232399065909499,
+   "mean_ci": {
+    "point": 1834.3333333333333,
+    "lo": 1608.0,
+    "hi": 2011.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 1884.0,
+    "lo": 1608.0,
+    "hi": 2011.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    1884.0,
+    2011.0,
+    1608.0
+   ],
+   "t_vs_zero": {
+    "t": 15.42013239919224,
+    "p": 0.004179214126415421,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r32": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r32.dE[*]"
+   },
+   "n": 3,
+   "mean": 2238.0,
+   "sd_sample": 75.22632517942107,
+   "sd_population": 61.4220373047546,
+   "median": 2211.0,
+   "mad": 31.0,
+   "iqr": 71.5,
+   "min": 2180.0,
+   "max": 2323.0,
+   "range": 143.0,
+   "cv": 0.033613192662833365,
+   "mean_ci": {
+    "point": 2238.0,
+    "lo": 2180.0,
+    "hi": 2323.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 2211.0,
+    "lo": 2180.0,
+    "hi": 2323.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    2211.0,
+    2323.0,
+    2180.0
+   ],
+   "t_vs_zero": {
+    "t": 51.528898933900834,
+    "p": 0.0003764029481866859,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  },
+  "r48": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r48.dE[*]"
+   },
+   "n": 3,
+   "mean": -35.5,
+   "sd_sample": 11.532562594670797,
+   "sd_population": 9.41629792788369,
+   "median": -31.5,
+   "mad": 5.0,
+   "iqr": 11.0,
+   "min": -48.5,
+   "max": -26.5,
+   "range": 22.0,
+   "cv": 0.3248609181597408,
+   "mean_ci": {
+    "point": -35.5,
+    "lo": -48.5,
+    "hi": -26.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": -31.5,
+    "lo": -48.5,
+    "hi": -26.5,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    -48.5,
+    -31.5,
+    -26.5
+   ],
+   "t_vs_zero": {
+    "t": -5.331668756526732,
+    "p": 0.033424477888232794,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 0,
+    "n": 3,
+    "p_one_sided": 1.0,
+    "p_two_sided": 1.0
+   }
+  },
+  "r64": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "field": "$.r64.dE[*]"
+   },
+   "n": 3,
+   "mean": 212.33333333333334,
+   "sd_sample": 35.11884584284247,
+   "sd_population": 28.674417556808756,
+   "median": 209.0,
+   "mad": 30.0,
+   "iqr": 35.0,
+   "min": 179.0,
+   "max": 249.0,
+   "range": 70.0,
+   "cv": 0.16539487838073375,
+   "mean_ci": {
+    "point": 212.33333333333334,
+    "lo": 179.0,
+    "hi": 249.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "median_ci": {
+    "point": 209.0,
+    "lo": 179.0,
+    "hi": 249.0,
+    "n": 3,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   },
+   "values": [
+    179.0,
+    249.0,
+    209.0
+   ],
+   "t_vs_zero": {
+    "t": 10.472215491351259,
+    "p": 0.0089956340225404,
+    "df": 2
+   },
+   "sign_vs_zero": {
+    "k": 3,
+    "n": 3,
+    "p_one_sided": 0.125,
+    "p_two_sided": 0.25
+   }
+  }
+ },
+ "pooled_llava_tests": {
+  "pooled_r45_vs_r67": {
+   "groups": "LLaVA pooled r in {4,5} vs {6,7} (all archived batches)",
+   "welch": {
+    "n_a": 12,
+    "n_b": 12,
+    "mean_a": 34.625,
+    "mean_b": -51.25,
+    "diff": 85.875,
+    "se": 34.24093692298206,
+    "t": 2.5079629156514653,
+    "df": 13.58341645621235,
+    "p": 0.02552044467450605,
+    "diff_ci95": [
+     12.223630038738563,
+     159.52636996126142
+    ],
+    "sd_a": 112.1251583560248,
+    "sd_b": 38.69431482789171
+   },
+   "permutation_exact": null,
+   "permutation_mc": {
+    "test": "monte_carlo_permutation_two_sided_mean_diff",
+    "n_perm": 200000,
+    "rng_seed": 20261012,
+    "observed_abs_diff": 85.875,
+    "p": 0.018244908775456124,
+    "n_a": 12,
+    "n_b": 12
+   }
+  },
+  "r5_vs_r6_extra_batch": {
+   "groups": "LLaVA r=5 vs r=6 (batch 'extra', 3 seeds each)",
+   "welch": {
+    "n_a": 3,
+    "n_b": 3,
+    "mean_a": 62.333333333333336,
+    "mean_b": -21.0,
+    "diff": 83.33333333333334,
+    "se": 34.934860017530404,
+    "t": 2.3853919349187733,
+    "df": 3.358723659600164,
+    "p": 0.08790255039731436,
+    "diff_ci95": [
+     -21.42021881067383,
+     188.0868854773405
+    ],
+    "sd_a": 51.28921264099629,
+    "sd_b": 32.10529551335729
+   },
+   "permutation_exact": {
+    "test": "exact_permutation_two_sided_mean_diff",
+    "n_perm": 20,
+    "observed_abs_diff": 83.33333333333334,
+    "p": 0.1,
+    "n_a": 3,
+    "n_b": 3
+   }
+  }
+ },
+ "counterfactual": {
+  "Theory": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/all_results.json",
+    "field": "$.Theory[*].E -> dE=E[-1]-E[0]"
+   },
+   "n_runs": 5,
+   "n_nan": 0,
+   "nan_run_names": [],
+   "finite_only": {
+    "n": 5,
+    "mean": -108.0,
+    "sd_sample": 26.73013280924732,
+    "sd_population": 23.90815760362977,
+    "median": -102.0,
+    "mad": 12.0,
+    "iqr": 15.0,
+    "min": -149.0,
+    "max": -76.0,
+    "range": 73.0,
+    "cv": 0.24750122971525296,
+    "mean_ci": {
+     "point": -108.0,
+     "lo": -130.2,
+     "hi": -88.8,
+     "n": 5,
+     "n_boot": 20000,
+     "rng_seed": 20261012
+    },
+    "median_ci": {
+     "point": -102.0,
+     "lo": -149.0,
+     "hi": -76.0,
+     "n": 5,
+     "n_boot": 20000,
+     "rng_seed": 20261012
+    },
+    "values": [
+     -149.0,
+     -114.0,
+     -76.0,
+     -102.0,
+     -99.0
+    ]
+   },
+   "ranks": [
+    4
+   ],
+   "n_by_rank": {
+    "4": 5
+   }
+  },
+  "Random": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/all_results.json",
+    "field": "$.Random[*].E -> dE=E[-1]-E[0]"
+   },
+   "n_runs": 15,
+   "n_nan": 2,
+   "nan_run_names": [
+    "R_s42_d2",
+    "R_s456_d2"
+   ],
+   "finite_only": {
+    "n": 13,
+    "mean": 490.8076923076923,
+    "sd_sample": 808.0758921264124,
+    "sd_population": 776.374204443607,
+    "median": -92.0,
+    "mad": 47.0,
+    "iqr": 1472.0,
+    "min": -167.5,
+    "max": 1659.0,
+    "range": 1826.5,
+    "cv": 1.6464205936279854,
+    "mean_ci": {
+     "point": 490.8076923076923,
+     "lo": 109.72980769230769,
+     "hi": 914.9288461538456,
+     "n": 13,
+     "n_boot": 20000,
+     "rng_seed": 20261012
+    },
+    "median_ci": {
+     "point": -92.0,
+     "lo": -122.0,
+     "hi": 1350.0,
+     "n": 13,
+     "n_boot": 20000,
+     "rng_seed": 20261012
+    },
+    "values": [
+     -167.5,
+     -130.5,
+     1571.0,
+     1315.0,
+     1659.0,
+     -92.0,
+     -89.5,
+     -139.0,
+     -122.0,
+     -111.5,
+     1350.0,
+     1441.0,
+     -103.5
+    ]
+   },
+   "ranks": [
+    4,
+    16
+   ],
+   "n_by_rank": {
+    "4": 8,
+    "16": 5
+   }
+  },
+  "Violation_r16": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/all_results.json",
+    "field": "$.Violation_r16[*].E -> dE=E[-1]-E[0]"
+   },
+   "n_runs": 5,
+   "n_nan": 0,
+   "nan_run_names": [],
+   "finite_only": {
+    "n": 5,
+    "mean": 1507.8,
+    "sd_sample": 154.6567166339697,
+    "sd_population": 138.3291726281915,
+    "median": 1521.0,
+    "mad": 110.0,
+    "iqr": 171.0,
+    "min": 1271.0,
+    "max": 1656.0,
+    "range": 385.0,
+    "cv": 0.10257110799440887,
+    "mean_ci": {
+     "point": 1507.8,
+     "lo": 1380.8,
+     "hi": 1619.0,
+     "n": 5,
+     "n_boot": 20000,
+     "rng_seed": 20261012
+    },
+    "median_ci": {
+     "point": 1521.0,
+     "lo": 1271.0,
+     "hi": 1656.0,
+     "n": 5,
+     "n_boot": 20000,
+     "rng_seed": 20261012
+    },
+    "values": [
+     1521.0,
+     1460.0,
+     1631.0,
+     1656.0,
+     1271.0
+    ]
+   },
+   "ranks": [
+    16
+   ],
+   "n_by_rank": {
+    "16": 5
+   }
+  },
+  "Violation_r32": {
+   "source": {
+    "file": "paper3/scripts/outputs/experiments/all_results.json",
+    "field": "$.Violation_r32[*].E -> dE=E[-1]-E[0]"
+   },
+   "n_runs": 5,
+   "n_nan": 5,
+   "nan_run_names": [
+    "V_r32_s42",
+    "V_r32_s123",
+    "V_r32_s456",
+    "V_r32_s789",
+    "V_r32_s999"
+   ],
+   "finite_only": null,
+   "ranks": [],
+   "n_by_rank": {}
+  }
+ },
+ "median_audit_random_group": {
+  "n_finite": 13,
+  "n_nan": 2,
+  "median_finite_only": -92.0,
+  "median_nan_as_zero": -89.5,
+  "median_identical": false,
+  "finite_sorted": [
+   -167.5,
+   -139.0,
+   -130.5,
+   -122.0,
+   -111.5,
+   -103.5,
+   -92.0,
+   -89.5,
+   1315.0,
+   1350.0,
+   1441.0,
+   1571.0,
+   1659.0
+  ],
+  "note": "with 13 finite observations the median is the 7th order statistic (-92.0); adding the two collapsed runs as zeros appends two values BELOW it (positions 1-2 of 15) and moves the median to the 8th of 15, which is the 6th finite value (-89.5). The two conventions therefore differ. The paper's -92.0 is the finite-only median.",
+  "paper_value": -92.0,
+  "paper_value_is": "finite_only"
+ },
+ "uncertainty_ratios": {
+  "Theory_vs_Random_finite": {
+   "sd_a": 26.73013280924732,
+   "sd_b": 808.0758921264124,
+   "sd_ratio_b_over_a": 30.230897013981828,
+   "var_ratio_b_over_a": 913.9071342699754,
+   "mad_a": 12.0,
+   "mad_b": 47.0,
+   "mad_ratio_b_over_a": 3.9166666666666665,
+   "n_a": 5,
+   "n_b": 13,
+   "worst_case_a": -76.0,
+   "worst_case_b": 1659.0,
+   "welch": {
+    "n_a": 5,
+    "n_b": 13,
+    "mean_a": -108.0,
+    "mean_b": 490.8076923076923,
+    "diff": -598.8076923076924,
+    "se": 224.43850407283873,
+    "t": -2.668025679378779,
+    "df": 12.068082372247282,
+    "p": 0.020400373662188838,
+    "diff_ci95": [
+     -1087.5113877674357,
+     -110.10399684794902
+    ],
+    "sd_a": 26.73013280924732,
+    "sd_b": 808.0758921264124
+   },
+   "permutation": {
+    "test": "monte_carlo_permutation_two_sided_mean_diff",
+    "n_perm": 200000,
+    "rng_seed": 20261012,
+    "observed_abs_diff": 598.8076923076924,
+    "p": 0.21394893025534872,
+    "n_a": 5,
+    "n_b": 13
+   },
+   "variance_F_test": {
+    "F": 0.0010942030787392805,
+    "df1": 4,
+    "df2": 12,
+    "p_two_sided": 5.576453083324975e-06
+   },
+   "sd_ratio_boot_ci": {
+    "point": 30.230897013981828,
+    "lo": 19.472740056912492,
+    "hi": 125.84078175741635,
+    "median": 32.27086554562446,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   }
+  },
+  "Theory_vs_Random_r4_only": {
+   "sd_a": 26.73013280924732,
+   "sd_b": 26.152625516926047,
+   "sd_ratio_b_over_a": 0.9783948962602429,
+   "var_ratio_b_over_a": 0.9572565730280916,
+   "mad_a": 12.0,
+   "mad_b": 18.0,
+   "mad_ratio_b_over_a": 1.5,
+   "n_a": 5,
+   "n_b": 8,
+   "worst_case_a": -76.0,
+   "worst_case_b": -89.5,
+   "welch": {
+    "n_a": 5,
+    "n_b": 8,
+    "mean_a": -108.0,
+    "mean_b": -119.4375,
+    "diff": 11.4375,
+    "se": 15.112742228946123,
+    "t": 0.7568116908719078,
+    "df": 8.482958267718386,
+    "p": 0.4696589345719863,
+    "diff_ci95": [
+     -23.070186943924753,
+     45.94518694392475
+    ],
+    "sd_a": 26.73013280924732,
+    "sd_b": 26.152625516926047
+   },
+   "permutation": {
+    "test": "monte_carlo_permutation_two_sided_mean_diff",
+    "n_perm": 200000,
+    "rng_seed": 20261012,
+    "observed_abs_diff": 11.4375,
+    "p": 0.46380268098659505,
+    "n_a": 5,
+    "n_b": 8
+   },
+   "sd_ratio_boot_ci": {
+    "point": 0.9783948962602429,
+    "lo": 0.4573500946384859,
+    "hi": 4.201274713686092,
+    "median": 1.0325241088891972,
+    "n_boot": 20000,
+    "rng_seed": 20261012
+   }
+  },
+  "Theory_vs_Violation_r16": {
+   "sd_a": 26.73013280924732,
+   "sd_b": 154.6567166339697,
+   "sd_ratio_b_over_a": 5.785856648660796,
+   "var_ratio_b_over_a": 33.47613715885234,
+   "mad_a": 12.0,
+   "mad_b": 110.0,
+   "mad_ratio_b_over_a": 9.166666666666666,
+   "n_a": 5,
+   "n_b": 5,
+   "worst_case_a": -76.0,
+   "worst_case_b": 1656.0,
+   "welch": {
+    "n_a": 5,
+    "n_b": 5,
+    "mean_a": -108.0,
+    "mean_b": 1507.8,
+    "diff": -1615.8,
+    "se": 70.19002778172978,
+    "t": -23.020364160912713,
+    "df": 4.238763141147202,
+    "p": 1.2955659140348216e-05,
+    "diff_ci95": [
+     -1806.4249691071325,
+     -1425.1750308928674
+    ],
+    "sd_a": 26.73013280924732,
+    "sd_b": 154.6567166339697
+   },
+   "permutation": {
+    "test": "monte_carlo_permutation_two_sided_mean_diff",
+    "n_perm": 200000,
+    "rng_seed": 20261012,
+    "observed_abs_diff": 1615.8,
+    "p": 0.007879960600197,
+    "n_a": 5,
+    "n_b": 5
+   }
+  }
+ },
+ "random_group_variance_decomposition": {
+  "Random_group_n": 13,
+  "mean": 490.8076923076923,
+  "ss_total": 7835839.769230769,
+  "ss_between_rank": 7745903.250480769,
+  "ss_within_rank": 89936.51875,
+  "eta_squared_rank": 0.9885224147763771,
+  "note": "how much of the Random group's spread is explained simply by WHICH rank was drawn, rather than by seed-to-seed uncertainty at fixed rank"
+ },
+ "sample_size_robustness": {
+  "n16": {
+   "r4": -119.0,
+   "r5": 22.0,
+   "r6": 52.0,
+   "r7": 135.5,
+   "r16": 1801.0,
+   "r6_gt_r5": true
+  },
+  "n64": {
+   "r4": -140.0,
+   "r5": -59.5,
+   "r6": 16.0,
+   "r7": 121.5,
+   "r16": 1271.0,
+   "r6_gt_r5": true
+  },
+  "n128": {
+   "r4": -147.0,
+   "r5": -61.5,
+   "r6": 31.5,
+   "r7": 74.0,
+   "r16": 1490.0,
+   "r6_gt_r5": true
+  },
+  "n256": {
+   "r4": -102.5,
+   "r5": -54.5,
+   "r6": 26.5,
+   "r7": 65.0,
+   "r16": 1885.0,
+   "r6_gt_r5": true
+  },
+  "crossing": {
+   "n16": "between r=4 and r=5",
+   "n64": "between r=5 and r=6",
+   "n128": "between r=5 and r=6",
+   "n256": "between r=5 and r=6"
+  }
+ }
+}

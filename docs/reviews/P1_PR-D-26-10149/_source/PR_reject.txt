@@ -1,0 +1,195 @@
+Manuscript Number: PR-D-26-10149
+Manuscript Title: Protect, Don't Perturb: Cross-Modal Alignment under PEFT of Vision-Language Models​
+Pattern Recognition
+
+Dear Mr. Hongrui Wan,
+
+We have had your manuscript 'Protect, Don't Perturb: Cross-Modal Alignment under PEFT of Vision-Language Models​' reviewed and regret to inform you that the referees do not find it acceptable for publication in Pattern Recognition
+
+I enclose some comments for your reference.
+
+To view your reviewer feedback, please log in as an author at https://www.editorialmanager.com/pr/ and navigate to your manuscript in the "Submissions with a Decision" folder under the Author Main Menu. 
+
+Thank you for your interest in the journal. We look forward to receiving for consideration the results of future research which you may conduct.
+
+For any queries, please contact only the Journal mailbox via patcog@elsevier.com and the respective support team would check the query and respond.
+
+Sincerely yours,
+
+Xuelong Li
+Area Editor
+Pattern Recognition
+
+Reviewers' comments:
+
+
+
+Reviewer's Responses to Questions
+
+Note: In order to effectively convey your recommendations for improvement to the author(s), and help editors make well-informed and efficient decisions, we ask you to answer the following specific questions about the manuscript and provide additional suggestions where appropriate.
+
+1. Are the objectives and the rationale of the study clearly stated?
+
+Please provide suggestions to the author(s) on how to improve the clarity of the objectives and rationale of the study. Please number each suggestion so that author(s) can more easily respond.
+
+Reviewer #1: Yes. The objectives and motivation are clearly stated. The authors may slightly narrow some claims of generality to better match the experimental scope.
+
+Reviewer #2: Yes. The objectives and rationale are generally clearly stated, focusing on how PEFT affects cross-modal alignment and modality-gap evolution.
+
+Reviewer #3: Fair
+
+2. If applicable, is the application/theory/method/study reported in sufficient detail to allow for its replicability and/or reproducibility?
+
+Please provide suggestions to the author(s) on how to improve the replicability/reproducibility of their study. Please number each suggestion so that the author(s) can more easily respond.
+
+Reviewer #1: Mark as appropriate with an X:
+Yes [] No [] N/A [X]
+Provide further comments here:
+Partially. The manuscript should clarify the differences between apparently similar configurations across different experiment groups, including target modules, seeds, data splits, and implementation details.
+
+Reviewer #2: Mark as appropriate with an X:
+Yes [X] No [] N/A []
+Provide further comments here:
+
+Reviewer #3: Mark as appropriate with an X:
+Yes [] No [√] N/A []
+Provide further comments here:
+
+3. If applicable, are statistical analyses, controls, sampling mechanism, and statistical reporting (e.g., P-values, CIs, effect sizes) appropriate and well described?
+
+Please clearly indicate if the manuscript requires additional peer review by a statistician. Kindly provide suggestions to the author(s) on how to improve the statistical analyses, controls, sampling mechanism, or statistical reporting. Please number each suggestion so that the author(s) can more easily respond.
+
+Reviewer #1: Mark as appropriate with an X:
+Yes [] No [] N/A [X]
+Provide further comments here:
+Partially. The pooled correlation analysis may suffer from non-independent observations and between-group confounding. Within-model/dataset analyses or group-aware statistical methods are recommended. No additional statistical review is necessary.
+
+Reviewer #2: Mark as appropriate with an X:
+Yes [X] No [] N/A []
+Provide further comments here:
+
+Reviewer #3: Mark as appropriate with an X:
+Yes [] No [] N/A [√]
+Provide further comments here:
+
+4. Could the manuscript benefit from additional tables or figures, or from improving or removing (some of the) existing ones?
+
+Please provide specific suggestions for improvements, removals, or additions of figures or tables. Please number each suggestion so that author(s) can more easily respond.
+
+Reviewer #1: Yes. A configuration comparison table would help reconcile inconsistent results across experiment groups. Stratified DG–R@1 plots by model or dataset would also be useful.
+
+Reviewer #2: Yes. The figures and tables could be better organized. A more compact presentation would improve readability and better emphasize the main findings.
+
+Reviewer #3: Yes
+
+6. Have the authors clearly emphasized the strengths of their study/theory/methods/argument?
+
+Please provide suggestions to the author(s) on how to better emphasize the strengths of their study. Please number each suggestion so that the author(s) can more easily respond.
+
+Reviewer #1: Yes. The main strengths, especially the broad experimental coverage and representation-level analyses, are clearly presented.
+
+Reviewer #2: yes, they have emphasized the strengths of their study.
+
+Reviewer #3: Fair
+
+7. Have the authors clearly stated the limitations of their study/theory/methods/argument?
+
+Please list the limitations that the author(s) need to add or emphasize. Please number each limitation so that author(s) can more easily respond.
+
+Reviewer #1: Partially. The manuscript should further emphasize optimization sensitivity, limited cross-architecture evidence, non-independent correlation analysis, and the instability of DG-Guided Early Stopping.
+
+Reviewer #2: Yes. The authors clearly acknowledge several limitations, including restricted model/dataset coverage, limited SigLIP experiments, lack of formal theoretical support for Visual Fragility, and the current brittleness of DG-based early stopping.
+
+Reviewer #3: Fair
+
+8. Does the manuscript structure, flow or writing need improving (e.g., the addition of subheadings, shortening of text, reorganization of sections, or moving details from one section to another)?
+
+Please provide suggestions to the author(s) on how to improve the manuscript structure and flow. Please number each suggestion so that author(s) can more easily respond.
+
+Reviewer #1: Generally yes. The structure is clear, though some discussion of Visual Fragility is repetitive and could be consolidated.
+
+Reviewer #2: Yes. The manuscript still needs substantial improvement.
+
+Reviewer #3: Yes
+
+9. Could the manuscript benefit from language editing?
+
+Reviewer #1: Yes
+
+Reviewer #2: Yes
+
+Reviewer #3: Yes
+
+ 
+
+
+AE: This paper explores cross-modal alignment in VLM PEFT with extensive experiments. However, it suffers from **severe numerical inconsistencies, flawed statistics, unsubstantiated causal claims and unreliable generalization**. These fundamental flaws invalidate core findings, leading to a rejection recommendation.
+
+
+Reviewer #1: Summary
+This paper investigates changes in cross-modal alignment during parameter-efficient fine-tuning of vision-language models. It explores the effects of different fine-tuning settings on the modality gap, retrieval performance, and zero-shot generalization, focusing on the Centroid Gap and Distribution Gap. The authors examine different LoRA ranks, adaptation positions, scaling factors, target modules, Adapters, full fine-tuning, models, and datasets, and find that fine-tuning only the text encoder generally preserves cross-modal alignment better than fine-tuning both the vision and text encoders. The authors also propose the "Visual Fragility Interpretation," supported by effective rank tracking, parameter noise analysis, and gradient analysis. The paper further reveals an association between the Distribution Gap and retrieval performance, and introduces DG-based Alignment Monitoring and DG-Guided Early Stopping.
+
+Strengths
+1. The research question is practically important and addresses a perspective that is typically neglected. Most existing PEFT research is more concerned with downstream performance, parameter efficiency, or catastrophic forgetting, while this paper investigates the evolution of the modality gap during fine-tuning from the perspectives of representation geometry and cross-modal alignment. Rather than proposing another LoRA variant, the authors systematically examine factors such as rank, position, scaling factor, and target modules, resulting in a well-defined research question.
+2. The experimental work is considerable, and the ablation study is thorough. This work presents 116 experiments, including a LoRA rank sweep, text/vision/both adaptation, Adapters, full fine-tuning, cross-dataset evaluation, cross-architecture evaluation, multiple seeds, zero-shot classification, and several mechanistic analyses. The broad experimental coverage is a major strength of this study compared with works that report results on only one CLIP model and one dataset.
+3. The paper also attempts to explain the observed phenomena rather than merely reporting performance. The authors go beyond the empirical observation that "text-only works better" and conduct further analyses of parameter noise sensitivity, gradient contribution, and effective rank. The effects of parameter perturbations, representation spectra, and layer-wise fine-tuning are shown in Figures 9-13, which add more research value to the paper than a simple hyperparameter study. It is also reasonable that the authors cautiously acknowledge that Visual Fragility currently represents a phenomenological interpretation rather than a rigorously established theoretical mechanism.
+
+Weaknesses
+1. There are clear numerical inconsistencies between some of the core experimental results, and the paper does not explain what exactly changed between the different experimental groups. The most notable example is text-only LoRA with \(r=8,\alpha=64\): the core experiments give CG∆ = −0.081 and R@1 = 0.637, indicating improved alignment; however, in Route D, an apparently identical configuration gives CG∆ = +0.079 and R@1 = 0.389, with the sign of CG∆ reversed. Similarly, the R@1 of the standard text-only model with \(r=8\) is about 0.627, whereas the text-only baseline in the layered experiments is only 0.427, with a CG∆ of +0.237. If these experiments differ in target modules, initialization, data split, seed, or implementation pipeline, this should be explicitly stated and a controlled comparison should be provided; otherwise, it is difficult to determine whether the differences arise from the underlying mechanism or from the experimental configuration itself. This issue is particularly concerning because +0.079 is also used as the recommended setting for "maximum gap preservation," which further increases the importance of resolving this inconsistency.
+2. The statistical analysis of DG and retrieval performance raises concerns about pseudo-replication and between-group confounding. The authors treat 81 experiments—differing in models, datasets, PEFT methods, hyperparameter settings, and even random seeds—as independent observations, and report Pearson and partial correlations with \(r=-0.827\). However, the paper itself acknowledges that these observations are not fully independent: shared configurations and multiple seeds violate the independence assumption, and a mixed-effects model or clustered standard errors would be more appropriate. The R@1 values also differ substantially across experimental groups; for example, Flickr30k results are around 0.6-0.7, whereas some results for COCO, BLIP-1, and ViT-L are near zero. Thus, the overall correlation may partly reflect between-group differences rather than DG having predictive power within the same setting. At a minimum, within-dataset and within-model correlations should be reported, together with mixed-effects regression, clustered bootstrap, or another group-aware analysis. Partial correlation controlling for Centroid Gap (CG) alone does not resolve this issue, and thus Table 5 is better interpreted as showing an association rather than a stable predictive relationship.
+3. Noise sensitivity, gradient analysis, and effective-rank tracking are described as "direct causal evidence" in the paper. However, the current experiments are not sufficient to establish the broader causal interpretation of Visual Fragility. The parameter-noise experiment only demonstrates that retrieval degradation of the vision encoder is about 2.6 times that of the text encoder under the same \(\sigma=0.1\), but applying the same absolute noise to both encoders does not imply the same relative perturbation, because their weight scales, parameter distributions, layer architectures, and numbers of parameters may differ. Likewise, the statement that "vision gradients are 1.5× larger" only reflects a difference in gradient magnitude; the fact that the text-only configuration achieves a similar training loss does not imply that vision gradients are unnecessary or that vision representations are inherently fragile. At a minimum, I suggest using layer-wise normalized perturbations (e.g., controlling \(\|\Delta W\|_F/\|W\|_F\)), testing multiple noise levels, matching the relative perturbation budget across encoders, and repeating these experiments across multiple seeds. Otherwise, it would be more appropriate to describe these results as "additional empirical evidence consistent with Visual Fragility" rather than "direct causal evidence."
+4. The claims regarding cross-architecture and cross-dataset generalization are substantially stronger than what the experiments support. In the COCO experiments, all R@1 values are below 0.001. For BLIP-1, the results are mostly in the range of 0.001-0.003 except for one rank-4 configuration. The ViT-L experiments also report very low retrieval values. The authors state that the COCO results are "near-random due to the larger test set size," although a larger test set alone should not normally cause an effective image-text retrieval system to degrade directly to near-random performance. Therefore, the retrieval protocol, gallery construction, image-to-text/text-to-image directions, dataset split, and metric implementation should first be carefully verified. For BLIP-1, the authors employ selective unfreezing rather than true LoRA injection, and there is a large reversal from rank-4 to rank-8, from −0.476 to +0.489. On SigLIP, the text-only CG∆ is +0.067, while the both-position value is +0.058, with R@1 also being nearly identical. Therefore, the strongest and most consistent evidence currently comes from CLIP ViT-B/32, while the evidence for broader cross-architecture generalization remains substantially weaker. The current results are not sufficient to support universal claims such as "across architectures" or "applies to any contrastive vision-language backbone."
+5. The practical contribution of DG-based Alignment Monitoring is currently limited, and the claim of "zero-overhead" is not accurate. DG-Guided Early Stopping requires computing DG every two epochs on 5,000 validation image-text pairs, which introduces additional costs from forward passes, embedding storage, and metric computation; "no need for human labels" does not mean "zero overhead." More critically, the method exhibits a clear failure case in only three Route E experiments: in a text-only run that the authors describe as "well-configured," R@1 drops from an expected value of approximately 0.63 to 0.133; the authors even suggest disabling DG-ES entirely in such cases. If the monitor itself needs to be disabled under one of the most strongly recommended training regimes, DG-ES is currently difficult to regard as an independent methodological contribution of the paper. I therefore recommend repositioning it as a preliminary proof-of-concept, reporting its actual computational overhead, and exploring more stable strategies such as adaptive thresholds, smoothed trends, relative DG changes, or subsampled DG estimation.
+6. Experimental fairness still needs to be addressed, particularly regarding the use of the same optimization hyperparameters across full fine-tuning and different PEFT methods. All experiments use the same batch size (128), number of epochs (10), and AdamW learning rate (\(10^{-4}\)). However, directly using the same learning rate for LoRA, Adapter, and full fine-tuning may not constitute a fair comparison, because full fine-tuning is typically more sensitive to the learning rate. In the current results, full fine-tuning on CIFAR-100 drops from 60.72% to 7.38%, and this is used as evidence that it "catastrophically disrupts" alignment and zero-shot ability. While this result may indeed be genuine, it may also reflect optimization instability. Without a reasonable learning-rate sweep, weight-decay tuning, and early stopping for full fine-tuning, or at least the use of a standard optimization recipe from the literature, it is difficult to distinguish between "full fine-tuning intrinsically destroys the visual embedding geometry" and "the current full fine-tuning recipe is inappropriate." This control is particularly important because one of the main pieces of evidence supporting Visual Fragility is the large performance gap between full fine-tuning and PEFT.
+
+
+
+Reviewer #2: Summary:
+This paper studies how parameter-efficient fine-tuning (PEFT) affects cross-modal alignment in vision-language models. Through 116 experiments, the authors investigate LoRA/Adapter configurations, model architectures, datasets, and alignment metrics. The main finding is that text-only adaptation generally preserves cross-modal alignment better than joint adaptation. The paper further proposes a "Visual Fragility Interpretation" and investigates Distribution Gap (DG) as an indicator of retrieval performance.
+
+Strengths:
+The paper addresses a relevant problem and provides extensive ablations across PEFT configurations. The comparison between text-only, vision-only, and joint adaptation offers useful empirical observations. The authors also examine the findings through noise sensitivity, gradient analysis, effective rank, and zero-shot evaluation, and openly report limitations and negative results.
+
+Weaknesses:
+1. Title and framing. The title "Protect, Don't Perturb" suggests a general principle for VLM adaptation, while the evidence is mainly based on contrastive dual-encoder models and retrieval settings. The authors themselves acknowledge that decoder-based VLMs and non-contrastive objectives remain unexplored. A more precise framing would better reflect the actual scope.
+
+2. Literature review and novelty. The distinction from prior work is insufficiently sharp. Existing studies have already explored modality-specific PEFT, visual-encoder vulnerability, gap-aware adaptation, and frozen encoders. The paper should more clearly articulate what fundamentally new insight is established beyond these findings.
+
+3. Experimental scale and diversity. Although 116 experiments are reported, many are hyperparameter variations around a limited set of models and datasets. The core experiments rely heavily on Flickr30k and MS-COCO, while several supplementary validations contain only a few runs. Broader validation on larger datasets and modern VLMs is needed to support the general claims.
+
+4. Limited mechanistic evidence. The "Visual Fragility Interpretation" is interesting but remains largely descriptive. Alternative explanations, including regularization and modality-specific optimization effects, cannot be excluded, as acknowledged by the authors. Stronger causal or theoretical evidence would make this contribution more convincing.
+
+5. DG-based monitoring remains preliminary. While DG correlates strongly with retrieval performance, the statistical analysis contains non-independent observations, and the proposed DG-Guided Early Stopping can prematurely terminate a well-performing run. Thus, DG is currently more convincing as a diagnostic metric than as a robust practical monitoring method.
+
+
+Reviewer #3: This manuscript presents a broad empirical study of cross-modal alignment during parameter-efficient fine-tuning of vision-language models. The comparison across PEFT strategies and the observation that text-only tuning often preserves alignment are potentially useful. However, several issues currently weaken the reliability and clarity of the main claims.
+
+1. There are important internal inconsistencies in the reported results. For example, the abstract and conclusion cite a text-only CG change of +0.079, whereas the main tables report -0.064 or -0.066 for the standard text-only setting. The manuscript should clearly distinguish different configurations and reconcile all numerical claims. The manuscript number in the cover letter also does not match the submitted file.
+
+2. The DG-retrieval analysis is based on pooled, non-independent experiments sharing datasets, models, and seeds. A partial correlation does not adequately address this dependence, and the analysis is post hoc rather than predictive. Mixed-effects or clustered analyses, together with held-out validation, would provide stronger evidence.
+
+3. The "Visual Fragility" interpretation is plausible but currently overclaimed as causal. The noise, gradient, and effective-rank analyses appear to rely on very limited experiments and lack repeated trials, parameter-matched perturbations, and sufficient controls. These results should either be strengthened or presented more cautiously as correlational evidence.
+
+4. Some evaluations are difficult to interpret: COCO R@1 values are all reported as <0.001, and BLIP-1 results are near-random and use selective unfreezing rather than comparable LoRA injection. The retrieval protocol and these cross-model conclusions require clarification.
+
+Overall, the study could become a useful empirical reference after the numerical inconsistencies are resolved and the statistical and causal claims are substantially tightened.
+
+
+
+%ATTACH_FOR_REVIEWER_DEEP_LINK INSTRUCTIONS%
+
+
+
+At Elsevier, we want to help all our authors to stay safe when publishing. Please be aware of fraudulent messages requesting money in return for the publication of your paper. If you are publishing open access with Elsevier, bear in mind that we will never request payment before the paper has been accepted. We have prepared some guidelines (https://www.elsevier.com/connect/authors-update/seven-top-tips-on-stopping-apc-scams ) that you may find helpful, including a short video on Identifying fake acceptance letters (https://www.youtube.com/watch?v=o5l8thD9XtE ). Please remember that you can contact Elsevier s Researcher Support team (https://service.elsevier.com/app/home/supporthub/publishing/) at any time if you have questions about your manuscript, and you can log into Editorial Manager to check the status of your manuscript (https://service.elsevier.com/app/answers/detail/a_id/29155/c/10530/supporthub/publishing/kw/status/).
+
+#AU_PR#
+
+To ensure this email reaches the intended recipient, please do not delete the above code
+
+ 
+
+ 
+
+
+
+In compliance with data protection regulations, you may request that we remove your personal registration details at any time. (Remove my information/details). Please contact the publication office if you have any questions.

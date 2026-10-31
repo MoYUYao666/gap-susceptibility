@@ -1,0 +1,150 @@
+{
+ "meta": {
+  "script": "tools/a1_rr_e4_train.py --eval-spec",
+  "protocol": "tools/clip_a1_tau_trajectory.py evaluator; shared frozen refs",
+  "model": "openai/clip-vit-base-patch32",
+  "shard_sig": "d13718e47e9e41c2",
+  "n_tau_images": 5000,
+  "placeholder_class_index": 1000,
+  "runtime_s": 1046.0
+ },
+ "frozen": {
+  "tag": "frozen",
+  "CG_flickr_val": 0.814736,
+  "image_only": {
+   "legacy1001": {
+    "top1_5k": 59.1,
+    "tau_by_k": {
+     "1": null,
+     "3": 1.0,
+     "5": 1.0,
+     "10": 1.0,
+     "20": 1.0
+    }
+   },
+   "clean1000": {
+    "top1_5k": 59.1,
+    "tau_by_k": {
+     "1": null,
+     "3": 1.0,
+     "5": 1.0,
+     "10": 1.0,
+     "20": 1.0
+    }
+   }
+  }
+ },
+ "checkpoints": [
+  {
+   "tag": "flickr30k_text_only_r8",
+   "image_only": {
+    "legacy1001": {
+     "top1_5k": 58.5,
+     "tau_by_k": {
+      "1": null,
+      "3": 0.78,
+      "5": 0.759484,
+      "10": 0.739092,
+      "20": 0.730213
+     }
+    },
+    "clean1000": {
+     "top1_5k": 58.5,
+     "tau_by_k": {
+      "1": null,
+      "3": 0.780133,
+      "5": 0.759684,
+      "10": 0.739189,
+      "20": 0.730394
+     }
+    }
+   },
+   "CG_flickr_val": 0.79016,
+   "top1_50k_legacy1001": 58.684,
+   "top1_50k_clean1000": 58.684,
+   "ckpt": "outputs/imagenet_zs/text_only_r8/best_checkpoint.pt",
+   "lora": {
+    "vision": false,
+    "text": true,
+    "rank": 8,
+    "alpha": 16.0
+   },
+   "trained_on": "Flickr30k rows 0..1999, LoRA text-only r8 a16, 10 epochs / 320 steps (archived outputs/imagenet_zs/text_only_r8)",
+   "ok": true
+  },
+  {
+   "tag": "flickr30k_both_r8",
+   "image_only": {
+    "legacy1001": {
+     "top1_5k": 59.32,
+     "tau_by_k": {
+      "1": null,
+      "3": 0.720933,
+      "5": 0.696242,
+      "10": 0.673912,
+      "20": 0.664779
+     }
+    },
+    "clean1000": {
+     "top1_5k": 59.32,
+     "tau_by_k": {
+      "1": null,
+      "3": 0.720933,
+      "5": 0.696162,
+      "10": 0.673875,
+      "20": 0.664948
+     }
+    }
+   },
+   "CG_flickr_val": 0.847886,
+   "top1_50k_legacy1001": 59.662,
+   "top1_50k_clean1000": 59.662,
+   "ckpt": "outputs/imagenet_zs/both_r8/best_checkpoint.pt",
+   "lora": {
+    "vision": true,
+    "text": true,
+    "rank": 8,
+    "alpha": 16.0
+   },
+   "trained_on": "Flickr30k rows 0..1999, LoRA both r8 a16, 10 epochs / 320 steps (archived outputs/imagenet_zs/both_r8)",
+   "ok": true
+  },
+  {
+   "tag": "flickr30k_retrain_both_ep10",
+   "image_only": {
+    "legacy1001": {
+     "top1_5k": 58.58,
+     "tau_by_k": {
+      "1": null,
+      "3": 0.768267,
+      "5": 0.749667,
+      "10": 0.726416,
+      "20": 0.718925
+     }
+    },
+    "clean1000": {
+     "top1_5k": 58.58,
+     "tau_by_k": {
+      "1": null,
+      "3": 0.7684,
+      "5": 0.749627,
+      "10": 0.726442,
+      "20": 0.719049
+     }
+    }
+   },
+   "CG_flickr_val": 0.847592,
+   "top1_50k_legacy1001": 58.628,
+   "top1_50k_clean1000": 58.63,
+   "ckpt": "outputs/a1_retrain/both/epoch10.pt",
+   "lora": {
+    "vision": true,
+    "text": true,
+    "rank": 8,
+    "alpha": 16.0
+   },
+   "trained_on": "Flickr30k rows 0..1999, LoRA both r8 a16, 10 epochs (archived retrain outputs/a1_retrain/both)",
+   "ok": true
+  }
+ ]
+}

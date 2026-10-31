@@ -1,0 +1,154 @@
+{
+ "generated": "2026-10-31",
+ "purpose": "machine-readable record counts for the reference corpus of the RS-VLM review",
+ "harvest": {
+  "source": "OpenAlex",
+  "queries": 24,
+  "raw_records": 960
+ },
+ "dedup_records": 833,
+ "doi_carrying_records": 826,
+ "verified_records": 821,
+ "verification": {
+  "generated": "2026-10-27 23:16",
+  "checked": 826,
+  "verified": 821,
+  "failed": 5,
+  "crossref_api": "https://api.crossref.org/works/{doi}",
+  "title_similarity_threshold": 0.8,
+  "failures": {
+   "10.1016/j.cviu.2024.104254": {
+    "doi": "10.1016/j.cviu.2024.104254",
+    "title": "RS 3 Lip: Consistency for remote sensing image classification on part embeddings using self-supervised learning and CLIP",
+    "error": "title mismatch"
+   },
+   "10.11947/j.agcs.2020.20200139": {
+    "doi": "10.11947/j.agcs.2020.20200139",
+    "title": "Zero-shot remote sensing image scene classification based on robust cross-domain mapping and gradual refinement of semantic space",
+    "error": "HTTP Error 404: Not Found"
+   },
+   "10.16356/j.1005-1120.2025.01.008": {
+    "doi": "10.16356/j.1005-1120.2025.01.008",
+    "title": "Efficient Reconstruction of Spatial Features for Remote Sensing Image\u2043Text Retrieval",
+    "error": "HTTP Error 404: Not Found"
+   },
+   "10.71465/csb165": {
+    "doi": "10.71465/csb165",
+    "title": "Cross-Modal Index Alignment: Bridging Vision and Language in Neural Retrieval Architectures",
+    "error": "HTTP Error 404: Not Found"
+   },
+   "10.3778/j.issn.1673-9418.2505064": {
+    "doi": "10.3778/j.issn.1673-9418.2505064",
+    "title": "Cross-Modal Knowledge Introduction and Prompt Inference Framework for Remote Sensing Visual Question Answering",
+    "error": "HTTP Error 404: Not Found"
+   }
+  }
+ },
+ "screened_core_records": 5,
+ "disclosure_audit_papers": 8,
+ "published_files": [
+  {
+   "path": "literature/README.md",
+   "bytes": 817
+  },
+  {
+   "path": "literature/abstracts_2026-10-27.json",
+   "bytes": 271471
+  },
+  {
+   "path": "literature/adaptation_numbers_2026-10-28.json",
+   "bytes": 4170
+  },
+  {
+   "path": "literature/arxiv_abstracts_2026-10-27.json",
+   "bytes": 14463
+  },
+  {
+   "path": "literature/arxiv_numbers_2026-10-27.json",
+   "bytes": 4334
+  },
+  {
+   "path": "literature/dedup_2026-10-27.json",
+   "bytes": 477777
+  },
+  {
+   "path": "literature/desktop_ingest_2026-10-28.json",
+   "bytes": 13480
+  },
+  {
+   "path": "literature/disclosure_audit_2026-10-28.json",
+   "bytes": 5407
+  },
+  {
+   "path": "literature/doi_to_bibkey.json",
+   "bytes": 37788
+  },
+  {
+   "path": "literature/fulltext_facts_2026-10-28.json",
+   "bytes": 23400
+  },
+  {
+   "path": "literature/number_candidates_2026-10-27.json",
+   "bytes": 60759
+  },
+  {
+   "path": "literature/oa_locations_2026-10-28.json",
+   "bytes": 56356
+  },
+  {
+   "path": "literature/raw_2026-10-27.json",
+   "bytes": 543300
+  },
+  {
+   "path": "literature/seeds_verified_2026-10-27.json",
+   "bytes": 5461
+  },
+  {
+   "path": "literature/seeds_verify_summary_2026-10-27.json",
+   "bytes": 128
+  },
+  {
+   "path": "literature/shortlist_2026-10-27.md",
+   "bytes": 21995
+  },
+  {
+   "path": "literature/summary_2026-10-27.json",
+   "bytes": 2700
+  },
+  {
+   "path": "literature/survey.bib",
+   "bytes": 283982
+  },
+  {
+   "path": "literature/verified_2026-10-27.json",
+   "bytes": 744792
+  },
+  {
+   "path": "literature/verify_summary_2026-10-27.json",
+   "bytes": 1477
+  },
+  {
+   "path": "screening/core_2026-10-27.json",
+   "bytes": 64677
+  },
+  {
+   "path": "screening/screening_2026-10-27.md",
+   "bytes": 34817
+  },
+  {
+   "path": "scripts/build_package_ISPRSJ.py",
+   "bytes": 6728
+  },
+  {
+   "path": "scripts/make_figs_isprsj.py",
+   "bytes": 4925
+  },
+  {
+   "path": "scripts/make_publish_manifest.py",
+   "bytes": 3491
+  }
+ ],
+ "excluded": [
+  "full-text PDFs and extracted text (publisher content)"
+ ]
+}

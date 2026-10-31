@@ -1,0 +1,532 @@
+{
+ "manifest_keys": [
+  "rule",
+  "generated",
+  "manuscripts"
+ ],
+ "manuscripts": {
+  "P3": {
+   "keys": [
+    "floats",
+    "source"
+   ],
+   "n_floats": 42,
+   "example_floats": {
+    "label": "tab:sample",
+    "kind": "table",
+    "script": "paper3/scripts/run_sample_size_sweep.py",
+    "archive": "paper3/scripts/outputs/experiments/sample_size_results.json",
+    "status": "verified",
+    "note": "sample-size sweep archive"
+   },
+   "example_keys_floats": [
+    "archive",
+    "kind",
+    "label",
+    "note",
+    "script",
+    "status"
+   ]
+  },
+  "A1": {
+   "keys": [
+    "floats",
+    "source"
+   ],
+   "n_floats": 35,
+   "example_floats": {
+    "label": "tab:matchedgap",
+    "kind": "table",
+    "script": "tools/_p1210_figure_matched_gap.py",
+    "archive": "outputs/analysis/a1_matched_gap_families.json",
+    "archives": [
+     "outputs/analysis/a1_matched_gap_families.json"
+    ],
+    "status": "verified",
+    "note": ""
+   },
+   "example_keys_floats": [
+    "archive",
+    "archives",
+    "kind",
+    "label",
+    "note",
+    "script",
+    "status"
+   ]
+  },
+  "A23": {
+   "keys": [
+    "floats",
+    "source"
+   ],
+   "n_floats": 34,
+   "example_floats": {
+    "label": "fig:tau",
+    "kind": "figure",
+    "script": "tools/clip_a2_figures.py",
+    "archive": "outputs/ocean_margins.json",
+    "archives": [
+     "outputs/ocean_margins.json",
+     "outputs/sonar_protocol.json"
+    ],
+    "status": "verified",
+    "note": ""
+   },
+   "example_keys_floats": [
+    "archive",
+    "archives",
+    "kind",
+    "label",
+    "note",
+    "script",
+    "status"
+   ]
+  },
+  "paperA": {
+   "keys": [
+    "floats",
+    "source"
+   ],
+   "n_floats": 32,
+   "example_floats": {
+    "label": "fig:overview",
+    "kind": "figure",
+    "script": "tools/_pa_rebuild_figs_rest.py",
+    "archive": "outputs/flickr30k/rq2_both/gap_history.json",
+    "archives": [
+     "outputs/flickr30k/rq2_both/gap_history.json"
+    ],
+    "status": "verified",
+    "note": ""
+   },
+   "example_keys_floats": [
+    "archive",
+    "archives",
+    "kind",
+    "label",
+    "note",
+    "script",
+    "status"
+   ]
+  }
+ },
+ "manuscripts_type": "dict",
+ "manuscript_ids": [
+  "P3",
+  "A1",
+  "A23",
+  "paperA"
+ ],
+ "mentions_pope": 0,
+ "mentions_vqa": 9,
+ "mentions_second_downstream": 0,
+ "repro": {
+  "n_add_calls": 299,
+  "n_calc_calls": 211,
+  "n_unsourced_calls": 1,
+  "sections_mentioned": [],
+  "registration_blocks": [
+   {
+    "line": 111,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 113,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 177,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 179,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 330,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 332,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 355,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 357,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 418,
+    "text": "# ======================================================================================="
+   },
+   {
+    "line": 420,
+    "text": "# ======================================================================================="
+   },
+   {
+    "line": 422,
+    "text": "# --- Abstract -------------------------------------------------------------------------"
+   },
+   {
+    "line": 438,
+    "text": "# --- Section I: setup -----------------------------------------------------------------"
+   },
+   {
+    "line": 477,
+    "text": "# --- Table I: sample-size robustness (main text, integers) ----------------------------"
+   },
+   {
+    "line": 502,
+    "text": "# --- Table II: alignment phase transition ---------------------------------------------"
+   },
+   {
+    "line": 555,
+    "text": "# --- Finding 1 ------------------------------------------------------------------------"
+   },
+   {
+    "line": 634,
+    "text": "# --- Numerical vs representational collapse -------------------------------------------"
+   },
+   {
+    "line": 642,
+    "text": "# --- Finding 2 ------------------------------------------------------------------------"
+   },
+   {
+    "line": 693,
+    "text": "# --- Finding 4 ------------------------------------------------------------------------"
+   },
+   {
+    "line": 739,
+    "text": "# --- Section IV-E: counterfactual validation ------------------------------------------"
+   },
+   {
+    "line": 1026,
+    "text": "# --- Downstream (real Flickr30k pairs) ------------------------------------------------"
+   },
+   {
+    "line": 1098,
+    "text": "# --- Decoder VLM (Qwen2-VL-2B) --------------------------------------------------------"
+   },
+   {
+    "line": 1137,
+    "text": "# --- Operating-point probe ------------------------------------------------------------"
+   },
+   {
+    "line": 1172,
+    "text": "# --- Blank images are not a neutral probe --------------------------------------------"
+   },
+   {
+    "line": 1250,
+    "text": "# --- Rank scaling pointers ------------------------------------------------------------"
+   },
+   {
+    "line": 1266,
+    "text": "# --- Section III (theory) ------------------------------------------------------------"
+   },
+   {
+    "line": 1346,
+    "text": "# --- Four-stack seed round (2026-10-25) -------------------------------------------------"
+   },
+   {
+    "line": 1460,
+    "text": "# --- Conclusion -----------------------------------------------------------------------"
+   },
+   {
+    "line": 1583,
+    "text": "# ======================================================================================="
+   },
+   {
+    "line": 1585,
+    "text": "# ======================================================================================="
+   },
+   {
+    "line": 1587,
+    "text": "# --- S1: claims / evidence / boundary summary table (readability round, 2026-10-25) -----"
+   },
+   {
+    "line": 1733,
+    "text": "# --- S4: detailed Gamma for LLaVA -----------------------------------------------------"
+   },
+   {
+    "line": 1775,
+    "text": "# --- S5: rank scaling of Gamma --------------------------------------------------------"
+   },
+   {
+    "line": 1813,
+    "text": "# --- S6 / S8 / S12: decoder VLM -------------------------------------------------------"
+   },
+   {
+    "line": 1915,
+    "text": "# --- S9: sample size, ShareGPT, prior work --------------------------------------------"
+   },
+   {
+    "line": 1990,
+    "text": "# --- S11: CLIP local rank control -----------------------------------------------------"
+   },
+   {
+    "line": 2058,
+    "text": "# --- S12: current-protocol re-run -----------------------------------------------------"
+   },
+   {
+    "line": 2079,
+    "text": "# --- S13: per-run energy trajectories -------------------------------------------------"
+   },
+   {
+    "line": 2101,
+    "text": "# --- S14: sample-window protocol ablation ---------------------------------------------"
+   },
+   {
+    "line": 2120,
+    "text": "# --- S15: protocol shift at the crossing ----------------------------------------------"
+   },
+   {
+    "line": 2134,
+    "text": "# --- S16: assumption audit / claim status ---------------------------------------------"
+   },
+   {
+    "line": 2265,
+    "text": "# --- S18: curvature of the first-order approximation ----------------------------------"
+   },
+   {
+    "line": 2303,
+    "text": "# --- S19: additional allocation baselines ---------------------------------------------"
+   },
+   {
+    "line": 2342,
+    "text": "# --- S20: newer model family ----------------------------------------------------------"
+   },
+   {
+    "line": 2371,
+    "text": "# --- S21: captioning downstream check -------------------------------------------------"
+   },
+   {
+    "line": 2385,
+    "text": "# --- S22: seed / software reproducibility matrix --------------------------------------"
+   },
+   {
+    "line": 2410,
+    "text": "# --- S23: sensitivity to the reference batch ------------------------------------------"
+   },
+   {
+    "line": 2433,
+    "text": "# --- S24: non-finite energy diagnostics -----------------------------------------------"
+   },
+   {
+    "line": 2465,
+    "text": "# --- S25: instruction-following downstream check --------------------------------------"
+   },
+   {
+    "line": 2478,
+    "text": "# --- S27: allocation-rule baselines ---------------------------------------------------"
+   },
+   {
+    "line": 2502,
+    "text": "# --- S28: VQA-RAD downstream check ---------------------------------------------------"
+   },
+   {
+    "line": 2615,
+    "text": "# --- S29: second-environment reproducibility ------------------------------------------"
+   },
+   {
+    "line": 2660,
+    "text": "# --- S30: additivity residual ---------------------------------------------------------"
+   },
+   {
+    "line": 2688,
+    "text": "# --- S31: per-layer coupling and robust statistics ------------------------------------"
+   },
+   {
+    "line": 2755,
+    "text": "# --- S32: signed coupling and non-CLIP source -----------------------------------------"
+   },
+   {
+    "line": 2806,
+    "text": "# --- S33: crossing position with ten seeds per rank -----------------------------------"
+   },
+   {
+    "line": 2930,
+    "text": "# --- S35: real-image rank sweep -------------------------------------------------------"
+   },
+   {
+    "line": 2947,
+    "text": "# --- S36: per-step instrumentation ----------------------------------------------------"
+   },
+   {
+    "line": 2988,
+    "text": "# --- S37: variance decomposition of the environment effect ----------------------------"
+   },
+   {
+    "line": 3027,
+    "text": "# --- S38: allocation stability under reference-batch bootstrap ------------------------"
+   },
+   {
+    "line": 3047,
+    "text": "# --- S39: official IGU allocation stage -----------------------------------------------"
+   },
+   {
+    "line": 3081,
+    "text": "# --- S40: instruction-family replication on Dolly-15k ---------------------------------"
+   },
+   {
+    "line": 3105,
+    "text": "# --- S41: third checkpoint family, Qwen2-VL-2B ----------------------------------------"
+   },
+   {
+    "line": 3118,
+    "text": "# --- S42: per-layer coupling on a second model ----------------------------------------"
+   },
+   {
+    "line": 3146,
+    "text": "# --- S43: third check, SmolVLM-500M ---------------------------------------------------"
+   },
+   {
+    "line": 3176,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 3178,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 3976,
+    "text": "# ---------------------------------------------------------------------------------------"
+   },
+   {
+    "line": 3978,
+    "text": "# ---------------------------------------------------------------------------------------"
+   }
+  ],
+  "final_report_lines": [
+   {
+    "line": 49,
+    "text": "``OK`` and ``MISMATCH`` mean what they say: the archive named by the entry was re-derived and"
+   },
+   {
+    "line": 51,
+    "text": "carry the number, and they replaced the single ``UNSOURCED`` label on 2026-10-24 so that the"
+   },
+   {
+    "line": 64,
+    "text": "A non-zero ``UNSOURCED`` count is a defect. The ``where`` field of each entry is a"
+   },
+   {
+    "line": 69,
+    "text": "Exit status is non-zero when any entry is MISMATCH. The non-recomputable classes do not fail"
+   },
+   {
+    "line": 361,
+    "text": "# counts mean something: an ``UNSOURCED`` entry would be a defect, whereas a ``THIRD_PARTY``"
+   },
+   {
+    "line": 3995,
+    "text": "return \"UNSOURCED\", None, entry[\"note\"]"
+   },
+   {
+    "line": 4004,
+    "text": "return \"MISMATCH\", None, \"could not recompute: %s: %s\" % (type(exc).__name__, exc)"
+   },
+   {
+    "line": 4008,
+    "text": "return \"MISMATCH\", None, \"the resolved value is a string (%r), not a number\" % got[:60]"
+   },
+   {
+    "line": 4012,
+    "text": "return \"MISMATCH\", None, \"the resolved value is not numeric (%r)\" % (got,)"
+   },
+   {
+    "line": 4014,
+    "text": "return \"MISMATCH\", None, \"recomputation returned a non-finite value\""
+   },
+   {
+    "line": 4021,
+    "text": "return \"MISMATCH\", got, \"printed %s, recomputed %.10g (|diff|=%.6g > tol %.3g)\" % ("
+   },
+   {
+    "line": 4036,
+    "text": "help=\"print only the UNSOURCED entries\")"
+   },
+   {
+    "line": 4062,
+    "text": "n_bad = sum(1 for r in rows if r[\"status\"] == \"MISMATCH\")"
+   },
+   {
+    "line": 4063,
+    "text": "n_uns = sum(1 for r in rows if r[\"status\"] == \"UNSOURCED\")"
+   },
+   {
+    "line": 4069,
+    "text": "parts = [\"OK %d\" % n_ok, \"MISMATCH %d\" % n_bad]"
+   },
+   {
+    "line": 4072,
+    "text": "parts += [\"UNSOURCED %d\" % n_uns, \"UNCHECKED %d\" % n_unc, \"TOTAL %d\" % len(rows)]"
+   },
+   {
+    "line": 4077,
+    "text": "if r[\"status\"] != \"OK\" and r[\"status\"] != \"MISMATCH\":"
+   },
+   {
+    "line": 4093,
+    "text": "print(\"  %-16s %5s %8s %8s %6s   %s\" % (\"SECTION\", \"OK\", \"MISMATCH\", \"MARKED\","
+   },
+   {
+    "line": 4098,
+    "text": "b = sum(1 for r in sub if r[\"status\"] == \"MISMATCH\")"
+   },
+   {
+    "line": 4100,
+    "text": "u = sum(1 for r in sub if r[\"status\"] == \"UNSOURCED\")"
+   },
+   {
+    "line": 4102,
+    "text": "else (\"MISMATCH\" if b else (\"unsourced items\" if u"
+   },
+   {
+    "line": 4118,
+    "text": "print(\"P3 reproducibility ledger  (OK / MISMATCH / class per printed number)\")"
+   },
+   {
+    "line": 4143,
+    "text": "if r[\"status\"] == \"MISMATCH\":"
+   },
+   {
+    "line": 4150,
+    "text": "counts = {\"OK\": n_ok, \"MISMATCH\": n_bad, \"UNSOURCED\": n_uns,"
+   }
+  ],
+  "len_of_consts": [],
+  "top_consts": {
+   "REPO": "assignment",
+   "EXP": "assignment",
+   "ANA": "assignment",
+   "RUNS": "assignment",
+   "OUT": "assignment",
+   "SUPP": "assignment",
+   "HARD": "assignment",
+   "PAIRED": "assignment",
+   "T_EXACT": "assignment",
+   "T_R1": "assignment",
+   "T_R2": "assignment",
+   "T_R3": "assignment",
+   "T_R4": "assignment",
+   "T_INT": "assignment",
+   "T_HALF": "assignment",
+   "T_ABS": "assignment",
+   "T_PCT": "assignment",
+   "_MAIN_SAMPLE": "assignment",
+   "_QG": "assignment",
+   "STACK_SEEDS": "assignment",
+   "_RC": "assignment",
+   "_ROB": "assignment",
+   "_GLL": "assignment",
+   "_LOC": "assignment",
+   "_NTK": "assignment",
+   "_INS": "assignment",
+   "MARKED": "assignment"
+  }
+ }
+}

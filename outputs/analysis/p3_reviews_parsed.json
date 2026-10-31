@@ -1,0 +1,165 @@
+{
+ "source": "docs/_inbox/P3_reviews/_reviews.txt",
+ "manuscript": "PRLETTERS-D-26-02378",
+ "journal": "Pattern Recognition Letters",
+ "decision": "Revise",
+ "revision_deadline": "2026-11-02",
+ "status_date": "2026-10-12",
+ "editor": "Yonghuai Liu",
+ "total_items": 33,
+ "by_reviewer": {
+  "R1": {
+   "n_items": 5,
+   "max_n": 5,
+   "missing": [],
+   "items": [
+    {
+     "n": 1,
+     "text": "The paper addresses an important PEFT design problem: how to allocate LoRA capacity across different model components without expensive target-model search."
+    },
+    {
+     "n": 2,
+     "text": "The first-order gradient-coupling interpretation is intuitive and well motivated. The relation \\(\\Delta E_k\\approx-\\eta\\Gamma_k\\) provides a simple way to connect task gradients with changes in cross-modal alignment. Weaknesses"
+    },
+    {
+     "n": 3,
+     "text": "The practical meaning of the alignment metric is somewhat limited by the experimental setting. The main LLaVA experiments use blank images and very small training sets specifically to isolate representation geometry. This is useful diagnostically, but it leaves unclear whether minimizing the proposed alignment energy translates into better downstream multimodal performance."
+    },
+    {
+     "n": 4,
+     "text": "Given the strong cross-architecture generalization claim, validation on only LLaVA-1.5 and Qwen2-VL is limited, particularly because LLaVA-1.5 is now a relatively dated VLM architecture. Testing at least one more recent model family would provide substantially stronger evidence that the observed gradient structure is transferable rather than specific to these architectures."
+    },
+    {
+     "n": 5,
+     "text": "However, the proof contains an important gap. In the appendix, the manuscript states that block decomposability implies that the “most general first-order functional” must be bilinear, \\(S(x,y)=x^\\top Ay\\), but block additivity alone does not imply bilinearity; quantities such as \\(\\|x\\|^2\\) are also block-additive."
+    }
+   ]
+  },
+  "R2": {
+   "n_items": 5,
+   "max_n": 5,
+   "missing": [],
+   "items": [
+    {
+     "n": 1,
+     "text": "Zero-shot definition is unclear and inconsistent. The abstract claims no target-model gradient access, but the appendix describes computing Γ on LLaVA. Please clarify what is truly zero-shot versus post-hoc validation."
+    },
+    {
+     "n": 2,
+     "text": "The exponential allocation rule is not experimentally validated. The \"Theory\" group uses uniform r=4, not block-wise non-uniform allocation based on Γ. Please either provide a true block-wise Γ-guided allocation experiment or soften the claim."
+    },
+    {
+     "n": 3,
+     "text": "Only alignment energy ΔE is reported. Please add at least a small downstream evaluation (e.g., VQA, captioning) or state that \"optimal\" refers only to alignment energy."
+    },
+    {
+     "n": 4,
+     "text": "Table IV is qualitative only. A comparison with at least one or two methods (e.g., AdaLoRA, HALoRA) under the same budget is needed."
+    },
+    {
+     "n": 5,
+     "text": "The theorem assumes orthogonal reparameterization and block additivity, but LoRA's A/B decomposition is not orthogonal and blocks may interact. Please clarify the scope and limitations."
+    }
+   ]
+  },
+  "R3": {
+   "n_items": 23,
+   "max_n": 23,
+   "missing": [],
+   "items": [
+    {
+     "n": 1,
+     "text": "Could the authors clarify more rigorously why requirements R1–R5 are necessary conditions for a PEFT allocation statistic rather than assumptions imposed by the proposed framework?"
+    },
+    {
+     "n": 2,
+     "text": "In Theorem III.1, how is the restriction to the orthogonal subgroup of reparameterizations justified, given that practical LoRA uses non-orthogonal \\(A/B\\) factorization?"
+    },
+    {
+     "n": 3,
+     "text": "Could the authors provide a more rigorous treatment of the claim that the Representation Theorem establishes uniqueness, particularly under practical non- orthogonal PEFT parameterizations?"
+    },
+    {
+     "n": 4,
+     "text": "The definition of \\(\\Gamma_k\\) uses \\(E_{\\text{batch}}[\\nabla_{M_k}L]\\); how is this expectation estimated in practice, and how sensitive is \\(\\Gamma_k\\) to the choice and size of the reference batch?"
+    },
+    {
+     "n": 5,
+     "text": "The first-order approximation assumes that the second-order curvature term is negligible; could the authors provide direct empirical evidence on LLaVA and Qwen2-VL that the Hessian contribution is indeed sufficiently smaller than the \\(\\Gamma\\) term?"
+    },
+    {
+     "n": 6,
+     "text": "The paper assumes that PEFT operates in a small-perturbation regime, but the experiments include ranks as high as 64 and even representation collapse; does the first- order GFAP formulation remain theoretically valid in these high-rank regimes?"
+    },
+    {
+     "n": 7,
+     "text": "How is the entropy-regularization parameter \\(\\beta\\) selected, and why is the reported \\(\\beta=0.137\\) appropriate for zero-shot cross-architecture transfer without target-model calibration? 3"
+    },
+    {
+     "n": 8,
+     "text": "The exponential allocation formula depends on \\(|\\Gamma_k|\\); could the authors explain why the absolute value is used for allocation when the sign of \\(\\Gamma_k\\) has a direct interpretation as alignment-improving or alignment-damaging?"
+    },
+    {
+     "n": 9,
+     "text": "Could the authors provide a quantitative comparison between the proposed GFAP allocation and established methods such as AdaLoRA, HALoRA, IGU-LoRA, ShapLoRA, and NTK-based allocation under the same parameter budget and training conditions?"
+    },
+    {
+     "n": 10,
+     "text": "The claimed zero-shot transfer is primarily demonstrated from CLIP to LLaVA; how can the authors establish that the observed transfer is genuinely cross-architecture rather than arising from shared pretrained components or related vision-language representations?"
+    },
+    {
+     "n": 11,
+     "text": "Since the paper reports that Qwen2-VL exhibits substantially different behavior from LLaVA, does this result challenge the claim that \\(|\\Gamma_k|\\) ordering is architecture- transferable, and under what conditions does the proposed partial-order preservation actually hold?"
+    },
+    {
+     "n": 12,
+     "text": "Could the authors provide the complete block-wise \\(\\Gamma_k\\) values for CLIP, LLaVA, and Qwen2-VL together with their corresponding optimal ranks, rather than relying mainly on qualitative ordering?"
+    },
+    {
+     "n": 13,
+     "text": "Why are blank images used as the visual inputs in the main experiments, and could this experimental choice substantially simplify the cross-modal alignment problem compared with realistic multimodal inputs?"
+    },
+    {
+     "n": 14,
+     "text": "Could the authors repeat the key experiments using real image–text pairs to determine whether the observed rank transition and \\(\\Gamma\\)-based allocation persist when meaningful visual information is present?"
+    },
+    {
+     "n": 15,
+     "text": "The alignment energy is defined as the mean squared distance between visual and language hidden states; what evidence demonstrates that this quantity is sufficiently correlated with actual downstream multimodal task performance?"
+    },
+    {
+     "n": 16,
+     "text": "Could the authors report downstream task metrics such as instruction-following, visual question answering, or retrieval performance to establish that minimizing alignment degradation also improves practical model performance?"
+    },
+    {
+     "n": 17,
+     "text": "The reported critical rank \\(r_c\\in[5,6]\\) is based on only three seeds per rank; is this sample size sufficient to support such a sharp phase-transition claim, particularly given the reported environmental sensitivity?"
+    },
+    {
+     "n": 18,
+     "text": "The manuscript acknowledges that an earlier software environment produced different signs for \\(r\\in[5,8]\\); could the authors provide a systematic reproducibility analysis across software versions, random seeds, CUDA/PyTorch versions, and hardware environments?"
+    },
+    {
+     "n": 19,
+     "text": "At \\(r=5\\), the reported confidence interval spans both positive and negative values, while \\(r=6\\) remains statistically uncertain in the LLaVA three-seed analysis; can the authors justify describing the transition as a sharp and statistically established phase transition?"
+    },
+    {
+     "n": 20,
+     "text": "The claim that \\(\\Gamma\\)-guided allocation reduces uncertainty by 30× is based on comparing standard deviations of 27 and 808; could the authors provide additional robust measures such as confidence intervals, median absolute deviation, worst-case performance, and statistical significance for this comparison?"
+    },
+    {
+     "n": 21,
+     "text": "In the counterfactual experiment, the theory group uses \\(r=4\\), whereas the random group samples from \\(\\{4,16,32,64\\}\\); could the authors clarify how the comparison controls for the substantially different rank distributions and ensures an equivalent effective parameter budget?"
+    },
+    {
+     "n": 22,
+     "text": "The paper interprets NaN outputs at high rank as genuine representational collapse; could the authors provide additional diagnostics of the model weights, activations, gradients, or loss trajectories to distinguish representational collapse from numerical 4 instability associated with quantization, optimizer settings, or mixed precision?"
+    },
+    {
+     "n": 23,
+     "text": "The paper uses only Alpaca and ShareGPT for dataset validation; could the authors evaluate the proposed framework on a substantially different multimodal dataset, such as visual question answering or image-captioning data, to establish that the phase transition is not specific to instruction-tuning distributions?"
+    }
+   ]
+  }
+ }
+}

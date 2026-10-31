@@ -1,0 +1,160 @@
+{
+ "meta": {
+  "script": "tools/_p1500_p3_env_matrix.py",
+  "task": "R1 R3.18 environment/seed matrix",
+  "hardware": "single RTX 4060 Laptop 8GB",
+  "cuda": null,
+  "torch": null,
+  "torch_error": "ModuleNotFoundError(\"No module named 'torch'\")"
+ },
+ "seeds": {
+  "5": {
+   "123": 8.0,
+   "42": 0.0,
+   "789": -36.5,
+   "999": -27.0
+  },
+  "6": {
+   "123": 25.5,
+   "42": 96.5,
+   "789": 32.0,
+   "999": 62.0
+  }
+ },
+ "software_pairs": {
+  "verify_r5_s42.json": {
+   "delta_E": -39.5,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_b1_partial.json": {
+   "delta_E": null,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_b2_partial.json": {
+   "delta_E": null,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_e10.json": {
+   "delta_E": NaN,
+   "note": "10-epoch protocol: E diverges beyond epoch 7 and training collapses (NaN loss) at epochs 9-10; the first 7 epochs trace the alignment-rebound/damage mechanism",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr0.001_nw_float1_sgd.json": {
+   "delta_E": 677.0,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr2e-05_nw.json": {
+   "delta_E": -6.0,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_bfloat_adamw.json": {
+   "delta_E": -25.0,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_cap_e3.json": {
+   "delta_E": -83.5,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_e10_bcuniform.json": {
+   "delta_E": NaN,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a32.json": {
+   "delta_E": 1621.0,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json": {
+   "delta_E": -73.5,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json": {
+   "delta_E": -49.5,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_gmimage.json": {
+   "delta_E": -76.5,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_gmtext.json": {
+   "delta_E": -3.5,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_lang.json": {
+   "delta_E": -34.5,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_tq.json": {
+   "delta_E": -15.0,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_cap_e3.json": {
+   "delta_E": 66.5,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_e3.json": {
+   "delta_E": 83.0,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_lr5e-05_nw_float1_sgd.json": {
+   "delta_E": -10.5,
+   "note": "",
+   "torch": null,
+   "transformers": null
+  },
+  "verify_r5_s42_tf457.json": {
+   "delta_E": 0.0,
+   "note": "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); identical trajectory shape (down-down-up), net delta_E 0.0 vs -18.0 reference (0.5",
+   "torch": null,
+   "transformers": null
+  }
+ },
+ "spread": {
+  "5": {
+   "n": 4,
+   "mean": -13.875,
+   "min": -36.5,
+   "max": 8.0
+  },
+  "6": {
+   "n": 4,
+   "mean": 54.0,
+   "min": 25.5,
+   "max": 96.5
+  }
+ }
+}

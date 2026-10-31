@@ -1,0 +1,81 @@
+{
+ "dataset": "rsicd",
+ "arms": [
+  {
+   "arm": "human",
+   "dataset": "rsicd",
+   "n_train": 7997,
+   "n_test": 200,
+   "cider_lite": 0.077,
+   "bleu4": 0.0693,
+   "cider_vs_human": 0.0758,
+   "bleu4_vs_human": 0.0693,
+   "distinct4": 0.264,
+   "template_token_share": 0.3856,
+   "sample_captions": [
+    "some buildings and many green trees are in a medium residential area",
+    "many buildings and some green trees are located on both sides of a railway station",
+    "a playground with three basketball fields in it is surrounded by many green trees and several buildings",
+    "a bridge is on a river with several buildings on two sides of it",
+    "a large number of trees were planted around the parking lot"
+   ]
+  },
+  {
+   "arm": "templated",
+   "dataset": "rsicd",
+   "n_train": 7998,
+   "n_test": 200,
+   "cider_lite": 0.2275,
+   "bleu4": 0.6681,
+   "cider_vs_human": 0.0365,
+   "bleu4_vs_human": 0.0,
+   "distinct4": 0.0402,
+   "template_token_share": 0.6295,
+   "sample_captions": [
+    "the image is a remote sensing view with 2 kinds of objects desert sand",
+    "the image is a remote sensing view with 4 kinds of objects building field playground tree",
+    "the image is a remote sensing view with 3 kinds of objects building square tree",
+    "the image is a remote sensing view with 2 kinds of objects forest tree",
+    "the image is a remote sensing view with 4 kinds of objects building field playground tree"
+   ]
+  },
+  {
+   "arm": "segmented",
+   "dataset": "rsicd",
+   "n_train": 8000,
+   "n_test": 200,
+   "cider_lite": 0.3141,
+   "bleu4": 0.7923,
+   "cider_vs_human": 0.0405,
+   "bleu4_vs_human": 0.0,
+   "distinct4": 0.0633,
+   "template_token_share": 0.4926,
+   "sample_captions": [
+    "objects visible in a 224 by 224 pixel scene building 10 commercial 1 tree 1",
+    "objects visible in a 224 by 224 pixel scene car 10 parking 1",
+    "objects visible in a 224 by 224 pixel scene building 10 field 1 playground 1 tree 1",
+    "objects visible in a 224 by 224 pixel scene building 1 tree 1",
+    "objects visible in a 224 by 224 pixel scene car 10 parking 1 tree 1"
+   ]
+  },
+  {
+   "arm": "metadata",
+   "dataset": "rsicd",
+   "n_train": 8000,
+   "n_test": 200,
+   "cider_lite": 0.3681,
+   "bleu4": 0.8688,
+   "cider_vs_human": 0.0401,
+   "bleu4_vs_human": 0.0,
+   "distinct4": 0.0438,
+   "template_token_share": 0.6005,
+   "sample_captions": [
+    "remote sensing image classes baseballfield image size 224 by 224 pixels aspect ratio 1 00 mean brightness 80 of 255",
+    "remote sensing image image size 224 by 224 pixels aspect ratio 1 00 mean brightness 80 of 255",
+    "remote sensing image classes pond image size 224 by 224 pixels aspect ratio 1 00 mean brightness 80 of 255",
+    "remote sensing image image size 224 by 224 pixels aspect ratio 1 00 mean brightness 80 of 255",
+    "remote sensing image classes stadium image size 224 by 224 pixels aspect ratio 1 00 mean brightness 115 of 255"
+   ]
+  }
+ ]
+}

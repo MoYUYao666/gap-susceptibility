@@ -1,0 +1,146 @@
+{
+ "meta": {
+  "script": "tools/a1_h_e4_seed.py",
+  "experiment": "A1 hardening item 2 -- seed spread for the non-Flickr30k LoRA checkpoints",
+  "derived_from": "tools/a1_rr_e4_train.py (verbatim trainer/evaluator; the ONLY change is that checkpoints are written to outputs/a1_rr_ckpt/seed<seed>/<dataset>/ so the pre-existing seed-42 checkpoints are preserved)",
+  "model": "openai/clip-vit-base-patch32",
+  "dataset": "dtd",
+  "epochs": 10,
+  "seed": 44,
+  "batch": 64,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "lora": {
+   "rank": 8,
+   "alpha": 16.0,
+   "vision": true,
+   "text": true,
+   "trainable_selection": "named_parameters() with requires_grad and 'lora_' in name"
+  },
+  "n_trainable_lora_params": 491520,
+  "n_total_params": 151768833,
+  "n_steps": 300,
+  "data": {
+   "source": "dtd train split via torchvision (root=\"data\")",
+   "split": "train",
+   "n_pairs_total": 1880,
+   "n_classes": 47,
+   "sampling": "uniform without replacement over images, seed 44",
+   "caption_construction": "'a photo of a {class name}' (class-name protocol)",
+   "dataset": "dtd",
+   "n_pairs_used": 1880,
+   "n_unique_images": 1880,
+   "ckpt_dir": "outputs/a1_rr_ckpt\\seed44\\dtd"
+  },
+  "eval_protocol": "tools/clip_a1_tau_trajectory.py evaluator; frozen top-5 sets; checkpoint scores image x text with its OWN text tower",
+  "checkpoint": "outputs/a1_rr_ckpt/seed44/dtd/epoch10.pt",
+  "shard_sig": "d13718e47e9e41c2",
+  "n_tau_images": 5000,
+  "placeholder_class_index": 1000,
+  "runtime_s": null,
+  "_recovery_note": "This meta block was reconstructed by hand from the seed-42 DTD run (outputs/a1_rr_e4_dtd.json) plus the seed-44 run-log line 'train pairs: {... seed 44 ... ckpt_dir outputs/a1_rr_ckpt\\\\seed44\\\\dtd}', because the machine was rebooted after training finished and the evaluation step never wrote a JSON. For DTD the training sampler draws the ENTIRE 1 880-image train split for every seed, so the data block is seed-independent apart from the shuffle order; every evaluated quantity is measured fresh by tools/a1_h_e4_seed.py --seed-json, which overwrites meta.seed and meta.checkpoint from its own arguments.",
+  "seed_json_source": "outputs/a1_h_recover_spec_dtd_seed44.json",
+  "recovered_evaluation": {
+   "reason": "the training run completed and wrote its epoch checkpoints, but the evaluation step was lost (process killed / machine rebooted)",
+   "script": "tools/a1_h_e4_seed.py --seed-json",
+   "rewritten_from": "tools/a1_h_e4_seed.py",
+   "note": "protocol identical to the original run: same evaluator, same frozen references, same 5000-image sample, same 50k pass; only the JSON is rewritten"
+  }
+ },
+ "frozen": {
+  "tag": "frozen",
+  "CG_flickr_val": 0.815732,
+  "image_only": {
+   "legacy1001": {
+    "top1_5k": 59.1,
+    "tau_by_k": {
+     "1": null,
+     "3": 1.0,
+     "5": 1.0,
+     "10": 1.0,
+     "20": 1.0
+    }
+   },
+   "clean1000": {
+    "top1_5k": 59.1,
+    "tau_by_k": {
+     "1": null,
+     "3": 1.0,
+     "5": 1.0,
+     "10": 1.0,
+     "20": 1.0
+    }
+   }
+  }
+ },
+ "history": [
+  {
+   "epoch": 1,
+   "train_loss": 2.0994
+  },
+  {
+   "epoch": 2,
+   "train_loss": 1.4367
+  },
+  {
+   "epoch": 3,
+   "train_loss": 1.1856
+  },
+  {
+   "epoch": 4,
+   "train_loss": 1.0287
+  },
+  {
+   "epoch": 5,
+   "train_loss": 0.9908
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.8985
+  },
+  {
+   "epoch": 7,
+   "train_loss": 0.8286
+  },
+  {
+   "epoch": 8,
+   "train_loss": 0.8082
+  },
+  {
+   "epoch": 9,
+   "train_loss": 0.8119
+  },
+  {
+   "epoch": 10,
+   "train_loss": 0.8081
+  }
+ ],
+ "result": {
+  "tag": "dtd_r8_both",
+  "image_only": {
+   "legacy1001": {
+    "top1_5k": 53.5,
+    "tau_by_k": {
+     "1": null,
+     "3": 0.545733,
+     "5": 0.514949,
+     "10": 0.483141,
+     "20": 0.462648
+    }
+   },
+   "clean1000": {
+    "top1_5k": 53.5,
+    "tau_by_k": {
+     "1": null,
+     "3": 0.545867,
+     "5": 0.514989,
+     "10": 0.483095,
+     "20": 0.462783
+    }
+   }
+  },
+  "CG_flickr_val": 0.833206,
+  "top1_50k_legacy1001": 53.92,
+  "top1_50k_clean1000": 53.922
+ }
+}

@@ -1,0 +1,449 @@
+{
+ "meta": {
+  "script": "tools/_p1640_p3_second_downstream.py",
+  "job": "second downstream task -- POPE",
+  "task": "P3 second downstream task: POPE object-hallucination probing, paired by question, with the metric conventions of the archived VQA-RAD check",
+  "dataset": {
+   "id": "lmms-lab-encoder/POPE",
+   "alias": "lmms-lab/POPE",
+   "revision": "4db1276663dfa5eb8ad16a52d24c31a09e470896",
+   "config": "Full",
+   "split": "random",
+   "n_questions": 3000,
+   "paper": "Li et al., Evaluating Object Hallucination in Large Vision-Language Models, arXiv:2305.10355; original code RUCAIBox/POPE",
+   "prepared_parquet": "paper3/test-pope-random.parquet",
+   "prepared_parquet_sha256": "66faa5e6de3be2374be68b8794a14cf660ff14670575ea47b9b77da8b43a71d4"
+  },
+  "n_boot": 20000,
+  "rng_seed": 20261024,
+  "alpha": 0.05,
+  "declared_margins": {
+   "accuracy": 0.05,
+   "token_f1": 0.05,
+   "pope_f1": 0.05
+  },
+  "margin_rule": "0.05 on every metric, pre-declared and carried over unchanged from the 451-question VQA-RAD analysis.  A 3000-question arm has a binomial standard error of ~0.009 in accuracy, so this evaluation set is not at its resolution limit; the margin is not re-fitted, and the smallest equivalent margin is reported alongside every contrast.",
+  "method": "paired (by question) percentile bootstrap of the difference plus TOST; the resampling rule and the interval definitions are tools/_p1595_p3_rank_separation.py vqa_contrast()",
+  "field_names_shared_with_the_vqa_archives": [
+   "accuracy",
+   "token_f1",
+   "yes_no_accuracy",
+   "refs",
+   "hypotheses",
+   "relaxed_accuracy"
+  ],
+  "archives": [
+   "outputs/analysis/p3_second_downstream_base.json",
+   "outputs/analysis/p3_second_downstream_5.json",
+   "outputs/analysis/p3_second_downstream_6.json"
+  ],
+  "deterministic": true,
+  "note": "no wall-clock field is written, so re-running this aggregation on unchanged inputs reproduces this file byte for byte"
+ },
+ "arms": {
+  "base": {
+   "rank": null,
+   "n": 3000,
+   "accuracy": 0.6256666666666667,
+   "token_f1": 0.8926666666666667,
+   "pope_f1": 0.8849177984274482,
+   "yes_ratio": 0.43266666666666664,
+   "archive": "outputs/analysis/p3_second_downstream_base.json",
+   "adapter_dir": null,
+   "adapter_source": "none",
+   "adapter_sha256": null
+  },
+  "5": {
+   "rank": 5,
+   "n": 3000,
+   "accuracy": 0.8716666666666667,
+   "token_f1": 0.8716666666666667,
+   "pope_f1": 0.8593350383631714,
+   "yes_ratio": 0.41233333333333333,
+   "archive": "outputs/analysis/p3_second_downstream_5.json",
+   "adapter_dir": "outputs/p3_vqa_adapters/r5_step",
+   "adapter_source": "reused_from_archived_round",
+   "adapter_sha256": "1615d21ecf2d6200effa9b1c180d1256934d22d3cbb16f6b8695ea902b64767b"
+  },
+  "6": {
+   "rank": 6,
+   "n": 3000,
+   "accuracy": 0.8396666666666667,
+   "token_f1": 0.846,
+   "pope_f1": 0.8236641221374046,
+   "yes_ratio": 0.37333333333333335,
+   "archive": "outputs/analysis/p3_second_downstream_6.json",
+   "adapter_dir": "outputs/p3_vqa_adapters/r6_step",
+   "adapter_source": "reused_from_archived_round",
+   "adapter_sha256": "5f681f3f80ee0fa2db1626b98f64113554305fd133f41a3867ebf74c2affee42"
+  }
+ },
+ "refs_identical_across_arms": true,
+ "refs_sha256": {
+  "base": "8500aa46cde5744ac5020f6879ea8b0e673f177a835b01e66f7a879b905af849",
+  "5": "8500aa46cde5744ac5020f6879ea8b0e673f177a835b01e66f7a879b905af849",
+  "6": "8500aa46cde5744ac5020f6879ea8b0e673f177a835b01e66f7a879b905af849"
+ },
+ "contrasts": {
+  "base_minus_5": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": -0.246,
+    "boot_mean": -0.24596493333333333,
+    "boot_se": 0.008484780682927767,
+    "ci95": [
+     -0.2626666666666667,
+     -0.22965833333333396
+    ],
+    "ci90": [
+     -0.26,
+     -0.23199999999999998
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.26
+   },
+   "token_f1": {
+    "n_boot": 20000,
+    "delta": 0.02100000000000002,
+    "boot_mean": 0.021084550000000007,
+    "boot_se": 0.004644216446451085,
+    "ci95": [
+     0.01200000000000001,
+     0.030000000000000027
+    ],
+    "ci90": [
+     0.01333333333333342,
+     0.02866666666666673
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 0.0,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.02866666666666673
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.025582760064276844,
+    "boot_mean": 0.025683292291958856,
+    "boot_se": 0.005397415913024208,
+    "ci95": [
+     0.015219617938250812,
+     0.0363730526634445
+    ],
+    "ci90": [
+     0.016845784611482218,
+     0.034586939765831964
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 0.0,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.034586939765831964,
+    "arm_values": {
+     "a": 0.8849177984274482,
+     "b": 0.8593350383631714
+    }
+   }
+  },
+  "base_minus_6": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": -0.21399999999999997,
+    "boot_mean": -0.2139506166666667,
+    "boot_se": 0.008713514203528906,
+    "ci95": [
+     -0.23099999999999998,
+     -0.19699999999999995
+    ],
+    "ci90": [
+     -0.22835000000000003,
+     -0.19966666666666666
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.22835000000000003
+   },
+   "token_f1": {
+    "n_boot": 20000,
+    "delta": 0.046666666666666745,
+    "boot_mean": 0.04670195,
+    "boot_se": 0.005550047118297052,
+    "ci95": [
+     0.03599999999999992,
+     0.057666666666666644
+    ],
+    "ci90": [
+     0.037666666666666626,
+     0.05566666666666675
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.27615,
+    "tost_p": 0.27615,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.05566666666666675
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.061253676290043635,
+    "boot_mean": 0.06130840916008624,
+    "boot_se": 0.006780890018546222,
+    "ci95": [
+     0.048066039313167275,
+     0.0747014215799793
+    ],
+    "ci90": [
+     0.05023411741165363,
+     0.07247324965540317
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.95355,
+    "tost_p": 0.95355,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.07247324965540317,
+    "arm_values": {
+     "a": 0.8849177984274482,
+     "b": 0.8236641221374046
+    }
+   }
+  },
+  "5_minus_6": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": 0.03200000000000003,
+    "boot_mean": 0.03204424999999999,
+    "boot_se": 0.004680859217623015,
+    "ci95": [
+     0.02299999999999991,
+     0.04133333333333333
+    ],
+    "ci90": [
+     0.024333333333333318,
+     0.03966666666666674
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0002,
+    "tost_p": 0.0002,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.03966666666666674
+   },
+   "token_f1": {
+    "n_boot": 20000,
+    "delta": 0.025666666666666726,
+    "boot_mean": 0.02570954999999999,
+    "boot_se": 0.004471776899279732,
+    "ci95": [
+     0.017000000000000015,
+     0.03433333333333333
+    ],
+    "ci90": [
+     0.018333333333333313,
+     0.03300000000000003
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 0.0,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.03300000000000003
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.03567091622576679,
+    "boot_mean": 0.03573941146187624,
+    "boot_se": 0.005499307969496856,
+    "ci95": [
+     0.0250744259356859,
+     0.046487168558517436
+    ],
+    "ci90": [
+     0.026708791585522546,
+     0.044773645166584164
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0057,
+    "tost_p": 0.0057,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.044773645166584164,
+    "arm_values": {
+     "a": 0.8593350383631714,
+     "b": 0.8236641221374046
+    }
+   }
+  }
+ },
+ "smallest_equivalent_margin": {
+  "base_minus_5/accuracy": 0.26,
+  "base_minus_5/token_f1": 0.02866666666666673,
+  "base_minus_5/pope_f1": 0.034586939765831964,
+  "base_minus_6/accuracy": 0.22835000000000003,
+  "base_minus_6/token_f1": 0.05566666666666675,
+  "base_minus_6/pope_f1": 0.07247324965540317,
+  "5_minus_6/accuracy": 0.03966666666666674,
+  "5_minus_6/token_f1": 0.03300000000000003,
+  "5_minus_6/pope_f1": 0.044773645166584164
+ },
+ "claim_verdict": {
+  "second_task_verdict": "task_dependent_effect",
+  "base_minus_r5": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": -0.246,
+    "boot_mean": -0.24596493333333333,
+    "boot_se": 0.008484780682927767,
+    "ci95": [
+     -0.2626666666666667,
+     -0.22965833333333396
+    ],
+    "ci90": [
+     -0.26,
+     -0.23199999999999998
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.26
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.025582760064276844,
+    "boot_mean": 0.025683292291958856,
+    "boot_se": 0.005397415913024208,
+    "ci95": [
+     0.015219617938250812,
+     0.0363730526634445
+    ],
+    "ci90": [
+     0.016845784611482218,
+     0.034586939765831964
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 0.0,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.034586939765831964,
+    "arm_values": {
+     "a": 0.8849177984274482,
+     "b": 0.8593350383631714
+    }
+   }
+  },
+  "base_minus_r6": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": -0.21399999999999997,
+    "boot_mean": -0.2139506166666667,
+    "boot_se": 0.008713514203528906,
+    "ci95": [
+     -0.23099999999999998,
+     -0.19699999999999995
+    ],
+    "ci90": [
+     -0.22835000000000003,
+     -0.19966666666666666
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 1.0,
+    "tost_p_upper": 0.0,
+    "tost_p": 1.0,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.22835000000000003
+   },
+   "pope_f1": {
+    "n_boot": 20000,
+    "delta": 0.061253676290043635,
+    "boot_mean": 0.06130840916008624,
+    "boot_se": 0.006780890018546222,
+    "ci95": [
+     0.048066039313167275,
+     0.0747014215799793
+    ],
+    "ci90": [
+     0.05023411741165363,
+     0.07247324965540317
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.95355,
+    "tost_p": 0.95355,
+    "equivalent_at_declared_margin": false,
+    "min_equivalent_margin": 0.07247324965540317,
+    "arm_values": {
+     "a": 0.8849177984274482,
+     "b": 0.8236641221374046
+    }
+   }
+  },
+  "r5_minus_r6": {
+   "accuracy": {
+    "n_boot": 20000,
+    "delta": 0.03200000000000003,
+    "boot_mean": 0.03204424999999999,
+    "boot_se": 0.004680859217623015,
+    "ci95": [
+     0.02299999999999991,
+     0.04133333333333333
+    ],
+    "ci90": [
+     0.024333333333333318,
+     0.03966666666666674
+    ],
+    "excludes_zero_95": true,
+    "tost_margin": 0.05,
+    "tost_p_lower": 0.0,
+    "tost_p_upper": 0.0002,
+    "tost_p": 0.0002,
+    "equivalent_at_declared_margin": true,
+    "min_equivalent_margin": 0.03966666666666674
+   }
+  },
+  "rule": "supports_the_adapters = both adapters are equivalent to or better than the base model on accuracy; task_dependent_effect = an adapter loses more than the margin on accuracy; inconclusive = neither statement holds"
+ },
+ "acceptance": {
+  "three_arms_present": true,
+  "records_per_arm": {
+   "base": 3000,
+   "5": 3000,
+   "6": 3000
+  },
+  "equal_question_counts": true,
+  "refs_byte_identical_across_arms": true,
+  "refs_match_prepared_parquet_order": true,
+  "adapters_reused_not_trained": true,
+  "contrasts_computed": true,
+  "every_contrast_reports_a_minimum_equivalent_margin": true
+ },
+ "caveat_sentences": {
+  "two_tasks": "The downstream check is repeated on a second, independent task (POPE, config Full/split random, 3000 held-out questions, the adapters reused unchanged), so the downstream evidence rests on two task families rather than one.",
+  "task_dependent": "The downstream check on a second task (POPE) does not reproduce the VQA-RAD direction: the adapters lose accuracy or yes-class F1 beyond the pre-declared margin, so the downstream effect is task-dependent.",
+  "not_run": "The downstream check remains a single task (VQA-RAD); POPE was prepared (tools/_p1640_p3_second_downstream.py) but not run."
+ }
+}

@@ -1,0 +1,137 @@
+{
+ "source": "outputs/a1_h_offset.json:checkpoints",
+ "field_map": {
+  "tau": "summary_tau5",
+  "margin": "geometry.margin_top1_mean",
+  "cg": "summary_CG_flickr",
+  "abs_dx": "displacement.mean_abs_dx",
+  "text_dx": "displacement.mean_abs_text_dx",
+  "cos_gap": "displacement.cos_shift_vs_gap_dir",
+  "spread": "geometry.within_class_spread_mean",
+  "jaccard": "measured.top5_set_jaccard_vs_frozen"
+ },
+ "datasets_within": [
+  "coco",
+  "dtd",
+  "flickr30k",
+  "food101"
+ ],
+ "within_spearman": {
+  "tau": {
+   "per_dataset": {
+    "coco": -0.5,
+    "dtd": 1.0,
+    "flickr30k": -1.0,
+    "food101": -0.5
+   },
+   "fisher_mean": -0.2679
+  },
+  "margin": {
+   "per_dataset": {
+    "coco": 1.0,
+    "dtd": 0.5,
+    "flickr30k": 0.5,
+    "food101": 0.5
+   },
+   "fisher_mean": 0.8769
+  },
+  "cg": {
+   "per_dataset": {
+    "coco": 1.0,
+    "dtd": 0.5,
+    "flickr30k": 1.0,
+    "food101": 0.5
+   },
+   "fisher_mean": 0.9745
+  },
+  "abs_dx": {
+   "per_dataset": {
+    "coco": -0.5,
+    "dtd": -1.0,
+    "flickr30k": 1.0,
+    "food101": 0.5
+   },
+   "fisher_mean": 0.0
+  },
+  "text_dx": {
+   "per_dataset": {
+    "coco": 0.5,
+    "dtd": -0.5,
+    "flickr30k": -0.5,
+    "food101": 0.5
+   },
+   "fisher_mean": 0.0
+  },
+  "cos_gap": {
+   "per_dataset": {
+    "coco": -0.5,
+    "dtd": -1.0,
+    "flickr30k": -0.5,
+    "food101": 0.5
+   },
+   "fisher_mean": -0.7959
+  },
+  "spread": {
+   "per_dataset": {
+    "coco": -0.5,
+    "dtd": 1.0,
+    "flickr30k": -0.5,
+    "food101": 0.5
+   },
+   "fisher_mean": 0.6711
+  },
+  "jaccard": {
+   "per_dataset": {
+    "coco": -0.5,
+    "dtd": 0.5,
+    "flickr30k": -1.0,
+    "food101": -0.5
+   },
+   "fisher_mean": -0.7959
+  }
+ },
+ "pooled": {
+  "tau": {
+   "pearson": 0.6004,
+   "spearman": 0.7527
+  },
+  "margin": {
+   "pearson": 0.9672,
+   "spearman": 0.9011
+  },
+  "cg": {
+   "pearson": -0.0268,
+   "spearman": 0.2857
+  },
+  "abs_dx": {
+   "pearson": -0.6395,
+   "spearman": -0.9011
+  },
+  "text_dx": {
+   "pearson": -0.5958,
+   "spearman": -0.5989
+  },
+  "cos_gap": {
+   "pearson": -0.1374,
+   "spearman": 0.1429
+  },
+  "spread": {
+   "pearson": 0.0747,
+   "spearman": 0.1923
+  },
+  "jaccard": {
+   "pearson": 0.6343,
+   "spearman": 0.6264
+  }
+ },
+ "ranking": [
+  "cg",
+  "margin",
+  "spread",
+  "abs_dx",
+  "text_dx",
+  "tau",
+  "cos_gap",
+  "jaccard"
+ ]
+}

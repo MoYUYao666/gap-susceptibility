@@ -1,0 +1,185 @@
+{
+ "meta": {
+  "dataset": "UATD (Xie et al. 2022, multibeam FLS)",
+  "n_eval": 1600,
+  "n_train": 7600,
+  "classes": [
+   "cube",
+   "ball",
+   "plane",
+   "human body",
+   "rov",
+   "tyre",
+   "cylinder",
+   "square cage",
+   "circle cage",
+   "metal bucket"
+  ],
+  "note": "image-level label = class with most instances (44.8% multi-class images)"
+ },
+ "frozen": {
+  "gap_norm": 1.1105,
+  "sigma_m": 0.0176,
+  "mean_m": 0.5053,
+  "top1_0": 15.438,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 20.938,
+    "tau_meas": 0.3592,
+    "tau_pred": 0.3592,
+    "CG": 1.4546
+   },
+   {
+    "lambda": -0.5,
+    "top1": 20.688,
+    "tau_meas": 0.491,
+    "tau_pred": 0.491,
+    "CG": 1.3469
+   },
+   {
+    "lambda": 0.0,
+    "top1": 15.438,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.1105
+   },
+   {
+    "lambda": 0.5,
+    "top1": 5.375,
+    "tau_meas": 0.325,
+    "tau_pred": 0.325,
+    "CG": 0.5986
+   },
+   {
+    "lambda": 1.0,
+    "top1": 6.688,
+    "tau_meas": 0.1171,
+    "tau_pred": 0.1171,
+    "CG": 0.055
+   },
+   {
+    "lambda": 2.0,
+    "top1": 12.562,
+    "tau_meas": -0.0286,
+    "tau_pred": -0.0286,
+    "CG": 0.5112
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.1706,
+    "CG": 0.0486
+   }
+  ]
+ },
+ "flickrft": {
+  "gap_norm": 1.1411,
+  "sigma_m": 0.0175,
+  "mean_m": 0.4784,
+  "top1_0": 9.812,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 9.938,
+    "tau_meas": 0.612,
+    "tau_pred": 0.612,
+    "CG": 1.4473
+   },
+   {
+    "lambda": -0.5,
+    "top1": 9.938,
+    "tau_meas": 0.6994,
+    "tau_pred": 0.6994,
+    "CG": 1.3521
+   },
+   {
+    "lambda": 0.0,
+    "top1": 9.812,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.1411
+   },
+   {
+    "lambda": 0.5,
+    "top1": 7.625,
+    "tau_meas": 0.447,
+    "tau_pred": 0.447,
+    "CG": 0.6467
+   },
+   {
+    "lambda": 1.0,
+    "top1": 13.5,
+    "tau_meas": -0.1202,
+    "tau_pred": -0.1202,
+    "CG": 0.1103
+   },
+   {
+    "lambda": 2.0,
+    "top1": 14.5,
+    "tau_meas": -0.2926,
+    "tau_pred": -0.2926,
+    "CG": 0.5377
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.0685,
+    "CG": 0.09
+   }
+  ]
+ },
+ "domainft": {
+  "gap_norm": 0.0079,
+  "sigma_m": 0.0002,
+  "mean_m": 0.0038,
+  "top1_0": 4.438,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 4.438,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 0.0158
+   },
+   {
+    "lambda": -0.5,
+    "top1": 4.438,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 0.0118
+   },
+   {
+    "lambda": 0.0,
+    "top1": 4.438,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 0.0079
+   },
+   {
+    "lambda": 0.5,
+    "top1": 4.438,
+    "tau_meas": 0.8186,
+    "tau_pred": 0.8095,
+    "CG": 0.0039
+   },
+   {
+    "lambda": 1.0,
+    "top1": 11.562,
+    "tau_meas": 0.1532,
+    "tau_pred": 0.1371,
+    "CG": 0.0
+   },
+   {
+    "lambda": 2.0,
+    "top1": 15.062,
+    "tau_meas": -0.9248,
+    "tau_pred": -0.9187,
+    "CG": 0.0079
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.1126,
+    "CG": 0.0
+   }
+  ]
+ }
+}

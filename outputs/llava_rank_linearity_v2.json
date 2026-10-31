@@ -1,0 +1,40 @@
+{
+ "inputs": {
+  "ranks": [
+   4,
+   5,
+   6,
+   7,
+   8,
+   16,
+   20
+  ],
+  "delta_E_means": [
+   -105.2,
+   -21.0,
+   62.3,
+   191.5,
+   311.3,
+   1571.5,
+   2859.7
+  ],
+  "source": "E2_results.json (Phase table means); |dE| used to avoid the sign crossing"
+ },
+ "linear_fit": {
+  "slope": 173.3,
+  "intercept": -902.2,
+  "R2": 0.9534,
+  "p": 0.00016231302499923112,
+  "n": 7
+ },
+ "log_rank_fit": {
+  "slope": 1680.1,
+  "R2": 0.8498,
+  "p": 0.0031423920736017848
+ },
+ "spearman": {
+  "rho": 0.893,
+  "p": 0.0068
+ },
+ "note": "supersedes outputs/llava_rank_linearity.json (that file reported slope 175.4 / R2 0.9608 / spearman 0.991 with undocumented inputs; 0.991 is also arithmetically impossible for n=7 without ties)"
+}

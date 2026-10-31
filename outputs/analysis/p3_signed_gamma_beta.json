@@ -1,0 +1,151 @@
+{
+ "meta": {
+  "script": "tools/_p1537_signed_gamma_beta.py",
+  "task": "B3 signed-Gamma / beta sensitivity",
+  "budget": 16,
+  "gamma": {
+   "vision": 0.29840957981529453,
+   "text_shallow": -0.25322052467769635,
+   "text_mid": -0.1958032660804747,
+   "text_deep": -0.13529416882859854
+  }
+ },
+ "abs_rule": {
+  "vision": 5,
+  "text_shallow": 5,
+  "text_mid": 4,
+  "text_deep": 2
+ },
+ "signed_rules": {
+  "0.05": {
+   "ranks": {
+    "vision": 4,
+    "text_shallow": 4,
+    "text_mid": 4,
+    "text_deep": 4
+   },
+   "weights": {
+    "vision": 0.951229424500714,
+    "text_shallow": 1.0433412987744237,
+    "text_mid": 1.0333519150809287,
+    "text_deep": 1.0229281057947286
+   }
+  },
+  "0.1": {
+   "ranks": {
+    "vision": 4,
+    "text_shallow": 4,
+    "text_mid": 4,
+    "text_deep": 4
+   },
+   "weights": {
+    "vision": 0.9048374180359595,
+    "text_shallow": 1.0885610657283011,
+    "text_mid": 1.0678161804014228,
+    "text_deep": 1.0463819096247913
+   }
+  },
+  "0.2": {
+   "ranks": {
+    "vision": 4,
+    "text_shallow": 4,
+    "text_mid": 4,
+    "text_deep": 4
+   },
+   "weights": {
+    "vision": 0.8187307530779818,
+    "text_shallow": 1.184965193819535,
+    "text_mid": 1.140231395127084,
+    "text_deep": 1.0949151007900249
+   }
+  },
+  "0.5": {
+   "ranks": {
+    "vision": 2,
+    "text_shallow": 5,
+    "text_mid": 5,
+    "text_deep": 4
+   },
+   "weights": {
+    "vision": 0.6065306597126334,
+    "text_shallow": 1.5284948677337074,
+    "text_mid": 1.3882973246350703,
+    "text_deep": 1.25444352370562
+   }
+  },
+  "1.0": {
+   "ranks": {
+    "vision": 1,
+    "text_shallow": 6,
+    "text_mid": 5,
+    "text_deep": 4
+   },
+   "weights": {
+    "vision": 0.36787944117144233,
+    "text_shallow": 2.3362965606882833,
+    "text_mid": 1.9273694615888937,
+    "text_deep": 1.5736285541669726
+   }
+  },
+  "2.0": {
+   "ranks": {
+    "vision": 1,
+    "text_shallow": 7,
+    "text_mid": 5,
+    "text_deep": 3
+   },
+   "weights": {
+    "vision": 0.1353352832366127,
+    "text_shallow": 5.458281619483902,
+    "text_mid": 3.714753041465462,
+    "text_deep": 2.4763068264896364
+   }
+  }
+ },
+ "beta_grid": [
+  0.05,
+  0.1,
+  0.2,
+  0.5,
+  1.0,
+  2.0
+ ],
+ "abs_beta_grid": {
+  "0.05": {
+   "vision": 4,
+   "text_shallow": 4,
+   "text_mid": 4,
+   "text_deep": 4
+  },
+  "0.1": {
+   "vision": 4,
+   "text_shallow": 4,
+   "text_mid": 4,
+   "text_deep": 4
+  },
+  "0.2": {
+   "vision": 4,
+   "text_shallow": 4,
+   "text_mid": 4,
+   "text_deep": 4
+  },
+  "0.5": {
+   "vision": 3,
+   "text_shallow": 4,
+   "text_mid": 4,
+   "text_deep": 5
+  },
+  "1.0": {
+   "vision": 3,
+   "text_shallow": 4,
+   "text_mid": 4,
+   "text_deep": 5
+  },
+  "2.0": {
+   "vision": 2,
+   "text_shallow": 3,
+   "text_mid": 4,
+   "text_deep": 7
+  }
+ }
+}

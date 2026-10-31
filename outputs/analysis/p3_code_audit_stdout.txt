@@ -1,0 +1,31 @@
+== adapters ==
+  outputs/p3_vqa_adapters/r5             r=5 alpha=10 bytes=23980728
+  outputs/p3_vqa_adapters/r6             r=6 alpha=12 bytes=28764904
+  outputs/p3_instr_adapters/r5           r=5 alpha=10 bytes=23980728
+  outputs/p3_instr_adapters/r6           r=6 alpha=12 bytes=28764904
+  outputs/p3_caption_adapters/r5         r=5 alpha=10 bytes=23980728
+  outputs/p3_caption_adapters/r6         r=6 alpha=12 bytes=28764904
+  outputs/p3_probe_adapter               r=8 alpha=16 bytes=38333216
+== qwen2.5 records ==
+  qwen_cf_uniform_rank5_seed123_q25_r5_s123.json   trainable=2304000 dE=384.0
+  qwen_cf_uniform_rank5_seed42_q25_r5_s42.json     trainable=2304000 dE=448.0
+  qwen_cf_uniform_rank5_seed789_q25_r5_s789.json   trainable=2304000 dE=-64.0
+  qwen_cf_uniform_rank6_seed123_q25_r6_s123.json   trainable=2764800 dE=-32.0
+  qwen_cf_uniform_rank6_seed42_q25_r6_s42.json     trainable=2764800 dE=432.0
+  qwen_cf_uniform_rank6_seed789_q25_r6_s789.json   trainable=2764800 dE=-80.0
+== vqa metric recomputation ==
+  rank=base stored acc=0.340 recomputed=0.340 n=50
+  rank=5 stored acc=0.340 recomputed=0.340 n=50
+  rank=6 stored acc=0.340 recomputed=0.340 n=50
+== hessian share recomputation ==
+  r=5 b=0 stored(probe1e-3)=-0.692 recomputed(probe)=-0.692 share@lr=-0.0346
+  r=5 b=1 stored(probe1e-3)=-0.644 recomputed(probe)=-0.644 share@lr=-0.0322
+  r=5 b=2 stored(probe1e-3)=-0.802 recomputed(probe)=-0.802 share@lr=-0.0401
+  r=6 b=0 stored(probe1e-3)=-0.673 recomputed(probe)=-0.673 share@lr=-0.0337
+  r=6 b=1 stored(probe1e-3)=-0.646 recomputed(probe)=-0.646 share@lr=-0.0323
+  r=6 b=2 stored(probe1e-3)=-0.767 recomputed(probe)=-0.767 share@lr=-0.0384
+== gamma sensitivity CV ==
+  text_shallow   stored cv=0.552 recomputed=0.552
+  text_mid       stored cv=0.438 recomputed=0.438
+  text_deep      stored cv=0.321 recomputed=0.321
+  vision         stored cv=0.327 recomputed=0.327

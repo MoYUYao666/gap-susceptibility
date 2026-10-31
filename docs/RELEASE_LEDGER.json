@@ -1,0 +1,66 @@
+{
+ "schema": 1,
+ "built_at": "2026-10-25",
+ "repositories": [
+  "https://github.com/MoYUYao666/gap-susceptibility"
+ ],
+ "registered_dois": [
+  "10.5281/zenodo.23632347",
+  "10.5281/zenodo.23341083",
+  "10.5281/zenodo.23341223"
+ ],
+ "releases": [
+  {
+   "tag": "v2.5",
+   "version_doi": "10.5281/zenodo.23632347",
+   "concept_doi": "10.5281/zenodo.23341083",
+   "contents": [
+    "per-run result records",
+    "analysis scripts",
+    "training configurations",
+    "figure-generating scripts"
+   ],
+   "excludes": [
+    "manuscripts",
+    "compiled PDFs",
+    "cover letters",
+    "title pages",
+    "declarations"
+   ]
+  },
+  {
+   "tag": "v1.0-prl-revision",
+   "version_doi": "10.5281/zenodo.23341223",
+   "concept_doi": "10.5281/zenodo.23341083",
+   "contents": [
+    "per-run result records",
+    "analysis scripts"
+   ],
+   "excludes": [
+    "manuscripts",
+    "compiled PDFs"
+   ]
+  }
+ ],
+ "third_party_sources": [
+  {
+   "doi": "10.6084/m9.figshare.21331143.v3",
+   "what": "FathomNet dataset release",
+   "why": "third-party dataset cited in the data statement"
+  },
+  {
+   "url": "https://database.fathomnet.org",
+   "what": "FathomNet database",
+   "why": "third-party dataset portal cited in the data statement"
+  }
+ ],
+ "archive_excludes": [
+  "manuscripts",
+  "compiled PDFs",
+  "cover letters",
+  "title pages",
+  "declarations"
+ ],
+ "archive_root": "publish_clean",
+ "policy_source": "AGENTS.md / 发布边界 (repository carries code and results only)"
+}

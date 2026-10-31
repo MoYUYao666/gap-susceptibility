@@ -1,0 +1,114 @@
+{
+ "meta": {
+  "script": "tools/_p1534_additivity_residual.py",
+  "task": "R3' additivity test",
+  "n_eval": 8,
+  "adapter": "probe r=8",
+  "n_boot": 2000
+ },
+ "energies": {
+  "empty": 3006.125,
+  "vision": 3013.25,
+  "text_shallow": 3012.25,
+  "text_mid": 3012.25,
+  "text_deep": 3006.375,
+  "vision+text_shallow": 3016.75,
+  "vision+text_mid": 3015.875,
+  "vision+text_deep": 3012.125,
+  "text_shallow+text_mid": 3018.25,
+  "text_shallow+text_deep": 3011.5,
+  "text_mid+text_deep": 3013.5,
+  "vision+text_shallow+text_mid": 3024.375,
+  "vision+text_shallow+text_deep": 3014.375,
+  "vision+text_mid+text_deep": 3019.125,
+  "text_shallow+text_mid+text_deep": 3018.375,
+  "vision+text_shallow+text_mid+text_deep": 3022.625
+ },
+ "pair_residuals": [
+  {
+   "A": "vision",
+   "B": "text_shallow",
+   "E_union": 3016.75,
+   "E_A": 3013.25,
+   "E_B": 3012.25,
+   "E_empty": 3006.125,
+   "residual": -2.625,
+   "relative": -0.0008701417087922863,
+   "ci95": [
+    -8.753125,
+    2.5
+   ]
+  },
+  {
+   "A": "vision",
+   "B": "text_mid",
+   "E_union": 3015.875,
+   "E_A": 3013.25,
+   "E_B": 3012.25,
+   "E_empty": 3006.125,
+   "residual": -3.5,
+   "relative": -0.001160525552285436,
+   "ci95": [
+    -8.253125,
+    0.375
+   ]
+  },
+  {
+   "A": "vision",
+   "B": "text_deep",
+   "E_union": 3012.125,
+   "E_A": 3013.25,
+   "E_B": 3006.375,
+   "E_empty": 3006.125,
+   "residual": -1.375,
+   "relative": -0.00045648835954668,
+   "ci95": [
+    -6.75,
+    4.75
+   ]
+  },
+  {
+   "A": "text_shallow",
+   "B": "text_mid",
+   "E_union": 3018.25,
+   "E_A": 3012.25,
+   "E_B": 3012.25,
+   "E_empty": 3006.125,
+   "residual": -0.125,
+   "relative": -4.141472707693484e-05,
+   "ci95": [
+    -2.0,
+    1.875
+   ]
+  },
+  {
+   "A": "text_shallow",
+   "B": "text_deep",
+   "E_union": 3011.5,
+   "E_A": 3012.25,
+   "E_B": 3006.375,
+   "E_empty": 3006.125,
+   "residual": -1.0,
+   "relative": -0.0003320604349990596,
+   "ci95": [
+    -3.375,
+    2.0
+   ]
+  },
+  {
+   "A": "text_mid",
+   "B": "text_deep",
+   "E_union": 3013.5,
+   "E_A": 3012.25,
+   "E_B": 3006.375,
+   "E_empty": 3006.125,
+   "residual": 1.0,
+   "relative": 0.0003318400530942984,
+   "ci95": [
+    -1.125,
+    3.125
+   ]
+  }
+ ],
+ "max_abs_relative": 0.001160525552285436
+}

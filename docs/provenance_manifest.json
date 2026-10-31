@@ -1,0 +1,1557 @@
+{
+  "rule": "Every table/figure reporting our own results must name its generating script and its result JSON archive. Literature tables and schematic diagrams are exempt but listed explicitly. Gate: tools/_p1428_provenance_gate.py.",
+  "generated": "2026-10-20",
+  "manuscripts": {
+    "P3": {
+      "source": "paper3/paper_ieee",
+      "floats": [
+        {
+          "label": "tab:sample",
+          "kind": "table",
+          "script": "paper3/scripts/run_sample_size_sweep.py",
+          "archive": "paper3/scripts/outputs/experiments/sample_size_results.json",
+          "status": "verified",
+          "note": "sample-size sweep archive"
+        },
+        {
+          "label": "tab:phase",
+          "kind": "table",
+          "script": "paper3/scripts/run_full_sweep.py",
+          "archive": "paper3/scripts/outputs/experiments/E2_results.json",
+          "status": "verified",
+          "note": "rank family archive"
+        },
+        {
+          "label": "fig:phase_transition",
+          "kind": "figure",
+          "script": "paper3/scripts/analysis/plot_all_figures.py",
+          "archive": "paper3/scripts/outputs/experiments/all_results.json",
+          "status": "verified",
+          "note": "theory/random/violation runs"
+        },
+        {
+          "label": "fig:counterfactual",
+          "kind": "figure",
+          "script": "paper3/scripts/analysis/plot_all_figures.py",
+          "archive": "paper3/scripts/outputs/experiments/all_results.json",
+          "status": "verified",
+          "note": "counterfactual arms"
+        },
+        {
+          "label": "tab:seed5",
+          "kind": "table",
+          "script": "tools/_p1416_p3_seeds.py",
+          "archive": "outputs/analysis/p3_rerun_seeds.json",
+          "status": "verified",
+          "note": "supplementary S14 per-seed crossing values"
+        },
+        {
+          "label": "tab:numsamples",
+          "kind": "table",
+          "script": "tools/_p1417_p3_numsamples.py",
+          "archive": "outputs/analysis/p3_numsamples_ablation.json",
+          "status": "verified",
+          "note": "supplementary S15 sample-window ablation"
+        },
+        {
+          "label": "tab:protocol_shift",
+          "kind": "table",
+          "script": "tools/_p1476_p3_protocol_shift.py",
+          "archive": "outputs/analysis/p3_protocol_shift.json",
+          "status": "verified",
+          "note": "supplementary S16 protocol-shift table"
+        },
+        {
+          "label": "tab:claims",
+          "kind": "table",
+          "script": "tools/_p1487_p3_soundness.py",
+          "archive": "docs/P3_RESUBMISSION_PLAN_2026-10-21.md",
+          "status": "verified",
+          "note": "supplementary S17 claim-status table (hand-authored from the paper's own controls)"
+        },
+        {
+          "label": "tab:hessian",
+          "kind": "table",
+          "script": "tools/_p1499_p3_hessian_probe.py",
+          "archive": "outputs/analysis/p3_hessian_probe_r5.json",
+          "status": "verified",
+          "note": "R1 gap-fill supplement (2026-10-21)"
+        },
+        {
+          "label": "tab:ntk",
+          "kind": "table",
+          "script": "tools/_p1502_p3_ntk_allocation.py",
+          "archive": "outputs/analysis/p3_ntk_allocation.json",
+          "status": "verified",
+          "note": "R1 gap-fill supplement (2026-10-21)"
+        },
+        {
+          "label": "tab:ntkarm",
+          "kind": "table",
+          "script": "tools/_p1507_p3_integrate_gapfill.py",
+          "archive": "outputs/analysis/p3_gapfill_summary.json",
+          "status": "verified",
+          "note": "R1 gap-fill supplement (2026-10-21)"
+        },
+        {
+          "label": "tab:newer",
+          "kind": "table",
+          "script": "paper3/scripts/run_training_qwen25.py",
+          "archive": "paper3/scripts/outputs/experiments/qwen_cf_uniform_rank5_seed42_q25_r5_s42.json",
+          "status": "verified",
+          "note": "R1 gap-fill supplement (2026-10-21)"
+        },
+        {
+          "label": "tab:caption",
+          "kind": "table",
+          "script": "tools/_p1501_p3_caption_downstream.py",
+          "archive": "outputs/analysis/p3_caption_metrics.json",
+          "status": "verified",
+          "note": "R1 gap-fill supplement (2026-10-21)"
+        },
+        {
+          "label": "tab:env",
+          "kind": "table",
+          "script": "tools/_p1500_p3_env_matrix.py",
+          "archive": "outputs/analysis/p3_environment_matrix.json",
+          "status": "verified",
+          "note": "R1 gap-fill supplement (2026-10-21)"
+        },
+        {
+          "label": "tab:gammabatch",
+          "kind": "table",
+          "script": "tools/_p1509_p3_gamma_batch_sensitivity.py",
+          "archive": "outputs/analysis/p3_gamma_batch_sensitivity.json",
+          "status": "verified",
+          "note": "second gap-fill round (2026-10-22)"
+        },
+        {
+          "label": "tab:instr",
+          "kind": "table",
+          "script": "tools/_p1510_p3_instr_downstream.py",
+          "archive": "outputs/analysis/p3_instr_downstream_5.json",
+          "status": "verified",
+          "note": "second gap-fill round (2026-10-22)"
+        },
+        {
+          "label": "tab:newerseeds",
+          "kind": "table",
+          "script": "paper3/scripts/run_training_qwen25.py",
+          "archive": "paper3/scripts/outputs/experiments/qwen_cf_uniform_rank5_seed123_q25_r5_s123.json",
+          "status": "verified",
+          "note": "second gap-fill round (2026-10-22)"
+        },
+        {
+          "label": "tab:rules",
+          "kind": "table",
+          "script": "tools/_p1514_p3_baseline_rules.py",
+          "archive": "outputs/analysis/p3_baseline_rules.json",
+          "status": "verified",
+          "note": "allocation-rule baselines"
+        },
+        {
+          "label": "tab:vqa",
+          "kind": "table",
+          "script": "tools/_p1613_p3_cloud_runner.py",
+          "archive": "outputs/analysis/cloud_vqa_full451_base.json",
+          "status": "verified",
+          "note": "full 451-question test set (2026-10-24); the 300-question archives cloud_vqa1793_* are superseded; equivalence fields in p3_vqa_full_equivalence.json :: vqa_equivalence, rank5_equivalence, smallest_equivalent_margin",
+          "archives": [
+            "outputs/analysis/cloud_vqa_full451_base.json",
+            "outputs/analysis/cloud_vqa_full451_5.json",
+            "outputs/analysis/cloud_vqa_full451_6.json",
+            "outputs/analysis/p3_vqa_full_equivalence.json"
+          ]
+        },
+        {
+          "label": "tab:pope",
+          "kind": "table",
+          "script": "tools/_p1640_p3_second_downstream.py",
+          "archive": "outputs/analysis/p3_second_downstream.json",
+          "archives": [
+            "outputs/analysis/p3_second_downstream.json",
+            "outputs/analysis/p3_second_downstream_base.json",
+            "outputs/analysis/p3_second_downstream_5.json",
+            "outputs/analysis/p3_second_downstream_6.json",
+            "outputs/analysis/p3_pope_corrected_metrics.json"
+          ],
+          "status": "verified",
+          "note": "POPE second downstream task (S29 subsection, 2026-10-25). Fields: arms.*.{accuracy,token_f1,pope_f1,yes_ratio}, contrasts.*.{accuracy,token_f1,pope_f1}.{delta,ci95}, meta.dataset.n_questions, meta.declared_margins, claim_verdict.metric_directions; confusion counts from the three per-arm archives. The aggregate was regenerated locally by the corrected script after defects D1 (arms.*.token_f1 held relaxed_accuracy) and D2 (verdict rule sign inverted); see docs/p3_pope_integration_notes.md and the independent recomputation p3_pope_corrected_metrics.json. The pre-correction cloud aggregate (sha256 1c389125f0c3ce55...) is superseded (p3_second_downstream_pre_correction.json)."
+        },
+        {
+          "label": "tab:newer7b",
+          "kind": "table",
+          "script": "paper3/scripts/run_training_qwen25.py",
+          "archive": "paper3/scripts/outputs/experiments/qwen_cf_uniform_rank5_seed42_cloud_q25_7b_r5.json",
+          "status": "verified",
+          "note": "cloud round (2026-10-22)"
+        },
+        {
+          "label": "tab:envcloud",
+          "kind": "table",
+          "script": "tools/_p1528_insert_cloud_results.py",
+          "archive": "outputs/analysis/p3_env_matrix3.json",
+          "status": "verified",
+          "note": "four-stack reproducibility table; the caption now also carries the four-stack decomposition of outputs/analysis/p3_env_stack_seeds.json (sigma_by_rank.5.all_rows and ranks.5.stacks) written by tools/_p1613_p3_cloud_runner.py --job env-seeds --aggregate",
+          "archives": [
+            "outputs/analysis/p3_env_matrix3.json",
+            "outputs/analysis/p3_env_stack_seeds.json",
+            "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a10_torch26.json",
+            "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a12_torch26.json"
+          ]
+        },
+        {
+          "label": "tab:iguarm",
+          "kind": "table",
+          "script": "tools/_p1530_igu_allocation.py",
+          "archive": "outputs/analysis/p3_igu_allocation.json",
+          "status": "verified",
+          "note": "IGU-LoRA-equation allocation arm"
+        },
+        {
+          "label": "tab:additivity",
+          "kind": "table",
+          "script": "tools/_p1534_additivity_residual.py",
+          "archive": "outputs/analysis/p3_additivity_residual.json",
+          "status": "verified",
+          "note": "B/C/D local round (2026-10-23)"
+        },
+        {
+          "label": "tab:perlayer",
+          "kind": "table",
+          "script": "tools/_p1536_perlayer_gamma.py",
+          "archive": "outputs/analysis/p3_perlayer_gamma.json",
+          "status": "verified",
+          "note": "B/C/D local round (2026-10-23)"
+        },
+        {
+          "label": "tab:robust",
+          "kind": "table",
+          "script": "tools/_p1538_robust_stats.py",
+          "archive": "outputs/analysis/p3_robust_stats.json",
+          "status": "verified",
+          "note": "B/C/D local round (2026-10-23)"
+        },
+        {
+          "label": "tab:beta",
+          "kind": "table",
+          "script": "tools/_p1537_signed_gamma_beta.py",
+          "archive": "outputs/analysis/p3_signed_gamma_beta.json",
+          "status": "verified",
+          "note": "B/C/D local round (2026-10-23)"
+        },
+        {
+          "label": "tab:siglip",
+          "kind": "table",
+          "script": "tools/_p1539_siglip_gamma.py",
+          "archive": "outputs/analysis/p3_siglip_gamma.json",
+          "status": "verified",
+          "note": "B/C/D local round (2026-10-23)"
+        },
+        {
+          "label": "tab:crossing10",
+          "kind": "table",
+          "script": "tools/_p1595_p3_rank_separation.py",
+          "archive": "outputs/analysis/p3_rank_separation_extended.json",
+          "status": "verified",
+          "note": "15-pair exact permutation matrix + TOST; fields ranks, separation.pairs, rank5_equivalence",
+          "archives": [
+            "outputs/analysis/p3_rank_separation_extended.json"
+          ]
+        },
+        {
+          "label": "tab:highrank",
+          "kind": "table",
+          "script": "tools/_p1499_p3_hessian_probe.py",
+          "archive": "outputs/analysis/p3_hessian_probe_r24.json",
+          "status": "verified",
+          "note": "B/C/D cloud round (2026-10-23)"
+        },
+        {
+          "label": "tab:realimage",
+          "kind": "table",
+          "script": "paper3/scripts/run_training.py",
+          "archive": "paper3/scripts/outputs/experiments/cloud_verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_cap_e3_bcuniform.json",
+          "status": "verified",
+          "note": "B/C/D cloud round (2026-10-23)"
+        },
+        {
+          "label": "tab:instrument",
+          "kind": "table",
+          "script": "paper3/scripts/run_training.py",
+          "archive": "outputs/analysis/p3_instrument_r24_lr0.0001.json",
+          "status": "verified",
+          "note": "D5 per-step instrumentation"
+        },
+        {
+          "label": "tab:envvar",
+          "kind": "table",
+          "script": "tools/_p1613_p3_cloud_runner.py",
+          "archive": "outputs/analysis/p3_env_stack_seeds.json",
+          "status": "verified",
+          "note": "four-stack random-effects decomposition at r=5 written by tools/_p1613_p3_cloud_runner.py --job env-seeds --aggregate; the printed values are ranks.5.stacks (n and mean per stack) and sigma_by_rank.5.all_rows (sigma_env 32.4602, sigma_seed 32.7245, env_variance_share 0.49590) with sigma_by_rank.5.all_rows.bootstrap.share_ci95 = [0.35823, 0.74871]. The frozen three-stack comparison printed beside it is sigma_by_rank.5.three_stack_reference (31.1489 / 34.2950 / 0.4520), which reproduces outputs/analysis/p3_env_variance.json (env_share 0.45204, sigma_env 31.14893, sigma_seed 34.29500) exactly; the composition of that frozen reference is archived in meta.frozen_three_stack_reference of the same file. The same four-stack numbers are printed in the discussion's limitation (6) (sections/discussion.tex, field paths as above; the two duplicate torch 2.4/cu121 rank-5 rows that were counted twice are recorded in acceptance.discarded_duplicate_rows).",
+          "archives": [
+            "outputs/analysis/p3_env_stack_seeds.json",
+            "outputs/analysis/p3_env_variance.json"
+          ]
+        },
+        {
+          "label": "tab:blipsource",
+          "kind": "table",
+          "script": "tools/_p1549_blip_gamma.py",
+          "archive": "outputs/analysis/p3_blip_gamma.json",
+          "status": "verified",
+          "note": "BLIP source allocation row inside tab:siglip"
+        },
+        {
+          "label": "tab:gammaboot",
+          "kind": "table",
+          "script": "tools/_p1552_gamma_bootstrap_archive.py",
+          "archive": "outputs/analysis/p3_gamma_bootstrap.json",
+          "status": "verified",
+          "note": "reference-batch bootstrap of the |Gamma| allocation"
+        },
+        {
+          "label": "tab:iguofficial",
+          "kind": "table",
+          "script": "tools/_p1557_official_igu_clip.py",
+          "archive": "outputs/analysis/p3_official_igu_clip.json",
+          "status": "verified",
+          "note": "official IGU allocation stage with name adapter"
+        },
+        {
+          "label": "tab:igucompare",
+          "kind": "table",
+          "script": "tools/_p1639_p3_official_igu.py",
+          "archive": "outputs/analysis/p3_official_vs_reimpl.json",
+          "archives": [
+            "outputs/analysis/p3_official_vs_reimpl.json",
+            "outputs/analysis/p3_official_igu_run.json",
+            "outputs/analysis/p3_official_igu_replicates.json"
+          ],
+          "status": "verified",
+          "note": "Official IGU-LoRA allocator versus the block-level integrated-gradient rule (S41 subsection app:igucompare, 2026-10-25). Fields: overall.mean_gap_delta_E, overall.ci95, overall.margin, meta.margin_fraction_of_E0, per_configuration.trained_arm_delta_E.{tost_p,min_equivalent_margin}, per_configuration.allocation.l1, allocation_sensitivity_to_the_block_mapping.{archived,corrected}.l1, same_stack_for_every_pair, stack_mix_warning, pairs[].{gap,official.env,reimpl.E}; six trained arms from runs[]; replicate dispersion from summary.{max_spread_across_arms,mean_spread_across_arms,archived_official_minus_reimpl_gap} and pinned_anchors_sha256_before/after. Scripts: tools/_p1639_p3_official_igu.py --compare (comparison) and tools/_p1646_p3_arm_replicates.py (replicate spread). Single-seed arm readings are deliberately not printed as the comparison."
+        },
+        {
+          "label": "tab:dolly",
+          "kind": "table",
+          "script": "paper3/scripts/run_training.py",
+          "archive": "paper3/scripts/outputs/experiments/cloud_dolly_verify_r5_s42.json",
+          "status": "verified",
+          "note": "cloud round 3"
+        },
+        {
+          "label": "tab:thirdfamily",
+          "kind": "table",
+          "script": "paper3/scripts/run_training_qwen.py",
+          "archive": "outputs/analysis/cloud_qwen_cf_uniform_rank5_seed42_qwen2vl.json",
+          "status": "verified",
+          "note": "cloud round 3"
+        },
+        {
+          "label": "tab:qwenlayer",
+          "kind": "table",
+          "script": "tools/_p1567_qwen_perlayer_gamma.py",
+          "archive": "outputs/analysis/p3_qwen_perlayer_summary.json",
+          "status": "verified",
+          "note": "purely-local extra round"
+        },
+        {
+          "label": "tab:smolvlm",
+          "kind": "table",
+          "script": "tools/_p1568_smolvlm_run.py",
+          "archive": "outputs/analysis/p3_smolvlm_family_s42.json",
+          "status": "verified",
+          "note": "purely-local extra round"
+        },
+        {
+          "label": "tab:alloc-paired",
+          "kind": "table",
+          "script": "tools/_p1634_p3_allocation_paired.py",
+          "archive": "outputs/analysis/p3_allocation_paired_stats.json",
+          "archives": [
+            "outputs/analysis/p3_allocation_paired_stats.json"
+          ],
+          "fields": [
+            "equivalence.all_contrasts_summary[*].mean_difference",
+            "equivalence.all_contrasts_summary[*].ci95_bootstrap",
+            "equivalence.all_contrasts_summary[*].tost_p_at_margin",
+            "paired.capacity_matched_by_seed.n_pairs_negative",
+            "paired.capacity_matched_by_seed.bootstrap_share_difference_le_zero",
+            "equivalence.capacity_matched_tost.margin",
+            "equivalence.capacity_matched_tost.smallest_equivalent_margin",
+            "controls.random_pool.plan_deviations_from_gamma_mean.plans_lower_than_gamma_mean",
+            "controls.random_pool.plan_deviations_from_gamma_mean.per_plan[2].difference_from_gamma_mean"
+          ],
+          "status": "verified",
+          "note": "Supplement S20 (app:allocation-paired), seed-paired re-analysis of the capacity-matched comparison and its controls; raw per-run sources outputs/analysis/p3_alloc_runs/{main,exp_lr0.0003,uniform_lr0.0003,exp_lr0.001,uniform_lr0.001}/summary.json"
+        },
+        {
+          "label": "tab:rc-boundary",
+          "kind": "table",
+          "script": "tools/_p1635_p3_rc_family.py",
+          "archive": "outputs/analysis/p3_rc_family_boundary.json",
+          "archives": [
+            "outputs/analysis/p3_rc_family_boundary.json"
+          ],
+          "fields": [
+            "adalora_boundary.matched_cells[*].adalora_delta_E",
+            "adalora_boundary.matched_cells[*].gamma_delta_E",
+            "adalora_boundary.matched_cells[*].difference_adalora_minus_gamma",
+            "adalora_boundary.summary.mean_difference",
+            "adalora_boundary.summary.ci95_t",
+            "adalora_boundary.summary.exact_sign_test_two_sided_p",
+            "adalora_boundary.comparison_plane.adalora_and_uniform_share_one_rank_plan",
+            "adalora_boundary.reversal_regime.cells[*].difference_gamma_minus_uniform",
+            "rc_by_family.smolvlm-500m.strata.smolvlm_r5_r6.crossing_point",
+            "conclusion.families_with_no_crossing_anywhere"
+          ],
+          "status": "verified",
+          "note": "Supplement S35 (app:rc-boundary), critical rank by family plus the AdaLoRA matched-cell boundary; the same archive also carries the reconciled tab:sharegpt crossing (rc_by_family.llava-1.5-7b.strata.llava_sharegpt.crossing_point = 4.957447) and the fig:ers one-epoch crossing (.strata.llava_ers_1epoch.crossing_point = 46.759029)"
+        },
+        {
+          "label": "tab:gammarobust",
+          "kind": "table",
+          "script": "tools/_p1636_p3_gamma_robustness.py",
+          "archive": "outputs/analysis/p3_gamma_robustness.json",
+          "archives": [
+            "outputs/analysis/p3_gamma_robustness.json"
+          ],
+          "fields": [
+            "noise_break_even.rho_order_flip",
+            "noise_break_even.rho_split_all_pairs",
+            "noise_break_even.rho_advantage_lost_on_linear_objective",
+            "noise_break_even.noise_to_tolerance_ratios.worst_observed_relative_sd",
+            "noise_break_even.noise_to_tolerance_ratios.worst_observed_relative_sd_over_rho_order",
+            "noise_break_even.n_seeds_preserving_point_order",
+            "noise_break_even.n_seeds_available",
+            "noise_break_even.softmin_weight_check_summary.n_archived_plans_reproduced_by_nearest_target_rank",
+            "rank_sensitivity.n_pairs_sign_separated",
+            "rank_sensitivity.n_pairs",
+            "batch_sensitivity.ordering_reversal_within_families.extra_spearman",
+            "batch_sensitivity.ordering_reversal_within_families.sweep_spearman",
+            "batch_sensitivity.shared_rank_comparison.8.difference",
+            "batch_sensitivity.batchsize_paired_by_rank.5.differences",
+            "batch_sensitivity.batchsize_paired_by_rank.6.differences"
+          ],
+          "status": "verified",
+          "note": "Supplement S46 (app:gammarobust), applicability boundary of the Gamma-driven allocation; no new training. Break-evens computed in closed form from outputs/analysis/p3_alloc_plans.json and the repeated-estimate dispersion from outputs/analysis/p3_alloc_gamma_qwen2vl2b.json"
+        }
+      ]
+    },
+    "A1": {
+      "source": "paper_a1",
+      "floats": [
+        {
+          "label": "tab:matchedgap",
+          "kind": "table",
+          "script": "tools/_p1210_figure_matched_gap.py",
+          "archive": "outputs/analysis/a1_matched_gap_families.json",
+          "archives": [
+            "outputs/analysis/a1_matched_gap_families.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:spectrum",
+          "kind": "table",
+          "script": "tools/clip_a1_baseline_metrics.py",
+          "archive": "outputs/a1_baseline_metrics.json",
+          "archives": [
+            "outputs/a1_baseline_metrics.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:asym",
+          "kind": "table",
+          "script": "tools/clip_a1_text_surgery.py",
+          "archive": "outputs/a1_text_surgery.json",
+          "archives": [
+            "outputs/a1_text_surgery.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:pointwise",
+          "kind": "table",
+          "script": "tools/clip_a1_margins.py",
+          "archive": "outputs/a1_margins.json",
+          "archives": [
+            "outputs/a1_margins.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:topk",
+          "kind": "table",
+          "script": "tools\\a1_h_bootstrap.py",
+          "archive": "outputs/a1_rr_e2_topk.json",
+          "archives": [
+            "outputs/a1_rr_e2_topk.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:multiseed",
+          "kind": "table",
+          "script": "tools/clip_a1_multiseed.py",
+          "archive": "outputs/a1_multiseed.json",
+          "archives": [
+            "outputs/a1_multiseed.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:earlystop",
+          "kind": "table",
+          "script": "tools\\_docs_a1_fixes_done.py",
+          "archive": "outputs/analysis/a1_epoch_sweep_analysis.json",
+          "archives": [
+            "outputs/analysis/a1_epoch_sweep_analysis.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:cross",
+          "kind": "table",
+          "script": "tools/clip_a1_crossmodel.py",
+          "archive": "outputs/a1_crossmodel_results.json",
+          "archives": [
+            "outputs/a1_crossmodel_results.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:qwen",
+          "kind": "table",
+          "script": "tools\\ap3_a1_revision_check.py",
+          "archive": "outputs/a1_qwen_surgery_v3.json",
+          "archives": [
+            "outputs/a1_qwen_surgery_v3.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:benchmarks",
+          "kind": "table",
+          "script": "tools\\_claim_ledger_a1.py",
+          "archive": "outputs/analysis/a1_more_benchmarks.json",
+          "archives": [
+            "outputs/analysis/a1_more_benchmarks.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:ckpt_transfer",
+          "kind": "table",
+          "script": "tools\\_p1430_provenance_map_curated.py",
+          "archive": "outputs/analysis/a1_ckpt_transfer.json",
+          "archives": [
+            "outputs/analysis/a1_ckpt_transfer.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:hard_tpl",
+          "kind": "table",
+          "script": "tools\\_claim_ledger_a1.py",
+          "archive": "outputs/analysis/a1_prompt_template_gap.json",
+          "archives": [
+            "outputs/analysis/a1_prompt_template_gap.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:hard_k",
+          "kind": "table",
+          "script": "tools\\_claim_ledger_a1.py",
+          "archive": "outputs/analysis/a1_tau_k.json",
+          "archives": [
+            "outputs/analysis/a1_tau_k.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:hard_seed",
+          "kind": "table",
+          "script": "tools/a1_h_seed_summary.py",
+          "archive": "outputs/a1_h_seed_summary.json",
+          "archives": [
+            "outputs/a1_h_seed_summary.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:hard_offset",
+          "kind": "table",
+          "script": "tools/a1_h_offset.py",
+          "archive": "outputs/a1_h_offset.json",
+          "archives": [
+            "outputs/a1_h_offset.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:dense",
+          "kind": "table",
+          "script": "tools/_p1280_matched_gap_more_backbones.py",
+          "archive": "outputs/analysis/a1_matched_gap_dense.json",
+          "archives": [
+            "outputs/analysis/a1_matched_gap_dense.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:campaign",
+          "kind": "table",
+          "script": "tools/_p1320_campaign_analysis.py",
+          "archive": "outputs/analysis/a1_campaign_analysis.json",
+          "archives": [
+            "outputs/analysis/a1_campaign_analysis.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:realpairs",
+          "kind": "table",
+          "script": "tools/_p1273_retrieval_evidence.py",
+          "archive": "outputs/analysis/a1_real_checkpoint_pairs.json",
+          "archives": [
+            "outputs/analysis/a1_real_checkpoint_pairs.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:prompt",
+          "kind": "table",
+          "script": "tools/_p1263_prompt_template_control.py",
+          "archive": "outputs/analysis/a1_prompt_template_gap.json",
+          "archives": [
+            "outputs/analysis/a1_prompt_template_gap.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:showdown",
+          "kind": "table",
+          "script": "tools/_p1310_insert_final_round.py",
+          "archive": "outputs/analysis/a1_statistic_showdown.json",
+          "archives": [
+            "outputs/analysis/a1_statistic_showdown.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:selection",
+          "kind": "table",
+          "script": "tools/_p1316_insert_strengthen3.py",
+          "archive": "outputs/analysis/a1_selection_rule.json",
+          "archives": [
+            "outputs/analysis/a1_selection_rule.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:monitor_regret",
+          "kind": "table",
+          "script": "tools/_p1398_a1_combined.py",
+          "archive": "outputs/analysis/a1_monitor_split_diagnosis.json",
+          "archives": [
+            "outputs/analysis/a1_monitor_split_diagnosis.json",
+            "outputs/analysis/a1_monitor_combined.json",
+            "outputs/analysis/a1_monitoring_bootstrap.json"
+          ],
+          "status": "verified",
+          "note": "per-cell archives: minCG/seqM from a1_monitor_combined.json :: per_run (tools/_p1398_a1_combined.py); intervals from a1_monitoring_bootstrap.json (tools/_p1595_bootstrap_ci_round.py)"
+        },
+        {
+          "label": "tab:controls",
+          "kind": "table",
+          "script": "tools/_p1256_insert_a1_theory.py",
+          "archive": "outputs/analysis/a1_matched_gap_families.json",
+          "archives": [
+            "outputs/analysis/a1_matched_gap_families.json",
+            "outputs/analysis/a1_real_checkpoint_pairs.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:protocol",
+          "kind": "table",
+          "script": "tools/_p1255_tau_monitor_protocol.py",
+          "archive": "outputs/analysis/a1_monitor_protocol.json",
+          "archives": [
+            "outputs/analysis/a1_monitor_protocol.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:morebench",
+          "kind": "table",
+          "script": "tools/_p1264_more_benchmarks.py",
+          "archive": "outputs/analysis/a1_more_benchmarks.json",
+          "archives": [
+            "outputs/analysis/a1_more_benchmarks.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:standard",
+          "kind": "table",
+          "status": "exempt",
+          "note": "reporting-standard table: no measured data, conceptual checklist"
+        },
+        {
+          "label": "fig:lambda",
+          "kind": "figure",
+          "script": "tools/clip_a1_figures.py",
+          "archive": "outputs/a1_full_results.json",
+          "status": "verified"
+        },
+        {
+          "label": "fig:tau",
+          "kind": "figure",
+          "script": "tools/clip_a1_figures.py",
+          "archive": "outputs/a1_full_results.json",
+          "status": "verified"
+        },
+        {
+          "label": "fig:spectrum",
+          "kind": "figure",
+          "script": "tools/clip_a1_figures.py",
+          "archive": "outputs/a1_subspace_results.json",
+          "status": "verified"
+        },
+        {
+          "label": "fig:traj",
+          "kind": "figure",
+          "script": "tools/clip_a1_fig4.py",
+          "archive": "outputs/a1_tau_trajectory.json",
+          "status": "verified"
+        },
+        {
+          "label": "fig:matchedgap",
+          "kind": "figure",
+          "script": "tools/_p1210_figure_matched_gap.py",
+          "archive": "outputs/analysis/a1_matched_gap_families.json",
+          "status": "verified"
+        },
+        {
+          "label": "fig:campaign",
+          "kind": "figure",
+          "script": "tools/_p1333_upgrade_figures.py",
+          "archive": "outputs/analysis/a1_campaign_analysis.json",
+          "status": "verified"
+        },
+        {
+          "label": "fig:ga",
+          "kind": "figure",
+          "script": "tools/_p1276_graphical_abstract.py",
+          "archive": "outputs/analysis/a1_matched_gap_families.json",
+          "status": "verified"
+        },
+        {
+          "label": "tab:monitor_variants",
+          "kind": "table",
+          "script": "tools/_p1434_a1_round1_analysis.py",
+          "archive": "outputs/analysis/a1_round1_analysis.json",
+          "status": "verified",
+          "note": "appendix monitoring rule variants; also a1_monitor_bothtower_analysis.json"
+        },
+        {
+          "label": "tab:monitor_frontier",
+          "kind": "table",
+          "script": "tools/_p1480_a1_frontier.py",
+          "archive": "outputs/analysis/a1_monitor_frontier.json",
+          "status": "verified",
+          "note": "appendix risk-compute frontier"
+        }
+      ]
+    },
+    "A23": {
+      "source": "paper_a2",
+      "floats": [
+        {
+          "label": "fig:tau",
+          "kind": "figure",
+          "script": "tools/clip_a2_figures.py",
+          "archive": "outputs/ocean_margins.json",
+          "archives": [
+            "outputs/ocean_margins.json",
+            "outputs/sonar_protocol.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:lambda",
+          "kind": "figure",
+          "script": "tools/clip_a2_figures.py",
+          "archive": "outputs/ocean_gap_surgery.json",
+          "archives": [
+            "outputs/ocean_gap_surgery.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:sonar-tau",
+          "kind": "figure",
+          "script": "tools/clip_a2_figures.py",
+          "archive": "outputs/sonar_protocol_full.json",
+          "archives": [
+            "outputs/sonar_protocol_full.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:sonar-exact",
+          "kind": "table",
+          "script": "tools\\_a23_verify_d1.py",
+          "archive": "outputs/sonar_protocol_full.json",
+          "archives": [
+            "outputs/sonar_protocol_full.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:sonar-sigma",
+          "kind": "table",
+          "script": "tools\\_a23_verify_d1.py",
+          "archive": "outputs/sonar_protocol_full.json",
+          "archives": [
+            "outputs/sonar_protocol_full.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:sonar-peft",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/sonar_peft.json",
+          "archives": [
+            "outputs/sonar_peft.json",
+            "outputs/sonar_peft_ms.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:sonar-sigma",
+          "kind": "figure",
+          "script": "tools/clip_a2_fig7.py",
+          "archive": "outputs/sonar_protocol_full.json",
+          "archives": [
+            "outputs/sonar_protocol_full.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:sigma",
+          "kind": "figure",
+          "script": "tools/clip_a2_figures.py",
+          "archive": "outputs/ocean_margins.json",
+          "archives": [
+            "outputs/ocean_margins.json",
+            "outputs/ocean_flickrft_sigma.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:spectrum",
+          "kind": "table",
+          "script": "tools\\_p1351_a23_extended_transfer.py",
+          "archive": "outputs/ocean_spectrum.json",
+          "archives": [
+            "outputs/ocean_spectrum.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:portrait",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/ocean_margins.json",
+          "archives": [
+            "outputs/ocean_margins.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:disc",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/ocean_clip2x2.json",
+          "archives": [
+            "outputs/ocean_clip2x2.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:peft",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/ocean_peft.json",
+          "archives": [
+            "outputs/ocean_peft.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:peft",
+          "kind": "figure",
+          "script": "tools/clip_a2_figures.py",
+          "archive": "outputs/ocean_peft.json",
+          "archives": [
+            "outputs/ocean_peft.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:rank1",
+          "kind": "table",
+          "script": "tools\\_a23_verify_d1.py",
+          "archive": "outputs/ocean_rank1_bound.json",
+          "archives": [
+            "outputs/ocean_rank1_bound.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:dir-op",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/direction_operator.json",
+          "archives": [
+            "outputs/direction_operator.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:ml16k",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/ocean_ml16k_retrieval.json",
+          "archives": [
+            "outputs/ocean_ml16k_retrieval.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:watertank",
+          "kind": "table",
+          "script": "tools\\_a23_verify_d1.py",
+          "archive": "outputs/sonar_protocol_full.json",
+          "archives": [
+            "outputs/sonar_protocol_full.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:replica",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/ocean_replica.json",
+          "archives": [
+            "outputs/ocean_replica.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:monitor",
+          "kind": "table",
+          "script": "tools\\_a23_dynamics_check2.py",
+          "archive": "outputs/ocean_tautraj.json",
+          "archives": [
+            "outputs/ocean_tautraj.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:degrad",
+          "kind": "figure",
+          "script": "tools/clip_a2_figures.py",
+          "archive": "outputs/ocean_degradation.json",
+          "archives": [
+            "outputs/ocean_degradation.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:degrad",
+          "kind": "table",
+          "script": "tools\\_a23_verify_d1.py",
+          "archive": "outputs/ocean_degradation.json",
+          "archives": [
+            "outputs/ocean_degradation.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:eng",
+          "kind": "table",
+          "status": "exempt",
+          "note": "engineering-procedure table: no measured data, distilled procedure"
+        },
+        {
+          "label": "tab:calib",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/threshold_calibration.json",
+          "archives": [
+            "outputs/threshold_calibration.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:theory-stack",
+          "kind": "table",
+          "script": "tools\\_a23_c5_locate.py",
+          "archive": "outputs/a1_theory_verify.json",
+          "archives": [
+            "outputs/a1_theory_verify.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:matrix",
+          "kind": "table",
+          "script": "tools\\_a23_verify_d1.py",
+          "archive": "outputs/domain_matrix.json",
+          "archives": [
+            "outputs/domain_matrix.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:dynamics",
+          "kind": "table",
+          "script": "tools\\_a23_dynamics_check.py",
+          "archive": "outputs/dynamics_matrix.json",
+          "archives": [
+            "outputs/dynamics_matrix.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:degmap",
+          "kind": "table",
+          "script": "tools\\_a23_verify_d1.py",
+          "archive": "outputs/degradation_matrix.json",
+          "archives": [
+            "outputs/degradation_matrix.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:subspace",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/direction_subspace.json",
+          "archives": [
+            "outputs/direction_subspace.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:perimage",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/perimage_operator.json",
+          "archives": [
+            "outputs/perimage_operator.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:qa-layers",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/ml16k_qa_layers.json",
+          "archives": [
+            "outputs/ml16k_qa_layers.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:classlaw",
+          "kind": "table",
+          "script": "tools\\_p1431_provenance_map_a23.py",
+          "archive": "outputs/ocean_sigma_other.json",
+          "archives": [
+            "outputs/ocean_sigma_other.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:watertank96",
+          "kind": "table",
+          "script": "tools/_p1414_a23_watertank.py",
+          "archive": "outputs/analysis/a23_watertank_domain.json",
+          "status": "verified",
+          "note": "appendix protocol-sensitivity probe (OOD boundary)"
+        },
+        {
+          "label": "tab:neval",
+          "kind": "table",
+          "script": "tools/_p1415_a23_neval.py",
+          "archive": "outputs/analysis/a23_neval_sensitivity.json",
+          "status": "verified",
+          "note": "appendix evaluation-size sweep"
+        },
+        {
+          "label": "tab:calib_lodo",
+          "kind": "table",
+          "script": "tools/_p1478_a23_lodo_calibration.py",
+          "archive": "outputs/analysis/a23_calib_lodo.json",
+          "status": "verified",
+          "note": "appendix leave-one-domain-out calibration probe; also carries the body paragraph's bounded-transfer claim for the margin-mass statistic M (paper_a2/ext_partII_domains.tex, prose rather than a float), generated by tools/_p1614_a23_multi_encoder_transfer.py into outputs/analysis/a23_multiencoder_transfer.json (fields: conclusion.n_encoders, conclusion.n_corpora, conclusion.n_units, conclusion.n_ordered_pairs, conclusion.n_statistics_per_pair, conclusion.n_scored_entries_cross_unit, conclusion.n_entries_above_chance, conclusion.n_entries_surviving_bootstrap, conclusion.answer, conclusion.best_surviving_pair.{source,target,statistic,target_BA,source_fit_BA,delta_ci95,p_delta_gt_zero}, transfer.self_pairs, transfer.cross_unit_pairs, transfer.summary.n_scored_entries_self_pairs, transfer.pairs[].by_statistic.*.bootstrap.{survives,target_BA,delta_vs_chance_ci95}, limits.probes.single_seed, limits.class_imbalance.corpus_class_counts, limits.list, encoders.<encoder>.corpora.<corpus>.frozen_row.top1, encoders.<encoder>.corpora.<corpus>.chance_percent, encoders.<encoder>.corpora.<corpus>.reproduction.max_abs_diff). Seven-encoder run 2026-10-25 (meta.finished_at 2026-10-25T07:39:56+0800, script sha1 ee174963df00583822b4d70f30f8da450dda3fbb, meta.git a834c33e clean): 7 encoders x 3 corpora, 21 units, 441 ordered pairs, 21 self-pairs excluded from the claim (260 scored self-pair entries; 533 of the 5733 pair-statistic entries are degenerate and carry target_BA = null), 4940 scored cross-unit entries, 179 nominally above chance (chance 0.50), 29 image-bootstrap survivors (2.5th percentile of target BA - chance > 0 over 2000 refitted draws; paired within a corpus, unpaired across corpora), verdict 'yes for at least one pair' (conclusion.answer). (the per-encoder survivor counts and the 16/13 source split are an aggregation of transfer.pairs[].{target_encoder,source_corpus,self_pair} x by_statistic.*.bootstrap.survives over the non-self pairs, not a stored scalar). Boundary: all 29 survivors target the single acoustic_sonar corpus (12 on siglip-base-patch16-224, 10 on oceanclip, 6 on remoteclip, 1 on clip-vit-large-patch14; sources acoustic_sonar 16 / rare_species 13; 16 of 29 paired) and 27 of 29 are the sigma-relative statistics M(eps/sigma_D) at c in {0.005,0.01,0.02} (12, 10, 5); the optical and the 67-class rare-species target corpora contribute none. Strongest survivor bioclip__acoustic_sonar -> siglip-base-patch16-224__acoustic_sonar on mass_0p002: target BA 0.900, source fit BA 0.500 (what transfers is the direction, not a calibrated level), delta CI95 [+0.100,+0.500], p_delta_gt_zero 0.992, 9 distinct source and target values. Limits kept in the text: nine configurations per unit (median-split label), class-imbalanced corpora, single probe split seed for the probe-based encoders, declared extraction paths rather than official reference pipelines, and the encoder this run adds - remoteclip, a remote-sensing fine-tune whose zero-shot top-1 sits within a factor of two of chance on all three corpora (12.83 / 11.27 / 2.43 % against 14.29 / 14.29 / 1.49 %), so 6 of the 29 survivors take their target from it; its checkpoint models/RemoteCLIP/RemoteCLIP-ViT-B-32.pt hashes to sha256 60014e395d930a3f2963d1d89c8522bf4ad56775571e4356e866864789af85c4, identical to the chendelong/RemoteCLIP LFS object, and loads with 0 missing / 0 unexpected keys, so its chance-level result is a property of the encoder on these corpora rather than an unloaded model. The four units shared with the two certificates reproduce them exactly (max |diff| = 0.0 over 128 compared values on four units). Superseded six-encoder run of the same script: 18 units / 324 ordered pairs / 3536 scored cross-unit entries / 124 nominal / 19 survivors (11 siglip + 8 oceanclip, all acoustic_sonar targets), preserved at git HEAD.",
+          "archives": [
+            "outputs/analysis/a23_calib_lodo.json",
+            "outputs/analysis/a23_multiencoder_transfer.json"
+          ]
+        }
+      ]
+    },
+    "paperA": {
+      "source": "paper合",
+      "floats": [
+        {
+          "label": "fig:overview",
+          "kind": "figure",
+          "script": "tools/_pa_rebuild_figs_rest.py",
+          "archive": "outputs/flickr30k/rq2_both/gap_history.json",
+          "archives": [
+            "outputs/flickr30k/rq2_both/gap_history.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:ode",
+          "kind": "figure",
+          "script": "tools/_pa_rebuild_figs_rest.py",
+          "archive": "outputs/theory/beta_pilot/beta_pilot_both_r8/seed42/beta_results.json",
+          "archives": [
+            "outputs/theory/beta_pilot/beta_pilot_both_r8/seed42/beta_results.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:corr",
+          "kind": "figure",
+          "script": "tools/_pa_fig2_corr.py",
+          "archive": "outputs/analysis/dg_r1_reproducible.json",
+          "archives": [
+            "outputs/analysis/dg_r1_reproducible.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:falsification",
+          "kind": "figure",
+          "script": "tools/_pa_rebuild_figs_rest.py",
+          "archive": "outputs/analysis/k_remeasured_both.json",
+          "archives": [
+            "outputs/analysis/k_remeasured_both.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:ablation",
+          "kind": "figure",
+          "script": "tools/_pa_rebuild_figs_rest.py",
+          "archive": "outputs/flickr30k/alpha_16/gap_history.json",
+          "archives": [
+            "outputs/flickr30k/alpha_16/gap_history.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:crossmethod",
+          "kind": "figure",
+          "script": "tools/_pa_rebuild_figs_rest.py",
+          "archive": "outputs/theory/adapter/adapter_all_results.json",
+          "archives": [
+            "outputs/theory/adapter/adapter_all_results.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:ers",
+          "kind": "figure",
+          "script": "tools/_pa_rebuild_figs_rest.py",
+          "archive": "outputs/analysis/k_remeasured_both.json",
+          "archives": [
+            "outputs/analysis/k_remeasured_both.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:weight_svd",
+          "kind": "figure",
+          "script": "tools/_pa_fig8_rebuild.py",
+          "archive": "outputs/analysis/strict_control_summary.json",
+          "archives": [
+            "outputs/analysis/strict_control_summary.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:noise_sensitivity",
+          "kind": "figure",
+          "script": "tools/_pa_fig9_noise_rebuild.py",
+          "archive": "outputs/noise_fixed_aug.json",
+          "archives": [
+            "outputs/noise_fixed_aug.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:layered_ft",
+          "kind": "figure",
+          "script": "tools/_pa_rebuild_fig10.py",
+          "archive": "outputs/layered_ft_results.json",
+          "archives": [
+            "outputs/layered_ft_results.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:zeroshot",
+          "kind": "figure",
+          "script": "tools/_pa_rebuild_fig12.py",
+          "archive": "outputs/zeroshot_extra.json",
+          "archives": [
+            "outputs/zeroshot_extra.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:adapter_layered",
+          "kind": "figure",
+          "script": "tools/_pa_fix_fig14_title.py",
+          "archive": "outputs/adapter_layered_results.json",
+          "archives": [
+            "outputs/adapter_layered_results.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:budget",
+          "kind": "figure",
+          "script": "tools/_pa_split_appendix_figs.py",
+          "archive": "outputs/analysis/strict_control_summary.json",
+          "archives": [
+            "outputs/analysis/strict_control_summary.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:vision_untouched",
+          "kind": "figure",
+          "script": "tools/_pa_fig8c.py",
+          "archive": "outputs/analysis/strict_control_summary.json",
+          "archives": [
+            "outputs/analysis/strict_control_summary.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:sigma0_control",
+          "kind": "figure",
+          "script": "tools/_pa_split_appendix_figs.py",
+          "archive": "outputs/noise_fixed_aug.json",
+          "archives": [
+            "outputs/noise_fixed_aug.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:ratio",
+          "kind": "figure",
+          "script": "tools/_pa_split_appendix_figs.py",
+          "archive": "outputs/noise_fixed_aug.json",
+          "archives": [
+            "outputs/noise_fixed_aug.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:stratified",
+          "kind": "figure",
+          "script": "tools/_p860_fig_stratified.py",
+          "archive": "outputs/analysis/dg_r1_reproducible.json",
+          "archives": [
+            "outputs/analysis/dg_r1_reproducible.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "fig:site_schematic",
+          "kind": "figure",
+          "status": "exempt",
+          "note": "mechanism schematic (not measured data); generator tools/_p1333_upgrade_figures.py",
+          "script": "tools/_p1333_upgrade_figures.py"
+        },
+        {
+          "label": "tab:position",
+          "kind": "table",
+          "script": "tools\\_p1432_provenance_map_paperA.py",
+          "archive": "outputs/analysis/tab_position_provenance.json",
+          "archives": [
+            "outputs/analysis/tab_position_provenance.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:position_strict",
+          "kind": "table",
+          "script": "tools\\_p1432_provenance_map_paperA.py",
+          "archive": "outputs/analysis/strict_table_provenance.json",
+          "archives": [
+            "outputs/analysis/strict_table_provenance.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:family",
+          "kind": "table",
+          "script": "tools\\_claim_ledger.py",
+          "archive": "outputs/analysis/ode_ledger.json",
+          "archives": [
+            "outputs/analysis/ode_ledger.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:corr",
+          "kind": "table",
+          "script": "tools\\_audit_figure_provenance.py",
+          "archive": "outputs/analysis/dg_r1_reproducible.json",
+          "archives": [
+            "outputs/analysis/dg_r1_reproducible.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:beta_pilot",
+          "kind": "table",
+          "script": "tools\\_p1432_provenance_map_paperA.py",
+          "archive": "outputs/theory/beta_pilot/beta_pilot_results.json",
+          "archives": [
+            "outputs/theory/beta_pilot/beta_pilot_results.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:phase2",
+          "kind": "table",
+          "script": "tools\\_claim_ledger.py",
+          "archive": "outputs/analysis/ode_ledger.json",
+          "archives": [
+            "outputs/analysis/ode_ledger.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:diagnostics",
+          "kind": "table",
+          "script": "tools\\_claim_ledger.py",
+          "archive": "outputs/analysis/ode_ledger.json",
+          "archives": [
+            "outputs/analysis/ode_ledger.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:generalization",
+          "kind": "table",
+          "script": "tools\\_claim_ledger.py",
+          "archive": "outputs/analysis/ode_ledger.json",
+          "archives": [
+            "outputs/analysis/ode_ledger.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:grad_side",
+          "kind": "table",
+          "script": "tools\\_append_k_final.py",
+          "archive": "outputs/analysis/k_remeasured_both.json",
+          "archives": [
+            "outputs/analysis/k_remeasured_both.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:config_groups",
+          "kind": "table",
+          "script": "tools\\_audit_figure_provenance.py",
+          "archive": "outputs/analysis/strict_control_summary.json",
+          "archives": [
+            "outputs/analysis/strict_control_summary.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:odefit",
+          "kind": "table",
+          "script": "tools/_p1440_paperA_ode_residuals.py",
+          "archive": "outputs/analysis/paperA_ode_residuals.json",
+          "archives": [
+            "outputs/analysis/paperA_ode_residuals.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:vlm",
+          "kind": "table",
+          "script": "tools\\_claim_ledger_paperA.py",
+          "archive": "outputs/vlm_clean_summary.json",
+          "archives": [
+            "outputs/vlm_clean_summary.json",
+            "outputs/vlm_clean_cloud/frozen_baseline.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:llava",
+          "kind": "table",
+          "script": "tools\\_claim_ledger_paperA.py",
+          "archive": "outputs/canonical_caption_metric.json",
+          "archives": [
+            "outputs/canonical_caption_metric.json"
+          ],
+          "status": "verified",
+          "note": ""
+        },
+        {
+          "label": "tab:decoderladder",
+          "kind": "table",
+          "script": "tools\\_p1612_objective_control_multimodel.py",
+          "archive": "outputs/analysis/decoder_attribution_qwen2vl-2b_contrastive_seed42.json",
+          "archives": [
+            "outputs/analysis/decoder_attribution_qwen2vl-2b_contrastive_seed42.json",
+            "outputs/analysis/decoder_attribution_qwen2vl-2b_generative_seed42.json",
+            "outputs/analysis/decoder_attribution_llava15-7b_contrastive_seed42.json",
+            "outputs/analysis/decoder_attribution_llava15-7b_generative_seed42.json",
+            "outputs/analysis/decoder_attribution_qwen25vl-7b_generative_seed42.json"
+          ],
+          "status": "verified",
+          "note": "Supplement Section H.2, the matched objective ladder (meta.protocol = 'match', 320 pairs, 3 epochs, LoRA r8/a16, both-position arm, seed 42, 4-bit nf4). One record per rung: the frozen and final columns are frozen_dg_star and the last entry of dg_star, the change column is delta_DG_percent, and the LLaVA learning-rate and frozen-baseline mismatch quoted in the text is meta.lr and meta.ab_check.verdict in the LLaVA contrastive record. The corrected local control of Section H.1 is archived separately in outputs/analysis/qwen_objective_control_*.json."
+        },
+        {
+          "label": "tab:prereg",
+          "script": "tools/_p1759_write_prereg_into_ms.py",
+          "archive": "outputs/paperA_c_prereg",
+          "status": "verified"
+        },
+        {
+          "label": "tab:prereg_openclip",
+          "script": "tools/_p1758_score_p2_p4.py",
+          "archive": "outputs/paperA_c_prereg_openclip",
+          "status": "verified"
+        },
+        {
+          "label": "tab:prereg_b16",
+          "script": "tools/_p1758_score_p2_p4.py",
+          "archive": "outputs/paperA_c_prereg_b16",
+          "status": "verified"
+        },
+        {
+          "label": "fig:prereg",
+          "script": "tools/_p1769_upgrade_a4_figures.py",
+          "archive": "outputs/analysis/paperA_prereg_stats.json",
+          "status": "verified"
+        },
+        {
+          "label": "fig:compmodels",
+          "script": "tools/_p1769_upgrade_a4_figures.py",
+          "archive": "outputs/analysis/paperA_competing_models_cv.json",
+          "status": "verified"
+        }
+      ]
+    }
+  }
+}

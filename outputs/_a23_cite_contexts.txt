@@ -1,0 +1,108 @@
+total occurrences: 35
+citet: 1  citep: 34  plain: 0
+====================================================================================================
+
+[main.tex:44]  citep  key=chen2025,jian2024,qin2022
+  utonomous underwater vehicles, and inspection of marine infrastructure are all powered by trained deep models [[citep:chen2025,jian2024,qin2022]]. The newest generation moves from task-specific detectors to \emph{vi
+
+[main.tex:44]  citep  key=aquaticclip2026
+  Ms for marine reporting. Dedicated marine VLMs have appeared---underwater image--text contrastive pretraining [[citep:aquaticclip2026]], ocean instruction tuning \citep{marinegpt2023}, ocean-domain languag
+
+[main.tex:44]  citep  key=marinegpt2023
+  e appeared---underwater image--text contrastive pretraining \citep{aquaticclip2026}, ocean instruction tuning [[citep:marinegpt2023]], ocean-domain language models \citep{oceangpt2023}, and marine-adapte
+
+[main.tex:44]  citep  key=oceangpt2023
+  raining \citep{aquaticclip2026}, ocean instruction tuning \citep{marinegpt2023}, ocean-domain language models [[citep:oceangpt2023]], and marine-adapted contrastive checkpoints such as OceanCLIP \citep{
+
+[main.tex:44]  citep  key=oceanclip2025
+  ean-domain language models \citep{oceangpt2023}, and marine-adapted contrastive checkpoints such as OceanCLIP [[citep:oceanclip2025]]---but none of them is shipped with a procedure for answering two prac
+
+[main.tex:46]  citep  key=wanA1
+  hy, and what should I monitor when I fine-tune one?} For general vision-language models, our companion study [[citep:wanA1]] established both the need and the tool: under controlled ``gap surger
+
+[main.tex:70]  citep  key=liang2022,levi2025,yi2025
+  ic separation between image and text clusters---the modality gap---whose origin and geometry are well studied [[citep:liang2022,levi2025,yi2025]]. Gap-magnitude quantities are widely used as alignment-health proxies
+
+[main.tex:70]  citep  key=mistretta2025,yamaguchi2025,sofer2025
+  ude quantities are widely used as alignment-health proxies, and gap reduction is an explicit design objective [[citep:mistretta2025,yamaguchi2025,sofer2025]]. Our companion work \citep{wanA1} showed, with exact global translati
+
+[main.tex:70]  citep  key=wanA1
+  p reduction is an explicit design objective \citep{mistretta2025,yamaguchi2025,sofer2025}. Our companion work [[citep:wanA1]] showed, with exact global translations, that this proxy is wrong for 
+
+[main.tex:70]  citep  key=chowers2026
+  d by the same analysis: text-side shifts leave accuracy largely unchanged (because they add a per-image term) [[citep:chowers2026]], while training-based gap closing preserves instance-wise task struct
+
+[main.tex:70]  citep  key=grassucci2026
+   per-image term) \citep{chowers2026}, while training-based gap closing preserves instance-wise task structure [[citep:grassucci2026]]; \emph{how} the gap is closed---not the gap itself---is decisive. Wei
+
+[main.tex:70]  citep  key=wortsman2022
+  ---is decisive. Weight-space interpolation between zero-shot and fine-tuned weights preserves both behaviours [[citep:wortsman2022]]; the present analysis supplies the corresponding embedding-space char
+
+[main.tex:75]  citep  key=biderman2024
+   preservation} \label{sec:bg-peft} Parameter-efficient fine-tuning (PEFT) forgets less than full fine-tuning [[citep:biderman2024]], and text-only LoRA was the dominant prescription in our empirical st
+
+[main.tex:75]  citep  key=wanP1
+  ull fine-tuning \citep{biderman2024}, and text-only LoRA was the dominant prescription in our empirical study [[citep:wanP1]]. For marine models, where labelled data are scarce and every accuracy
+
+[main.tex:80]  citep  key=chen2025,jian2024
+  nguage models} \label{sec:bg-marine} Deep learning for underwater perception is now comprehensively surveyed [[citep:chen2025,jian2024]] and deployed on AUV navigation and localization \citep{qin2022}, but 
+
+[main.tex:80]  citep  key=qin2022
+  ion is now comprehensively surveyed \citep{chen2025,jian2024} and deployed on AUV navigation and localization [[citep:qin2022]], but the newest paradigm---vision-language models---entered only rece
+
+[main.tex:80]  citep  key=aquaticclip2026
+  -language models---entered only recently: AquaticCLIP trains a large underwater image--text contrastive model [[citep:aquaticclip2026]]; MarineGPT adapts instruction tuning to ocean domains \citep{marinegp
+
+[main.tex:80]  citep  key=marinegpt2023
+  r image--text contrastive model \citep{aquaticclip2026}; MarineGPT adapts instruction tuning to ocean domains [[citep:marinegpt2023]]; OceanGPT is an ocean-domain LLM \citep{oceangpt2023}; OceanCLIP-0.15
+
+[main.tex:80]  citep  key=oceangpt2023
+  ; MarineGPT adapts instruction tuning to ocean domains \citep{marinegpt2023}; OceanGPT is an ocean-domain LLM [[citep:oceangpt2023]]; OceanCLIP-0.15B fine-tunes a BioCLIP backbone on marine imagery and 
+
+[main.tex:80]  citep  key=oceanclip2025
+  tep{oceangpt2023}; OceanCLIP-0.15B fine-tunes a BioCLIP backbone on marine imagery and biological terminology [[citep:oceanclip2025]]. No prior work analyses their alignment structure; the existence of b
+
+[main.tex:80]  citep  key=christensen2026
+  in this journal the trajectory is already visible---vision-language models for maritime situational awareness [[citep:christensen2026]] and agentic AI for marine condition monitoring \citep{maione2026}---y
+
+[main.tex:80]  citep  key=maione2026
+  els for maritime situational awareness \citep{christensen2026} and agentic AI for marine condition monitoring [[citep:maione2026]]---yet none of these works addresses alignment health, the gap this pa
+
+[main.tex:85]  citep  key=nksid2024
+   FLS images, 8 object classes, natural long tail, collected in Bohai Bay with an Oculus M750d multibeam sonar [[citep:nksid2024]]; UATD, a multibeam FLS dataset for underwater object detection publis
+
+[main.tex:85]  citep  key=uatd2022
+  nksid2024}; UATD, a multibeam FLS dataset for underwater object detection published in \emph{Scientific Data} [[citep:uatd2022]]; S3Simulator, a benchmarking side-scan sonar simulator dataset for un
+
+[main.tex:85]  citep  key=s3simulator2024
+  \citep{uatd2022}; S3Simulator, a benchmarking side-scan sonar simulator dataset for underwater image analysis [[citep:s3simulator2024]]; and recent surveys mapping the dataset landscape across side-scan, F
+
+[main.tex:85]  citep  key=sonarsurvey2025
+  veys mapping the dataset landscape across side-scan, FLS, synthetic-aperture, multibeam and DIDSON modalities [[citep:sonarsurvey2025]] and reviewing deep-learning robustness and open challenges for sonar 
+
+[main.tex:85]  citep  key=aubard2025
+  {sonarsurvey2025} and reviewing deep-learning robustness and open challenges for sonar in underwater robotics [[citep:aubard2025]]. None of these works, however, examines how contrastive alignment beh
+
+[main.tex:93]  citep  key=oceanclip2025
+  ) \section{Materials and methods} \label{sec:setup} \subsection{Models} \label{sec:models} OceanCLIP-0.15B [[citep:oceanclip2025]] (BioCLIP ViT-B/16 backbone, 512-d embedding; marine fine-tune, 50 epo
+
+[main.tex:93]  citep  key=radford2021
+  ve as general-domain controls; the family descends from contrastive vision--language pretraining (CLIP-style) [[citep:radford2021]]. All embeddings are L2-normalized. The OceanCLIP checkpoint is releas
+
+[main.tex:479]  citep  key=mvaldenegro2024
+  ses; 1{,}646 training / 352 test images with a \emph{held-out test split}---no memorization caveat this time) [[citep:mvaldenegro2024]]. The replication runs the identical protocol on this instrument: same
+
+[main.tex:811]  citep  key=aubard2025
+  ataset---recent overviews of sonar deep learning likewise identify data availability as a standing constraint [[citep:aubard2025]]---we attempted (all in 2026-08): SeabedObjects-KLSG (side-scan, 447 i
+
+[main.tex:811]  citep  key=uatd2022
+  -all distributed via GitHub, whose SSH/HTTPS/codeload channels reset or hang in our network environment; UATD [[citep:uatd2022]] via figshare (API unreachable), OpenI (repository contains only READM
+
+[main.tex:821]  citet  key=mvaldenegro2024
+   (iNaturalist/GBIF-derived), the riku-1825 repository (MIT licence), the ARIS-3000 water-tank debris release ([[citet:mvaldenegro2024]]) and FathomNet (\url{https://database.fathomnet.org}; images CC-BY). 
+
+[main.tex:869]  citep  key=sonarsurvey2025
+  npay/NK-Sonar-Image-Dataset (MIT licence); indexed as a classification benchmark in the sonar-resource survey [[citep:sonarsurvey2025]]. \bibitem[Qin et al.(2022)]{qin2022} Qin, J., Li, M., Li, D., et al.,
+
+[ext_partIII_dynamics.tex:65]  citep  key=qwen2vl2024
+  the most informative row.} The same monitor run over an instruction-format \emph{LoRA} fine-tune (Qwen2-VL-2B [[citep:qwen2vl2024]], text-only; 3{,}440 human marine question--answer pairs as ``Question

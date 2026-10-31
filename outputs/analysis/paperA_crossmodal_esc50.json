@@ -1,0 +1,44 @@
+{
+  "script": "tools/_p1782_crossmodal_real.py",
+  "backbone": "laion/clap-htsat-unfused",
+  "dataset": "ashraq/esc50 (ESC-50, human-annotated categories)",
+  "modality_pair": "audio-text",
+  "n_pairs": 160,
+  "n_classes": 49,
+  "chunk": 24,
+  "device": "cuda",
+  "matched": {
+    "dg": 0.0021370802423916757,
+    "grad_norm": {
+      "audio": 0.006892728594558306,
+      "text": 0.05220241098699217
+    },
+    "gamma_relative": {
+      "audio": 0.13090235431506622,
+      "text": 0.991395266094595
+    }
+  },
+  "mismatched_captions": {
+    "dg": 0.0036954392795450985,
+    "grad_norm": {
+      "audio": 0.0062905117838899524,
+      "text": 0.015216192117904724
+    },
+    "gamma_relative": {
+      "audio": 0.3820487522243592,
+      "text": 0.9241421702983854
+    }
+  },
+  "bootstrap": {
+    "n_resamples": 120,
+    "dg_ci95": [
+      0.0020626356691354885,
+      0.002201088563306257
+    ],
+    "text_gamma_ci95": [
+      0.9874001579565378,
+      0.993020669828592
+    ]
+  },
+  "note": "inference only; DG is size-weighted mean squared distance of normalised paired embeddings; tower gradients are root-mean-square over chunks (approximation, stated)"
+}

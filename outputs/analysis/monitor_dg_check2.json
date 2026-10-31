@@ -1,0 +1,41 @@
+{
+ "n_runs": 96,
+ "rules": {
+  "R1 平台化(ε=1%)": {
+   "n": 94,
+   "better": 6,
+   "worse": 88,
+   "same": 2,
+   "mean_diff": 0.03839081716030202
+  },
+  "R2 相对初值(θ=0.99)": {
+   "n": 95,
+   "better": 1,
+   "worse": 94,
+   "same": 1,
+   "mean_diff": 0.09351503911771272
+  },
+  "R3 固定停 k=2": {
+   "n": 96,
+   "better": 1,
+   "worse": 95,
+   "same": 0,
+   "mean_diff": 0.09783926916619141
+  },
+  "R3 固定停 k=3": {
+   "n": 96,
+   "better": 2,
+   "worse": 94,
+   "same": 0,
+   "mean_diff": 0.0694946851581335
+  },
+  "R3 固定停 k=5": {
+   "n": 96,
+   "better": 8,
+   "worse": 88,
+   "same": 0,
+   "mean_diff": 0.03634467410544554
+  }
+ },
+ "rules_favouring_early_stop": 0
+}

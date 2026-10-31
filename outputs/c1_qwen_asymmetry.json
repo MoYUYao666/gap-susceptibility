@@ -1,0 +1,435 @@
+{
+ "source": "cloud clean rerun 2026-09-13, autodl RTX 4080 SUPER 32760MiB / torch 2.12.1+cu130",
+ "protocol_note": "Qwen 脚本的 blank image 为 np.random.randint 噪声图并按 seed 播撒，故 E0 随 seed 变化；臂间比较干净，跨 seed 绝对值不可平均，另报 ΔE/E0。LLaVA 脚本用 np.zeros 全黑图（E0 恒定），两架构此点协议不一致。",
+ "rows": [
+  {
+   "seed": 42,
+   "arm": "tnone_pr4_projonly",
+   "label": "投影器 r=4 单独（LLM 冻结）",
+   "trainable_params": 75776,
+   "proj_rank": 4,
+   "llm_rank": null,
+   "E0": 27008.0,
+   "E": [
+    27008.0,
+    27424.0,
+    27296.0,
+    27392.0
+   ],
+   "delta_E": 384.0,
+   "delta_E_pct": 1.4218009478672986
+  },
+  {
+   "seed": 42,
+   "arm": "pr16_lr2_projhi16_llmlo2",
+   "label": "投影器 r=16 + LLM r=2",
+   "trainable_params": 1564672,
+   "proj_rank": 16,
+   "llm_rank": 2,
+   "E0": 27008.0,
+   "E": [
+    27008.0,
+    26720.0,
+    26560.0,
+    26160.0
+   ],
+   "delta_E": -848.0,
+   "delta_E_pct": -3.139810426540284
+  },
+  {
+   "seed": 42,
+   "arm": "pr2_lr16_projlo2_llmhi16",
+   "label": "投影器 r=2 + LLM r=16",
+   "trainable_params": 10130432,
+   "proj_rank": 2,
+   "llm_rank": 16,
+   "E0": 27008.0,
+   "E": [
+    27008.0,
+    27008.0,
+    26560.0,
+    26272.0
+   ],
+   "delta_E": -736.0,
+   "delta_E_pct": -2.7251184834123223
+  },
+  {
+   "seed": 123,
+   "arm": "tnone_pr4_projonly",
+   "label": "投影器 r=4 单独（LLM 冻结）",
+   "trainable_params": 75776,
+   "proj_rank": 4,
+   "llm_rank": null,
+   "E0": 45440.0,
+   "E": [
+    45440.0,
+    45248.0,
+    44928.0,
+    45568.0
+   ],
+   "delta_E": 128.0,
+   "delta_E_pct": 0.28169014084507044
+  },
+  {
+   "seed": 123,
+   "arm": "pr16_lr2_projhi16_llmlo2",
+   "label": "投影器 r=16 + LLM r=2",
+   "trainable_params": 1564672,
+   "proj_rank": 16,
+   "llm_rank": 2,
+   "E0": 45440.0,
+   "E": [
+    45440.0,
+    44608.0,
+    43456.0,
+    41120.0
+   ],
+   "delta_E": -4320.0,
+   "delta_E_pct": -9.507042253521126
+  },
+  {
+   "seed": 123,
+   "arm": "pr2_lr16_projlo2_llmhi16",
+   "label": "投影器 r=2 + LLM r=16",
+   "trainable_params": 10130432,
+   "proj_rank": 2,
+   "llm_rank": 16,
+   "E0": 45440.0,
+   "E": [
+    45440.0,
+    44928.0,
+    43712.0,
+    41376.0
+   ],
+   "delta_E": -4064.0,
+   "delta_E_pct": -8.943661971830986
+  },
+  {
+   "seed": 456,
+   "arm": "tnone_pr4_projonly",
+   "label": "投影器 r=4 单独（LLM 冻结）",
+   "trainable_params": 75776,
+   "proj_rank": 4,
+   "llm_rank": null,
+   "E0": 46592.0,
+   "E": [
+    46592.0,
+    46784.0,
+    46784.0,
+    46656.0
+   ],
+   "delta_E": 64.0,
+   "delta_E_pct": 0.13736263736263737
+  },
+  {
+   "seed": 456,
+   "arm": "pr16_lr2_projhi16_llmlo2",
+   "label": "投影器 r=16 + LLM r=2",
+   "trainable_params": 1564672,
+   "proj_rank": 16,
+   "llm_rank": 2,
+   "E0": 46592.0,
+   "E": [
+    46592.0,
+    46080.0,
+    45312.0,
+    43968.0
+   ],
+   "delta_E": -2624.0,
+   "delta_E_pct": -5.631868131868132
+  },
+  {
+   "seed": 456,
+   "arm": "pr2_lr16_projlo2_llmhi16",
+   "label": "投影器 r=2 + LLM r=16",
+   "trainable_params": 10130432,
+   "proj_rank": 2,
+   "llm_rank": 16,
+   "E0": 46592.0,
+   "E": [
+    46592.0,
+    46272.0,
+    45696.0,
+    44736.0
+   ],
+   "delta_E": -1856.0,
+   "delta_E_pct": -3.983516483516483
+  },
+  {
+   "seed": 999,
+   "arm": "tnone_pr4_projonly",
+   "label": "投影器 r=4 单独（LLM 冻结）",
+   "trainable_params": 75776,
+   "proj_rank": 4,
+   "llm_rank": null,
+   "E0": 35776.0,
+   "E": [
+    35776.0,
+    35872.0,
+    35840.0,
+    35872.0
+   ],
+   "delta_E": 96.0,
+   "delta_E_pct": 0.26833631484794274
+  },
+  {
+   "seed": 999,
+   "arm": "pr16_lr2_projhi16_llmlo2",
+   "label": "投影器 r=16 + LLM r=2",
+   "trainable_params": 1564672,
+   "proj_rank": 16,
+   "llm_rank": 2,
+   "E0": 35776.0,
+   "E": [
+    35776.0,
+    35552.0,
+    35264.0,
+    34208.0
+   ],
+   "delta_E": -1568.0,
+   "delta_E_pct": -4.382826475849732
+  },
+  {
+   "seed": 999,
+   "arm": "pr2_lr16_projlo2_llmhi16",
+   "label": "投影器 r=2 + LLM r=16",
+   "trainable_params": 10130432,
+   "proj_rank": 2,
+   "llm_rank": 16,
+   "E0": 35776.0,
+   "E": [
+    35776.0,
+    35744.0,
+    35360.0,
+    34592.0
+   ],
+   "delta_E": -1184.0,
+   "delta_E_pct": -3.309481216457961
+  }
+ ],
+ "summary": {
+  "tnone_pr4_projonly": {
+   "n": 4,
+   "delta_E_mean": 168.0,
+   "delta_E_sd": 126.74383614203887,
+   "pct_mean": 0.5272975102307373,
+   "pct_sd": 0.5195116662869372,
+   "n_positive": 4,
+   "delta_E": [
+    384.0,
+    128.0,
+    64.0,
+    96.0
+   ],
+   "pct": [
+    1.4218009478672986,
+    0.28169014084507044,
+    0.13736263736263737,
+    0.26833631484794274
+   ]
+  },
+  "pr16_lr2_projhi16_llmlo2": {
+   "n": 4,
+   "delta_E_mean": -2340.0,
+   "delta_E_sd": 1306.0535976750725,
+   "pct_mean": -5.665386821944819,
+   "pct_sd": 2.38657375372857,
+   "n_positive": 0,
+   "delta_E": [
+    -848.0,
+    -4320.0,
+    -2624.0,
+    -1568.0
+   ],
+   "pct": [
+    -3.139810426540284,
+    -9.507042253521126,
+    -5.631868131868132,
+    -4.382826475849732
+   ]
+  },
+  "pr2_lr16_projlo2_llmhi16": {
+   "n": 4,
+   "delta_E_mean": -1960.0,
+   "delta_E_sd": 1278.47409046879,
+   "pct_mean": -4.740444538804438,
+   "pct_sd": 2.4672440094984274,
+   "n_positive": 0,
+   "delta_E": [
+    -736.0,
+    -4064.0,
+    -1856.0,
+    -1184.0
+   ],
+   "pct": [
+    -2.7251184834123223,
+    -8.943661971830986,
+    -3.983516483516483,
+    -3.309481216457961
+   ]
+  }
+ },
+ "block_baseline": {
+  "v2": {
+   "42": {
+    "uniform": {
+     "E0": 27008.0,
+     "delta_E": -752.0,
+     "E": [
+      27008.0,
+      26720.0,
+      26592.0,
+      26256.0
+     ]
+    },
+    "theory": {
+     "E0": 27008.0,
+     "delta_E": -672.0,
+     "E": [
+      27008.0,
+      27200.0,
+      26560.0,
+      26336.0
+     ]
+    },
+    "violation": {
+     "E0": 27008.0,
+     "delta_E": -896.0,
+     "E": [
+      27008.0,
+      27008.0,
+      26528.0,
+      26112.0
+     ]
+    }
+   },
+   "123": {
+    "uniform": {
+     "E0": 45440.0,
+     "delta_E": -4096.0,
+     "E": [
+      45440.0,
+      44992.0,
+      43328.0,
+      41344.0
+     ]
+    },
+    "theory": {
+     "E0": 45440.0,
+     "delta_E": -3872.0,
+     "E": [
+      45440.0,
+      44544.0,
+      43648.0,
+      41568.0
+     ]
+    },
+    "violation": {
+     "E0": 45440.0,
+     "delta_E": -4512.0,
+     "E": [
+      45440.0,
+      45120.0,
+      43264.0,
+      40928.0
+     ]
+    }
+   },
+   "456": {
+    "uniform": {
+     "E0": 46592.0,
+     "delta_E": -2176.0,
+     "E": [
+      46592.0,
+      46464.0,
+      45312.0,
+      44416.0
+     ]
+    },
+    "theory": {
+     "E0": 46592.0,
+     "delta_E": -2496.0,
+     "E": [
+      46592.0,
+      46528.0,
+      45056.0,
+      44096.0
+     ]
+    },
+    "violation": {
+     "E0": 46592.0,
+     "delta_E": -2496.0,
+     "E": [
+      46592.0,
+      46016.0,
+      45440.0,
+      44096.0
+     ]
+    }
+   }
+  },
+  "archive": {
+   "42": {
+    "uniform": {
+     "E0": 19228.0,
+     "delta_E": 216.0
+    },
+    "theory": {
+     "E0": 19228.0,
+     "delta_E": 224.0
+    },
+    "violation": {
+     "E0": 19228.0,
+     "delta_E": 232.0
+    }
+   },
+   "123": {
+    "uniform": {
+     "E0": 20278.0,
+     "delta_E": -64.0
+    },
+    "theory": {
+     "E0": 20278.0,
+     "delta_E": -70.0
+    },
+    "violation": {
+     "E0": 20278.0,
+     "delta_E": -70.0
+    }
+   },
+   "456": {
+    "uniform": {
+     "E0": 18324.0,
+     "delta_E": 306.0
+    },
+    "theory": {
+     "E0": 18324.0,
+     "delta_E": 296.0
+    },
+    "violation": {
+     "E0": 18324.0,
+     "delta_E": 304.0
+    }
+   }
+  }
+ },
+ "per_seed_order_consistent": 4,
+ "n_seeds": 4,
+ "pairwise": {
+  "tnone_pr4_projonly|pr16_lr2_projhi16_llmlo2": {
+   "n_a_gt_b": 4,
+   "n": 4,
+   "mean_diff": 2508.0
+  },
+  "tnone_pr4_projonly|pr2_lr16_projlo2_llmhi16": {
+   "n_a_gt_b": 4,
+   "n": 4,
+   "mean_diff": 2128.0
+  },
+  "pr2_lr16_projlo2_llmhi16|pr16_lr2_projhi16_llmlo2": {
+   "n_a_gt_b": 4,
+   "n": 4,
+   "mean_diff": 380.0
+  }
+ }
+}

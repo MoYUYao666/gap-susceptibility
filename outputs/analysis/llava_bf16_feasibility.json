@@ -1,0 +1,25 @@
+{
+  "experiment": "llava_bf16_feasibility",
+  "asked": "PR R2.3 -- can a larger/modern VLM (LLaVA-1.5-7B) be validated in bf16 on an RTX 4060 Laptop 8 GB, i.e. reproducibly?",
+  "four_bit_excluded_because": "project measurement: repeating one 4-bit configuration with an identical seed changed the measured gap span from 0.304 to 0.407 (quantised matmuls are not deterministic), so 4-bit output cannot serve as reproducible evidence",
+  "ran_at_utc": "2026-10-12T05:50:38+00:00",
+  "disk": {
+    "model_dir": "models\\llava-hf",
+    "n_safetensors": 3,
+    "shard_bytes": {
+      "model-00001-of-00003.safetensors": 4992930200,
+      "model-00002-of-00003.safetensors": 4957878440,
+      "model-00003-of-00003.safetensors": 4176137408
+    },
+    "total_bytes": 14126946048,
+    "total_GiB": 13.157,
+    "bf16_GiB": 13.157,
+    "fp32_GiB": 26.313,
+    "int8_GiB": 6.578,
+    "int4_GiB": 3.289
+  },
+  "source": {
+    "script": "tools/_p294_llava_bf16_feasibility.py"
+  },
+  "verdict": "disk-only run; no load attempted"
+}

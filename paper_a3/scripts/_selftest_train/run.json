@@ -1,0 +1,33 @@
+{
+ "corpus": "D:\\Realdesktop\\Wan\\Important\\New\\paper_a3\\scripts\\_selftest_train\\corpus.jsonl",
+ "images_root": "D:\\Realdesktop\\Wan\\Important\\New\\paper_a3\\scripts\\_selftest_train",
+ "site": "vision",
+ "seed": 0,
+ "epochs": 1,
+ "batch": 8,
+ "max_pairs": null,
+ "pairs_used": 16,
+ "eval_pairs": 8,
+ "trainable_params": 884736,
+ "total_params": 152162049,
+ "trainable_share": 0.005814,
+ "adapted_modules_count": 36,
+ "adapted_suffixes": [
+  "c_fc",
+  "c_proj",
+  "out_proj"
+ ],
+ "final_loss": 2.1433,
+ "loss_first": 2.1433,
+ "wall_seconds": 0.6,
+ "peak_vram_gb": 0.985,
+ "metrics": {
+  "R@1_i2t": 0.125,
+  "R@1_t2i": 0.125,
+  "R@5_i2t": 0.625,
+  "R@5_t2i": 0.625
+ },
+ "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+ "torch": "2.9.1+cu130",
+ "generated": "2026-10-28T21:06:00"
+}

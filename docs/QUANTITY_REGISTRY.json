@@ -1,0 +1,1920 @@
+{
+ "schema": 1,
+ "built_at": "2026-10-25",
+ "note": "N-01: one canonical value per (manuscript, quantity); text mentions must match the canonical rounding or an explicitly allowed variant.",
+ "seed_counts": {
+  "paperA_nc": 84,
+  "paperA_springer": 84,
+  "a1_paa": 11
+ },
+ "manuscripts": {
+  "paperA_nc": {
+   "严格冻结 text_only CGΔ": {
+    "archive": "outputs/analysis/strict_control_summary.json",
+    "field": "configs.text_only.cg_delta_mean",
+    "canonical_value": -0.0465,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM text_only DG* 相对变化(%), n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.text_only.dg_rel_mean",
+    "canonical_value": 66.47,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM text_only DG* 相对变化 sd, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.text_only.dg_rel_sd",
+    "canonical_value": 8.32,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM text_only CG 跨度均值, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.text_only.cg_mean",
+    "canonical_value": 0.168,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM vision_only DG* 相对变化(%), n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.vision_only.dg_rel_mean",
+    "canonical_value": 18.03,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM vision_only DG* 相对变化 sd, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.vision_only.dg_rel_sd",
+    "canonical_value": 8.78,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM vision_only CG 跨度均值, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.vision_only.cg_mean",
+    "canonical_value": 0.3919,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM both DG* 相对变化(%), n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.both.dg_rel_mean",
+    "canonical_value": 87.94,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM both DG* 相对变化 sd, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.both.dg_rel_sd",
+    "canonical_value": 5.35,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM both CG 跨度均值, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.both.cg_mean",
+    "canonical_value": 0.2913,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 Flickr30k|text_only ΔCG": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.Flickr30k|text_only.mean",
+    "canonical_value": -0.0304,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 Flickr30k|both ΔCG": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.Flickr30k|both.mean",
+    "canonical_value": -0.0204,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 COCO|text_only ΔCG": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.COCO|text_only.mean",
+    "canonical_value": -0.043,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 Flickr30k|text_only sd": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.Flickr30k|text_only.sd",
+    "canonical_value": 0.0039,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 COCO|both sd": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.COCO|both.sd",
+    "canonical_value": 0.0026,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "f(DG0) 高精度合并值": {
+    "archive": "outputs/analysis/alpha_precision.json",
+    "field": "pooled_f.mean",
+    "canonical_value": 66.7,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "f(DG0) 标准误": {
+    "archive": "outputs/analysis/alpha_precision.json",
+    "field": "pooled_f.se",
+    "canonical_value": 4.8,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "归档 alpha_fit": {
+    "archive": "outputs/analysis/alpha_precision.json",
+    "field": "alpha_fit_archive",
+    "canonical_value": -0.0027743,
+    "rounding": 6,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "f_fit = alpha_fit/eta": {
+    "archive": "outputs/analysis/alpha_precision.json",
+    "field": "f_fit_archive",
+    "canonical_value": -27.7,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "驱动项轨迹均值 text_only": {
+    "archive": "outputs/analysis/driving_trajectory.json",
+    "field": "trajectory_means.text_only",
+    "canonical_value": 10.8,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "驱动项轨迹均值 vision_only": {
+    "archive": "outputs/analysis/driving_trajectory.json",
+    "field": "trajectory_means.vision_only",
+    "canonical_value": 10.2,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "驱动项轨迹均值 both": {
+    "archive": "outputs/analysis/driving_trajectory.json",
+    "field": "trajectory_means.both",
+    "canonical_value": 9.2,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "驱动项极差(%)": {
+    "archive": "outputs/analysis/driving_trajectory.json",
+    "field": "trajectory_mean_spread_pct",
+    "canonical_value": 16.5,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 实测/预测中位比": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.systematic_ratio_median",
+    "canonical_value": 2.44,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 极差比(预测/实测)": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.spread_ratio",
+    "canonical_value": 3.33,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 预测极差": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.pred_spread",
+    "canonical_value": 0.223,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 实测极差": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.actual_spread",
+    "canonical_value": 0.067,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 相关系数": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.corr",
+    "canonical_value": 0.225,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Qwen2-VL 三臂起点比": {
+    "archive": "outputs/analysis/qwen_verdict.json",
+    "field": "start_ratio",
+    "canonical_value": 3.4,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Qwen2-VL both n_trainable": {
+    "archive": "outputs/vlm_strictfreeze/4bit/both_seed42.json",
+    "field": "n_trainable",
+    "canonical_value": 14494912.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Qwen2-VL text_only n_trainable": {
+    "archive": "outputs/vlm_strictfreeze/4bit/text_only_seed42.json",
+    "field": "n_trainable",
+    "canonical_value": 9232384.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Qwen2-VL vision_only n_trainable": {
+    "archive": "outputs/vlm_strictfreeze/4bit/vision_only_seed42.json",
+    "field": "n_trainable",
+    "canonical_value": 5262528.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "LLaVA text_only 可训练参数": {
+    "archive": "outputs/analysis/llava_sites.json",
+    "field": "isolation_verified.text_only.n_trainable",
+    "canonical_value": 19988480.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE mean R2 over LoRA": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora.mean",
+    "canonical_value": 0.949,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE R2 range lower end": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora.min",
+    "canonical_value": 0.814,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE R2 range upper end": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora.max",
+    "canonical_value": 0.977,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "full fine-tuning pilot R2": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.full_ft.mean",
+    "canonical_value": 0.922,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE fits archived": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "n_runs_total",
+    "canonical_value": 96.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "runs in the association (n = 204)": {
+    "archive": "outputs/analysis/dg_r1_reproducible.json",
+    "field": "primary.n",
+    "canonical_value": 204.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "pooled correlation (r = -0.71)": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "verdict.pooled_r",
+    "canonical_value": -0.71,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "cluster-robust slope (-1.05)": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "mixed_effects.cluster_robust_OLS.by_design_cell.beta_DG",
+    "canonical_value": -1.05,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "CR1 standard error (0.29)": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "mixed_effects.cluster_robust_OLS.by_design_cell.se_cr1",
+    "canonical_value": 0.29,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "slope significance p (0.016)": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "verdict.cr1_p_design_cell_t5",
+    "canonical_value": 0.016,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "leave-one-family-out folds": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_family_out.n_folds",
+    "canonical_value": 12.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "out-of-sample R2, family-held-out, pooled": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_family_out.r2_oos_pooled",
+    "canonical_value": 0.449,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "out-of-sample R2, family-held-out, median fold": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_family_out.r2_oos_median_fold",
+    "canonical_value": 0.396,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "fraction of family folds beating the constant baseline": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_family_out.frac_folds_beat_constant",
+    "canonical_value": 0.6667,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "leave-one-design-cell-out folds": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_design_cell_out.n_folds",
+    "canonical_value": 6.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "out-of-sample R2, cell-held-out, pooled": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_design_cell_out.r2_oos_pooled",
+    "canonical_value": 0.236,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "out-of-sample R2, cell-held-out, median fold": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_design_cell_out.r2_oos_median_fold",
+    "canonical_value": 0.227,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "LoRA top-1 after tuning (60.69%)": {
+    "archive": "outputs/analysis/pr_peft_lr_sweep.json",
+    "field": "analysis.grid.lora_both@1e-05.zero_shot_top1_pct_mean",
+    "canonical_value": 60.69,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "full fine-tuning top-1 (60.87%)": {
+    "archive": "outputs/analysis/pr_fullft_lr_sweep.json",
+    "field": "analysis.per_lr.1e-06.zero_shot_top1_pct_mean",
+    "canonical_value": 60.87,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "full-COCO gallery images": {
+    "archive": "outputs/analysis/full_coco.json",
+    "field": "runs[0].n_unique_images",
+    "canonical_value": 40504.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "full-COCO caption rows": {
+    "archive": "outputs/analysis/full_coco.json",
+    "field": "runs[0].n_captions",
+    "canonical_value": 202654.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "within-dataset r (manuscript -0.751)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_dataset.r_within",
+    "canonical_value": -0.751,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "within-model r (manuscript -0.707)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_model.r_within",
+    "canonical_value": -0.707,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "within-design-cell r (manuscript -0.731)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_design_cell.r_within",
+    "canonical_value": -0.731,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "within-family r (manuscript -0.551)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_family.r_within",
+    "canonical_value": -0.551,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "SigLIP reversal r (manuscript +0.808)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "by_model.SigLIP.r",
+    "canonical_value": 0.808,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "figure 15 rows plotted": {
+    "archive": "outputs/analysis/fig15_stratified.json",
+    "field": "n_rows",
+    "canonical_value": 199.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "pooled within rows (grouped)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_dataset.n_rows",
+    "canonical_value": 202.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "figure 15 rows (all labelled)": {
+    "archive": "outputs/analysis/fig15_stratified.json",
+    "field": "pooled_within_dataset.n_rows",
+    "canonical_value": 204.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "figure 15 within-dataset r": {
+    "archive": "outputs/analysis/fig15_stratified.json",
+    "field": "pooled_within_dataset.r",
+    "canonical_value": -0.7512,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE mean R2": {
+    "archive": "outputs/analysis/paperA_ode_diagnostics.json",
+    "field": "R2_overall.mean",
+    "canonical_value": 0.858,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE median R2": {
+    "archive": "outputs/analysis/paperA_ode_diagnostics.json",
+    "field": "R2_overall.median",
+    "canonical_value": 0.94,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "rank trend text-only": {
+    "archive": "outputs/analysis/paperA_rank_position_dynamics.json",
+    "field": "trend.text_only.spearman_rank_alpha",
+    "canonical_value": -0.464,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "rank trend both": {
+    "archive": "outputs/analysis/paperA_rank_position_dynamics.json",
+    "field": "trend.both.spearman_rank_alpha",
+    "canonical_value": -0.179,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E frozen clean DG*": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "frozen.dg_star",
+    "canonical_value": 0.777826,
+    "rounding": 6,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E frozen CG": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "frozen.cg",
+    "canonical_value": 0.742107,
+    "rounding": 6,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E both reduction mean": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.reduction_mean",
+    "canonical_value": 98.57,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E both reduction sd": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.reduction_sd",
+    "canonical_value": 0.44,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E text-only reduction mean": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.text_only.reduction_mean",
+    "canonical_value": 96.74,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E text-only reduction sd": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.text_only.reduction_sd",
+    "canonical_value": 0.29,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E vision-only reduction mean": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.vision_only.reduction_mean",
+    "canonical_value": 89.41,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E vision-only reduction sd": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.vision_only.reduction_sd",
+    "canonical_value": 1.01,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E legacy both ~2.0": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.legacy_ep3_mean",
+    "canonical_value": 2.0192,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E legacy text ~2.0": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.text_only.legacy_ep3_mean",
+    "canonical_value": 2.0103,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E legacy vision ~2.0": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.vision_only.legacy_ep3_mean",
+    "canonical_value": 2.0322,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E both DG* after": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.dg_star_ep3_mean",
+    "canonical_value": 0.0111,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E text-only DG* after": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.text_only.dg_star_ep3_mean",
+    "canonical_value": 0.0253,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E vision-only DG* after": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.vision_only.dg_star_ep3_mean",
+    "canonical_value": 0.0824,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E seed count per arm": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.n",
+    "canonical_value": 13.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E record count": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "verification.n_records",
+    "canonical_value": 39.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "G frozen clean DG*": {
+    "archive": "outputs/canonical_caption_metric.json",
+    "field": "runs.frozen.clean.dg_star",
+    "canonical_value": 0.3566,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Flickr30k LoRA archived runs": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora_flickr.n",
+    "canonical_value": 49,
+    "rounding": 0,
+    "allowed_variants": [
+     {
+      "value": 43,
+      "reason": "rank-sweep subset (Runs column of tab:generalization); 49 also counts the 6 Phase-1 pilot runs"
+     }
+    ],
+    "mentions": [
+     {
+      "regex": "\\(([0-9]+) on Flickr30k"
+     },
+     {
+      "regex": "([0-9]+) rank[-\\s]?sweep runs"
+     },
+     {
+      "regex": "CLIP \\+ Flickr30k \\+ LoRA[^\\n]{0,160}?0\\.067\\s+([0-9]{1,3})"
+     }
+    ],
+    "note": "49 archived Flickr30k LoRA runs (43 rank-sweep + 6 Phase-1 pilot); the table row aggregates the 43-run sweep. Added 2026-10-26 after the 49-vs-43 inconsistency."
+   },
+   "archived LoRA runs (all)": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora.n",
+    "canonical_value": 55,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mentions": [
+     {
+      "regex": "([0-9]+) archived LoRA runs"
+     },
+     {
+      "regex": "([0-9]+) LoRA trajectories are archived"
+     }
+    ],
+    "note": "55 archived LoRA runs (49 Flickr30k + 6 MS-COCO)."
+   },
+   "archived ODE fits (all)": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.all.n",
+    "canonical_value": 96,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mentions": [
+     {
+      "regex": "of the ([0-9]+) archived fits"
+     }
+    ],
+    "note": "96 archived ODE fits (55 LoRA + 30 adapter + 11 full-FT)."
+   }
+  },
+  "paperA_springer": {
+   "严格冻结 text_only CGΔ": {
+    "archive": "outputs/analysis/strict_control_summary.json",
+    "field": "configs.text_only.cg_delta_mean",
+    "canonical_value": -0.0465,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM text_only DG* 相对变化(%), n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.text_only.dg_rel_mean",
+    "canonical_value": 66.47,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM text_only DG* 相对变化 sd, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.text_only.dg_rel_sd",
+    "canonical_value": 8.32,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM text_only CG 跨度均值, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.text_only.cg_mean",
+    "canonical_value": 0.168,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM vision_only DG* 相对变化(%), n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.vision_only.dg_rel_mean",
+    "canonical_value": 18.03,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM vision_only DG* 相对变化 sd, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.vision_only.dg_rel_sd",
+    "canonical_value": 8.78,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM vision_only CG 跨度均值, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.vision_only.cg_mean",
+    "canonical_value": 0.3919,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM both DG* 相对变化(%), n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.both.dg_rel_mean",
+    "canonical_value": 87.94,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM both DG* 相对变化 sd, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.both.dg_rel_sd",
+    "canonical_value": 5.35,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "VLM both CG 跨度均值, n=13": {
+    "archive": "outputs/analysis/vlm_bf16_detail.json",
+    "field": "summary.both.cg_mean",
+    "canonical_value": 0.2913,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 Flickr30k|text_only ΔCG": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.Flickr30k|text_only.mean",
+    "canonical_value": -0.0304,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 Flickr30k|both ΔCG": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.Flickr30k|both.mean",
+    "canonical_value": -0.0204,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 COCO|text_only ΔCG": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.COCO|text_only.mean",
+    "canonical_value": -0.043,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 Flickr30k|text_only sd": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.Flickr30k|text_only.sd",
+    "canonical_value": 0.0039,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "r4 COCO|both sd": {
+    "archive": "outputs/analysis/dataset_flip_strict.json",
+    "field": "r4.COCO|both.sd",
+    "canonical_value": 0.0026,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "f(DG0) 高精度合并值": {
+    "archive": "outputs/analysis/alpha_precision.json",
+    "field": "pooled_f.mean",
+    "canonical_value": 66.7,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "f(DG0) 标准误": {
+    "archive": "outputs/analysis/alpha_precision.json",
+    "field": "pooled_f.se",
+    "canonical_value": 4.8,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "归档 alpha_fit": {
+    "archive": "outputs/analysis/alpha_precision.json",
+    "field": "alpha_fit_archive",
+    "canonical_value": -0.0027743,
+    "rounding": 6,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "f_fit = alpha_fit/eta": {
+    "archive": "outputs/analysis/alpha_precision.json",
+    "field": "f_fit_archive",
+    "canonical_value": -27.7,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "驱动项轨迹均值 text_only": {
+    "archive": "outputs/analysis/driving_trajectory.json",
+    "field": "trajectory_means.text_only",
+    "canonical_value": 10.8,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "驱动项轨迹均值 vision_only": {
+    "archive": "outputs/analysis/driving_trajectory.json",
+    "field": "trajectory_means.vision_only",
+    "canonical_value": 10.2,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "驱动项轨迹均值 both": {
+    "archive": "outputs/analysis/driving_trajectory.json",
+    "field": "trajectory_means.both",
+    "canonical_value": 9.2,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "驱动项极差(%)": {
+    "archive": "outputs/analysis/driving_trajectory.json",
+    "field": "trajectory_mean_spread_pct",
+    "canonical_value": 16.5,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 实测/预测中位比": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.systematic_ratio_median",
+    "canonical_value": 2.44,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 极差比(预测/实测)": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.spread_ratio",
+    "canonical_value": 3.33,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 预测极差": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.pred_spread",
+    "canonical_value": 0.223,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 实测极差": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.actual_spread",
+    "canonical_value": 0.067,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "dg_pred 相关系数": {
+    "archive": "outputs/analysis/dg_pred_bias.json",
+    "field": "verdict.corr",
+    "canonical_value": 0.225,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Qwen2-VL 三臂起点比": {
+    "archive": "outputs/analysis/qwen_verdict.json",
+    "field": "start_ratio",
+    "canonical_value": 3.4,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Qwen2-VL both n_trainable": {
+    "archive": "outputs/vlm_strictfreeze/4bit/both_seed42.json",
+    "field": "n_trainable",
+    "canonical_value": 14494912.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Qwen2-VL text_only n_trainable": {
+    "archive": "outputs/vlm_strictfreeze/4bit/text_only_seed42.json",
+    "field": "n_trainable",
+    "canonical_value": 9232384.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Qwen2-VL vision_only n_trainable": {
+    "archive": "outputs/vlm_strictfreeze/4bit/vision_only_seed42.json",
+    "field": "n_trainable",
+    "canonical_value": 5262528.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "LLaVA text_only 可训练参数": {
+    "archive": "outputs/analysis/llava_sites.json",
+    "field": "isolation_verified.text_only.n_trainable",
+    "canonical_value": 19988480.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE mean R2 over LoRA": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora.mean",
+    "canonical_value": 0.949,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE R2 range lower end": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora.min",
+    "canonical_value": 0.814,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE R2 range upper end": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora.max",
+    "canonical_value": 0.977,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "full fine-tuning pilot R2": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.full_ft.mean",
+    "canonical_value": 0.922,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE fits archived": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "n_runs_total",
+    "canonical_value": 96.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "runs in the association (n = 204)": {
+    "archive": "outputs/analysis/dg_r1_reproducible.json",
+    "field": "primary.n",
+    "canonical_value": 204.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "pooled correlation (r = -0.71)": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "verdict.pooled_r",
+    "canonical_value": -0.71,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "cluster-robust slope (-1.05)": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "mixed_effects.cluster_robust_OLS.by_design_cell.beta_DG",
+    "canonical_value": -1.05,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "CR1 standard error (0.29)": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "mixed_effects.cluster_robust_OLS.by_design_cell.se_cr1",
+    "canonical_value": 0.29,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "slope significance p (0.016)": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "verdict.cr1_p_design_cell_t5",
+    "canonical_value": 0.016,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "leave-one-family-out folds": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_family_out.n_folds",
+    "canonical_value": 12.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "out-of-sample R2, family-held-out, pooled": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_family_out.r2_oos_pooled",
+    "canonical_value": 0.449,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "out-of-sample R2, family-held-out, median fold": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_family_out.r2_oos_median_fold",
+    "canonical_value": 0.396,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "fraction of family folds beating the constant baseline": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_family_out.frac_folds_beat_constant",
+    "canonical_value": 0.6667,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "leave-one-design-cell-out folds": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_design_cell_out.n_folds",
+    "canonical_value": 6.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "out-of-sample R2, cell-held-out, pooled": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_design_cell_out.r2_oos_pooled",
+    "canonical_value": 0.236,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "out-of-sample R2, cell-held-out, median fold": {
+    "archive": "outputs/analysis/pr_stats_hardened.json",
+    "field": "holdout.leave_one_design_cell_out.r2_oos_median_fold",
+    "canonical_value": 0.227,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "LoRA top-1 after tuning (60.69%)": {
+    "archive": "outputs/analysis/pr_peft_lr_sweep.json",
+    "field": "analysis.grid.lora_both@1e-05.zero_shot_top1_pct_mean",
+    "canonical_value": 60.69,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "full fine-tuning top-1 (60.87%)": {
+    "archive": "outputs/analysis/pr_fullft_lr_sweep.json",
+    "field": "analysis.per_lr.1e-06.zero_shot_top1_pct_mean",
+    "canonical_value": 60.87,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "full-COCO gallery images": {
+    "archive": "outputs/analysis/full_coco.json",
+    "field": "runs[0].n_unique_images",
+    "canonical_value": 40504.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "full-COCO caption rows": {
+    "archive": "outputs/analysis/full_coco.json",
+    "field": "runs[0].n_captions",
+    "canonical_value": 202654.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "within-dataset r (manuscript -0.751)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_dataset.r_within",
+    "canonical_value": -0.751,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "within-model r (manuscript -0.707)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_model.r_within",
+    "canonical_value": -0.707,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "within-design-cell r (manuscript -0.731)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_design_cell.r_within",
+    "canonical_value": -0.731,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "within-family r (manuscript -0.551)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_family.r_within",
+    "canonical_value": -0.551,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "SigLIP reversal r (manuscript +0.808)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "by_model.SigLIP.r",
+    "canonical_value": 0.808,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "figure 15 rows plotted": {
+    "archive": "outputs/analysis/fig15_stratified.json",
+    "field": "n_rows",
+    "canonical_value": 199.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "pooled within rows (grouped)": {
+    "archive": "outputs/analysis/pr_stats_within_group.json",
+    "field": "pooled_within_dataset.n_rows",
+    "canonical_value": 202.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "figure 15 rows (all labelled)": {
+    "archive": "outputs/analysis/fig15_stratified.json",
+    "field": "pooled_within_dataset.n_rows",
+    "canonical_value": 204.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "figure 15 within-dataset r": {
+    "archive": "outputs/analysis/fig15_stratified.json",
+    "field": "pooled_within_dataset.r",
+    "canonical_value": -0.7512,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE mean R2": {
+    "archive": "outputs/analysis/paperA_ode_diagnostics.json",
+    "field": "R2_overall.mean",
+    "canonical_value": 0.858,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "ODE median R2": {
+    "archive": "outputs/analysis/paperA_ode_diagnostics.json",
+    "field": "R2_overall.median",
+    "canonical_value": 0.94,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "rank trend text-only": {
+    "archive": "outputs/analysis/paperA_rank_position_dynamics.json",
+    "field": "trend.text_only.spearman_rank_alpha",
+    "canonical_value": -0.464,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "rank trend both": {
+    "archive": "outputs/analysis/paperA_rank_position_dynamics.json",
+    "field": "trend.both.spearman_rank_alpha",
+    "canonical_value": -0.179,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E frozen clean DG*": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "frozen.dg_star",
+    "canonical_value": 0.777826,
+    "rounding": 6,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E frozen CG": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "frozen.cg",
+    "canonical_value": 0.742107,
+    "rounding": 6,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E both reduction mean": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.reduction_mean",
+    "canonical_value": 98.57,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E both reduction sd": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.reduction_sd",
+    "canonical_value": 0.44,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E text-only reduction mean": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.text_only.reduction_mean",
+    "canonical_value": 96.74,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E text-only reduction sd": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.text_only.reduction_sd",
+    "canonical_value": 0.29,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E vision-only reduction mean": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.vision_only.reduction_mean",
+    "canonical_value": 89.41,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E vision-only reduction sd": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.vision_only.reduction_sd",
+    "canonical_value": 1.01,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E legacy both ~2.0": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.legacy_ep3_mean",
+    "canonical_value": 2.0192,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E legacy text ~2.0": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.text_only.legacy_ep3_mean",
+    "canonical_value": 2.0103,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E legacy vision ~2.0": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.vision_only.legacy_ep3_mean",
+    "canonical_value": 2.0322,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E both DG* after": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.dg_star_ep3_mean",
+    "canonical_value": 0.0111,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E text-only DG* after": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.text_only.dg_star_ep3_mean",
+    "canonical_value": 0.0253,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E vision-only DG* after": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.vision_only.dg_star_ep3_mean",
+    "canonical_value": 0.0824,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E seed count per arm": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "per_arm.both.n",
+    "canonical_value": 13.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "E record count": {
+    "archive": "outputs/vlm_clean_summary.json",
+    "field": "verification.n_records",
+    "canonical_value": 39.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "G frozen clean DG*": {
+    "archive": "outputs/canonical_caption_metric.json",
+    "field": "runs.frozen.clean.dg_star",
+    "canonical_value": 0.3566,
+    "rounding": 4,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_paperA.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "Flickr30k LoRA archived runs": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora_flickr.n",
+    "canonical_value": 49,
+    "rounding": 0,
+    "allowed_variants": [
+     {
+      "value": 43,
+      "reason": "rank-sweep subset (Runs column of tab:generalization); 49 also counts the 6 Phase-1 pilot runs"
+     }
+    ],
+    "mentions": [
+     {
+      "regex": "\\(([0-9]+) on Flickr30k"
+     },
+     {
+      "regex": "([0-9]+) rank[-\\s]?sweep runs"
+     },
+     {
+      "regex": "CLIP \\+ Flickr30k \\+ LoRA[^\\n]{0,160}?0\\.067\\s+([0-9]{1,3})"
+     }
+    ],
+    "note": "49 archived Flickr30k LoRA runs (43 rank-sweep + 6 Phase-1 pilot); the table row aggregates the 43-run sweep. Added 2026-10-26 after the 49-vs-43 inconsistency."
+   },
+   "archived LoRA runs (all)": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.lora.n",
+    "canonical_value": 55,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mentions": [
+     {
+      "regex": "([0-9]+) archived LoRA runs"
+     },
+     {
+      "regex": "([0-9]+) LoRA trajectories are archived"
+     }
+    ],
+    "note": "55 archived LoRA runs (49 Flickr30k + 6 MS-COCO)."
+   },
+   "archived ODE fits (all)": {
+    "archive": "outputs/analysis/ode_ledger.json",
+    "field": "subsets.all.n",
+    "canonical_value": 96,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mentions": [
+     {
+      "regex": "of the ([0-9]+) archived fits"
+     }
+    ],
+    "note": "96 archived ODE fits (55 LoRA + 30 adapter + 11 full-FT)."
+   }
+  },
+  "a1_paa": {
+   "frozen CG": {
+    "archive": "outputs/analysis/a1_matched_gap_families.json",
+    "field": "frozen.CG",
+    "canonical_value": 0.855,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_a1.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "frozen top-1": {
+    "archive": "outputs/analysis/a1_matched_gap_families.json",
+    "field": "frozen.top1",
+    "canonical_value": 59.1,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_a1.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "matched-gap spread (tol 0.03)": {
+    "archive": "outputs/analysis/a1_matched_gap_families.json",
+    "field": "max_matched_gap_spread_tol003.spread",
+    "canonical_value": 32.7,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_a1.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "matched-gap dCG": {
+    "archive": "outputs/analysis/a1_matched_gap_families.json",
+    "field": "max_matched_gap_spread_tol003.dCG",
+    "canonical_value": 0.028,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_a1.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "matched-gap spread (tol 0.05)": {
+    "archive": "outputs/analysis/a1_matched_gap_families.json",
+    "field": "max_matched_gap_spread_tol005.spread",
+    "canonical_value": 52.1,
+    "rounding": 1,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_a1.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "random directions": {
+    "archive": "outputs/analysis/a1_random_direction_gap.json",
+    "field": "summary.n_directions",
+    "canonical_value": 200.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_a1.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "oracle mean top-1": {
+    "archive": "outputs/analysis/a1_monitor_protocol.json",
+    "field": "summary.oracle.mean_top1",
+    "canonical_value": 59.49,
+    "rounding": 2,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_a1.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "retrieval pairs": {
+    "archive": "outputs/analysis/a1_retrieval_evidence.json",
+    "field": "n_pairs",
+    "canonical_value": 536.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_a1.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "campaign runs": {
+    "archive": "outputs/analysis/a1_campaign_analysis.json",
+    "field": "n_runs",
+    "canonical_value": 18.0,
+    "rounding": 0,
+    "allowed_variants": [],
+    "mention_required": false,
+    "seed": "claim_ledger_a1.json",
+    "note": "seeded from the claim ledger; archive-only (no text mention registered)"
+   },
+   "tau R@1 (retrieval-evidence, 21 configurations)": {
+    "archive": "outputs/analysis/a1_retrieval_evidence.json",
+    "field": "correlation.tau_vs_R1",
+    "canonical_value": -0.1657,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mentions": [
+     {
+      "regex": "([-\\u2212]?0\\.1[0-9]{2,3})\\s*over\\s*21\\s*configurations"
+     }
+    ],
+    "note": "21-configuration evidence archive (printed as -0.166)"
+   },
+   "tau R@1 (17-configuration head-to-head grid)": {
+    "archive": "outputs/analysis/a1_statistic_showdown.json",
+    "field": "correlation_with_top1.retrieval.tau5",
+    "canonical_value": -0.1427,
+    "rounding": 3,
+    "allowed_variants": [],
+    "mentions": [
+     {
+      "regex": "([-\\u2212]?0\\.1[0-9]{2,3})\\s*over\\s*the\\s*17"
+     }
+    ],
+    "note": "17-configuration grid (Table 20, printed as -0.143)"
+   }
+  }
+ }
+}

@@ -1,0 +1,99 @@
+{
+ "meta": {
+  "script": "tools/_p1612_objective_control_multimodel.py",
+  "mode": "apply",
+  "model": "llava15-7b",
+  "model_repo": "llava-hf/llava-1.5-7b-hf",
+  "model_family": "llava-1.5",
+  "model_class": "LlavaForConditionalGeneration",
+  "model_source": "models/llava-hf",
+  "revision": "local snapshot (llava-hf); no hash recorded",
+  "protocol": "match",
+  "protocol_note": "E-table-size protocol; LLaVA is held at batch 2 because its image is a fixed 336x336 CLIP crop and its LM is 7B",
+  "objective": "generative",
+  "arm": "both",
+  "seed": 42,
+  "epochs": 3,
+  "num_samples": 320,
+  "batch": 2,
+  "batch_origin": "protocol default",
+  "lr": 0.0001,
+  "precision": "4-bit nf4",
+  "max_image_tokens": 196,
+  "image_tokens_realised": 1152,
+  "image_token_id": 32000,
+  "backbone_path": "model",
+  "lm_head_called": false,
+  "dataset": "data/marine_captions (536 image-caption pairs; first --num-samples used)",
+  "lora": {
+   "r": 8,
+   "alpha": 16,
+   "dropout": 0.05
+  },
+  "lora_targets": 370,
+  "n_trainable": 23633920,
+  "n_vision_adapters": 288,
+  "n_language_adapters": 448,
+  "n_projector_adapters": 4,
+  "gradient_checkpointing": true,
+  "measurement": {
+   "I": "mean pool of final hidden state over image-token positions",
+   "T": "mean pool over caption positions (after last image token, before <|im_end|>)",
+   "normalisation": "L2 per side, no projection",
+   "DG*": "mean_i ||I_i - T_i||^2",
+   "scope": "whole evaluation set, measured once before training and once per epoch"
+  },
+  "elapsed_sec": 1689.7,
+  "versions": {
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "transformers": "5.16.1",
+   "peft": "0.20.0",
+   "python": "3.12.3"
+  },
+  "hostname": "autodl-container-d81e4f8fad-25e5e2de",
+  "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+  "device": "NVIDIA GeForce RTX 4080 SUPER",
+  "generative_protocol": {
+   "prompt": "Describe the image.",
+   "loss": "causal-LM cross-entropy on caption tokens (prompt masked with -100)",
+   "eval": "same image+caption forward pass as the contrastive arm"
+  },
+  "frozen_signature": {
+   "model": "llava15-7b",
+   "model_repo": "llava-hf/llava-1.5-7b-hf",
+   "protocol": "match",
+   "num_samples": 320,
+   "image_tokens": 196,
+   "batch": 2,
+   "seed": 42,
+   "precision": "4-bit nf4",
+   "arm": "both",
+   "mode": "apply"
+  },
+  "ab_check": {
+   "sibling_path": "outputs/analysis/decoder_attribution_llava15-7b_contrastive_seed42.json",
+   "sibling_present": false,
+   "compared": false,
+   "verdict": "sibling objective not run yet; run contrastive for the same model and seed and re-run this one to complete the A/B check"
+  }
+ },
+ "frozen_dg_star": 0.455810546875,
+ "frozen_cg": 0.56884765625,
+ "dg_star": [
+  0.39111328125,
+  0.486572265625,
+  0.529296875
+ ],
+ "cg": [
+  0.53759765625,
+  0.6025390625,
+  0.62744140625
+ ],
+ "loss": [
+  1.1249994352459907,
+  0.6044502717675642,
+  0.38092947643017394
+ ],
+ "delta_DG_percent": 16.12212104981253
+}

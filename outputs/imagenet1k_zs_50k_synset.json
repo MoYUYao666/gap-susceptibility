@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "n_images": 50000,
+    "shards": [
+      "data/imagenet_hf\\validation-00000-of-00014.parquet",
+      "data/imagenet_hf\\validation-00001-of-00014.parquet",
+      "data/imagenet_hf\\validation-00002-of-00014.parquet",
+      "data/imagenet_hf\\validation-00003-of-00014.parquet",
+      "data/imagenet_hf\\validation-00004-of-00014.parquet",
+      "data/imagenet_hf\\validation-00005-of-00014.parquet",
+      "data/imagenet_hf\\validation-00006-of-00014.parquet",
+      "data/imagenet_hf\\validation-00007-of-00014.parquet",
+      "data/imagenet_hf\\validation-00008-of-00014.parquet",
+      "data/imagenet_hf\\validation-00009-of-00014.parquet",
+      "data/imagenet_hf\\validation-00010-of-00014.parquet",
+      "data/imagenet_hf\\validation-00011-of-00014.parquet",
+      "data/imagenet_hf\\validation-00012-of-00014.parquet",
+      "data/imagenet_hf\\validation-00013-of-00014.parquet"
+    ],
+    "protocol": "single template \"a photo of a {}\", 50k full val"
+  },
+  "results_synset": {
+    "frozen": 59.75,
+    "text_only_r8": 59.34,
+    "both_r8": 60.18,
+    "full_ft_s42": 0.14,
+    "full_ft_s123": 4.01,
+    "full_ft_s999": 3.49
+  }
+}

@@ -1,0 +1,82 @@
+{
+ "n_runs": 18,
+ "frozen_M01": 0.681,
+ "delta_grid": [
+  0.0,
+  0.005,
+  0.01,
+  0.02,
+  0.03,
+  0.05,
+  0.08
+ ],
+ "rules": [
+  {
+   "delta": 0.0,
+   "mean_regret": 2.772222222222222,
+   "max_regret": 7.479999999999997,
+   "mean_stop_epoch": 2.0555555555555554,
+   "stop_at_epoch1_share": 0.3333333333333333
+  },
+  {
+   "delta": 0.005,
+   "mean_regret": 3.0844444444444443,
+   "max_regret": 7.479999999999997,
+   "mean_stop_epoch": 2.2222222222222223,
+   "stop_at_epoch1_share": 0.3333333333333333
+  },
+  {
+   "delta": 0.01,
+   "mean_regret": 3.2877777777777775,
+   "max_regret": 7.479999999999997,
+   "mean_stop_epoch": 2.3333333333333335,
+   "stop_at_epoch1_share": 0.3333333333333333
+  },
+  {
+   "delta": 0.02,
+   "mean_regret": 3.8033333333333337,
+   "max_regret": 8.920000000000002,
+   "mean_stop_epoch": 2.5555555555555554,
+   "stop_at_epoch1_share": 0.3333333333333333
+  },
+  {
+   "delta": 0.03,
+   "mean_regret": 4.550000000000001,
+   "max_regret": 15.760000000000005,
+   "mean_stop_epoch": 2.7222222222222223,
+   "stop_at_epoch1_share": 0.3333333333333333
+  },
+  {
+   "delta": 0.05,
+   "mean_regret": 6.422222222222222,
+   "max_regret": 15.760000000000005,
+   "mean_stop_epoch": 2.888888888888889,
+   "stop_at_epoch1_share": 0.16666666666666666
+  },
+  {
+   "delta": 0.08,
+   "mean_regret": 7.568888888888889,
+   "max_regret": 17.70000000000001,
+   "mean_stop_epoch": 3.0,
+   "stop_at_epoch1_share": 0.16666666666666666
+  }
+ ],
+ "baselines": {
+  "last_epoch": {
+   "mean_regret": 13.801111111111112,
+   "max_regret": 29.44
+  },
+  "first_epoch": {
+   "mean_regret": 0.0,
+   "max_regret": 0.0
+  }
+ },
+ "recommended": {
+  "delta": 0.0,
+  "mean_regret": 2.772222222222222,
+  "max_regret": 7.479999999999997,
+  "mean_stop_epoch": 2.0555555555555554,
+  "stop_at_epoch1_share": 0.3333333333333333
+ },
+ "definition": "stop at the last epoch with M(0.01) <= frozen M(0.01) + delta; epoch 1 if already exceeded"
+}

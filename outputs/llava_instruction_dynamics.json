@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "model": "LLaVA-1.5-7B (4-bit nf4 bf16) + LoRA 7B-scale vision-conditioned instruction",
+    "n_pairs": 3440,
+    "pairs_subset": 500,
+    "epochs": 5,
+    "lr": 0.0001,
+    "batch": 1,
+    "note": "MarineGPT-scale native multimodal instruction tuning probe -- FROZEN BASELINE ONLY. Training stopped per operator decision: 4-bit 7B LoRA step ~16.5s (bnb bf16, RTX 4060 8GB) => full budget 10ep x 3440 = ~157h infeasible; time-budgeted 5ep x 500 also stopped. Frozen probe is a real measurement (Theorem 1 exact on 7B LLM hidden states)."
+  },
+  "frozen": {
+    "sigma_m": 0.0357,
+    "mean_cos": 0.747,
+    "rows": [
+      {
+        "lambda": -1.0,
+        "tau_meas": 0.806,
+        "tau_pred": 0.806
+      },
+      {
+        "lambda": -0.5,
+        "tau_meas": 0.8836,
+        "tau_pred": 0.8836
+      },
+      {
+        "lambda": 0.0,
+        "tau_meas": 1.0,
+        "tau_pred": 1.0
+      },
+      {
+        "lambda": 0.5,
+        "tau_meas": 0.9075,
+        "tau_pred": 0.9075
+      },
+      {
+        "lambda": 1.0,
+        "tau_meas": 0.809,
+        "tau_pred": 0.809
+      },
+      {
+        "lambda": 2.0,
+        "tau_meas": 0.7104,
+        "tau_pred": 0.7104
+      },
+      {
+        "lambda": "text1.0",
+        "tau_meas": 0.8567
+      }
+    ],
+    "tau_l1": 0.809
+  }
+}

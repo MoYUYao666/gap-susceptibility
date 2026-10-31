@@ -1,0 +1,1781 @@
+{
+ "meta": {
+  "script": "tools/a1_h_bootstrap.py",
+  "purpose": "item 4 -- bootstrap 95% CIs for tau; k-specificity of the thresholds",
+  "script_sha1_self": "f8524905ca8f1243c5c25c9ac2db09e37a592175",
+  "common_sha1": "cd3784ffbfde502e9bf2542e3f94913c6b7aa951",
+  "model": "openai/clip-vit-base-patch32",
+  "n_boot": 2000,
+  "boot_seed": 20260101,
+  "ci_level": 0.95,
+  "resampling_unit": "images, with replacement (tau is a mean of per-image quantities)",
+  "topk_for_tau": 5,
+  "class_list_source": "tools/train_class_aligned.py",
+  "class_list_len": 1001,
+  "class_list_len_clean": 1000,
+  "shard_signature": "d13718e47e9e41c2",
+  "inputs": {
+   "outputs/a1_h_baseline_metrics.json": "90262b104344c527b25b0493f35040ed55039183",
+   "outputs/a1_h_templates.json": "6538c1234dfb7d7aab372314c9175a8dead6f337",
+   "outputs/a1_rr_e2_topk.json": "d8efc7d22b2b1649ca582e323a09438ee5bb7e57",
+   "outputs/a1_rr_e3_benchmarks.json": "0313de90b9b4bf9191447d3c5376471472f9356b"
+  },
+  "timestamp_utc": "2026-09-15T08:31:44.621187+00:00",
+  "runtime_s": 197.4
+ },
+ "bootstrap": {
+  "dose_response_grid_imagenet5k_k5": {
+   "source": "outputs/a1_h_baseline_metrics.json",
+   "note": "T-family surgery, lambda = 0/0.25/0.5/1/2/4 and the negative-lambda recovery points",
+   "conditions": {
+    "base": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 1.0,
+     "se": 0.0,
+     "ci_low": 1.0,
+     "ci_high": 1.0,
+     "ci_level": 0.95,
+     "tau_in_source_json": 1.0,
+     "agrees_with_source": true
+    },
+    "T-1": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.33136000000000004,
+     "se": 0.005568794462277842,
+     "ci_low": 0.32099500000000003,
+     "ci_high": 0.34232011111111105,
+     "ci_level": 0.95,
+     "tau_in_source_json": 0.33136000000000004,
+     "agrees_with_source": true
+    },
+    "T-0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.49314666666666673,
+     "se": 0.005117368112112327,
+     "ci_low": 0.48330588888888887,
+     "ci_high": 0.5037023333333333,
+     "ci_level": 0.95,
+     "tau_in_source_json": 0.49314666666666673,
+     "agrees_with_source": true
+    },
+    "T0.25": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.6424977777777777,
+     "se": 0.004521809793427138,
+     "ci_low": 0.6331283333333334,
+     "ci_high": 0.651160111111111,
+     "ci_level": 0.95,
+     "tau_in_source_json": 0.6424977777777777,
+     "agrees_with_source": true
+    },
+    "T0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.46560888888888896,
+     "se": 0.005479412748709643,
+     "ci_low": 0.454674,
+     "ci_high": 0.47593500000000005,
+     "ci_level": 0.95,
+     "tau_in_source_json": 0.46560888888888896,
+     "agrees_with_source": true
+    },
+    "T1": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.2901197659196534,
+     "se": 0.005994678846555397,
+     "ci_low": 0.2784793815738781,
+     "ci_high": 0.3017182081118045,
+     "ci_level": 0.95,
+     "tau_in_source_json": 0.2901197659196534,
+     "agrees_with_source": true
+    },
+    "T2": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.1496,
+     "se": 0.006145450728667697,
+     "ci_low": 0.13757777777777777,
+     "ci_high": 0.1614718888888889,
+     "ci_level": 0.95,
+     "tau_in_source_json": 0.1496,
+     "agrees_with_source": true
+    },
+    "T4": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.06550222222222221,
+     "se": 0.006140256369322031,
+     "ci_low": 0.05374222222222222,
+     "ci_high": 0.07742733333333333,
+     "ci_level": 0.95,
+     "tau_in_source_json": 0.06550222222222221,
+     "agrees_with_source": true
+    },
+    "P0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.6085688888888889,
+     "se": 0.004733366813512194,
+     "ci_low": 0.5992525555555556,
+     "ci_high": 0.6174856666666666,
+     "ci_level": 0.95,
+     "tau_in_source_json": 0.6085688888888889,
+     "agrees_with_source": true
+    }
+   }
+  },
+  "benchmarks_e3": {
+   "source": "outputs/a1_rr_e3_benchmarks.json",
+   "note": "gap estimated on Flickr30k rows 2000..3000 (the E3 primary variant)",
+   "gap_norm": 0.814929,
+   "benchmarks": {
+    "dtd": {
+     "loaded": true,
+     "n_images": 1880,
+     "n_classes": 47,
+     "class_list_len": 47,
+     "gap_norm": 0.814929,
+     "frozen_top1": 43.1383,
+     "conditions": {
+      "0.0": {
+       "n_images": 1880,
+       "n_boot": 2000,
+       "point": 1.0,
+       "se": 0.0,
+       "ci_low": 1.0,
+       "ci_high": 1.0,
+       "ci_level": 0.95,
+       "top1": 43.1383,
+       "tau_in_e3_json": 1.0,
+       "top1_in_e3_json": 43.1383,
+       "tau_agrees_with_e3": true,
+       "top1_agrees_with_e3": true
+      },
+      "0.5": {
+       "n_images": 1880,
+       "n_boot": 2000,
+       "point": 0.5640425531914894,
+       "se": 0.007145866294857325,
+       "ci_low": 0.5502101063829787,
+       "ci_high": 0.5779787234042553,
+       "ci_level": 0.95,
+       "top1": 40.9574,
+       "tau_in_e3_json": 0.564468,
+       "top1_in_e3_json": 40.9043,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": false
+      },
+      "1.0": {
+       "n_images": 1880,
+       "n_boot": 2000,
+       "point": 0.35382978723404257,
+       "se": 0.008422726165869957,
+       "ci_low": 0.3373377659574468,
+       "ci_high": 0.37000265957446804,
+       "ci_level": 0.95,
+       "top1": 31.9149,
+       "tau_in_e3_json": 0.352979,
+       "top1_in_e3_json": 31.9149,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": true
+      },
+      "2.0": {
+       "n_images": 1880,
+       "n_boot": 2000,
+       "point": 0.15893617021276596,
+       "se": 0.009217806992942291,
+       "ci_low": 0.14074468085106384,
+       "ci_high": 0.17723404255319147,
+       "ci_level": 0.95,
+       "top1": 16.7021,
+       "tau_in_e3_json": 0.159149,
+       "top1_in_e3_json": 16.7021,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": true
+      }
+     }
+    },
+    "food101": {
+     "loaded": true,
+     "n_images": 25250,
+     "n_classes": 101,
+     "class_list_len": 101,
+     "gap_norm": 0.814929,
+     "frozen_top1": 80.701,
+     "conditions": {
+      "0.0": {
+       "n_images": 25250,
+       "n_boot": 2000,
+       "point": 1.0,
+       "se": 0.0,
+       "ci_low": 1.0,
+       "ci_high": 1.0,
+       "ci_level": 0.95,
+       "top1": 80.701,
+       "tau_in_e3_json": 1.0,
+       "top1_in_e3_json": 82.0594,
+       "tau_agrees_with_e3": true,
+       "top1_agrees_with_e3": false
+      },
+      "0.5": {
+       "n_images": 25250,
+       "n_boot": 2000,
+       "point": 0.6138422268422185,
+       "se": 0.001780952812204862,
+       "ci_low": 0.610396567210767,
+       "ci_high": 0.6173354941689512,
+       "ci_level": 0.95,
+       "top1": 75.1248,
+       "tau_in_e3_json": 0.621061,
+       "top1_in_e3_json": 75.798,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": false
+      },
+      "1.0": {
+       "n_images": 25250,
+       "n_boot": 2000,
+       "point": 0.4282730530987985,
+       "se": 0.0021358455190940246,
+       "ci_low": 0.42414987956730554,
+       "ci_high": 0.4324921621507267,
+       "ci_level": 0.95,
+       "top1": 59.1327,
+       "tau_in_e3_json": 0.440404,
+       "top1_in_e3_json": 60.4554,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": false
+      },
+      "2.0": {
+       "n_images": 25250,
+       "n_boot": 2000,
+       "point": 0.24950783975141805,
+       "se": 0.0023775049916144307,
+       "ci_low": 0.24481053979723655,
+       "ci_high": 0.25415603960396044,
+       "ci_level": 0.95,
+       "top1": 28.0158,
+       "tau_in_e3_json": 0.260412,
+       "top1_in_e3_json": 30.0436,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": false
+      }
+     }
+    },
+    "inat_wild": {
+     "loaded": true,
+     "n_images": 718,
+     "n_classes": 48,
+     "class_list_len": 48,
+     "gap_norm": 0.814929,
+     "frozen_top1": 11.1421,
+     "conditions": {
+      "0.0": {
+       "n_images": 718,
+       "n_boot": 2000,
+       "point": 1.0,
+       "se": 0.0,
+       "ci_low": 1.0,
+       "ci_high": 1.0,
+       "ci_level": 0.95,
+       "top1": 11.1421,
+       "tau_in_e3_json": 1.0,
+       "top1_in_e3_json": 11.1421,
+       "tau_agrees_with_e3": true,
+       "top1_agrees_with_e3": true
+      },
+      "0.5": {
+       "n_images": 718,
+       "n_boot": 2000,
+       "point": 0.3654596100278551,
+       "se": 0.01501021995104218,
+       "ci_low": 0.3348119777158774,
+       "ci_high": 0.39442896935933147,
+       "ci_level": 0.95,
+       "top1": 9.61,
+       "tau_in_e3_json": 0.366017,
+       "top1_in_e3_json": 9.61,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": true
+      },
+      "1.0": {
+       "n_images": 718,
+       "n_boot": 2000,
+       "point": 0.1456824512534819,
+       "se": 0.015722698418461186,
+       "ci_low": 0.11420612813370473,
+       "ci_high": 0.17409470752089137,
+       "ci_level": 0.95,
+       "top1": 8.9136,
+       "tau_in_e3_json": 0.144011,
+       "top1_in_e3_json": 8.9136,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": true
+      },
+      "2.0": {
+       "n_images": 718,
+       "n_boot": 2000,
+       "point": -0.0036211699164345424,
+       "se": 0.015972050754447614,
+       "ci_low": -0.03621866295264624,
+       "ci_high": 0.025912256267409436,
+       "ci_level": 0.95,
+       "top1": 7.3816,
+       "tau_in_e3_json": -0.003343,
+       "top1_in_e3_json": 7.2423,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": false
+      }
+     }
+    },
+    "rare_species": {
+     "loaded": true,
+     "n_images": 1000,
+     "n_classes": 50,
+     "class_list_len": 50,
+     "gap_norm": 0.814929,
+     "frozen_top1": 16.4,
+     "conditions": {
+      "0.0": {
+       "n_images": 1000,
+       "n_boot": 2000,
+       "point": 1.0,
+       "se": 0.0,
+       "ci_low": 1.0,
+       "ci_high": 1.0,
+       "ci_level": 0.95,
+       "top1": 16.4,
+       "tau_in_e3_json": 1.0,
+       "top1_in_e3_json": 16.4,
+       "tau_agrees_with_e3": true,
+       "top1_agrees_with_e3": true
+      },
+      "0.5": {
+       "n_images": 1000,
+       "n_boot": 2000,
+       "point": 0.3838,
+       "se": 0.012839203561126446,
+       "ci_low": 0.3594,
+       "ci_high": 0.4086,
+       "ci_level": 0.95,
+       "top1": 8.3,
+       "tau_in_e3_json": 0.383,
+       "top1_in_e3_json": 8.3,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": true
+      },
+      "1.0": {
+       "n_images": 1000,
+       "n_boot": 2000,
+       "point": 0.15880000000000002,
+       "se": 0.01371340002735117,
+       "ci_low": 0.13219499999999998,
+       "ci_high": 0.1856,
+       "ci_level": 0.95,
+       "top1": 5.7,
+       "tau_in_e3_json": 0.1598,
+       "top1_in_e3_json": 5.7,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": true
+      },
+      "2.0": {
+       "n_images": 1000,
+       "n_boot": 2000,
+       "point": 0.019000000000000006,
+       "se": 0.013685185782624674,
+       "ci_low": -0.008005,
+       "ci_high": 0.045399999999999996,
+       "ci_level": 0.95,
+       "top1": 3.1,
+       "tau_in_e3_json": 0.0202,
+       "top1_in_e3_json": 3.1,
+       "tau_agrees_with_e3": false,
+       "top1_agrees_with_e3": true
+      }
+     }
+    }
+   }
+  },
+  "templates": {
+   "source": "outputs/a1_h_templates.json",
+   "benchmarks": {
+    "imagenet5k": {
+     "n_images": 5000,
+     "class_list_len": 1001,
+     "templates": {
+      "t0_photo_of_a": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 59.1,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.465632134458,
+        "se": 0.005479447313952754,
+        "ci_low": 0.4546785488159999,
+        "ci_high": 0.47595844221149997,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.465632,
+        "top1": 47.48,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.290132192974,
+        "se": 0.00599379568552939,
+        "ci_low": 0.27850072002915,
+        "ci_high": 0.30170799926555,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.290132,
+        "top1": 32.1,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.14962108185000003,
+        "se": 0.006145483531298852,
+        "ci_low": 0.13759833257375,
+        "ci_high": 0.16147188888765,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.149621,
+        "top1": 12.62,
+        "agrees_with_source": true
+       }
+      },
+      "t1_photo_of_the": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 57.9,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.478389736664,
+        "se": 0.005250330408446887,
+        "ci_low": 0.46795832657595005,
+        "ci_high": 0.48818448683295,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.47839,
+        "top1": 47.9,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.308985292218,
+        "se": 0.005727019927069299,
+        "ci_low": 0.29768174341820003,
+        "ci_high": 0.31999563230789996,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.308985,
+        "top1": 33.7,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.17364979518600002,
+        "se": 0.0058857716161357255,
+        "ci_low": 0.1625075503106,
+        "ci_high": 0.1852391180083,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.17365,
+        "top1": 10.42,
+        "agrees_with_source": true
+       }
+      },
+      "t2_in_the_wild": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 55.78,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.5160266666760001,
+        "se": 0.004999574818193577,
+        "ci_low": 0.5065665555587,
+        "ci_high": 0.5260667777874,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.516027,
+        "top1": 50.16,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.34094666667199997,
+        "se": 0.005539982239997128,
+        "ci_low": 0.33042122223200004,
+        "ci_high": 0.35186722223515,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.340947,
+        "top1": 35.86,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.19284000000200002,
+        "se": 0.005896806724303726,
+        "ci_low": 0.18156877777674998,
+        "ci_high": 0.20472166667285002,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.19284,
+        "top1": 12.32,
+        "agrees_with_source": true
+       }
+      },
+      "t3_bare_class": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 55.68,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.47033333333800004,
+        "se": 0.005175274851552734,
+        "ci_low": 0.46036400000944994,
+        "ci_high": 0.48070233333915,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.470333,
+        "top1": 47.36,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.303448888892,
+        "se": 0.005751707127358206,
+        "ci_low": 0.29198155555945,
+        "ci_high": 0.31471300000345,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.303449,
+        "top1": 32.72,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.17652444444600002,
+        "se": 0.0058857971589027945,
+        "ci_low": 0.16510199999800002,
+        "ci_high": 0.18805800000205003,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.176524,
+        "top1": 13.06,
+        "agrees_with_source": true
+       }
+      },
+      "t4_close_up": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 58.18,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.42168222224,
+        "se": 0.0056835272744948035,
+        "ci_low": 0.4105373333537001,
+        "ci_high": 0.4328556666814,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.421682,
+        "top1": 41.02,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.23988666666800004,
+        "se": 0.006177527747638337,
+        "ci_low": 0.22798633333635004,
+        "ci_high": 0.25178472222785,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.239887,
+        "top1": 25.02,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 5000,
+        "n_boot": 2000,
+        "point": 0.104811111112,
+        "se": 0.006276453915936887,
+        "ci_low": 0.09282661111630001,
+        "ci_high": 0.11675794445270002,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.104811,
+        "top1": 8.82,
+        "agrees_with_source": true
+       }
+      }
+     }
+    },
+    "dtd": {
+     "n_images": 1880,
+     "class_list_len": 47,
+     "templates": {
+      "t0_photo_of_a": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 43.1383,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.5640425531914894,
+        "se": 0.007145866294857325,
+        "ci_low": 0.5502101063829787,
+        "ci_high": 0.5779787234042553,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.564043,
+        "top1": 40.9574,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.35382978723404257,
+        "se": 0.008422726165869957,
+        "ci_low": 0.3373377659574468,
+        "ci_high": 0.37000265957446804,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.35383,
+        "top1": 31.9149,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.15893617021276596,
+        "se": 0.009217806992942291,
+        "ci_low": 0.14074468085106384,
+        "ci_high": 0.17723404255319147,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.158936,
+        "top1": 16.7021,
+        "agrees_with_source": true
+       }
+      },
+      "t1_photo_of_the": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 41.6489,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.5567021276595744,
+        "se": 0.007117182371087333,
+        "ci_low": 0.5425531914893617,
+        "ci_high": 0.5698962765957447,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.556702,
+        "top1": 40.7447,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.34478723404255324,
+        "se": 0.008436513317566313,
+        "ci_low": 0.32776063829787233,
+        "ci_high": 0.36042819148936167,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.344787,
+        "top1": 35.3191,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.1417021276595745,
+        "se": 0.009141541400592538,
+        "ci_low": 0.12372074468085106,
+        "ci_high": 0.15957712765957446,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.141702,
+        "top1": 22.8723,
+        "agrees_with_source": true
+       }
+      },
+      "t2_in_the_wild": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 36.8085,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.5092553191489362,
+        "se": 0.007703566366171467,
+        "ci_low": 0.4946781914893617,
+        "ci_high": 0.5248936170212766,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.509255,
+        "top1": 34.0426,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.27170212765957447,
+        "se": 0.00875642169385074,
+        "ci_low": 0.2551063829787234,
+        "ci_high": 0.28914893617021276,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.271702,
+        "top1": 22.5,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.07074468085106383,
+        "se": 0.009406995826343337,
+        "ci_low": 0.05265691489361702,
+        "ci_high": 0.08957446808510638,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.070745,
+        "top1": 8.0851,
+        "agrees_with_source": true
+       }
+      },
+      "t3_bare_class": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 40.6383,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.5608510638297873,
+        "se": 0.007555881353924074,
+        "ci_low": 0.5464867021276595,
+        "ci_high": 0.5756436170212765,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.560851,
+        "top1": 40.3191,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.35627659574468085,
+        "se": 0.009147208776472217,
+        "ci_low": 0.3377659574468085,
+        "ci_high": 0.37425531914893617,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.356277,
+        "top1": 31.7553,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.17436170212765956,
+        "se": 0.00952543580195242,
+        "ci_low": 0.15531914893617021,
+        "ci_high": 0.19319148936170213,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.174362,
+        "top1": 17.0213,
+        "agrees_with_source": true
+       }
+      },
+      "t4_close_up": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 42.2872,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.4988297872340426,
+        "se": 0.007488561798761995,
+        "ci_low": 0.48478723404255325,
+        "ci_high": 0.5135106382978724,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.49883,
+        "top1": 39.6809,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.2772340425531915,
+        "se": 0.008619849518642891,
+        "ci_low": 0.26042287234042555,
+        "ci_high": 0.2941542553191489,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.277234,
+        "top1": 29.5745,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 1880,
+        "n_boot": 2000,
+        "point": 0.09957446808510638,
+        "se": 0.009216711738991972,
+        "ci_low": 0.08191489361702127,
+        "ci_high": 0.11755585106382978,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.099574,
+        "top1": 18.9362,
+        "agrees_with_source": true
+       }
+      }
+     }
+    },
+    "food101": {
+     "n_images": 25250,
+     "class_list_len": 101,
+     "templates": {
+      "t0_photo_of_a": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 82.0594,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.6216633663366337,
+        "se": 0.0018342703514277556,
+        "ci_low": 0.6181621782178218,
+        "ci_high": 0.625449504950495,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.621663,
+        "top1": 75.8059,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.4408712871287129,
+        "se": 0.0021592843642157006,
+        "ci_low": 0.43679168316831685,
+        "ci_high": 0.4452207920792079,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.440871,
+        "top1": 60.5465,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.2607049504950495,
+        "se": 0.0024212608666513537,
+        "ci_low": 0.2561184158415842,
+        "ci_high": 0.26558475247524754,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.260705,
+        "top1": 30.1822,
+        "agrees_with_source": true
+       }
+      },
+      "t1_photo_of_the": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 83.4693,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.6397507092776238,
+        "se": 0.001784115030430433,
+        "ci_low": 0.6361974257425743,
+        "ci_high": 0.6431686192170891,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.639751,
+        "top1": 77.897,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.46352892709940596,
+        "se": 0.0020991903442023055,
+        "ci_low": 0.45935416926845546,
+        "ci_high": 0.46752120432712874,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.463529,
+        "top1": 63.0099,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.2849280180411881,
+        "se": 0.0023657424956895056,
+        "ci_low": 0.2803374853605743,
+        "ci_high": 0.28957808491689113,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.284928,
+        "top1": 31.6436,
+        "agrees_with_source": true
+       }
+      },
+      "t2_in_the_wild": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 78.9069,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.6632,
+        "se": 0.0017532881308574115,
+        "ci_low": 0.6598255445544554,
+        "ci_high": 0.6666140594059407,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.6632,
+        "top1": 74.7168,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.4849188118811881,
+        "se": 0.002093118994555113,
+        "ci_low": 0.4806574257425742,
+        "ci_high": 0.4888566336633663,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.484919,
+        "top1": 62.004,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.2966970297029703,
+        "se": 0.002336745103428086,
+        "ci_low": 0.29203148514851485,
+        "ci_high": 0.30114138613861385,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.296697,
+        "top1": 31.5921,
+        "agrees_with_source": true
+       }
+      },
+      "t3_bare_class": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 81.2119,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.6301306930693069,
+        "se": 0.0017675876461931033,
+        "ci_low": 0.6266849504950495,
+        "ci_high": 0.6336952475247525,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.630131,
+        "top1": 77.5762,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.4552396039603961,
+        "se": 0.002069601693960946,
+        "ci_low": 0.4512552475247525,
+        "ci_high": 0.45944554455445547,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.45524,
+        "top1": 62.4752,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.2771643564356436,
+        "se": 0.00237104277135855,
+        "ci_low": 0.2726097029702971,
+        "ci_high": 0.281719207920792,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.277164,
+        "top1": 28.1347,
+        "agrees_with_source": true
+       }
+      },
+      "t4_close_up": {
+       "0.0": {
+        "point": 1.0,
+        "top1": 81.4257,
+        "n_images": null,
+        "ci_low": null,
+        "ci_high": null,
+        "se": null,
+        "note": "not bootstrapped: per-image tau not stored for lambda=0 (tau=1 by construction)"
+       },
+       "0.5": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.5668831683168316,
+        "se": 0.0018908483018192411,
+        "ci_low": 0.5630970297029704,
+        "ci_high": 0.5706061386138614,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.566883,
+        "top1": 71.8851,
+        "agrees_with_source": true
+       },
+       "1.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.3739643564356435,
+        "se": 0.0022401419962264895,
+        "ci_low": 0.3696314851485148,
+        "ci_high": 0.3783841584158416,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.373964,
+        "top1": 51.5446,
+        "agrees_with_source": true
+       },
+       "2.0": {
+        "n_images": 25250,
+        "n_boot": 2000,
+        "point": 0.19939470208990098,
+        "se": 0.0024283857021871174,
+        "ci_low": 0.1946656253132079,
+        "ci_high": 0.20416778788718815,
+        "ci_level": 0.95,
+        "tau_in_source_json": 0.199395,
+        "top1": 24.0238,
+        "agrees_with_source": true
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "k_specificity": {
+  "note": "the manuscript tripwire thresholds are calibrated at k = 5; the ABSOLUTE tau level is a function of k, so a fixed numeric threshold has a different meaning at every k.",
+  "per_k_bootstrap_at_sweep_lambdas": {
+   "2": {
+    "-0.5": {
+     "n_images": 4985,
+     "n_boot": 2000,
+     "point": 0.5446339017051154,
+     "se": 0.011981452918350732,
+     "ci_low": 0.5213640922768304,
+     "ci_high": 0.5691073219658976,
+     "ci_level": 0.95,
+     "n_images_scored": 4985,
+     "frac_images_dropped": 0.003
+    },
+    "0.5": {
+     "n_images": 4985,
+     "n_boot": 2000,
+     "point": 0.5037111334002006,
+     "se": 0.011912467903459957,
+     "ci_low": 0.4812437311935807,
+     "ci_high": 0.5257873620862588,
+     "ci_level": 0.95,
+     "n_images_scored": 4985,
+     "frac_images_dropped": 0.003
+    },
+    "1.0": {
+     "n_images": 4984,
+     "n_boot": 2000,
+     "point": 0.32865168539325845,
+     "se": 0.013105600754994817,
+     "ci_low": 0.30296950240770465,
+     "ci_high": 0.35434390048154085,
+     "ci_level": 0.95,
+     "n_images_scored": 4984,
+     "frac_images_dropped": 0.0032
+    },
+    "2.0": {
+     "n_images": 4985,
+     "n_boot": 2000,
+     "point": 0.17191574724172518,
+     "se": 0.013883739954961012,
+     "ci_low": 0.14463390170511534,
+     "ci_high": 0.19839518555667002,
+     "ci_level": 0.95,
+     "n_images_scored": 4985,
+     "frac_images_dropped": 0.003
+    }
+   },
+   "3": {
+    "-0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.5126666666666666,
+     "se": 0.00781593693164832,
+     "ci_low": 0.4969333333333333,
+     "ci_high": 0.52787,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.4966666666666666,
+     "se": 0.008010207072771234,
+     "ci_low": 0.48092666666666667,
+     "ci_high": 0.512,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "1.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.31729663264951885,
+     "se": 0.008755031631743562,
+     "ci_low": 0.29999908248290463,
+     "ci_high": 0.3336608494827998,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "2.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.16346666666666665,
+     "se": 0.0091394937102285,
+     "ci_low": 0.14573333333333335,
+     "ci_high": 0.1814733333333333,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    }
+   },
+   "5": {
+    "-0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.49314666666666673,
+     "se": 0.005117368112112327,
+     "ci_low": 0.48330588888888887,
+     "ci_high": 0.5037023333333333,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.46560888888888896,
+     "se": 0.005479412748709643,
+     "ci_low": 0.454674,
+     "ci_high": 0.47593500000000005,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "1.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.2901197659196534,
+     "se": 0.005994678846555397,
+     "ci_low": 0.2784793815738781,
+     "ci_high": 0.3017182081118045,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "2.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.1496,
+     "se": 0.006145450728667697,
+     "ci_low": 0.13757777777777777,
+     "ci_high": 0.1614718888888889,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    }
+   },
+   "10": {
+    "-0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.46735145407564016,
+     "se": 0.0031907527008871125,
+     "ci_low": 0.46118457881136954,
+     "ci_high": 0.4736177015503877,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.4420725252525253,
+     "se": 0.003498861510358511,
+     "ci_low": 0.43521040603711525,
+     "ci_high": 0.44887358303969926,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "1.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.27191257125720797,
+     "se": 0.0037696224262736716,
+     "ci_low": 0.26449623318857546,
+     "ci_high": 0.27908444946609673,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "2.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.1419303265210242,
+     "se": 0.0038043674937649663,
+     "ci_low": 0.13461376074700493,
+     "ci_high": 0.14910980960770495,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    }
+   },
+   "20": {
+    "-0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.4630891109570616,
+     "se": 0.0022034086641611723,
+     "ci_low": 0.45866322550762256,
+     "ci_high": 0.4672827349431498,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.42484562185605856,
+     "se": 0.00261166621095172,
+     "ci_low": 0.4197089774910089,
+     "ci_high": 0.4298435642800855,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "1.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.25216442850179693,
+     "se": 0.0027970252765260545,
+     "ci_low": 0.24661911258477665,
+     "ci_high": 0.25750745381512535,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "2.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.12581095362519773,
+     "se": 0.002808512734841395,
+     "ci_low": 0.12019665554548309,
+     "ci_high": 0.1313724777665203,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    }
+   },
+   "50": {
+    "-0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.47054581170781595,
+     "se": 0.0014741483065183753,
+     "ci_low": 0.46759291334260666,
+     "ci_high": 0.4734517915375007,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.40965722721439496,
+     "se": 0.0020380551860756132,
+     "ci_low": 0.40576980620630865,
+     "ci_high": 0.41357782014186883,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "1.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.22872688568292823,
+     "se": 0.0021624831084379914,
+     "ci_low": 0.22430906661732256,
+     "ci_high": 0.23286447403646057,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "2.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.1005554260359272,
+     "se": 0.0021064288414388405,
+     "ci_low": 0.09629165030280315,
+     "ci_high": 0.1045804697035949,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    }
+   },
+   "100": {
+    "-0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.47557127537677263,
+     "se": 0.0012072312387445855,
+     "ci_low": 0.473231167445418,
+     "ci_high": 0.4780019819875933,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "0.5": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.41106276614216514,
+     "se": 0.0018388791101983484,
+     "ci_low": 0.4076407944229373,
+     "ci_high": 0.4147102016442958,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "1.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.2250440413593658,
+     "se": 0.001963319158357515,
+     "ci_low": 0.22132219327163577,
+     "ci_high": 0.2289099931221382,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    },
+    "2.0": {
+     "n_images": 5000,
+     "n_boot": 2000,
+     "point": 0.09366500764697312,
+     "se": 0.0018875566440985808,
+     "ci_low": 0.08986470573911215,
+     "ci_high": 0.09740394310284974,
+     "ci_level": 0.95,
+     "n_images_scored": 5000,
+     "frac_images_dropped": 0.0
+    }
+   }
+  },
+  "first_lambda_below_threshold": {
+   "2": {
+    "first_lambda_below": {
+     "thr_0.8": -0.5,
+     "thr_0.7": -0.5,
+     "thr_0.6": -0.5,
+     "thr_0.5": 1.0,
+     "thr_0.4": 1.0
+    },
+    "tau_at_lambda0.5": 0.5037111334002006,
+    "tau_at_lambda1.0": 0.32865168539325845
+   },
+   "3": {
+    "first_lambda_below": {
+     "thr_0.8": -0.5,
+     "thr_0.7": -0.5,
+     "thr_0.6": -0.5,
+     "thr_0.5": 0.5,
+     "thr_0.4": 1.0
+    },
+    "tau_at_lambda0.5": 0.4966666666666666,
+    "tau_at_lambda1.0": 0.31729663264951885
+   },
+   "5": {
+    "first_lambda_below": {
+     "thr_0.8": -0.5,
+     "thr_0.7": -0.5,
+     "thr_0.6": -0.5,
+     "thr_0.5": -0.5,
+     "thr_0.4": 1.0
+    },
+    "tau_at_lambda0.5": 0.46560888888888896,
+    "tau_at_lambda1.0": 0.2901197659196534
+   },
+   "10": {
+    "first_lambda_below": {
+     "thr_0.8": -0.5,
+     "thr_0.7": -0.5,
+     "thr_0.6": -0.5,
+     "thr_0.5": -0.5,
+     "thr_0.4": 1.0
+    },
+    "tau_at_lambda0.5": 0.4420725252525253,
+    "tau_at_lambda1.0": 0.27191257125720797
+   },
+   "20": {
+    "first_lambda_below": {
+     "thr_0.8": -0.5,
+     "thr_0.7": -0.5,
+     "thr_0.6": -0.5,
+     "thr_0.5": -0.5,
+     "thr_0.4": 1.0
+    },
+    "tau_at_lambda0.5": 0.42484562185605856,
+    "tau_at_lambda1.0": 0.25216442850179693
+   },
+   "50": {
+    "first_lambda_below": {
+     "thr_0.8": -0.5,
+     "thr_0.7": -0.5,
+     "thr_0.6": -0.5,
+     "thr_0.5": -0.5,
+     "thr_0.4": 1.0
+    },
+    "tau_at_lambda0.5": 0.40965722721439496,
+    "tau_at_lambda1.0": 0.22872688568292823
+   },
+   "100": {
+    "first_lambda_below": {
+     "thr_0.8": -0.5,
+     "thr_0.7": -0.5,
+     "thr_0.6": -0.5,
+     "thr_0.5": -0.5,
+     "thr_0.4": 1.0
+    },
+    "tau_at_lambda0.5": 0.41106276614216514,
+    "tau_at_lambda1.0": 0.2250440413593658
+   }
+  },
+  "absolute_level_shift_over_k": {
+   "-0.5": {
+    "tau_by_k": {
+     "2": 0.5446339017051154,
+     "3": 0.5126666666666666,
+     "5": 0.49314666666666673,
+     "10": 0.46735145407564016,
+     "20": 0.4630891109570616,
+     "50": 0.47054581170781595,
+     "100": 0.47557127537677263
+    },
+    "max_over_k": 0.5446339017051154,
+    "argmax_k": 2,
+    "min_over_k": 0.4630891109570616,
+    "argmin_k": 20,
+    "abs_shift": 0.081545
+   },
+   "0.5": {
+    "tau_by_k": {
+     "2": 0.5037111334002006,
+     "3": 0.4966666666666666,
+     "5": 0.46560888888888896,
+     "10": 0.4420725252525253,
+     "20": 0.42484562185605856,
+     "50": 0.40965722721439496,
+     "100": 0.41106276614216514
+    },
+    "max_over_k": 0.5037111334002006,
+    "argmax_k": 2,
+    "min_over_k": 0.40965722721439496,
+    "argmin_k": 50,
+    "abs_shift": 0.094054
+   },
+   "1.0": {
+    "tau_by_k": {
+     "2": 0.32865168539325845,
+     "3": 0.31729663264951885,
+     "5": 0.2901197659196534,
+     "10": 0.27191257125720797,
+     "20": 0.25216442850179693,
+     "50": 0.22872688568292823,
+     "100": 0.2250440413593658
+    },
+    "max_over_k": 0.32865168539325845,
+    "argmax_k": 2,
+    "min_over_k": 0.2250440413593658,
+    "argmin_k": 100,
+    "abs_shift": 0.103608
+   },
+   "2.0": {
+    "tau_by_k": {
+     "2": 0.17191574724172518,
+     "3": 0.16346666666666665,
+     "5": 0.1496,
+     "10": 0.1419303265210242,
+     "20": 0.12581095362519773,
+     "50": 0.1005554260359272,
+     "100": 0.09366500764697312
+    },
+    "max_over_k": 0.17191574724172518,
+    "argmax_k": 2,
+    "min_over_k": 0.09366500764697312,
+    "argmin_k": 100,
+    "abs_shift": 0.078251
+   }
+  },
+  "e2_absolute_levels_by_k": {
+   "spearman_vs_k5_curve": {
+    "1": {
+     "spearman_vs_k5": null,
+     "note": "undefined for k=1 (Kendall tau degenerate)"
+    },
+    "3": {
+     "spearman_vs_k5": 1.0,
+     "p": 0.0,
+     "max_abs_diff_vs_k5": 0.030467,
+     "mean_abs_diff_vs_k5": 0.017008
+    },
+    "5": {
+     "spearman_vs_k5": 1.0,
+     "p": 0.0,
+     "max_abs_diff_vs_k5": 0.0,
+     "mean_abs_diff_vs_k5": 0.0
+    },
+    "10": {
+     "spearman_vs_k5": 1.0,
+     "p": 0.0,
+     "max_abs_diff_vs_k5": 0.02654,
+     "mean_abs_diff_vs_k5": 0.015884
+    },
+    "20": {
+     "spearman_vs_k5": 1.0,
+     "p": 0.0,
+     "max_abs_diff_vs_k5": 0.040608,
+     "mean_abs_diff_vs_k5": 0.024909
+    },
+    "50": {
+     "spearman_vs_k5": 1.0,
+     "p": 0.0,
+     "max_abs_diff_vs_k5": 0.061506,
+     "mean_abs_diff_vs_k5": 0.031496
+    },
+    "100": {
+     "spearman_vs_k5": 1.0,
+     "p": 0.0,
+     "max_abs_diff_vs_k5": 0.065202,
+     "mean_abs_diff_vs_k5": 0.032413
+    }
+   },
+   "e2_absolute_levels": {
+    "legacy1001": {
+     "1": {
+      "0.0": null,
+      "0.25": null,
+      "0.5": null,
+      "1.0": null,
+      "2.0": null,
+      "4.0": null
+     },
+     "3": {
+      "0.0": 1.0,
+      "0.25": 0.6724,
+      "0.5": 0.4958666666666666,
+      "1.0": 0.3176,
+      "2.0": 0.16306666666666667,
+      "4.0": 0.07373333333333333
+     },
+     "5": {
+      "0.0": 1.0,
+      "0.25": 0.6427733333333333,
+      "0.5": 0.4654,
+      "1.0": 0.29018222222222223,
+      "2.0": 0.14956,
+      "4.0": 0.06517333333333333
+     },
+     "10": {
+      "0.0": 1.0,
+      "0.25": 0.620803124265915,
+      "0.5": 0.44194828282828286,
+      "1.0": 0.27191964763918247,
+      "2.0": 0.14187699318769084,
+      "4.0": 0.06433777307963355
+     },
+     "20": {
+      "0.0": 1.0,
+      "0.25": 0.6102706265664161,
+      "0.5": 0.4247921518767096,
+      "1.0": 0.25207862339062787,
+      "2.0": 0.12577947480995633,
+      "4.0": 0.050725212084584984
+     },
+     "50": {
+      "0.0": 1.0,
+      "0.25": 0.6039587926252207,
+      "0.5": 0.40959090439126783,
+      "1.0": 0.22867632448349168,
+      "2.0": 0.10052951076899551,
+      "4.0": 0.026231850165615526
+     },
+     "100": {
+      "0.0": 1.0,
+      "0.25": 0.608634974042676,
+      "0.5": 0.4109740097927103,
+      "1.0": 0.2249800469556913,
+      "2.0": 0.09362692097105876,
+      "4.0": 0.018381358933465396
+     }
+    },
+    "clean1000": {
+     "1": {
+      "0.0": null,
+      "0.25": null,
+      "0.5": null,
+      "1.0": null,
+      "2.0": null,
+      "4.0": null
+     },
+     "3": {
+      "0.0": 1.0,
+      "0.25": 0.6724,
+      "0.5": 0.4958666666666666,
+      "1.0": 0.3176,
+      "2.0": 0.16346666666666665,
+      "4.0": 0.07413333333333333
+     },
+     "5": {
+      "0.0": 1.0,
+      "0.25": 0.6428533333333333,
+      "0.5": 0.46543999999999996,
+      "1.0": 0.29010222222222226,
+      "2.0": 0.14964,
+      "4.0": 0.06533333333333333
+     },
+     "10": {
+      "0.0": 1.0,
+      "0.25": 0.620873225276016,
+      "0.5": 0.4420545454545454,
+      "1.0": 0.2720622739018088,
+      "2.0": 0.14204689217758984,
+      "4.0": 0.06444484378670425
+     },
+     "20": {
+      "0.0": 1.0,
+      "0.25": 0.6106922144605011,
+      "0.5": 0.4253191591111076,
+      "1.0": 0.25263311138366007,
+      "2.0": 0.12640137577987523,
+      "4.0": 0.051326038026508355
+     },
+     "50": {
+      "0.0": 1.0,
+      "0.25": 0.6049073748379368,
+      "0.5": 0.4108166518016519,
+      "1.0": 0.23001197575506604,
+      "2.0": 0.10186437808253306,
+      "4.0": 0.027497212582942392
+     },
+     "100": {
+      "0.0": 1.0,
+      "0.25": 0.609921514669172,
+      "0.5": 0.41271662678450993,
+      "1.0": 0.22688413197305585,
+      "2.0": 0.09542918201974748,
+      "4.0": 0.020026575798191056
+     }
+    }
+   },
+   "e2_note": "vectorised Kendall tau_b on the frozen top-k sets; no ties are possible with continuous scores, so 1-2*D/C(k,2) is exact. Cross-checked against the archived scipy loop (see estimator_crosscheck in each convention block).",
+   "kendall_tau_undefined_at_k1": "Kendall tau needs >= 2 ranks; at k=1 the frozen set has zero variance, so the archived kendall_topk() skips every image and tau is undefined (null). top1_agreement_diagnostic is reported for that row instead."
+  },
+  "thresholds_probed": [
+   0.8,
+   0.7,
+   0.6,
+   0.5,
+   0.4
+  ],
+  "sweep_lambdas": [
+   -0.5,
+   0.5,
+   1.0,
+   2.0
+  ]
+ }
+}

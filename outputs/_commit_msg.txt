@@ -1,0 +1,25 @@
+Replace three racing drivers with one serial executor, and fix four bugs of my own along the way
+
+Overnight, three drivers each watched for a different signal and produced exactly the failure that design
+invites. Each waited on its own file with its own timeout, so the second queue concluded CLIP B/16 was done
+after 120 minutes and started the alpha re-run while B/16 was still training, putting two jobs on an 8 GB
+card. The first driver then hit its own 180-minute ceiling and declared B/16 timed out, and because a timeout
+there did not kill the child, the training continued as an orphan holding the GPU.
+
+None of that is incidental; it is what happens when three writers coordinate by polling instead of by taking
+turns. The replacement is a single executor that runs one task at a time, launches each in its own process
+group so a timeout can kill the whole tree, streams output to a file instead of into memory, waits for the
+GPU rather than skipping the task, and checks the command line for an already-running copy before starting
+another.
+
+Four bugs in my own code surfaced while building it, and how each was caught is the point. A check that only
+tested whether the output file existed marked the alpha task finished when that file was the earlier run's,
+and because the same check was written in two places the first fix left the listing still wrong. A GPU-busy
+branch skipped the task instead of waiting, which would have dropped the head of the queue silently. And a
+process lookup returned nothing at all: text mode decodes with the system code page on Windows, the command
+lines contain Chinese paths, and the decode error was swallowed into an empty list, so the duplicate-start
+guard did nothing. Running that function on its own, rather than trusting that adding it had worked, is what
+found it, and it is the same root cause as the UnicodeDecodeError noise in last night's logs.
+
+The executor is now waiting on the running alpha job rather than restarting it, and will continue with the
+two missing CLIP B/16 arms and the COCO sweep behind it.

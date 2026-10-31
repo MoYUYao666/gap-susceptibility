@@ -1,0 +1,23 @@
+{
+ "OpenCLIP B/32 (r4)": {
+  "patch": 32,
+  "cg_delta": {
+   "both": 0.08602035045623779,
+   "text_only": 0.07975411415100098,
+   "vision_only": 0.10191386938095093
+  },
+  "most_protective": "text_only",
+  "expected": "text_only",
+  "consistent": true
+ },
+ "CLIP B/16 (r4)": {
+  "patch": 16,
+  "cg_delta": {
+   "both": 0.015005946159362793,
+   "text_only": -0.018969476222991943
+  },
+  "most_protective": "text_only",
+  "expected": "both",
+  "consistent": false
+ }
+}

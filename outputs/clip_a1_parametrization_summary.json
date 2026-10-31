@@ -1,0 +1,150 @@
+{
+ "summary": {
+  "peft_pairwise_identical_all_E": false,
+  "encoder_ordering_all_agree": true,
+  "proj_zero_in_peft_all_E": false,
+  "modes": [
+   "full",
+   "lora",
+   "adapter",
+   "bitfit"
+  ],
+  "blocks": [
+   "vision_trunk",
+   "visual_projection",
+   "text_model",
+   "text_projection"
+  ],
+  "E": [
+   "DGstar",
+   "GD",
+   "negcos"
+  ],
+  "note": "\u6295\u5f71\u5934(visual/text_projection)\u5728 PEFT \u81c2\u4e2d\u672a\u88ab\u9002\u914d, \u5176 \u0393=0 \u5c5e\u6784\u9020\u6027\u4e3a\u96f6, \u6545\u8de8\u53c2\u6570\u5316\u7684\u6392\u5e8f\u6bd4\u8f83\u9650\u5b9a\u5728\u4e24\u4e2a\u7f16\u7801\u5668\u5757\u4e0a(\u4e24\u8fb9\u90fd\u88ab\u9002\u914d)\u3002"
+ },
+ "per_E": {
+  "DGstar": {
+   "lora_vs_adapter": {
+    "spearman": 1.0,
+    "identical": false
+   },
+   "lora_vs_bitfit": {
+    "spearman": 1.0,
+    "identical": false
+   },
+   "adapter_vs_bitfit": {
+    "spearman": 1.0,
+    "identical": false
+   }
+  },
+  "GD": {
+   "lora_vs_adapter": {
+    "spearman": 1.0,
+    "identical": false
+   },
+   "lora_vs_bitfit": {
+    "spearman": 1.0,
+    "identical": false
+   },
+   "adapter_vs_bitfit": {
+    "spearman": 1.0,
+    "identical": false
+   }
+  },
+  "negcos": {
+   "lora_vs_adapter": {
+    "spearman": 1.0,
+    "identical": false
+   },
+   "lora_vs_bitfit": {
+    "spearman": 1.0,
+    "identical": false
+   },
+   "adapter_vs_bitfit": {
+    "spearman": 1.0,
+    "identical": false
+   }
+  }
+ },
+ "encoder_ordering": {
+  "DGstar": {
+   "full": "text>vision",
+   "lora": "text>vision",
+   "adapter": "text>vision",
+   "bitfit": "text>vision",
+   "all_agree": true
+  },
+  "GD": {
+   "full": "text>vision",
+   "lora": "text>vision",
+   "adapter": "text>vision",
+   "bitfit": "text>vision",
+   "all_agree": true
+  },
+  "negcos": {
+   "full": "text>vision",
+   "lora": "text>vision",
+   "adapter": "text>vision",
+   "bitfit": "text>vision",
+   "all_agree": true
+  }
+ },
+ "proj_zero_in_peft": {
+  "DGstar": {
+   "full": false,
+   "lora": true,
+   "adapter": true,
+   "bitfit": true
+  },
+  "GD": {
+   "full": false,
+   "lora": true,
+   "adapter": true,
+   "bitfit": true
+  },
+  "negcos": {
+   "full": false,
+   "lora": true,
+   "adapter": true,
+   "bitfit": true
+  }
+ },
+ "ratios": {
+  "DGstar": {
+   "vision_trunk": {
+    "lora": -0.798,
+    "adapter": -0.74,
+    "bitfit": -16.243
+   },
+   "text_model": {
+    "lora": 0.912,
+    "adapter": 1.184,
+    "bitfit": 29.53
+   }
+  },
+  "GD": {
+   "vision_trunk": {
+    "lora": 1.327,
+    "adapter": 1.037,
+    "bitfit": 24.639
+   },
+   "text_model": {
+    "lora": 1.357,
+    "adapter": 1.249,
+    "bitfit": 27.312
+   }
+  },
+  "negcos": {
+   "vision_trunk": {
+    "lora": -0.798,
+    "adapter": -0.74,
+    "bitfit": -16.242
+   },
+   "text_model": {
+    "lora": 0.912,
+    "adapter": 1.184,
+    "bitfit": 29.53
+   }
+  }
+ }
+}

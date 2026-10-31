@@ -1,0 +1,157 @@
+{
+ "source": "outputs/allocation_policy_sim.json",
+ "blocks": [
+  "vis",
+  "llm_shallow",
+  "llm_mid",
+  "llm_deep"
+ ],
+ "gamma_abs": {
+  "vis": 8092.164583224058,
+  "llm_shallow": 1614.323403664818,
+  "llm_mid": 8717.194066253305,
+  "llm_deep": 2726.687970560789
+ },
+ "budget": 64,
+ "separation": {
+  "max_min_ratio": 5.4,
+  "mean_abs": 5287.6,
+  "std": 3149.6,
+  "min_adjacent_ratio_gap": 625.0,
+  "adjacent_ratio_gaps": [
+   1112.4,
+   5365.5,
+   625.0
+  ]
+ },
+ "criterion": {
+  "rule": "beta* = 1 / sigma(|Gamma|)  (softmin temperature equals the Gamma spread)",
+  "beta_star": 0.000318,
+  "beta_low": 0.000159,
+  "beta_high": 0.000635,
+  "note": "criterion: choose beta in [1/(2 sigma), 2/sigma]; beta* = 1/sigma gives temperature ~ one std of the block susceptibility; beta>>2/sigma degenerates to greedy (single block), beta<<1/(2 sigma) degenerates to uniform"
+ },
+ "grid": [
+  {
+   "beta": 1e-05,
+   "alloc": {
+    "vis": 16,
+    "llm_shallow": 17,
+    "llm_mid": 15,
+    "llm_deep": 16
+   },
+   "obj": 331303.0,
+   "obj_vs_uniform_pct": 2.1,
+   "eff_vs_greedy_pct": 220.7,
+   "beta_sigma": 0.031
+  },
+  {
+   "beta": 3e-05,
+   "alloc": {
+    "vis": 15,
+    "llm_shallow": 18,
+    "llm_mid": 14,
+    "llm_deep": 17
+   },
+   "obj": 318834.7,
+   "obj_vs_uniform_pct": 6.1,
+   "eff_vs_greedy_pct": 208.6,
+   "beta_sigma": 0.094
+  },
+  {
+   "beta": 0.0001,
+   "alloc": {
+    "vis": 11,
+    "llm_shallow": 22,
+    "llm_mid": 11,
+    "llm_deep": 20
+   },
+   "obj": 274951.8,
+   "obj_vs_uniform_pct": 23.1,
+   "eff_vs_greedy_pct": 166.1,
+   "beta_sigma": 0.315
+  },
+  {
+   "beta": 0.0003,
+   "alloc": {
+    "vis": 5,
+    "llm_shallow": 32,
+    "llm_mid": 4,
+    "llm_deep": 23
+   },
+   "obj": 189701.8,
+   "obj_vs_uniform_pct": 78.4,
+   "eff_vs_greedy_pct": 83.6,
+   "beta_sigma": 0.945
+  },
+  {
+   "beta": 0.001,
+   "alloc": {
+    "vis": 0,
+    "llm_shallow": 48,
+    "llm_mid": 0,
+    "llm_deep": 16
+   },
+   "obj": 121114.5,
+   "obj_vs_uniform_pct": 179.4,
+   "eff_vs_greedy_pct": 17.2,
+   "beta_sigma": 3.15
+  },
+  {
+   "beta": 0.003,
+   "alloc": {
+    "vis": 0,
+    "llm_shallow": 62,
+    "llm_mid": 0,
+    "llm_deep": 2
+   },
+   "obj": 105541.4,
+   "obj_vs_uniform_pct": 220.6,
+   "eff_vs_greedy_pct": 2.2,
+   "beta_sigma": 9.449
+  },
+  {
+   "beta": 0.01,
+   "alloc": {
+    "vis": 0,
+    "llm_shallow": 64,
+    "llm_mid": 0,
+    "llm_deep": 0
+   },
+   "obj": 103316.7,
+   "obj_vs_uniform_pct": 227.5,
+   "eff_vs_greedy_pct": -0.0,
+   "beta_sigma": 31.496
+  },
+  {
+   "beta": 0.000318,
+   "alloc": {
+    "vis": 4,
+    "llm_shallow": 33,
+    "llm_mid": 4,
+    "llm_deep": 23
+   },
+   "obj": 183223.9,
+   "obj_vs_uniform_pct": 84.7,
+   "eff_vs_greedy_pct": 77.3,
+   "beta_sigma": 1.002,
+   "is_star": true
+  }
+ ],
+ "reference": {
+  "uniform_obj": 338406.0,
+  "greedy_obj": 103317.0,
+  "uniform_alloc": {
+   "vis": 16,
+   "llm_shallow": 16,
+   "llm_mid": 16,
+   "llm_deep": 16
+  },
+  "greedy_alloc": {
+   "vis": 0,
+   "llm_shallow": 64,
+   "llm_mid": 0,
+   "llm_deep": 0
+  }
+ }
+}

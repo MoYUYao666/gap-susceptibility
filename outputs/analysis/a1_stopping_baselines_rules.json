@@ -1,0 +1,251 @@
+{
+ "rules": {
+  "min_M": {
+   "mean_regret": 0.1787678767876789,
+   "max_regret": 1.0726072607260733,
+   "n": 6
+  },
+  "min_CG": {
+   "mean_regret": 2.1805584813800536,
+   "max_regret": 4.3971631205673845,
+   "n": 6
+  },
+  "min_entropy": {
+   "mean_regret": 3.961800435362683,
+   "max_regret": 11.666666666666657,
+   "n": 6
+  },
+  "max_softmax": {
+   "mean_regret": 2.7979659668094476,
+   "max_regret": 11.666666666666657,
+   "n": 6
+  },
+  "max_logit": {
+   "mean_regret": 3.1482456756313937,
+   "max_regret": 11.666666666666657,
+   "n": 6
+  },
+  "min_energy": {
+   "mean_regret": 4.177492217306837,
+   "max_regret": 11.666666666666657,
+   "n": 6
+  },
+  "first": {
+   "mean_regret": 9.520223298925641,
+   "max_regret": 23.33333333333333,
+   "n": 6
+  },
+  "last": {
+   "mean_regret": 3.63129930014278,
+   "max_regret": 11.666666666666657,
+   "n": 6
+  }
+ },
+ "breakdown": {
+  "dtd": {
+   "min_M": {
+    "mean_regret": 0.0
+   },
+   "min_CG": {
+    "mean_regret": 2.4822695035460995
+   },
+   "min_entropy": {
+    "mean_regret": 1.4893617021276562
+   },
+   "max_softmax": {
+    "mean_regret": 0.9929078014184398
+   },
+   "max_logit": {
+    "mean_regret": 1.6312056737588634
+   },
+   "min_energy": {
+    "mean_regret": 1.0638297872340452
+   },
+   "first": {
+    "mean_regret": 7.446808510638302
+   },
+   "last": {
+    "mean_regret": 0.9929078014184398
+   }
+  },
+  "food101": {
+   "min_M": {
+    "mean_regret": 0.5363036303630366
+   },
+   "min_CG": {
+    "mean_regret": 2.392739273927397
+   },
+   "min_entropy": {
+    "mean_regret": 2.062706270627068
+   },
+   "max_softmax": {
+    "mean_regret": 1.567656765676574
+   },
+   "max_logit": {
+    "mean_regret": 1.980198019801989
+   },
+   "min_energy": {
+    "mean_regret": 3.135313531353141
+   },
+   "first": {
+    "mean_regret": 1.1138613861386233
+   },
+   "last": {
+    "mean_regret": 1.567656765676574
+   }
+  },
+  "fathomnet8": {
+   "min_M": {
+    "mean_regret": 0.0
+   },
+   "min_CG": {
+    "mean_regret": 1.6666666666666643
+   },
+   "min_entropy": {
+    "mean_regret": 8.333333333333325
+   },
+   "max_softmax": {
+    "mean_regret": 5.833333333333329
+   },
+   "max_logit": {
+    "mean_regret": 5.833333333333329
+   },
+   "min_energy": {
+    "mean_regret": 8.333333333333325
+   },
+   "first": {
+    "mean_regret": 19.999999999999996
+   },
+   "last": {
+    "mean_regret": 8.333333333333325
+   }
+  }
+ },
+ "correlation": {
+  "pooled_M": -0.9759940559794763,
+  "pooled_entropy": 0.9136017446075491,
+  "n": 60
+ },
+ "per_run": {
+  "dtd|seed42": {
+   "oracle_epoch": 8,
+   "oracle_top1": 65.1063829787234,
+   "min_M_epoch": 8,
+   "min_M_top1": 65.1063829787234,
+   "min_CG_epoch": 4,
+   "min_CG_top1": 64.53900709219859,
+   "min_entropy_epoch": 5,
+   "min_entropy_top1": 64.25531914893618,
+   "max_softmax_epoch": 10,
+   "max_softmax_top1": 64.39716312056738,
+   "max_logit_epoch": 6,
+   "max_logit_top1": 64.25531914893618,
+   "min_energy_epoch": 8,
+   "min_energy_top1": 65.1063829787234,
+   "first_epoch": 1,
+   "first_top1": 58.156028368794324,
+   "last_epoch": 10,
+   "last_top1": 64.39716312056738
+  },
+  "dtd|seed43": {
+   "oracle_epoch": 9,
+   "oracle_top1": 65.24822695035462,
+   "min_M_epoch": 9,
+   "min_M_top1": 65.24822695035462,
+   "min_CG_epoch": 2,
+   "min_CG_top1": 60.851063829787236,
+   "min_entropy_epoch": 8,
+   "min_entropy_top1": 63.12056737588653,
+   "max_softmax_epoch": 10,
+   "max_softmax_top1": 63.97163120567376,
+   "max_logit_epoch": 5,
+   "max_logit_top1": 62.836879432624116,
+   "min_energy_epoch": 8,
+   "min_energy_top1": 63.12056737588653,
+   "first_epoch": 1,
+   "first_top1": 57.304964539007095,
+   "last_epoch": 10,
+   "last_top1": 63.97163120567376
+  },
+  "food101|seed42": {
+   "oracle_epoch": 6,
+   "oracle_top1": 76.23762376237624,
+   "min_M_epoch": 6,
+   "min_M_top1": 76.23762376237624,
+   "min_CG_epoch": 3,
+   "min_CG_top1": 73.34983498349835,
+   "min_entropy_epoch": 3,
+   "min_entropy_top1": 73.34983498349835,
+   "max_softmax_epoch": 10,
+   "max_softmax_top1": 74.17491749174917,
+   "max_logit_epoch": 10,
+   "max_logit_top1": 74.17491749174917,
+   "min_energy_epoch": 9,
+   "min_energy_top1": 71.03960396039604,
+   "first_epoch": 1,
+   "first_top1": 74.25742574257426,
+   "last_epoch": 10,
+   "last_top1": 74.17491749174917
+  },
+  "food101|seed43": {
+   "oracle_epoch": 6,
+   "oracle_top1": 76.15511551155116,
+   "min_M_epoch": 10,
+   "min_M_top1": 75.08250825082509,
+   "min_CG_epoch": 9,
+   "min_CG_top1": 74.25742574257426,
+   "min_entropy_epoch": 5,
+   "min_entropy_top1": 74.91749174917491,
+   "max_softmax_epoch": 10,
+   "max_softmax_top1": 75.08250825082509,
+   "max_logit_epoch": 9,
+   "max_logit_top1": 74.25742574257426,
+   "min_energy_epoch": 10,
+   "min_energy_top1": 75.08250825082509,
+   "first_epoch": 1,
+   "first_top1": 75.9075907590759,
+   "last_epoch": 10,
+   "last_top1": 75.08250825082509
+  },
+  "fathomnet8|seed42": {
+   "oracle_epoch": 8,
+   "oracle_top1": 56.666666666666664,
+   "min_M_epoch": 8,
+   "min_M_top1": 56.666666666666664,
+   "min_CG_epoch": 9,
+   "min_CG_top1": 56.666666666666664,
+   "min_entropy_epoch": 10,
+   "min_entropy_top1": 51.66666666666667,
+   "max_softmax_epoch": 8,
+   "max_softmax_top1": 56.666666666666664,
+   "max_logit_epoch": 8,
+   "max_logit_top1": 56.666666666666664,
+   "min_energy_epoch": 10,
+   "min_energy_top1": 51.66666666666667,
+   "first_epoch": 1,
+   "first_top1": 40.0,
+   "last_epoch": 10,
+   "last_top1": 51.66666666666667
+  },
+  "fathomnet8|seed43": {
+   "oracle_epoch": 8,
+   "oracle_top1": 63.33333333333333,
+   "min_M_epoch": 8,
+   "min_M_top1": 63.33333333333333,
+   "min_CG_epoch": 9,
+   "min_CG_top1": 60.0,
+   "min_entropy_epoch": 10,
+   "min_entropy_top1": 51.66666666666667,
+   "max_softmax_epoch": 10,
+   "max_softmax_top1": 51.66666666666667,
+   "max_logit_epoch": 10,
+   "max_logit_top1": 51.66666666666667,
+   "min_energy_epoch": 10,
+   "min_energy_top1": 51.66666666666667,
+   "first_epoch": 1,
+   "first_top1": 40.0,
+   "last_epoch": 10,
+   "last_top1": 51.66666666666667
+  }
+ }
+}
