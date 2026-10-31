@@ -133,7 +133,8 @@ need this code under a specific licence, please open an issue.
 
 - **v2.7** (2026-10-31): reference corpus for the remote-sensing vision-language survey (harvest, de-duplication,
   DOI verification, screening and the hand-verified disclosure audit), plus the figure scripts for the journal version.
-  Release: https://github.com/MoYUYao666/gap-susceptibility/releases/tag/v2.7 (Zenodo DOI pending ingestion)
+  Release: https://github.com/MoYUYao666/gap-susceptibility/releases/tag/v2.7,
+  DOI [10.5281/zenodo.23835149](https://doi.org/10.5281/zenodo.23835149)
 - **v2.6** (2026-10-30): controlled text-provenance study (A3), full-scale LLM arms, 320 run records and the analysis
   layer for every reported number. Release: https://github.com/MoYUYao666/gap-susceptibility/releases/tag/v2.6,
   DOI [10.5281/zenodo.23800255](https://doi.org/10.5281/zenodo.23800255)
