@@ -1,0 +1,166 @@
+{
+ "meta": {
+  "script": "tools/_p262_fullft_feasibility.py",
+  "purpose": "PR R1.6 -- measure which FULL fine-tuning configurations of openai/clip-vit-base-patch32 actually run on one RTX 4060 Laptop (8 GB); manuscript recipe is batch 128 / fp32 AdamW",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "gpu_total_mb": 8187.5,
+  "model": "openai/clip-vit-base-patch32",
+  "train_slice": "flickr30k captions [0, 2000) (the archived full-FT protocol)",
+  "probe_steps": 3,
+  "full_finetuning_proof": "all parameters requires_grad=True and n_trainable == n_total, asserted in the child process and re-asserted here on the child's JSON",
+  "timestamp_utc": "2026-10-12T00:33:09.162698+00:00",
+  "isolation": "each configuration ran in its own subprocess; logs in outputs/analysis/_p262_logs"
+ },
+ "configurations": [
+  {
+   "config": "manuscript_b128_fp32",
+   "batch": 128,
+   "amp": "fp32",
+   "returncode": 0,
+   "wall_s": 42.5,
+   "log": "outputs\\analysis\\_p262_logs\\manuscript_b128_fp32.log",
+   "steps_requested": 3,
+   "n_total_params": 151277313,
+   "n_trainable_params": 151277313,
+   "all_parameters_requires_grad": true,
+   "gpu_free_before_mb": 6476.0,
+   "gpu_total_mb": 8187.5,
+   "ok": true,
+   "losses": [
+    2.6126,
+    4.4191,
+    3.9676
+   ],
+   "step_seconds": [
+    11.098,
+    11.695,
+    11.175
+   ],
+   "step_seconds_mean": 11.323,
+   "peak_allocated_mb": 11354.2,
+   "peak_reserved_mb": 11876.0,
+   "outcome": "ok",
+   "note": "the recipe the manuscript states for every method (batch 128, fp32 AdamW)"
+  },
+  {
+   "config": "b128_fp16",
+   "batch": 128,
+   "amp": "fp16",
+   "returncode": 0,
+   "wall_s": 12.9,
+   "log": "outputs\\analysis\\_p262_logs\\b128_fp16.log",
+   "steps_requested": 3,
+   "n_total_params": 151277313,
+   "n_trainable_params": 151277313,
+   "all_parameters_requires_grad": true,
+   "gpu_free_before_mb": 6476.0,
+   "gpu_total_mb": 8187.5,
+   "ok": true,
+   "losses": [
+    2.6134,
+    2.9537,
+    2.9182
+   ],
+   "step_seconds": [
+    1.974,
+    1.282,
+    1.405
+   ],
+   "step_seconds_mean": 1.554,
+   "peak_allocated_mb": 6686.8,
+   "peak_reserved_mb": 7060.0,
+   "outcome": "ok",
+   "note": "batch 128 with fp16 autocast (same batch, mixed precision)"
+  },
+  {
+   "config": "b64_fp32",
+   "batch": 64,
+   "amp": "fp32",
+   "returncode": 0,
+   "wall_s": 11.4,
+   "log": "outputs\\analysis\\_p262_logs\\b64_fp32.log",
+   "steps_requested": 3,
+   "n_total_params": 151277313,
+   "n_trainable_params": 151277313,
+   "all_parameters_requires_grad": true,
+   "gpu_free_before_mb": 6476.0,
+   "gpu_total_mb": 8187.5,
+   "ok": true,
+   "losses": [
+    2.5237,
+    3.2888,
+    3.557
+   ],
+   "step_seconds": [
+    1.475,
+    0.981,
+    0.904
+   ],
+   "step_seconds_mean": 1.12,
+   "peak_allocated_mb": 6526.3,
+   "peak_reserved_mb": 7040.0,
+   "outcome": "ok",
+   "note": "batch 64, fp32"
+  },
+  {
+   "config": "b64_fp16",
+   "batch": 64,
+   "amp": "fp16",
+   "returncode": 0,
+   "wall_s": 10.6,
+   "log": "outputs\\analysis\\_p262_logs\\b64_fp16.log",
+   "steps_requested": 3,
+   "n_total_params": 151277313,
+   "n_trainable_params": 151277313,
+   "all_parameters_requires_grad": true,
+   "gpu_free_before_mb": 6476.0,
+   "gpu_total_mb": 8187.5,
+   "ok": true,
+   "losses": [
+    2.5247,
+    2.4467,
+    2.4826
+   ],
+   "step_seconds": [
+    1.182,
+    0.682,
+    0.576
+   ],
+   "step_seconds_mean": 0.813,
+   "peak_allocated_mb": 3786.7,
+   "peak_reserved_mb": 4082.0,
+   "outcome": "ok",
+   "note": "batch 64 + fp16 autocast = the configuration of the archived full-FT rerun (tools/clip_fullft_rerun.py, outputs/imagenet_zs_rerun/full_ft*)"
+  },
+  {
+   "config": "b32_fp32",
+   "batch": 32,
+   "amp": "fp32",
+   "returncode": 0,
+   "wall_s": 10.1,
+   "log": "outputs\\analysis\\_p262_logs\\b32_fp32.log",
+   "steps_requested": 3,
+   "n_total_params": 151277313,
+   "n_trainable_params": 151277313,
+   "all_parameters_requires_grad": true,
+   "gpu_free_before_mb": 6476.0,
+   "gpu_total_mb": 8187.5,
+   "ok": true,
+   "losses": [
+    2.3466,
+    2.9229,
+    3.579
+   ],
+   "step_seconds": [
+    1.003,
+    0.524,
+    0.516
+   ],
+   "step_seconds_mean": 0.681,
+   "peak_allocated_mb": 4162.9,
+   "peak_reserved_mb": 4578.0,
+   "outcome": "ok",
+   "note": "batch 32, fp32"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "meta": {
+  "script": "tools/_p1510_p3_instr_downstream.py",
+  "task": "R2.3/R3.16 instruction following",
+  "n_eval": 4,
+  "dataset": "instruction parquet",
+  "seed": 42
+ },
+ "rank": 6,
+ "bleu4": 0.15590929549959434,
+ "token_f1": 0.5073653579339068,
+ "exact_match": 0.0,
+ "hypotheses": [
+  "1. Eat a balanced diet: Consume a variety of fruits, vegetables, whole grains, lean proteins, and healthy fats to ensure you get all the necessary nutrients for your body.\n2. Stay hydrated: Drink plenty of water throughout",
+  "The three primary colors are red, blue, and green.",
+  "An atom is the basic unit of matter, and it consists of a central nucleus surrounded by electrons. The nucleus is made up of protons and neutrons, which are both positively charged particles. Protons are found in the outermost layer of the atom, while neutrons are found in the inner layers",
+  "To reduce air pollution, we can implement various strategies and measures. Some of these include:\n\n1. Encouraging the use of public transportation, such as buses, trains, and trams, to reduce the number of individual vehicles on the road.\n2. Promoting the use"
+ ],
+ "refs": [
+  "1.Eat a balanced diet and make sure to include plenty of fruits and vegetables. \n2. Exercise regularly to keep your body active and strong. \n3. Get enough sleep and maintain a consistent sleep schedule.",
+  "The three primary colors are red, blue, and yellow.",
+  "An atom is made up of a nucleus, which contains protons and neutrons, surrounded by electrons that travel in orbits around the nucleus. The protons and neutrons have a positive charge, while the electrons have a negative charge, resulting in an overall neutral atom. The number of each particle determines the atomic number and the type of atom.",
+  "There are a number of ways to reduce air pollution, such as shifting to renewable energy sources, encouraging the use of public transportation, prohibiting the burning of fossil fuels, implementing policies to reduce emissions from industrial sources, and implementing vehicle emissions standards. Additionally, individuals can do their part to reduce air pollution by reducing car use, avoiding burning materials such as wood, and changing to energy efficient appliances."
+ ],
+ "elapsed_min": 28.322167853514355
+}

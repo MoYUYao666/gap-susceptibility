@@ -1,0 +1,76 @@
+{
+ "protocol": "current run_training.py defaults (num_samples=20, lr 5e-5, qkvo, float16, bsz 1)",
+ "epochs": 3,
+ "runs": {
+  "r7_s42": {
+   "rank": 7,
+   "seed": 42,
+   "epochs": 3,
+   "E": [
+    3921.0,
+    3810.5,
+    3834.5,
+    4135.5
+   ],
+   "ok": true,
+   "delta_E": 214.5,
+   "elapsed_min": 37.5
+  },
+  "r8_s42": {
+   "rank": 8,
+   "seed": 42,
+   "epochs": 3,
+   "E": [
+    3921.0,
+    3790.0,
+    3839.5,
+    4183.0
+   ],
+   "ok": true,
+   "delta_E": 262.0,
+   "elapsed_min": 35.6
+  },
+  "r10_s42": {
+   "rank": 10,
+   "seed": 42,
+   "epochs": 3,
+   "E": [
+    3921.0,
+    3755.5,
+    3873.5,
+    4219.0
+   ],
+   "ok": true,
+   "delta_E": 298.0,
+   "elapsed_min": 39.0
+  },
+  "r5_s123": {
+   "rank": 5,
+   "seed": 123,
+   "epochs": 3,
+   "E": [
+    3921.0,
+    3881.0,
+    3799.0,
+    3929.0
+   ],
+   "ok": true,
+   "delta_E": 8.0,
+   "elapsed_min": 43.7
+  },
+  "r6_s123": {
+   "rank": 6,
+   "seed": 123,
+   "epochs": 3,
+   "E": [
+    3921.0,
+    3847.0,
+    3791.5,
+    3946.5
+   ],
+   "ok": true,
+   "delta_E": 25.5,
+   "elapsed_min": 25.9
+  }
+ }
+}

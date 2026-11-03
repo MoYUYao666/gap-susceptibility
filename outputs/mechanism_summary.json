@@ -1,0 +1,813 @@
+{
+ "sources": {
+  "nsweep": {
+   "rows": [
+    {
+     "model": "bioclip",
+     "N": 20,
+     "n_images": 480,
+     "sigma_m": 0.05973099544644356,
+     "top1_0": 32.708333333333336,
+     "top1_1": 23.75,
+     "retention1": 0.7261146496815286,
+     "tau1": 0.4883333333333333
+    },
+    {
+     "model": "bioclip",
+     "N": 40,
+     "n_images": 960,
+     "sigma_m": 0.05534626916050911,
+     "top1_0": 29.583333333333332,
+     "top1_1": 25.0,
+     "retention1": 0.8450704225352113,
+     "tau1": 0.5141666666666667
+    },
+    {
+     "model": "bioclip",
+     "N": 67,
+     "n_images": 1608,
+     "sigma_m": 0.05348037928342819,
+     "top1_0": 21.703980099502488,
+     "top1_1": 18.034825870646767,
+     "retention1": 0.830945558739255,
+     "tau1": 0.4633084577114428
+    },
+    {
+     "model": "oceanclip",
+     "N": 20,
+     "n_images": 480,
+     "sigma_m": 0.0054153758101165295,
+     "top1_0": 46.666666666666664,
+     "top1_1": 46.25,
+     "retention1": 0.9910714285714286,
+     "tau1": 0.7370833333333332
+    },
+    {
+     "model": "oceanclip",
+     "N": 40,
+     "n_images": 960,
+     "sigma_m": 0.006325774360448122,
+     "top1_0": 38.333333333333336,
+     "top1_1": 37.604166666666664,
+     "retention1": 0.9809782608695651,
+     "tau1": 0.6233333333333332
+    },
+    {
+     "model": "oceanclip",
+     "N": 67,
+     "n_images": 1608,
+     "sigma_m": 0.00782577320933342,
+     "top1_0": 24.191542288557212,
+     "top1_1": 23.383084577114428,
+     "retention1": 0.9665809768637533,
+     "tau1": 0.4538557213930348
+    }
+   ]
+  },
+  "class_set": [
+   {
+    "set": "fish-67",
+    "model": "bioclip",
+    "sigma_m": 0.05348037928342819,
+    "mean_m": 0.2037051022052765,
+    "top1_0": 21.703980099502488,
+    "top1_1": 18.034825870646767,
+    "tau1": 0.4633084577114428,
+    "retention1": 0.830945558739255
+   },
+   {
+    "set": "fish-67",
+    "model": "oceanclip",
+    "sigma_m": 0.00782577320933342,
+    "mean_m": 0.6826415061950684,
+    "top1_0": 24.191542288557212,
+    "top1_1": 23.383084577114428,
+    "tau1": 0.4538557213930348,
+    "retention1": 0.9665809768637533
+   },
+   {
+    "set": "fauna-117",
+    "model": "bioclip",
+    "sigma_m": 0.05952572450041771,
+    "mean_m": 0.21174627542495728,
+    "top1_0": 22.934472934472936,
+    "top1_1": 18.233618233618234,
+    "tau1": 0.44373219373219375,
+    "retention1": 0.7950310559006211
+   },
+   {
+    "set": "fauna-117",
+    "model": "oceanclip",
+    "sigma_m": 0.006692938506603241,
+    "mean_m": 0.6825895309448242,
+    "top1_0": 17.165242165242166,
+    "top1_1": 16.915954415954417,
+    "tau1": 0.4055555555555556,
+    "retention1": 0.9854771784232366
+   },
+   {
+    "set": "inat-48",
+    "model": "bioclip",
+    "sigma_m": 0.061058126389980316,
+    "mean_m": 0.22484110295772552,
+    "top1_0": null,
+    "top1_1": null,
+    "tau1": null,
+    "retention1": null
+   },
+   {
+    "set": "inat-48",
+    "model": "oceanclip",
+    "sigma_m": 0.00501580536365509,
+    "mean_m": 0.6823551058769226,
+    "top1_0": null,
+    "top1_1": null,
+    "tau1": null,
+    "retention1": null
+   }
+  ],
+  "dose2x2": {
+   "clip_flickrft": {
+    "gap_norm": 1.0685,
+    "sigma_m": 0.0203,
+    "mean_m": 0.585,
+    "top1_0": 3.607,
+    "top1_l1": 1.43,
+    "tau_l1": -0.0163
+   },
+   "clip_marineft": {
+    "gap_norm": 1.0603,
+    "sigma_m": 0.0092,
+    "mean_m": 0.6223,
+    "top1_0": 63.619,
+    "top1_l1": 54.104,
+    "tau_l1": 0.6161
+   },
+   "clip_frozen": {
+    "gap_norm": 0.9778,
+    "sigma_m": 0.0333,
+    "mean_m": 0.5869,
+    "top1_0": 6.779,
+    "top1_l1": 2.612,
+    "tau_l1": 0.0637
+   }
+  },
+  "sonar": [
+   {
+    "model": "clip_frozen",
+    "sigma_m": 0.0247,
+    "top1_0": 14.941,
+    "tau1": -0.0807,
+    "n": 2617
+   },
+   {
+    "model": "sonar_ft_full",
+    "sigma_m": 0.0136,
+    "top1_0": 99.885,
+    "tau1": 0.7202,
+    "n": 2617
+   },
+   {
+    "model": "clip_flickrft",
+    "sigma_m": 0.0222,
+    "top1_0": 27.971,
+    "tau1": -0.0906,
+    "n": 2617
+   }
+  ],
+  "domain_matrix": [
+   {
+    "domain": "imagenet5k",
+    "model": "clip_tf",
+    "sigma_m": 0.073,
+    "top1_0": 59.26,
+    "tau1": 0.2713,
+    "tau_pred1": 0.2728,
+    "ncc_0": 47.12
+   },
+   {
+    "domain": "imagenet5k",
+    "model": "openclip_tf",
+    "sigma_m": 0.0666,
+    "top1_0": 62.46,
+    "tau1": 0.3689,
+    "tau_pred1": 0.3698,
+    "ncc_0": 48.26
+   },
+   {
+    "domain": "imagenet5k",
+    "model": "siglip",
+    "sigma_m": 0.0434,
+    "top1_0": 73.38,
+    "tau1": 0.3978,
+    "tau_pred1": 0.3986,
+    "ncc_0": 48.78
+   },
+   {
+    "domain": "imagenet5k",
+    "model": "bioclip",
+    "sigma_m": 0.0922,
+    "top1_0": 16.72,
+    "tau1": 0.2529,
+    "tau_pred1": 0.2532,
+    "ncc_0": 48.46
+   }
+  ],
+  "spectrum_marine": {
+   "bioclip": {
+    "gap_norm": 0.5241,
+    "rows": [
+     {
+      "lambda": 0.0,
+      "NCC": 78.358,
+      "top1": 21.704,
+      "R1": 0.3399,
+      "CG": 0.5241
+     },
+     {
+      "lambda": 0.5,
+      "NCC": 78.109,
+      "top1": 19.59,
+      "R1": 0.3293,
+      "CG": 0.269
+     },
+     {
+      "lambda": 1.0,
+      "NCC": 76.43,
+      "top1": 18.035,
+      "R1": 0.2842,
+      "CG": 0.0194
+     },
+     {
+      "lambda": 2.0,
+      "NCC": 68.097,
+      "top1": 14.925,
+      "R1": 0.2537,
+      "CG": 0.4097
+     }
+    ]
+   },
+   "oceanclip": {
+    "gap_norm": 1.0209,
+    "rows": [
+     {
+      "lambda": 0.0,
+      "NCC": 66.418,
+      "top1": 24.192,
+      "R1": 0.2777,
+      "CG": 1.0209
+     },
+     {
+      "lambda": 0.5,
+      "NCC": 65.361,
+      "top1": 24.44,
+      "R1": 0.264,
+      "CG": 0.5042
+     },
+     {
+      "lambda": 1.0,
+      "NCC": 62.065,
+      "top1": 23.383,
+      "R1": 0.199,
+      "CG": 0.1359
+     },
+     {
+      "lambda": 2.0,
+      "NCC": 46.953,
+      "top1": 19.652,
+      "R1": 0.1729,
+      "CG": 0.3905
+     }
+    ]
+   }
+  },
+  "spectrum_sonar": {
+   "clip_frozen": {
+    "gap_norm": 1.0839,
+    "rows": [
+     {
+      "lambda": 0.0,
+      "NCC": 56.462,
+      "top1": 16.154,
+      "R1": 0.1433,
+      "CG": 1.0839
+     },
+     {
+      "lambda": 0.5,
+      "NCC": 55.385,
+      "top1": 19.692,
+      "R1": 0.2235,
+      "CG": 0.5712
+     },
+     {
+      "lambda": 1.0,
+      "NCC": 53.846,
+      "top1": 16.154,
+      "R1": 0.1433,
+      "CG": 0.0303
+     },
+     {
+      "lambda": 2.0,
+      "NCC": 42.462,
+      "top1": 16.0,
+      "R1": 0.1425,
+      "CG": 0.4936
+     }
+    ]
+   },
+   "sonar_ft": {
+    "gap_norm": 1.1218,
+    "rows": [
+     {
+      "lambda": 0.0,
+      "NCC": 96.769,
+      "top1": 96.769,
+      "R1": 0.9838,
+      "CG": 1.1218
+     },
+     {
+      "lambda": 0.5,
+      "NCC": 96.154,
+      "top1": 96.923,
+      "R1": 0.9846,
+      "CG": 0.5581
+     },
+     {
+      "lambda": 1.0,
+      "NCC": 94.769,
+      "top1": 96.769,
+      "R1": 0.8588,
+      "CG": 0.0801
+     },
+     {
+      "lambda": 2.0,
+      "NCC": 87.231,
+      "top1": 94.154,
+      "R1": 0.8458,
+      "CG": 0.4248
+     }
+    ]
+   },
+   "clip_flickrft": {
+    "gap_norm": 1.1333,
+    "rows": [
+     {
+      "lambda": 0.0,
+      "NCC": 65.231,
+      "top1": 15.538,
+      "R1": 0.2027,
+      "CG": 1.1333
+     },
+     {
+      "lambda": 0.5,
+      "NCC": 60.615,
+      "top1": 18.462,
+      "R1": 0.1548,
+      "CG": 0.6247
+     },
+     {
+      "lambda": 1.0,
+      "NCC": 52.0,
+      "top1": 17.385,
+      "R1": 0.2119,
+      "CG": 0.0795
+     },
+     {
+      "lambda": 2.0,
+      "NCC": 36.462,
+      "top1": 15.538,
+      "R1": 0.2027,
+      "CG": 0.5216
+     }
+    ]
+   }
+  },
+  "peft_marine": {
+   "bioclip__lora_text__s1": {
+    "method": "lora_text",
+    "seed": 1,
+    "flickr_R1": 0.1148,
+    "flickr_i2t": 0.1203,
+    "flickr_t2i": 0.1092,
+    "marine_top1": 23.197,
+    "marine_CG": 0.7115
+   },
+   "bioclip__lora_text__s42": {
+    "method": "lora_text",
+    "seed": 42,
+    "flickr_R1": 0.1179,
+    "flickr_i2t": 0.1223,
+    "flickr_t2i": 0.1136,
+    "marine_top1": 22.948,
+    "marine_CG": 0.7044
+   },
+   "bioclip__lora_text__s99": {
+    "method": "lora_text",
+    "seed": 99,
+    "flickr_R1": 0.1089,
+    "flickr_i2t": 0.1145,
+    "flickr_t2i": 0.1034,
+    "marine_top1": 22.699,
+    "marine_CG": 0.7016
+   },
+   "bioclip__fullft__s1": {
+    "method": "fullft",
+    "seed": 1,
+    "flickr_R1": 0.4072,
+    "flickr_i2t": 0.3938,
+    "flickr_t2i": 0.4205,
+    "marine_top1": 10.137,
+    "marine_CG": 0.8729
+   },
+   "bioclip__fullft__s42": {
+    "method": "fullft",
+    "seed": 42,
+    "flickr_R1": 0.3377,
+    "flickr_i2t": 0.3498,
+    "flickr_t2i": 0.3256,
+    "marine_top1": 7.836,
+    "marine_CG": 0.9008
+   },
+   "bioclip__fullft__s99": {
+    "method": "fullft",
+    "seed": 99,
+    "flickr_R1": 0.2744,
+    "flickr_i2t": 0.2676,
+    "flickr_t2i": 0.2812,
+    "marine_top1": 7.027,
+    "marine_CG": 0.8897
+   },
+   "oceanclip__lora_text__s1": {
+    "method": "lora_text",
+    "seed": 1,
+    "flickr_R1": 0.3471,
+    "flickr_i2t": 0.3505,
+    "flickr_t2i": 0.3436,
+    "marine_top1": 23.383,
+    "marine_CG": 0.9862
+   },
+   "oceanclip__lora_text__s42": {
+    "method": "lora_text",
+    "seed": 42,
+    "flickr_R1": 0.3531,
+    "flickr_i2t": 0.3592,
+    "flickr_t2i": 0.3471,
+    "marine_top1": 23.197,
+    "marine_CG": 0.9841
+   },
+   "oceanclip__lora_text__s99": {
+    "method": "lora_text",
+    "seed": 99,
+    "flickr_R1": 0.3449,
+    "flickr_i2t": 0.3505,
+    "flickr_t2i": 0.3392,
+    "marine_top1": 23.507,
+    "marine_CG": 0.9872
+   },
+   "oceanclip__lora_both__s1": {
+    "method": "lora_both",
+    "seed": 1,
+    "flickr_R1": 0.617,
+    "flickr_i2t": 0.6229,
+    "flickr_t2i": 0.6112,
+    "marine_top1": 22.264,
+    "marine_CG": 0.9189
+   },
+   "oceanclip__lora_both__s42": {
+    "method": "lora_both",
+    "seed": 42,
+    "flickr_R1": 0.627,
+    "flickr_i2t": 0.6312,
+    "flickr_t2i": 0.6229,
+    "marine_top1": 22.637,
+    "marine_CG": 0.9206
+   },
+   "oceanclip__lora_both__s99": {
+    "method": "lora_both",
+    "seed": 99,
+    "flickr_R1": 0.616,
+    "flickr_i2t": 0.6227,
+    "flickr_t2i": 0.6092,
+    "marine_top1": 21.766,
+    "marine_CG": 0.9173
+   },
+   "oceanclip__bitfit__s1": {
+    "method": "bitfit",
+    "seed": 1,
+    "flickr_R1": 0.1794,
+    "flickr_i2t": 0.2096,
+    "flickr_t2i": 0.1492,
+    "marine_top1": 23.507,
+    "marine_CG": 1.0145
+   },
+   "oceanclip__bitfit__s42": {
+    "method": "bitfit",
+    "seed": 42,
+    "flickr_R1": 0.1755,
+    "flickr_i2t": 0.2057,
+    "flickr_t2i": 0.1453,
+    "marine_top1": 23.57,
+    "marine_CG": 1.0144
+   },
+   "oceanclip__bitfit__s99": {
+    "method": "bitfit",
+    "seed": 99,
+    "flickr_R1": 0.1794,
+    "flickr_i2t": 0.2115,
+    "flickr_t2i": 0.1472,
+    "marine_top1": 23.445,
+    "marine_CG": 1.0145
+   },
+   "oceanclip__fullft__s1": {
+    "method": "fullft",
+    "seed": 1,
+    "flickr_R1": 0.5672,
+    "flickr_i2t": 0.5759,
+    "flickr_t2i": 0.5586,
+    "marine_top1": 19.527,
+    "marine_CG": 0.9556
+   },
+   "oceanclip__fullft__s42": {
+    "method": "fullft",
+    "seed": 42,
+    "flickr_R1": 0.6038,
+    "flickr_i2t": 0.5916,
+    "flickr_t2i": 0.616,
+    "marine_top1": 20.896,
+    "marine_CG": 0.9577
+   },
+   "oceanclip__fullft__s99": {
+    "method": "fullft",
+    "seed": 99,
+    "flickr_R1": 0.5901,
+    "flickr_i2t": 0.5947,
+    "flickr_t2i": 0.5855,
+    "marine_top1": 21.144,
+    "marine_CG": 0.9559
+   }
+  },
+  "peft_sonar": {
+   "lora_both__s1": {
+    "top1_0": 100.0,
+    "tau_l1": 0.5132,
+    "R1": 1.0,
+    "CG": 1.012
+   },
+   "lora_both__s99": {
+    "top1_0": 100.0,
+    "tau_l1": 0.5514,
+    "R1": 1.0,
+    "CG": 1.0198
+   },
+   "fullft__s1": {
+    "top1_0": 99.846,
+    "tau_l1": 0.8877,
+    "R1": 0.9992,
+    "CG": 1.1077
+   },
+   "fullft__s99": {
+    "top1_0": 21.846,
+    "tau_l1": 0.8594,
+    "R1": 0.2967,
+    "CG": 1.2512
+   }
+  },
+  "degradation_marine": {
+   "bioclip": {
+    "gap_norm": 0.5241,
+    "rows": [
+     {
+      "degrade": "clean",
+      "lam_eff": 0.0,
+      "s_std": 0.0,
+      "tau_meas": 1.0,
+      "tau_pred": 1.0,
+      "diff": 0.0,
+      "top1": 21.704,
+      "top1_clean": 21.704
+     },
+     {
+      "degrade": "haze_t0.60",
+      "lam_eff": 0.0005,
+      "s_std": 0.0423,
+      "tau_meas": 0.4803,
+      "tau_pred": 0.9991,
+      "diff": 0.5188,
+      "top1": 19.341,
+      "top1_clean": 21.704
+     },
+     {
+      "degrade": "haze_t0.30",
+      "lam_eff": 0.0336,
+      "s_std": 0.0758,
+      "tau_meas": 0.2881,
+      "tau_pred": 0.9668,
+      "diff": 0.6787,
+      "top1": 15.485,
+      "top1_clean": 21.704
+     },
+     {
+      "degrade": "uw_cast",
+      "lam_eff": -0.0247,
+      "s_std": 0.0474,
+      "tau_meas": 0.399,
+      "tau_pred": 0.9718,
+      "diff": 0.5728,
+      "top1": 18.843,
+      "top1_clean": 21.704
+     }
+    ]
+   },
+   "oceanclip": {
+    "gap_norm": 1.0209,
+    "rows": [
+     {
+      "degrade": "clean",
+      "lam_eff": 0.0,
+      "s_std": 0.0,
+      "tau_meas": 1.0,
+      "tau_pred": 1.0,
+      "diff": 0.0,
+      "top1": 24.192,
+      "top1_clean": 24.192
+     },
+     {
+      "degrade": "haze_t0.60",
+      "lam_eff": -0.0018,
+      "s_std": 0.0066,
+      "tau_meas": 0.6399,
+      "tau_pred": 0.9983,
+      "diff": 0.3583,
+      "top1": 23.756,
+      "top1_clean": 24.192
+     },
+     {
+      "degrade": "haze_t0.30",
+      "lam_eff": 0.0003,
+      "s_std": 0.0157,
+      "tau_meas": 0.3637,
+      "tau_pred": 0.9999,
+      "diff": 0.6362,
+      "top1": 19.9,
+      "top1_clean": 24.192
+     },
+     {
+      "degrade": "uw_cast",
+      "lam_eff": 0.0012,
+      "s_std": 0.0083,
+      "tau_meas": 0.5175,
+      "tau_pred": 0.9994,
+      "diff": 0.4818,
+      "top1": 22.948,
+      "top1_clean": 24.192
+     }
+    ]
+   }
+  },
+  "degradation_sonar": {
+   "meta": {
+    "model": "clip_frozen",
+    "dataset": "NKSID",
+    "n_images": 650
+   },
+   "rows": [
+    {
+     "degrade": "speckle_p20",
+     "lam_eff": 0.0261,
+     "tau_meas": 0.5252,
+     "tau_pred": 0.9425,
+     "diff": 0.4172,
+     "top1": 11.385
+    },
+    {
+     "degrade": "speckle_p40",
+     "lam_eff": 0.0236,
+     "tau_meas": 0.4751,
+     "tau_pred": 0.9465,
+     "diff": 0.4714,
+     "top1": 7.385
+    },
+    {
+     "degrade": "blur_r2",
+     "lam_eff": 0.0386,
+     "tau_meas": 0.1843,
+     "tau_pred": 0.9265,
+     "diff": 0.7422,
+     "top1": 21.538
+    },
+    {
+     "degrade": "shadow_strip",
+     "lam_eff": -0.0025,
+     "tau_meas": 0.62,
+     "tau_pred": 0.9951,
+     "diff": 0.3751,
+     "top1": 16.462
+    }
+   ]
+  },
+  "direction_operator": {
+   "marine_bioclip": [
+    {
+     "degrade": "haze_t0.60",
+     "tau_meas": 0.4803,
+     "pred_gap": 0.9429,
+     "err_gap": 0.4626,
+     "alpha_mean": 0.1319,
+     "resid_frac_mean": 0.9543,
+     "pred_mean": 0.797,
+     "err_mean": 0.3167,
+     "alpha_pca": 0.051,
+     "resid_frac_pca": 0.9797,
+     "pred_pca": 0.9152,
+     "err_pca": 0.4348
+    },
+    {
+     "degrade": "haze_t0.30",
+     "tau_meas": 0.2881,
+     "pred_gap": 0.9036,
+     "err_gap": 0.6155,
+     "alpha_mean": 0.2523,
+     "resid_frac_mean": 0.9387,
+     "pred_mean": 0.6504,
+     "err_mean": 0.3623,
+     "alpha_pca": -0.0025,
+     "resid_frac_pca": 0.9829,
+     "pred_pca": 0.8471,
+     "err_pca": 0.5591
+    },
+    {
+     "degrade": "uw_cast",
+     "tau_meas": 0.399,
+     "pred_gap": 0.9318,
+     "err_gap": 0.5328,
+     "alpha_mean": 0.1834,
+     "resid_frac_mean": 0.9522,
+     "pred_mean": 0.7244,
+     "err_mean": 0.3254,
+     "alpha_pca": -0.1277,
+     "resid_frac_pca": 0.9711,
+     "pred_pca": 0.8011,
+     "err_pca": 0.4021
+    }
+   ],
+   "sonar_frozen": [
+    {
+     "degrade": "speckle_p20",
+     "tau_meas": 0.5252,
+     "pred_gap": 0.9431,
+     "err_gap": 0.4178,
+     "alpha_mean": 0.2967,
+     "resid_frac_mean": 0.7028,
+     "pred_mean": 0.8151,
+     "err_mean": 0.2898,
+     "alpha_pca": 0.1062,
+     "resid_frac_pca": 0.9282,
+     "pred_pca": 0.9062,
+     "err_pca": 0.3809
+    },
+    {
+     "degrade": "speckle_p40",
+     "tau_meas": 0.4751,
+     "pred_gap": 0.9409,
+     "err_gap": 0.4658,
+     "alpha_mean": 0.3152,
+     "resid_frac_mean": 0.7216,
+     "pred_mean": 0.7594,
+     "err_mean": 0.2843,
+     "alpha_pca": 0.1028,
+     "resid_frac_pca": 0.9301,
+     "pred_pca": 0.8452,
+     "err_pca": 0.3702
+    },
+    {
+     "degrade": "blur_r2",
+     "tau_meas": 0.1843,
+     "pred_gap": 0.9086,
+     "err_gap": 0.7243,
+     "alpha_mean": 0.3039,
+     "resid_frac_mean": 0.8097,
+     "pred_mean": 0.3612,
+     "err_mean": 0.1769,
+     "alpha_pca": 0.0773,
+     "resid_frac_pca": 0.8837,
+     "pred_pca": 0.6163,
+     "err_pca": 0.432
+    },
+    {
+     "degrade": "shadow_strip",
+     "tau_meas": 0.62,
+     "pred_gap": 0.9822,
+     "err_gap": 0.3622,
+     "alpha_mean": 0.0871,
+     "resid_frac_mean": 0.9031,
+     "pred_mean": 0.7972,
+     "err_mean": 0.1772,
+     "alpha_pca": 0.0088,
+     "resid_frac_pca": 0.9379,
+     "pred_pca": 0.9443,
+     "err_pca": 0.3243
+    }
+   ]
+  }
+ }
+}

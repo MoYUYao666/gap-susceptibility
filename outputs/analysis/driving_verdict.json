@@ -1,0 +1,49 @@
+{
+ "per_epoch_spread_pct": [
+  9.992909648350128,
+  86.3834670161032,
+  85.82950165501683,
+  21.194424970749917,
+  46.739648914466365,
+  58.207511193829596,
+  29.25012383065238,
+  12.751708090032976,
+  33.98617550303474,
+  31.14875722898956,
+  29.234960642606012
+ ],
+ "trajectory_mean_spread_pct": 16.533074865635882,
+ "trajectory_means": {
+  "text_only": 10.827891796827316,
+  "both": 9.16193896938454,
+  "vision_only": 10.239624570716511
+ },
+ "components": {
+  "text_only": {
+   "ip_v": 6.616149452599612,
+   "ip_t": 4.211742344227704
+  },
+  "both": {
+   "ip_v": 4.434503231536258,
+   "ip_t": 4.727435737848282
+  },
+  "vision_only": {
+   "ip_v": 5.672223237427798,
+   "ip_t": 4.567401333288713
+  }
+ },
+ "cg_delta_spread_pct": 277.6337115072933,
+ "ratio": 16.792624104325384,
+ "ordering_theory": [
+  "text_only",
+  "vision_only",
+  "both"
+ ],
+ "ordering_measured": [
+  "text_only",
+  "both",
+  "vision_only"
+ ],
+ "ordering_same": false,
+ "verdict": "trajectory averaging widens the gap; theory can explain it"
+}

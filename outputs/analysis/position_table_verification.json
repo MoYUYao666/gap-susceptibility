@@ -1,0 +1,170 @@
+{
+ "table": {
+  "CLIP B/32": {
+   "patch": 32,
+   "arms": {
+    "text_only": {
+     "paper": -0.0465,
+     "computed": -0.046505,
+     "n": 5,
+     "pass": true,
+     "values": [
+      -0.04272,
+      -0.04965,
+      -0.04429,
+      -0.04918,
+      -0.04669
+     ]
+    },
+    "both": {
+     "paper": -0.0258,
+     "computed": -0.025825,
+     "n": 5,
+     "pass": true,
+     "values": [
+      -0.02529,
+      -0.02903,
+      -0.02529,
+      -0.02053,
+      -0.02898
+     ]
+    },
+    "vision_only": {
+     "paper": 0.0106,
+     "computed": 0.010572,
+     "n": 5,
+     "pass": true,
+     "values": [
+      0.00487,
+      0.0126,
+      0.01077,
+      0.01642,
+      0.0082
+     ]
+    }
+   },
+   "evidence": "per-run",
+   "most_protective": "text_only"
+  },
+  "OpenCLIP B/32": {
+   "patch": 32,
+   "arms": {
+    "text_only": {
+     "paper": 0.0694,
+     "computed": 0.069448,
+     "n": 5,
+     "pass": true,
+     "values": [
+      0.07184,
+      0.06538,
+      0.07588,
+      0.06729,
+      0.06685
+     ]
+    },
+    "both": {
+     "paper": 0.0881,
+     "computed": 0.088138,
+     "n": 5,
+     "pass": true,
+     "values": [
+      0.09733,
+      0.08006,
+      0.08484,
+      0.08756,
+      0.0909
+     ]
+    },
+    "vision_only": {
+     "paper": 0.0925,
+     "computed": 0.092515,
+     "n": 5,
+     "pass": true,
+     "values": [
+      0.09167,
+      0.08995,
+      0.09029,
+      0.09743,
+      0.09324
+     ]
+    }
+   },
+   "evidence": "per-run",
+   "most_protective": "text_only"
+  },
+  "SigLIP B/16": {
+   "patch": 16,
+   "arms": {
+    "text_only": {
+     "paper": 0.0664,
+     "computed": 0.066426,
+     "n": 5,
+     "pass": true,
+     "values": [
+      0.06983,
+      0.06781,
+      0.05651,
+      0.07192,
+      0.06606
+     ]
+    },
+    "both": {
+     "paper": -0.0114,
+     "computed": -0.011371,
+     "n": 5,
+     "pass": true,
+     "values": [
+      -0.0108,
+      -0.01251,
+      -0.01798,
+      -0.002,
+      -0.01356
+     ]
+    },
+    "vision_only": {
+     "paper": 0.0522,
+     "computed": 0.052204,
+     "n": 5,
+     "pass": true,
+     "values": [
+      0.05337,
+      0.05026,
+      0.05404,
+      0.05266,
+      0.0507
+     ]
+    }
+   },
+   "evidence": "per-run",
+   "most_protective": "both"
+  },
+  "BioCLIP B/16": {
+   "patch": 16,
+   "arms": {
+    "text_only": {
+     "paper": -0.3671,
+     "computed": -0.3671,
+     "n": 3,
+     "pass": true
+    },
+    "both": {
+     "paper": -0.4515,
+     "computed": -0.4515,
+     "n": 3,
+     "pass": true
+    },
+    "vision_only": {
+     "paper": -0.2927,
+     "computed": -0.2927,
+     "n": 3,
+     "pass": true
+    }
+   },
+   "evidence": "summary-only",
+   "source": "outputs/strict_freeze_bioclip/results_partial.json",
+   "most_protective": "both"
+  }
+ },
+ "bad": 0,
+ "violations": []
+}

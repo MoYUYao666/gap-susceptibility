@@ -1,0 +1,841 @@
+{
+ "meta": {
+  "script": "tools/_p44l_p3_nan_probe.py",
+  "task": "task-11 (P3 R3.22, GPU probe)",
+  "protocol": "paper3/scripts/run_training.py configuration at INITIALISATION: 20-sample positional window, blank 336x336 image, 4-bit nf4 + double quant, LoRA q/k/v/o alpha=2r, no optimizer step is taken",
+  "reading": "if hidden states and loss are finite but E is not, the non-finiteness is produced by the energy functional on an ill-conditioned geometry, not by an optimizer blow-up"
+ },
+ "probes": [
+  {
+   "tag": "r24_float16",
+   "rank": 24,
+   "seed": 42,
+   "compute_dtype": "float16",
+   "n_trainable": 28704768,
+   "fp16_max": 65504.0,
+   "started": "2026-10-12T22:49:45",
+   "lora_weight_stats": {
+    "n_tensors": 400,
+    "all_finite": true,
+    "absmax_over_all": 0.03125,
+    "max_norm": 2.8524723052978516
+   },
+   "hidden_state_layers": {
+    "n_layers": 33,
+    "all_finite": true,
+    "first_nonfinite_layer": null,
+    "absmax_last_layer": 82.875,
+    "absmax_over_layers": 10736.0,
+    "headroom_vs_fp16_max": 6.101341281669151,
+    "per_layer": [
+     {
+      "layer": 0,
+      "finite": true,
+      "absmax": 33.0,
+      "absmax_finite_part": 33.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 1,
+      "finite": true,
+      "absmax": 33.0,
+      "absmax_finite_part": 33.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 2,
+      "finite": true,
+      "absmax": 1399.0,
+      "absmax_finite_part": 1399.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 3,
+      "finite": true,
+      "absmax": 1403.0,
+      "absmax_finite_part": 1403.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 4,
+      "finite": true,
+      "absmax": 1403.0,
+      "absmax_finite_part": 1403.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 5,
+      "finite": true,
+      "absmax": 1412.0,
+      "absmax_finite_part": 1412.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 6,
+      "finite": true,
+      "absmax": 1413.0,
+      "absmax_finite_part": 1413.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 7,
+      "finite": true,
+      "absmax": 1413.0,
+      "absmax_finite_part": 1413.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 8,
+      "finite": true,
+      "absmax": 1414.0,
+      "absmax_finite_part": 1414.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 9,
+      "finite": true,
+      "absmax": 1414.0,
+      "absmax_finite_part": 1414.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 10,
+      "finite": true,
+      "absmax": 1414.0,
+      "absmax_finite_part": 1414.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 11,
+      "finite": true,
+      "absmax": 1414.0,
+      "absmax_finite_part": 1414.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 12,
+      "finite": true,
+      "absmax": 1415.0,
+      "absmax_finite_part": 1415.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 13,
+      "finite": true,
+      "absmax": 1416.0,
+      "absmax_finite_part": 1416.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 14,
+      "finite": true,
+      "absmax": 1416.0,
+      "absmax_finite_part": 1416.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 15,
+      "finite": true,
+      "absmax": 1417.0,
+      "absmax_finite_part": 1417.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 16,
+      "finite": true,
+      "absmax": 1418.0,
+      "absmax_finite_part": 1418.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 17,
+      "finite": true,
+      "absmax": 1423.0,
+      "absmax_finite_part": 1423.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 18,
+      "finite": true,
+      "absmax": 1424.0,
+      "absmax_finite_part": 1424.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 19,
+      "finite": true,
+      "absmax": 1425.0,
+      "absmax_finite_part": 1425.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 20,
+      "finite": true,
+      "absmax": 1427.0,
+      "absmax_finite_part": 1427.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 21,
+      "finite": true,
+      "absmax": 1428.0,
+      "absmax_finite_part": 1428.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 22,
+      "finite": true,
+      "absmax": 1430.0,
+      "absmax_finite_part": 1430.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 23,
+      "finite": true,
+      "absmax": 1431.0,
+      "absmax_finite_part": 1431.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 24,
+      "finite": true,
+      "absmax": 1433.0,
+      "absmax_finite_part": 1433.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 25,
+      "finite": true,
+      "absmax": 1434.0,
+      "absmax_finite_part": 1434.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 26,
+      "finite": true,
+      "absmax": 1434.0,
+      "absmax_finite_part": 1434.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 27,
+      "finite": true,
+      "absmax": 1434.0,
+      "absmax_finite_part": 1434.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 28,
+      "finite": true,
+      "absmax": 1433.0,
+      "absmax_finite_part": 1433.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 29,
+      "finite": true,
+      "absmax": 1432.0,
+      "absmax_finite_part": 1432.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 30,
+      "finite": true,
+      "absmax": 1412.0,
+      "absmax_finite_part": 1412.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 31,
+      "finite": true,
+      "absmax": 10736.0,
+      "absmax_finite_part": 10736.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 32,
+      "finite": true,
+      "absmax": 82.875,
+      "absmax_finite_part": 82.875,
+      "finite_frac": 0.9999999403953552
+     }
+    ]
+   },
+   "task_loss": {
+    "value": 9.615042686462402,
+    "finite": true
+   },
+   "alignment_energy": {
+    "E": 4460.0,
+    "finite": true,
+    "h_vis_finite": true,
+    "h_lang_finite": true,
+    "h_vis_absmax": 27.796875,
+    "h_lang_absmax": 64.75
+   },
+   "grad_norm_on_E": {
+    "by_block": {
+     "vision": 20176.929880783708,
+     "llm": 13990.878836224847
+    },
+    "all_finite": true
+   },
+   "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+   "finished": "2026-10-12T22:51:55"
+  },
+  {
+   "tag": "r24_bfloat16",
+   "rank": 24,
+   "seed": 42,
+   "compute_dtype": "bfloat16",
+   "n_trainable": 28704768,
+   "fp16_max": 65504.0,
+   "started": "2026-10-12T22:52:48",
+   "lora_weight_stats": {
+    "n_tensors": 400,
+    "all_finite": true,
+    "absmax_over_all": 0.03125,
+    "max_norm": 2.8524839878082275
+   },
+   "hidden_state_layers": {
+    "n_layers": 33,
+    "all_finite": true,
+    "first_nonfinite_layer": null,
+    "absmax_last_layer": 82.8125,
+    "absmax_over_layers": 6408.0,
+    "headroom_vs_fp16_max": 10.222222222222221,
+    "per_layer": [
+     {
+      "layer": 0,
+      "finite": true,
+      "absmax": 32.5,
+      "absmax_finite_part": 32.5,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 1,
+      "finite": true,
+      "absmax": 32.5,
+      "absmax_finite_part": 32.5,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 2,
+      "finite": true,
+      "absmax": 1408.0,
+      "absmax_finite_part": 1408.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 3,
+      "finite": true,
+      "absmax": 1412.0,
+      "absmax_finite_part": 1412.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 4,
+      "finite": true,
+      "absmax": 1412.0,
+      "absmax_finite_part": 1412.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 5,
+      "finite": true,
+      "absmax": 1421.0,
+      "absmax_finite_part": 1421.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 6,
+      "finite": true,
+      "absmax": 1422.0,
+      "absmax_finite_part": 1422.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 7,
+      "finite": true,
+      "absmax": 1422.0,
+      "absmax_finite_part": 1422.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 8,
+      "finite": true,
+      "absmax": 1423.0,
+      "absmax_finite_part": 1423.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 9,
+      "finite": true,
+      "absmax": 1423.0,
+      "absmax_finite_part": 1423.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 10,
+      "finite": true,
+      "absmax": 1423.0,
+      "absmax_finite_part": 1423.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 11,
+      "finite": true,
+      "absmax": 1423.0,
+      "absmax_finite_part": 1423.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 12,
+      "finite": true,
+      "absmax": 1424.0,
+      "absmax_finite_part": 1424.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 13,
+      "finite": true,
+      "absmax": 1425.0,
+      "absmax_finite_part": 1425.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 14,
+      "finite": true,
+      "absmax": 1425.0,
+      "absmax_finite_part": 1425.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 15,
+      "finite": true,
+      "absmax": 1426.0,
+      "absmax_finite_part": 1426.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 16,
+      "finite": true,
+      "absmax": 1427.0,
+      "absmax_finite_part": 1427.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 17,
+      "finite": true,
+      "absmax": 1432.0,
+      "absmax_finite_part": 1432.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 18,
+      "finite": true,
+      "absmax": 1433.0,
+      "absmax_finite_part": 1433.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 19,
+      "finite": true,
+      "absmax": 1434.0,
+      "absmax_finite_part": 1434.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 20,
+      "finite": true,
+      "absmax": 1436.0,
+      "absmax_finite_part": 1436.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 21,
+      "finite": true,
+      "absmax": 1437.0,
+      "absmax_finite_part": 1437.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 22,
+      "finite": true,
+      "absmax": 1439.0,
+      "absmax_finite_part": 1439.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 23,
+      "finite": true,
+      "absmax": 1440.0,
+      "absmax_finite_part": 1440.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 24,
+      "finite": true,
+      "absmax": 1442.0,
+      "absmax_finite_part": 1442.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 25,
+      "finite": true,
+      "absmax": 1443.0,
+      "absmax_finite_part": 1443.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 26,
+      "finite": true,
+      "absmax": 1443.0,
+      "absmax_finite_part": 1443.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 27,
+      "finite": true,
+      "absmax": 1443.0,
+      "absmax_finite_part": 1443.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 28,
+      "finite": true,
+      "absmax": 1442.0,
+      "absmax_finite_part": 1442.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 29,
+      "finite": true,
+      "absmax": 1441.0,
+      "absmax_finite_part": 1441.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 30,
+      "finite": true,
+      "absmax": 1420.0,
+      "absmax_finite_part": 1420.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 31,
+      "finite": true,
+      "absmax": 6408.0,
+      "absmax_finite_part": 6408.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 32,
+      "finite": true,
+      "absmax": 82.8125,
+      "absmax_finite_part": 82.8125,
+      "finite_frac": 0.9999999403953552
+     }
+    ]
+   },
+   "task_loss": {
+    "value": 9.617506980895996,
+    "finite": true
+   },
+   "alignment_energy": {
+    "E": 4404.0,
+    "finite": true,
+    "h_vis_finite": true,
+    "h_lang_finite": true,
+    "h_vis_absmax": 28.21875,
+    "h_lang_absmax": 64.5625
+   },
+   "grad_norm_on_E": {
+    "by_block": {
+     "vision": 21716.707089531323,
+     "llm": 13850.26538435423
+    },
+    "all_finite": true
+   },
+   "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+   "finished": "2026-10-12T22:57:47"
+  },
+  {
+   "tag": "r8_float16",
+   "rank": 8,
+   "seed": 42,
+   "compute_dtype": "float16",
+   "n_trainable": 9568256,
+   "fp16_max": 65504.0,
+   "started": "2026-10-12T22:58:36",
+   "lora_weight_stats": {
+    "n_tensors": 400,
+    "all_finite": true,
+    "absmax_over_all": 0.03125,
+    "max_norm": 1.6502909660339355
+   },
+   "hidden_state_layers": {
+    "n_layers": 33,
+    "all_finite": true,
+    "first_nonfinite_layer": null,
+    "absmax_last_layer": 82.875,
+    "absmax_over_layers": 10736.0,
+    "headroom_vs_fp16_max": 6.101341281669151,
+    "per_layer": [
+     {
+      "layer": 0,
+      "finite": true,
+      "absmax": 33.0,
+      "absmax_finite_part": 33.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 1,
+      "finite": true,
+      "absmax": 33.0,
+      "absmax_finite_part": 33.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 2,
+      "finite": true,
+      "absmax": 1399.0,
+      "absmax_finite_part": 1399.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 3,
+      "finite": true,
+      "absmax": 1403.0,
+      "absmax_finite_part": 1403.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 4,
+      "finite": true,
+      "absmax": 1403.0,
+      "absmax_finite_part": 1403.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 5,
+      "finite": true,
+      "absmax": 1412.0,
+      "absmax_finite_part": 1412.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 6,
+      "finite": true,
+      "absmax": 1413.0,
+      "absmax_finite_part": 1413.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 7,
+      "finite": true,
+      "absmax": 1413.0,
+      "absmax_finite_part": 1413.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 8,
+      "finite": true,
+      "absmax": 1414.0,
+      "absmax_finite_part": 1414.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 9,
+      "finite": true,
+      "absmax": 1414.0,
+      "absmax_finite_part": 1414.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 10,
+      "finite": true,
+      "absmax": 1414.0,
+      "absmax_finite_part": 1414.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 11,
+      "finite": true,
+      "absmax": 1414.0,
+      "absmax_finite_part": 1414.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 12,
+      "finite": true,
+      "absmax": 1415.0,
+      "absmax_finite_part": 1415.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 13,
+      "finite": true,
+      "absmax": 1416.0,
+      "absmax_finite_part": 1416.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 14,
+      "finite": true,
+      "absmax": 1416.0,
+      "absmax_finite_part": 1416.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 15,
+      "finite": true,
+      "absmax": 1417.0,
+      "absmax_finite_part": 1417.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 16,
+      "finite": true,
+      "absmax": 1418.0,
+      "absmax_finite_part": 1418.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 17,
+      "finite": true,
+      "absmax": 1423.0,
+      "absmax_finite_part": 1423.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 18,
+      "finite": true,
+      "absmax": 1424.0,
+      "absmax_finite_part": 1424.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 19,
+      "finite": true,
+      "absmax": 1425.0,
+      "absmax_finite_part": 1425.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 20,
+      "finite": true,
+      "absmax": 1427.0,
+      "absmax_finite_part": 1427.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 21,
+      "finite": true,
+      "absmax": 1428.0,
+      "absmax_finite_part": 1428.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 22,
+      "finite": true,
+      "absmax": 1430.0,
+      "absmax_finite_part": 1430.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 23,
+      "finite": true,
+      "absmax": 1431.0,
+      "absmax_finite_part": 1431.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 24,
+      "finite": true,
+      "absmax": 1433.0,
+      "absmax_finite_part": 1433.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 25,
+      "finite": true,
+      "absmax": 1434.0,
+      "absmax_finite_part": 1434.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 26,
+      "finite": true,
+      "absmax": 1434.0,
+      "absmax_finite_part": 1434.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 27,
+      "finite": true,
+      "absmax": 1434.0,
+      "absmax_finite_part": 1434.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 28,
+      "finite": true,
+      "absmax": 1433.0,
+      "absmax_finite_part": 1433.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 29,
+      "finite": true,
+      "absmax": 1432.0,
+      "absmax_finite_part": 1432.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 30,
+      "finite": true,
+      "absmax": 1412.0,
+      "absmax_finite_part": 1412.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 31,
+      "finite": true,
+      "absmax": 10736.0,
+      "absmax_finite_part": 10736.0,
+      "finite_frac": 0.9999999403953552
+     },
+     {
+      "layer": 32,
+      "finite": true,
+      "absmax": 82.875,
+      "absmax_finite_part": 82.875,
+      "finite_frac": 0.9999999403953552
+     }
+    ]
+   },
+   "task_loss": {
+    "value": 9.615042686462402,
+    "finite": true
+   },
+   "alignment_energy": {
+    "E": 4460.0,
+    "finite": true,
+    "h_vis_finite": true,
+    "h_lang_finite": true,
+    "h_vis_absmax": 27.796875,
+    "h_lang_absmax": 64.75
+   },
+   "grad_norm_on_E": {
+    "by_block": {
+     "vision": 12178.15074565857,
+     "llm": 8369.747857193379
+    },
+    "all_finite": true
+   },
+   "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+   "finished": "2026-10-12T23:03:45"
+  }
+ ]
+}

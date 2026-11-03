@@ -1,0 +1,152 @@
+{
+ "blocks": [
+  "vision_trunk",
+  "visual_projection",
+  "text_model",
+  "text_projection"
+ ],
+ "orderings": {
+  "E1_DGstar": [
+   "text_projection",
+   "text_model",
+   "visual_projection",
+   "vision_trunk"
+  ],
+  "E2_GD": [
+   "vision_trunk",
+   "text_model",
+   "text_projection",
+   "visual_projection"
+  ],
+  "E3_negcos": [
+   "text_projection",
+   "text_model",
+   "visual_projection",
+   "vision_trunk"
+  ],
+  "E4_infonce": [
+   "vision_trunk",
+   "visual_projection",
+   "text_model",
+   "text_projection"
+  ],
+  "E5_entropy": [
+   "vision_trunk",
+   "visual_projection",
+   "text_model",
+   "text_projection"
+  ],
+  "E6_median": [
+   "vision_trunk",
+   "text_model",
+   "text_projection",
+   "visual_projection"
+  ]
+ },
+ "kendall_consistency": {
+  "E1_DGstar_vs_E2_GD": {
+   "spearman": -0.333,
+   "p": 0.6667
+  },
+  "E1_DGstar_vs_E3_negcos": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "E1_DGstar_vs_E4_infonce": {
+   "spearman": -1.0,
+   "p": 0.0
+  },
+  "E1_DGstar_vs_E5_entropy": {
+   "spearman": -1.0,
+   "p": 0.0
+  },
+  "E1_DGstar_vs_E6_median": {
+   "spearman": -0.333,
+   "p": 0.6667
+  },
+  "E2_GD_vs_E3_negcos": {
+   "spearman": -0.333,
+   "p": 0.6667
+  },
+  "E2_GD_vs_E4_infonce": {
+   "spearman": 0.333,
+   "p": 0.6667
+  },
+  "E2_GD_vs_E5_entropy": {
+   "spearman": 0.333,
+   "p": 0.6667
+  },
+  "E2_GD_vs_E6_median": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "E3_negcos_vs_E4_infonce": {
+   "spearman": -1.0,
+   "p": 0.0
+  },
+  "E3_negcos_vs_E5_entropy": {
+   "spearman": -1.0,
+   "p": 0.0
+  },
+  "E3_negcos_vs_E6_median": {
+   "spearman": -0.333,
+   "p": 0.6667
+  },
+  "E4_infonce_vs_E5_entropy": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "E4_infonce_vs_E6_median": {
+   "spearman": 0.333,
+   "p": 0.6667
+  },
+  "E5_entropy_vs_E6_median": {
+   "spearman": 0.333,
+   "p": 0.6667
+  }
+ },
+ "gamma": {
+  "E1_DGstar": {
+   "vision_trunk": -0.1,
+   "visual_projection": -0.03,
+   "text_model": 0.0,
+   "text_projection": 0.0,
+   "_Evalue": 0.003
+  },
+  "E2_GD": {
+   "vision_trunk": 37.07,
+   "visual_projection": -6.5,
+   "text_model": 0.0,
+   "text_projection": 0.0,
+   "_Evalue": 1.254
+  },
+  "E3_negcos": {
+   "vision_trunk": -24.51,
+   "visual_projection": -7.11,
+   "text_model": 0.0,
+   "text_projection": 0.0,
+   "_Evalue": -0.261
+  },
+  "E4_infonce": {
+   "vision_trunk": 702.16,
+   "visual_projection": 40.65,
+   "text_model": 0.0,
+   "text_projection": 0.0,
+   "_Evalue": 3.969
+  },
+  "E5_entropy": {
+   "vision_trunk": 0.17,
+   "visual_projection": 0.04,
+   "text_model": 0.0,
+   "text_projection": 0.0,
+   "_Evalue": -4.205
+  },
+  "E6_median": {
+   "vision_trunk": 150.91,
+   "visual_projection": -8.58,
+   "text_model": 0.0,
+   "text_projection": 0.0,
+   "_Evalue": 1.473
+  }
+ }
+}

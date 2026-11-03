@@ -1,0 +1,92 @@
+{
+ "meta": {
+  "train_pairs": 3440,
+  "epochs": 10,
+  "losses": [
+   3.5188,
+   2.8329,
+   2.3763,
+   1.9396,
+   1.5609,
+   1.228,
+   0.9292,
+   0.6696,
+   0.4757,
+   0.3747
+  ],
+  "data": "MarineLife-16K frame + human QA (public, fully documented)"
+ },
+ "marine": {
+  "sigma_m": 0.0167,
+  "mean_m": 0.5528,
+  "top1_0": 2.861,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 1.368,
+    "tau_meas": 0.352
+   },
+   {
+    "lambda": -0.5,
+    "top1": 2.488,
+    "tau_meas": 0.5163
+   },
+   {
+    "lambda": -0.25,
+    "top1": 2.612,
+    "tau_meas": 0.6899
+   },
+   {
+    "lambda": 0.25,
+    "top1": 3.296,
+    "tau_meas": 0.6471
+   },
+   {
+    "lambda": 0.5,
+    "top1": 3.234,
+    "tau_meas": 0.4285
+   },
+   {
+    "lambda": 1.0,
+    "top1": 3.483,
+    "tau_meas": 0.2174
+   },
+   {
+    "lambda": 2.0,
+    "top1": 2.923,
+    "tau_meas": 0.066
+   }
+  ],
+  "tau_text1": 0.2781
+ },
+ "retrieval": {
+  "q_ans": {
+   "n": 3440,
+   "video_R1": 27.645,
+   "video_R5": 58.314,
+   "frame_R1": 28.605,
+   "frame_R5": 54.39
+  },
+  "q_only": {
+   "n": 3440,
+   "video_R1": 7.674,
+   "video_R5": 18.43,
+   "frame_R1": 7.238,
+   "frame_R5": 15.378
+  },
+  "obj": {
+   "n": 3440,
+   "video_R1": 15.727,
+   "video_R5": 39.738,
+   "frame_R1": 15.727,
+   "frame_R5": 32.326
+  },
+  "ans": {
+   "n": 3440,
+   "video_R1": 20.494,
+   "video_R5": 46.744,
+   "frame_R1": 21.279,
+   "frame_R5": 41.977
+  }
+ }
+}

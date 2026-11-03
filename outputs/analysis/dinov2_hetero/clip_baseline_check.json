@@ -1,0 +1,584 @@
+{
+  "script": "tools/_p293d_clip_baseline_check.py",
+  "convention": "delta_CG = final_gap.centroid_gap - initial_gap.centroid_gap",
+  "published_source": "paper合/sections/empirical.tex Table tab:position_strict",
+  "rows": {
+    "CLIP B/32 r8": {
+      "sources": {
+        "text_only": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze/text_only/seed*/results.json",
+          "delta_CG_mean": -0.0465,
+          "delta_CG_sd": 0.00301,
+          "R1_mean": 0.6238,
+          "R1_sd": 0.0055,
+          "files": [
+            "outputs/strict_freeze/text_only/seed1024/results.json",
+            "outputs/strict_freeze/text_only/seed123/results.json",
+            "outputs/strict_freeze/text_only/seed42/results.json",
+            "outputs/strict_freeze/text_only/seed456/results.json",
+            "outputs/strict_freeze/text_only/seed789/results.json"
+          ]
+        },
+        "both": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze/both/seed*/results.json",
+          "delta_CG_mean": -0.02583,
+          "delta_CG_sd": 0.0035,
+          "R1_mean": 0.6932,
+          "R1_sd": 0.01464,
+          "files": [
+            "outputs/strict_freeze/both/seed1024/results.json",
+            "outputs/strict_freeze/both/seed123/results.json",
+            "outputs/strict_freeze/both/seed42/results.json",
+            "outputs/strict_freeze/both/seed456/results.json",
+            "outputs/strict_freeze/both/seed789/results.json"
+          ]
+        },
+        "vision_only": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze/vision_only/seed*/results.json",
+          "delta_CG_mean": 0.01057,
+          "delta_CG_sd": 0.00437,
+          "R1_mean": 0.68,
+          "R1_sd": 0.01173,
+          "files": [
+            "outputs/strict_freeze/vision_only/seed1024/results.json",
+            "outputs/strict_freeze/vision_only/seed123/results.json",
+            "outputs/strict_freeze/vision_only/seed42/results.json",
+            "outputs/strict_freeze/vision_only/seed456/results.json",
+            "outputs/strict_freeze/vision_only/seed789/results.json"
+          ]
+        }
+      },
+      "published": {
+        "text_only": {
+          "delta_CG": -0.0465,
+          "R1": 0.624
+        },
+        "both": {
+          "delta_CG": -0.0258,
+          "R1": 0.693
+        },
+        "vision_only": {
+          "delta_CG": 0.0106,
+          "R1": 0.68
+        }
+      },
+      "ordering_by_delta_CG_ascending": [
+        "text_only",
+        "both",
+        "vision_only"
+      ],
+      "frozen_baseline": null
+    },
+    "CLIP B/32 r4": {
+      "sources": {
+        "text_only": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze_b32_r4/text_only/seed*/results.json",
+          "delta_CG_mean": -0.03038,
+          "delta_CG_sd": 0.00385,
+          "R1_mean": 0.6222,
+          "R1_sd": 0.00536,
+          "files": [
+            "outputs/strict_freeze_b32_r4/text_only/seed1011/results.json",
+            "outputs/strict_freeze_b32_r4/text_only/seed123/results.json",
+            "outputs/strict_freeze_b32_r4/text_only/seed42/results.json",
+            "outputs/strict_freeze_b32_r4/text_only/seed456/results.json",
+            "outputs/strict_freeze_b32_r4/text_only/seed789/results.json"
+          ]
+        },
+        "both": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze_b32_r4/both/seed*/results.json",
+          "delta_CG_mean": -0.02037,
+          "delta_CG_sd": 0.00284,
+          "R1_mean": 0.6796,
+          "R1_sd": 0.00602,
+          "files": [
+            "outputs/strict_freeze_b32_r4/both/seed1011/results.json",
+            "outputs/strict_freeze_b32_r4/both/seed123/results.json",
+            "outputs/strict_freeze_b32_r4/both/seed42/results.json",
+            "outputs/strict_freeze_b32_r4/both/seed456/results.json",
+            "outputs/strict_freeze_b32_r4/both/seed789/results.json"
+          ]
+        },
+        "vision_only": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze_b32_r4/vision_only/seed*/results.json",
+          "delta_CG_mean": 0.01658,
+          "delta_CG_sd": 0.00553,
+          "R1_mean": 0.6698,
+          "R1_sd": 0.00756,
+          "files": [
+            "outputs/strict_freeze_b32_r4/vision_only/seed1011/results.json",
+            "outputs/strict_freeze_b32_r4/vision_only/seed123/results.json",
+            "outputs/strict_freeze_b32_r4/vision_only/seed42/results.json",
+            "outputs/strict_freeze_b32_r4/vision_only/seed456/results.json",
+            "outputs/strict_freeze_b32_r4/vision_only/seed789/results.json"
+          ]
+        }
+      },
+      "published": {
+        "text_only": {
+          "delta_CG": -0.0304,
+          "R1": 0.621
+        },
+        "both": {
+          "delta_CG": -0.0204,
+          "R1": 0.679
+        },
+        "vision_only": {
+          "delta_CG": 0.0166,
+          "R1": 0.67
+        }
+      },
+      "R1_drift_vs_published": {
+        "n_cells_drifting": 2,
+        "max_abs_diff": 0.0012,
+        "cells": [
+          "r4/text_only (+0.0012)",
+          "r4/both (+0.0006)"
+        ],
+        "note": "recomputed strictly as final_task_metrics.R@1 averaged over the seeds present in the archive, all at batch 128 / 10 epoch / max_samples 5000 (verified per run); so batch size does not explain it"
+      },
+      "ordering_by_delta_CG_ascending": [
+        "text_only",
+        "both",
+        "vision_only"
+      ],
+      "frozen_baseline": null
+    },
+    "CLIP B/16 r4": {
+      "sources": {
+        "text_only": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze_b16/r4/text_only/seed*/results.json",
+          "delta_CG_mean": -0.01657,
+          "delta_CG_sd": 0.00175,
+          "R1_mean": 0.6502,
+          "R1_sd": 0.00581,
+          "files": [
+            "outputs/strict_freeze_b16/r4/text_only/seed1011/results.json",
+            "outputs/strict_freeze_b16/r4/text_only/seed123/results.json",
+            "outputs/strict_freeze_b16/r4/text_only/seed42/results.json",
+            "outputs/strict_freeze_b16/r4/text_only/seed456/results.json",
+            "outputs/strict_freeze_b16/r4/text_only/seed789/results.json"
+          ]
+        },
+        "both": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze_b16/r4/both/seed*/results.json",
+          "delta_CG_mean": 0.01236,
+          "delta_CG_sd": 0.0024,
+          "R1_mean": 0.707,
+          "R1_sd": 0.00922,
+          "files": [
+            "outputs/strict_freeze_b16/r4/both/seed1011/results.json",
+            "outputs/strict_freeze_b16/r4/both/seed123/results.json",
+            "outputs/strict_freeze_b16/r4/both/seed42/results.json",
+            "outputs/strict_freeze_b16/r4/both/seed456/results.json",
+            "outputs/strict_freeze_b16/r4/both/seed789/results.json"
+          ]
+        },
+        "vision_only": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze_b16/r4/vision_only/seed*/results.json",
+          "delta_CG_mean": 0.03755,
+          "delta_CG_sd": 0.00514,
+          "R1_mean": 0.686,
+          "R1_sd": 0.00663,
+          "files": [
+            "outputs/strict_freeze_b16/r4/vision_only/seed1011/results.json",
+            "outputs/strict_freeze_b16/r4/vision_only/seed123/results.json",
+            "outputs/strict_freeze_b16/r4/vision_only/seed42/results.json",
+            "outputs/strict_freeze_b16/r4/vision_only/seed456/results.json",
+            "outputs/strict_freeze_b16/r4/vision_only/seed789/results.json"
+          ]
+        }
+      },
+      "published": {
+        "text_only": {
+          "delta_CG": -0.0166,
+          "R1": 0.651
+        },
+        "both": {
+          "delta_CG": 0.0124,
+          "R1": 0.707
+        },
+        "vision_only": {
+          "delta_CG": 0.0376,
+          "R1": 0.686
+        }
+      },
+      "R1_drift_vs_published": {
+        "n_cells_drifting": 1,
+        "max_abs_diff": 0.0008,
+        "cells": [
+          "r4/text_only (+0.0008)"
+        ],
+        "note": "recomputed strictly as final_task_metrics.R@1 averaged over the seeds present in the archive, all at batch 128 / 10 epoch / max_samples 5000 (verified per run); so batch size does not explain it"
+      },
+      "ordering_by_delta_CG_ascending": [
+        "text_only",
+        "both",
+        "vision_only"
+      ],
+      "frozen_baseline": null
+    },
+    "OpenCLIP r4": {
+      "sources": {
+        "text_only": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze_oclip/r4/text_only/seed*/results.json",
+          "delta_CG_mean": 0.08016,
+          "delta_CG_sd": 0.00056,
+          "R1_mean": 0.6366,
+          "R1_sd": 0.0073,
+          "files": [
+            "outputs/strict_freeze_oclip/r4/text_only/seed1011/results.json",
+            "outputs/strict_freeze_oclip/r4/text_only/seed123/results.json",
+            "outputs/strict_freeze_oclip/r4/text_only/seed42/results.json",
+            "outputs/strict_freeze_oclip/r4/text_only/seed456/results.json",
+            "outputs/strict_freeze_oclip/r4/text_only/seed789/results.json"
+          ]
+        },
+        "both": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze_oclip/r4/both/seed*/results.json",
+          "delta_CG_mean": 0.08639,
+          "delta_CG_sd": 0.00416,
+          "R1_mean": 0.6818,
+          "R1_sd": 0.00898,
+          "files": [
+            "outputs/strict_freeze_oclip/r4/both/seed1011/results.json",
+            "outputs/strict_freeze_oclip/r4/both/seed123/results.json",
+            "outputs/strict_freeze_oclip/r4/both/seed42/results.json",
+            "outputs/strict_freeze_oclip/r4/both/seed456/results.json",
+            "outputs/strict_freeze_oclip/r4/both/seed789/results.json"
+          ]
+        },
+        "vision_only": {
+          "n_seeds": 5,
+          "glob": "outputs/strict_freeze_oclip/r4/vision_only/seed*/results.json",
+          "delta_CG_mean": 0.09962,
+          "delta_CG_sd": 0.00255,
+          "R1_mean": 0.6698,
+          "R1_sd": 0.00554,
+          "files": [
+            "outputs/strict_freeze_oclip/r4/vision_only/seed1011/results.json",
+            "outputs/strict_freeze_oclip/r4/vision_only/seed123/results.json",
+            "outputs/strict_freeze_oclip/r4/vision_only/seed42/results.json",
+            "outputs/strict_freeze_oclip/r4/vision_only/seed456/results.json",
+            "outputs/strict_freeze_oclip/r4/vision_only/seed789/results.json"
+          ]
+        }
+      },
+      "published": {
+        "text_only": {
+          "delta_CG": 0.0802,
+          "R1": 0.643
+        },
+        "both": {
+          "delta_CG": 0.0864,
+          "R1": 0.68
+        },
+        "vision_only": {
+          "delta_CG": 0.0996,
+          "R1": 0.672
+        }
+      },
+      "R1_drift_vs_published": {
+        "n_cells_drifting": 3,
+        "max_abs_diff": 0.0064,
+        "cells": [
+          "r4/text_only (+0.0064)",
+          "r4/both (+0.0018)",
+          "r4/vision_only (+0.0022)"
+        ],
+        "note": "recomputed strictly as final_task_metrics.R@1 averaged over the seeds present in the archive, all at batch 128 / 10 epoch / max_samples 5000 (verified per run); so batch size does not explain it"
+      },
+      "ordering_by_delta_CG_ascending": [
+        "text_only",
+        "both",
+        "vision_only"
+      ],
+      "frozen_baseline": null
+    }
+  },
+  "checks": [
+    {
+      "row": "CLIP B/32 r8",
+      "arm": "text_only",
+      "recomputed_delta_CG": -0.0465,
+      "published_delta_CG": -0.0465,
+      "delta_CG_at_published_precision": -0.0465,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.6238,
+      "published_R1": 0.624,
+      "R1_at_published_precision": 0.624,
+      "R1_abs_diff": 0.0002,
+      "R1_pass": true,
+      "n_seeds": 5,
+      "seeds": [
+        1024,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "CLIP B/32 r8",
+      "arm": "both",
+      "recomputed_delta_CG": -0.02583,
+      "published_delta_CG": -0.0258,
+      "delta_CG_at_published_precision": -0.0258,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.6932,
+      "published_R1": 0.693,
+      "R1_at_published_precision": 0.693,
+      "R1_abs_diff": 0.0002,
+      "R1_pass": true,
+      "n_seeds": 5,
+      "seeds": [
+        1024,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "CLIP B/32 r8",
+      "arm": "vision_only",
+      "recomputed_delta_CG": 0.01057,
+      "published_delta_CG": 0.0106,
+      "delta_CG_at_published_precision": 0.0106,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.68,
+      "published_R1": 0.68,
+      "R1_at_published_precision": 0.68,
+      "R1_abs_diff": 0.0,
+      "R1_pass": true,
+      "n_seeds": 5,
+      "seeds": [
+        1024,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "CLIP B/32 r4",
+      "arm": "text_only",
+      "recomputed_delta_CG": -0.03038,
+      "published_delta_CG": -0.0304,
+      "delta_CG_at_published_precision": -0.0304,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.6222,
+      "published_R1": 0.621,
+      "R1_at_published_precision": 0.622,
+      "R1_abs_diff": 0.0012,
+      "R1_pass": false,
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "CLIP B/32 r4",
+      "arm": "both",
+      "recomputed_delta_CG": -0.02037,
+      "published_delta_CG": -0.0204,
+      "delta_CG_at_published_precision": -0.0204,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.6796,
+      "published_R1": 0.679,
+      "R1_at_published_precision": 0.68,
+      "R1_abs_diff": 0.0006,
+      "R1_pass": false,
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "CLIP B/32 r4",
+      "arm": "vision_only",
+      "recomputed_delta_CG": 0.01658,
+      "published_delta_CG": 0.0166,
+      "delta_CG_at_published_precision": 0.0166,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.6698,
+      "published_R1": 0.67,
+      "R1_at_published_precision": 0.67,
+      "R1_abs_diff": 0.0002,
+      "R1_pass": true,
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "CLIP B/16 r4",
+      "arm": "text_only",
+      "recomputed_delta_CG": -0.01657,
+      "published_delta_CG": -0.0166,
+      "delta_CG_at_published_precision": -0.0166,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.6502,
+      "published_R1": 0.651,
+      "R1_at_published_precision": 0.65,
+      "R1_abs_diff": 0.0008,
+      "R1_pass": false,
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "CLIP B/16 r4",
+      "arm": "both",
+      "recomputed_delta_CG": 0.01236,
+      "published_delta_CG": 0.0124,
+      "delta_CG_at_published_precision": 0.0124,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.707,
+      "published_R1": 0.707,
+      "R1_at_published_precision": 0.707,
+      "R1_abs_diff": 0.0,
+      "R1_pass": true,
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "CLIP B/16 r4",
+      "arm": "vision_only",
+      "recomputed_delta_CG": 0.03755,
+      "published_delta_CG": 0.0376,
+      "delta_CG_at_published_precision": 0.0376,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.686,
+      "published_R1": 0.686,
+      "R1_at_published_precision": 0.686,
+      "R1_abs_diff": 0.0,
+      "R1_pass": true,
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "OpenCLIP r4",
+      "arm": "text_only",
+      "recomputed_delta_CG": 0.08016,
+      "published_delta_CG": 0.0802,
+      "delta_CG_at_published_precision": 0.0802,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.6366,
+      "published_R1": 0.643,
+      "R1_at_published_precision": 0.637,
+      "R1_abs_diff": 0.0064,
+      "R1_pass": false,
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "OpenCLIP r4",
+      "arm": "both",
+      "recomputed_delta_CG": 0.08639,
+      "published_delta_CG": 0.0864,
+      "delta_CG_at_published_precision": 0.0864,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.6818,
+      "published_R1": 0.68,
+      "R1_at_published_precision": 0.682,
+      "R1_abs_diff": 0.0018,
+      "R1_pass": false,
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ]
+    },
+    {
+      "row": "OpenCLIP r4",
+      "arm": "vision_only",
+      "recomputed_delta_CG": 0.09962,
+      "published_delta_CG": 0.0996,
+      "delta_CG_at_published_precision": 0.0996,
+      "delta_CG_pass": true,
+      "recomputed_R1": 0.6698,
+      "published_R1": 0.672,
+      "R1_at_published_precision": 0.67,
+      "R1_abs_diff": 0.0022,
+      "R1_pass": false,
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ]
+    }
+  ],
+  "frozen_files": {
+    "CLIP B/32 r8": {
+      "file": "outputs/strict_freeze/frozen/results.json",
+      "CG": null,
+      "keys": [
+        "backbone_delta",
+        "batch_size",
+        "effective_rank_final",
+        "experiment",
+        "max_samples",
+        "n_trainable_params"
+      ]
+    }
+  },
+  "convention_reproduces_published_table": true,
+  "r1_column_reproduces_published_table": false,
+  "verdict": {
+    "delta_CG": "reproduces every published cell to 5 decimals -- the delta convention and the archive paths used here are correct, so a DINOv2 delta_CG is directly comparable with Table tab:position_strict",
+    "R1": "does NOT reproduce in 6 of 12 cells from the seeds present in the archive; largest gap 0.0064. This is reported as an open discrepancy about the paper's R@1 column, not used as evidence in this report."
+  }
+}

@@ -1,0 +1,2663 @@
+{
+ "meta": {
+  "script": "tools/_p446_p3_reproducibility.py",
+  "task": "task-11 (P3 R3.18)",
+  "reviewer_claim": "an earlier software environment produced different signs for r in [5,8]"
+ },
+ "exhaustive_version_record_scan": {
+  "scan_roots": [
+   "paper3\\scripts\\outputs",
+   "outputs"
+  ],
+  "files_scanned": 2066,
+  "json_files_scanned": 1816,
+  "key_level_hits": [
+   {
+    "path": "paper3\\scripts\\outputs\\experiments\\verify_r5_s42.json",
+    "fields": {
+     "note": "\"reference 3-epoch protocol (transformers 5.16.1); restored 2026-09-09 after a transformers-4.57 reproducibility run temporarily overwrote this file (that run is preserved as verify_r5_s42_tf457.json)\""
+    }
+   },
+   {
+    "path": "paper3\\scripts\\outputs\\experiments\\verify_r5_s42_tf457.json",
+    "fields": {
+     "note": "\"cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); identical trajectory shape (down-down-up), net delta_E 0.0 vs -18.0 reference (0.5% of E0)\""
+    }
+   },
+   {
+    "path": "paper3\\scripts\\outputs\\experiments\\verify_r6_s42.json",
+    "fields": {
+     "note": "\"reference 3-epoch protocol (transformers 5.16.1); restored 2026-09-09 after a transformers-4.57 reproducibility run temporarily overwrote this file (that run is preserved as verify_r6_s42_tf457.json)\""
+    }
+   },
+   {
+    "path": "paper3\\scripts\\outputs\\experiments\\verify_r6_s42_tf457.json",
+    "fields": {
+     "note": "\"cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); delta_E +96.5 vs +93.5 reference (same sign and trajectory shape, 3% of the effect at baseline shift 0.24%)\""
+    }
+   },
+   {
+    "path": "outputs\\c2c4_cloud_summary.json",
+    "fields": {
+     "c2_probes.[0].arch": "llava",
+     "c2_probes.[0].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[0].torch": "2.12.1+cu130",
+     "c2_probes.[1].arch": "llava",
+     "c2_probes.[1].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[1].torch": "2.12.1+cu130",
+     "c2_probes.[2].arch": "llava",
+     "c2_probes.[2].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[2].torch": "2.12.1+cu130",
+     "c2_probes.[3].arch": "llava",
+     "c2_probes.[3].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[3].torch": "2.12.1+cu130",
+     "c2_probes.[4].arch": "llava",
+     "c2_probes.[4].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[4].torch": "2.12.1+cu130",
+     "c2_probes.[5].arch": "qwen",
+     "c2_probes.[5].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[5].torch": "2.12.1+cu130",
+     "c2_probes.[6].arch": "qwen",
+     "c2_probes.[6].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[6].torch": "2.12.1+cu130",
+     "c2_probes.[7].arch": "qwen",
+     "c2_probes.[7].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[7].torch": "2.12.1+cu130",
+     "c2_probes.[8].arch": "qwen",
+     "c2_probes.[8].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[8].torch": "2.12.1+cu130",
+     "c2_probes.[9].arch": "qwen",
+     "c2_probes.[9].gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_probes.[9].torch": "2.12.1+cu130",
+     "c2_summary.llava.gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_summary.llava.torch": "2.12.1+cu130",
+     "c2_summary.qwen.gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "c2_summary.qwen.torch": "2.12.1+cu130"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_llava7b_rep1.json",
+    "fields": {
+     "arch": "llava",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_llava7b_rep2.json",
+    "fields": {
+     "arch": "llava",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_llava7b_rep3.json",
+    "fields": {
+     "arch": "llava",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_llava_llava-1.5-7b-hf.json",
+    "fields": {
+     "arch": "llava",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_llava_llava-1.5-7b-hf_v1.json",
+    "fields": {
+     "arch": "llava",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen7b_rep1.json",
+    "fields": {
+     "arch": "qwen",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen7b_rep2.json",
+    "fields": {
+     "arch": "qwen",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen7b_rep3.json",
+    "fields": {
+     "arch": "qwen",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen_Qwen2-VL-7B-Instruct.json",
+    "fields": {
+     "arch": "qwen",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen_Qwen2-VL-7B-Instruct_v1.json",
+    "fields": {
+     "arch": "qwen",
+     "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+     "torch": "2.12.1+cu130",
+     "transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\llava_instruction_dynamics.json",
+    "fields": {
+     "meta": "{\"model\": \"LLaVA-1.5-7B (4-bit nf4 bf16) + LoRA 7B-scale vision-conditioned instruction\", \"n_pairs\": 3440, \"pairs_subset\": 500, \"epochs\": 5, \"lr\": 0.0001, \"batch\": 1, \"note\": \"MarineGPT-scale native multimodal instruction tuning probe -- FROZEN BASELINE ONLY. Training stopped per operator decision: 4-bit 7B LoRA step ~16.5s (bnb bf16, RTX 4060 8GB) => full budget 10ep x 3440 = ~157h infeasible; ti"
+    }
+   },
+   {
+    "path": "outputs\\threshold_calibration.json",
+    "fields": {
+     "cutoffs.ret_ge_0.96.0.5.precision": 0.463,
+     "cutoffs.ret_ge_0.96.0.6.precision": 0.667,
+     "cutoffs.ret_ge_0.96.0.7.precision": 0.857,
+     "cutoffs.ret_ge_0.96.0.8.precision": 0.889,
+     "cutoffs.ret_ge_0.96.0.9.precision": 1.0,
+     "cutoffs.ret_ge_0.83.0.5.precision": 0.805,
+     "cutoffs.ret_ge_0.83.0.6.precision": 0.958,
+     "cutoffs.ret_ge_0.83.0.7.precision": 1.0,
+     "cutoffs.ret_ge_0.83.0.8.precision": 1.0,
+     "cutoffs.ret_ge_0.83.0.9.precision": 1.0
+    }
+   },
+   {
+    "path": "outputs\\analysis\\p3d_clip_ranksweep.json",
+    "fields": {
+     "runs.[0].device": "cuda",
+     "runs.[1].device": "cuda",
+     "runs.[2].device": "cuda",
+     "runs.[3].device": "cuda",
+     "runs.[4].device": "cuda",
+     "runs.[5].device": "cuda",
+     "runs.[6].device": "cuda",
+     "runs.[7].device": "cuda",
+     "runs.[8].device": "cuda",
+     "runs.[9].device": "cuda",
+     "runs.[10].device": "cuda",
+     "runs.[11].device": "cuda",
+     "runs.[12].device": "cuda",
+     "runs.[13].device": "cuda",
+     "runs.[14].device": "cuda",
+     "runs.[15].device": "cuda",
+     "runs.[16].device": "cuda",
+     "runs.[17].device": "cuda",
+     "runs.[18].device": "cuda",
+     "runs.[19].device": "cuda"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\p3d_qwen_ranksweep.json",
+    "fields": {
+     "protocol.dtype": "bfloat16"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\p3_alloc_budget_probe.json",
+    "fields": {
+     "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\p3_nan_probe.json",
+    "fields": {
+     "probes.[0].gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+     "probes.[1].gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+     "probes.[2].gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\p3_reproducibility.json",
+    "fields": {
+     "duplicate_run_audit.cells_identical_protocol.[1].notes": "[\"\", \"\", \"\", \"\", \"cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); identical trajectory shape (down-down-up), net delta_E 0.0 vs -18.0 reference (0.5% of E0)\"]",
+     "duplicate_run_audit.cells_identical_protocol.[4].notes": "[\"\", \"\", \"\", \"\", \"cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); delta_E +96.5 vs +93.5 reference (same sign and trajectory shape, 3% of the effect at baseline shift 0.24%)\"]",
+     "duplicate_run_audit.llava_sweep_identical_protocol.[1].notes": "[\"\", \"\", \"\", \"\", \"cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); identical trajectory shape (down-down-up), net delta_E 0.0 vs -18.0 reference (0.5% of E0)\"]",
+     "duplicate_run_audit.llava_sweep_identical_protocol.[4].notes": "[\"\", \"\", \"\", \"\", \"cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); delta_E +96.5 vs +93.5 reference (same sign and trajectory shape, 3% of the effect at baseline shift 0.24%)\"]",
+     "current_environment_fingerprint.python": "3.14.6 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:29:05) [MSC v.1942 64 bit (AMD64)]",
+     "current_environment_fingerprint.platform": "Windows-11-10.0.26200-SP0",
+     "current_environment_fingerprint.packages.torch": "NOT INSTALLED (ModuleNotFoundError)",
+     "current_environment_fingerprint.packages.transformers": "NOT INSTALLED (ModuleNotFoundError)",
+     "current_environment_fingerprint.packages.peft": "NOT INSTALLED (ModuleNotFoundError)",
+     "current_environment_fingerprint.packages.bitsandbytes": "NOT INSTALLED (ModuleNotFoundError)",
+     "current_environment_fingerprint.packages.accelerate": "NOT INSTALLED (ModuleNotFoundError)",
+     "current_environment_fingerprint.gpu_env_candidates.[0].python": "3.12.14",
+     "current_environment_fingerprint.gpu_env_candidates.[0].torch": "2.9.1+cu130",
+     "current_environment_fingerprint.gpu_env_candidates.[0].transformers": "5.16.1",
+     "current_environment_fingerprint.gpu_env_candidates.[0].peft": "0.20.0",
+     "current_environment_fingerprint.gpu_env_candidates.[0].bitsandbytes": "0.50.2",
+     "current_environment_fingerprint.gpu_env_candidates.[0].accelerate": "1.14.0",
+     "current_environment_fingerprint.gpu_env_candidates.[0].cuda": "13.0",
+     "current_environment_fingerprint.gpu_env_candidates.[0].gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\pr_fullft_ckpt_reeval.json",
+    "fields": {
+     "protocol.amp": "fp16",
+     "reevaluations.[0].amp": "fp16",
+     "reevaluations.[1].amp": "fp16",
+     "reevaluations.[2].amp": "fp16",
+     "reevaluations.[3].amp": "fp16",
+     "reevaluations.[4].amp": "fp16",
+     "reevaluations.[5].amp": "fp16",
+     "reevaluations.[6].amp": "fp16",
+     "reevaluations.[7].amp": "fp16",
+     "reevaluations.[8].amp": "fp16",
+     "reevaluations.[9].amp": "fp16",
+     "reevaluations.[10].amp": "fp16",
+     "reevaluations.[11].amp": "fp16",
+     "reevaluations.[12].amp": "fp16",
+     "reevaluations.[13].amp": "fp16",
+     "reevaluations.[14].amp": "fp16",
+     "reevaluations.[15].amp": "fp16",
+     "reevaluations.[16].amp": "fp16",
+     "reevaluations.[17].amp": "fp16",
+     "reevaluations.[18].amp": "fp16"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\pr_fullft_feasibility.json",
+    "fields": {
+     "meta": "{\"script\": \"tools/_p262_fullft_feasibility.py\", \"purpose\": \"PR R1.6 -- measure which FULL fine-tuning configurations of openai/clip-vit-base-patch32 actually run on one RTX 4060 Laptop (8 GB); manuscript recipe is batch 128 / fp32 AdamW\", \"gpu\": \"NVIDIA GeForce RTX 4060 Laptop GPU\", \"gpu_total_mb\": 8187.5, \"model\": \"openai/clip-vit-base-patch32\", \"train_slice\": \"flickr30k captions [0, 2000) (the a",
+     "configurations.[0].amp": "fp32",
+     "configurations.[1].amp": "fp16",
+     "configurations.[2].amp": "fp32",
+     "configurations.[3].amp": "fp16",
+     "configurations.[4].amp": "fp32"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\pr_fullft_lr_sweep.json",
+    "fields": {
+     "runs.[0].amp": "fp16",
+     "runs.[1].amp": "fp16",
+     "runs.[2].amp": "fp16",
+     "runs.[3].amp": "fp16",
+     "runs.[4].amp": "fp16",
+     "runs.[5].amp": "fp16"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\pr_fullft_lr_sweep_ext.json",
+    "fields": {
+     "runs.[0].amp": "fp16",
+     "runs.[1].amp": "fp16",
+     "runs.[2].amp": "fp16",
+     "runs.[3].amp": "fp16",
+     "runs.[4].amp": "fp16",
+     "runs.[5].amp": "fp16",
+     "runs.[6].amp": "fp16",
+     "runs.[7].amp": "fp16",
+     "runs.[8].amp": "fp16",
+     "runs.[9].amp": "fp16",
+     "runs.[10].amp": "fp16",
+     "runs.[11].amp": "fp16",
+     "runs.[12].amp": "fp16",
+     "runs.[13].amp": "fp16",
+     "runs.[14].amp": "fp16",
+     "runs.[15].amp": "fp16",
+     "runs.[16].amp": "fp16",
+     "runs.[17].amp": "fp16",
+     "runs.[18].amp": "fp16",
+     "runs.[19].amp": "fp16",
+     "runs.[20].amp": "fp16",
+     "runs.[21].amp": "fp16"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\pr_fullft_lr_sweep_full.json",
+    "fields": {
+     "runs.[0].amp": "fp16",
+     "runs.[1].amp": "fp16",
+     "runs.[2].amp": "fp16",
+     "runs.[3].amp": "fp16",
+     "runs.[4].amp": "fp16",
+     "runs.[5].amp": "fp16",
+     "runs.[6].amp": "fp16",
+     "runs.[7].amp": "fp16",
+     "runs.[8].amp": "fp16",
+     "runs.[9].amp": "fp16",
+     "runs.[10].amp": "fp16",
+     "runs.[11].amp": "fp16",
+     "runs.[12].amp": "fp16",
+     "runs.[13].amp": "fp16",
+     "runs.[14].amp": "fp16",
+     "runs.[15].amp": "fp16",
+     "runs.[16].amp": "fp16",
+     "runs.[17].amp": "fp16",
+     "runs.[18].amp": "fp16"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\pr_fullft_verdict.json",
+    "fields": {
+     "feasibility.manuscript_b128_fp32.amp": "fp32",
+     "feasibility.b128_fp16.amp": "fp16",
+     "feasibility.b64_fp32.amp": "fp32",
+     "feasibility.b64_fp16.amp": "fp16",
+     "feasibility.b32_fp32.amp": "fp32"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\pr_peft_lr_sweep.json",
+    "fields": {
+     "runs.[0].amp": "fp16",
+     "runs.[1].amp": "fp16",
+     "runs.[2].amp": "fp16",
+     "runs.[3].amp": "fp16",
+     "runs.[4].amp": "fp16",
+     "runs.[5].amp": "fp16",
+     "runs.[6].amp": "fp16",
+     "runs.[7].amp": "fp16",
+     "runs.[8].amp": "fp16",
+     "runs.[9].amp": "fp16",
+     "runs.[10].amp": "fp16",
+     "runs.[11].amp": "fp16",
+     "runs.[12].amp": "fp16",
+     "runs.[13].amp": "fp16",
+     "runs.[14].amp": "fp16",
+     "runs.[15].amp": "fp16",
+     "runs.[16].amp": "fp16",
+     "runs.[17].amp": "fp16",
+     "runs.[18].amp": "fp16",
+     "runs.[19].amp": "fp16",
+     "runs.[20].amp": "fp16",
+     "runs.[21].amp": "fp16",
+     "runs.[22].amp": "fp16",
+     "runs.[23].amp": "fp16"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\vlm_bf16_seeds_verdict.json",
+    "fields": {
+     "precision": "bf16"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\_p263_ext_backup_13runs.json",
+    "fields": {
+     "runs.[0].amp": "fp16",
+     "runs.[1].amp": "fp16",
+     "runs.[2].amp": "fp16",
+     "runs.[3].amp": "fp16",
+     "runs.[4].amp": "fp16",
+     "runs.[5].amp": "fp16",
+     "runs.[6].amp": "fp16",
+     "runs.[7].amp": "fp16",
+     "runs.[8].amp": "fp16",
+     "runs.[9].amp": "fp16",
+     "runs.[10].amp": "fp16",
+     "runs.[11].amp": "fp16",
+     "runs.[12].amp": "fp16"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\dinov2_hetero\\gallery_noise\\results.json",
+    "fields": {
+     "device": "cpu",
+     "torch": "2.9.1+cu130",
+     "provenance_checks.clip_features_match_forward.transformers": "5.16.1"
+    }
+   },
+   {
+    "path": "outputs\\analysis\\dinov2_hetero\\norm_probe\\results.json",
+    "fields": {
+     "device": "cpu",
+     "torch": "2.9.1+cu130"
+    }
+   },
+   {
+    "path": "outputs\\imagenet_zs_rerun\\full_ft\\results.json",
+    "fields": {
+     "config.amp": "fp16"
+    }
+   },
+   {
+    "path": "outputs\\imagenet_zs_rerun\\full_ft_s123\\results.json",
+    "fields": {
+     "config.amp": "fp16"
+    }
+   },
+   {
+    "path": "outputs\\imagenet_zs_rerun\\full_ft_s999\\results.json",
+    "fields": {
+     "config.amp": "fp16"
+    }
+   }
+  ],
+  "text_level_hits": [
+   {
+    "path": "paper3\\scripts\\outputs\\experiments\\verify_r5_s42.json",
+    "n_matches": 1,
+    "samples": [
+     "transformers 5"
+    ]
+   },
+   {
+    "path": "paper3\\scripts\\outputs\\experiments\\verify_r5_s42_tf457.json",
+    "n_matches": 1,
+    "samples": [
+     "transformers 4"
+    ]
+   },
+   {
+    "path": "paper3\\scripts\\outputs\\experiments\\verify_r6_s42.json",
+    "n_matches": 1,
+    "samples": [
+     "transformers 5"
+    ]
+   },
+   {
+    "path": "paper3\\scripts\\outputs\\experiments\\verify_r6_s42_tf457.json",
+    "n_matches": 1,
+    "samples": [
+     "transformers 4"
+    ]
+   },
+   {
+    "path": "outputs\\c1_qwen_asymmetry.json",
+    "n_matches": 2,
+    "samples": [
+     "RTX 4",
+     "torch 2"
+    ]
+   },
+   {
+    "path": "outputs\\c1_qwen_vintages.json",
+    "n_matches": 4,
+    "samples": [
+     "RTX 4",
+     "driver 5"
+    ]
+   },
+   {
+    "path": "outputs\\c2c4_cloud_summary.json",
+    "n_matches": 12,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\c3_epoch_budget.json",
+    "n_matches": 2,
+    "samples": [
+     "RTX 4",
+     "torch 2"
+    ]
+   },
+   {
+    "path": "outputs\\cloud_pack_manifest_20260913.txt",
+    "n_matches": 6,
+    "samples": [
+     "RTX 4",
+     "bitsandbytes 0",
+     "peft 0",
+     "python 3.1",
+     "torch 2",
+     "transformers 5"
+    ]
+   },
+   {
+    "path": "outputs\\cloud_pack_manifest_20260913_1652.txt",
+    "n_matches": 6,
+    "samples": [
+     "RTX 4",
+     "bitsandbytes 0",
+     "peft 0",
+     "python 3.1",
+     "torch 2",
+     "transformers 5"
+    ]
+   },
+   {
+    "path": "outputs\\device_reproducibility.json",
+    "n_matches": 4,
+    "samples": [
+     "RTX 4",
+     "driver 5",
+     "torch 2"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_llava7b_rep1.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_llava7b_rep2.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_llava7b_rep3.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_llava_llava-1.5-7b-hf.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_llava_llava-1.5-7b-hf_v1.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen7b_rep1.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen7b_rep2.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen7b_rep3.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen_Qwen2-VL-7B-Instruct.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\gamma_cost_qwen_Qwen2-VL-7B-Instruct_v1.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\llava_instruction_dynamics.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\analysis\\lit_pool.json",
+    "n_matches": 9,
+    "samples": [
+     "A100",
+     "RTX 4",
+     "RTX 5",
+     "a100"
+    ]
+   },
+   {
+    "path": "outputs\\analysis\\llava_bf16_feasibility.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\analysis\\p3_alloc_budget_probe.json",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\analysis\\p3_nan_probe.json",
+    "n_matches": 3,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\analysis\\p3_reproducibility.json",
+    "n_matches": 118,
+    "samples": [
+     "A100",
+     "A800",
+     "RTX 4",
+     "RTX 5",
+     "a100",
+     "bitsandbytes 0"
+    ]
+   },
+   {
+    "path": "outputs\\analysis\\p3_stats_recon.json",
+    "n_matches": 66,
+    "samples": [
+     "A100",
+     "A800",
+     "RTX 4",
+     "RTX 5",
+     "a100",
+     "peft 0"
+    ]
+   },
+   {
+    "path": "outputs\\analysis\\pr_fullft_divergence.json",
+    "n_matches": 1,
+    "samples": [
+     "torch 2"
+    ]
+   },
+   {
+    "path": "outputs\\analysis\\pr_fullft_feasibility.json",
+    "n_matches": 2,
+    "samples": [
+     "RTX 4"
+    ]
+   },
+   {
+    "path": "outputs\\analysis\\pr_fullft_tables.md",
+    "n_matches": 1,
+    "samples": [
+     "RTX 4"
+    ]
+   }
+  ],
+  "sweep_producing_archives_env_fields": [
+   {
+    "path": "paper3/scripts/outputs/experiments/E2_results.json",
+    "exists": true,
+    "env_fields": {},
+    "file_mtime": "2026-07-07T14:24:20"
+   },
+   {
+    "path": "paper3/scripts/outputs/experiments/all_results.json",
+    "exists": true,
+    "env_fields": {},
+    "file_mtime": "2026-07-07T14:26:40"
+   },
+   {
+    "path": "paper3/scripts/outputs/experiments/sample_size_results.json",
+    "exists": true,
+    "env_fields": {},
+    "file_mtime": "2026-07-08T13:07:30"
+   },
+   {
+    "path": "paper3/scripts/outputs/experiments/vqa_phase_results.json",
+    "exists": true,
+    "env_fields": {},
+    "file_mtime": "2026-08-04T22:08:18"
+   },
+   {
+    "path": "paper3/scripts/outputs/experiments/Qwen_results.json",
+    "exists": true,
+    "env_fields": {},
+    "file_mtime": "2026-07-07T15:14:25"
+   },
+   {
+    "path": "paper3/scripts/outputs/experiments/gamma_llava_results.json",
+    "exists": true,
+    "env_fields": {},
+    "file_mtime": "2026-08-04T21:08:07"
+   }
+  ],
+  "n_sweep_archives_total": 6,
+  "n_sweep_archives_with_env_field": 0
+ },
+ "controlled_version_experiment": {
+  "what": "archived controlled cross-version reruns: identical rank/seed/protocol, transformers 5.16.1 (reference) vs 4.57.0",
+  "pairs": [
+   {
+    "rank": 5,
+    "seed": 42,
+    "reference": {
+     "file": "paper3/scripts/outputs/experiments/verify_r5_s42.json",
+     "name": "verify_r5_s42",
+     "rank": 5,
+     "seed": 42,
+     "E": [
+      3930.5,
+      3836.0,
+      3778.5,
+      3912.5
+     ],
+     "dE_from_E": -18.0,
+     "delta_E_field": -18.0,
+     "note": "reference 3-epoch protocol (transformers 5.16.1); restored 2026-09-09 after a transformers-4.57 reproducibility run temporarily overwrote this file (that run is preserved as verify_r5_s42_tf457.json)",
+     "epochs": 3,
+     "num_samples": 20,
+     "lr": null,
+     "opt": null,
+     "compute_dtype": null,
+     "warmup": null
+    },
+    "alternative": {
+     "file": "paper3/scripts/outputs/experiments/verify_r5_s42_tf457.json",
+     "name": "verify_r5_s42_tf457",
+     "rank": 5,
+     "seed": 42,
+     "E": [
+      3921.0,
+      3860.5,
+      3787.5,
+      3921.0
+     ],
+     "dE_from_E": 0.0,
+     "delta_E_field": 0.0,
+     "note": "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); identical trajectory shape (down-down-up), net delta_E 0.0 vs -18.0 reference (0.5% of E0)",
+     "epochs": 3,
+     "num_samples": 20,
+     "lr": 5e-05,
+     "opt": "adamw",
+     "compute_dtype": "float16",
+     "warmup": false
+    },
+    "E0_shift": -9.5,
+    "E0_shift_pct": -0.24169952932196923,
+    "dE_shift": 18.0,
+    "sign_preserved_at_this_rank": false
+   },
+   {
+    "rank": 6,
+    "seed": 42,
+    "reference": {
+     "file": "paper3/scripts/outputs/experiments/verify_r6_s42.json",
+     "name": "verify_r6_s42",
+     "rank": 6,
+     "seed": 42,
+     "E": [
+      3930.5,
+      3841.0,
+      3790.5,
+      4024.0
+     ],
+     "dE_from_E": 93.5,
+     "delta_E_field": 93.5,
+     "note": "reference 3-epoch protocol (transformers 5.16.1); restored 2026-09-09 after a transformers-4.57 reproducibility run temporarily overwrote this file (that run is preserved as verify_r6_s42_tf457.json)",
+     "epochs": 3,
+     "num_samples": 20,
+     "lr": null,
+     "opt": null,
+     "compute_dtype": null,
+     "warmup": null
+    },
+    "alternative": {
+     "file": "paper3/scripts/outputs/experiments/verify_r6_s42_tf457.json",
+     "name": "verify_r6_s42_tf457",
+     "rank": 6,
+     "seed": 42,
+     "E": [
+      3921.0,
+      3849.0,
+      3776.0,
+      4017.5
+     ],
+     "dE_from_E": 96.5,
+     "delta_E_field": 96.5,
+     "note": "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); delta_E +96.5 vs +93.5 reference (same sign and trajectory shape, 3% of the effect at baseline shift 0.24%)",
+     "epochs": 3,
+     "num_samples": 20,
+     "lr": 5e-05,
+     "opt": "adamw",
+     "compute_dtype": "float16",
+     "warmup": false
+    },
+    "E0_shift": -9.5,
+    "E0_shift_pct": -0.24169952932196923,
+    "dE_shift": 3.0,
+    "sign_preserved_at_this_rank": true
+   }
+  ],
+  "n_pairs": 2,
+  "summary": {
+   "dE_shift_min": 3.0,
+   "dE_shift_max": 18.0,
+   "E0_shift_pct_max": -0.24169952932196923,
+   "note": "net Delta-E moves by 18-19 units (about 0.5% of E0) when only the transformers version changes; that is large enough to flip the sign of a near-critical rank such as r=5, and small enough not to move r=6"
+  }
+ },
+ "duplicate_run_audit": {
+  "note": "two levels: (i) same (rank, seed) whatever the configuration and model family; (ii) same (rank, seed) AND identical protocol signature AND same model family -- the only level that isolates run-to-run variability",
+  "model_families_separated": [
+   "llava_sweep",
+   "llava_ers",
+   "qwen_counterfactual",
+   "other"
+  ],
+  "n_rank_seed_cells": 42,
+  "n_cells_measured_more_than_once": 10,
+  "cells_any_configuration": [
+   {
+    "rank": 4,
+    "seed": 42,
+    "n_measurements": 10,
+    "n_finite": 7,
+    "dE_values": [
+     -308.0,
+     210.0,
+     -308.0,
+     -79.0,
+     -85.5,
+     -19.5,
+     -109.5
+    ],
+    "dE_spread": 518.0,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_2b_uniform_rank4_seed42.json",
+     "qwen_cf_rank4_seed42.json",
+     "qwen_cf_uniform_rank4_seed42.json",
+     "verify_r4_s42.json",
+     "verify_r4_s42_b1_partial.json",
+     "verify_r4_s42_lr5e-05_nw_float1_adamw_e10_bcuniform.json",
+     "verify_r4_s42_lr5e-05_nw_float1_adamw_e10_bcuniform_cloud.json",
+     "verify_r4_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_proj.json",
+     "verify_r4_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_tnone_pr4.json",
+     "verify_r4_s42_lr5e-05_nw_float1_adamw_e3_bcuniformv1.json"
+    ]
+   },
+   {
+    "rank": 4,
+    "seed": 123,
+    "n_measurements": 5,
+    "n_finite": 3,
+    "dE_values": [
+     -56.0,
+     -143.5,
+     -107.5
+    ],
+    "dE_spread": 87.5,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_rank4_seed123.json",
+     "verify_r4_s123.json",
+     "verify_r4_s123_b1_partial.json",
+     "verify_r4_s123_lr5e-05_nw_float1_adamw_e10_bcuniform.json",
+     "verify_r4_s123_lr5e-05_nw_float1_adamw_e3_bcuniformv1.json"
+    ]
+   },
+   {
+    "rank": 4,
+    "seed": 456,
+    "n_measurements": 5,
+    "n_finite": 3,
+    "dE_values": [
+     310.0,
+     -96.0,
+     -70.0
+    ],
+    "dE_spread": 406.0,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_rank4_seed456.json",
+     "verify_r4_s456.json",
+     "verify_r4_s456_b1_partial.json",
+     "verify_r4_s456_lr5e-05_nw_float1_adamw_e10_bcuniform.json",
+     "verify_r4_s456_lr5e-05_nw_float1_adamw_e3_bcuniformv1.json"
+    ]
+   },
+   {
+    "rank": 5,
+    "seed": 42,
+    "n_measurements": 20,
+    "n_finite": 17,
+    "dE_values": [
+     -18.0,
+     -49.5,
+     677.0,
+     -6.0,
+     -25.0,
+     -83.5,
+     1621.0,
+     -73.5,
+     -49.5,
+     -76.5,
+     -3.5,
+     -34.5,
+     -15.0,
+     66.5,
+     83.0,
+     -10.5,
+     0.0
+    ],
+    "dE_spread": 1704.5,
+    "sign_flips": true,
+    "files": [
+     "verify_r5_s42.json",
+     "verify_r5_s42_b1_partial.json",
+     "verify_r5_s42_b2_partial.json",
+     "verify_r5_s42_e10.json",
+     "verify_r5_s42_lr0.001_nw_float1_sgd.json",
+     "verify_r5_s42_lr2e-05_nw.json",
+     "verify_r5_s42_lr5e-05_nw_bfloat_adamw.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_cap_e3.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e10_bcuniform.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a32.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_gmimage.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_gmtext.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_lang.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_tq.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_cap_e3.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_e3.json",
+     "verify_r5_s42_lr5e-05_nw_float1_sgd.json",
+     "verify_r5_s42_tf457.json"
+    ]
+   },
+   {
+    "rank": 6,
+    "seed": 42,
+    "n_measurements": 21,
+    "n_finite": 18,
+    "dE_values": [
+     93.5,
+     22.0,
+     317.0,
+     -3.0,
+     -4.5,
+     14.5,
+     1463.0,
+     36.0,
+     22.0,
+     20.0,
+     110.0,
+     -45.5,
+     -10.5,
+     -39.5,
+     -7.5,
+     -43.0,
+     -88.0,
+     96.5
+    ],
+    "dE_spread": 1551.0,
+    "sign_flips": true,
+    "files": [
+     "verify_r6_s42.json",
+     "verify_r6_s42_b1_partial.json",
+     "verify_r6_s42_b2_partial.json",
+     "verify_r6_s42_e10.json",
+     "verify_r6_s42_lr0.001_nw_float1_sgd.json",
+     "verify_r6_s42_lr2e-05_nw.json",
+     "verify_r6_s42_lr5e-05_nw_bfloat_adamw.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_cap_e3.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e10_bcuniform.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a32.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_gmimage.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_gmtext.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_lang.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_tq.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_imgs_cap_e3.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_imgs_e3.json",
+     "verify_r6_s42_lr5e-05_nw_float1_sgd.json",
+     "verify_r6_s42_lr5e-05_w.json",
+     "verify_r6_s42_tf457.json"
+    ]
+   },
+   {
+    "rank": 8,
+    "seed": 42,
+    "n_measurements": 23,
+    "n_finite": 23,
+    "dE_values": [
+     -310.0,
+     -302.0,
+     224.0,
+     -3776.0,
+     -672.0,
+     216.0,
+     -3968.0,
+     -3904.0,
+     -848.0,
+     -4288.0,
+     -736.0,
+     -384.0,
+     384.0,
+     -752.0,
+     232.0,
+     -3904.0,
+     -896.0,
+     -94.5,
+     -94.5,
+     248.0,
+     310.0,
+     227.0,
+     84.0
+    ],
+    "dE_spread": 4672.0,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_2b_theory_rank8_seed42.json",
+     "qwen_cf_2b_violation_rank8_seed42.json",
+     "qwen_cf_theory_rank8_seed42.json",
+     "qwen_cf_theory_rank8_seed42_blankimg_v3.json",
+     "qwen_cf_theory_rank8_seed42_v2.json",
+     "qwen_cf_uniform_rank8_seed42.json",
+     "qwen_cf_uniform_rank8_seed42_blankimg_v3.json",
+     "qwen_cf_uniform_rank8_seed42_pr16_lr2_blankimg_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed42_pr16_lr2_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed42_pr2_lr16_blankimg_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed42_pr2_lr16_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed42_tnone_pr4_blankimg_projonly.json",
+     "qwen_cf_uniform_rank8_seed42_tnone_pr4_projonly.json",
+     "qwen_cf_uniform_rank8_seed42_v2.json",
+     "qwen_cf_violation_rank8_seed42.json",
+     "qwen_cf_violation_rank8_seed42_blankimg_v3.json",
+     "qwen_cf_violation_rank8_seed42_v2.json",
+     "verify_r8_s42_b1_partial.json",
+     "verify_r8_s42_lr5e-05_nw_float1_adamw_e1_bcuniform.json",
+     "verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcdeepavoid.json",
+     "verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcexp.json",
+     "verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcexpnorm.json",
+     "verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcgreedy.json"
+    ]
+   },
+   {
+    "rank": 8,
+    "seed": 123,
+    "n_measurements": 19,
+    "n_finite": 19,
+    "dE_values": [
+     -70.0,
+     -3648.0,
+     -3872.0,
+     -64.0,
+     -3776.0,
+     -4672.0,
+     -4320.0,
+     -4096.0,
+     -4064.0,
+     -704.0,
+     128.0,
+     -4096.0,
+     -70.0,
+     -4032.0,
+     -4512.0,
+     268.0,
+     272.0,
+     283.5,
+     275.5
+    ],
+    "dE_spread": 4955.5,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_theory_rank8_seed123.json",
+     "qwen_cf_theory_rank8_seed123_blankimg_v3.json",
+     "qwen_cf_theory_rank8_seed123_v2.json",
+     "qwen_cf_uniform_rank8_seed123.json",
+     "qwen_cf_uniform_rank8_seed123_blankimg_v3.json",
+     "qwen_cf_uniform_rank8_seed123_pr16_lr2_blankimg_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed123_pr16_lr2_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed123_pr2_lr16_blankimg_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed123_pr2_lr16_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed123_tnone_pr4_blankimg_projonly.json",
+     "qwen_cf_uniform_rank8_seed123_tnone_pr4_projonly.json",
+     "qwen_cf_uniform_rank8_seed123_v2.json",
+     "qwen_cf_violation_rank8_seed123.json",
+     "qwen_cf_violation_rank8_seed123_blankimg_v3.json",
+     "qwen_cf_violation_rank8_seed123_v2.json",
+     "verify_r8_s123_lr5e-05_nw_float1_adamw_e3_bcdeepavoid.json",
+     "verify_r8_s123_lr5e-05_nw_float1_adamw_e3_bcexp.json",
+     "verify_r8_s123_lr5e-05_nw_float1_adamw_e3_bcexpnorm.json",
+     "verify_r8_s123_lr5e-05_nw_float1_adamw_e3_bcgreedy.json"
+    ]
+   },
+   {
+    "rank": 8,
+    "seed": 456,
+    "n_measurements": 17,
+    "n_finite": 17,
+    "dE_values": [
+     296.0,
+     -3776.0,
+     -2496.0,
+     306.0,
+     -3840.0,
+     -4544.0,
+     -2624.0,
+     -4352.0,
+     -1856.0,
+     -320.0,
+     64.0,
+     -2176.0,
+     304.0,
+     -4160.0,
+     -2496.0,
+     225.5,
+     229.5
+    ],
+    "dE_spread": 4850.0,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_theory_rank8_seed456.json",
+     "qwen_cf_theory_rank8_seed456_blankimg_v3.json",
+     "qwen_cf_theory_rank8_seed456_v2.json",
+     "qwen_cf_uniform_rank8_seed456.json",
+     "qwen_cf_uniform_rank8_seed456_blankimg_v3.json",
+     "qwen_cf_uniform_rank8_seed456_pr16_lr2_blankimg_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed456_pr16_lr2_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed456_pr2_lr16_blankimg_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed456_pr2_lr16_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed456_tnone_pr4_blankimg_projonly.json",
+     "qwen_cf_uniform_rank8_seed456_tnone_pr4_projonly.json",
+     "qwen_cf_uniform_rank8_seed456_v2.json",
+     "qwen_cf_violation_rank8_seed456.json",
+     "qwen_cf_violation_rank8_seed456_blankimg_v3.json",
+     "qwen_cf_violation_rank8_seed456_v2.json",
+     "verify_r8_s456_lr5e-05_nw_float1_adamw_e3_bcexp.json",
+     "verify_r8_s456_lr5e-05_nw_float1_adamw_e3_bcgreedy.json"
+    ]
+   },
+   {
+    "rank": 8,
+    "seed": 999,
+    "n_measurements": 6,
+    "n_finite": 6,
+    "dE_values": [
+     -4544.0,
+     -1568.0,
+     -3584.0,
+     -1184.0,
+     -320.0,
+     96.0
+    ],
+    "dE_spread": 4640.0,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_uniform_rank8_seed999_pr16_lr2_blankimg_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed999_pr16_lr2_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed999_pr2_lr16_blankimg_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed999_pr2_lr16_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed999_tnone_pr4_blankimg_projonly.json",
+     "qwen_cf_uniform_rank8_seed999_tnone_pr4_projonly.json"
+    ]
+   },
+   {
+    "rank": 16,
+    "seed": 42,
+    "n_measurements": 2,
+    "n_finite": 2,
+    "dE_values": [
+     248.0,
+     1700.0
+    ],
+    "dE_spread": 1452.0,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_rank16_seed42.json",
+     "verify_r16_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_pr2.json"
+    ]
+   }
+  ],
+  "n_cells_with_sign_flip_any_config": 8,
+  "n_identical_protocol_groups": 25,
+  "cells_identical_protocol": [
+   {
+    "model_family": "llava_sweep",
+    "rank": 4,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     -79.0,
+     -85.5
+    ],
+    "dE_spread": 6.5,
+    "dE_mean": -82.25,
+    "dE_sd": 4.596194077712559,
+    "sign_flips": false,
+    "files": [
+     "verify_r4_s42.json",
+     "verify_r4_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_proj.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 5,
+    "seed": 42,
+    "n_identical_protocol_runs": 5,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     -83.5,
+     -34.5,
+     66.5,
+     83.0,
+     0.0
+    ],
+    "dE_spread": 166.5,
+    "dE_mean": 6.3,
+    "dE_sd": 69.41775709427668,
+    "sign_flips": true,
+    "files": [
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_cap_e3.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_lang.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_cap_e3.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_e3.json",
+     "verify_r5_s42_tf457.json"
+    ],
+    "notes": [
+     "",
+     "",
+     "",
+     "",
+     "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); identical trajectory shape (down-down-up), net delta_E 0.0 vs -18.0 reference (0.5% of E0)"
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 5,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20",
+     "batch_size": "2",
+     "data_offset": "0",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"qkvo\"",
+     "grad_mask": "\"none\"",
+     "lang_only": "false",
+     "lora_alpha": "10"
+    },
+    "dE_values": [
+     -73.5,
+     -49.5
+    ],
+    "dE_spread": 24.0,
+    "dE_mean": -61.5,
+    "dE_sd": 16.97056274847714,
+    "sign_flips": false,
+    "files": [
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 6,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "1",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     -3.0,
+     -88.0
+    ],
+    "dE_spread": 85.0,
+    "dE_mean": -45.5,
+    "dE_sd": 60.10407640085654,
+    "sign_flips": false,
+    "files": [
+     "verify_r6_s42_lr2e-05_nw.json",
+     "verify_r6_s42_lr5e-05_w.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 6,
+    "seed": 42,
+    "n_identical_protocol_runs": 5,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     14.5,
+     -45.5,
+     -39.5,
+     -7.5,
+     96.5
+    ],
+    "dE_spread": 142.0,
+    "dE_mean": 3.7,
+    "dE_sd": 57.31666424348158,
+    "sign_flips": true,
+    "files": [
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_cap_e3.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_lang.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_imgs_cap_e3.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_imgs_e3.json",
+     "verify_r6_s42_tf457.json"
+    ],
+    "notes": [
+     "",
+     "",
+     "",
+     "",
+     "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); delta_E +96.5 vs +93.5 reference (same sign and trajectory shape, 3% of the effect at baseline shift 0.24%)"
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 6,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20",
+     "batch_size": "2",
+     "data_offset": "0",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"qkvo\"",
+     "grad_mask": "\"none\"",
+     "lang_only": "false",
+     "lora_alpha": "12"
+    },
+    "dE_values": [
+     36.0,
+     22.0
+    ],
+    "dE_spread": 14.0,
+    "dE_mean": 29.0,
+    "dE_sd": 9.899494936611665,
+    "sign_flips": false,
+    "files": [
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 8,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     310.0,
+     84.0
+    ],
+    "dE_spread": 226.0,
+    "dE_mean": 197.0,
+    "dE_sd": 159.80613254815975,
+    "sign_flips": false,
+    "files": [
+     "verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcexp.json",
+     "verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcgreedy.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 4,
+    "seed": 42,
+    "n_identical_protocol_runs": 3,
+    "config": {
+     "epochs": "3"
+    },
+    "dE_values": [
+     -308.0,
+     210.0,
+     -308.0
+    ],
+    "dE_spread": 518.0,
+    "dE_mean": -135.33333333333334,
+    "dE_sd": 299.06743944022617,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_2b_uniform_rank4_seed42.json",
+     "qwen_cf_rank4_seed42.json",
+     "qwen_cf_uniform_rank4_seed42.json"
+    ],
+    "notes": [
+     "",
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 42,
+    "n_identical_protocol_runs": 5,
+    "config": {
+     "epochs": "3"
+    },
+    "dE_values": [
+     -310.0,
+     -302.0,
+     224.0,
+     216.0,
+     232.0
+    ],
+    "dE_spread": 542.0,
+    "dE_mean": 12.0,
+    "dE_sd": 290.3618432232445,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_2b_theory_rank8_seed42.json",
+     "qwen_cf_2b_violation_rank8_seed42.json",
+     "qwen_cf_theory_rank8_seed42.json",
+     "qwen_cf_uniform_rank8_seed42.json",
+     "qwen_cf_violation_rank8_seed42.json"
+    ],
+    "notes": [
+     "",
+     "",
+     "",
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"theory\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -3776.0,
+     -672.0
+    ],
+    "dE_spread": 3104.0,
+    "dE_mean": -2224.0,
+    "dE_sd": 2194.8594488030435,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_theory_rank8_seed42_blankimg_v3.json",
+     "qwen_cf_theory_rank8_seed42_v2.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"none\""
+    },
+    "dE_values": [
+     -384.0,
+     384.0
+    ],
+    "dE_spread": 768.0,
+    "dE_mean": 0.0,
+    "dE_sd": 543.0580079512685,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_uniform_rank8_seed42_tnone_pr4_blankimg_projonly.json",
+     "qwen_cf_uniform_rank8_seed42_tnone_pr4_projonly.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 42,
+    "n_identical_protocol_runs": 6,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -3968.0,
+     -3904.0,
+     -848.0,
+     -4288.0,
+     -736.0,
+     -752.0
+    ],
+    "dE_spread": 3552.0,
+    "dE_mean": -2416.0,
+    "dE_sd": 1798.7302187932464,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_uniform_rank8_seed42_blankimg_v3.json",
+     "qwen_cf_uniform_rank8_seed42_pr16_lr2_blankimg_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed42_pr16_lr2_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed42_pr2_lr16_blankimg_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed42_pr2_lr16_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed42_v2.json"
+    ],
+    "notes": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"violation\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -3904.0,
+     -896.0
+    ],
+    "dE_spread": 3008.0,
+    "dE_mean": -2400.0,
+    "dE_sd": 2126.977197809135,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_violation_rank8_seed42_blankimg_v3.json",
+     "qwen_cf_violation_rank8_seed42_v2.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 123,
+    "n_identical_protocol_runs": 3,
+    "config": {
+     "epochs": "3"
+    },
+    "dE_values": [
+     -70.0,
+     -64.0,
+     -70.0
+    ],
+    "dE_spread": 6.0,
+    "dE_mean": -68.0,
+    "dE_sd": 3.4641016151377544,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_theory_rank8_seed123.json",
+     "qwen_cf_uniform_rank8_seed123.json",
+     "qwen_cf_violation_rank8_seed123.json"
+    ],
+    "notes": [
+     "",
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 123,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"theory\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -3648.0,
+     -3872.0
+    ],
+    "dE_spread": 224.0,
+    "dE_mean": -3760.0,
+    "dE_sd": 158.39191898578665,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_theory_rank8_seed123_blankimg_v3.json",
+     "qwen_cf_theory_rank8_seed123_v2.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 123,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"none\""
+    },
+    "dE_values": [
+     -704.0,
+     128.0
+    ],
+    "dE_spread": 832.0,
+    "dE_mean": -288.0,
+    "dE_sd": 588.3128419472075,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_uniform_rank8_seed123_tnone_pr4_blankimg_projonly.json",
+     "qwen_cf_uniform_rank8_seed123_tnone_pr4_projonly.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 123,
+    "n_identical_protocol_runs": 6,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -3776.0,
+     -4672.0,
+     -4320.0,
+     -4096.0,
+     -4064.0,
+     -4096.0
+    ],
+    "dE_spread": 896.0,
+    "dE_mean": -4170.666666666667,
+    "dE_sd": 300.64109277786145,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_uniform_rank8_seed123_blankimg_v3.json",
+     "qwen_cf_uniform_rank8_seed123_pr16_lr2_blankimg_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed123_pr16_lr2_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed123_pr2_lr16_blankimg_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed123_pr2_lr16_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed123_v2.json"
+    ],
+    "notes": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 123,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"violation\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -4032.0,
+     -4512.0
+    ],
+    "dE_spread": 480.0,
+    "dE_mean": -4272.0,
+    "dE_sd": 339.4112549695428,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_violation_rank8_seed123_blankimg_v3.json",
+     "qwen_cf_violation_rank8_seed123_v2.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 456,
+    "n_identical_protocol_runs": 3,
+    "config": {
+     "epochs": "3"
+    },
+    "dE_values": [
+     296.0,
+     306.0,
+     304.0
+    ],
+    "dE_spread": 10.0,
+    "dE_mean": 302.0,
+    "dE_sd": 5.291502622129181,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_theory_rank8_seed456.json",
+     "qwen_cf_uniform_rank8_seed456.json",
+     "qwen_cf_violation_rank8_seed456.json"
+    ],
+    "notes": [
+     "",
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 456,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"theory\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -3776.0,
+     -2496.0
+    ],
+    "dE_spread": 1280.0,
+    "dE_mean": -3136.0,
+    "dE_sd": 905.0966799187809,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_theory_rank8_seed456_blankimg_v3.json",
+     "qwen_cf_theory_rank8_seed456_v2.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 456,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"none\""
+    },
+    "dE_values": [
+     -320.0,
+     64.0
+    ],
+    "dE_spread": 384.0,
+    "dE_mean": -128.0,
+    "dE_sd": 271.5290039756342,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_uniform_rank8_seed456_tnone_pr4_blankimg_projonly.json",
+     "qwen_cf_uniform_rank8_seed456_tnone_pr4_projonly.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 456,
+    "n_identical_protocol_runs": 6,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -3840.0,
+     -4544.0,
+     -2624.0,
+     -4352.0,
+     -1856.0,
+     -2176.0
+    ],
+    "dE_spread": 2688.0,
+    "dE_mean": -3232.0,
+    "dE_sd": 1159.6192478568128,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_uniform_rank8_seed456_blankimg_v3.json",
+     "qwen_cf_uniform_rank8_seed456_pr16_lr2_blankimg_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed456_pr16_lr2_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed456_pr2_lr16_blankimg_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed456_pr2_lr16_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed456_v2.json"
+    ],
+    "notes": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 456,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"violation\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -4160.0,
+     -2496.0
+    ],
+    "dE_spread": 1664.0,
+    "dE_mean": -3328.0,
+    "dE_sd": 1176.625683894415,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_violation_rank8_seed456_blankimg_v3.json",
+     "qwen_cf_violation_rank8_seed456_v2.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 999,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"none\""
+    },
+    "dE_values": [
+     -320.0,
+     96.0
+    ],
+    "dE_spread": 416.0,
+    "dE_mean": -112.0,
+    "dE_sd": 294.15642097360376,
+    "sign_flips": true,
+    "files": [
+     "qwen_cf_uniform_rank8_seed999_tnone_pr4_blankimg_projonly.json",
+     "qwen_cf_uniform_rank8_seed999_tnone_pr4_projonly.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "qwen_counterfactual",
+    "rank": 8,
+    "seed": 999,
+    "n_identical_protocol_runs": 4,
+    "config": {
+     "epochs": "3",
+     "batch_size": "1",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"qkvo\""
+    },
+    "dE_values": [
+     -4544.0,
+     -1568.0,
+     -3584.0,
+     -1184.0
+    ],
+    "dE_spread": 3360.0,
+    "dE_mean": -2720.0,
+    "dE_sd": 1608.29847976052,
+    "sign_flips": false,
+    "files": [
+     "qwen_cf_uniform_rank8_seed999_pr16_lr2_blankimg_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed999_pr16_lr2_projhi16_llmlo2.json",
+     "qwen_cf_uniform_rank8_seed999_pr2_lr16_blankimg_projlo2_llmhi16.json",
+     "qwen_cf_uniform_rank8_seed999_pr2_lr16_projlo2_llmhi16.json"
+    ],
+    "notes": [
+     "",
+     "",
+     "",
+     ""
+    ]
+   }
+  ],
+  "n_cells_identical_protocol_with_sign_flip": 8,
+  "llava_sweep_identical_protocol": [
+   {
+    "model_family": "llava_sweep",
+    "rank": 4,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     -79.0,
+     -85.5
+    ],
+    "dE_spread": 6.5,
+    "dE_mean": -82.25,
+    "dE_sd": 4.596194077712559,
+    "sign_flips": false,
+    "files": [
+     "verify_r4_s42.json",
+     "verify_r4_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_proj.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 5,
+    "seed": 42,
+    "n_identical_protocol_runs": 5,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     -83.5,
+     -34.5,
+     66.5,
+     83.0,
+     0.0
+    ],
+    "dE_spread": 166.5,
+    "dE_mean": 6.3,
+    "dE_sd": 69.41775709427668,
+    "sign_flips": true,
+    "files": [
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_cap_e3.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_lang.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_cap_e3.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_e3.json",
+     "verify_r5_s42_tf457.json"
+    ],
+    "notes": [
+     "",
+     "",
+     "",
+     "",
+     "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); identical trajectory shape (down-down-up), net delta_E 0.0 vs -18.0 reference (0.5% of E0)"
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 5,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20",
+     "batch_size": "2",
+     "data_offset": "0",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"qkvo\"",
+     "grad_mask": "\"none\"",
+     "lang_only": "false",
+     "lora_alpha": "10"
+    },
+    "dE_values": [
+     -73.5,
+     -49.5
+    ],
+    "dE_spread": 24.0,
+    "dE_mean": -61.5,
+    "dE_sd": 16.97056274847714,
+    "sign_flips": false,
+    "files": [
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+     "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 6,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "1",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     -3.0,
+     -88.0
+    ],
+    "dE_spread": 85.0,
+    "dE_mean": -45.5,
+    "dE_sd": 60.10407640085654,
+    "sign_flips": false,
+    "files": [
+     "verify_r6_s42_lr2e-05_nw.json",
+     "verify_r6_s42_lr5e-05_w.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 6,
+    "seed": 42,
+    "n_identical_protocol_runs": 5,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     14.5,
+     -45.5,
+     -39.5,
+     -7.5,
+     96.5
+    ],
+    "dE_spread": 142.0,
+    "dE_mean": 3.7,
+    "dE_sd": 57.31666424348158,
+    "sign_flips": true,
+    "files": [
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_cap_e3.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_lang.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_imgs_cap_e3.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_imgs_e3.json",
+     "verify_r6_s42_tf457.json"
+    ],
+    "notes": [
+     "",
+     "",
+     "",
+     "",
+     "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); delta_E +96.5 vs +93.5 reference (same sign and trajectory shape, 3% of the effect at baseline shift 0.24%)"
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 6,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20",
+     "batch_size": "2",
+     "data_offset": "0",
+     "block_config": "\"uniform\"",
+     "attn_targets": "\"qkvo\"",
+     "grad_mask": "\"none\"",
+     "lang_only": "false",
+     "lora_alpha": "12"
+    },
+    "dE_values": [
+     36.0,
+     22.0
+    ],
+    "dE_spread": 14.0,
+    "dE_mean": 29.0,
+    "dE_sd": 9.899494936611665,
+    "sign_flips": false,
+    "files": [
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+     "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   },
+   {
+    "model_family": "llava_sweep",
+    "rank": 8,
+    "seed": 42,
+    "n_identical_protocol_runs": 2,
+    "config": {
+     "epochs": "3",
+     "lr": "5e-05",
+     "opt": "\"adamw\"",
+     "compute_dtype": "\"float16\"",
+     "num_samples": "20"
+    },
+    "dE_values": [
+     310.0,
+     84.0
+    ],
+    "dE_spread": 226.0,
+    "dE_mean": 197.0,
+    "dE_sd": 159.80613254815975,
+    "sign_flips": false,
+    "files": [
+     "verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcexp.json",
+     "verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcgreedy.json"
+    ],
+    "notes": [
+     "",
+     ""
+    ]
+   }
+  ],
+  "declared_technical_replicates": [
+   {
+    "label": "LLaVA r=5 s=42, batch_size=2, local vs cloud A800",
+    "varying": "hardware (RTX 4060 laptop vs cloud A800)",
+    "dE_values": [
+     -73.5,
+     -49.5
+    ],
+    "spread": 24.0,
+    "sd": 16.97056274847714,
+    "sign_agreement": true,
+    "runs": [
+     {
+      "file": "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+      "dE": -73.5,
+      "E": [
+       3921.0,
+       3838.0,
+       3757.5,
+       3847.5
+      ],
+      "note": ""
+     },
+     {
+      "file": "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json",
+      "dE": -49.5,
+      "E": [
+       3926.0,
+       3847.5,
+       3789.0,
+       3876.5
+      ],
+      "note": ""
+     }
+    ]
+   },
+   {
+    "label": "LLaVA r=6 s=42, batch_size=2, local vs cloud A800",
+    "varying": "hardware (RTX 4060 laptop vs cloud A800)",
+    "dE_values": [
+     36.0,
+     22.0
+    ],
+    "spread": 14.0,
+    "sd": 9.899494936611665,
+    "sign_agreement": true,
+    "runs": [
+     {
+      "file": "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+      "dE": 36.0,
+      "E": [
+       3921.0,
+       3837.5,
+       3763.5,
+       3957.0
+      ],
+      "note": ""
+     },
+     {
+      "file": "verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json",
+      "dE": 22.0,
+      "E": [
+       3926.0,
+       3839.0,
+       3822.0,
+       3948.0
+      ],
+      "note": ""
+     }
+    ]
+   },
+   {
+    "label": "LLaVA r=5 s=42, reference vs transformers 4.57.0",
+    "varying": "transformers version (5.16.1 vs 4.57.0)",
+    "dE_values": [
+     -18.0,
+     0.0
+    ],
+    "spread": 18.0,
+    "sd": 12.727922061357855,
+    "sign_agreement": false,
+    "runs": [
+     {
+      "file": "verify_r5_s42.json",
+      "dE": -18.0,
+      "E": [
+       3930.5,
+       3836.0,
+       3778.5,
+       3912.5
+      ],
+      "note": "reference 3-epoch protocol (transformers 5.16.1); restored 2026-09-09 after a transformers-4.57 reproducibility run temporarily overwrote this file (that run is preserved as verify_r5_s42_tf457.json)"
+     },
+     {
+      "file": "verify_r5_s42_tf457.json",
+      "dE": 0.0,
+      "E": [
+       3921.0,
+       3860.5,
+       3787.5,
+       3921.0
+      ],
+      "note": "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); identical trajectory shape (down-down-up), net delta_E 0.0 vs -18.0 reference (0.5% of E0)"
+     }
+    ]
+   },
+   {
+    "label": "LLaVA r=6 s=42, reference vs transformers 4.57.0",
+    "varying": "transformers version (5.16.1 vs 4.57.0)",
+    "dE_values": [
+     93.5,
+     96.5
+    ],
+    "spread": 3.0,
+    "sd": 2.1213203435596424,
+    "sign_agreement": true,
+    "runs": [
+     {
+      "file": "verify_r6_s42.json",
+      "dE": 93.5,
+      "E": [
+       3930.5,
+       3841.0,
+       3790.5,
+       4024.0
+      ],
+      "note": "reference 3-epoch protocol (transformers 5.16.1); restored 2026-09-09 after a transformers-4.57 reproducibility run temporarily overwrote this file (that run is preserved as verify_r6_s42_tf457.json)"
+     },
+     {
+      "file": "verify_r6_s42_tf457.json",
+      "dE": 96.5,
+      "E": [
+       3921.0,
+       3849.0,
+       3776.0,
+       4017.5
+      ],
+      "note": "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); delta_E +96.5 vs +93.5 reference (same sign and trajectory shape, 3% of the effect at baseline shift 0.24%)"
+     }
+    ]
+   },
+   {
+    "label": "LLaVA r=4 s=42, reference vs proj-target rerun",
+    "varying": "same declared protocol (target-module bookkeeping)",
+    "dE_values": [
+     -79.0,
+     -85.5
+    ],
+    "spread": 6.5,
+    "sd": 4.596194077712559,
+    "sign_agreement": true,
+    "runs": [
+     {
+      "file": "verify_r4_s42.json",
+      "dE": -79.0,
+      "E": [
+       3921.0,
+       3880.5,
+       3782.5,
+       3842.0
+      ],
+      "note": ""
+     },
+     {
+      "file": "verify_r4_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_proj.json",
+      "dE": -85.5,
+      "E": [
+       3921.0,
+       3877.5,
+       3786.5,
+       3835.5
+      ],
+      "note": ""
+     }
+    ]
+   }
+  ]
+ },
+ "batch_effect": {
+  "batches": {
+   "E2": {
+    "n_runs": 12,
+    "E0_values": [
+     3930.5
+    ],
+    "per_rank_dE": {
+     "4": [
+      -114.5,
+      -125.0,
+      -76.0
+     ],
+     "16": [
+      1664.5,
+      1506.5,
+      1543.5
+     ]
+    }
+   },
+   "extra": {
+    "n_runs": 15,
+    "E0_values": [
+     3927.0,
+     3930.5
+    ],
+    "per_rank_dE": {
+     "5": [
+      -24.0,
+      -51.5,
+      12.5
+     ],
+     "6": [
+      30.5,
+      121.5,
+      35.0
+     ],
+     "7": [
+      204.0,
+      133.0,
+      237.5
+     ],
+     "8": [
+      253.0,
+      309.0,
+      372.0
+     ]
+    }
+   },
+   "sweep": {
+    "n_runs": 45,
+    "E0_values": [
+     3927.0
+    ],
+    "per_rank_dE": {
+     "4": [
+      -23.5,
+      -27.0,
+      -40.0
+     ],
+     "5": [
+      -49.5,
+      -41.0,
+      -55.5
+     ],
+     "6": [
+      -54.5,
+      -58.0,
+      -51.0
+     ],
+     "7": [
+      -58.0,
+      -63.0,
+      -61.5
+     ],
+     "8": [
+      -78.0,
+      -71.5,
+      -65.5
+     ],
+     "10": [
+      -79.5,
+      -84.5,
+      -89.5
+     ],
+     "12": [
+      -102.5,
+      -97.5,
+      -97.0
+     ],
+     "14": [
+      -103.0,
+      -110.0,
+      -105.0
+     ],
+     "16": [
+      -117.0,
+      1537.0,
+      1432.0
+     ],
+     "20": [
+      2658.0,
+      3187.0,
+      2734.0
+     ]
+    }
+   }
+  },
+  "shared_rank_comparison": [
+   {
+    "rank": 5,
+    "extra_mean": -21.0,
+    "sweep_mean": -48.666666666666664,
+    "difference": 27.666666666666664,
+    "sign_agreement": true
+   },
+   {
+    "rank": 6,
+    "extra_mean": 62.333333333333336,
+    "sweep_mean": -54.5,
+    "difference": 116.83333333333334,
+    "sign_agreement": false
+   },
+   {
+    "rank": 7,
+    "extra_mean": 191.5,
+    "sweep_mean": -60.833333333333336,
+    "difference": 252.33333333333334,
+    "sign_agreement": false
+   },
+   {
+    "rank": 8,
+    "extra_mean": 311.3333333333333,
+    "sweep_mean": -71.66666666666667,
+    "difference": 383.0,
+    "sign_agreement": false
+   }
+  ],
+  "n_shared_ranks": 4,
+  "n_shared_ranks_sign_disagree": 3,
+  "ranks_sign_disagree": [
+   6,
+   7,
+   8
+  ],
+  "ranks_sign_agree": [
+   5
+  ]
+ },
+ "pipeline_determinism_static": {
+  "scanned_p3_scripts": 10,
+  "per_script_pattern_hits": [
+   {
+    "script": "paper3\\scripts\\compute_gamma_llava.py",
+    "hits": {
+     "torch_manual_seed": 1
+    }
+   },
+   {
+    "script": "paper3\\scripts\\prepare_dataset.py",
+    "hits": {
+     "blank_image": 3
+    }
+   },
+   {
+    "script": "paper3\\scripts\\run_e4_counterfactual.py",
+    "hits": {
+     "python_random_seed": 1
+    }
+   },
+   {
+    "script": "paper3\\scripts\\run_training.py",
+    "hits": {
+     "Image_open": 1,
+     "iloc_slice_selection": 1,
+     "shuffle_true": 1,
+     "torch_manual_seed": 1,
+     "numpy_seed": 1,
+     "blank_image": 4,
+     "data_offset": 7
+    }
+   },
+   {
+    "script": "paper3\\scripts\\run_training_qwen.py",
+    "hits": {
+     "shuffle_true": 1,
+     "torch_manual_seed": 1,
+     "numpy_seed": 1,
+     "blank_image": 9
+    }
+   }
+  ],
+  "n_scripts_with_create_dataloaders": 0,
+  "n_scripts_with_random_split": 0,
+  "n_scripts_with_RandomHorizontalFlip": 0,
+  "n_scripts_with_ColorJitter": 0,
+  "n_scripts_with_shuffle_true": 2,
+  "n_scripts_with_torch_seed": 3,
+  "verdict": "P3's training entry point selects samples by row offset (df.iloc[offset:offset+n]) and feeds blank images, so it does NOT inherit the sister project's random_split/random-transform gallery sampling defect; the residual randomness is DataLoader shuffle, seeded by torch.manual_seed(seed)"
+ },
+ "current_environment_fingerprint": {
+  "python": "3.14.6 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:29:05) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "machine": "AMD64",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "packages": {
+   "torch": "NOT INSTALLED (ModuleNotFoundError)",
+   "transformers": "NOT INSTALLED (ModuleNotFoundError)",
+   "peft": "NOT INSTALLED (ModuleNotFoundError)",
+   "bitsandbytes": "NOT INSTALLED (ModuleNotFoundError)",
+   "accelerate": "NOT INSTALLED (ModuleNotFoundError)",
+   "numpy": "2.4.6",
+   "scipy": "1.18.0"
+  },
+  "gpu": {
+   "error": "No module named 'torch'"
+  },
+  "explicit_warning": "THIS IS THE *CURRENT* HOST ENVIRONMENT. It is NOT the environment that produced the archived P3 runs and must never be reported as such.",
+  "note_on_two_pythons": "statistics scripts use the system interpreter (no torch); the P3 training/probe scripts use a conda env -- both are fingerprinted below",
+  "gpu_env_candidates": [
+   {
+    "python_exe": "D:\\Anaconda\\envs\\pytorch\\python.exe",
+    "python": "3.12.14",
+    "torch": "2.9.1+cu130",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.14.0",
+    "cuda": "13.0",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+   }
+  ]
+ }
+}

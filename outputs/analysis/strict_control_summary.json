@@ -1,0 +1,75 @@
+{
+  "frozen": {
+    "vis_L0": 9.398690223693848,
+    "vis_mean": 12.064260641733805,
+    "vision_nonzero_tensors": 0,
+    "tensors": 199
+  },
+  "configs": {
+    "text_only": {
+      "n_seeds": 5,
+      "n_trainable_params": 196608,
+      "cg_initial_mean": 0.8185187458992005,
+      "cg_final_mean": 0.7720138311386109,
+      "cg_delta_mean": -0.0465049147605896,
+      "cg_delta_std": 0.0026959439833470354,
+      "r1_mean": 0.6238000094890594,
+      "r1_std": 0.00491528182339471,
+      "vision_nonzero_tensors": [
+        0
+      ],
+      "vision_tensors": 199,
+      "vision_rank_delta_mean": 0.0,
+      "text_rank_delta_mean": 0.4611843327681221
+    },
+    "both": {
+      "n_seeds": 5,
+      "n_trainable_params": 491520,
+      "cg_initial_mean": 0.8184869885444641,
+      "cg_final_mean": 0.79266197681427,
+      "cg_delta_mean": -0.02582501173019409,
+      "cg_delta_std": 0.0031271167254339443,
+      "r1_mean": 0.6931999981403351,
+      "r1_std": 0.01309045702475607,
+      "vision_nonzero_tensors": [
+        0
+      ],
+      "vision_tensors": 199,
+      "vision_rank_delta_mean": -0.04213943481445277,
+      "text_rank_delta_mean": 0.3672326564788815
+    },
+    "vision_only": {
+      "n_seeds": 5,
+      "n_trainable_params": 294912,
+      "cg_initial_mean": 0.8187412261962891,
+      "cg_final_mean": 0.829313600063324,
+      "cg_delta_mean": 0.010572373867034912,
+      "cg_delta_std": 0.003912680574996461,
+      "r1_mean": 0.6799999952316285,
+      "r1_std": 0.01048808473087031,
+      "vision_nonzero_tensors": [
+        0
+      ],
+      "vision_tensors": 199,
+      "vision_rank_delta_mean": -0.058771816889445105,
+      "text_rank_delta_mean": 0.0
+    }
+  },
+  "legacy": {
+    "legacy text-only (single)": {
+      "n_trainable_params": 145170177,
+      "cg_delta": -0.06354433298110962,
+      "r1": 0.6270000040531158
+    },
+    "legacy both (single)": {
+      "n_trainable_params": 131290881,
+      "cg_delta": -0.0323871374130249,
+      "r1": 0.699999988079071
+    },
+    "legacy full FT (single)": {
+      "n_trainable_params": 151277313,
+      "cg_delta": 0.19938045740127563,
+      "r1": 0.5269999802112579
+    }
+  }
+}

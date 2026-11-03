@@ -1,0 +1,93 @@
+{
+ "sections": {
+  "appendix": {
+   "chars": 8520,
+   "words": 637,
+   "tables": 2,
+   "figures": 0,
+   "equations": 1
+  },
+  "conclusion": {
+   "chars": 2700,
+   "words": 285,
+   "tables": 0,
+   "figures": 0,
+   "equations": 0
+  },
+  "discussion": {
+   "chars": 5021,
+   "words": 551,
+   "tables": 0,
+   "figures": 0,
+   "equations": 0
+  },
+  "experiments": {
+   "chars": 35068,
+   "words": 89,
+   "tables": 4,
+   "figures": 3,
+   "equations": 0
+  },
+  "introduction": {
+   "chars": 4706,
+   "words": 462,
+   "tables": 0,
+   "figures": 0,
+   "equations": 0
+  },
+  "related_work": {
+   "chars": 3387,
+   "words": 349,
+   "tables": 0,
+   "figures": 0,
+   "equations": 0
+  },
+  "theory": {
+   "chars": 17737,
+   "words": 1495,
+   "tables": 0,
+   "figures": 0,
+   "equations": 5
+  }
+ },
+ "total_chars": 77139,
+ "total_words": 3868,
+ "pages_now": 14,
+ "plan": [
+  {
+   "section": "appendix",
+   "action": "整节移入 Supplementary（理论推导细节、误差界、逐块 Γ 计算）",
+   "why": "Guide 鼓励补充材料；审稿人点名要的多是**结论与表**，推导可外置"
+  },
+  {
+   "section": "experiments",
+   "action": "保留主表与结论；把**逐 run 表、分辨率曲线、E0 预算曲线、功效算式**移出",
+   "why": "R3.12 要的逐块 Γ/rank 表可在正文保留精简版，完整版进补充"
+  },
+  {
+   "section": "theory",
+   "action": "保留定理与 Corollary 陈述；**证明移入补充**",
+   "why": "R1.5/R3.3 关心的是**证明是否成立**，可在正文给关键 Lemma，完整证明进补充"
+  },
+  {
+   "section": "related_work",
+   "action": "压缩为 1 段 + 与先前工作的差异",
+   "why": "R2.2 要求的是**明确差异**，不需要长综述"
+  },
+  {
+   "section": "introduction",
+   "action": "压缩贡献列表；去掉重复的动机段",
+   "why": "标准压缩"
+  },
+  {
+   "section": "discussion",
+   "action": "合并 limitation 条目；把 12 条限制编成表",
+   "why": "表格化最省版面"
+  },
+  {
+   "section": "conclusion",
+   "action": "压缩至 1 段",
+   "why": "标准压缩"
+  }
+ ]
+}

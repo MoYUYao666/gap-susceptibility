@@ -1,0 +1,810 @@
+{
+ "meta": {
+  "script": "tools/_p44b_p3_multiseed_family.py",
+  "task": "task-11 (P3 R3.17 / R3.19 -- the 10-seed replication family)",
+  "family_definition": "paper3/scripts/outputs/experiments/verify_r{N}_s{M}.json matching ^verify_r\\d+_s\\d+\\.json$ with epochs == 3 (untagged reference protocol)",
+  "independent_check_of": "tools/ap3_phase_stats_recompute.py family B",
+  "bootstrap": {
+   "n": 20000,
+   "rng_seed": 20261012
+  },
+  "dE_convention": "dE = E[-1] - E[0]"
+ },
+ "family": {
+  "n_files": 23,
+  "ranks": {
+   "4": {
+    "n_seeds": 3,
+    "seeds": [
+     42,
+     123,
+     456
+    ],
+    "E0_values": [
+     3921.0
+    ],
+    "files": [
+     "paper3/scripts/outputs/experiments/verify_r4_s42.json",
+     "paper3/scripts/outputs/experiments/verify_r4_s123.json",
+     "paper3/scripts/outputs/experiments/verify_r4_s456.json"
+    ]
+   },
+   "5": {
+    "n_seeds": 10,
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     47,
+     57,
+     67,
+     123,
+     999
+    ],
+    "E0_values": [
+     3921.0,
+     3930.5
+    ],
+    "files": [
+     "paper3/scripts/outputs/experiments/verify_r5_s7.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s17.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s27.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s37.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s42.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s47.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s57.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s67.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s123.json",
+     "paper3/scripts/outputs/experiments/verify_r5_s999.json"
+    ]
+   },
+   "6": {
+    "n_seeds": 10,
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     47,
+     57,
+     67,
+     123,
+     999
+    ],
+    "E0_values": [
+     3921.0,
+     3930.5
+    ],
+    "files": [
+     "paper3/scripts/outputs/experiments/verify_r6_s7.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s17.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s27.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s37.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s42.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s47.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s57.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s67.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s123.json",
+     "paper3/scripts/outputs/experiments/verify_r6_s999.json"
+    ]
+   }
+  },
+  "E0_clusters": {
+   "4@3921.0": [
+    123,
+    42,
+    456
+   ],
+   "5@3921.0": [
+    17,
+    27,
+    37,
+    47,
+    57,
+    67,
+    7
+   ],
+   "5@3930.5": [
+    123,
+    42,
+    999
+   ],
+   "6@3921.0": [
+    17,
+    27,
+    37,
+    47,
+    57,
+    67,
+    7
+   ],
+   "6@3930.5": [
+    123,
+    42,
+    999
+   ]
+  },
+  "E0_homogeneous_per_rank": {
+   "4": true,
+   "5": false,
+   "6": false
+  }
+ },
+ "statistics": {
+  "r4": {
+   "label": "verify_r4_s{M} untagged reference protocol",
+   "n": 3,
+   "values": [
+    -79.0,
+    -143.5,
+    -96.0
+   ],
+   "mean": -106.16666666666667,
+   "sd_sample": 33.43027569933179,
+   "sd_population": 27.29570580797565,
+   "median": -96.0,
+   "mad": 17.0,
+   "iqr": 32.25,
+   "min": -143.5,
+   "max": -79.0,
+   "range": 64.5,
+   "n_positive": 0,
+   "n_negative": 3,
+   "mean_boot_ci95": [
+    -143.5,
+    -79.0
+   ],
+   "bootstrap_n": 20000,
+   "bootstrap_seed": 20261012,
+   "t_vs_zero": {
+    "t": -5.500584631450448,
+    "p": 0.03149761963322249,
+    "df": 2
+   },
+   "mean_t_ci95": [
+    -189.2120752455874,
+    -23.121258087745943
+   ],
+   "sign_test": {
+    "k_positive": 0,
+    "n": 3,
+    "p_two_sided": 0.25
+   },
+   "sources": [
+    "paper3/scripts/outputs/experiments/verify_r4_s42.json",
+    "paper3/scripts/outputs/experiments/verify_r4_s123.json",
+    "paper3/scripts/outputs/experiments/verify_r4_s456.json"
+   ]
+  },
+  "r5": {
+   "label": "verify_r5_s{M} untagged reference protocol",
+   "n": 10,
+   "values": [
+    -80.0,
+    5.0,
+    -71.0,
+    -27.5,
+    -18.0,
+    -51.5,
+    -76.5,
+    -41.5,
+    -52.0,
+    66.0
+   ],
+   "mean": -34.7,
+   "sd_sample": 44.46234361794259,
+   "sd_population": 42.18068278252499,
+   "median": -46.5,
+   "mad": 26.5,
+   "iqr": 45.875,
+   "min": -80.0,
+   "max": 66.0,
+   "range": 146.0,
+   "n_positive": 2,
+   "n_negative": 8,
+   "mean_boot_ci95": [
+    -58.2,
+    -6.2
+   ],
+   "bootstrap_n": 20000,
+   "bootstrap_seed": 20261012,
+   "t_vs_zero": {
+    "t": -2.4679543604525893,
+    "p": 0.03568985002490609,
+    "df": 9
+   },
+   "mean_t_ci95": [
+    -66.50644456273594,
+    -2.893555437264066
+   ],
+   "sign_test": {
+    "k_positive": 2,
+    "n": 10,
+    "p_two_sided": 0.109375
+   },
+   "sources": [
+    "paper3/scripts/outputs/experiments/verify_r5_s7.json",
+    "paper3/scripts/outputs/experiments/verify_r5_s17.json",
+    "paper3/scripts/outputs/experiments/verify_r5_s27.json",
+    "paper3/scripts/outputs/experiments/verify_r5_s37.json",
+    "paper3/scripts/outputs/experiments/verify_r5_s42.json",
+    "paper3/scripts/outputs/experiments/verify_r5_s47.json",
+    "paper3/scripts/outputs/experiments/verify_r5_s57.json",
+    "paper3/scripts/outputs/experiments/verify_r5_s67.json",
+    "paper3/scripts/outputs/experiments/verify_r5_s123.json",
+    "paper3/scripts/outputs/experiments/verify_r5_s999.json"
+   ]
+  },
+  "r6": {
+   "label": "verify_r6_s{M} untagged reference protocol",
+   "n": 10,
+   "values": [
+    95.5,
+    55.0,
+    22.5,
+    95.5,
+    93.5,
+    98.5,
+    48.0,
+    83.5,
+    77.0,
+    30.0
+   ],
+   "mean": 69.9,
+   "sd_sample": 28.793131897111234,
+   "sd_population": 27.315563329354934,
+   "median": 80.25,
+   "mad": 16.75,
+   "iqr": 45.25,
+   "min": 22.5,
+   "max": 98.5,
+   "range": 76.0,
+   "n_positive": 10,
+   "n_negative": 0,
+   "mean_boot_ci95": [
+    52.25,
+    85.7
+   ],
+   "bootstrap_n": 20000,
+   "bootstrap_seed": 20261012,
+   "t_vs_zero": {
+    "t": 7.676942169252057,
+    "p": 3.0720667096061046e-05,
+    "df": 9
+   },
+   "mean_t_ci95": [
+    49.30263425287726,
+    90.49736574712276
+   ],
+   "sign_test": {
+    "k_positive": 10,
+    "n": 10,
+    "p_two_sided": 0.001953125
+   },
+   "sources": [
+    "paper3/scripts/outputs/experiments/verify_r6_s7.json",
+    "paper3/scripts/outputs/experiments/verify_r6_s17.json",
+    "paper3/scripts/outputs/experiments/verify_r6_s27.json",
+    "paper3/scripts/outputs/experiments/verify_r6_s37.json",
+    "paper3/scripts/outputs/experiments/verify_r6_s42.json",
+    "paper3/scripts/outputs/experiments/verify_r6_s47.json",
+    "paper3/scripts/outputs/experiments/verify_r6_s57.json",
+    "paper3/scripts/outputs/experiments/verify_r6_s67.json",
+    "paper3/scripts/outputs/experiments/verify_r6_s123.json",
+    "paper3/scripts/outputs/experiments/verify_r6_s999.json"
+   ]
+  }
+ },
+ "stratified_by_E0_cluster": {
+  "r5": {
+   "n_clusters": 2,
+   "clusters": {
+    "3921.0": {
+     "label": "r=5, E0=3921.0",
+     "n": 7,
+     "values": [
+      -80.0,
+      5.0,
+      -71.0,
+      -27.5,
+      -51.5,
+      -76.5,
+      -41.5
+     ],
+     "mean": -49.0,
+     "sd_sample": 30.6648550189518,
+     "sd_population": 28.39013913315678,
+     "median": -51.5,
+     "mad": 24.0,
+     "iqr": 39.25,
+     "min": -80.0,
+     "max": 5.0,
+     "range": 85.0,
+     "n_positive": 1,
+     "n_negative": 6,
+     "mean_boot_ci95": [
+      -68.5,
+      -26.569642857143016
+     ],
+     "bootstrap_n": 20000,
+     "bootstrap_seed": 20261012,
+     "t_vs_zero": {
+      "t": -4.227700217791423,
+      "p": 0.005514128853015021,
+      "df": 6
+     },
+     "mean_t_ci95": [
+      -77.36026078706682,
+      -20.63973921293318
+     ],
+     "sign_test": {
+      "k_positive": 1,
+      "n": 7,
+      "p_two_sided": 0.125
+     },
+     "sources": [
+      "paper3/scripts/outputs/experiments/verify_r5_s7.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s17.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s27.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s37.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s47.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s57.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s67.json"
+     ]
+    },
+    "3930.5": {
+     "label": "r=5, E0=3930.5",
+     "n": 3,
+     "values": [
+      -18.0,
+      -52.0,
+      66.0
+     ],
+     "mean": -1.3333333333333333,
+     "sd_sample": 60.73988255942987,
+     "sd_population": 49.593906435726105,
+     "median": -18.0,
+     "mad": 34.0,
+     "iqr": 59.0,
+     "min": -52.0,
+     "max": 66.0,
+     "range": 118.0,
+     "n_positive": 1,
+     "n_negative": 2,
+     "mean_boot_ci95": [
+      -52.0,
+      66.0
+     ],
+     "bootstrap_n": 20000,
+     "bootstrap_seed": 20261012,
+     "t_vs_zero": {
+      "t": -0.03802116466884686,
+      "p": 0.9731246876776611,
+      "df": 2
+     },
+     "mean_t_ci95": [
+      -152.21956620649922,
+      149.55289953983254
+     ],
+     "sign_test": {
+      "k_positive": 1,
+      "n": 3,
+      "p_two_sided": 1.0
+     },
+     "sources": [
+      "paper3/scripts/outputs/experiments/verify_r5_s42.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s123.json",
+      "paper3/scripts/outputs/experiments/verify_r5_s999.json"
+     ]
+    }
+   },
+   "note": "E0 is the pre-training alignment energy; a constant E0 within a cluster means that cluster is one self-consistent numerical path"
+  },
+  "r6": {
+   "n_clusters": 2,
+   "clusters": {
+    "3921.0": {
+     "label": "r=6, E0=3921.0",
+     "n": 7,
+     "values": [
+      95.5,
+      55.0,
+      22.5,
+      95.5,
+      98.5,
+      48.0,
+      83.5
+     ],
+     "mean": 71.21428571428571,
+     "sd_sample": 29.580197687610124,
+     "sd_population": 27.385941574434998,
+     "median": 83.5,
+     "mad": 15.0,
+     "iqr": 44.0,
+     "min": 22.5,
+     "max": 98.5,
+     "range": 76.0,
+     "n_positive": 7,
+     "n_negative": 0,
+     "mean_boot_ci95": [
+      49.92857142857143,
+      90.14285714285714
+     ],
+     "bootstrap_n": 20000,
+     "bootstrap_seed": 20261012,
+     "t_vs_zero": {
+      "t": 6.369642684099398,
+      "p": 0.0007032455642119249,
+      "df": 6
+     },
+     "mean_t_ci95": [
+      43.85716564849224,
+      98.57140578007917
+     ],
+     "sign_test": {
+      "k_positive": 7,
+      "n": 7,
+      "p_two_sided": 0.015625
+     },
+     "sources": [
+      "paper3/scripts/outputs/experiments/verify_r6_s7.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s17.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s27.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s37.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s47.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s57.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s67.json"
+     ]
+    },
+    "3930.5": {
+     "label": "r=6, E0=3930.5",
+     "n": 3,
+     "values": [
+      93.5,
+      77.0,
+      30.0
+     ],
+     "mean": 66.83333333333333,
+     "sd_sample": 32.9481916549806,
+     "sd_population": 26.902085834043096,
+     "median": 77.0,
+     "mad": 16.5,
+     "iqr": 31.75,
+     "min": 30.0,
+     "max": 93.5,
+     "range": 63.5,
+     "n_positive": 3,
+     "n_negative": 0,
+     "mean_boot_ci95": [
+      30.0,
+      93.5
+     ],
+     "bootstrap_n": 20000,
+     "bootstrap_seed": 20261012,
+     "t_vs_zero": {
+      "t": 3.5133560647180873,
+      "p": 0.07233320676547755,
+      "df": 2
+     },
+     "mean_t_ci95": [
+      -15.014512090781494,
+      148.68117875744815
+     ],
+     "sign_test": {
+      "k_positive": 3,
+      "n": 3,
+      "p_two_sided": 0.25
+     },
+     "sources": [
+      "paper3/scripts/outputs/experiments/verify_r6_s42.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s123.json",
+      "paper3/scripts/outputs/experiments/verify_r6_s999.json"
+     ]
+    }
+   },
+   "note": "E0 is the pre-training alignment energy; a constant E0 within a cluster means that cluster is one self-consistent numerical path"
+  }
+ },
+ "stratified_paired_ordering": {
+  "definition": "seeds measured at BOTH r=5 and r=6 whose E0 is IDENTICAL between the two ranks, i.e. the same numerical path",
+  "clusters": {
+   "E0_3921.0": {
+    "E0": 3921.0,
+    "n_pairs": 7,
+    "n_hold": 7,
+    "r5_mean": -49.0,
+    "r6_mean": 71.21428571428571,
+    "per_seed": [
+     {
+      "seed": 7,
+      "E0": 3921.0,
+      "r5": -80.0,
+      "r6": 95.5,
+      "hold": true
+     },
+     {
+      "seed": 17,
+      "E0": 3921.0,
+      "r5": 5.0,
+      "r6": 55.0,
+      "hold": true
+     },
+     {
+      "seed": 27,
+      "E0": 3921.0,
+      "r5": -71.0,
+      "r6": 22.5,
+      "hold": true
+     },
+     {
+      "seed": 37,
+      "E0": 3921.0,
+      "r5": -27.5,
+      "r6": 95.5,
+      "hold": true
+     },
+     {
+      "seed": 47,
+      "E0": 3921.0,
+      "r5": -51.5,
+      "r6": 98.5,
+      "hold": true
+     },
+     {
+      "seed": 57,
+      "E0": 3921.0,
+      "r5": -76.5,
+      "r6": 48.0,
+      "hold": true
+     },
+     {
+      "seed": 67,
+      "E0": 3921.0,
+      "r5": -41.5,
+      "r6": 83.5,
+      "hold": true
+     }
+    ],
+    "paired_t": {
+     "t": 7.936383987299415,
+     "p": 0.00021267538118461532
+    }
+   },
+   "E0_3930.5": {
+    "E0": 3930.5,
+    "n_pairs": 3,
+    "n_hold": 2,
+    "r5_mean": -1.3333333333333333,
+    "r6_mean": 66.83333333333333,
+    "per_seed": [
+     {
+      "seed": 42,
+      "E0": 3930.5,
+      "r5": -18.0,
+      "r6": 93.5,
+      "hold": true
+     },
+     {
+      "seed": 123,
+      "E0": 3930.5,
+      "r5": -52.0,
+      "r6": 77.0,
+      "hold": true
+     },
+     {
+      "seed": 999,
+      "E0": 3930.5,
+      "r5": 66.0,
+      "r6": 30.0,
+      "hold": false
+     }
+    ],
+    "paired_t": {
+     "t": 1.3026865079388885,
+     "p": 0.3224900906626614
+    }
+   }
+  },
+  "all_clusters_ordering_holds": false
+ },
+ "paired_seed_r6_vs_r5": {
+  "n_pairs": 10,
+  "n_hold": 9,
+  "pairs": [
+   {
+    "seed": 7,
+    "r5": -80.0,
+    "r6": 95.5,
+    "hold": true,
+    "diff": 175.5,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s7.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s7.json"
+   },
+   {
+    "seed": 17,
+    "r5": 5.0,
+    "r6": 55.0,
+    "hold": true,
+    "diff": 50.0,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s17.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s17.json"
+   },
+   {
+    "seed": 27,
+    "r5": -71.0,
+    "r6": 22.5,
+    "hold": true,
+    "diff": 93.5,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s27.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s27.json"
+   },
+   {
+    "seed": 37,
+    "r5": -27.5,
+    "r6": 95.5,
+    "hold": true,
+    "diff": 123.0,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s37.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s37.json"
+   },
+   {
+    "seed": 42,
+    "r5": -18.0,
+    "r6": 93.5,
+    "hold": true,
+    "diff": 111.5,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s42.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s42.json"
+   },
+   {
+    "seed": 47,
+    "r5": -51.5,
+    "r6": 98.5,
+    "hold": true,
+    "diff": 150.0,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s47.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s47.json"
+   },
+   {
+    "seed": 57,
+    "r5": -76.5,
+    "r6": 48.0,
+    "hold": true,
+    "diff": 124.5,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s57.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s57.json"
+   },
+   {
+    "seed": 67,
+    "r5": -41.5,
+    "r6": 83.5,
+    "hold": true,
+    "diff": 125.0,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s67.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s67.json"
+   },
+   {
+    "seed": 123,
+    "r5": -52.0,
+    "r6": 77.0,
+    "hold": true,
+    "diff": 129.0,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s123.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s123.json"
+   },
+   {
+    "seed": 999,
+    "r5": 66.0,
+    "r6": 30.0,
+    "hold": false,
+    "diff": -36.0,
+    "r5_file": "paper3/scripts/outputs/experiments/verify_r5_s999.json",
+    "r6_file": "paper3/scripts/outputs/experiments/verify_r6_s999.json"
+   }
+  ],
+  "all_hold": false,
+  "mean_diff": 104.6,
+  "paired_t": {
+   "t": 5.56866360630759,
+   "p": 0.0003479781254353747,
+   "df": 9
+  },
+  "mean_diff_ci95": [
+   62.10836179785174,
+   147.09163820214826
+  ],
+  "wilcoxon": {
+   "stat": 1.0,
+   "p": 0.00390625
+  },
+  "welch": {
+   "t": 6.2444206391257815,
+   "p": 1.3859287669478354e-05,
+   "n": [
+    10,
+    10
+   ]
+  },
+  "exact_signflip_permutation": {
+   "n_perm": 1024,
+   "p_two_sided": 0.00390625
+  },
+  "sign_test_ordering": {
+   "k": 9,
+   "n": 10,
+   "p_one_sided": 0.0107421875,
+   "p_two_sided": 0.021484375
+  }
+ },
+ "three_seed_vs_ten_seed": {
+  "r5": {
+   "paper_batch": "E2_results.json extra (3 seeds)",
+   "paper_batch_mean": -21.0,
+   "paper_batch_sd": 32.10529551335729,
+   "paper_batch_values": [
+    -24.0,
+    -51.5,
+    12.5
+   ],
+   "verify_family_mean": -34.7,
+   "verify_family_sd": 44.46234361794259,
+   "verify_family_values": [
+    -80.0,
+    5.0,
+    -71.0,
+    -27.5,
+    -18.0,
+    -51.5,
+    -76.5,
+    -41.5,
+    -52.0,
+    66.0
+   ],
+   "mean_difference": -13.700000000000003,
+   "welch": {
+    "t": -0.5888602668615357,
+    "p": 0.5835384881562987,
+    "n": [
+     10,
+     3
+    ]
+   }
+  },
+  "r6": {
+   "paper_batch": "E2_results.json extra (3 seeds)",
+   "paper_batch_mean": 62.333333333333336,
+   "paper_batch_sd": 51.28921264099629,
+   "paper_batch_values": [
+    30.5,
+    121.5,
+    35.0
+   ],
+   "verify_family_mean": 69.9,
+   "verify_family_sd": 28.793131897111234,
+   "verify_family_values": [
+    95.5,
+    55.0,
+    22.5,
+    95.5,
+    93.5,
+    98.5,
+    48.0,
+    83.5,
+    77.0,
+    30.0
+   ],
+   "mean_difference": 7.56666666666667,
+   "welch": {
+    "t": 0.24424294201985267,
+    "p": 0.8264428663720006,
+    "n": [
+     10,
+     3
+    ]
+   }
+  }
+ }
+}

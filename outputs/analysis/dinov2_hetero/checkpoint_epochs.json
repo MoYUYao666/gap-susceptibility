@@ -1,0 +1,294 @@
+{
+  "script": "tools/_p368_checkpoint_epochs.py",
+  "why": "best_checkpoint.pt is written on val-loss improvement, not at the end",
+  "clip_strict_freeze": {
+    "text_only": {
+      "best_checkpoint.pt": {
+        "epoch": 8,
+        "n_train_losses": 8,
+        "n_val_losses": 8,
+        "task_R1_per_epoch": [
+          0.601,
+          0.609,
+          0.616,
+          0.613,
+          0.623,
+          0.614,
+          0.618,
+          0.61
+        ],
+        "val_losses": [
+          0.5634,
+          0.532,
+          0.5124,
+          0.5182,
+          0.5418,
+          0.5253,
+          0.5226,
+          0.5049
+        ],
+        "gap_CG_per_epoch": [
+          0.8183,
+          0.792,
+          0.8077,
+          0.7985,
+          0.7821,
+          0.7761
+        ]
+      },
+      "last_checkpoint.pt": {
+        "epoch": 10,
+        "n_train_losses": 10,
+        "n_val_losses": 10,
+        "task_R1_per_epoch": [
+          0.601,
+          0.609,
+          0.616,
+          0.613,
+          0.623,
+          0.614,
+          0.618,
+          0.61,
+          0.622,
+          0.618
+        ],
+        "val_losses": [
+          0.5634,
+          0.532,
+          0.5124,
+          0.5182,
+          0.5418,
+          0.5253,
+          0.5226,
+          0.5049,
+          0.518,
+          0.5207
+        ],
+        "gap_CG_per_epoch": [
+          0.8183,
+          0.792,
+          0.8077,
+          0.7985,
+          0.7821,
+          0.7761,
+          0.774
+        ]
+      },
+      "archived": {
+        "R1_final": 0.6180000007152557,
+        "CG_final": 0.7740361094474792,
+        "source": "outputs\\strict_freeze\\text_only\\seed42\\results.json"
+      }
+    },
+    "both": {
+      "best_checkpoint.pt": {
+        "epoch": 9,
+        "n_train_losses": 9,
+        "n_val_losses": 9,
+        "task_R1_per_epoch": [
+          0.665,
+          0.677,
+          0.671,
+          0.685,
+          0.685,
+          0.68,
+          0.693,
+          0.691,
+          0.69
+        ],
+        "val_losses": [
+          0.4732,
+          0.4338,
+          0.4351,
+          0.4057,
+          0.4051,
+          0.4121,
+          0.4202,
+          0.4109,
+          0.4003
+        ],
+        "gap_CG_per_epoch": [
+          0.8184,
+          0.8383,
+          0.8315,
+          0.814,
+          0.8027,
+          0.7953
+        ]
+      },
+      "last_checkpoint.pt": {
+        "epoch": 10,
+        "n_train_losses": 10,
+        "n_val_losses": 10,
+        "task_R1_per_epoch": [
+          0.665,
+          0.677,
+          0.671,
+          0.685,
+          0.685,
+          0.68,
+          0.693,
+          0.691,
+          0.69,
+          0.689
+        ],
+        "val_losses": [
+          0.4732,
+          0.4338,
+          0.4351,
+          0.4057,
+          0.4051,
+          0.4121,
+          0.4202,
+          0.4109,
+          0.4003,
+          0.4039
+        ],
+        "gap_CG_per_epoch": [
+          0.8184,
+          0.8383,
+          0.8315,
+          0.814,
+          0.8027,
+          0.7953,
+          0.7931
+        ]
+      },
+      "archived": {
+        "R1_final": 0.6890000104904175,
+        "CG_final": 0.7931378483772278,
+        "source": "outputs\\strict_freeze\\both\\seed42\\results.json"
+      }
+    },
+    "vision_only": {
+      "best_checkpoint.pt": {
+        "epoch": 9,
+        "n_train_losses": 9,
+        "n_val_losses": 9,
+        "task_R1_per_epoch": [
+          0.643,
+          0.652,
+          0.674,
+          0.673,
+          0.68,
+          0.675,
+          0.688,
+          0.694,
+          0.682
+        ],
+        "val_losses": [
+          0.5092,
+          0.4564,
+          0.4333,
+          0.4247,
+          0.4106,
+          0.4178,
+          0.4004,
+          0.4075,
+          0.3997
+        ],
+        "gap_CG_per_epoch": [
+          0.819,
+          0.8459,
+          0.8448,
+          0.8405,
+          0.8349,
+          0.8315
+        ]
+      },
+      "last_checkpoint.pt": {
+        "epoch": 10,
+        "n_train_losses": 10,
+        "n_val_losses": 10,
+        "task_R1_per_epoch": [
+          0.643,
+          0.652,
+          0.674,
+          0.673,
+          0.68,
+          0.675,
+          0.688,
+          0.694,
+          0.682,
+          0.7
+        ],
+        "val_losses": [
+          0.5092,
+          0.4564,
+          0.4333,
+          0.4247,
+          0.4106,
+          0.4178,
+          0.4004,
+          0.4075,
+          0.3997,
+          0.4057
+        ],
+        "gap_CG_per_epoch": [
+          0.819,
+          0.8459,
+          0.8448,
+          0.8405,
+          0.8349,
+          0.8315,
+          0.8297
+        ]
+      },
+      "archived": {
+        "R1_final": 0.699999988079071,
+        "CG_final": 0.8297464847564697,
+        "source": "outputs\\strict_freeze\\vision_only\\seed42\\results.json"
+      }
+    }
+  },
+  "dinov2_hetero": {
+    "text_only": {
+      "best_checkpoint.pt": {
+        "epoch": 10,
+        "n_val_losses": 10,
+        "task_R1_per_epoch": [
+          0.327,
+          0.331,
+          0.344,
+          0.352,
+          0.358,
+          0.357,
+          0.358,
+          0.351,
+          0.37,
+          0.354
+        ]
+      },
+      "last_checkpoint.pt": {
+        "epoch": 10,
+        "n_val_losses": 10,
+        "task_R1_per_epoch": [
+          0.327,
+          0.331,
+          0.344,
+          0.352,
+          0.358,
+          0.357,
+          0.358,
+          0.351,
+          0.37,
+          0.354
+        ]
+      }
+    },
+    "both": {
+      "best_checkpoint.pt": {
+        "epoch": 1,
+        "n_val_losses": 1,
+        "task_R1_per_epoch": [
+          0.421
+        ]
+      },
+      "last_checkpoint.pt": null
+    },
+    "vision_only": {
+      "best_checkpoint.pt": null,
+      "last_checkpoint.pt": null
+    }
+  }
+}

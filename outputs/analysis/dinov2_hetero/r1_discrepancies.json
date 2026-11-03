@@ -1,0 +1,243 @@
+{
+  "script": "tools/_p367_r1_discrepancies.py",
+  "source": "outputs\\analysis\\dinov2_hetero\\clip_baseline_check.json :: checks",
+  "n_cells": 12,
+  "n_R1_fail": 6,
+  "n_deltaCG_fail": 0,
+  "R1_discrepancies_desc": [
+    {
+      "row": "OpenCLIP r4",
+      "arm": "text_only",
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.643,
+      "recomputed_R1": 0.6366,
+      "abs_diff": 0.0064,
+      "pass": false,
+      "published_delta_CG": 0.0802,
+      "recomputed_delta_CG": 0.08016,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "OpenCLIP r4",
+      "arm": "vision_only",
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.672,
+      "recomputed_R1": 0.6698,
+      "abs_diff": 0.0022,
+      "pass": false,
+      "published_delta_CG": 0.0996,
+      "recomputed_delta_CG": 0.09962,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "OpenCLIP r4",
+      "arm": "both",
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.68,
+      "recomputed_R1": 0.6818,
+      "abs_diff": 0.0018,
+      "pass": false,
+      "published_delta_CG": 0.0864,
+      "recomputed_delta_CG": 0.08639,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "CLIP B/32 r4",
+      "arm": "text_only",
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.621,
+      "recomputed_R1": 0.6222,
+      "abs_diff": 0.0012,
+      "pass": false,
+      "published_delta_CG": -0.0304,
+      "recomputed_delta_CG": -0.03038,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "CLIP B/16 r4",
+      "arm": "text_only",
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.651,
+      "recomputed_R1": 0.6502,
+      "abs_diff": 0.0008,
+      "pass": false,
+      "published_delta_CG": -0.0166,
+      "recomputed_delta_CG": -0.01657,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "CLIP B/32 r4",
+      "arm": "both",
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.679,
+      "recomputed_R1": 0.6796,
+      "abs_diff": 0.0006,
+      "pass": false,
+      "published_delta_CG": -0.0204,
+      "recomputed_delta_CG": -0.02037,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "CLIP B/32 r8",
+      "arm": "text_only",
+      "n_seeds": 5,
+      "seeds": [
+        1024,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.624,
+      "recomputed_R1": 0.6238,
+      "abs_diff": 0.0002,
+      "pass": true,
+      "published_delta_CG": -0.0465,
+      "recomputed_delta_CG": -0.0465,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "CLIP B/32 r8",
+      "arm": "both",
+      "n_seeds": 5,
+      "seeds": [
+        1024,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.693,
+      "recomputed_R1": 0.6932,
+      "abs_diff": 0.0002,
+      "pass": true,
+      "published_delta_CG": -0.0258,
+      "recomputed_delta_CG": -0.02583,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "CLIP B/32 r4",
+      "arm": "vision_only",
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.67,
+      "recomputed_R1": 0.6698,
+      "abs_diff": 0.0002,
+      "pass": true,
+      "published_delta_CG": 0.0166,
+      "recomputed_delta_CG": 0.01658,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "CLIP B/32 r8",
+      "arm": "vision_only",
+      "n_seeds": 5,
+      "seeds": [
+        1024,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.68,
+      "recomputed_R1": 0.68,
+      "abs_diff": 0.0,
+      "pass": true,
+      "published_delta_CG": 0.0106,
+      "recomputed_delta_CG": 0.01057,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "CLIP B/16 r4",
+      "arm": "both",
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.707,
+      "recomputed_R1": 0.707,
+      "abs_diff": 0.0,
+      "pass": true,
+      "published_delta_CG": 0.0124,
+      "recomputed_delta_CG": 0.01236,
+      "delta_CG_pass": true
+    },
+    {
+      "row": "CLIP B/16 r4",
+      "arm": "vision_only",
+      "n_seeds": 5,
+      "seeds": [
+        1011,
+        123,
+        42,
+        456,
+        789
+      ],
+      "published_R1": 0.686,
+      "recomputed_R1": 0.686,
+      "abs_diff": 0.0,
+      "pass": true,
+      "published_delta_CG": 0.0376,
+      "recomputed_delta_CG": 0.03755,
+      "delta_CG_pass": true
+    }
+  ],
+  "summary": {
+    "delta_CG_column": "reproduces for all 12 cells at published precision",
+    "R1_column": "6 of 12 cells differ from the archive's own full-seed mean",
+    "max_abs_diff": 0.0064,
+    "openclip_caveat": "The published OpenCLIP row combines two different runs: Delta-CG from strict_freeze_oclip/r4 (rank 4, 98,304/245,760/147,456 trainable, seeds 42-1011) and R@1 from strict_freeze_openclip (rank 8, 196,608/491,520/294,912 trainable, seeds 42-1024). The two trees share identical epoch/sample/batch settings and differ in rank and seed set, so the R@1 half of the row is not a measurement of the same configuration as the Delta-CG half. All three published OpenCLIP R@1 values (0.643/0.680/0.672) are reproduced by the rank-8 tree to three decimals."
+  }
+}

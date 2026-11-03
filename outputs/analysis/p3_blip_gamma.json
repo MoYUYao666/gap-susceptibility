@@ -1,0 +1,32 @@
+{
+ "meta": {
+  "script": "tools/_p1549_blip_gamma.py",
+  "task": "D2 second non-CLIP source (BLIP captioning)",
+  "energy": "captioning loss under blank image",
+  "task_loss": "captioning loss on real pairs"
+ },
+ "gamma": {
+  "vision": 2.92902482863974,
+  "text_shallow": -3.7604147924848803,
+  "text_mid": -7.368571234585943,
+  "text_deep": -27.51113866560263
+ },
+ "abs": {
+  "vision": 2.92902482863974,
+  "text_shallow": 3.7604147924848803,
+  "text_mid": 7.368571234585943,
+  "text_deep": 27.51113866560263
+ },
+ "share": {
+  "vision": 0.0704615048026898,
+  "text_shallow": 0.09046167255735779,
+  "text_mid": 0.17726057230995199,
+  "text_deep": 0.6618162503300005
+ },
+ "allocation": {
+  "vision": 1,
+  "text_shallow": 1,
+  "text_mid": 3,
+  "text_deep": 11
+ }
+}

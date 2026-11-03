@@ -1,0 +1,4299 @@
+{
+ "generated_by": "tools/_p1595_bootstrap_ci_round.py",
+ "analysis": "seed-level percentile bootstrap for the strict-freeze arm comparisons of Paper A, with paired bootstrap for the arm differences",
+ "method": {
+  "resampling_unit": "seed (run), independent within each arm; arm differences resample seed pairs",
+  "statistic": "arithmetic mean of the per-seed arm value",
+  "resamples": 20000,
+  "rng_seed": 20261024,
+  "ci": "percentile, 95%",
+  "dispersion": "sd with ddof=1 (sample) and ddof=0 (population) both reported; the convention the manuscript's printed spread matches is recorded per table under sd_convention",
+  "note": "with 3-5 seeds per arm a percentile CI is coarse by construction; it bounds how much of an arm separation can be attributed to seed noise and should not be read as a 5%% false-positive guarantee"
+ },
+ "scope_note": "Paper A (`paper合/`) is the strict-freeze arm comparison of Tables tab:position_strict, tab:vlm and tab:llava. The +1478/+5048 examples in the commissioning brief belong to Paper 3 and are reproduced in the labelled addendum below.",
+ "paperA": {
+  "tab_position_strict": {
+   "caption_digit_checks": {
+    "claim": "seed-to-seed standard deviation of 0.0006--0.006 depending on the backbone",
+    "computed_sd_ddof1_range_excluding_bioclip": [
+     0.000561493512144116,
+     0.005963397610067065
+    ],
+    "computed_sd_ddof1_bioclip_arms": [
+     0.010373684655576015,
+     0.014856311789943032,
+     0.0021656407827707895
+    ],
+    "reproduces_excluding_bioclip": true,
+    "reproduces_including_bioclip": false,
+    "per_arm_sd_ddof1": [
+     {
+      "row": "CLIP B/32 (WIT)",
+      "arm": "text_only",
+      "sd": 0.003014157005147766
+     },
+     {
+      "row": "CLIP B/32 (WIT)",
+      "arm": "both",
+      "sd": 0.003496222785823423
+     },
+     {
+      "row": "CLIP B/32 (WIT)",
+      "arm": "vision_only",
+      "sd": 0.0043745098699675255
+     },
+     {
+      "row": "OpenCLIP B/32 (LAION)",
+      "arm": "text_only",
+      "sd": 0.000561493512144116
+     },
+     {
+      "row": "OpenCLIP B/32 (LAION)",
+      "arm": "both",
+      "sd": 0.0041584928444716954
+     },
+     {
+      "row": "OpenCLIP B/32 (LAION)",
+      "arm": "vision_only",
+      "sd": 0.002546988511616623
+     },
+     {
+      "row": "CLIP B/32 (WIT), rank-matched",
+      "arm": "text_only",
+      "sd": 0.0038496369426085867
+     },
+     {
+      "row": "CLIP B/32 (WIT), rank-matched",
+      "arm": "both",
+      "sd": 0.00284166268232449
+     },
+     {
+      "row": "CLIP B/32 (WIT), rank-matched",
+      "arm": "vision_only",
+      "sd": 0.005532709405755071
+     },
+     {
+      "row": "CLIP B/16 (WIT), rank-matched",
+      "arm": "text_only",
+      "sd": 0.0017532824423983644
+     },
+     {
+      "row": "CLIP B/16 (WIT), rank-matched",
+      "arm": "both",
+      "sd": 0.002399877655075753
+     },
+     {
+      "row": "CLIP B/16 (WIT), rank-matched",
+      "arm": "vision_only",
+      "sd": 0.005137144164982618
+     },
+     {
+      "row": "SigLIP B/16 (WebLI)",
+      "arm": "text_only",
+      "sd": 0.005963397610067065
+     },
+     {
+      "row": "SigLIP B/16 (WebLI)",
+      "arm": "both",
+      "sd": 0.005871234567024993
+     },
+     {
+      "row": "SigLIP B/16 (WebLI)",
+      "arm": "vision_only",
+      "sd": 0.0016563503955135156
+     },
+     {
+      "row": "BioCLIP B/16 (bio.)",
+      "arm": "text_only",
+      "sd": 0.010373684655576015
+     },
+     {
+      "row": "BioCLIP B/16 (bio.)",
+      "arm": "both",
+      "sd": 0.014856311789943032
+     },
+     {
+      "row": "BioCLIP B/16 (bio.)",
+      "arm": "vision_only",
+      "sd": 0.0021656407827707895
+     }
+    ]
+   },
+   "rows": {
+    "CLIP B/32 (WIT)": {
+     "archive": "outputs/strict_freeze",
+     "rank": 8,
+     "arms": {
+      "text_only": {
+       "n": 5,
+       "mean": -0.0465049147605896,
+       "median": -0.046685218811035156,
+       "min": -0.04964923858642578,
+       "max": -0.04271531105041504,
+       "sd_ddof1": 0.003014157005147766,
+       "sd_ddof0": 0.0026959439833470354,
+       "se_of_mean_ddof1": 0.0013479719916735175,
+       "ci95_percentile": [
+        -0.048869538307189944,
+        -0.044140291213989255
+       ],
+       "ci95_halfwidth": 0.0023646235466003446,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        -0.04429280757904053,
+        -0.04964923858642578,
+        -0.049181997776031494,
+        -0.046685218811035156,
+        -0.04271531105041504
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ],
+       "sources": [
+        "outputs/strict_freeze/text_only/seed1024/results.json",
+        "outputs/strict_freeze/text_only/seed123/results.json",
+        "outputs/strict_freeze/text_only/seed42/results.json",
+        "outputs/strict_freeze/text_only/seed456/results.json",
+        "outputs/strict_freeze/text_only/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6238000094890594,
+        "median": 0.6230000257492065,
+        "min": 0.6180000007152557,
+        "max": 0.6319999992847443,
+        "sd_ddof1": 0.005495452142839843,
+        "sd_ddof0": 0.00491528182339471,
+        "se_of_mean_ddof1": 0.0024576409116973544,
+        "ci95_percentile": [
+         0.6198000073432922,
+         0.6284000039100647
+        ],
+        "ci95_halfwidth": 0.0042999982833862305,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.6180000007152557,
+         0.6319999992847443,
+         0.6260000169277191,
+         0.6230000257492065,
+         0.6200000047683716
+        ],
+        "sources": [
+         "outputs/strict_freeze/text_only/seed1024/results.json",
+         "outputs/strict_freeze/text_only/seed123/results.json",
+         "outputs/strict_freeze/text_only/seed42/results.json",
+         "outputs/strict_freeze/text_only/seed456/results.json",
+         "outputs/strict_freeze/text_only/seed789/results.json"
+        ]
+       }
+      },
+      "both": {
+       "n": 5,
+       "mean": -0.02582501173019409,
+       "median": -0.025294363498687744,
+       "min": -0.029033422470092773,
+       "max": -0.020528137683868408,
+       "sd_ddof1": 0.003496222785823423,
+       "sd_ddof0": 0.0031271167254339448,
+       "se_of_mean_ddof1": 0.0015635583627169724,
+       "ci95_percentile": [
+        -0.02827388048171997,
+        -0.023172318935394287
+       ],
+       "ci95_halfwidth": 0.002550780773162842,
+       "mc_jitter_max_endpoint_shift": 1.6093254089355469e-06,
+       "values": [
+        -0.025294363498687744,
+        -0.029033422470092773,
+        -0.020528137683868408,
+        -0.028982818126678467,
+        -0.025286316871643066
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ],
+       "sources": [
+        "outputs/strict_freeze/both/seed1024/results.json",
+        "outputs/strict_freeze/both/seed123/results.json",
+        "outputs/strict_freeze/both/seed42/results.json",
+        "outputs/strict_freeze/both/seed456/results.json",
+        "outputs/strict_freeze/both/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6931999981403351,
+        "median": 0.6890000104904175,
+        "min": 0.6739999949932098,
+        "max": 0.7129999995231628,
+        "sd_ddof1": 0.01463557588194711,
+        "sd_ddof0": 0.01309045702475607,
+        "se_of_mean_ddof1": 0.006545228512378035,
+        "ci95_percentile": [
+         0.6823999941349029,
+         0.7051999986171722
+        ],
+        "ci95_halfwidth": 0.011400002241134632,
+        "mc_jitter_max_endpoint_shift": 0.0017999947071074551,
+        "values": [
+         0.6890000104904175,
+         0.7129999995231628,
+         0.6739999949932098,
+         0.6889999806880951,
+         0.7010000050067902
+        ],
+        "sources": [
+         "outputs/strict_freeze/both/seed1024/results.json",
+         "outputs/strict_freeze/both/seed123/results.json",
+         "outputs/strict_freeze/both/seed42/results.json",
+         "outputs/strict_freeze/both/seed456/results.json",
+         "outputs/strict_freeze/both/seed789/results.json"
+        ]
+       }
+      },
+      "vision_only": {
+       "n": 5,
+       "mean": 0.010572373867034912,
+       "median": 0.010769128799438477,
+       "min": 0.004869282245635986,
+       "max": 0.016422271728515625,
+       "sd_ddof1": 0.0043745098699675255,
+       "sd_ddof0": 0.003912680574996461,
+       "se_of_mean_ddof1": 0.0019563402874982305,
+       "ci95_percentile": [
+        0.007179880142211914,
+        0.01401360034942627
+       ],
+       "ci95_halfwidth": 0.0034168601036071783,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        0.010769128799438477,
+        0.01260298490524292,
+        0.016422271728515625,
+        0.008198201656341553,
+        0.004869282245635986
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ],
+       "sources": [
+        "outputs/strict_freeze/vision_only/seed1024/results.json",
+        "outputs/strict_freeze/vision_only/seed123/results.json",
+        "outputs/strict_freeze/vision_only/seed42/results.json",
+        "outputs/strict_freeze/vision_only/seed456/results.json",
+        "outputs/strict_freeze/vision_only/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6799999952316285,
+        "median": 0.6780000030994415,
+        "min": 0.6710000038146973,
+        "max": 0.699999988079071,
+        "sd_ddof1": 0.0117260352060018,
+        "sd_ddof0": 0.01048808473087031,
+        "se_of_mean_ddof1": 0.005244042365435154,
+        "ci95_percentile": [
+         0.6727999985218048,
+         0.6899999916553498
+        ],
+        "ci95_halfwidth": 0.008599996566772461,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.699999988079071,
+         0.6710000038146973,
+         0.6780000030994415,
+         0.671999990940094,
+         0.6789999902248383
+        ],
+        "sources": [
+         "outputs/strict_freeze/vision_only/seed1024/results.json",
+         "outputs/strict_freeze/vision_only/seed123/results.json",
+         "outputs/strict_freeze/vision_only/seed42/results.json",
+         "outputs/strict_freeze/vision_only/seed456/results.json",
+         "outputs/strict_freeze/vision_only/seed789/results.json"
+        ]
+       }
+      }
+     },
+     "paired_differences": {
+      "text_only_minus_both": {
+       "n_pairs": 5,
+       "mean_difference": -0.02067990303039551,
+       "sd_of_differences_ddof1": 0.004632745706877747,
+       "se_of_mean_difference_ddof1": 0.0020718268646097915,
+       "ci95_percentile": [
+        -0.02480127811431885,
+        -0.01785224676132202
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        -0.018998444080352783,
+        -0.020615816116333008,
+        -0.028653860092163086,
+        -0.01770240068435669,
+        -0.017428994178771973
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ]
+      },
+      "text_only_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": -0.05707728862762451,
+       "sd_of_differences_ddof1": 0.007044063468149366,
+       "se_of_mean_difference_ddof1": 0.0031502009505209815,
+       "ci95_percentile": [
+        -0.06278969049453735,
+        -0.051977884769439694
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        -0.055061936378479004,
+        -0.0622522234916687,
+        -0.06560426950454712,
+        -0.05488342046737671,
+        -0.047584593296051025
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ]
+      },
+      "both_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": -0.03639738559722901,
+       "sd_of_differences_ddof1": 0.004106051943936441,
+       "se_of_mean_difference_ddof1": 0.0018362822531574072,
+       "ci95_percentile": [
+        -0.03958462476730347,
+        -0.03287352323532104
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        -0.03606349229812622,
+        -0.04163640737533569,
+        -0.03695040941238403,
+        -0.03718101978302002,
+        -0.030155599117279053
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ]
+      }
+     }
+    },
+    "OpenCLIP B/32 (LAION)": {
+     "archive": "outputs/strict_freeze_oclip",
+     "rank": 4,
+     "arms": {
+      "text_only": {
+       "n": 5,
+       "mean": 0.08015780448913574,
+       "median": 0.07989585399627686,
+       "min": 0.07967543601989746,
+       "max": 0.0809943675994873,
+       "sd_ddof1": 0.000561493512144116,
+       "sd_ddof0": 0.0005022150648317388,
+       "se_of_mean_ddof1": 0.0002511075324158694,
+       "ci95_percentile": [
+        0.07975099086761475,
+        0.0806412935256958
+       ],
+       "ci95_halfwidth": 0.0004451513290405218,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        0.07975411415100098,
+        0.07989585399627686,
+        0.07967543601989746,
+        0.0809943675994873,
+        0.08046925067901611
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ],
+       "sources": [
+        "outputs/strict_freeze_oclip/r4/text_only/seed1011/results.json",
+        "outputs/strict_freeze_oclip/r4/text_only/seed123/results.json",
+        "outputs/strict_freeze_oclip/r4/text_only/seed42/results.json",
+        "outputs/strict_freeze_oclip/r4/text_only/seed456/results.json",
+        "outputs/strict_freeze_oclip/r4/text_only/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6366000056266785,
+        "median": 0.636000007390976,
+        "min": 0.6270000040531158,
+        "max": 0.6459999978542328,
+        "sd_ddof1": 0.007300681120963137,
+        "sd_ddof0": 0.006529927707409175,
+        "se_of_mean_ddof1": 0.0032649638537045876,
+        "ci95_percentile": [
+         0.6310000061988831,
+         0.6424000024795532
+        ],
+        "ci95_halfwidth": 0.005699998140335061,
+        "mc_jitter_max_endpoint_shift": 0.00020000338554382324,
+        "values": [
+         0.6270000040531158,
+         0.6330000162124634,
+         0.636000007390976,
+         0.6459999978542328,
+         0.6410000026226044
+        ],
+        "sources": [
+         "outputs/strict_freeze_oclip/r4/text_only/seed1011/results.json",
+         "outputs/strict_freeze_oclip/r4/text_only/seed123/results.json",
+         "outputs/strict_freeze_oclip/r4/text_only/seed42/results.json",
+         "outputs/strict_freeze_oclip/r4/text_only/seed456/results.json",
+         "outputs/strict_freeze_oclip/r4/text_only/seed789/results.json"
+        ],
+        "named_archive": "outputs/strict_freeze_openclip",
+        "named_archive_mean": 0.6427999854087829
+       }
+      },
+      "both": {
+       "n": 5,
+       "mean": 0.0863889217376709,
+       "median": 0.08563441038131714,
+       "min": 0.08184301853179932,
+       "max": 0.09320670366287231,
+       "sd_ddof1": 0.0041584928444716954,
+       "sd_ddof0": 0.0037194690736740686,
+       "se_of_mean_ddof1": 0.0018597345368370343,
+       "ci95_percentile": [
+        0.08343676328659058,
+        0.09017611742019653
+       ],
+       "ci95_halfwidth": 0.0033696770668029744,
+       "mc_jitter_max_endpoint_shift": 7.718801498413086e-05,
+       "values": [
+        0.08602035045623779,
+        0.08563441038131714,
+        0.08524012565612793,
+        0.08184301853179932,
+        0.09320670366287231
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ],
+       "sources": [
+        "outputs/strict_freeze_oclip/r4/both/seed1011/results.json",
+        "outputs/strict_freeze_oclip/r4/both/seed123/results.json",
+        "outputs/strict_freeze_oclip/r4/both/seed42/results.json",
+        "outputs/strict_freeze_oclip/r4/both/seed456/results.json",
+        "outputs/strict_freeze_oclip/r4/both/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6818000018596649,
+        "median": 0.68299999833107,
+        "min": 0.6679999828338623,
+        "max": 0.6910000145435333,
+        "sd_ddof1": 0.008983325461755181,
+        "sd_ddof0": 0.00803493055859571,
+        "se_of_mean_ddof1": 0.004017465279297854,
+        "ci95_percentile": [
+         0.6741999924182892,
+         0.6882000029087066
+        ],
+        "ci95_halfwidth": 0.007000005245208718,
+        "mc_jitter_max_endpoint_shift": 0.0004000127315521018,
+        "values": [
+         0.68299999833107,
+         0.6879999935626984,
+         0.6679999828338623,
+         0.6790000200271606,
+         0.6910000145435333
+        ],
+        "sources": [
+         "outputs/strict_freeze_oclip/r4/both/seed1011/results.json",
+         "outputs/strict_freeze_oclip/r4/both/seed123/results.json",
+         "outputs/strict_freeze_oclip/r4/both/seed42/results.json",
+         "outputs/strict_freeze_oclip/r4/both/seed456/results.json",
+         "outputs/strict_freeze_oclip/r4/both/seed789/results.json"
+        ],
+        "named_archive": "outputs/strict_freeze_openclip",
+        "named_archive_mean": 0.6798000037670135
+       }
+      },
+      "vision_only": {
+       "n": 5,
+       "mean": 0.09961875677108764,
+       "median": 0.10096168518066406,
+       "min": 0.09576380252838135,
+       "max": 0.10191386938095093,
+       "sd_ddof1": 0.002546988511616623,
+       "sd_ddof0": 0.0022780957799543125,
+       "se_of_mean_ddof1": 0.0011390478899771562,
+       "ci95_percentile": [
+        0.09734916687011719,
+        0.10141398906707763
+       ],
+       "ci95_halfwidth": 0.002032411098480222,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        0.10191386938095093,
+        0.09576380252838135,
+        0.10096168518066406,
+        0.10114026069641113,
+        0.09831416606903076
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ],
+       "sources": [
+        "outputs/strict_freeze_oclip/r4/vision_only/seed1011/results.json",
+        "outputs/strict_freeze_oclip/r4/vision_only/seed123/results.json",
+        "outputs/strict_freeze_oclip/r4/vision_only/seed42/results.json",
+        "outputs/strict_freeze_oclip/r4/vision_only/seed456/results.json",
+        "outputs/strict_freeze_oclip/r4/vision_only/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6697999954223632,
+        "median": 0.6699999868869781,
+        "min": 0.660999983549118,
+        "max": 0.675000011920929,
+        "sd_ddof1": 0.0055407663412409,
+        "sd_ddof0": 0.00495581207458298,
+        "se_of_mean_ddof1": 0.0024779060372914895,
+        "ci95_percentile": [
+         0.6651999890804291,
+         0.6736000061035157
+        ],
+        "ci95_halfwidth": 0.004200008511543285,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.675000011920929,
+         0.6689999997615814,
+         0.6739999949932098,
+         0.6699999868869781,
+         0.660999983549118
+        ],
+        "sources": [
+         "outputs/strict_freeze_oclip/r4/vision_only/seed1011/results.json",
+         "outputs/strict_freeze_oclip/r4/vision_only/seed123/results.json",
+         "outputs/strict_freeze_oclip/r4/vision_only/seed42/results.json",
+         "outputs/strict_freeze_oclip/r4/vision_only/seed456/results.json",
+         "outputs/strict_freeze_oclip/r4/vision_only/seed789/results.json"
+        ],
+        "named_archive": "outputs/strict_freeze_openclip",
+        "named_archive_mean": 0.6724000036716461
+       }
+      }
+     },
+     "paired_differences": {
+      "text_only_minus_both": {
+       "n_pairs": 5,
+       "mean_difference": -0.006231117248535156,
+       "sd_of_differences_ddof1": 0.004242385050323254,
+       "se_of_mean_difference_ddof1": 0.0018972522718503323,
+       "ci95_percentile": [
+        -0.009937894344329835,
+        -0.0028753757476806642
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 3.4773349761962544e-05,
+       "per_pair_differences": [
+        -0.006266236305236816,
+        -0.005738556385040283,
+        -0.005564689636230469,
+        -0.0008486509323120117,
+        -0.012737452983856201
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ]
+      },
+      "text_only_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": -0.019460952281951903,
+       "sd_of_differences_ddof1": 0.002579032820189955,
+       "se_of_mean_difference_ddof1": 0.0011533785404295464,
+       "ci95_percentile": [
+        -0.021407580375671385,
+        -0.01744952201843262
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        -0.02215975522994995,
+        -0.015867948532104492,
+        -0.0212862491607666,
+        -0.020145893096923828,
+        -0.01784491539001465
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ]
+      },
+      "both_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": -0.013229835033416747,
+       "sd_of_differences_ddof1": 0.005605867802928503,
+       "se_of_mean_difference_ddof1": 0.002507020296045105,
+       "ci95_percentile": [
+        -0.017220616340637207,
+        -0.008269059658050536
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0006807446479797363,
+       "per_pair_differences": [
+        -0.015893518924713135,
+        -0.010129392147064209,
+        -0.015721559524536133,
+        -0.019297242164611816,
+        -0.005107462406158447
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ]
+      }
+     }
+    },
+    "CLIP B/32 (WIT), rank-matched": {
+     "archive": "outputs/strict_freeze_b32_r4",
+     "rank": 4,
+     "arms": {
+      "text_only": {
+       "n": 5,
+       "mean": -0.030382072925567626,
+       "median": -0.029464900493621826,
+       "min": -0.037067532539367676,
+       "max": -0.027358949184417725,
+       "sd_ddof1": 0.0038496369426085867,
+       "sd_ddof0": 0.0034432199569469028,
+       "se_of_mean_ddof1": 0.0017216099784734512,
+       "ci95_percentile": [
+        -0.03380616903305054,
+        -0.02816246747970581
+       ],
+       "ci95_halfwidth": 0.0028218507766723643,
+       "mc_jitter_max_endpoint_shift": 1.9431114196777344e-05,
+       "values": [
+        -0.029655635356903076,
+        -0.027358949184417725,
+        -0.029464900493621826,
+        -0.037067532539367676,
+        -0.028363347053527832
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ],
+       "sources": [
+        "outputs/strict_freeze_b32_r4/text_only/seed1011/results.json",
+        "outputs/strict_freeze_b32_r4/text_only/seed123/results.json",
+        "outputs/strict_freeze_b32_r4/text_only/seed42/results.json",
+        "outputs/strict_freeze_b32_r4/text_only/seed456/results.json",
+        "outputs/strict_freeze_b32_r4/text_only/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6222000002861023,
+        "median": 0.625,
+        "min": 0.6129999756813049,
+        "max": 0.6260000169277191,
+        "sd_ddof1": 0.00535725145450106,
+        "sd_ddof0": 0.004791671369929597,
+        "se_of_mean_ddof1": 0.0023958356849647987,
+        "ci95_percentile": [
+         0.6173999905586243,
+         0.6254000067710876
+        ],
+        "ci95_halfwidth": 0.0040000081062316895,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.625,
+         0.625,
+         0.6129999756813049,
+         0.6220000088214874,
+         0.6260000169277191
+        ],
+        "sources": [
+         "outputs/strict_freeze_b32_r4/text_only/seed1011/results.json",
+         "outputs/strict_freeze_b32_r4/text_only/seed123/results.json",
+         "outputs/strict_freeze_b32_r4/text_only/seed42/results.json",
+         "outputs/strict_freeze_b32_r4/text_only/seed456/results.json",
+         "outputs/strict_freeze_b32_r4/text_only/seed789/results.json"
+        ]
+       }
+      },
+      "both": {
+       "n": 5,
+       "mean": -0.020374536514282227,
+       "median": -0.019242942333221436,
+       "min": -0.02533656358718872,
+       "max": -0.018567979335784912,
+       "sd_ddof1": 0.00284166268232449,
+       "sd_ddof0": 0.00254166037072078,
+       "se_of_mean_ddof1": 0.00127083018536039,
+       "ci95_percentile": [
+        -0.022935450077056885,
+        -0.018726027011871337
+       ],
+       "ci95_halfwidth": 0.002104711532592774,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        -0.018567979335784912,
+        -0.019242942333221436,
+        -0.018625617027282715,
+        -0.02533656358718872,
+        -0.02009958028793335
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ],
+       "sources": [
+        "outputs/strict_freeze_b32_r4/both/seed1011/results.json",
+        "outputs/strict_freeze_b32_r4/both/seed123/results.json",
+        "outputs/strict_freeze_b32_r4/both/seed42/results.json",
+        "outputs/strict_freeze_b32_r4/both/seed456/results.json",
+        "outputs/strict_freeze_b32_r4/both/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6796000003814697,
+        "median": 0.6800000071525574,
+        "min": 0.6730000078678131,
+        "max": 0.6859999895095825,
+        "sd_ddof1": 0.006024945008360628,
+        "sd_ddof0": 0.005388874639756961,
+        "se_of_mean_ddof1": 0.00269443731987848,
+        "ci95_percentile": [
+         0.6748000025749207,
+         0.6843999981880188
+        ],
+        "ci95_halfwidth": 0.00479999780654905,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.6800000071525574,
+         0.6850000023841858,
+         0.6730000078678131,
+         0.6859999895095825,
+         0.6739999949932098
+        ],
+        "sources": [
+         "outputs/strict_freeze_b32_r4/both/seed1011/results.json",
+         "outputs/strict_freeze_b32_r4/both/seed123/results.json",
+         "outputs/strict_freeze_b32_r4/both/seed42/results.json",
+         "outputs/strict_freeze_b32_r4/both/seed456/results.json",
+         "outputs/strict_freeze_b32_r4/both/seed789/results.json"
+        ]
+       }
+      },
+      "vision_only": {
+       "n": 5,
+       "mean": 0.01657700538635254,
+       "median": 0.015219330787658691,
+       "min": 0.010540127754211426,
+       "max": 0.022574663162231445,
+       "sd_ddof1": 0.005532709405755071,
+       "sd_ddof0": 0.004948605732408322,
+       "se_of_mean_ddof1": 0.002474302866204161,
+       "ci95_percentile": [
+        0.012226724624633789,
+        0.020927286148071288
+       ],
+       "ci95_halfwidth": 0.0043502807617187495,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        0.012417018413543701,
+        0.010540127754211426,
+        0.015219330787658691,
+        0.022574663162231445,
+        0.02213388681411743
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ],
+       "sources": [
+        "outputs/strict_freeze_b32_r4/vision_only/seed1011/results.json",
+        "outputs/strict_freeze_b32_r4/vision_only/seed123/results.json",
+        "outputs/strict_freeze_b32_r4/vision_only/seed42/results.json",
+        "outputs/strict_freeze_b32_r4/vision_only/seed456/results.json",
+        "outputs/strict_freeze_b32_r4/vision_only/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6698000013828278,
+        "median": 0.6679999828338623,
+        "min": 0.6620000004768372,
+        "max": 0.6800000071525574,
+        "sd_ddof1": 0.007563072651084211,
+        "sd_ddof0": 0.0067646178266375385,
+        "se_of_mean_ddof1": 0.003382308913318769,
+        "ci95_percentile": [
+         0.6639999985694885,
+         0.6758000075817108
+        ],
+        "ci95_halfwidth": 0.005900004506111112,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.6679999828338623,
+         0.6800000071525574,
+         0.6620000004768372,
+         0.664000004529953,
+         0.675000011920929
+        ],
+        "sources": [
+         "outputs/strict_freeze_b32_r4/vision_only/seed1011/results.json",
+         "outputs/strict_freeze_b32_r4/vision_only/seed123/results.json",
+         "outputs/strict_freeze_b32_r4/vision_only/seed42/results.json",
+         "outputs/strict_freeze_b32_r4/vision_only/seed456/results.json",
+         "outputs/strict_freeze_b32_r4/vision_only/seed789/results.json"
+        ]
+       }
+      }
+     },
+     "paired_differences": {
+      "text_only_minus_both": {
+       "n_pairs": 5,
+       "mean_difference": -0.0100075364112854,
+       "sd_of_differences_ddof1": 0.0016916927847625402,
+       "se_of_mean_difference_ddof1": 0.0007565480127549921,
+       "ci95_percentile": [
+        -0.01129530668258667,
+        -0.00871976613998413
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        -0.011087656021118164,
+        -0.008116006851196289,
+        -0.010839283466339111,
+        -0.011730968952178955,
+        -0.008263766765594482
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ]
+      },
+      "text_only_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": -0.046959078311920165,
+       "sd_of_differences_ddof1": 0.008433796745138626,
+       "se_of_mean_difference_ddof1": 0.0037717085661092874,
+       "ci95_percentile": [
+        -0.05365900993347168,
+        -0.04092553853988647
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.000496208667755127,
+       "per_pair_differences": [
+        -0.04207265377044678,
+        -0.03789907693862915,
+        -0.04468423128128052,
+        -0.05964219570159912,
+        -0.050497233867645264
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ]
+      },
+      "both_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": -0.036951541900634766,
+       "sd_of_differences_ddof1": 0.007820661574916003,
+       "se_of_mean_difference_ddof1": 0.0034975061821065495,
+       "ci95_percentile": [
+        -0.04339042901992798,
+        -0.031076216697692872
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        -0.030984997749328613,
+        -0.02978307008743286,
+        -0.033844947814941406,
+        -0.047911226749420166,
+        -0.04223346710205078
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ]
+      }
+     }
+    },
+    "CLIP B/16 (WIT), rank-matched": {
+     "archive": "outputs/strict_freeze_b16",
+     "rank": 4,
+     "arms": {
+      "text_only": {
+       "n": 5,
+       "mean": -0.016574168205261232,
+       "median": -0.016184449195861816,
+       "min": -0.018969476222991943,
+       "max": -0.014931261539459229,
+       "sd_ddof1": 0.0017532824423983644,
+       "sd_ddof0": 0.001568183489983841,
+       "se_of_mean_ddof1": 0.0007840917449919204,
+       "ci95_percentile": [
+        -0.0179388165473938,
+        -0.01522676944732666
+       ],
+       "ci95_halfwidth": 0.0013560235500335704,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        -0.018969476222991943,
+        -0.014931261539459229,
+        -0.01774221658706665,
+        -0.016184449195861816,
+        -0.015043437480926514
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ],
+       "sources": [
+        "outputs/strict_freeze_b16/r4/text_only/seed1011/results.json",
+        "outputs/strict_freeze_b16/r4/text_only/seed123/results.json",
+        "outputs/strict_freeze_b16/r4/text_only/seed42/results.json",
+        "outputs/strict_freeze_b16/r4/text_only/seed456/results.json",
+        "outputs/strict_freeze_b16/r4/text_only/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6502000033855438,
+        "median": 0.6509999930858612,
+        "min": 0.6419999897480011,
+        "max": 0.656000018119812,
+        "sd_ddof1": 0.005805176226873364,
+        "sd_ddof0": 0.005192307465861834,
+        "se_of_mean_ddof1": 0.002596153732930917,
+        "ci95_percentile": [
+         0.6455999970436096,
+         0.6546000063419342
+        ],
+        "ci95_halfwidth": 0.004500004649162281,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.6419999897480011,
+         0.656000018119812,
+         0.6550000011920929,
+         0.6509999930858612,
+         0.6470000147819519
+        ],
+        "sources": [
+         "outputs/strict_freeze_b16/r4/text_only/seed1011/results.json",
+         "outputs/strict_freeze_b16/r4/text_only/seed123/results.json",
+         "outputs/strict_freeze_b16/r4/text_only/seed42/results.json",
+         "outputs/strict_freeze_b16/r4/text_only/seed456/results.json",
+         "outputs/strict_freeze_b16/r4/text_only/seed789/results.json"
+        ]
+       }
+      },
+      "both": {
+       "n": 5,
+       "mean": 0.012357091903686524,
+       "median": 0.012712419033050537,
+       "min": 0.00871586799621582,
+       "max": 0.015005946159362793,
+       "sd_ddof1": 0.002399877655075753,
+       "sd_ddof0": 0.002146515829772871,
+       "se_of_mean_ddof1": 0.0010732579148864355,
+       "ci95_percentile": [
+        0.010426986515522006,
+        0.014073812961578369
+       ],
+       "ci95_halfwidth": 0.0018234132230281813,
+       "mc_jitter_max_endpoint_shift": 0.00011249810457229954,
+       "values": [
+        0.015005946159362793,
+        0.012712419033050537,
+        0.011572539806365967,
+        0.00871586799621582,
+        0.0137786865234375
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ],
+       "sources": [
+        "outputs/strict_freeze_b16/r4/both/seed1011/results.json",
+        "outputs/strict_freeze_b16/r4/both/seed123/results.json",
+        "outputs/strict_freeze_b16/r4/both/seed42/results.json",
+        "outputs/strict_freeze_b16/r4/both/seed456/results.json",
+        "outputs/strict_freeze_b16/r4/both/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.7069999933242798,
+        "median": 0.7099999785423279,
+        "min": 0.6959999799728394,
+        "max": 0.7179999947547913,
+        "sd_ddof1": 0.009219548594923209,
+        "sd_ddof0": 0.008246214952044386,
+        "se_of_mean_ddof1": 0.004123107476022193,
+        "ci95_percentile": [
+         0.6997999906539917,
+         0.7139999985694885
+        ],
+        "ci95_halfwidth": 0.007100003957748402,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.6959999799728394,
+         0.7120000123977661,
+         0.7099999785423279,
+         0.7179999947547913,
+         0.6990000009536743
+        ],
+        "sources": [
+         "outputs/strict_freeze_b16/r4/both/seed1011/results.json",
+         "outputs/strict_freeze_b16/r4/both/seed123/results.json",
+         "outputs/strict_freeze_b16/r4/both/seed42/results.json",
+         "outputs/strict_freeze_b16/r4/both/seed456/results.json",
+         "outputs/strict_freeze_b16/r4/both/seed789/results.json"
+        ]
+       }
+      },
+      "vision_only": {
+       "n": 5,
+       "mean": 0.037550926208496094,
+       "median": 0.03724336624145508,
+       "min": 0.03170984983444214,
+       "max": 0.04330110549926758,
+       "sd_ddof1": 0.005137144164982618,
+       "sd_ddof0": 0.004594801425247011,
+       "se_of_mean_ddof1": 0.0022974007126235056,
+       "ci95_percentile": [
+        0.03348443508148193,
+        0.041617417335510255
+       ],
+       "ci95_halfwidth": 0.0040664911270141615,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        0.04330110549926758,
+        0.03724336624145508,
+        0.033379554748535156,
+        0.04212075471878052,
+        0.03170984983444214
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ],
+       "sources": [
+        "outputs/strict_freeze_b16/r4/vision_only/seed1011/results.json",
+        "outputs/strict_freeze_b16/r4/vision_only/seed123/results.json",
+        "outputs/strict_freeze_b16/r4/vision_only/seed42/results.json",
+        "outputs/strict_freeze_b16/r4/vision_only/seed456/results.json",
+        "outputs/strict_freeze_b16/r4/vision_only/seed789/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.685999995470047,
+        "median": 0.6889999806880951,
+        "min": 0.6770000159740448,
+        "max": 0.6919999718666077,
+        "sd_ddof1": 0.006633239435833928,
+        "sd_ddof0": 0.005932949715822807,
+        "se_of_mean_ddof1": 0.002966474857911403,
+        "ci95_percentile": [
+         0.6806000113487244,
+         0.6909999907016754
+        ],
+        "ci95_halfwidth": 0.005199989676475503,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.6770000159740448,
+         0.6889999806880951,
+         0.6910000145435333,
+         0.6809999942779541,
+         0.6919999718666077
+        ],
+        "sources": [
+         "outputs/strict_freeze_b16/r4/vision_only/seed1011/results.json",
+         "outputs/strict_freeze_b16/r4/vision_only/seed123/results.json",
+         "outputs/strict_freeze_b16/r4/vision_only/seed42/results.json",
+         "outputs/strict_freeze_b16/r4/vision_only/seed456/results.json",
+         "outputs/strict_freeze_b16/r4/vision_only/seed789/results.json"
+        ]
+       }
+      }
+     },
+     "paired_differences": {
+      "text_only_minus_both": {
+       "n_pairs": 5,
+       "mean_difference": -0.028931260108947754,
+       "sd_of_differences_ddof1": 0.0032980643941454106,
+       "se_of_mean_difference_ddof1": 0.0014749392358961594,
+       "ci95_percentile": [
+        -0.031678414344787596,
+        -0.026546335220336913
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 9.85264778137207e-05,
+       "per_pair_differences": [
+        -0.033975422382354736,
+        -0.027643680572509766,
+        -0.029314756393432617,
+        -0.024900317192077637,
+        -0.028822124004364014
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ]
+      },
+      "text_only_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": -0.054125094413757326,
+       "sd_of_differences_ddof1": 0.0061439012122963986,
+       "se_of_mean_difference_ddof1": 0.0027476361515476225,
+       "ci95_percentile": [
+        -0.059167122840881346,
+        -0.049584949016571046
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 8.062124252319197e-05,
+       "per_pair_differences": [
+        -0.06227058172225952,
+        -0.05217462778091431,
+        -0.05112177133560181,
+        -0.058305203914642334,
+        -0.04675328731536865
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ]
+      },
+      "both_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": -0.02519383430480957,
+       "sd_of_differences_ddof1": 0.00595180547066229,
+       "se_of_mean_difference_ddof1": 0.0026617283242512018,
+       "ci95_percentile": [
+        -0.030063366889953612,
+        -0.020779132843017578
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.00020805597305297713,
+       "per_pair_differences": [
+        -0.028295159339904785,
+        -0.02453094720840454,
+        -0.02180701494216919,
+        -0.0334048867225647,
+        -0.01793116331100464
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1011
+       ]
+      }
+     }
+    },
+    "SigLIP B/16 (WebLI)": {
+     "archive": "outputs/siglip_strict",
+     "rank": 8,
+     "arms": {
+      "text_only": {
+       "n": 5,
+       "mean": 0.06642622947692871,
+       "median": 0.06781458854675293,
+       "min": 0.05650734901428223,
+       "max": 0.07192492485046387,
+       "sd_ddof1": 0.005963397610067065,
+       "sd_ddof0": 0.005333824973187897,
+       "se_of_mean_ddof1": 0.0026669124865939483,
+       "ci95_percentile": [
+        0.06108126640319824,
+        0.07028079032897949
+       ],
+       "ci95_halfwidth": 0.004599761962890626,
+       "mc_jitter_max_endpoint_shift": 0.00035145282745361467,
+       "values": [
+        0.05650734901428223,
+        0.06781458854675293,
+        0.07192492485046387,
+        0.06605732440948486,
+        0.06982696056365967
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ],
+       "sources": [
+        "outputs/siglip_strict/seed1024/s4_siglip_lora_text_only/results.json",
+        "outputs/siglip_strict/seed123/s4_siglip_lora_text_only/results.json",
+        "outputs/siglip_strict/seed42/s4_siglip_lora_text_only/results.json",
+        "outputs/siglip_strict/seed456/s4_siglip_lora_text_only/results.json",
+        "outputs/siglip_strict/seed789/s4_siglip_lora_text_only/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.431999996304512,
+        "median": 0.43400000035762787,
+        "min": 0.4229999929666519,
+        "max": 0.4399999976158142,
+        "sd_ddof1": 0.006595456743145397,
+        "sd_ddof0": 0.0058991558481329915,
+        "se_of_mean_ddof1": 0.0029495779240664953,
+        "ci95_percentile": [
+         0.42639999389648436,
+         0.4368000000715256
+        ],
+        "ci95_halfwidth": 0.0052000030875206105,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.43400000035762787,
+         0.4399999976158142,
+         0.4350000023841858,
+         0.42799998819828033,
+         0.4229999929666519
+        ],
+        "sources": [
+         "outputs/siglip_strict/seed1024/s4_siglip_lora_text_only/results.json",
+         "outputs/siglip_strict/seed123/s4_siglip_lora_text_only/results.json",
+         "outputs/siglip_strict/seed42/s4_siglip_lora_text_only/results.json",
+         "outputs/siglip_strict/seed456/s4_siglip_lora_text_only/results.json",
+         "outputs/siglip_strict/seed789/s4_siglip_lora_text_only/results.json"
+        ]
+       }
+      },
+      "both": {
+       "n": 5,
+       "mean": -0.011370992660522461,
+       "median": -0.012507796287536621,
+       "min": -0.017979979515075684,
+       "max": -0.0020020008087158203,
+       "sd_ddof1": 0.005871234567024993,
+       "sd_ddof0": 0.005251391841485772,
+       "se_of_mean_ddof1": 0.002625695920742886,
+       "ci95_percentile": [
+        -0.01544969081878662,
+        -0.0062043190002441405
+       ],
+       "ci95_halfwidth": 0.0046226859092712395,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        -0.017979979515075684,
+        -0.012507796287536621,
+        -0.0020020008087158203,
+        -0.013564467430114746,
+        -0.010800719261169434
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ],
+       "sources": [
+        "outputs/siglip_strict/seed1024/s4_siglip_lora_both/results.json",
+        "outputs/siglip_strict/seed123/s4_siglip_lora_both/results.json",
+        "outputs/siglip_strict/seed42/s4_siglip_lora_both/results.json",
+        "outputs/siglip_strict/seed456/s4_siglip_lora_both/results.json",
+        "outputs/siglip_strict/seed789/s4_siglip_lora_both/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.6185999989509583,
+        "median": 0.6220000088214874,
+        "min": 0.6029999852180481,
+        "max": 0.628000020980835,
+        "sd_ddof1": 0.01023719679742107,
+        "sd_ddof0": 0.009156427175230663,
+        "se_of_mean_ddof1": 0.004578213587615332,
+        "ci95_percentile": [
+         0.609799987077713,
+         0.6260000050067902
+        ],
+        "ci95_halfwidth": 0.008100008964538608,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.6220000088214874,
+         0.6259999871253967,
+         0.613999992609024,
+         0.628000020980835,
+         0.6029999852180481
+        ],
+        "sources": [
+         "outputs/siglip_strict/seed1024/s4_siglip_lora_both/results.json",
+         "outputs/siglip_strict/seed123/s4_siglip_lora_both/results.json",
+         "outputs/siglip_strict/seed42/s4_siglip_lora_both/results.json",
+         "outputs/siglip_strict/seed456/s4_siglip_lora_both/results.json",
+         "outputs/siglip_strict/seed789/s4_siglip_lora_both/results.json"
+        ]
+       }
+      },
+      "vision_only": {
+       "n": 5,
+       "mean": 0.052204036712646486,
+       "median": 0.0526583194732666,
+       "min": 0.05025804042816162,
+       "max": 0.05403709411621094,
+       "sd_ddof1": 0.0016563503955135156,
+       "sd_ddof0": 0.0014814848315707534,
+       "se_of_mean_ddof1": 0.0007407424157853767,
+       "ci95_percentile": [
+        0.05091438293457031,
+        0.053493690490722653
+       ],
+       "ci95_halfwidth": 0.0012896537780761712,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        0.05403709411621094,
+        0.05025804042816162,
+        0.0526583194732666,
+        0.05069875717163086,
+        0.0533679723739624
+       ],
+       "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ],
+       "sources": [
+        "outputs/siglip_strict/seed1024/s6_siglip_lora_vision_only/results.json",
+        "outputs/siglip_strict/seed123/s6_siglip_lora_vision_only/results.json",
+        "outputs/siglip_strict/seed42/s6_siglip_lora_vision_only/results.json",
+        "outputs/siglip_strict/seed456/s6_siglip_lora_vision_only/results.json",
+        "outputs/siglip_strict/seed789/s6_siglip_lora_vision_only/results.json"
+       ],
+       "R@1": {
+        "n": 5,
+        "mean": 0.341200003027916,
+        "median": 0.3400000035762787,
+        "min": 0.33500000834465027,
+        "max": 0.35100001096725464,
+        "sd_ddof1": 0.005932960892384656,
+        "sd_ddof0": 0.005306601545287962,
+        "se_of_mean_ddof1": 0.002653300772643981,
+        "ci95_percentile": [
+         0.33720000386238097,
+         0.34660000503063204
+        ],
+        "ci95_halfwidth": 0.0047000005841255355,
+        "mc_jitter_max_endpoint_shift": 0.0,
+        "values": [
+         0.35100001096725464,
+         0.33500000834465027,
+         0.33900000154972076,
+         0.3400000035762787,
+         0.3409999907016754
+        ],
+        "sources": [
+         "outputs/siglip_strict/seed1024/s6_siglip_lora_vision_only/results.json",
+         "outputs/siglip_strict/seed123/s6_siglip_lora_vision_only/results.json",
+         "outputs/siglip_strict/seed42/s6_siglip_lora_vision_only/results.json",
+         "outputs/siglip_strict/seed456/s6_siglip_lora_vision_only/results.json",
+         "outputs/siglip_strict/seed789/s6_siglip_lora_vision_only/results.json"
+        ]
+       }
+      }
+     },
+     "paired_differences": {
+      "text_only_minus_both": {
+       "n_pairs": 5,
+       "mean_difference": 0.07779722213745117,
+       "sd_of_differences_ddof1": 0.003303467212269414,
+       "se_of_mean_difference_ddof1": 0.0014773554496152273,
+       "ci95_percentile": [
+        0.07529006004333497,
+        0.08030438423156738
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 0.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        0.07448732852935791,
+        0.08032238483428955,
+        0.07392692565917969,
+        0.07962179183959961,
+        0.0806276798248291
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ]
+      },
+      "text_only_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": 0.014222192764282226,
+       "sd_of_differences_ddof1": 0.006726192618576494,
+       "se_of_mean_difference_ddof1": 0.0030080447849788706,
+       "ci95_percentile": [
+        0.008065748214721679,
+        0.01814298629760742
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 0.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        0.002470254898071289,
+        0.01755654811859131,
+        0.019266605377197266,
+        0.015358567237854004,
+        0.016458988189697266
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ]
+      },
+      "both_minus_vision_only": {
+       "n_pairs": 5,
+       "mean_difference": -0.06357502937316895,
+       "sd_of_differences_ddof1": 0.006168893534243405,
+       "se_of_mean_difference_ddof1": 0.0027588130577054356,
+       "ci95_percentile": [
+        -0.06859714984893799,
+        -0.058463668823242186
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        -0.07201707363128662,
+        -0.06276583671569824,
+        -0.05466032028198242,
+        -0.0642632246017456,
+        -0.06416869163513184
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+       ]
+      }
+     }
+    },
+    "BioCLIP B/16 (bio.)": {
+     "archive": "outputs/strict_freeze_bioclip",
+     "rank": 4,
+     "arms": {
+      "text_only": {
+       "n": 3,
+       "mean": -0.3671333333333333,
+       "median": -0.3644,
+       "min": -0.3786,
+       "max": -0.3584,
+       "sd_ddof1": 0.010373684655576015,
+       "sd_ddof0": 0.008470078052900232,
+       "se_of_mean_ddof1": 0.005989249628385103,
+       "ci95_percentile": [
+        -0.3786,
+        -0.3584
+       ],
+       "ci95_halfwidth": 0.010099999999999998,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        -0.3584,
+        -0.3786,
+        -0.3644
+       ],
+       "seeds": [
+        42,
+        123,
+        456
+       ],
+       "sources": [
+        "outputs/strict_freeze_bioclip/results_partial.json::records[rank=4,arm=text_only]"
+       ]
+      },
+      "both": {
+       "n": 3,
+       "mean": -0.4515,
+       "median": -0.4574,
+       "min": -0.4625,
+       "max": -0.4346,
+       "sd_ddof1": 0.014856311789943032,
+       "sd_ddof0": 0.012130127781684751,
+       "se_of_mean_ddof1": 0.008577295611088621,
+       "ci95_percentile": [
+        -0.4625000000000001,
+        -0.43459999999999993
+       ],
+       "ci95_halfwidth": 0.013950000000000073,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        -0.4625,
+        -0.4346,
+        -0.4574
+       ],
+       "seeds": [
+        42,
+        123,
+        456
+       ],
+       "sources": [
+        "outputs/strict_freeze_bioclip/results_partial.json::records[rank=4,arm=both]"
+       ]
+      },
+      "vision_only": {
+       "n": 3,
+       "mean": -0.2927,
+       "median": -0.2915,
+       "min": -0.2952,
+       "max": -0.2914,
+       "sd_ddof1": 0.0021656407827707895,
+       "sd_ddof0": 0.0017682382946499937,
+       "se_of_mean_ddof1": 0.0012503332889007472,
+       "ci95_percentile": [
+        -0.2952,
+        -0.2914
+       ],
+       "ci95_halfwidth": 0.0019000000000000128,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "values": [
+        -0.2915,
+        -0.2952,
+        -0.2914
+       ],
+       "seeds": [
+        42,
+        123,
+        456
+       ],
+       "sources": [
+        "outputs/strict_freeze_bioclip/results_partial.json::records[rank=4,arm=vision_only]"
+       ]
+      }
+     },
+     "paired_differences": {
+      "text_only_minus_both": {
+       "n_pairs": 3,
+       "mean_difference": 0.08436666666666666,
+       "sd_of_differences_ddof1": 0.025185379356549978,
+       "se_of_mean_difference_ddof1": 0.014540785551146974,
+       "ci95_percentile": [
+        0.055999999999999994,
+        0.10410000000000003
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 0.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        0.10410000000000003,
+        0.055999999999999994,
+        0.09299999999999997
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456
+       ]
+      },
+      "text_only_minus_vision_only": {
+       "n_pairs": 3,
+       "mean_difference": -0.07443333333333334,
+       "sd_of_differences_ddof1": 0.00834286121982938,
+       "se_of_mean_difference_ddof1": 0.004816753171080183,
+       "ci95_percentile": [
+        -0.08339999999999997,
+        -0.06690000000000002
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        -0.06690000000000002,
+        -0.08339999999999997,
+        -0.07300000000000001
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456
+       ]
+      },
+      "both_minus_vision_only": {
+       "n_pairs": 3,
+       "mean_difference": -0.1588,
+       "sd_of_differences_ddof1": 0.016985876486069272,
+       "se_of_mean_difference_ddof1": 0.00980680036165383,
+       "ci95_percentile": [
+        -0.17100000000000004,
+        -0.13939999999999997
+       ],
+       "ci95_excludes_zero": true,
+       "bootstrap_share_difference_le_zero": 1.0,
+       "mc_jitter_max_endpoint_shift": 0.0,
+       "per_pair_differences": [
+        -0.17100000000000004,
+        -0.13939999999999997,
+        -0.16599999999999998
+       ],
+       "paired_seeds": [
+        42,
+        123,
+        456
+       ]
+      }
+     }
+    }
+   }
+  },
+  "tab_vlm": {
+   "archive": "outputs/vlm_clean_summary.json",
+   "frozen_dg_star": 0.7778259515762329,
+   "arms": {
+    "both": {
+     "n": 13,
+     "mean": 98.56741258100017,
+     "median": 98.44728394880087,
+     "min": 97.71654699391269,
+     "max": 99.4431020500463,
+     "sd_ddof1": 0.45727387325691693,
+     "sd_ddof0": 0.4393345266475891,
+     "se_of_mean_ddof1": 0.1268249536121412,
+     "ci95_percentile": [
+      98.33317034995228,
+      98.81327356739311
+     ],
+     "ci95_halfwidth": 0.24005160872041387,
+     "mc_jitter_max_endpoint_shift": 0.006128456387514802,
+     "values": [
+      98.85795895558644,
+      98.83470037538639,
+      98.11614420566855,
+      97.71654699391269,
+      98.66237433000653,
+      98.22832711540003,
+      98.33978635248603,
+      99.01471304794327,
+      99.4431020500463,
+      98.28458799395759,
+      98.44728394880087,
+      98.98445882581387,
+      98.44637935799403
+     ],
+     "n_seeds": 13,
+     "dg_star_after_mean_from_archive": 0.011143036723996583,
+     "seeds_min_max_reduction": [
+      97.71654699391269,
+      99.4431020500463
+     ]
+    },
+    "text_only": {
+     "n": 13,
+     "mean": 96.74369117712575,
+     "median": 96.86539445494527,
+     "min": 95.86451926603367,
+     "max": 97.07357749808924,
+     "sd_ddof1": 0.30298713676935246,
+     "sd_ddof0": 0.291100625025395,
+     "se_of_mean_ddof1": 0.08403351210984007,
+     "ci95_percentile": [
+      96.56538277842469,
+      96.87833927280944
+     ],
+     "ci95_halfwidth": 0.1564782471923749,
+     "mc_jitter_max_endpoint_shift": 0.0021024536097513646,
+     "values": [
+      96.90200242472004,
+      96.94414067115748,
+      96.7650439042759,
+      96.90709088270935,
+      96.87586591670618,
+      97.07357749808924,
+      96.7549548730957,
+      96.61909335608932,
+      96.91892803113377,
+      95.86451926603367,
+      96.60810991149718,
+      96.56926411218173,
+      96.86539445494527
+     ],
+     "n_seeds": 13,
+     "dg_star_after_mean_from_archive": 0.02532841508778242,
+     "seeds_min_max_reduction": [
+      95.86451926603367,
+      97.07357749808924
+     ]
+    },
+    "vision_only": {
+     "n": 13,
+     "mean": 89.40732014211501,
+     "median": 89.46885991107573,
+     "min": 87.08028040222061,
+     "max": 90.73527650406284,
+     "sd_ddof1": 1.055510687424668,
+     "sd_ddof0": 1.014101866193103,
+     "se_of_mean_ddof1": 0.29274599271614493,
+     "ci95_percentile": [
+      88.81970041129924,
+      89.9325439704575
+     ],
+     "ci95_halfwidth": 0.5564217795791322,
+     "mc_jitter_max_endpoint_shift": 0.014888465890436464,
+     "values": [
+      88.84425809865841,
+      90.00975037537106,
+      89.27808907355649,
+      88.81280922996709,
+      89.67061084063347,
+      90.49466373082588,
+      87.08028040222061,
+      90.73527650406284,
+      90.68926797394035,
+      89.41802945097662,
+      89.82399878955573,
+      89.46885991107573,
+      87.96926746665109
+     ],
+     "n_seeds": 13,
+     "dg_star_after_mean_from_archive": 0.08239261290201774,
+     "seeds_min_max_reduction": [
+      87.08028040222061,
+      90.73527650406284
+     ]
+    }
+   },
+   "paired_differences": {
+    "text_only_minus_both": {
+     "n_pairs": 13,
+     "mean_difference": -1.823721403874444,
+     "sd_of_differences_ddof1": 0.529336601245379,
+     "se_of_mean_difference_ddof1": 0.14681155829000378,
+     "ci95_percentile": [
+      -2.093516553079862,
+      -1.5406046301559169
+     ],
+     "ci95_excludes_zero": true,
+     "bootstrap_share_difference_le_zero": 1.0,
+     "mc_jitter_max_endpoint_shift": 0.0027156299102395476,
+     "per_pair_differences": [
+      -1.955956530866402,
+      -1.890559704228906,
+      -1.3511003013926484,
+      -0.8094561112033318,
+      -1.7865084133003535,
+      -1.1547496173107987,
+      -1.5848314793903313,
+      -2.395619691853952,
+      -2.5241740189125323,
+      -2.420068727923919,
+      -1.8391740373036924,
+      -2.4151947136321468,
+      -1.5809849030487584
+     ],
+     "note": "the archive lists per-seed values without seed labels; pairs follow the archived order"
+    },
+    "text_only_minus_vision_only": {
+     "n_pairs": 13,
+     "mean_difference": 7.336371035010729,
+     "sd_of_differences_ddof1": 1.0900225230745566,
+     "se_of_mean_difference_ddof1": 0.30231785371968795,
+     "ci95_percentile": [
+      6.800201825993601,
+      7.933311788221183
+     ],
+     "ci95_excludes_zero": true,
+     "bootstrap_share_difference_le_zero": 0.0,
+     "mc_jitter_max_endpoint_shift": 0.012121923907526089,
+     "per_pair_differences": [
+      8.057744326061623,
+      6.934390295786429,
+      7.486954830719412,
+      8.094281652742268,
+      7.205255076072703,
+      6.578913767263359,
+      9.67467447087509,
+      5.883816852026484,
+      6.229660057193428,
+      6.446489815057049,
+      6.78411112194145,
+      7.100404201106002,
+      8.896126988294185
+     ],
+     "note": "the archive lists per-seed values without seed labels; pairs follow the archived order"
+    },
+    "both_minus_vision_only": {
+     "n_pairs": 13,
+     "mean_difference": 9.160092438885174,
+     "sd_of_differences_ddof1": 0.9423735576004415,
+     "se_of_mean_difference_ddof1": 0.2613673986592161,
+     "ci95_percentile": [
+      8.690282688051536,
+      9.681583426958362
+     ],
+     "ci95_excludes_zero": true,
+     "bootstrap_share_difference_le_zero": 0.0,
+     "mc_jitter_max_endpoint_shift": 0.0056139334673428465,
+     "per_pair_differences": [
+      10.013700856928025,
+      8.824950000015335,
+      8.83805513211206,
+      8.9037377639456,
+      8.991763489373056,
+      7.733663384574157,
+      11.259505950265421,
+      8.279436543880436,
+      8.75383407610596,
+      8.866558542980968,
+      8.623285159245142,
+      9.515598914738149,
+      10.477111891342943
+     ],
+     "note": "the archive lists per-seed values without seed labels; pairs follow the archived order"
+    }
+   },
+   "sd_convention": {
+    "both": {
+     "manuscript": 0.44,
+     "ddof1": 0.45727387325691693,
+     "ddof0": 0.4393345266475891,
+     "matches": "ddof0"
+    },
+    "text_only": {
+     "manuscript": 0.29,
+     "ddof1": 0.30298713676935246,
+     "ddof0": 0.291100625025395,
+     "matches": "ddof0"
+    },
+    "vision_only": {
+     "manuscript": 1.01,
+     "ddof1": 1.055510687424668,
+     "ddof0": 1.014101866193103,
+     "matches": "ddof0"
+    }
+   }
+  },
+  "tab_llava": {
+   "archive": "outputs/canonical_caption_metric.json",
+   "frozen_dg_star": 0.3565603693326314,
+   "definition": {
+    "I": "mean pool of final hidden state over image-token positions",
+    "T": "mean pool of final hidden state over caption-token positions (labels != -100)",
+    "normalisation": "L2 per side, no projection",
+    "DG*": "mean_i ||I_i - T_i||^2",
+    "CG": "||mean I - mean T||",
+    "DG_emp": "sqrt(CG^2 + ||sd_I - sd_T||^2)",
+    "held_out": "COCO val2014 ids[1500:2000], the sweep's held-out slice",
+    "adapters": "outputs/llava_canonical/*_ckpt.pt (the 2026-10-17 canonical retrain)"
+   },
+   "arms": {
+    "text_only": {
+     "n": 3,
+     "mean": 73.26917231007057,
+     "median": 68.28029675489744,
+     "min": 67.60717111012724,
+     "max": 83.92004906518702,
+     "sd_ddof1": 9.230068053536863,
+     "sd_ddof0": 7.536319007443081,
+     "se_of_mean_ddof1": 5.328982275348073,
+     "ci95_percentile": [
+      67.60717111012724,
+      83.92004906518702
+     ],
+     "ci95_halfwidth": 8.156438977529888,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "values": [
+      83.92004906518702,
+      67.60717111012724,
+      68.28029675489744
+     ],
+     "seeds": [
+      "123",
+      "42",
+      "456"
+     ]
+    },
+    "vision_only": {
+     "n": 3,
+     "mean": 121.47535653807795,
+     "median": 126.21977807295694,
+     "min": 99.52832010404306,
+     "max": 138.6779714372338,
+     "sd_ddof1": 20.001398742414704,
+     "sd_ddof0": 16.331073686953726,
+     "se_of_mean_ddof1": 11.547812948102171,
+     "ci95_percentile": [
+      99.52832010404306,
+      138.6779714372338
+     ],
+     "ci95_halfwidth": 19.574825666595366,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "values": [
+      126.21977807295694,
+      99.52832010404306,
+      138.6779714372338
+     ],
+     "seeds": [
+      "123",
+      "42",
+      "456"
+     ]
+    },
+    "both": {
+     "n": 3,
+     "mean": 95.6611767195147,
+     "median": 95.50990684519206,
+     "min": 86.04489266348212,
+     "max": 105.42873064986992,
+     "sd_ddof1": 9.692804325982799,
+     "sd_ddof0": 7.914141591766428,
+     "se_of_mean_ddof1": 5.596143186808538,
+     "ci95_percentile": [
+      86.04489266348212,
+      105.42873064986992
+     ],
+     "ci95_halfwidth": 9.691918993193902,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "values": [
+      95.50990684519206,
+      86.04489266348212,
+      105.42873064986992
+     ],
+     "seeds": [
+      "123",
+      "42",
+      "456"
+     ]
+    }
+   },
+   "paired_differences": {
+    "text_only_minus_both": {
+     "n_pairs": 3,
+     "mean_difference": -22.392004409444137,
+     "sd_of_differences_ddof1": 13.230172634384521,
+     "se_of_mean_difference_ddof1": 7.638443731887124,
+     "ci95_percentile": [
+      -37.148433894972484,
+      -11.589857780005048
+     ],
+     "ci95_excludes_zero": true,
+     "bootstrap_share_difference_le_zero": 1.0,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "per_pair_differences": [
+      -11.589857780005048,
+      -18.437721553354876,
+      -37.148433894972484
+     ],
+     "note": "pairs follow the archived seed suffix order (s42, s123, s456)"
+    },
+    "text_only_minus_vision_only": {
+     "n_pairs": 3,
+     "mean_difference": -48.20618422800737,
+     "sd_of_differences_ddof1": 19.90666765720531,
+     "se_of_mean_difference_ddof1": 11.493119930555904,
+     "ci95_percentile": [
+      -70.39767468233636,
+      -31.92114899391582
+     ],
+     "ci95_excludes_zero": true,
+     "bootstrap_share_difference_le_zero": 1.0,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "per_pair_differences": [
+      -42.299729007769926,
+      -31.92114899391582,
+      -70.39767468233636
+     ],
+     "note": "pairs follow the archived seed suffix order (s42, s123, s456)"
+    },
+    "both_minus_vision_only": {
+     "n_pairs": 3,
+     "mean_difference": -25.814179818563233,
+     "sd_of_differences_ddof1": 10.753961600069125,
+     "se_of_mean_difference_ddof1": 6.208802624654808,
+     "ci95_percentile": [
+      -33.249240787363874,
+      -13.483427440560945
+     ],
+     "ci95_excludes_zero": true,
+     "bootstrap_share_difference_le_zero": 1.0,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "per_pair_differences": [
+      -30.70987122776488,
+      -13.483427440560945,
+      -33.249240787363874
+     ],
+     "note": "pairs follow the archived seed suffix order (s42, s123, s456)"
+    }
+   },
+   "sd_convention": {
+    "text_only": {
+     "manuscript": 7.54,
+     "ddof1": 9.230068053536863,
+     "ddof0": 7.536319007443081,
+     "matches": "ddof0"
+    },
+    "vision_only": {
+     "manuscript": 16.33,
+     "ddof1": 20.001398742414704,
+     "ddof0": 16.331073686953726,
+     "matches": "ddof0"
+    },
+    "both": {
+     "manuscript": 7.91,
+     "ddof1": 9.692804325982799,
+     "ddof0": 7.914141591766428,
+     "matches": "ddof0"
+    }
+   }
+  },
+  "sd_convention_summary": {
+   "tab_position_strict": "manuscript prints no spread for Delta-CG; caption claims a 0.0006-0.006 seed-to-seed sd range",
+   "tab_vlm": {
+    "both": {
+     "manuscript": 0.44,
+     "ddof1": 0.45727387325691693,
+     "ddof0": 0.4393345266475891,
+     "matches": "ddof0"
+    },
+    "text_only": {
+     "manuscript": 0.29,
+     "ddof1": 0.30298713676935246,
+     "ddof0": 0.291100625025395,
+     "matches": "ddof0"
+    },
+    "vision_only": {
+     "manuscript": 1.01,
+     "ddof1": 1.055510687424668,
+     "ddof0": 1.014101866193103,
+     "matches": "ddof0"
+    }
+   },
+   "tab_llava": {
+    "text_only": {
+     "manuscript": 7.54,
+     "ddof1": 9.230068053536863,
+     "ddof0": 7.536319007443081,
+     "matches": "ddof0"
+    },
+    "vision_only": {
+     "manuscript": 16.33,
+     "ddof1": 20.001398742414704,
+     "ddof0": 16.331073686953726,
+     "matches": "ddof0"
+    },
+    "both": {
+     "manuscript": 7.91,
+     "ddof1": 9.692804325982799,
+     "ddof0": 7.914141591766428,
+     "matches": "ddof0"
+    }
+   }
+  }
+ },
+ "cross_paper_addendum_p3_allocation": {
+  "why_present": "The commissioning brief cites +1478 +/- 1563 and +5048 +/- 1900 as Paper A strict-freeze arm comparisons. They are not in paper合/: they are the Gamma-guided vs uniform allocation arms of Paper 3 (paper3/paper_ieee/sections/experiments.tex, 'Counterfactual validation'). Reproduced here under an explicit addendum so the digits travel with their real provenance.",
+  "manuscript_location": "paper3/paper_ieee/sections/experiments.tex (Result, capacity-matched comparison)",
+  "capacity_matched": {
+   "archive": "outputs/analysis/p3_alloc_runs/main/summary.json::runs",
+   "tag": "main",
+   "lr": 5e-05,
+   "gamma_guided": {
+    "n": 6,
+    "mean": 1477.4501953125,
+    "median": 1597.384765625,
+    "min": -1052.962890625,
+    "max": 3234.931640625,
+    "sd_ddof1": 1563.3373668985585,
+    "sd_ddof0": 1427.1252347351176,
+    "se_of_mean_ddof1": 638.2298074546136,
+    "ci95_percentile": [
+     273.484375,
+     2564.2138671875
+    ],
+    "ci95_halfwidth": 1145.36474609375,
+    "mc_jitter_max_endpoint_shift": 2.732421875,
+    "values": [
+     3234.931640625,
+     2705.53125,
+     782.431640625,
+     -1052.962890625,
+     1002.244140625,
+     2192.525390625
+    ],
+    "plan": "exp_beta_paper_0.137",
+    "paired_seeds": [
+     42,
+     123,
+     456,
+     789,
+     1011,
+     1213
+    ]
+   },
+   "uniform": {
+    "n": 6,
+    "mean": 5047.548502604167,
+    "median": 5145.6728515625,
+    "min": 2841.630859375,
+    "max": 8205.662109375,
+    "sd_ddof1": 1899.897185980862,
+    "sd_ddof0": 1734.3609095038435,
+    "se_of_mean_ddof1": 775.6297782337911,
+    "ci95_percentile": [
+     3775.2265625,
+     6500.354817708333
+    ],
+    "ci95_halfwidth": 1362.5641276041665,
+    "mc_jitter_max_endpoint_shift": 78.15559895833303,
+    "values": [
+     5543.607421875,
+     5491.048828125,
+     8205.662109375,
+     4800.296875,
+     3403.044921875,
+     2841.630859375
+    ],
+    "plan": "uniform",
+    "paired_seeds": [
+     42,
+     123,
+     456,
+     789,
+     1011,
+     1213
+    ]
+   },
+   "paired_difference_gamma_minus_uniform": {
+    "n_pairs": 6,
+    "mean_difference": -3570.0983072916665,
+    "sd_of_differences_ddof1": 2536.3620906915976,
+    "se_of_mean_difference_ddof1": 1035.4654875221943,
+    "ci95_percentile": [
+     -5524.157552083333,
+     -1850.3134765625
+    ],
+    "ci95_excludes_zero": true,
+    "bootstrap_share_difference_le_zero": 1.0,
+    "mc_jitter_max_endpoint_shift": 14.93326822916606,
+    "per_pair_differences": [
+     -2308.67578125,
+     -2785.517578125,
+     -7423.23046875,
+     -5853.259765625,
+     -2400.80078125,
+     -649.10546875
+    ]
+   },
+   "loss_last_mean": {
+    "gamma_guided": 1.3761667972236562,
+    "uniform": 1.3733809256227687
+   },
+   "aggregate_cross_check": {
+    "exp_beta_paper_0.137": {
+     "n": 6,
+     "mean": 1477.4501953125,
+     "sd": 1563.3373668985585,
+     "median": 1597.384765625,
+     "min": -1052.962890625,
+     "max": 3234.931640625
+    },
+    "uniform": {
+     "n": 6,
+     "mean": 5047.548502604167,
+     "sd": 1899.8971859808623,
+     "median": 5145.6728515625,
+     "min": 2841.630859375,
+     "max": 8205.662109375
+    }
+   },
+   "archived_welch_test": {
+    "welch_t": -3.5542482207418193,
+    "df": 9.642524000879323,
+    "p_two_sided": 0.005537165222964371,
+    "uniform_mean": 5047.548502604167,
+    "uniform_n": 6
+   },
+   "paired_versus_unpaired_note": "the manuscript quotes the unpaired Welch test (p = 0.0055, df = 9.64). Because the two arms were run at the same six seeds, the seed pairs can be kept; the paired bootstrap below then resolves the same contrast far more sharply (no resample of the paired differences reaches zero). The two statements are not in conflict: they differ in whether the between-seed variance is removed."
+  },
+  "matched_training_loss": {
+   "archive": [
+    "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json",
+    "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json"
+   ],
+   "lr": 0.0003,
+   "paired_seeds": [
+    42,
+    123
+   ],
+   "gamma_guided": {
+    "n": 2,
+    "mean": 5967.751953125,
+    "median": 5967.751953125,
+    "min": 2591.244140625,
+    "max": 9344.259765625,
+    "sd_ddof1": 4775.103141896211,
+    "sd_ddof0": 3376.5078125,
+    "se_of_mean_ddof1": 3376.5078124999995,
+    "ci95_percentile": [
+     2591.244140625,
+     9344.259765625
+    ],
+    "ci95_halfwidth": 3376.5078125,
+    "mc_jitter_max_endpoint_shift": 0.0,
+    "values": [
+     2591.244140625,
+     9344.259765625
+    ]
+   },
+   "uniform": {
+    "n": 2,
+    "mean": 2842.068359375,
+    "median": 2842.068359375,
+    "min": 2222.517578125,
+    "max": 3461.619140625,
+    "sd_ddof1": 876.1771174225967,
+    "sd_ddof0": 619.55078125,
+    "se_of_mean_ddof1": 619.55078125,
+    "ci95_percentile": [
+     2222.517578125,
+     3461.619140625
+    ],
+    "ci95_halfwidth": 619.55078125,
+    "mc_jitter_max_endpoint_shift": 0.0,
+    "values": [
+     2222.517578125,
+     3461.619140625
+    ]
+   },
+   "paired_difference_gamma_minus_uniform": {
+    "n_pairs": 2,
+    "mean_difference": 3125.68359375,
+    "sd_of_differences_ddof1": 3898.9260244736147,
+    "se_of_mean_difference_ddof1": 2756.9570312499995,
+    "ci95_percentile": [
+     368.7265625,
+     5882.640625
+    ],
+    "ci95_excludes_zero": true,
+    "bootstrap_share_difference_le_zero": 0.0,
+    "mc_jitter_max_endpoint_shift": 0.0,
+    "per_pair_differences": [
+     368.7265625,
+     5882.640625
+    ]
+   },
+   "loss_last_mean": {
+    "gamma_guided": 0.5872333103097844,
+    "uniform": 0.5826203386313864
+   },
+   "power_note": "two seeds per arm as archived; the CI covers the seed spread only"
+  },
+  "random_allocation": {
+   "archive": "outputs/analysis/p3_alloc_random_pool.json",
+   "n_plans": 10,
+   "n_runs": 30,
+   "pool_mean_over_plans": {
+    "n": 10,
+    "mean": 3347.43046875,
+    "median": 3505.392578125,
+    "min": -1450.310546875,
+    "max": 9125.866536458334,
+    "sd_ddof1": 3010.0895615033232,
+    "sd_ddof0": 2855.6216926343977,
+    "se_of_mean_ddof1": 951.8738975447991,
+    "ci95_percentile": [
+     1604.9870166015626,
+     5152.865755208333
+    ],
+    "ci95_halfwidth": 1773.9393693033853,
+    "mc_jitter_max_endpoint_shift": 16.547617187500236,
+    "values": [
+     5457.049479166667,
+     9125.866536458334,
+     -1450.310546875,
+     -222.19140625,
+     4188.719401041667,
+     2822.0657552083335,
+     2509.3470052083335,
+     5024.768229166667,
+     4277.642578125,
+     1741.34765625
+    ]
+   },
+   "pool_mean_over_runs": {
+    "n": 30,
+    "mean": 3347.43046875,
+    "median": 1911.515625,
+    "min": -1987.689453125,
+    "max": 18574.705078125,
+    "sd_ddof1": 4771.180234255462,
+    "sd_ddof0": 4690.986619766146,
+    "se_of_mean_ddof1": 871.0943467414997,
+    "ci95_percentile": [
+     1789.58744140625,
+     5112.4776285807275
+    ],
+    "ci95_halfwidth": 1661.4450935872387,
+    "mc_jitter_max_endpoint_shift": 33.36980143229266,
+    "values": [
+     11751.837890625,
+     838.970703125,
+     3780.33984375,
+     4559.607421875,
+     4243.287109375,
+     18574.705078125,
+     -563.775390625,
+     -1799.466796875,
+     -1987.689453125,
+     -319.173828125,
+     -1411.205078125,
+     1063.8046875,
+     917.396484375,
+     -482.041015625,
+     12130.802734375,
+     5355.775390625,
+     -1696.216796875,
+     4806.638671875,
+     5362.146484375,
+     1085.533203125,
+     1080.361328125,
+     11989.451171875,
+     1041.36328125,
+     2043.490234375,
+     4808.498046875,
+     3811.708984375,
+     4212.720703125,
+     2488.3828125,
+     1779.541015625,
+     956.119140625
+    ]
+   },
+   "archived_pool_mean_sd": [
+    3347.43046875,
+    4771.180234255462
+   ],
+   "gamma_mean": 1477.4501953125,
+   "gamma_percentile_recomputed": 46.666666666666664,
+   "gamma_percentile_definition": "percent of the 30 individual random runs below the Gamma-guided mean (archived definition, tools/_p458_random_pool_test.py lines 204-207)",
+   "gamma_percentile_archived": 46.666666666666664,
+   "gamma_percentile_rounded_manuscript": 47,
+   "paired_difference_gamma_minus_pool_mean_over_plans": {
+    "n_pairs": 10,
+    "mean_difference": -1869.9802734375,
+    "sd_of_differences_ddof1": 3010.0895615033232,
+    "se_of_mean_difference_ddof1": 951.8738975447991,
+    "ci95_percentile": [
+     -3653.5913427734376,
+     -122.77513671875204
+    ],
+    "ci95_excludes_zero": true,
+    "bootstrap_share_difference_le_zero": 0.9809,
+    "mc_jitter_max_endpoint_shift": 23.49252115885605,
+    "per_pair_differences": [
+     -3979.599283854167,
+     -7648.416341145834,
+     2927.7607421875,
+     1699.6416015625,
+     -2711.269205729167,
+     -1344.6155598958335,
+     -1031.8968098958335,
+     -3547.318033854167,
+     -2800.1923828125,
+     -263.8974609375
+    ]
+   },
+   "paired_bootstrap_note": "the gamma arm is one plan, so the paired form here reduces to a one-sample bootstrap of the pool mean minus the fixed gamma mean; it is reported for completeness only"
+  },
+  "learning_rate_sweep": {
+   "exp_beta_paper_0.137": {
+    "exp_lr0.001": {
+     "n": 2,
+     "mean": 2867.408203125,
+     "median": 2867.408203125,
+     "min": 2249.978515625,
+     "max": 3484.837890625,
+     "sd_ddof1": 873.1774378742818,
+     "sd_ddof0": 617.4296875,
+     "se_of_mean_ddof1": 617.4296875,
+     "ci95_percentile": [
+      2249.978515625,
+      3484.837890625
+     ],
+     "ci95_halfwidth": 617.4296875,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "values": [
+      3484.837890625,
+      2249.978515625
+     ]
+    }
+   },
+   "uniform": {
+    "uniform_lr0.001": {
+     "n": 2,
+     "mean": 4935.84765625,
+     "median": 4935.84765625,
+     "min": -1487.279296875,
+     "max": 11358.974609375,
+     "sd_ddof1": 9083.67324995355,
+     "sd_ddof0": 6423.126953125,
+     "se_of_mean_ddof1": 6423.126953124999,
+     "ci95_percentile": [
+      -1487.279296875,
+      11358.974609375
+     ],
+     "ci95_halfwidth": 6423.126953125,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "values": [
+      11358.974609375,
+      -1487.279296875
+     ]
+    }
+   },
+   "reversed_rule_at_lr_5e-5": {
+    "archive": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137",
+    "archived_mean": 2470.2080078125,
+    "archived_sd": 4111.2182242525605,
+    "n": 6
+   }
+  },
+  "manuscript_digits": [
+   {
+    "claim": "PaperA/CLIP B/32 (WIT)/text_only Delta-CG (-0.0465)",
+    "manuscript": -0.0465,
+    "computed": -0.04650491,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT)/text_only R@1 (0.624)",
+    "manuscript": 0.624,
+    "computed": 0.62380001,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT)/both Delta-CG (-0.0258)",
+    "manuscript": -0.0258,
+    "computed": -0.02582501,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT)/both R@1 (0.693)",
+    "manuscript": 0.693,
+    "computed": 0.6932,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT)/vision_only Delta-CG (0.0106)",
+    "manuscript": 0.0106,
+    "computed": 0.01057237,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT)/vision_only R@1 (0.680)",
+    "manuscript": 0.68,
+    "computed": 0.68,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/OpenCLIP B/32 (LAION)/text_only Delta-CG (0.0802)",
+    "manuscript": 0.0802,
+    "computed": 0.0801578,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_oclip::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/OpenCLIP B/32 (LAION)/text_only R@1 (0.643)",
+    "manuscript": 0.643,
+    "computed": 0.64279999,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze_openclip::per-seed final_task_metrics.R@1",
+    "note": "the R@1 cells of this row come from the rank-8 archive outputs/strict_freeze_openclip (supplement Section F); the Delta-CG cells come from the rank-4 archive"
+   },
+   {
+    "claim": "PaperA/OpenCLIP B/32 (LAION)/both Delta-CG (0.0864)",
+    "manuscript": 0.0864,
+    "computed": 0.08638892,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_oclip::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/OpenCLIP B/32 (LAION)/both R@1 (0.680)",
+    "manuscript": 0.68,
+    "computed": 0.6798,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze_openclip::per-seed final_task_metrics.R@1",
+    "note": "the R@1 cells of this row come from the rank-8 archive outputs/strict_freeze_openclip (supplement Section F); the Delta-CG cells come from the rank-4 archive"
+   },
+   {
+    "claim": "PaperA/OpenCLIP B/32 (LAION)/vision_only Delta-CG (0.0996)",
+    "manuscript": 0.0996,
+    "computed": 0.09961876,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_oclip::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/OpenCLIP B/32 (LAION)/vision_only R@1 (0.672)",
+    "manuscript": 0.672,
+    "computed": 0.6724,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze_openclip::per-seed final_task_metrics.R@1",
+    "note": "the R@1 cells of this row come from the rank-8 archive outputs/strict_freeze_openclip (supplement Section F); the Delta-CG cells come from the rank-4 archive"
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT), rank-matched/text_only Delta-CG (-0.0304)",
+    "manuscript": -0.0304,
+    "computed": -0.03038207,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_b32_r4::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT), rank-matched/text_only R@1 (0.621)",
+    "manuscript": 0.621,
+    "computed": 0.6222,
+    "matches": false,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze_b32_r4::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT), rank-matched/both Delta-CG (-0.0204)",
+    "manuscript": -0.0204,
+    "computed": -0.02037454,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_b32_r4::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT), rank-matched/both R@1 (0.679)",
+    "manuscript": 0.679,
+    "computed": 0.6796,
+    "matches": false,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze_b32_r4::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT), rank-matched/vision_only Delta-CG (0.0166)",
+    "manuscript": 0.0166,
+    "computed": 0.01657701,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_b32_r4::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/CLIP B/32 (WIT), rank-matched/vision_only R@1 (0.670)",
+    "manuscript": 0.67,
+    "computed": 0.6698,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze_b32_r4::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/CLIP B/16 (WIT), rank-matched/text_only Delta-CG (-0.0166)",
+    "manuscript": -0.0166,
+    "computed": -0.01657417,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_b16::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/CLIP B/16 (WIT), rank-matched/text_only R@1 (0.651)",
+    "manuscript": 0.651,
+    "computed": 0.6502,
+    "matches": false,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze_b16::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/CLIP B/16 (WIT), rank-matched/both Delta-CG (0.0124)",
+    "manuscript": 0.0124,
+    "computed": 0.01235709,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_b16::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/CLIP B/16 (WIT), rank-matched/both R@1 (0.707)",
+    "manuscript": 0.707,
+    "computed": 0.70699999,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze_b16::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/CLIP B/16 (WIT), rank-matched/vision_only Delta-CG (0.0376)",
+    "manuscript": 0.0376,
+    "computed": 0.03755093,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_b16::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/CLIP B/16 (WIT), rank-matched/vision_only R@1 (0.686)",
+    "manuscript": 0.686,
+    "computed": 0.686,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/strict_freeze_b16::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/SigLIP B/16 (WebLI)/text_only Delta-CG (0.0664)",
+    "manuscript": 0.0664,
+    "computed": 0.06642623,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/siglip_strict::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/SigLIP B/16 (WebLI)/text_only R@1 (0.432)",
+    "manuscript": 0.432,
+    "computed": 0.432,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/siglip_strict::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/SigLIP B/16 (WebLI)/both Delta-CG (-0.0114)",
+    "manuscript": -0.0114,
+    "computed": -0.01137099,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/siglip_strict::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/SigLIP B/16 (WebLI)/both R@1 (0.619)",
+    "manuscript": 0.619,
+    "computed": 0.6186,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/siglip_strict::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/SigLIP B/16 (WebLI)/vision_only Delta-CG (0.0522)",
+    "manuscript": 0.0522,
+    "computed": 0.05220404,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/siglip_strict::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/SigLIP B/16 (WebLI)/vision_only R@1 (0.341)",
+    "manuscript": 0.341,
+    "computed": 0.3412,
+    "matches": true,
+    "tolerance": 0.0005,
+    "required": false,
+    "source": "outputs/siglip_strict::per-seed final_task_metrics.R@1",
+    "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+   },
+   {
+    "claim": "PaperA/BioCLIP B/16 (bio.)/text_only Delta-CG (-0.3671)",
+    "manuscript": -0.3671,
+    "computed": -0.36713333,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_bioclip::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/BioCLIP B/16 (bio.)/both Delta-CG (-0.4515)",
+    "manuscript": -0.4515,
+    "computed": -0.4515,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_bioclip::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA/BioCLIP B/16 (bio.)/vision_only Delta-CG (-0.2927)",
+    "manuscript": -0.2927,
+    "computed": -0.2927,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/strict_freeze_bioclip::per-seed final-initial centroid_gap",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:position_strict caption sd range 0.0006-0.006 (CLIP/OpenCLIP/SigLIP rows)",
+    "manuscript": "0.0006-0.006",
+    "computed": null,
+    "matches": true,
+    "tolerance": null,
+    "required": true,
+    "source": "outputs/strict_freeze* per-seed results.json",
+    "note": "BioCLIP arms are 0.0022/0.0104/0.0149 and were measured on three seeds"
+   },
+   {
+    "claim": "PaperA tab:position_strict caption sd range incl. BioCLIP",
+    "manuscript": "0.0006-0.006",
+    "computed": null,
+    "matches": false,
+    "tolerance": null,
+    "required": true,
+    "source": "outputs/strict_freeze_bioclip/results_partial.json::records",
+    "note": "the printed range does not cover the BioCLIP row"
+   },
+   {
+    "claim": "PaperA tab:vlm/both reduction mean (98.57)",
+    "manuscript": 98.57,
+    "computed": 98.56741258,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed (recomputed vs frozen.dg_star)",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/both reduction sd (0.44) [ddof0]",
+    "manuscript": 0.44,
+    "computed": 0.43933453,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed",
+    "note": "the printed sd is the population sd: ddof=0 -> 0.4393, ddof=1 -> 0.4573"
+   },
+   {
+    "claim": "PaperA tab:vlm/both reduction sd under the other convention (0.44)",
+    "manuscript": 0.44,
+    "computed": 0.45727387,
+    "matches": false,
+    "tolerance": 0.005,
+    "required": false,
+    "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/both seed-range low (97.72)",
+    "manuscript": 97.72,
+    "computed": 97.71654699,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/both seed-range high (99.44)",
+    "manuscript": 99.44,
+    "computed": 99.44310205,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/both n seeds",
+    "manuscript": 13,
+    "computed": 13.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/text_only reduction mean (96.74)",
+    "manuscript": 96.74,
+    "computed": 96.74369118,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed (recomputed vs frozen.dg_star)",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/text_only reduction sd (0.29) [ddof0]",
+    "manuscript": 0.29,
+    "computed": 0.29110063,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed",
+    "note": "the printed sd is the population sd: ddof=0 -> 0.2911, ddof=1 -> 0.3030"
+   },
+   {
+    "claim": "PaperA tab:vlm/text_only reduction sd under the other convention (0.29)",
+    "manuscript": 0.29,
+    "computed": 0.30298714,
+    "matches": false,
+    "tolerance": 0.005,
+    "required": false,
+    "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/text_only seed-range low (95.86)",
+    "manuscript": 95.86,
+    "computed": 95.86451927,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/text_only seed-range high (97.07)",
+    "manuscript": 97.07,
+    "computed": 97.0735775,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/text_only n seeds",
+    "manuscript": 13,
+    "computed": 13.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/vision_only reduction mean (89.41)",
+    "manuscript": 89.41,
+    "computed": 89.40732014,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed (recomputed vs frozen.dg_star)",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/vision_only reduction sd (1.01) [ddof0]",
+    "manuscript": 1.01,
+    "computed": 1.01410187,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed",
+    "note": "the printed sd is the population sd: ddof=0 -> 1.0141, ddof=1 -> 1.0555"
+   },
+   {
+    "claim": "PaperA tab:vlm/vision_only reduction sd under the other convention (1.01)",
+    "manuscript": 1.01,
+    "computed": 1.05551069,
+    "matches": false,
+    "tolerance": 0.005,
+    "required": false,
+    "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/vision_only seed-range low (87.08)",
+    "manuscript": 87.08,
+    "computed": 87.0802804,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/vision_only seed-range high (90.74)",
+    "manuscript": 90.74,
+    "computed": 90.7352765,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm/vision_only n seeds",
+    "manuscript": 13,
+    "computed": 13.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:vlm three seed ranges disjoint",
+    "manuscript": "vision_max < text_min < both_min",
+    "computed": null,
+    "matches": true,
+    "tolerance": null,
+    "required": true,
+    "source": "outputs/vlm_clean_summary.json::per_arm.*.per_seed",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/text_only change mean (73.27)",
+    "manuscript": 73.27,
+    "computed": 73.26917231,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.text_only_s*.clean.dg_star",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/text_only change sd (7.54) [ddof0]",
+    "manuscript": 7.54,
+    "computed": 7.53631901,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.text_only_s*.clean.dg_star",
+    "note": "the printed sd is the population sd over n=3: ddof=0 -> 7.5363, ddof=1 -> 9.2301"
+   },
+   {
+    "claim": "PaperA tab:llava/text_only change sd under the other convention (7.54)",
+    "manuscript": 7.54,
+    "computed": 9.23006805,
+    "matches": false,
+    "tolerance": 0.005,
+    "required": false,
+    "source": "outputs/canonical_caption_metric.json::runs.text_only_s*.clean.dg_star",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/text_only seed-range low (67.61)",
+    "manuscript": 67.61,
+    "computed": 67.60717111,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.text_only_s*",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/text_only seed-range high (83.92)",
+    "manuscript": 83.92,
+    "computed": 83.92004907,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.text_only_s*",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/vision_only change mean (121.48)",
+    "manuscript": 121.48,
+    "computed": 121.47535654,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.vision_only_s*.clean.dg_star",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/vision_only change sd (16.33) [ddof0]",
+    "manuscript": 16.33,
+    "computed": 16.33107369,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.vision_only_s*.clean.dg_star",
+    "note": "the printed sd is the population sd over n=3: ddof=0 -> 16.3311, ddof=1 -> 20.0014"
+   },
+   {
+    "claim": "PaperA tab:llava/vision_only change sd under the other convention (16.33)",
+    "manuscript": 16.33,
+    "computed": 20.00139874,
+    "matches": false,
+    "tolerance": 0.005,
+    "required": false,
+    "source": "outputs/canonical_caption_metric.json::runs.vision_only_s*.clean.dg_star",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/both change mean (95.66)",
+    "manuscript": 95.66,
+    "computed": 95.66117672,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.both_s*.clean.dg_star",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/both change sd (7.91) [ddof0]",
+    "manuscript": 7.91,
+    "computed": 7.91414159,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.both_s*.clean.dg_star",
+    "note": "the printed sd is the population sd over n=3: ddof=0 -> 7.9141, ddof=1 -> 9.6928"
+   },
+   {
+    "claim": "PaperA tab:llava/both change sd under the other convention (7.91)",
+    "manuscript": 7.91,
+    "computed": 9.69280433,
+    "matches": false,
+    "tolerance": 0.005,
+    "required": false,
+    "source": "outputs/canonical_caption_metric.json::runs.both_s*.clean.dg_star",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/both seed-range low (86.04)",
+    "manuscript": 86.04,
+    "computed": 86.04489266,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.both_s*",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava/both seed-range high (105.43)",
+    "manuscript": 105.43,
+    "computed": 105.42873065,
+    "matches": true,
+    "tolerance": 0.005,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.both_s*",
+    "note": ""
+   },
+   {
+    "claim": "PaperA tab:llava text/both seed ranges disjoint",
+    "manuscript": "text_max < both_min",
+    "computed": null,
+    "matches": true,
+    "tolerance": null,
+    "required": true,
+    "source": "outputs/canonical_caption_metric.json::runs.*",
+    "note": ""
+   },
+   {
+    "claim": "P3 capacity-matched: Welch p (0.0055)",
+    "manuscript": 0.0055,
+    "computed": 0.00553717,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_results.json::comparisons.exp_beta_paper_0.137.vs_uniform.p_two_sided",
+    "note": ""
+   },
+   {
+    "claim": "P3 capacity-matched: Gamma-guided mean (+1478)",
+    "manuscript": 1478,
+    "computed": 1477.45019531,
+    "matches": true,
+    "tolerance": 1.0,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.mean",
+    "note": "computed 1477.4502 rounds to 1477, not 1478 (see the rounding check below)"
+   },
+   {
+    "claim": "P3 capacity-matched: integer rounding of the Gamma-guided mean (+1478)",
+    "manuscript": "+1478",
+    "computed": null,
+    "matches": false,
+    "tolerance": null,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.mean",
+    "note": "computed 1477.4502; correct rounding to the printed precision is +1477"
+   },
+   {
+    "claim": "P3 capacity-matched: Gamma-guided sd (+/-1563)",
+    "manuscript": 1563,
+    "computed": 1563.3373669,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.sd",
+    "note": ""
+   },
+   {
+    "claim": "P3 capacity-matched: uniform mean (+5048)",
+    "manuscript": 5048,
+    "computed": 5047.5485026,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.uniform.delta_E.mean",
+    "note": ""
+   },
+   {
+    "claim": "P3 capacity-matched: uniform sd (+/-1900)",
+    "manuscript": 1900,
+    "computed": 1899.89718598,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.uniform.delta_E.sd",
+    "note": ""
+   },
+   {
+    "claim": "P3 capacity-matched: n runs per arm",
+    "manuscript": 6,
+    "computed": 6.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json",
+    "note": ""
+   },
+   {
+    "claim": "P3 capacity-matched: sd convention == ddof=1 (sample sd)",
+    "manuscript": 1563.3373668985585,
+    "computed": 1563.3373669,
+    "matches": true,
+    "tolerance": 1e-06,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json (recomputed)",
+    "note": "the archived sd matches st.stdev (ddof=1); the manuscript says 'sample std'"
+   },
+   {
+    "claim": "P3 capacity-matched: sd convention != ddof=0 (recorded, informational)",
+    "manuscript": 1563.3373668985585,
+    "computed": 1427.12523474,
+    "matches": false,
+    "tolerance": 1e-06,
+    "required": false,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json (recomputed)",
+    "note": ""
+   },
+   {
+    "claim": "P3 matched-loss: Gamma-guided mean (+5968)",
+    "manuscript": 5968,
+    "computed": 5967.75195312,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json",
+    "note": ""
+   },
+   {
+    "claim": "P3 matched-loss: uniform mean (+2842)",
+    "manuscript": 2842,
+    "computed": 2842.06835938,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json",
+    "note": ""
+   },
+   {
+    "claim": "P3 matched-loss: Uniform loss_last (0.5826)",
+    "manuscript": 0.5826,
+    "computed": 0.58262034,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[].loss_last",
+    "note": ""
+   },
+   {
+    "claim": "P3 matched-loss: Gamma-guided loss_last (0.5872)",
+    "manuscript": 0.5872,
+    "computed": 0.58723331,
+    "matches": true,
+    "tolerance": 5e-05,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[].loss_last",
+    "note": ""
+   },
+   {
+    "claim": "P3 random pool: mean over 30 runs (+3347)",
+    "manuscript": 3347,
+    "computed": 3347.43046875,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.mean",
+    "note": ""
+   },
+   {
+    "claim": "P3 random pool: sd over 30 runs (+/-4771)",
+    "manuscript": 4771,
+    "computed": 4771.18023426,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.sd",
+    "note": ""
+   },
+   {
+    "claim": "P3 random pool: Gamma-guided percentile (47th)",
+    "manuscript": 47,
+    "computed": 46.66666667,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan (recomputed over the 30 runs)",
+    "note": "archived value 46.6667"
+   },
+   {
+    "claim": "P3 random pool: ten plans",
+    "manuscript": 10,
+    "computed": 10.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_plans_used",
+    "note": ""
+   },
+   {
+    "claim": "P3 reversed rule: mean (+2470)",
+    "manuscript": 2470,
+    "computed": 2470.20800781,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137.delta_E.mean",
+    "note": ""
+   },
+   {
+    "claim": "P3 reversed rule: sd (+/-4111)",
+    "manuscript": 4111,
+    "computed": 4111.21822425,
+    "matches": true,
+    "tolerance": 0.5,
+    "required": true,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137.delta_E.sd",
+    "note": ""
+   }
+  ]
+ },
+ "manuscript_digits": [
+  {
+   "claim": "PaperA/CLIP B/32 (WIT)/text_only Delta-CG (-0.0465)",
+   "manuscript": -0.0465,
+   "computed": -0.04650491,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT)/text_only R@1 (0.624)",
+   "manuscript": 0.624,
+   "computed": 0.62380001,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT)/both Delta-CG (-0.0258)",
+   "manuscript": -0.0258,
+   "computed": -0.02582501,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT)/both R@1 (0.693)",
+   "manuscript": 0.693,
+   "computed": 0.6932,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT)/vision_only Delta-CG (0.0106)",
+   "manuscript": 0.0106,
+   "computed": 0.01057237,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT)/vision_only R@1 (0.680)",
+   "manuscript": 0.68,
+   "computed": 0.68,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/OpenCLIP B/32 (LAION)/text_only Delta-CG (0.0802)",
+   "manuscript": 0.0802,
+   "computed": 0.0801578,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_oclip::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/OpenCLIP B/32 (LAION)/text_only R@1 (0.643)",
+   "manuscript": 0.643,
+   "computed": 0.64279999,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze_openclip::per-seed final_task_metrics.R@1",
+   "note": "the R@1 cells of this row come from the rank-8 archive outputs/strict_freeze_openclip (supplement Section F); the Delta-CG cells come from the rank-4 archive"
+  },
+  {
+   "claim": "PaperA/OpenCLIP B/32 (LAION)/both Delta-CG (0.0864)",
+   "manuscript": 0.0864,
+   "computed": 0.08638892,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_oclip::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/OpenCLIP B/32 (LAION)/both R@1 (0.680)",
+   "manuscript": 0.68,
+   "computed": 0.6798,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze_openclip::per-seed final_task_metrics.R@1",
+   "note": "the R@1 cells of this row come from the rank-8 archive outputs/strict_freeze_openclip (supplement Section F); the Delta-CG cells come from the rank-4 archive"
+  },
+  {
+   "claim": "PaperA/OpenCLIP B/32 (LAION)/vision_only Delta-CG (0.0996)",
+   "manuscript": 0.0996,
+   "computed": 0.09961876,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_oclip::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/OpenCLIP B/32 (LAION)/vision_only R@1 (0.672)",
+   "manuscript": 0.672,
+   "computed": 0.6724,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze_openclip::per-seed final_task_metrics.R@1",
+   "note": "the R@1 cells of this row come from the rank-8 archive outputs/strict_freeze_openclip (supplement Section F); the Delta-CG cells come from the rank-4 archive"
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT), rank-matched/text_only Delta-CG (-0.0304)",
+   "manuscript": -0.0304,
+   "computed": -0.03038207,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_b32_r4::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT), rank-matched/text_only R@1 (0.621)",
+   "manuscript": 0.621,
+   "computed": 0.6222,
+   "matches": false,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze_b32_r4::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT), rank-matched/both Delta-CG (-0.0204)",
+   "manuscript": -0.0204,
+   "computed": -0.02037454,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_b32_r4::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT), rank-matched/both R@1 (0.679)",
+   "manuscript": 0.679,
+   "computed": 0.6796,
+   "matches": false,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze_b32_r4::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT), rank-matched/vision_only Delta-CG (0.0166)",
+   "manuscript": 0.0166,
+   "computed": 0.01657701,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_b32_r4::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/CLIP B/32 (WIT), rank-matched/vision_only R@1 (0.670)",
+   "manuscript": 0.67,
+   "computed": 0.6698,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze_b32_r4::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/CLIP B/16 (WIT), rank-matched/text_only Delta-CG (-0.0166)",
+   "manuscript": -0.0166,
+   "computed": -0.01657417,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_b16::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/CLIP B/16 (WIT), rank-matched/text_only R@1 (0.651)",
+   "manuscript": 0.651,
+   "computed": 0.6502,
+   "matches": false,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze_b16::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/CLIP B/16 (WIT), rank-matched/both Delta-CG (0.0124)",
+   "manuscript": 0.0124,
+   "computed": 0.01235709,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_b16::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/CLIP B/16 (WIT), rank-matched/both R@1 (0.707)",
+   "manuscript": 0.707,
+   "computed": 0.70699999,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze_b16::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/CLIP B/16 (WIT), rank-matched/vision_only Delta-CG (0.0376)",
+   "manuscript": 0.0376,
+   "computed": 0.03755093,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_b16::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/CLIP B/16 (WIT), rank-matched/vision_only R@1 (0.686)",
+   "manuscript": 0.686,
+   "computed": 0.686,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/strict_freeze_b16::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/SigLIP B/16 (WebLI)/text_only Delta-CG (0.0664)",
+   "manuscript": 0.0664,
+   "computed": 0.06642623,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/siglip_strict::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/SigLIP B/16 (WebLI)/text_only R@1 (0.432)",
+   "manuscript": 0.432,
+   "computed": 0.432,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/siglip_strict::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/SigLIP B/16 (WebLI)/both Delta-CG (-0.0114)",
+   "manuscript": -0.0114,
+   "computed": -0.01137099,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/siglip_strict::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/SigLIP B/16 (WebLI)/both R@1 (0.619)",
+   "manuscript": 0.619,
+   "computed": 0.6186,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/siglip_strict::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/SigLIP B/16 (WebLI)/vision_only Delta-CG (0.0522)",
+   "manuscript": 0.0522,
+   "computed": 0.05220404,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/siglip_strict::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/SigLIP B/16 (WebLI)/vision_only R@1 (0.341)",
+   "manuscript": 0.341,
+   "computed": 0.3412,
+   "matches": true,
+   "tolerance": 0.0005,
+   "required": false,
+   "source": "outputs/siglip_strict::per-seed final_task_metrics.R@1",
+   "note": "the manuscript states the R@1 column does not reproduce uniformly; informational only"
+  },
+  {
+   "claim": "PaperA/BioCLIP B/16 (bio.)/text_only Delta-CG (-0.3671)",
+   "manuscript": -0.3671,
+   "computed": -0.36713333,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_bioclip::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/BioCLIP B/16 (bio.)/both Delta-CG (-0.4515)",
+   "manuscript": -0.4515,
+   "computed": -0.4515,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_bioclip::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA/BioCLIP B/16 (bio.)/vision_only Delta-CG (-0.2927)",
+   "manuscript": -0.2927,
+   "computed": -0.2927,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/strict_freeze_bioclip::per-seed final-initial centroid_gap",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:position_strict caption sd range 0.0006-0.006 (CLIP/OpenCLIP/SigLIP rows)",
+   "manuscript": "0.0006-0.006",
+   "computed": null,
+   "matches": true,
+   "tolerance": null,
+   "required": true,
+   "source": "outputs/strict_freeze* per-seed results.json",
+   "note": "BioCLIP arms are 0.0022/0.0104/0.0149 and were measured on three seeds"
+  },
+  {
+   "claim": "PaperA tab:position_strict caption sd range incl. BioCLIP",
+   "manuscript": "0.0006-0.006",
+   "computed": null,
+   "matches": false,
+   "tolerance": null,
+   "required": true,
+   "source": "outputs/strict_freeze_bioclip/results_partial.json::records",
+   "note": "the printed range does not cover the BioCLIP row"
+  },
+  {
+   "claim": "PaperA tab:vlm/both reduction mean (98.57)",
+   "manuscript": 98.57,
+   "computed": 98.56741258,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed (recomputed vs frozen.dg_star)",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/both reduction sd (0.44) [ddof0]",
+   "manuscript": 0.44,
+   "computed": 0.43933453,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed",
+   "note": "the printed sd is the population sd: ddof=0 -> 0.4393, ddof=1 -> 0.4573"
+  },
+  {
+   "claim": "PaperA tab:vlm/both reduction sd under the other convention (0.44)",
+   "manuscript": 0.44,
+   "computed": 0.45727387,
+   "matches": false,
+   "tolerance": 0.005,
+   "required": false,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/both seed-range low (97.72)",
+   "manuscript": 97.72,
+   "computed": 97.71654699,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/both seed-range high (99.44)",
+   "manuscript": 99.44,
+   "computed": 99.44310205,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.both.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/both n seeds",
+   "manuscript": 13,
+   "computed": 13.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/text_only reduction mean (96.74)",
+   "manuscript": 96.74,
+   "computed": 96.74369118,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed (recomputed vs frozen.dg_star)",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/text_only reduction sd (0.29) [ddof0]",
+   "manuscript": 0.29,
+   "computed": 0.29110063,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed",
+   "note": "the printed sd is the population sd: ddof=0 -> 0.2911, ddof=1 -> 0.3030"
+  },
+  {
+   "claim": "PaperA tab:vlm/text_only reduction sd under the other convention (0.29)",
+   "manuscript": 0.29,
+   "computed": 0.30298714,
+   "matches": false,
+   "tolerance": 0.005,
+   "required": false,
+   "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/text_only seed-range low (95.86)",
+   "manuscript": 95.86,
+   "computed": 95.86451927,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/text_only seed-range high (97.07)",
+   "manuscript": 97.07,
+   "computed": 97.0735775,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.text_only.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/text_only n seeds",
+   "manuscript": 13,
+   "computed": 13.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/vision_only reduction mean (89.41)",
+   "manuscript": 89.41,
+   "computed": 89.40732014,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed (recomputed vs frozen.dg_star)",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/vision_only reduction sd (1.01) [ddof0]",
+   "manuscript": 1.01,
+   "computed": 1.01410187,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed",
+   "note": "the printed sd is the population sd: ddof=0 -> 1.0141, ddof=1 -> 1.0555"
+  },
+  {
+   "claim": "PaperA tab:vlm/vision_only reduction sd under the other convention (1.01)",
+   "manuscript": 1.01,
+   "computed": 1.05551069,
+   "matches": false,
+   "tolerance": 0.005,
+   "required": false,
+   "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/vision_only seed-range low (87.08)",
+   "manuscript": 87.08,
+   "computed": 87.0802804,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/vision_only seed-range high (90.74)",
+   "manuscript": 90.74,
+   "computed": 90.7352765,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.vision_only.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm/vision_only n seeds",
+   "manuscript": 13,
+   "computed": 13.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:vlm three seed ranges disjoint",
+   "manuscript": "vision_max < text_min < both_min",
+   "computed": null,
+   "matches": true,
+   "tolerance": null,
+   "required": true,
+   "source": "outputs/vlm_clean_summary.json::per_arm.*.per_seed",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/text_only change mean (73.27)",
+   "manuscript": 73.27,
+   "computed": 73.26917231,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.text_only_s*.clean.dg_star",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/text_only change sd (7.54) [ddof0]",
+   "manuscript": 7.54,
+   "computed": 7.53631901,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.text_only_s*.clean.dg_star",
+   "note": "the printed sd is the population sd over n=3: ddof=0 -> 7.5363, ddof=1 -> 9.2301"
+  },
+  {
+   "claim": "PaperA tab:llava/text_only change sd under the other convention (7.54)",
+   "manuscript": 7.54,
+   "computed": 9.23006805,
+   "matches": false,
+   "tolerance": 0.005,
+   "required": false,
+   "source": "outputs/canonical_caption_metric.json::runs.text_only_s*.clean.dg_star",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/text_only seed-range low (67.61)",
+   "manuscript": 67.61,
+   "computed": 67.60717111,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.text_only_s*",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/text_only seed-range high (83.92)",
+   "manuscript": 83.92,
+   "computed": 83.92004907,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.text_only_s*",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/vision_only change mean (121.48)",
+   "manuscript": 121.48,
+   "computed": 121.47535654,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.vision_only_s*.clean.dg_star",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/vision_only change sd (16.33) [ddof0]",
+   "manuscript": 16.33,
+   "computed": 16.33107369,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.vision_only_s*.clean.dg_star",
+   "note": "the printed sd is the population sd over n=3: ddof=0 -> 16.3311, ddof=1 -> 20.0014"
+  },
+  {
+   "claim": "PaperA tab:llava/vision_only change sd under the other convention (16.33)",
+   "manuscript": 16.33,
+   "computed": 20.00139874,
+   "matches": false,
+   "tolerance": 0.005,
+   "required": false,
+   "source": "outputs/canonical_caption_metric.json::runs.vision_only_s*.clean.dg_star",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/both change mean (95.66)",
+   "manuscript": 95.66,
+   "computed": 95.66117672,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.both_s*.clean.dg_star",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/both change sd (7.91) [ddof0]",
+   "manuscript": 7.91,
+   "computed": 7.91414159,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.both_s*.clean.dg_star",
+   "note": "the printed sd is the population sd over n=3: ddof=0 -> 7.9141, ddof=1 -> 9.6928"
+  },
+  {
+   "claim": "PaperA tab:llava/both change sd under the other convention (7.91)",
+   "manuscript": 7.91,
+   "computed": 9.69280433,
+   "matches": false,
+   "tolerance": 0.005,
+   "required": false,
+   "source": "outputs/canonical_caption_metric.json::runs.both_s*.clean.dg_star",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/both seed-range low (86.04)",
+   "manuscript": 86.04,
+   "computed": 86.04489266,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.both_s*",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava/both seed-range high (105.43)",
+   "manuscript": 105.43,
+   "computed": 105.42873065,
+   "matches": true,
+   "tolerance": 0.005,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.both_s*",
+   "note": ""
+  },
+  {
+   "claim": "PaperA tab:llava text/both seed ranges disjoint",
+   "manuscript": "text_max < both_min",
+   "computed": null,
+   "matches": true,
+   "tolerance": null,
+   "required": true,
+   "source": "outputs/canonical_caption_metric.json::runs.*",
+   "note": ""
+  },
+  {
+   "claim": "P3 capacity-matched: Welch p (0.0055)",
+   "manuscript": 0.0055,
+   "computed": 0.00553717,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_results.json::comparisons.exp_beta_paper_0.137.vs_uniform.p_two_sided",
+   "note": ""
+  },
+  {
+   "claim": "P3 capacity-matched: Gamma-guided mean (+1478)",
+   "manuscript": 1478,
+   "computed": 1477.45019531,
+   "matches": true,
+   "tolerance": 1.0,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.mean",
+   "note": "computed 1477.4502 rounds to 1477, not 1478 (see the rounding check below)"
+  },
+  {
+   "claim": "P3 capacity-matched: integer rounding of the Gamma-guided mean (+1478)",
+   "manuscript": "+1478",
+   "computed": null,
+   "matches": false,
+   "tolerance": null,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.mean",
+   "note": "computed 1477.4502; correct rounding to the printed precision is +1477"
+  },
+  {
+   "claim": "P3 capacity-matched: Gamma-guided sd (+/-1563)",
+   "manuscript": 1563,
+   "computed": 1563.3373669,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.sd",
+   "note": ""
+  },
+  {
+   "claim": "P3 capacity-matched: uniform mean (+5048)",
+   "manuscript": 5048,
+   "computed": 5047.5485026,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_results.json::per_plan.uniform.delta_E.mean",
+   "note": ""
+  },
+  {
+   "claim": "P3 capacity-matched: uniform sd (+/-1900)",
+   "manuscript": 1900,
+   "computed": 1899.89718598,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_results.json::per_plan.uniform.delta_E.sd",
+   "note": ""
+  },
+  {
+   "claim": "P3 capacity-matched: n runs per arm",
+   "manuscript": 6,
+   "computed": 6.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_runs/main/summary.json",
+   "note": ""
+  },
+  {
+   "claim": "P3 capacity-matched: sd convention == ddof=1 (sample sd)",
+   "manuscript": 1563.3373668985585,
+   "computed": 1563.3373669,
+   "matches": true,
+   "tolerance": 1e-06,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_runs/main/summary.json (recomputed)",
+   "note": "the archived sd matches st.stdev (ddof=1); the manuscript says 'sample std'"
+  },
+  {
+   "claim": "P3 capacity-matched: sd convention != ddof=0 (recorded, informational)",
+   "manuscript": 1563.3373668985585,
+   "computed": 1427.12523474,
+   "matches": false,
+   "tolerance": 1e-06,
+   "required": false,
+   "source": "outputs/analysis/p3_alloc_runs/main/summary.json (recomputed)",
+   "note": ""
+  },
+  {
+   "claim": "P3 matched-loss: Gamma-guided mean (+5968)",
+   "manuscript": 5968,
+   "computed": 5967.75195312,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json",
+   "note": ""
+  },
+  {
+   "claim": "P3 matched-loss: uniform mean (+2842)",
+   "manuscript": 2842,
+   "computed": 2842.06835938,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json",
+   "note": ""
+  },
+  {
+   "claim": "P3 matched-loss: Uniform loss_last (0.5826)",
+   "manuscript": 0.5826,
+   "computed": 0.58262034,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[].loss_last",
+   "note": ""
+  },
+  {
+   "claim": "P3 matched-loss: Gamma-guided loss_last (0.5872)",
+   "manuscript": 0.5872,
+   "computed": 0.58723331,
+   "matches": true,
+   "tolerance": 5e-05,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[].loss_last",
+   "note": ""
+  },
+  {
+   "claim": "P3 random pool: mean over 30 runs (+3347)",
+   "manuscript": 3347,
+   "computed": 3347.43046875,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.mean",
+   "note": ""
+  },
+  {
+   "claim": "P3 random pool: sd over 30 runs (+/-4771)",
+   "manuscript": 4771,
+   "computed": 4771.18023426,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.sd",
+   "note": ""
+  },
+  {
+   "claim": "P3 random pool: Gamma-guided percentile (47th)",
+   "manuscript": 47,
+   "computed": 46.66666667,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan (recomputed over the 30 runs)",
+   "note": "archived value 46.6667"
+  },
+  {
+   "claim": "P3 random pool: ten plans",
+   "manuscript": 10,
+   "computed": 10.0,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_random_pool.json::random_plans_used",
+   "note": ""
+  },
+  {
+   "claim": "P3 reversed rule: mean (+2470)",
+   "manuscript": 2470,
+   "computed": 2470.20800781,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137.delta_E.mean",
+   "note": ""
+  },
+  {
+   "claim": "P3 reversed rule: sd (+/-4111)",
+   "manuscript": 4111,
+   "computed": 4111.21822425,
+   "matches": true,
+   "tolerance": 0.5,
+   "required": true,
+   "source": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137.delta_E.sd",
+   "note": ""
+  }
+ ]
+}

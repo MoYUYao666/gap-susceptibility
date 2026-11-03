@@ -1,0 +1,561 @@
+{
+ "target_batch": 128,
+ "needs_rerun": [
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "both",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 64,
+   "file": "outputs\\strict_freeze_oclip\\r4\\both\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "both",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 64,
+   "file": "outputs\\strict_freeze_oclip\\r4\\both\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 64,
+   "file": "outputs\\strict_freeze_oclip\\r4\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 64,
+   "file": "outputs\\strict_freeze_oclip\\r4\\text_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "vision_only",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 64,
+   "file": "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "vision_only",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 64,
+   "file": "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "both",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 64,
+   "file": "outputs\\strict_freeze_b16\\r4\\both\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "vision_only",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 64,
+   "file": "outputs\\strict_freeze_b16\\r4\\vision_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r2",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r2\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r2",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r2\\text_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r32",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r32\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r32",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r32\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r32",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r32\\text_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r64",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r64\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r64",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r64\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r64",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r64\\text_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r8",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r8\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r8",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r8\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep_text_only",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r8",
+   "batch": 64,
+   "file": "outputs\\coco_sweep_text_only\\r8\\text_only\\seed456\\results.json"
+  }
+ ],
+ "already_ok": [
+  {
+   "group": "outputs/strict_freeze_b32_r4",
+   "arm": "both",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b32_r4\\both\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b32_r4",
+   "arm": "both",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b32_r4\\both\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b32_r4",
+   "arm": "both",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b32_r4\\both\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b32_r4",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b32_r4\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b32_r4",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b32_r4\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b32_r4",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b32_r4\\text_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b32_r4",
+   "arm": "vision_only",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b32_r4\\vision_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b32_r4",
+   "arm": "vision_only",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b32_r4\\vision_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b32_r4",
+   "arm": "vision_only",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b32_r4\\vision_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "both",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_oclip\\r4\\both\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_oclip\\r4\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_oclip/r4",
+   "arm": "vision_only",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "both",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b16\\r4\\both\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "both",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b16\\r4\\both\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b16\\r4\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b16\\r4\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b16\\r4\\text_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "vision_only",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b16\\r4\\vision_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/strict_freeze_b16/r4",
+   "arm": "vision_only",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\strict_freeze_b16\\r4\\vision_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed123",
+   "rank": "r16",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r16\\both\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed42",
+   "rank": "r16",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r16\\both\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed456",
+   "rank": "r16",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r16\\both\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r16",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r16\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r16",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r16\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r16",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r16\\text_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed123",
+   "rank": "r1",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r1\\both\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed42",
+   "rank": "r1",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r1\\both\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed456",
+   "rank": "r1",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r1\\both\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r1",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r1\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r1",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r1\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r1",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r1\\text_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed123",
+   "rank": "r2",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r2\\both\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed42",
+   "rank": "r2",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r2\\both\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed456",
+   "rank": "r2",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r2\\both\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r2",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r2\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed123",
+   "rank": "r32",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r32\\both\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed42",
+   "rank": "r32",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r32\\both\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed456",
+   "rank": "r32",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r32\\both\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r4\\both\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r4\\both\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r4\\both\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r4\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r4\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r4",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r4\\text_only\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed123",
+   "rank": "r64",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r64\\both\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed42",
+   "rank": "r64",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r64\\both\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "both",
+   "seed": "seed456",
+   "rank": "r64",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r64\\both\\seed456\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed123",
+   "rank": "r64",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r64\\text_only\\seed123\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed42",
+   "rank": "r64",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r64\\text_only\\seed42\\results.json"
+  },
+  {
+   "group": "outputs/coco_sweep",
+   "arm": "text_only",
+   "seed": "seed456",
+   "rank": "r64",
+   "batch": 128,
+   "file": "outputs\\coco_sweep\\r64\\text_only\\seed456\\results.json"
+  }
+ ],
+ "n_rerun": 19,
+ "n_ok": 50
+}

@@ -1,0 +1,30 @@
+{
+ "tag": "frozen_baseline",
+ "dg_star": 0.7778259515762329,
+ "cg": 0.7421073317527771,
+ "n_pairs": 320,
+ "image_token_id": 151655,
+ "token_counts_first_batch": {
+  "img": [
+   64,
+   64
+  ],
+  "cap": [
+   19,
+   13
+  ],
+  "all": [
+   103,
+   97
+  ]
+ },
+ "max_samples": 400,
+ "batch": 2,
+ "measurement": {
+  "I": "mean pool of final hidden state over image-token positions",
+  "T": "mean pool of final hidden state over caption positions",
+  "normalisation": "L2 per side, no projection",
+  "note": "untrained model; this is the baseline for the sweep's per-arm reductions"
+ },
+ "elapsed_sec": 14.3
+}

@@ -1,0 +1,6116 @@
+{
+ "meta": {
+  "script": "tools/_p448_p3_nan_diagnostics.py",
+  "task": "task-11 (P3 R3.22, offline evidence)",
+  "log_dirs_scanned": [
+   "outputs",
+   "outputs\\logs",
+   "paper3\\scripts\\outputs\\logs"
+  ],
+  "n_logs_scanned": 156
+ },
+ "nan_vs_loss_crosstab": {
+  "n_logs_with_metrics": 40,
+  "n_runs_where_E_becomes_nan": 17,
+  "n_runs_where_E_nan_BUT_loss_stays_finite": 17,
+  "n_runs_where_loss_also_becomes_nan": 0,
+  "n_runs_with_zero_valid_steps": 16,
+  "runs": [
+   {
+    "log": "outputs\\run_s10ep_r5.log",
+    "E_first_nan_epoch": 8,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": null,
+    "max_gradnorm_vis": null,
+    "E_series": [
+     [
+      0,
+      3921.0
+     ],
+     [
+      1,
+      3844.5
+     ],
+     [
+      2,
+      3777.0
+     ],
+     [
+      3,
+      3907.0
+     ],
+     [
+      4,
+      4248.5
+     ],
+     [
+      5,
+      4508.0
+     ],
+     [
+      6,
+      5170.0
+     ],
+     [
+      7,
+      6369.0
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0165,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9251,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7692,
+      16,
+      16
+     ],
+     [
+      4,
+      10.5831,
+      16,
+      16
+     ],
+     [
+      5,
+      10.3773,
+      16,
+      16
+     ],
+     [
+      6,
+      10.1767,
+      16,
+      16
+     ],
+     [
+      7,
+      10.0056,
+      16,
+      16
+     ],
+     [
+      8,
+      9.8384,
+      16,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "outputs\\run_s10ep_r6.log",
+    "E_first_nan_epoch": 7,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": null,
+    "max_gradnorm_vis": null,
+    "E_series": [
+     [
+      0,
+      3921.0
+     ],
+     [
+      1,
+      3831.5
+     ],
+     [
+      2,
+      3815.5
+     ],
+     [
+      3,
+      4025.0
+     ],
+     [
+      4,
+      4412.5
+     ],
+     [
+      5,
+      5020.0
+     ],
+     [
+      6,
+      6202.0
+     ],
+     [
+      7,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0165,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9107,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7228,
+      16,
+      16
+     ],
+     [
+      4,
+      10.5073,
+      16,
+      16
+     ],
+     [
+      5,
+      10.2849,
+      16,
+      16
+     ],
+     [
+      6,
+      10.0802,
+      16,
+      16
+     ],
+     [
+      7,
+      9.9042,
+      16,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s1024.log",
+    "E_first_nan_epoch": 8,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 12.9,
+    "max_gradnorm_vis": 12.6,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3859.5
+     ],
+     [
+      2,
+      3810.0
+     ],
+     [
+      3,
+      3870.0
+     ],
+     [
+      4,
+      4099.0
+     ],
+     [
+      5,
+      4441.5
+     ],
+     [
+      6,
+      4910.5
+     ],
+     [
+      7,
+      5931.0
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9431,
+      16,
+      16
+     ],
+     [
+      3,
+      10.8129,
+      16,
+      16
+     ],
+     [
+      4,
+      10.6399,
+      16,
+      16
+     ],
+     [
+      5,
+      10.4612,
+      16,
+      16
+     ],
+     [
+      6,
+      10.2704,
+      16,
+      16
+     ],
+     [
+      7,
+      10.1018,
+      16,
+      16
+     ],
+     [
+      8,
+      9.9499,
+      16,
+      16
+     ],
+     [
+      9,
+      9.7974,
+      6,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s123.log",
+    "E_first_nan_epoch": 9,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 11.7,
+    "max_gradnorm_vis": 10.9,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3870.0
+     ],
+     [
+      2,
+      3811.5
+     ],
+     [
+      3,
+      3812.0
+     ],
+     [
+      4,
+      3886.5
+     ],
+     [
+      5,
+      4146.5
+     ],
+     [
+      6,
+      4431.5
+     ],
+     [
+      7,
+      5217.0
+     ],
+     [
+      8,
+      6106.0
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9509,
+      16,
+      16
+     ],
+     [
+      3,
+      10.8282,
+      16,
+      16
+     ],
+     [
+      4,
+      10.6642,
+      16,
+      16
+     ],
+     [
+      5,
+      10.4948,
+      16,
+      16
+     ],
+     [
+      6,
+      10.3057,
+      16,
+      16
+     ],
+     [
+      7,
+      10.1244,
+      16,
+      16
+     ],
+     [
+      8,
+      9.9764,
+      16,
+      16
+     ],
+     [
+      9,
+      9.8298,
+      16,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s42.log",
+    "E_first_nan_epoch": 9,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 10.3,
+    "max_gradnorm_vis": 18.1,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3871.5
+     ],
+     [
+      2,
+      3802.0
+     ],
+     [
+      3,
+      3850.0
+     ],
+     [
+      4,
+      4064.5
+     ],
+     [
+      5,
+      4425.0
+     ],
+     [
+      6,
+      4930.0
+     ],
+     [
+      7,
+      5949.0
+     ],
+     [
+      8,
+      7278.0
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9478,
+      16,
+      16
+     ],
+     [
+      3,
+      10.8269,
+      16,
+      16
+     ],
+     [
+      4,
+      10.656,
+      16,
+      16
+     ],
+     [
+      5,
+      10.4904,
+      16,
+      16
+     ],
+     [
+      6,
+      10.309,
+      16,
+      16
+     ],
+     [
+      7,
+      10.1393,
+      16,
+      16
+     ],
+     [
+      8,
+      9.9903,
+      16,
+      16
+     ],
+     [
+      9,
+      9.847,
+      16,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s456.log",
+    "E_first_nan_epoch": 9,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 12.9,
+    "max_gradnorm_vis": 14.8,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3863.5
+     ],
+     [
+      2,
+      3808.5
+     ],
+     [
+      3,
+      3811.5
+     ],
+     [
+      4,
+      3994.5
+     ],
+     [
+      5,
+      4310.0
+     ],
+     [
+      6,
+      4703.0
+     ],
+     [
+      7,
+      5642.0
+     ],
+     [
+      8,
+      6828.0
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9467,
+      16,
+      16
+     ],
+     [
+      3,
+      10.8201,
+      16,
+      16
+     ],
+     [
+      4,
+      10.6577,
+      16,
+      16
+     ],
+     [
+      5,
+      10.4862,
+      16,
+      16
+     ],
+     [
+      6,
+      10.2938,
+      16,
+      16
+     ],
+     [
+      7,
+      10.1126,
+      16,
+      16
+     ],
+     [
+      8,
+      9.966,
+      16,
+      16
+     ],
+     [
+      9,
+      9.8111,
+      16,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s789.log",
+    "E_first_nan_epoch": 9,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 10.7,
+    "max_gradnorm_vis": 12.0,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3860.0
+     ],
+     [
+      2,
+      3818.0
+     ],
+     [
+      3,
+      3813.5
+     ],
+     [
+      4,
+      3921.5
+     ],
+     [
+      5,
+      4178.5
+     ],
+     [
+      6,
+      4555.0
+     ],
+     [
+      7,
+      5358.0
+     ],
+     [
+      8,
+      6458.0
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9427,
+      16,
+      16
+     ],
+     [
+      3,
+      10.8137,
+      16,
+      16
+     ],
+     [
+      4,
+      10.6492,
+      16,
+      16
+     ],
+     [
+      5,
+      10.4843,
+      16,
+      16
+     ],
+     [
+      6,
+      10.2937,
+      16,
+      16
+     ],
+     [
+      7,
+      10.124,
+      16,
+      16
+     ],
+     [
+      8,
+      9.977,
+      16,
+      16
+     ],
+     [
+      9,
+      9.8361,
+      16,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s1024.log",
+    "E_first_nan_epoch": 8,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 15.1,
+    "max_gradnorm_vis": 18.5,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3855.0
+     ],
+     [
+      2,
+      3798.5
+     ],
+     [
+      3,
+      3813.5
+     ],
+     [
+      4,
+      4075.0
+     ],
+     [
+      5,
+      4397.5
+     ],
+     [
+      6,
+      4949.0
+     ],
+     [
+      7,
+      6306.0
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9182,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7544,
+      16,
+      16
+     ],
+     [
+      4,
+      10.5602,
+      16,
+      16
+     ],
+     [
+      5,
+      10.345,
+      16,
+      16
+     ],
+     [
+      6,
+      10.1446,
+      16,
+      16
+     ],
+     [
+      7,
+      9.9668,
+      16,
+      16
+     ],
+     [
+      8,
+      9.8036,
+      16,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s123.log",
+    "E_first_nan_epoch": 8,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 12.0,
+    "max_gradnorm_vis": 12.6,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3867.5
+     ],
+     [
+      2,
+      3813.5
+     ],
+     [
+      3,
+      3891.5
+     ],
+     [
+      4,
+      4180.5
+     ],
+     [
+      5,
+      4558.0
+     ],
+     [
+      6,
+      5279.0
+     ],
+     [
+      7,
+      6552.0
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9259,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7723,
+      16,
+      16
+     ],
+     [
+      4,
+      10.5765,
+      16,
+      16
+     ],
+     [
+      5,
+      10.3739,
+      16,
+      16
+     ],
+     [
+      6,
+      10.1681,
+      16,
+      16
+     ],
+     [
+      7,
+      9.9971,
+      16,
+      16
+     ],
+     [
+      8,
+      9.8395,
+      16,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s42.log",
+    "E_first_nan_epoch": 8,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 12.5,
+    "max_gradnorm_vis": 16.8,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3860.0
+     ],
+     [
+      2,
+      3789.5
+     ],
+     [
+      3,
+      3884.0
+     ],
+     [
+      4,
+      4185.5
+     ],
+     [
+      5,
+      4475.5
+     ],
+     [
+      6,
+      5028.0
+     ],
+     [
+      7,
+      6182.0
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.915,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7457,
+      16,
+      16
+     ],
+     [
+      4,
+      10.5442,
+      16,
+      16
+     ],
+     [
+      5,
+      10.3286,
+      16,
+      16
+     ],
+     [
+      6,
+      10.1341,
+      16,
+      16
+     ],
+     [
+      7,
+      9.9604,
+      16,
+      16
+     ],
+     [
+      8,
+      9.8041,
+      16,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s456.log",
+    "E_first_nan_epoch": 8,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 10.5,
+    "max_gradnorm_vis": 15.0,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3853.5
+     ],
+     [
+      2,
+      3815.0
+     ],
+     [
+      3,
+      3892.0
+     ],
+     [
+      4,
+      4180.5
+     ],
+     [
+      5,
+      4541.0
+     ],
+     [
+      6,
+      5405.0
+     ],
+     [
+      7,
+      6519.0
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9265,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7668,
+      16,
+      16
+     ],
+     [
+      4,
+      10.5732,
+      16,
+      16
+     ],
+     [
+      5,
+      10.3688,
+      16,
+      16
+     ],
+     [
+      6,
+      10.1669,
+      16,
+      16
+     ],
+     [
+      7,
+      9.9969,
+      16,
+      16
+     ],
+     [
+      8,
+      9.835,
+      16,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s789.log",
+    "E_first_nan_epoch": 8,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 12.8,
+    "max_gradnorm_vis": 13.5,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3865.5
+     ],
+     [
+      2,
+      3809.0
+     ],
+     [
+      3,
+      3875.0
+     ],
+     [
+      4,
+      4090.5
+     ],
+     [
+      5,
+      4336.0
+     ],
+     [
+      6,
+      5054.0
+     ],
+     [
+      7,
+      6055.0
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9273,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7691,
+      16,
+      16
+     ],
+     [
+      4,
+      10.5822,
+      16,
+      16
+     ],
+     [
+      5,
+      10.3772,
+      16,
+      16
+     ],
+     [
+      6,
+      10.1684,
+      16,
+      16
+     ],
+     [
+      7,
+      9.9941,
+      16,
+      16
+     ],
+     [
+      8,
+      9.8332,
+      16,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s1024.log",
+    "E_first_nan_epoch": 7,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 14.0,
+    "max_gradnorm_vis": 13.1,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3836.5
+     ],
+     [
+      2,
+      3799.5
+     ],
+     [
+      3,
+      4007.0
+     ],
+     [
+      4,
+      4179.0
+     ],
+     [
+      5,
+      4693.5
+     ],
+     [
+      6,
+      6035.0
+     ],
+     [
+      7,
+      null
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.8998,
+      16,
+      16
+     ],
+     [
+      3,
+      10.6999,
+      16,
+      16
+     ],
+     [
+      4,
+      10.4856,
+      16,
+      16
+     ],
+     [
+      5,
+      10.2421,
+      16,
+      16
+     ],
+     [
+      6,
+      10.0362,
+      16,
+      16
+     ],
+     [
+      7,
+      9.8523,
+      16,
+      16
+     ],
+     [
+      8,
+      0.0,
+      0,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s123.log",
+    "E_first_nan_epoch": 7,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 9.99,
+    "max_gradnorm_vis": 21.1,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3854.5
+     ],
+     [
+      2,
+      3811.0
+     ],
+     [
+      3,
+      4005.0
+     ],
+     [
+      4,
+      4381.5
+     ],
+     [
+      5,
+      4951.0
+     ],
+     [
+      6,
+      6366.0
+     ],
+     [
+      7,
+      null
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9079,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7126,
+      16,
+      16
+     ],
+     [
+      4,
+      10.4957,
+      16,
+      16
+     ],
+     [
+      5,
+      10.2686,
+      16,
+      16
+     ],
+     [
+      6,
+      10.065,
+      16,
+      16
+     ],
+     [
+      7,
+      9.8879,
+      16,
+      16
+     ],
+     [
+      8,
+      0.0,
+      0,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s42.log",
+    "E_first_nan_epoch": 7,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 13.4,
+    "max_gradnorm_vis": 14.5,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3843.5
+     ],
+     [
+      2,
+      3833.0
+     ],
+     [
+      3,
+      3988.0
+     ],
+     [
+      4,
+      4355.0
+     ],
+     [
+      5,
+      5086.0
+     ],
+     [
+      6,
+      6622.0
+     ],
+     [
+      7,
+      null
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.8975,
+      16,
+      16
+     ],
+     [
+      3,
+      10.6907,
+      16,
+      16
+     ],
+     [
+      4,
+      10.469,
+      16,
+      16
+     ],
+     [
+      5,
+      10.2265,
+      16,
+      16
+     ],
+     [
+      6,
+      10.021,
+      16,
+      16
+     ],
+     [
+      7,
+      9.8421,
+      16,
+      16
+     ],
+     [
+      8,
+      0.0,
+      0,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s456.log",
+    "E_first_nan_epoch": 7,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 13.1,
+    "max_gradnorm_vis": 14.1,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3849.5
+     ],
+     [
+      2,
+      3808.0
+     ],
+     [
+      3,
+      4023.0
+     ],
+     [
+      4,
+      4435.0
+     ],
+     [
+      5,
+      5103.0
+     ],
+     [
+      6,
+      6654.0
+     ],
+     [
+      7,
+      null
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9025,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7088,
+      16,
+      16
+     ],
+     [
+      4,
+      10.4888,
+      16,
+      16
+     ],
+     [
+      5,
+      10.2593,
+      16,
+      16
+     ],
+     [
+      6,
+      10.0507,
+      16,
+      16
+     ],
+     [
+      7,
+      9.8721,
+      16,
+      16
+     ],
+     [
+      8,
+      0.0,
+      0,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s789.log",
+    "E_first_nan_epoch": 7,
+    "loss_first_nan_epoch": null,
+    "loss_all_finite": true,
+    "grad_all_finite": false,
+    "max_gradnorm_llm": 10.9,
+    "max_gradnorm_vis": 14.7,
+    "E_series": [
+     [
+      0,
+      3926.0
+     ],
+     [
+      1,
+      3860.5
+     ],
+     [
+      2,
+      3825.0
+     ],
+     [
+      3,
+      4013.5
+     ],
+     [
+      4,
+      4424.0
+     ],
+     [
+      5,
+      5129.0
+     ],
+     [
+      6,
+      6506.0
+     ],
+     [
+      7,
+      null
+     ],
+     [
+      8,
+      null
+     ],
+     [
+      9,
+      null
+     ],
+     [
+      10,
+      null
+     ]
+    ],
+    "loss_series": [
+     [
+      1,
+      11.0144,
+      16,
+      16
+     ],
+     [
+      2,
+      10.9034,
+      16,
+      16
+     ],
+     [
+      3,
+      10.7076,
+      16,
+      16
+     ],
+     [
+      4,
+      10.4916,
+      16,
+      16
+     ],
+     [
+      5,
+      10.2668,
+      16,
+      16
+     ],
+     [
+      6,
+      10.0644,
+      16,
+      16
+     ],
+     [
+      7,
+      9.8834,
+      16,
+      16
+     ],
+     [
+      8,
+      0.0,
+      0,
+      16
+     ],
+     [
+      9,
+      0.0,
+      0,
+      16
+     ],
+     [
+      10,
+      0.0,
+      0,
+      16
+     ]
+    ]
+   }
+  ],
+  "loss_behaviour_immediately_before_E_nan": [
+   {
+    "log": "outputs\\run_s10ep_r5.log",
+    "nan_epoch": 8,
+    "loss_prev_epoch": 10.0056,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": null,
+    "gradnorm_vis_prev": null,
+    "E_prev": 6369.0
+   },
+   {
+    "log": "outputs\\run_s10ep_r6.log",
+    "nan_epoch": 7,
+    "loss_prev_epoch": 10.0802,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": null,
+    "gradnorm_vis_prev": null,
+    "E_prev": 6202.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s1024.log",
+    "nan_epoch": 8,
+    "loss_prev_epoch": 10.1018,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 12.2,
+    "gradnorm_vis_prev": 9.62,
+    "E_prev": 5931.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s123.log",
+    "nan_epoch": 9,
+    "loss_prev_epoch": 9.9764,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 11.4,
+    "gradnorm_vis_prev": 8.49,
+    "E_prev": 6106.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s42.log",
+    "nan_epoch": 9,
+    "loss_prev_epoch": 9.9903,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 8.39,
+    "gradnorm_vis_prev": 9.59,
+    "E_prev": 7278.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s456.log",
+    "nan_epoch": 9,
+    "loss_prev_epoch": 9.966,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 12.1,
+    "gradnorm_vis_prev": 8.59,
+    "E_prev": 6828.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s789.log",
+    "nan_epoch": 9,
+    "loss_prev_epoch": 9.977,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 8.58,
+    "gradnorm_vis_prev": 9.6,
+    "E_prev": 6458.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s1024.log",
+    "nan_epoch": 8,
+    "loss_prev_epoch": 9.9668,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 12.7,
+    "gradnorm_vis_prev": 9.73,
+    "E_prev": 6306.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s123.log",
+    "nan_epoch": 8,
+    "loss_prev_epoch": 9.9971,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 9.87,
+    "gradnorm_vis_prev": 10.2,
+    "E_prev": 6552.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s42.log",
+    "nan_epoch": 8,
+    "loss_prev_epoch": 9.9604,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 11.4,
+    "gradnorm_vis_prev": 10.5,
+    "E_prev": 6182.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s456.log",
+    "nan_epoch": 8,
+    "loss_prev_epoch": 9.9969,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 8.56,
+    "gradnorm_vis_prev": 10.2,
+    "E_prev": 6519.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s789.log",
+    "nan_epoch": 8,
+    "loss_prev_epoch": 9.9941,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 8.87,
+    "gradnorm_vis_prev": 10.7,
+    "E_prev": 6055.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s1024.log",
+    "nan_epoch": 7,
+    "loss_prev_epoch": 10.0362,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 10.5,
+    "gradnorm_vis_prev": 11.6,
+    "E_prev": 6035.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s123.log",
+    "nan_epoch": 7,
+    "loss_prev_epoch": 10.065,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 8.51,
+    "gradnorm_vis_prev": 11.9,
+    "E_prev": 6366.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s42.log",
+    "nan_epoch": 7,
+    "loss_prev_epoch": 10.021,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 13.4,
+    "gradnorm_vis_prev": 11.0,
+    "E_prev": 6622.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s456.log",
+    "nan_epoch": 7,
+    "loss_prev_epoch": 10.0507,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 11.4,
+    "gradnorm_vis_prev": 10.3,
+    "E_prev": 6654.0
+   },
+   {
+    "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s789.log",
+    "nan_epoch": 7,
+    "loss_prev_epoch": 10.0644,
+    "n_valid_prev": 16,
+    "n_total_prev": 16,
+    "gradnorm_llm_prev": 8.96,
+    "gradnorm_vis_prev": 9.54,
+    "E_prev": 6506.0
+   }
+  ],
+  "logs_with_per_epoch_grad_norms": [
+   "paper3\\scripts\\outputs\\logs\\c3_r4_s1024.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r4_s123.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r4_s42.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r4_s456.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r4_s789.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r5_s1024.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r5_s123.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r5_s42.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r5_s456.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r5_s789.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r6_s1024.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r6_s123.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r6_s42.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r6_s456.log",
+   "paper3\\scripts\\outputs\\logs\\c3_r6_s789.log"
+  ],
+  "n_logs_with_per_epoch_grad_norms": 15
+ },
+ "all_runs": [
+  {
+   "log": "outputs\\run_bf16_r5.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0145,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9596,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.8175,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3861.5
+    },
+    {
+     "epoch": 1,
+     "E": 3800.5
+    },
+    {
+     "epoch": 2,
+     "E": 3679.0
+    },
+    {
+     "epoch": 3,
+     "E": 3836.5
+    }
+   ],
+   "E_first_finite": 3861.5,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_bf16_r6.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0145,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9333,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7815,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3861.5
+    },
+    {
+     "epoch": 1,
+     "E": 3753.0
+    },
+    {
+     "epoch": 2,
+     "E": 3688.5
+    },
+    {
+     "epoch": 3,
+     "E": 3857.0
+    }
+   ],
+   "E_first_finite": 3861.5,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_cap_blank_r5.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.6307,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 11.5427,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 11.3864,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3864.0
+    },
+    {
+     "epoch": 1,
+     "E": 3791.0
+    },
+    {
+     "epoch": 2,
+     "E": 3697.5
+    },
+    {
+     "epoch": 3,
+     "E": 3780.5
+    }
+   ],
+   "E_first_finite": 3864.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_cap_blank_r6.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.6307,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 11.5236,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 11.3308,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3864.0
+    },
+    {
+     "epoch": 1,
+     "E": 3782.0
+    },
+    {
+     "epoch": 2,
+     "E": 3718.5
+    },
+    {
+     "epoch": 3,
+     "E": 3878.5
+    }
+   ],
+   "E_first_finite": 3864.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_cap_real_r5.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 12.1558,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 12.0574,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 11.9001,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 2408.0
+    },
+    {
+     "epoch": 1,
+     "E": 2399.0
+    },
+    {
+     "epoch": 2,
+     "E": 2359.8
+    },
+    {
+     "epoch": 3,
+     "E": 2474.5
+    }
+   ],
+   "E_first_finite": 2408.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_cap_real_r6.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 12.1558,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 12.0311,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 11.8333,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 2408.0
+    },
+    {
+     "epoch": 1,
+     "E": 2339.0
+    },
+    {
+     "epoch": 2,
+     "E": 2364.2
+    },
+    {
+     "epoch": 3,
+     "E": 2368.5
+    }
+   ],
+   "E_first_finite": 2408.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_instr_real_r5.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.4641,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 11.3511,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 11.2087,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3488.5
+    },
+    {
+     "epoch": 1,
+     "E": 3414.2
+    },
+    {
+     "epoch": 2,
+     "E": 3474.1
+    },
+    {
+     "epoch": 3,
+     "E": 3571.5
+    }
+   ],
+   "E_first_finite": 3488.5,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_instr_real_r6.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.4641,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 11.3341,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 11.1607,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3488.5
+    },
+    {
+     "epoch": 1,
+     "E": 3431.6
+    },
+    {
+     "epoch": 2,
+     "E": 3482.8
+    },
+    {
+     "epoch": 3,
+     "E": 3481.0
+    }
+   ],
+   "E_first_finite": 3488.5,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_lang_r5.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 6.3745,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 6.2493,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 6.0697,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3927.5
+    },
+    {
+     "epoch": 2,
+     "E": 3956.5
+    },
+    {
+     "epoch": 3,
+     "E": 3886.5
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_lang_r6.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 6.3745,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 6.2254,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 6.0107,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3938.0
+    },
+    {
+     "epoch": 2,
+     "E": 3986.5
+    },
+    {
+     "epoch": 3,
+     "E": 3875.5
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_policy_exp.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.8451,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.5921,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3770.5
+    },
+    {
+     "epoch": 2,
+     "E": 3877.5
+    },
+    {
+     "epoch": 3,
+     "E": 4231.0
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_policy_greedy.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.865,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.6393,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3797.5
+    },
+    {
+     "epoch": 2,
+     "E": 3763.0
+    },
+    {
+     "epoch": 3,
+     "E": 4005.0
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_policy_uniform.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9599,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.8433,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3880.5
+    },
+    {
+     "epoch": 2,
+     "E": 3782.5
+    },
+    {
+     "epoch": 3,
+     "E": 3842.0
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_proj_r4.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9551,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.8371,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3877.5
+    },
+    {
+     "epoch": 2,
+     "E": 3786.5
+    },
+    {
+     "epoch": 3,
+     "E": 3835.5
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_qwen2b_theory.log",
+   "n_epoch_records": 0,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 16452.0
+    },
+    {
+     "epoch": 1,
+     "E": 16358.0
+    },
+    {
+     "epoch": 2,
+     "E": 16252.0
+    },
+    {
+     "epoch": 3,
+     "E": 16142.0
+    }
+   ],
+   "E_first_finite": 16452.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": null,
+   "grad_all_finite": null,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_qwen2b_uniform.log",
+   "n_epoch_records": 0,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 16452.0
+    },
+    {
+     "epoch": 1,
+     "E": 16360.0
+    },
+    {
+     "epoch": 2,
+     "E": 16248.0
+    },
+    {
+     "epoch": 3,
+     "E": 16144.0
+    }
+   ],
+   "E_first_finite": 16452.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": null,
+   "grad_all_finite": null,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_qwen2b_violation.log",
+   "n_epoch_records": 0,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 16452.0
+    },
+    {
+     "epoch": 1,
+     "E": 16358.0
+    },
+    {
+     "epoch": 2,
+     "E": 16252.0
+    },
+    {
+     "epoch": 3,
+     "E": 16150.0
+    }
+   ],
+   "E_first_finite": 16452.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": null,
+   "grad_all_finite": null,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_s10ep_r5.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9251,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7692,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.5831,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.3773,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.1767,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 10.0056,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.8384,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3844.5
+    },
+    {
+     "epoch": 2,
+     "E": 3777.0
+    },
+    {
+     "epoch": 3,
+     "E": 3907.0
+    },
+    {
+     "epoch": 4,
+     "E": 4248.5
+    },
+    {
+     "epoch": 5,
+     "E": 4508.0
+    },
+    {
+     "epoch": 6,
+     "E": 5170.0
+    },
+    {
+     "epoch": 7,
+     "E": 6369.0
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": 8,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_s10ep_r6.log",
+   "n_epoch_records": 7,
+   "n_E_records": 8,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9107,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7228,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.5073,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.2849,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.0802,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.9042,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3831.5
+    },
+    {
+     "epoch": 2,
+     "E": 3815.5
+    },
+    {
+     "epoch": 3,
+     "E": 4025.0
+    },
+    {
+     "epoch": 4,
+     "E": 4412.5
+    },
+    {
+     "epoch": 5,
+     "E": 5020.0
+    },
+    {
+     "epoch": 6,
+     "E": 6202.0
+    },
+    {
+     "epoch": 7,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": 7,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_sgd_r5_lr1e-3.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9264,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.3369,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3207.5
+    },
+    {
+     "epoch": 2,
+     "E": 4568.5
+    },
+    {
+     "epoch": 3,
+     "E": 4598.0
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_sgd_r5_lr5e-5.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9985,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.9812,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3909.5
+    },
+    {
+     "epoch": 2,
+     "E": 3901.5
+    },
+    {
+     "epoch": 3,
+     "E": 3910.5
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_sgd_r6_lr1e-3.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.839,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.412,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3474.0
+    },
+    {
+     "epoch": 2,
+     "E": 4537.0
+    },
+    {
+     "epoch": 3,
+     "E": 4238.0
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_sgd_r6_lr5e-5.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9952,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.9727,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3915.5
+    },
+    {
+     "epoch": 2,
+     "E": 3900.5
+    },
+    {
+     "epoch": 3,
+     "E": 3878.0
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_tf457_r5.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9343,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7925,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3860.5
+    },
+    {
+     "epoch": 2,
+     "E": 3787.5
+    },
+    {
+     "epoch": 3,
+     "E": 3921.0
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "outputs\\run_tf457_r6.log",
+   "n_epoch_records": 3,
+   "n_E_records": 4,
+   "n_step_records": 0,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0165,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9122,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7316,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3921.0
+    },
+    {
+     "epoch": 1,
+     "E": 3849.0
+    },
+    {
+     "epoch": 2,
+     "E": 3776.0
+    },
+    {
+     "epoch": 3,
+     "E": 4017.5
+    }
+   ],
+   "E_first_finite": 3921.0,
+   "E_first_nan_epoch": null,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": null,
+   "max_gradnorm_vis": null,
+   "step_loss_all_finite": null,
+   "min_step_loss": null,
+   "max_step_loss": null
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s1024.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 41,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.24
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9431,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.41,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 7.23
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.8129,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.04,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.74
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.6399,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.2
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.4612,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.44,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.3
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.2704,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.59,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.9
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 10.1018,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.62,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.2
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.9499,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 8.87,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.3
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 9.7974,
+     "n_valid": 6,
+     "n_total": 16,
+     "gradnorm_vis": 6.01,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.0
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3859.5
+    },
+    {
+     "epoch": 2,
+     "E": 3810.0
+    },
+    {
+     "epoch": 3,
+     "E": 3870.0
+    },
+    {
+     "epoch": 4,
+     "E": 4099.0
+    },
+    {
+     "epoch": 5,
+     "E": 4441.5
+    },
+    {
+     "epoch": 6,
+     "E": 4910.5
+    },
+    {
+     "epoch": 7,
+     "E": 5931.0
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 8,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 12.9,
+   "max_gradnorm_vis": 12.6,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.2356,
+   "max_step_loss": 11.6717
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s123.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 45,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.5,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.62
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9509,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.31
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.8282,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.51,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.27
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.6642,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 7.72,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.09
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.4948,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.9,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.5
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.3057,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.4,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.7
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 10.1244,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 8.34,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.5
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.9764,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 8.49,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.4
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 9.8298,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 7.48,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.7
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3870.0
+    },
+    {
+     "epoch": 2,
+     "E": 3811.5
+    },
+    {
+     "epoch": 3,
+     "E": 3812.0
+    },
+    {
+     "epoch": 4,
+     "E": 3886.5
+    },
+    {
+     "epoch": 5,
+     "E": 4146.5
+    },
+    {
+     "epoch": 6,
+     "E": 4431.5
+    },
+    {
+     "epoch": 7,
+     "E": 5217.0
+    },
+    {
+     "epoch": 8,
+     "E": 6106.0
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 9,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 11.7,
+   "max_gradnorm_vis": 10.9,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.3103,
+   "max_step_loss": 11.6956
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s42.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 45,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.9,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 5.52
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9478,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 5.82
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.8269,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 8.79,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.1
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.656,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 18.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 7.93
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.4904,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 15.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.87
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.309,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.3
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 10.1393,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 8.79,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.44
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.9903,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.59,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.39
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 9.847,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 7.62,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.8
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3871.5
+    },
+    {
+     "epoch": 2,
+     "E": 3802.0
+    },
+    {
+     "epoch": 3,
+     "E": 3850.0
+    },
+    {
+     "epoch": 4,
+     "E": 4064.5
+    },
+    {
+     "epoch": 5,
+     "E": 4425.0
+    },
+    {
+     "epoch": 6,
+     "E": 4930.0
+    },
+    {
+     "epoch": 7,
+     "E": 5949.0
+    },
+    {
+     "epoch": 8,
+     "E": 7278.0
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 9,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 10.3,
+   "max_gradnorm_vis": 18.1,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.3173,
+   "max_step_loss": 11.6106
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s456.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 45,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 7.05
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9467,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.32,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.71
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.8201,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 8.63,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 7.26
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.6577,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.3,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.76
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.4862,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 14.8,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.5
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.2938,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.75,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.1
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 10.1126,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 8.85,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.7
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.966,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 8.59,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.1
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 9.8111,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 7.57,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.9
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3863.5
+    },
+    {
+     "epoch": 2,
+     "E": 3808.5
+    },
+    {
+     "epoch": 3,
+     "E": 3811.5
+    },
+    {
+     "epoch": 4,
+     "E": 3994.5
+    },
+    {
+     "epoch": 5,
+     "E": 4310.0
+    },
+    {
+     "epoch": 6,
+     "E": 4703.0
+    },
+    {
+     "epoch": 7,
+     "E": 5642.0
+    },
+    {
+     "epoch": 8,
+     "E": 6828.0
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 9,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 12.9,
+   "max_gradnorm_vis": 14.8,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.3106,
+   "max_step_loss": 11.6956
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r4_s789.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 45,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.8,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 5.84
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9427,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.92,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.0
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.8137,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 8.76,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.65
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.6492,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.65
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.4843,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.3,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.24
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.2937,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.1
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 10.124,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.75,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.32
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.977,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.58
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 9.8361,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 7.66,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.7
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3860.0
+    },
+    {
+     "epoch": 2,
+     "E": 3818.0
+    },
+    {
+     "epoch": 3,
+     "E": 3813.5
+    },
+    {
+     "epoch": 4,
+     "E": 3921.5
+    },
+    {
+     "epoch": 5,
+     "E": 4178.5
+    },
+    {
+     "epoch": 6,
+     "E": 4555.0
+    },
+    {
+     "epoch": 7,
+     "E": 5358.0
+    },
+    {
+     "epoch": 8,
+     "E": 6458.0
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 9,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 10.7,
+   "max_gradnorm_vis": 12.0,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.2985,
+   "max_step_loss": 11.5606
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s1024.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 40,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.5,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.33
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9182,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.9,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.69
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7544,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.4,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.03
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.5602,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 18.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.3
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.345,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 18.5,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.6
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.1446,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 15.1
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.9668,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.73,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.7
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.8036,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.3
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3855.0
+    },
+    {
+     "epoch": 2,
+     "E": 3798.5
+    },
+    {
+     "epoch": 3,
+     "E": 3813.5
+    },
+    {
+     "epoch": 4,
+     "E": 4075.0
+    },
+    {
+     "epoch": 5,
+     "E": 4397.5
+    },
+    {
+     "epoch": 6,
+     "E": 4949.0
+    },
+    {
+     "epoch": 7,
+     "E": 6306.0
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 8,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 15.1,
+   "max_gradnorm_vis": 18.5,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.2376,
+   "max_step_loss": 11.6026
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s123.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 40,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 7.0
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9259,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.7,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.19
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7723,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.25
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.5765,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.9,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.23
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.3739,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.2,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.0
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.1681,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.4,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.3
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.9971,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.2,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.87
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.8395,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.8,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.0
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3867.5
+    },
+    {
+     "epoch": 2,
+     "E": 3813.5
+    },
+    {
+     "epoch": 3,
+     "E": 3891.5
+    },
+    {
+     "epoch": 4,
+     "E": 4180.5
+    },
+    {
+     "epoch": 5,
+     "E": 4558.0
+    },
+    {
+     "epoch": 6,
+     "E": 5279.0
+    },
+    {
+     "epoch": 7,
+     "E": 6552.0
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 8,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 12.0,
+   "max_gradnorm_vis": 12.6,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.251,
+   "max_step_loss": 11.6956
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s42.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 40,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.4,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.01
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.915,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.92
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7457,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.4
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.5442,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 16.8,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.2
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.3286,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.3,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.8
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.1341,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.1
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.9604,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.5,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.4
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.8041,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.7,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.5
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3860.0
+    },
+    {
+     "epoch": 2,
+     "E": 3789.5
+    },
+    {
+     "epoch": 3,
+     "E": 3884.0
+    },
+    {
+     "epoch": 4,
+     "E": 4185.5
+    },
+    {
+     "epoch": 5,
+     "E": 4475.5
+    },
+    {
+     "epoch": 6,
+     "E": 5028.0
+    },
+    {
+     "epoch": 7,
+     "E": 6182.0
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 8,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 12.5,
+   "max_gradnorm_vis": 16.8,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.157,
+   "max_step_loss": 11.5606
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s456.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 40,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.9
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9265,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.5,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.46
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7668,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.22
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.5732,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 15.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.15
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.3688,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.81
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.1669,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 14.2,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.5
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.9969,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.2,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.56
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.835,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.76,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.0
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3853.5
+    },
+    {
+     "epoch": 2,
+     "E": 3815.0
+    },
+    {
+     "epoch": 3,
+     "E": 3892.0
+    },
+    {
+     "epoch": 4,
+     "E": 4180.5
+    },
+    {
+     "epoch": 5,
+     "E": 4541.0
+    },
+    {
+     "epoch": 6,
+     "E": 5405.0
+    },
+    {
+     "epoch": 7,
+     "E": 6519.0
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 8,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 10.5,
+   "max_gradnorm_vis": 15.0,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.8691,
+   "max_step_loss": 11.6717
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r5_s789.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 40,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.9,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.68
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9273,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.3,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.4
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7691,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.51
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.5822,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.5,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.38
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.3772,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.4,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.8
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.1684,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.4
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.9941,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.7,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.87
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 9.8332,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.95,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.8
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3865.5
+    },
+    {
+     "epoch": 2,
+     "E": 3809.0
+    },
+    {
+     "epoch": 3,
+     "E": 3875.0
+    },
+    {
+     "epoch": 4,
+     "E": 4090.5
+    },
+    {
+     "epoch": 5,
+     "E": 4336.0
+    },
+    {
+     "epoch": 6,
+     "E": 5054.0
+    },
+    {
+     "epoch": 7,
+     "E": 6055.0
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 8,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 12.8,
+   "max_gradnorm_vis": 13.5,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.5756,
+   "max_step_loss": 11.6717
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s1024.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 35,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.29
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.8998,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.38
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.6999,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.3
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.4856,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 13.0
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.2421,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.8
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.0362,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.5
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.8523,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.49,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 14.0
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3836.5
+    },
+    {
+     "epoch": 2,
+     "E": 3799.5
+    },
+    {
+     "epoch": 3,
+     "E": 4007.0
+    },
+    {
+     "epoch": 4,
+     "E": 4179.0
+    },
+    {
+     "epoch": 5,
+     "E": 4693.5
+    },
+    {
+     "epoch": 6,
+     "E": 6035.0
+    },
+    {
+     "epoch": 7,
+     "E": null
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 7,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 14.0,
+   "max_gradnorm_vis": 13.1,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.7915,
+   "max_step_loss": 11.6956
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s123.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 35,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.53
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9079,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.3,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.45
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7126,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.8,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.6
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.4957,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.75
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.2686,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 21.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.99
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.065,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.9,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.51
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.8879,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.36,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.41
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3854.5
+    },
+    {
+     "epoch": 2,
+     "E": 3811.0
+    },
+    {
+     "epoch": 3,
+     "E": 4005.0
+    },
+    {
+     "epoch": 4,
+     "E": 4381.5
+    },
+    {
+     "epoch": 5,
+     "E": 4951.0
+    },
+    {
+     "epoch": 6,
+     "E": 6366.0
+    },
+    {
+     "epoch": 7,
+     "E": null
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 7,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 9.99,
+   "max_gradnorm_vis": 21.1,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.3852,
+   "max_step_loss": 11.5921
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s42.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 35,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 14.5,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.88
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.8975,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.75
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.6907,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.8
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.469,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.9,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 13.2
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.2265,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.7,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.6
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.021,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.0,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 13.4
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.8421,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.53,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 13.1
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3843.5
+    },
+    {
+     "epoch": 2,
+     "E": 3833.0
+    },
+    {
+     "epoch": 3,
+     "E": 3988.0
+    },
+    {
+     "epoch": 4,
+     "E": 4355.0
+    },
+    {
+     "epoch": 5,
+     "E": 5086.0
+    },
+    {
+     "epoch": 6,
+     "E": 6622.0
+    },
+    {
+     "epoch": 7,
+     "E": null
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 7,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 13.4,
+   "max_gradnorm_vis": 14.5,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.5126,
+   "max_step_loss": 11.6106
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s456.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 35,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 14.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 7.71
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9025,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 6.81
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7088,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.1,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.9
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.4888,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.6,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 13.1
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.2593,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.3,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.7
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.0507,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.3,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 11.4
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.8721,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 11.3,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 12.4
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3849.5
+    },
+    {
+     "epoch": 2,
+     "E": 3808.0
+    },
+    {
+     "epoch": 3,
+     "E": 4023.0
+    },
+    {
+     "epoch": 4,
+     "E": 4435.0
+    },
+    {
+     "epoch": 5,
+     "E": 5103.0
+    },
+    {
+     "epoch": 6,
+     "E": 6654.0
+    },
+    {
+     "epoch": 7,
+     "E": null
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 7,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 13.1,
+   "max_gradnorm_vis": 14.1,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.8356,
+   "max_step_loss": 11.6956
+  },
+  {
+   "log": "paper3\\scripts\\outputs\\logs\\c3_r6_s789.log",
+   "n_epoch_records": 10,
+   "n_E_records": 11,
+   "n_step_records": 35,
+   "epochs": [
+    {
+     "epoch": 1,
+     "avg_loss": 11.0144,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 14.7,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 7.71
+    },
+    {
+     "epoch": 2,
+     "avg_loss": 10.9034,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 12.7,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 7.24
+    },
+    {
+     "epoch": 3,
+     "avg_loss": 10.7076,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.8,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.8
+    },
+    {
+     "epoch": 4,
+     "avg_loss": 10.4916,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.8,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.9
+    },
+    {
+     "epoch": 5,
+     "avg_loss": 10.2668,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 13.7,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 10.1
+    },
+    {
+     "epoch": 6,
+     "avg_loss": 10.0644,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 9.54,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 8.96
+    },
+    {
+     "epoch": 7,
+     "avg_loss": 9.8834,
+     "n_valid": 16,
+     "n_total": 16,
+     "gradnorm_vis": 10.2,
+     "gradnorm_proj": 0.0,
+     "gradnorm_llm": 9.43
+    },
+    {
+     "epoch": 8,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 9,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    },
+    {
+     "epoch": 10,
+     "avg_loss": 0.0,
+     "n_valid": 0,
+     "n_total": 16,
+     "gradnorm_vis": null,
+     "gradnorm_proj": null,
+     "gradnorm_llm": null
+    }
+   ],
+   "E_series": [
+    {
+     "epoch": 0,
+     "E": 3926.0
+    },
+    {
+     "epoch": 1,
+     "E": 3860.5
+    },
+    {
+     "epoch": 2,
+     "E": 3825.0
+    },
+    {
+     "epoch": 3,
+     "E": 4013.5
+    },
+    {
+     "epoch": 4,
+     "E": 4424.0
+    },
+    {
+     "epoch": 5,
+     "E": 5129.0
+    },
+    {
+     "epoch": 6,
+     "E": 6506.0
+    },
+    {
+     "epoch": 7,
+     "E": null
+    },
+    {
+     "epoch": 8,
+     "E": null
+    },
+    {
+     "epoch": 9,
+     "E": null
+    },
+    {
+     "epoch": 10,
+     "E": null
+    }
+   ],
+   "E_first_finite": 3926.0,
+   "E_first_nan_epoch": 7,
+   "loss_first_nan_epoch": null,
+   "loss_all_finite": true,
+   "grad_all_finite": false,
+   "max_gradnorm_llm": 10.9,
+   "max_gradnorm_vis": 14.7,
+   "step_loss_all_finite": true,
+   "min_step_loss": 8.3883,
+   "max_step_loss": 11.6956
+  }
+ ]
+}

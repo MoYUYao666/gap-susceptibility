@@ -1,0 +1,3879 @@
+{
+ "adalora_boundary": {
+  "comparison_plane": {
+   "E0_shared_by_every_cell_on_this_plane": [
+    23470.845703125
+   ],
+   "adalora_and_uniform_share_one_rank_plan": true,
+   "adalora_config": {
+    "budget_exact_match_by_cost_model": true,
+    "measured_matches_budget": false,
+    "n_modules": 324,
+    "n_trainable_measured": 7238928,
+    "peft_version": "0.20.0",
+    "per_block_params_by_cost_model": {
+     "llm_deep": 1318912,
+     "llm_mid": 2308096,
+     "llm_shallow": 989184,
+     "vision": 2621440
+    },
+    "rank_distribution": {
+     "4": 324
+    },
+    "source": "outputs/analysis/p3_alloc_adalora_config.json",
+    "sum_rank_cost": 7237632,
+    "target_budget_params": 7237632
+   },
+   "backbone": "Qwen2-VL-2B-Instruct",
+   "budget_params": 7237632,
+   "epochs": 4,
+   "gamma_plan": {
+    "n_trainable_params_measured": 7237632,
+    "per_block_params": {
+     "llm_deep": 2967552,
+     "llm_mid": 1154048,
+     "llm_shallow": 494592,
+     "vision": 2621440
+    },
+    "ranks": {
+     "llm_deep": 9,
+     "llm_mid": 2,
+     "llm_shallow": 2,
+     "vision": 4
+    },
+    "source": "outputs/analysis/p3_alloc_runs/main/exp_beta_paper_0.137__seed42.json"
+   },
+   "n_eval": 32,
+   "n_train": 32,
+   "uniform_plan": {
+    "n_trainable_params_measured": 7237632,
+    "per_block_params": {
+     "llm_deep": 1318912,
+     "llm_mid": 2308096,
+     "llm_shallow": 989184,
+     "vision": 2621440
+    },
+    "ranks": {
+     "llm_deep": 4,
+     "llm_mid": 4,
+     "llm_shallow": 4,
+     "vision": 4
+    },
+    "source": "outputs/analysis/p3_alloc_runs/main/uniform__seed42.json"
+   },
+   "why_the_backbone_matters": "the allocation study runs on qwen2-vl-2b, where the archived rank sweeps show no alignment-energy sign change in r=1..16; the manuscript's r_c in [5,6] is a LLaVA-1.5-7B number"
+  },
+  "confounds": [
+   "The AdaLoRA arm and the uniform arm share one block configuration: the archived rank_pattern puts rank 4 on all 324 modules with the same per-block parameter counts ({\"llm_deep\": 1318912, \"llm_mid\": 2308096, \"llm_shallow\": 989184, \"vision\": 2621440}), so 'AdaLoRA' and 'uniform allocation' are the same rank plan and the comparison against the Gamma plan varies method and configuration at once.",
+   "Every archived cell on this plane shares one pre-training energy, E0 = [23470.845703125], so both arms see the same reference data and the same evaluation samples.",
+   "AdaLoRA's trainable-parameter count is not exactly the budget (measured 7238928 against 7237632, 0.0179% high), so the arms are matched only under the cost model.",
+   "The two scripts do not start from the same first-epoch loss at seed 42 (AdaLoRA 1.5595 against Gamma 1.5455 at lr 5e-5), so the CE-loss axes are not matched across scripts and no matched-loss claim is made here.",
+   "tools/_p451_baseline_adalora.py sets orth_reg_weight=0.5 in the peft config (line 161) but back-propagates the manually computed cross-entropy (lines 303-304); whether peft applied the orthogonality regulariser is not recorded in any archive, so it is left unasserted."
+  ],
+  "gamma_rule_within_our_own_plans": {
+   "fields": [
+    "comparisons.exp_beta_paper_0.137.rank_among_plans",
+    "per_plan.<plan>.delta_E.mean"
+   ],
+   "fraction_better": 0.2,
+   "n_plans_compared": 15,
+   "n_plans_with_lower_mean_delta_E": 3,
+   "plan_means_at_the_operating_lr": {
+    "corner": 2343.897786,
+    "exp_beta_paper_0.137": 1477.450195,
+    "inverse_beta_paper_0.137": 2470.208008,
+    "random_00": 1103.084635,
+    "random_01": 5457.049479,
+    "random_02": 9125.866536,
+    "random_03": -1450.310547,
+    "random_05": -222.191406,
+    "random_06": 4188.719401,
+    "random_07": 2822.065755,
+    "random_08": 2509.347005,
+    "random_09": 5024.768229,
+    "random_10": 4277.642578,
+    "random_11": 1741.347656,
+    "uniform": 5047.548503
+   },
+   "source": "outputs/analysis/p3_alloc_results.json"
+  },
+  "gamma_vs_uniform_cells": [
+   {
+    "difference_gamma_minus_uniform": -2308.675781,
+    "gamma_delta_E": 3234.931641,
+    "lr": 5e-05,
+    "seed": 42,
+    "sign": "gamma_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/main/summary.json",
+     "outputs/analysis/p3_alloc_runs/main/summary.json"
+    ],
+    "uniform_delta_E": 5543.607422
+   },
+   {
+    "difference_gamma_minus_uniform": -2785.517578,
+    "gamma_delta_E": 2705.53125,
+    "lr": 5e-05,
+    "seed": 123,
+    "sign": "gamma_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/main/summary.json",
+     "outputs/analysis/p3_alloc_runs/main/summary.json"
+    ],
+    "uniform_delta_E": 5491.048828
+   },
+   {
+    "difference_gamma_minus_uniform": -7423.230469,
+    "gamma_delta_E": 782.431641,
+    "lr": 5e-05,
+    "seed": 456,
+    "sign": "gamma_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/main/summary.json",
+     "outputs/analysis/p3_alloc_runs/main/summary.json"
+    ],
+    "uniform_delta_E": 8205.662109
+   },
+   {
+    "difference_gamma_minus_uniform": -5853.259766,
+    "gamma_delta_E": -1052.962891,
+    "lr": 5e-05,
+    "seed": 789,
+    "sign": "gamma_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/main/summary.json",
+     "outputs/analysis/p3_alloc_runs/main/summary.json"
+    ],
+    "uniform_delta_E": 4800.296875
+   },
+   {
+    "difference_gamma_minus_uniform": -2400.800781,
+    "gamma_delta_E": 1002.244141,
+    "lr": 5e-05,
+    "seed": 1011,
+    "sign": "gamma_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/main/summary.json",
+     "outputs/analysis/p3_alloc_runs/main/summary.json"
+    ],
+    "uniform_delta_E": 3403.044922
+   },
+   {
+    "difference_gamma_minus_uniform": -649.105469,
+    "gamma_delta_E": 2192.525391,
+    "lr": 5e-05,
+    "seed": 1213,
+    "sign": "gamma_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/main/summary.json",
+     "outputs/analysis/p3_alloc_runs/main/summary.json"
+    ],
+    "uniform_delta_E": 2841.630859
+   },
+   {
+    "difference_gamma_minus_uniform": 368.726562,
+    "gamma_delta_E": 2591.244141,
+    "lr": 0.0003,
+    "seed": 42,
+    "sign": "uniform_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json",
+     "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json"
+    ],
+    "uniform_delta_E": 2222.517578
+   },
+   {
+    "difference_gamma_minus_uniform": 5882.640625,
+    "gamma_delta_E": 9344.259766,
+    "lr": 0.0003,
+    "seed": 123,
+    "sign": "uniform_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json",
+     "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json"
+    ],
+    "uniform_delta_E": 3461.619141
+   },
+   {
+    "difference_gamma_minus_uniform": -7874.136719,
+    "gamma_delta_E": 3484.837891,
+    "lr": 0.001,
+    "seed": 42,
+    "sign": "gamma_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json",
+     "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json"
+    ],
+    "uniform_delta_E": 11358.974609
+   },
+   {
+    "difference_gamma_minus_uniform": 3737.257812,
+    "gamma_delta_E": 2249.978516,
+    "lr": 0.001,
+    "seed": 123,
+    "sign": "uniform_lower",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json",
+     "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json"
+    ],
+    "uniform_delta_E": -1487.279297
+   }
+  ],
+  "matched_cells": [
+   {
+    "adalora_delta_E": -181.630859,
+    "adalora_loss_change": 0.000912,
+    "adalora_loss_first": 1.559468,
+    "adalora_loss_last": 1.56038,
+    "ci95": null,
+    "ci95_reason": "delta_E is deterministic within a cell (delta_E_per_sample_sd = 0.0), so no within-cell interval exists",
+    "difference_adalora_minus_gamma": -3416.5625,
+    "fields": [
+     "runs.<name>.delta_E",
+     "runs.<name>.loss_first",
+     "runs.<name>.loss_last",
+     "runs.<name>.E0"
+    ],
+    "gamma_delta_E": 3234.931641,
+    "gamma_loss_change": -0.171785,
+    "gamma_loss_first": 1.545473,
+    "gamma_loss_last": 1.373688,
+    "gamma_vs_uniform_difference": -2308.675781,
+    "gamma_vs_uniform_sign": "gamma_lower",
+    "lr": 5e-05,
+    "same_E0": true,
+    "seed": 42,
+    "sign": "adalora_lower_delta_E",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/adalora_summary.json",
+     "outputs/analysis/p3_alloc_runs/main/summary.json"
+    ],
+    "within_cell_sd": 0.0
+   },
+   {
+    "adalora_delta_E": -84.341797,
+    "adalora_loss_change": -0.000875,
+    "adalora_loss_first": 1.559843,
+    "adalora_loss_last": 1.558969,
+    "ci95": null,
+    "ci95_reason": "delta_E is deterministic within a cell (delta_E_per_sample_sd = 0.0), so no within-cell interval exists",
+    "difference_adalora_minus_gamma": -2789.873047,
+    "fields": [
+     "runs.<name>.delta_E",
+     "runs.<name>.loss_first",
+     "runs.<name>.loss_last",
+     "runs.<name>.E0"
+    ],
+    "gamma_delta_E": 2705.53125,
+    "gamma_loss_change": -0.169821,
+    "gamma_loss_first": 1.546443,
+    "gamma_loss_last": 1.376622,
+    "gamma_vs_uniform_difference": -2785.517578,
+    "gamma_vs_uniform_sign": "gamma_lower",
+    "lr": 5e-05,
+    "same_E0": true,
+    "seed": 123,
+    "sign": "adalora_lower_delta_E",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/adalora_summary.json",
+     "outputs/analysis/p3_alloc_runs/main/summary.json"
+    ],
+    "within_cell_sd": 0.0
+   },
+   {
+    "adalora_delta_E": -1468.154297,
+    "adalora_loss_change": -0.072403,
+    "adalora_loss_first": 1.559042,
+    "adalora_loss_last": 1.486639,
+    "ci95": null,
+    "ci95_reason": "delta_E is deterministic within a cell (delta_E_per_sample_sd = 0.0), so no within-cell interval exists",
+    "difference_adalora_minus_gamma": -4059.398438,
+    "fields": [
+     "runs.<name>.delta_E",
+     "runs.<name>.loss_first",
+     "runs.<name>.loss_last",
+     "runs.<name>.E0"
+    ],
+    "gamma_delta_E": 2591.244141,
+    "gamma_loss_change": -0.933244,
+    "gamma_loss_first": 1.515356,
+    "gamma_loss_last": 0.582112,
+    "gamma_vs_uniform_difference": 368.726562,
+    "gamma_vs_uniform_sign": "uniform_lower",
+    "lr": 0.0003,
+    "same_E0": true,
+    "seed": 42,
+    "sign": "adalora_lower_delta_E",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/adalora_lr0.0003/adalora_summary.json",
+     "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json"
+    ],
+    "within_cell_sd": 0.0
+   },
+   {
+    "adalora_delta_E": -757.302734,
+    "adalora_loss_change": -0.569028,
+    "adalora_loss_first": 1.545768,
+    "adalora_loss_last": 0.97674,
+    "ci95": null,
+    "ci95_reason": "delta_E is deterministic within a cell (delta_E_per_sample_sd = 0.0), so no within-cell interval exists",
+    "difference_adalora_minus_gamma": -4242.140625,
+    "fields": [
+     "runs.<name>.delta_E",
+     "runs.<name>.loss_first",
+     "runs.<name>.loss_last",
+     "runs.<name>.E0"
+    ],
+    "gamma_delta_E": 3484.837891,
+    "gamma_loss_change": -1.317533,
+    "gamma_loss_first": 1.563856,
+    "gamma_loss_last": 0.246323,
+    "gamma_vs_uniform_difference": -7874.136719,
+    "gamma_vs_uniform_sign": "gamma_lower",
+    "lr": 0.001,
+    "same_E0": true,
+    "seed": 42,
+    "sign": "adalora_lower_delta_E",
+    "sources": [
+     "outputs/analysis/p3_alloc_runs/adalora_lr0.001/adalora_summary.json",
+     "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json"
+    ],
+    "within_cell_sd": 0.0
+   }
+  ],
+  "published_baseline_rules": {
+   "caveat": "these arms are not parameter-matched to the uniform r=5/r=6 arms; the archive calls the comparison directional",
+   "gamma_arm_delta_E": 196.5,
+   "n_rules_above_the_gamma_arm": 5,
+   "n_rules_below_the_gamma_arm": 0,
+   "rows": [
+    {
+     "E": [
+      3921.0,
+      3789.5,
+      3918.0,
+      4365.0
+     ],
+     "arm_file": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v10_s2_m3_d1.json",
+     "delta_E": 444.0,
+     "difference_vs_gamma_arm": 247.5,
+     "matched_setting": "LLaVA-1.5-7B blank-image protocol, 20 samples, 3 epochs, seed 42, base rank 1, alpha 16 (not parameter-matched to the uniform r=5/r=6 arms)",
+     "rule": "ShapLoRA-style (our block-level reimplementation)",
+     "sign_vs_gamma_arm": "gamma_lower"
+    },
+    {
+     "E": [
+      3921.0,
+      3814.5,
+      3904.5,
+      4254.0
+     ],
+     "arm_file": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v11_s1_m3_d1.json",
+     "delta_E": 333.0,
+     "difference_vs_gamma_arm": 136.5,
+     "matched_setting": "LLaVA-1.5-7B blank-image protocol, 20 samples, 3 epochs, seed 42, base rank 1, alpha 16 (not parameter-matched to the uniform r=5/r=6 arms)",
+     "rule": "IGU-LoRA-style (our block-level reimplementation)",
+     "sign_vs_gamma_arm": "gamma_lower"
+    },
+    {
+     "E": [
+      3921.0,
+      3794.5,
+      3826.0,
+      4205.0
+     ],
+     "arm_file": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v2_s4_m6_d4.json",
+     "delta_E": 284.0,
+     "difference_vs_gamma_arm": 87.5,
+     "matched_setting": "LLaVA-1.5-7B blank-image protocol, 20 samples, 3 epochs, seed 42, base rank 1, alpha 16 (not parameter-matched to the uniform r=5/r=6 arms)",
+     "rule": "HALoRA-style (our block-level reimplementation)",
+     "sign_vs_gamma_arm": "gamma_lower"
+    },
+    {
+     "E": [
+      3921.0,
+      3776.0,
+      3821.0,
+      4117.5
+     ],
+     "arm_file": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v5_s5_m4_d2.json",
+     "delta_E": 196.5,
+     "difference_vs_gamma_arm": 0.0,
+     "matched_setting": "LLaVA-1.5-7B blank-image protocol, 20 samples, 3 epochs, seed 42, base rank 1, alpha 16 (not parameter-matched to the uniform r=5/r=6 arms)",
+     "rule": "Gamma-guided rule (same base-rank-1 arm)",
+     "sign_vs_gamma_arm": "tie"
+    },
+    {
+     "E": [
+      3921.0,
+      3793.5,
+      3836.0,
+      4317.0
+     ],
+     "arm_file": "paper3/scripts/outputs/experiments/verify_r1_s42_ntk_arm.json",
+     "delta_E": 396.0,
+     "difference_vs_gamma_arm": 199.5,
+     "matched_setting": "LLaVA-1.5-7B blank-image protocol, 20 samples, 3 epochs, seed 42, base rank 1, alpha 16 (not parameter-matched to the uniform r=5/r=6 arms)",
+     "rule": "NTK-diagonal rule (CLIP-derived, our arm)",
+     "sign_vs_gamma_arm": "gamma_lower"
+    },
+    {
+     "E": [
+      3921.0,
+      3819.0,
+      3793.0,
+      4161.5
+     ],
+     "arm_file": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v12_s1_m2_d1.json",
+     "delta_E": 240.5,
+     "difference_vs_gamma_arm": 44.0,
+     "matched_setting": "LLaVA-1.5-7B blank-image protocol, 20 samples, 3 epochs, seed 42, base rank 1, alpha 16 (not parameter-matched to the uniform r=5/r=6 arms)",
+     "rule": "official IGU-LoRA code, name-proxy adapter",
+     "sign_vs_gamma_arm": "gamma_lower"
+    }
+   ],
+   "setting": "LLaVA-1.5-7B blank-image protocol, 20 samples, 3 epochs, seed 42, base rank 1"
+  },
+  "reversal_regime": {
+   "cells": [
+    {
+     "difference_gamma_minus_uniform": 368.726562,
+     "gamma_delta_E": 2591.244141,
+     "lr": 0.0003,
+     "seed": 42,
+     "sign": "uniform_lower",
+     "sources": [
+      "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json",
+      "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json"
+     ],
+     "uniform_delta_E": 2222.517578
+    },
+    {
+     "difference_gamma_minus_uniform": 5882.640625,
+     "gamma_delta_E": 9344.259766,
+     "lr": 0.0003,
+     "seed": 123,
+     "sign": "uniform_lower",
+     "sources": [
+      "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json",
+      "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json"
+     ],
+     "uniform_delta_E": 3461.619141
+    },
+    {
+     "difference_gamma_minus_uniform": 3737.257812,
+     "gamma_delta_E": 2249.978516,
+     "lr": 0.001,
+     "seed": 123,
+     "sign": "uniform_lower",
+     "sources": [
+      "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json",
+      "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json"
+     ],
+     "uniform_delta_E": -1487.279297
+    }
+   ],
+   "n_cells_where_plain_uniform_beats_the_gamma_rule": 3,
+   "regime": "learning rate 3e-4 (both archived seeds) and 1e-3 at seed 123; at the operating rate 5e-5 the Gamma rule is lower in both seeds"
+  },
+  "sources": [
+   "outputs/analysis/p3_alloc_runs/adalora_summary.json",
+   "outputs/analysis/p3_alloc_runs/adalora_lr0.0003/adalora_summary.json",
+   "outputs/analysis/p3_alloc_runs/adalora_lr0.001/adalora_summary.json",
+   "outputs/analysis/p3_alloc_runs/main/summary.json",
+   "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json",
+   "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json",
+   "outputs/analysis/p3_alloc_runs/main/summary.json",
+   "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json",
+   "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json",
+   "outputs/analysis/p3_alloc_adalora_config.json",
+   "outputs/analysis/p3_alloc_runs/main/uniform__seed42.json",
+   "outputs/analysis/p3_alloc_runs/main/exp_beta_paper_0.137__seed42.json",
+   "outputs/analysis/p3_robust_stats.json",
+   "outputs/analysis/p3_baseline_arms.json",
+   "paper3/scripts/outputs/experiments/verify_r1_s42_ntk_arm.json",
+   "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v12_s1_m2_d1.json",
+   "outputs/analysis/p3_alloc_results.json"
+  ],
+  "summary": {
+   "adalora_archived_at_lrs": [
+    5e-05,
+    0.0003,
+    0.001
+   ],
+   "cell_lrs": [
+    5e-05,
+    0.0003,
+    0.001
+   ],
+   "cell_seeds": [
+    42,
+    123
+   ],
+   "ci95_t": [
+    -4678.51181,
+    -2575.475495
+   ],
+   "exact_sign_test_min_attainable_p": 0.125,
+   "exact_sign_test_reaches_p05": false,
+   "exact_sign_test_two_sided_p": 0.125,
+   "gamma_archived_at_lrs": [
+    5e-05,
+    0.0003,
+    0.001
+   ],
+   "mean_difference": -3626.993653,
+   "n_cells_adalora_lower": 4,
+   "n_cells_where_gamma_is_lower": 0,
+   "n_matched_cells": 4,
+   "reverses_on_the_delta_E_axis": false,
+   "sd_difference": 660.916504,
+   "unmatched_adalora_cells": [],
+   "unmatched_gamma_cells_count": 6
+  }
+ },
+ "conclusion": {
+  "families_agree": false,
+  "families_with_a_crossing_in_at_least_one_stratum": [
+   "llava-1.5-7b",
+   "qwen2-vl-2b",
+   "smolvlm-500m"
+  ],
+  "families_with_no_crossing_anywhere": [
+   "clip-vit-base-patch32",
+   "qwen2-vl-7b"
+  ],
+  "families_with_one_well_defined_rc": [
+   "smolvlm-500m"
+  ],
+  "single_rc_across_families_supported": false,
+  "what_may_be_claimed_about_adalora": [
+   "In every archived cell where AdaLoRA and the Gamma-guided rule share budget, learning rate and seed (4 cells), AdaLoRA reaches the lower alignment energy: the per-cell difference runs [-3416.5625, -2789.873047, -4059.398438, -4242.140625], mean -3627.0, 95% t CI [-4678.51181, -2575.475495].",
+   "The direction is consistent but the archived comparison is under-powered: with 4 matched cells the exact two-sided sign test bottoms out at p=0.125, so the AdaLoRA advantage is reported as a consistent direction, not as a significant one.",
+   "The Gamma-guided rule does beat the published non-adaptive allocation rules at the shared base-rank-1 arm: its arm is 196.5 against [[\"ShapLoRA-style (our block-level reimplementation)\", 444.0], [\"IGU-LoRA-style (our block-level reimplementation)\", 333.0], [\"HALoRA-style (our block-level reimplementation)\", 284.0], [\"NTK-diagonal rule (CLIP-derived, our arm)\", 396.0], [\"official IGU-LoRA code, name-proxy adapter\", 240.5]]."
+  ],
+  "what_may_be_claimed_about_rc": [
+   "Within the LLaVA-1.5-7B blank-image protocol at the archived operating point, the sign of dE changes between r=5 and r=6; the ten-seed fit puts the crossing at 5.334 (95% bootstrap CI [5.195417, 5.467364]), bracketed by those two ranks and not localised to one.",
+   "The sign split at the bracket is complete in that stratum: {\"all_runs_at_r5_negative\": true, \"all_runs_at_r6_positive\": true, \"r5\": {\"mean\": -43.7, \"n\": 10}, \"r6\": {\"mean\": 87.3, \"n\": 10}}.",
+   "The re-run family (five seeds, current script defaults) places the crossing at 5.260, inside the same bracket.",
+   "Outside that protocol the crossing moves: llava_blank3ep_cloud10 -> 5.333588, llava_e2_extra -> 5.252, llava_e2_sweep -> 14.200631, llava_ers_1epoch -> 46.759029, llava_rerun5 -> 5.259887, llava_samplesize_windows -> 5.549195, llava_seed5_aggregate -> 5.259887, llava_sharegpt -> 4.957447"
+  ],
+  "what_may_not_be_claimed_about_adalora": [
+   "The comparison is confounded: the AdaLoRA arm runs the uniform rank-4 plan on all 324 modules, the same rank plan as the plain uniform control, so it does not isolate adaptive rank allocation from block configuration.",
+   "It does not reverse on the energy axis at any archived learning rate or seed, but it does reverse in the neighbouring comparison: plain uniform rank beats the Gamma rule in 3 archived cells ([[0.0003, 42], [0.0003, 123], [0.001, 123]]).",
+   "No matched-loss claim is available: the two scripts do not start from the same first-epoch loss, so the loss ordering between them is not comparable.",
+   "The AdaLoRA arm is not exactly on budget under measurement (0.0179% above the cost model), so budget matching holds only in the cost model."
+  ],
+  "what_may_not_be_claimed_about_rc": [
+   "r_c is not a single number across backbones. Of the 5 families, 3 contain at least one stratum with a sign crossing ([\"llava-1.5-7b\", \"qwen2-vl-2b\", \"smolvlm-500m\"]), 2 contain none anywhere in their measured rank range ([\"clip-vit-base-patch32\", \"qwen2-vl-7b\"]), and only 1 yields one well-defined crossing ([\"smolvlm-500m\"]). LLaVA-1.5-7B is the one family in which a crossing can be bracketed under a named protocol, and even there the stratum spread runs from 4.96 to 46.76, so no single r_c holds inside the family.",
+   "Qwen2-VL-2B: in the training-energy field the sign of dE is set by the image condition, not by the rank - every rank r=1..16 is positive with real images and negative with blank ones, so no crossing exists there. The held-out energy field does contain one crossing, at 5.897, but it sits in a single bracket [5, 6] whose bootstrap CI [3.618517, 6.477364] spans more than a rank, so it does not localise r_c either.",
+   "The CLIP ViT-B/32 retrieval arm never crosses in any of its four strata: the sign of its energy change is set by the training window and by which energy is read (training energy positive at 16 pairs and negative at 1024; held-out energy negative at both), never by the rank, so it cannot corroborate any rank threshold.",
+   "The curvature observable on the same LLaVA backbone does not corroborate a rank threshold either: on the primary seed line the second-order share is negative at every archived rank in [5, 6, 8, 12, 16, 24, 64] and rises monotonically toward zero without crossing it (monotone rising toward zero: true), and the manuscript's own claim table already records that the sign is not stable across seeds at this step.",
+   "r_c is not even stable inside LLaVA: the five-seed stratum means at r=5 are not a cross-environment constant (stack means {\"torch 2.12/cu130\": -43.7, \"torch 2.4/cu121\": 25.25, \"torch 2.9/cu130\": -23.0}; software-stack share of the r=5 variance 0.45, 95% CI [0.21198180448528658, 0.7471951281145658])."
+  ]
+ },
+ "family_list": [
+  "clip-vit-base-patch32",
+  "llava-1.5-7b",
+  "qwen2-vl-2b",
+  "qwen2-vl-7b",
+  "smolvlm-500m"
+ ],
+ "insertion_points": [
+  {
+   "file": "paper3/paper_ieee/sections/experiments.tex",
+   "insertion": "after line 120 (end of the anchored block)",
+   "key": "main_text_finding1",
+   "label": "sec:experiments, subsection 'Alignment Phase Transition', paragraph 'Finding 1'",
+   "line_range": [
+    106,
+    120
+   ],
+   "role": "the sentence that already says the crossing belongs to the protocol; the family boundary belongs immediately after it"
+  },
+  {
+   "file": "paper3/paper_ieee/sections/experiments.tex",
+   "insertion": "after line 283 (end of the anchored block)",
+   "key": "main_text_adalora",
+   "label": "sec:experiments, paragraph 'An adaptive baseline is better on this metric'",
+   "line_range": [
+    273,
+    283
+   ],
+   "role": "the AdaLoRA concession; the confound and the uniform reversal belong inside it"
+  },
+  {
+   "file": "paper3/paper_ieee/supplementary/supplementary.tex",
+   "insertion": "at line 888",
+   "key": "supp_claim_table",
+   "label": "app:claims, table tab:claims",
+   "line_range": [
+    888,
+    888
+   ],
+   "role": "the existing claim row; the family-boundary rows join this table"
+  },
+  {
+   "file": "paper3/paper_ieee/supplementary/supplementary.tex",
+   "insertion": "at line 1488",
+   "key": "supp_crossing10_end",
+   "label": "end of app:crossing10 / start of app:highrank",
+   "line_range": [
+    1488,
+    1488
+   ],
+   "role": "insertion point for a new Section app:rc-boundary, immediately after the ten-seed crossing section and before the curvature section"
+  },
+  {
+   "file": "paper3/paper_ieee/supplementary/supplementary.tex",
+   "insertion": "after line 535 (end of the anchored block)",
+   "key": "supp_sharegpt_caption",
+   "label": "app:sharegpt, caption of tab:sharegpt",
+   "line_range": [
+    533,
+    535
+   ],
+   "role": "the caption that states a flip between r=5 and r=6 while its own means flip between r=4 and r=5"
+  },
+  {
+   "file": "paper3/paper_ieee/supplementary/supplementary.tex",
+   "insertion": "after line 617 (end of the anchored block)",
+   "key": "supp_clip_control",
+   "label": "sec:supp-rank-control, opening sentence",
+   "line_range": [
+    616,
+    617
+   ],
+   "role": "the CLIP control; the zero-crossing absence over r=1..16 is its quantitative form"
+  },
+  {
+   "file": "paper3/paper_ieee/sections/discussion.tex",
+   "insertion": "after line 72 (end of the anchored block)",
+   "key": "discussion_limitations",
+   "label": "discussion, limitations paragraph item (6)",
+   "line_range": [
+    53,
+    72
+   ],
+   "role": "the environment-sensitivity admission; the family-sensitivity admission joins it"
+  },
+  {
+   "file": "paper3/paper_ieee/sections/appendix.tex",
+   "insertion": "after line 146 (end of the anchored block)",
+   "key": "appendix_critical_threshold",
+   "label": "appendix, counterfactual allocation paragraph",
+   "line_range": [
+    145,
+    146
+   ],
+   "role": "where the allocation is justified by 'below the critical threshold'; that phrase must carry the family qualifier"
+  },
+  {
+   "file": "paper3/paper_ieee/main.tex",
+   "insertion": "at line 82",
+   "key": "abstract_line",
+   "label": "abstract, AdaLoRA sentence",
+   "line_range": [
+    82,
+    82
+   ],
+   "role": "abstract scope; leave untouched unless the boundary table is promoted to the letter"
+  }
+ ],
+ "meta": {
+  "allocation_study_backbone": "qwen2-vl-2b",
+  "bootstrap": {
+   "interval": "percentile 2.5 / 97.5",
+   "n_boot": 20000,
+   "rng_seed": 20261024,
+   "unit": "the stratum's declared unit (seed label or training window), resampled jointly across ranks so the pairing survives"
+  },
+  "dE_convention": "dE = E[-1] - E[0]",
+  "estimator": {
+   "bracket": "[r_lo, r_hi]",
+   "name": "piecewise-linear zero of the mean dE-versus-rank curve",
+   "point": "r_lo + (0 - m_lo) / (m_hi - m_lo) * (r_hi - r_lo) for the first adjacent pair with m_lo < 0 <= m_hi",
+   "reporting_rule": "a stratum whose means never change sign is reported as 'no_crossing_in_range' with the measured rank range; its r_c is not estimated and not bounded",
+   "reverse_crossings": "positive-to-negative steps are recorded separately and are not used as r_c"
+  },
+  "not_sourced": [
+   {
+    "detail": "tools/_p451_baseline_adalora.py configures orth_reg_weight=0.5 in the peft AdaLoraConfig but back-propagates the manually computed cross-entropy only; no archive records whether the regulariser reached the loss, so the AdaLoRA arm is described as configured, not as regularised",
+    "item": "whether peft applied the orthogonality regulariser",
+    "status": "not asserted"
+   },
+   {
+    "detail": "outputs/analysis/vqa_phase_results.json and paper3/scripts/outputs/experiments/ers_1epoch_results.json store dE as positional lists under r<rank>, with no seed field; the refit uses the list index as the unit label and the pairing is positional",
+    "item": "seed labels of the ShareGPT and one-epoch strata",
+    "status": "unit labels are positional, not archived"
+   },
+   {
+    "detail": "outputs/analysis/Qwen_results.json has no model field; 'Qwen2-VL-7B' comes from the manuscript phase table and outputs/analysis/p3_phase_boundary.json :: meta.archive_files.Qwen",
+    "item": "the model label of the cloud Qwen sweep",
+    "status": "inferred"
+   },
+   {
+    "detail": "the two scripts do not start from the same first-epoch loss at the same seed, so no matched-loss statement is available from the archives",
+    "item": "a matched-loss comparison between AdaLoRA and the Gamma rule",
+    "status": "not available"
+   },
+   {
+    "detail": "outputs/analysis/p3_baseline_arms.json and the manuscript both call the base-rank-1 arm comparison directional; the archives carry no parameter count for those arms",
+    "item": "whether the three published-rule arms are parameter-matched",
+    "status": "not available"
+   }
+  ],
+  "operating_lr_for_curvature_rescaling": 5e-05,
+  "path_discrepancies_in_the_task_brief": [
+   {
+    "actual": "paper3/scripts/outputs/experiments/ers_1epoch_results.json",
+    "named": "ers_1epoch_results.json",
+    "note": "the file is under the experiments directory, not at the repository root"
+   },
+   {
+    "actual": "outputs/analysis/p3_hessian_probe_r64_s42.json",
+    "named": "outputs/analysis/p3_hessian_probe_r64.json",
+    "note": "the r=64 probe archive carries a seed suffix; the unsuffixed name does not exist"
+   }
+  ],
+  "provenance": [
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "n_records": 60,
+    "paths": [
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s1024_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s123_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s17_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s27_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s37_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s456_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s789_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s7_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r3_s999_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s1024.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s123.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s17.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s27.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s37.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s42.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s456.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s7.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s789.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r4_s999.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s1024.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s123.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s17.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s27.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s37.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s456.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s7.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s789.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r5_s999.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s1024.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s123.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s17.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s27.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s37.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s42.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s456.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s7.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s789.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r6_s999.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s1024.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s123.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s17.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s27.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s37.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s42.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s456.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s7.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s789.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r7_s999.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s1024_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s123_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s17_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s27_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s37_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s456_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s789_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s7_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+     "paper3/scripts/outputs/experiments/cloud_verify_r8_s999_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+    ],
+    "stratum": "llava_blank3ep_cloud10"
+   },
+   {
+    "fields": [
+     "runs.<key>.delta_E",
+     "curve.5.dE_seed42",
+     "curve.5.dE_other_seeds",
+     "curve.6.dE_seed42",
+     "curve.6.dE_other_seeds"
+    ],
+    "n_records": 10,
+    "paths": [
+     "outputs/analysis/p3_rerun_seeds.json",
+     "outputs/analysis/p3_rerun_analysis.json"
+    ],
+    "stratum": "llava_rerun5"
+   },
+   {
+    "fields": [
+     "extra"
+    ],
+    "n_records": 12,
+    "paths": [
+     "paper3/scripts/outputs/experiments/E2_results.json"
+    ],
+    "stratum": "llava_e2_extra"
+   },
+   {
+    "fields": [
+     "sweep"
+    ],
+    "n_records": 30,
+    "paths": [
+     "paper3/scripts/outputs/experiments/E2_results.json"
+    ],
+    "stratum": "llava_e2_sweep"
+   },
+   {
+    "fields": [
+     "r<rank>.dE"
+    ],
+    "n_records": 45,
+    "paths": [
+     "paper3/scripts/outputs/experiments/vqa_phase_results.json"
+    ],
+    "stratum": "llava_sharegpt"
+   },
+   {
+    "fields": [
+     "r<rank>.dE"
+    ],
+    "n_records": 12,
+    "paths": [
+     "paper3/scripts/outputs/experiments/ers_1epoch_results.json"
+    ],
+    "stratum": "llava_ers_1epoch"
+   },
+   {
+    "fields": [
+     "runs.<i>.E",
+     "runs.<i>.samples"
+    ],
+    "n_records": 20,
+    "paths": [
+     "paper3/scripts/outputs/experiments/sample_size_results.json"
+    ],
+    "stratum": "llava_samplesize_windows"
+   },
+   {
+    "fields": [
+     "seed5.r5.mean",
+     "seed5.r5.n",
+     "seed5.r6.mean"
+    ],
+    "n_records": 10,
+    "paths": [
+     "outputs/analysis/p3_robust_stats.json"
+    ],
+    "stratum": "llava_seed5_aggregate"
+   },
+   {
+    "fields": [
+     "sweep"
+    ],
+    "n_records": 45,
+    "paths": [
+     "paper3/scripts/outputs/experiments/Qwen_results.json"
+    ],
+    "stratum": "qwen_cloud_sweep"
+   },
+   {
+    "fields": [
+     "runs.<i>.condition",
+     "runs.<i>.rank",
+     "runs.<i>.seed",
+     "runs.<i>.dE_train"
+    ],
+    "n_records": 21,
+    "paths": [
+     "outputs/analysis/p3d_qwen_ranksweep.json"
+    ],
+    "stratum": "qwen2b_p3d_real_train"
+   },
+   {
+    "fields": [
+     "runs.<i>.condition",
+     "runs.<i>.rank",
+     "runs.<i>.seed",
+     "runs.<i>.dE_train"
+    ],
+    "n_records": 21,
+    "paths": [
+     "outputs/analysis/p3d_qwen_ranksweep.json"
+    ],
+    "stratum": "qwen2b_p3d_blank_train"
+   },
+   {
+    "fields": [
+     "runs.<i>.condition",
+     "runs.<i>.rank",
+     "runs.<i>.seed",
+     "runs.<i>.dE_eval_real"
+    ],
+    "n_records": 21,
+    "paths": [
+     "outputs/analysis/p3d_qwen_ranksweep.json"
+    ],
+    "stratum": "qwen2b_p3d_real_eval"
+   },
+   {
+    "fields": [
+     "runs.<i>.condition",
+     "runs.<i>.rank",
+     "runs.<i>.seed",
+     "runs.<i>.dE_eval_real"
+    ],
+    "n_records": 21,
+    "paths": [
+     "outputs/analysis/p3d_qwen_ranksweep.json"
+    ],
+    "stratum": "qwen2b_p3d_blank_eval"
+   },
+   {
+    "fields": [
+     "runs.<key>.E",
+     "runs.<key>.delta_E"
+    ],
+    "n_records": 2,
+    "paths": [
+     "outputs/analysis/p3_qwen2b_crossing_fixed.json"
+    ],
+    "stratum": "qwen2b_blankimg"
+   },
+   {
+    "fields": [
+     "runs.<i>.arm",
+     "runs.<i>.n_train",
+     "runs.<i>.rank",
+     "runs.<i>.seed",
+     "runs.<i>.dE_test"
+    ],
+    "n_records": 21,
+    "paths": [
+     "outputs/analysis/p3d_clip_ranksweep.json"
+    ],
+    "stratum": "clip_n16_test"
+   },
+   {
+    "fields": [
+     "runs.<i>.arm",
+     "runs.<i>.n_train",
+     "runs.<i>.rank",
+     "runs.<i>.seed",
+     "runs.<i>.dE_train"
+    ],
+    "n_records": 21,
+    "paths": [
+     "outputs/analysis/p3d_clip_ranksweep.json"
+    ],
+    "stratum": "clip_n16_train"
+   },
+   {
+    "fields": [
+     "runs.<i>.arm",
+     "runs.<i>.n_train",
+     "runs.<i>.rank",
+     "runs.<i>.seed",
+     "runs.<i>.dE_test"
+    ],
+    "n_records": 18,
+    "paths": [
+     "outputs/analysis/p3d_clip_ranksweep.json"
+    ],
+    "stratum": "clip_n1024_test"
+   },
+   {
+    "fields": [
+     "runs.<i>.arm",
+     "runs.<i>.n_train",
+     "runs.<i>.rank",
+     "runs.<i>.seed",
+     "runs.<i>.dE_train"
+    ],
+    "n_records": 18,
+    "paths": [
+     "outputs/analysis/p3d_clip_ranksweep.json"
+    ],
+    "stratum": "clip_n1024_train"
+   },
+   {
+    "fields": [
+     "meta.seed",
+     "runs.r5.delta_E",
+     "runs.r6.delta_E"
+    ],
+    "n_records": 6,
+    "paths": [
+     "outputs/analysis/p3_smolvlm_family_s42.json",
+     "outputs/analysis/p3_smolvlm_family_s123.json",
+     "outputs/analysis/p3_smolvlm_family_s789.json"
+    ],
+    "stratum": "smolvlm_r5_r6"
+   }
+  ],
+  "rerun_stable": "no timestamps, sorted keys, fixed bootstrap RNG seed",
+  "scope": "archives only; no manuscript file is modified",
+  "script": "tools/_p1635_p3_rc_family.py",
+  "sources": [
+   {
+    "fields": [
+     "budget_exact_match_by_cost_model",
+     "measured_matches_budget",
+     "n_modules",
+     "n_trainable_measured",
+     "peft_version",
+     "per_block_params_by_cost_model",
+     "rank_distribution",
+     "sum_rank_cost",
+     "target_budget_params"
+    ],
+    "path": "outputs/analysis/p3_alloc_adalora_config.json"
+   },
+   {
+    "fields": [
+     "comparisons.exp_beta_paper_0.137.rank_among_plans",
+     "per_plan.<plan>.delta_E.mean",
+     "per_plan.corner.delta_E.mean",
+     "per_plan.exp_beta_paper_0.137.delta_E.mean",
+     "per_plan.inverse_beta_paper_0.137.delta_E.mean",
+     "per_plan.random_00.delta_E.mean",
+     "per_plan.random_01.delta_E.mean",
+     "per_plan.random_02.delta_E.mean",
+     "per_plan.random_03.delta_E.mean",
+     "per_plan.random_05.delta_E.mean",
+     "per_plan.random_06.delta_E.mean",
+     "per_plan.random_07.delta_E.mean",
+     "per_plan.random_08.delta_E.mean",
+     "per_plan.random_09.delta_E.mean",
+     "per_plan.random_10.delta_E.mean",
+     "per_plan.random_11.delta_E.mean",
+     "per_plan.uniform.delta_E.mean"
+    ],
+    "path": "outputs/analysis/p3_alloc_results.json"
+   },
+   {
+    "fields": [
+     "runs",
+     "runs.<name>.delta_E"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/adalora_lr0.0003/adalora_summary.json"
+   },
+   {
+    "fields": [
+     "runs",
+     "runs.<name>.delta_E"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/adalora_lr0.001/adalora_summary.json"
+   },
+   {
+    "fields": [
+     "runs",
+     "runs.<name>.delta_E"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/adalora_summary.json"
+   },
+   {
+    "fields": [
+     "runs",
+     "runs.<name>.delta_E"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json"
+   },
+   {
+    "fields": [
+     "runs",
+     "runs.<name>.delta_E"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json"
+   },
+   {
+    "fields": [
+     "n_trainable_params_measured",
+     "per_block_params",
+     "ranks"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/main/exp_beta_paper_0.137__seed42.json"
+   },
+   {
+    "fields": [
+     "runs",
+     "runs.<name>.delta_E"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/main/summary.json"
+   },
+   {
+    "fields": [
+     "n_trainable_params_measured",
+     "per_block_params",
+     "ranks"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/main/uniform__seed42.json"
+   },
+   {
+    "fields": [
+     "runs",
+     "runs.<name>.delta_E"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json"
+   },
+   {
+    "fields": [
+     "runs",
+     "runs.<name>.delta_E"
+    ],
+    "path": "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json"
+   },
+   {
+    "fields": [
+     "halora.delta_line",
+     "igu.delta_line",
+     "shap.delta_line"
+    ],
+    "path": "outputs/analysis/p3_baseline_arms.json"
+   },
+   {
+    "fields": [
+     "bootstrap.share_ci95",
+     "env_share",
+     "envs",
+     "sigma_env",
+     "sigma_seed"
+    ],
+    "path": "outputs/analysis/p3_env_variance.json"
+   },
+   {
+    "fields": [
+     "curvature.5.mean_share_at_lr",
+     "curvature.6.mean_share_at_lr"
+    ],
+    "path": "outputs/analysis/p3_gapfill_summary.json"
+   },
+   {
+    "fields": [
+     "meta.eps",
+     "meta.model",
+     "runs",
+     "runs.<i>.second_order_over_first_order.0.0003",
+     "runs.<i>.second_order_over_first_order.0.001"
+    ],
+    "path": "outputs/analysis/p3_hessian_probe_r12.json"
+   },
+   {
+    "fields": [
+     "meta.eps",
+     "meta.model",
+     "runs",
+     "runs.<i>.second_order_over_first_order.0.0003",
+     "runs.<i>.second_order_over_first_order.0.001"
+    ],
+    "path": "outputs/analysis/p3_hessian_probe_r16.json"
+   },
+   {
+    "fields": [
+     "meta.eps",
+     "meta.model",
+     "runs",
+     "runs.<i>.second_order_over_first_order.0.0003",
+     "runs.<i>.second_order_over_first_order.0.001"
+    ],
+    "path": "outputs/analysis/p3_hessian_probe_r24.json"
+   },
+   {
+    "fields": [
+     "meta.eps",
+     "meta.model",
+     "runs",
+     "runs.<i>.second_order_over_first_order.0.0003",
+     "runs.<i>.second_order_over_first_order.0.001"
+    ],
+    "path": "outputs/analysis/p3_hessian_probe_r24_s123.json"
+   },
+   {
+    "fields": [
+     "meta.eps",
+     "meta.model",
+     "runs",
+     "runs.<i>.second_order_over_first_order.0.0003",
+     "runs.<i>.second_order_over_first_order.0.001"
+    ],
+    "path": "outputs/analysis/p3_hessian_probe_r24_s789.json"
+   },
+   {
+    "fields": [
+     "meta.eps",
+     "meta.model",
+     "runs",
+     "runs.<i>.second_order_over_first_order.0.0003",
+     "runs.<i>.second_order_over_first_order.0.001"
+    ],
+    "path": "outputs/analysis/p3_hessian_probe_r5.json"
+   },
+   {
+    "fields": [
+     "meta.eps",
+     "meta.model",
+     "runs",
+     "runs.<i>.second_order_over_first_order.0.0003",
+     "runs.<i>.second_order_over_first_order.0.001"
+    ],
+    "path": "outputs/analysis/p3_hessian_probe_r6.json"
+   },
+   {
+    "fields": [
+     "meta.eps",
+     "meta.model",
+     "runs",
+     "runs.<i>.second_order_over_first_order.0.0003",
+     "runs.<i>.second_order_over_first_order.0.001"
+    ],
+    "path": "outputs/analysis/p3_hessian_probe_r64_s42.json"
+   },
+   {
+    "fields": [
+     "meta.eps",
+     "meta.model",
+     "runs",
+     "runs.<i>.second_order_over_first_order.0.0003",
+     "runs.<i>.second_order_over_first_order.0.001"
+    ],
+    "path": "outputs/analysis/p3_hessian_probe_r8.json"
+   },
+   {
+    "fields": [
+     "runs"
+    ],
+    "path": "outputs/analysis/p3_qwen2b_crossing_fixed.json"
+   },
+   {
+    "fields": [
+     "conclusion.adjacent_rank_p_values",
+     "conclusion.crossing_between",
+     "conclusion.n_pairs",
+     "conclusion.n_separating_holm_p05",
+     "conclusion.n_separating_raw_p05",
+     "conclusion.rank5_min_equivalent_margin",
+     "conclusion.rank5_tost_equivalent_to_zero",
+     "conclusion.rank5_tost_p",
+     "conclusion.sign_split",
+     "rank5_equivalence.ci95_t",
+     "ranks.3.mean",
+     "ranks.4.mean",
+     "ranks.5.mean",
+     "ranks.6.mean",
+     "ranks.7.mean",
+     "ranks.8.mean",
+     "separation.n_splits",
+     "separation.p_min_attainable"
+    ],
+    "path": "outputs/analysis/p3_rank_separation_extended.json"
+   },
+   {
+    "fields": [
+     "curve.5",
+     "curve.6"
+    ],
+    "path": "outputs/analysis/p3_rerun_analysis.json"
+   },
+   {
+    "fields": [
+     "runs"
+    ],
+    "path": "outputs/analysis/p3_rerun_seeds.json"
+   },
+   {
+    "fields": [
+     "seed5.r5.mean",
+     "seed5.r5.n",
+     "seed5.r6.mean"
+    ],
+    "path": "outputs/analysis/p3_robust_stats.json"
+   },
+   {
+    "fields": [
+     "meta.seed",
+     "runs.r5.delta_E",
+     "runs.r6.delta_E"
+    ],
+    "path": "outputs/analysis/p3_smolvlm_family_s123.json"
+   },
+   {
+    "fields": [
+     "meta.seed",
+     "runs.r5.delta_E",
+     "runs.r6.delta_E"
+    ],
+    "path": "outputs/analysis/p3_smolvlm_family_s42.json"
+   },
+   {
+    "fields": [
+     "meta.seed",
+     "runs.r5.delta_E",
+     "runs.r6.delta_E"
+    ],
+    "path": "outputs/analysis/p3_smolvlm_family_s789.json"
+   },
+   {
+    "fields": [
+     "runs"
+    ],
+    "path": "outputs/analysis/p3d_clip_ranksweep.json"
+   },
+   {
+    "fields": [
+     "runs"
+    ],
+    "path": "outputs/analysis/p3d_qwen_ranksweep.json"
+   },
+   {
+    "fields": [
+     "extra"
+    ],
+    "path": "paper3/scripts/outputs/experiments/E2_results.json"
+   },
+   {
+    "fields": [
+     "sweep"
+    ],
+    "path": "paper3/scripts/outputs/experiments/Qwen_results.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s1024_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s123_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s17_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s27_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s37_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s456_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s789_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s7_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r3_s999_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s1024.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s123.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s17.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s27.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s37.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s42.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s456.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s7.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s789.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r4_s999.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s1024.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s123.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s17.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s27.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s37.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s456.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s7.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s789.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r5_s999.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s1024.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s123.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s17.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s27.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s37.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s42.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s456.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s7.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s789.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r6_s999.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s1024.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s123.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s17.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s27.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s37.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s42.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s456.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s7.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s789.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r7_s999.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s1024_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s123_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s17_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s27_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s37_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s456_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s789_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s7_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r8_s999_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+   },
+   {
+    "fields": [
+     "r16",
+     "r32",
+     "r4",
+     "r64"
+    ],
+    "path": "paper3/scripts/outputs/experiments/ers_1epoch_results.json"
+   },
+   {
+    "fields": [
+     "runs"
+    ],
+    "path": "paper3/scripts/outputs/experiments/sample_size_results.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/verify_r1_s42_bcexplicit_v12_s1_m2_d1.json"
+   },
+   {
+    "fields": [
+     "E",
+     "delta_E"
+    ],
+    "path": "paper3/scripts/outputs/experiments/verify_r1_s42_ntk_arm.json"
+   },
+   {
+    "fields": [
+     "r10",
+     "r12",
+     "r14",
+     "r16",
+     "r20",
+     "r24",
+     "r28",
+     "r32",
+     "r4",
+     "r48",
+     "r5",
+     "r6",
+     "r64",
+     "r7",
+     "r8"
+    ],
+    "path": "paper3/scripts/outputs/experiments/vqa_phase_results.json"
+   }
+  ],
+  "task": "P3 reviewer objection: the critical rank may come from another family, and AdaLoRA reaches lower alignment energy than the Gamma-guided allocation",
+  "task_brief_archives_verified": [
+   {
+    "exists": true,
+    "path": "paper3/scripts/outputs/experiments/E2_results.json"
+   },
+   {
+    "exists": true,
+    "path": "paper3/scripts/outputs/experiments/ers_1epoch_results.json"
+   },
+   {
+    "exists": true,
+    "n_files": 113,
+    "path": "paper3/scripts/outputs/experiments/cloud_verify_r*.json"
+   },
+   {
+    "exists": true,
+    "path": "outputs/analysis/p3_alloc_results.json"
+   },
+   {
+    "exists": true,
+    "n_files": 5,
+    "path": "outputs/analysis/p3_alloc_runs/*/summary.json"
+   },
+   {
+    "exists": true,
+    "path": "outputs/analysis/p3_hessian_probe_r24.json"
+   },
+   {
+    "exists": true,
+    "path": "outputs/analysis/p3_hessian_probe_r64_s42.json"
+   }
+  ]
+ },
+ "rc_by_family": {
+  "clip-vit-base-patch32": {
+   "backbone": "CLIP ViT-B/32, LoRA on the text tower",
+   "common_intersection_of_stratum_ci95": null,
+   "crossing_points_by_stratum": {
+    "clip_n1024_test": null,
+    "clip_n1024_train": null,
+    "clip_n16_test": null,
+    "clip_n16_train": null
+   },
+   "family_estimate": null,
+   "family_estimate_bracket": null,
+   "family_estimate_ci95": null,
+   "metric": "mean ||normalize(z_I) - normalize(z_T)||^2 (retrieval), sign-comparable only",
+   "n_strata": 4,
+   "primary_stratum": "clip_n1024_test",
+   "primary_stratum_why": "the widest training window and the held-out energy field",
+   "sensitivity_span": null,
+   "single_rc_supported_within_family": false,
+   "strata": {
+    "clip_n1024_test": {
+     "bootstrap": {
+      "bootstrap_crossings_are_incidental": true,
+      "ci95": null,
+      "n_boot": 20000,
+      "n_boot_with_crossing": 7465,
+      "point_bootstrap_median": null,
+      "reason": "the stratum itself has no sign crossing, so the 7465 of 20000 resampled draws that produced one are incidental; no interval is quoted",
+      "stable": false
+     },
+     "crossing_bracket": null,
+     "crossing_point": null,
+     "crossing_point_local_ols": null,
+     "family": "clip-vit-base-patch32",
+     "fields": [
+      "runs.<i>.arm",
+      "runs.<i>.n_train",
+      "runs.<i>.rank",
+      "runs.<i>.seed",
+      "runs.<i>.dE_test"
+     ],
+     "forward_crossings": [],
+     "max_rank_measured": 16,
+     "mean_dE_by_rank": {
+      "1": -0.001008,
+      "16": -0.001448,
+      "4": -0.000955,
+      "5": -0.003051,
+      "6": -0.000913,
+      "8": -0.002524
+     },
+     "metric_comparable_across_families": "sign only",
+     "min_rank_measured": 1,
+     "model_label_source": null,
+     "n_by_rank": {
+      "1": 3,
+      "16": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "8": 3
+     },
+     "n_records": 18,
+     "n_units": 3,
+     "note": "this archive's E is mean||normalize(z_I)-normalize(z_T)||^2 on a retrieval model, a different observable and scale from the VLM alignment energy; only the sign of dE is comparable across these two metrics",
+     "protocol": "CLIP ViT-B/32, LoRA on the text tower only, alpha = 2*rank, 3 epochs, batch 32, Flickr30k self-split; n_train = 1024; energy field dE_test",
+     "ranks": [
+      1,
+      4,
+      5,
+      6,
+      8,
+      16
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": "all_negative",
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg"
+     ],
+     "sources": [
+      "outputs/analysis/p3d_clip_ranksweep.json"
+     ],
+     "status": "no_crossing_in_range",
+     "unit": "seed"
+    },
+    "clip_n1024_train": {
+     "bootstrap": {
+      "bootstrap_crossings_are_incidental": true,
+      "ci95": null,
+      "n_boot": 20000,
+      "n_boot_with_crossing": 0,
+      "point_bootstrap_median": null,
+      "reason": "the stratum itself has no sign crossing, so the 0 of 20000 resampled draws that produced one are incidental; no interval is quoted",
+      "stable": false
+     },
+     "crossing_bracket": null,
+     "crossing_point": null,
+     "crossing_point_local_ols": null,
+     "family": "clip-vit-base-patch32",
+     "fields": [
+      "runs.<i>.arm",
+      "runs.<i>.n_train",
+      "runs.<i>.rank",
+      "runs.<i>.seed",
+      "runs.<i>.dE_train"
+     ],
+     "forward_crossings": [],
+     "max_rank_measured": 16,
+     "mean_dE_by_rank": {
+      "1": -0.008822,
+      "16": -0.034967,
+      "4": -0.019994,
+      "5": -0.020785,
+      "6": -0.027561,
+      "8": -0.02708
+     },
+     "metric_comparable_across_families": "sign only",
+     "min_rank_measured": 1,
+     "model_label_source": null,
+     "n_by_rank": {
+      "1": 3,
+      "16": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "8": 3
+     },
+     "n_records": 18,
+     "n_units": 3,
+     "note": "this archive's E is mean||normalize(z_I)-normalize(z_T)||^2 on a retrieval model, a different observable and scale from the VLM alignment energy; only the sign of dE is comparable across these two metrics",
+     "protocol": "CLIP ViT-B/32, LoRA on the text tower only, alpha = 2*rank, 3 epochs, batch 32, Flickr30k self-split; n_train = 1024; energy field dE_train",
+     "ranks": [
+      1,
+      4,
+      5,
+      6,
+      8,
+      16
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": "all_negative",
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg"
+     ],
+     "sources": [
+      "outputs/analysis/p3d_clip_ranksweep.json"
+     ],
+     "status": "no_crossing_in_range",
+     "unit": "seed"
+    },
+    "clip_n16_test": {
+     "bootstrap": {
+      "bootstrap_crossings_are_incidental": true,
+      "ci95": null,
+      "n_boot": 20000,
+      "n_boot_with_crossing": 0,
+      "point_bootstrap_median": null,
+      "reason": "the stratum itself has no sign crossing, so the 0 of 20000 resampled draws that produced one are incidental; no interval is quoted",
+      "stable": false
+     },
+     "crossing_bracket": null,
+     "crossing_point": null,
+     "crossing_point_local_ols": null,
+     "family": "clip-vit-base-patch32",
+     "fields": [
+      "runs.<i>.arm",
+      "runs.<i>.n_train",
+      "runs.<i>.rank",
+      "runs.<i>.seed",
+      "runs.<i>.dE_test"
+     ],
+     "forward_crossings": [],
+     "max_rank_measured": 16,
+     "mean_dE_by_rank": {
+      "1": -0.003293,
+      "16": -0.009098,
+      "2": -0.003687,
+      "4": -0.005404,
+      "5": -0.006279,
+      "6": -0.006492,
+      "8": -0.007499
+     },
+     "metric_comparable_across_families": "sign only",
+     "min_rank_measured": 1,
+     "model_label_source": null,
+     "n_by_rank": {
+      "1": 3,
+      "16": 3,
+      "2": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "8": 3
+     },
+     "n_records": 21,
+     "n_units": 3,
+     "note": "this archive's E is mean||normalize(z_I)-normalize(z_T)||^2 on a retrieval model, a different observable and scale from the VLM alignment energy; only the sign of dE is comparable across these two metrics",
+     "protocol": "CLIP ViT-B/32, LoRA on the text tower only, alpha = 2*rank, 3 epochs, batch 32, Flickr30k self-split; n_train = 16; energy field dE_test",
+     "ranks": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      16
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": "all_negative",
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg"
+     ],
+     "sources": [
+      "outputs/analysis/p3d_clip_ranksweep.json"
+     ],
+     "status": "no_crossing_in_range",
+     "unit": "seed"
+    },
+    "clip_n16_train": {
+     "bootstrap": {
+      "bootstrap_crossings_are_incidental": true,
+      "ci95": null,
+      "n_boot": 20000,
+      "n_boot_with_crossing": 0,
+      "point_bootstrap_median": null,
+      "reason": "the stratum itself has no sign crossing, so the 0 of 20000 resampled draws that produced one are incidental; no interval is quoted",
+      "stable": false
+     },
+     "crossing_bracket": null,
+     "crossing_point": null,
+     "crossing_point_local_ols": null,
+     "family": "clip-vit-base-patch32",
+     "fields": [
+      "runs.<i>.arm",
+      "runs.<i>.n_train",
+      "runs.<i>.rank",
+      "runs.<i>.seed",
+      "runs.<i>.dE_train"
+     ],
+     "forward_crossings": [],
+     "max_rank_measured": 16,
+     "mean_dE_by_rank": {
+      "1": 0.006556,
+      "16": 0.016663,
+      "2": 0.010026,
+      "4": 0.010288,
+      "5": 0.012731,
+      "6": 0.013916,
+      "8": 0.013762
+     },
+     "metric_comparable_across_families": "sign only",
+     "min_rank_measured": 1,
+     "model_label_source": null,
+     "n_by_rank": {
+      "1": 3,
+      "16": 3,
+      "2": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "8": 3
+     },
+     "n_records": 21,
+     "n_units": 3,
+     "note": "this archive's E is mean||normalize(z_I)-normalize(z_T)||^2 on a retrieval model, a different observable and scale from the VLM alignment energy; only the sign of dE is comparable across these two metrics",
+     "protocol": "CLIP ViT-B/32, LoRA on the text tower only, alpha = 2*rank, 3 epochs, batch 32, Flickr30k self-split; n_train = 16; energy field dE_train",
+     "ranks": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      16
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": "all_positive",
+     "sign_pattern_by_rank": [
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos"
+     ],
+     "sources": [
+      "outputs/analysis/p3d_clip_ranksweep.json"
+     ],
+     "status": "no_crossing_in_range",
+     "unit": "seed"
+    }
+   },
+   "strata_without_a_sign_crossing": [
+    "clip_n1024_test",
+    "clip_n1024_train",
+    "clip_n16_test",
+    "clip_n16_train"
+   ],
+   "why_not_single": "4 of 4 strata show no sign change anywhere in their measured rank range (clip_n1024_test, clip_n1024_train, clip_n16_test, clip_n16_train), so those strata cannot pin a crossing at all"
+  },
+  "llava-1.5-7b": {
+   "backbone": "LLaVA-1.5-7B (llava-hf)",
+   "common_intersection_of_stratum_ci95": null,
+   "crossing_points_by_stratum": {
+    "llava_blank3ep_cloud10": 5.333588,
+    "llava_e2_extra": 5.252,
+    "llava_e2_sweep": 14.200631,
+    "llava_ers_1epoch": 46.759029,
+    "llava_rerun5": 5.259887,
+    "llava_samplesize_windows": 5.549195,
+    "llava_seed5_aggregate": 5.259887,
+    "llava_sharegpt": 4.957447
+   },
+   "family_estimate": null,
+   "family_estimate_bracket": null,
+   "family_estimate_ci95": null,
+   "metric": "E = mean ||h_vis - h_lang||^2 on the last hidden state, blank-image protocol",
+   "n_strata": 8,
+   "primary_stratum": "llava_blank3ep_cloud10",
+   "primary_stratum_why": "ten paired seeds per rank, the richest rank coverage at the crossing, and the family the manuscript's r_c in [5,6] was measured on",
+   "sensitivity_span": [
+    4.957447,
+    46.759029
+   ],
+   "single_rc_supported_within_family": false,
+   "strata": {
+    "llava_blank3ep_cloud10": {
+     "bootstrap": {
+      "ci95": [
+       5.195417,
+       5.467364
+      ],
+      "n_boot": 20000,
+      "n_boot_with_crossing": 20000,
+      "point_bootstrap_median": 5.331277,
+      "stable": true
+     },
+     "crossing_bracket": [
+      5,
+      6
+     ],
+     "crossing_point": 5.333588,
+     "crossing_point_local_ols": 5.150751,
+     "family": "llava-1.5-7b",
+     "fields": [
+      "E",
+      "delta_E"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        5,
+        6
+       ],
+       "mean_hi": 87.3,
+       "mean_lo": -43.7,
+       "point": 5.333588
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "3": -120.7,
+      "4": -97.65,
+      "5": -43.7,
+      "6": 87.3,
+      "7": 195.0,
+      "8": 235.0
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "3": 10,
+      "4": 10,
+      "5": 10,
+      "6": 10,
+      "7": 10,
+      "8": 10
+     },
+     "n_records": 60,
+     "n_units": 10,
+     "note": "raw per-run archives; the archived aggregate p3_rank_separation_extended.json is asserted against these means, not used as the input",
+     "protocol": "blank-image (text-only) LLaVA-1.5-7B LoRA, 3 epochs, ten seed labels, r=3..8",
+     "ranks": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "neg",
+      "pos",
+      "pos",
+      "pos"
+     ],
+     "sources": [
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s1024_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s123_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s17_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s27_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s37_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s456_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s789_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s7_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r3_s999_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s1024.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s123.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s17.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s27.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s37.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s42.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s456.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s7.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s789.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r4_s999.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s1024.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s123.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s17.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s27.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s37.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s456.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s7.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s789.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r5_s999.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s1024.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s123.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s17.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s27.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s37.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s42.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s456.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s7.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s789.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r6_s999.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s1024.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s123.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s17.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s27.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s37.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s42.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s456.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s7.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s789.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r7_s999.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s1024_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s123_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s17_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s27_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s37_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s456_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s789_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s7_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+      "paper3/scripts/outputs/experiments/cloud_verify_r8_s999_lr5e-05_nw_float1_adamw_e3_bcuniform.json"
+     ],
+     "status": "crossing",
+     "unit": "seed"
+    },
+    "llava_e2_extra": {
+     "bootstrap": {
+      "ci95": [
+       5.12156,
+       5.440367
+      ],
+      "n_boot": 20000,
+      "n_boot_with_crossing": 17042,
+      "point_bootstrap_median": 5.252,
+      "stable": false
+     },
+     "crossing_bracket": [
+      5,
+      6
+     ],
+     "crossing_point": 5.252,
+     "crossing_point_local_ols": 5.269542,
+     "family": "llava-1.5-7b",
+     "fields": [
+      "extra"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        5,
+        6
+       ],
+       "mean_hi": 62.333333,
+       "mean_lo": -21.0,
+       "point": 5.252
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "5": -21.0,
+      "6": 62.333333,
+      "7": 191.5,
+      "8": 311.333333
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3
+     },
+     "n_records": 12,
+     "n_units": 3,
+     "note": "dE computed from the archived E trajectory; runs with NaN and runs with ok=false are excluded and counted in n_runs_excluded",
+     "protocol": "LLaVA-1.5-7B blank-image protocol, 3 epochs, E2 batch section 'extra'",
+     "ranks": [
+      5,
+      6,
+      7,
+      8
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "pos",
+      "pos",
+      "pos"
+     ],
+     "sources": [
+      "paper3/scripts/outputs/experiments/E2_results.json"
+     ],
+     "status": "crossing",
+     "unit": "seed"
+    },
+    "llava_e2_sweep": {
+     "bootstrap": {
+      "ci95": [
+       14.133576,
+       16.168649
+      ],
+      "n_boot": 20000,
+      "n_boot_with_crossing": 20000,
+      "point_bootstrap_median": 14.200631,
+      "stable": true
+     },
+     "crossing_bracket": [
+      14,
+      16
+     ],
+     "crossing_point": 14.200631,
+     "crossing_point_local_ols": 13.222153,
+     "family": "llava-1.5-7b",
+     "fields": [
+      "sweep"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        14,
+        16
+       ],
+       "mean_hi": 950.666667,
+       "mean_lo": -106.0,
+       "point": 14.200631
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "10": -84.5,
+      "12": -99.0,
+      "14": -106.0,
+      "16": 950.666667,
+      "20": 2859.666667,
+      "4": -30.166667,
+      "5": -48.666667,
+      "6": -54.5,
+      "7": -60.833333,
+      "8": -71.666667
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "10": 3,
+      "12": 3,
+      "14": 3,
+      "16": 3,
+      "20": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3
+     },
+     "n_records": 30,
+     "n_units": 3,
+     "note": "dE computed from the archived E trajectory; runs with NaN and runs with ok=false are excluded and counted in n_runs_excluded",
+     "protocol": "LLaVA-1.5-7B blank-image protocol, 3 epochs, E2 batch section 'sweep'",
+     "ranks": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      10,
+      12,
+      14,
+      16,
+      20
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "pos",
+      "pos"
+     ],
+     "sources": [
+      "paper3/scripts/outputs/experiments/E2_results.json"
+     ],
+     "status": "crossing",
+     "unit": "seed"
+    },
+    "llava_ers_1epoch": {
+     "bootstrap": {
+      "ci95": [
+       45.953232,
+       48.772414
+      ],
+      "n_boot": 20000,
+      "n_boot_with_crossing": 20000,
+      "point_bootstrap_median": 46.759029,
+      "stable": true
+     },
+     "crossing_bracket": [
+      32,
+      64
+     ],
+     "crossing_point": 46.759029,
+     "crossing_point_local_ols": 45.200751,
+     "family": "llava-1.5-7b",
+     "fields": [
+      "r<rank>.dE"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        32,
+        64
+       ],
+       "mean_hi": 151.666667,
+       "mean_lo": -129.833333,
+       "point": 46.759029
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "16": -199.5,
+      "32": -129.833333,
+      "4": -46.5,
+      "64": 151.666667
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "16": 3,
+      "32": 3,
+      "4": 3,
+      "64": 3
+     },
+     "n_records": 12,
+     "n_units": 3,
+     "note": "the archive contains only r=4,16,32,64, so the fit brackets the crossing between r=32 and r=64 and cannot localise it further",
+     "protocol": "LLaVA-1.5-7B blank-image protocol, ONE epoch, 3 seeds",
+     "ranks": [
+      4,
+      16,
+      32,
+      64
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "neg",
+      "pos"
+     ],
+     "sources": [
+      "paper3/scripts/outputs/experiments/ers_1epoch_results.json"
+     ],
+     "status": "crossing",
+     "unit": "seed"
+    },
+    "llava_rerun5": {
+     "bootstrap": {
+      "ci95": [
+       5.093306,
+       5.412329
+      ],
+      "n_boot": 20000,
+      "n_boot_with_crossing": 19873,
+      "point_bootstrap_median": 5.259887,
+      "stable": true
+     },
+     "crossing_bracket": [
+      5,
+      6
+     ],
+     "crossing_point": 5.259887,
+     "crossing_point_local_ols": null,
+     "family": "llava-1.5-7b",
+     "fields": [
+      "runs.<key>.delta_E",
+      "curve.5.dE_seed42",
+      "curve.5.dE_other_seeds",
+      "curve.6.dE_seed42",
+      "curve.6.dE_other_seeds"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        5,
+        6
+       ],
+       "mean_hi": 65.5,
+       "mean_lo": -23.0,
+       "point": 5.259887
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "5": -23.0,
+      "6": 65.5
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "5": 5,
+      "6": 5
+     },
+     "n_records": 10,
+     "n_units": 5,
+     "note": "this is the five-seed set quoted in the manuscript's tab:seed5",
+     "protocol": "current run_training.py defaults (20 samples, 16 train / 4 eval, lr 5e-5, 3 epochs), E0 = 3921.0, seeds 42/123/789/999/1024",
+     "ranks": [
+      5,
+      6
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "pos"
+     ],
+     "sources": [
+      "outputs/analysis/p3_rerun_seeds.json",
+      "outputs/analysis/p3_rerun_analysis.json"
+     ],
+     "status": "crossing",
+     "unit": "seed"
+    },
+    "llava_samplesize_windows": {
+     "bootstrap": {
+      "ci95": [
+       4.98709,
+       5.751174
+      ],
+      "n_boot": 20000,
+      "n_boot_with_crossing": 20000,
+      "point_bootstrap_median": 5.549195,
+      "stable": true
+     },
+     "crossing_bracket": [
+      5,
+      6
+     ],
+     "crossing_point": 5.549195,
+     "crossing_point_local_ols": 5.61694,
+     "family": "llava-1.5-7b",
+     "fields": [
+      "runs.<i>.E",
+      "runs.<i>.samples"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        5,
+        6
+       ],
+       "mean_hi": 31.5,
+       "mean_lo": -38.375,
+       "point": 5.549195
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "16": 1611.75,
+      "4": -127.125,
+      "5": -38.375,
+      "6": 31.5,
+      "7": 99.0
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "16": 4,
+      "4": 4,
+      "5": 4,
+      "6": 4,
+      "7": 4
+     },
+     "n_records": 20,
+     "n_units": 4,
+     "note": "one seed per rank, so the resampling unit is the training window, not the seed",
+     "protocol": "LLaVA-1.5-7B blank-image protocol, 3 epochs, seed 999, training window varied",
+     "ranks": [
+      4,
+      5,
+      6,
+      7,
+      16
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "pos",
+      "pos",
+      "pos"
+     ],
+     "sources": [
+      "paper3/scripts/outputs/experiments/sample_size_results.json"
+     ],
+     "status": "crossing",
+     "unit": "training window"
+    },
+    "llava_seed5_aggregate": {
+     "bootstrap": {
+      "ci95": null,
+      "n_boot": 0,
+      "n_boot_with_crossing": 0,
+      "reason": "the archive stores aggregates only (outputs/analysis/p3_robust_stats.json :: seed5.<rank>), with no per-seed values, so no resampling interval can be built from it"
+     },
+     "crossing_bracket": [
+      5,
+      6
+     ],
+     "crossing_point": 5.259887,
+     "crossing_point_local_ols": null,
+     "family": "llava-1.5-7b",
+     "fields": [
+      "seed5.r5.mean",
+      "seed5.r5.n",
+      "seed5.r6.mean"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        5,
+        6
+       ],
+       "mean_hi": 65.5,
+       "mean_lo": -23.0,
+       "point": 5.259887
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "5": -23.0,
+      "6": 65.5
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "5": 1,
+      "6": 1
+     },
+     "n_records": 10,
+     "n_units": 2,
+     "note": "aggregate-only stratum: it anchors the r=5/r=6 bracket in a second environment stack but cannot contribute a bootstrap",
+     "protocol": "five seeds per rank, earlier environment stack (torch 2.9/cu130)",
+     "ranks": [
+      5,
+      6
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "pos"
+     ],
+     "sources": [
+      "outputs/analysis/p3_robust_stats.json"
+     ],
+     "status": "crossing",
+     "unit": "aggregate"
+    },
+    "llava_sharegpt": {
+     "bootstrap": {
+      "ci95": [
+       4.502857,
+       5.202417
+      ],
+      "n_boot": 20000,
+      "n_boot_with_crossing": 20000,
+      "point_bootstrap_median": 4.957447,
+      "stable": true
+     },
+     "crossing_bracket": [
+      4,
+      5
+     ],
+     "crossing_point": 4.957447,
+     "crossing_point_local_ols": 4.737583,
+     "family": "llava-1.5-7b",
+     "fields": [
+      "r<rank>.dE"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        4,
+        5
+       ],
+       "mean_hi": 2.666667,
+       "mean_lo": -60.0,
+       "point": 4.957447
+      },
+      {
+       "bracket": [
+        48,
+        64
+       ],
+       "mean_hi": 212.333333,
+       "mean_lo": -35.5,
+       "point": 50.291863
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "10": 374.666667,
+      "12": 719.0,
+      "14": 1264.0,
+      "16": 1710.666667,
+      "20": 1907.0,
+      "24": 2730.666667,
+      "28": 1834.333333,
+      "32": 2238.0,
+      "4": -60.0,
+      "48": -35.5,
+      "5": 2.666667,
+      "6": 133.5,
+      "64": 212.333333,
+      "7": 282.333333,
+      "8": 282.666667
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "10": 3,
+      "12": 3,
+      "14": 3,
+      "16": 3,
+      "20": 3,
+      "24": 3,
+      "28": 3,
+      "32": 3,
+      "4": 3,
+      "48": 3,
+      "5": 3,
+      "6": 3,
+      "64": 3,
+      "7": 3,
+      "8": 3
+     },
+     "n_records": 45,
+     "n_units": 3,
+     "note": "seeds are positional in the archived dE list; the archive does not name them",
+     "protocol": "ShareGPT instruction data, blank-image protocol, 3 epochs, 3 seeds",
+     "ranks": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      10,
+      12,
+      14,
+      16,
+      20,
+      24,
+      28,
+      32,
+      48,
+      64
+     ],
+     "reverse_crossings": [
+      {
+       "bracket": [
+        32,
+        48
+       ],
+       "mean_hi": -35.5,
+       "mean_lo": 2238.0,
+       "point": 47.750165
+      }
+     ],
+     "secondary_forward_crossings": [
+      {
+       "bracket": [
+        48,
+        64
+       ],
+       "mean_hi": 212.333333,
+       "mean_lo": -35.5,
+       "point": 50.291863
+      }
+     ],
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "neg",
+      "pos"
+     ],
+     "sources": [
+      "paper3/scripts/outputs/experiments/vqa_phase_results.json"
+     ],
+     "status": "multiple_crossings",
+     "unit": "seed"
+    }
+   },
+   "strata_without_a_sign_crossing": [],
+   "why_not_single": "stratum crossing points disagree: {\"llava_blank3ep_cloud10\": 5.333588, \"llava_e2_extra\": 5.252, \"llava_e2_sweep\": 14.200631, \"llava_ers_1epoch\": 46.759029, \"llava_rerun5\": 5.259887, \"llava_samplesize_windows\": 5.549195, \"llava_seed5_aggregate\": 5.259887, \"llava_sharegpt\": 4.957447}"
+  },
+  "qwen2-vl-2b": {
+   "backbone": "Qwen2-VL-2B-Instruct (stated inside the archives)",
+   "common_intersection_of_stratum_ci95": [
+    3.618517,
+    6.477364
+   ],
+   "crossing_points_by_stratum": {
+    "qwen2b_blankimg": null,
+    "qwen2b_p3d_blank_eval": 5.896836,
+    "qwen2b_p3d_blank_train": null,
+    "qwen2b_p3d_real_eval": null,
+    "qwen2b_p3d_real_train": null
+   },
+   "family_estimate": null,
+   "family_estimate_bracket": null,
+   "family_estimate_ci95": null,
+   "metric": "same alignment-energy convention; the p3d sweep reports train and held-out fields",
+   "n_strata": 5,
+   "primary_stratum": "qwen2b_p3d_real_train",
+   "primary_stratum_why": "the widest rank range (r=1..16) with three paired seeds",
+   "sensitivity_span": [
+    5.896836,
+    5.896836
+   ],
+   "single_rc_supported_within_family": false,
+   "strata": {
+    "qwen2b_blankimg": {
+     "bootstrap": {
+      "bootstrap_crossings_are_incidental": true,
+      "ci95": null,
+      "n_boot": 0,
+      "n_boot_with_crossing": 0,
+      "point_bootstrap_median": null,
+      "reason": "the stratum itself has no sign crossing, so the 0 of 0 resampled draws that produced one are incidental; no interval is quoted",
+      "stable": false
+     },
+     "crossing_bracket": null,
+     "crossing_point": null,
+     "crossing_point_local_ols": null,
+     "family": "qwen2-vl-2b",
+     "fields": [
+      "runs.<key>.E",
+      "runs.<key>.delta_E"
+     ],
+     "forward_crossings": [],
+     "max_rank_measured": 6,
+     "mean_dE_by_rank": {
+      "5": -352.0,
+      "6": -288.0
+     },
+     "min_rank_measured": 5,
+     "model_label_source": null,
+     "n_by_rank": {
+      "5": 1,
+      "6": 1
+     },
+     "n_records": 2,
+     "n_units": 1,
+     "note": "one seed per rank: no resampling interval is available from this archive alone",
+     "protocol": "Qwen2-VL-2B-Instruct, blank-image protocol, seed 42, 3 epochs, adapter rank varied through --llm-rank",
+     "ranks": [
+      5,
+      6
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": "all_negative",
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg"
+     ],
+     "sources": [
+      "outputs/analysis/p3_qwen2b_crossing_fixed.json"
+     ],
+     "status": "no_crossing_in_range",
+     "unit": "seed"
+    },
+    "qwen2b_p3d_blank_eval": {
+     "bootstrap": {
+      "ci95": [
+       3.618517,
+       6.477364
+      ],
+      "n_boot": 20000,
+      "n_boot_with_crossing": 20000,
+      "point_bootstrap_median": 5.77819,
+      "stable": true
+     },
+     "crossing_bracket": [
+      5,
+      6
+     ],
+     "crossing_point": 5.896836,
+     "crossing_point_local_ols": 5.439244,
+     "family": "qwen2-vl-2b",
+     "fields": [
+      "runs.<i>.condition",
+      "runs.<i>.rank",
+      "runs.<i>.seed",
+      "runs.<i>.dE_eval_real"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        5,
+        6
+       ],
+       "mean_hi": 7.554167,
+       "mean_lo": -65.670567,
+       "point": 5.896836
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "1": -260.2027,
+      "16": 178.738467,
+      "2": -205.806967,
+      "4": -28.919033,
+      "5": -65.670567,
+      "6": 7.554167,
+      "8": 149.169733
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "1": 3,
+      "16": 3,
+      "2": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "8": 3
+     },
+     "n_records": 21,
+     "n_units": 3,
+     "note": "the archive states its own model: models/Qwen2-VL-2B-Instruct",
+     "protocol": "Qwen2-VL-2B-Instruct, 3 epochs, lr 5e-5, LoRA qkvo, vision tower frozen, condition = blank, energy field dE_eval_real",
+     "ranks": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      16
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "pos",
+      "pos",
+      "pos"
+     ],
+     "sources": [
+      "outputs/analysis/p3d_qwen_ranksweep.json"
+     ],
+     "status": "crossing",
+     "unit": "seed"
+    },
+    "qwen2b_p3d_blank_train": {
+     "bootstrap": {
+      "bootstrap_crossings_are_incidental": true,
+      "ci95": null,
+      "n_boot": 20000,
+      "n_boot_with_crossing": 0,
+      "point_bootstrap_median": null,
+      "reason": "the stratum itself has no sign crossing, so the 0 of 20000 resampled draws that produced one are incidental; no interval is quoted",
+      "stable": false
+     },
+     "crossing_bracket": null,
+     "crossing_point": null,
+     "crossing_point_local_ols": null,
+     "family": "qwen2-vl-2b",
+     "fields": [
+      "runs.<i>.condition",
+      "runs.<i>.rank",
+      "runs.<i>.seed",
+      "runs.<i>.dE_train"
+     ],
+     "forward_crossings": [],
+     "max_rank_measured": 16,
+     "mean_dE_by_rank": {
+      "1": -518.917767,
+      "16": -184.4996,
+      "2": -503.994167,
+      "4": -282.3787,
+      "5": -294.865333,
+      "6": -403.136233,
+      "8": -326.748433
+     },
+     "min_rank_measured": 1,
+     "model_label_source": null,
+     "n_by_rank": {
+      "1": 3,
+      "16": 3,
+      "2": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "8": 3
+     },
+     "n_records": 21,
+     "n_units": 3,
+     "note": "the archive states its own model: models/Qwen2-VL-2B-Instruct",
+     "protocol": "Qwen2-VL-2B-Instruct, 3 epochs, lr 5e-5, LoRA qkvo, vision tower frozen, condition = blank, energy field dE_train",
+     "ranks": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      16
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": "all_negative",
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg"
+     ],
+     "sources": [
+      "outputs/analysis/p3d_qwen_ranksweep.json"
+     ],
+     "status": "no_crossing_in_range",
+     "unit": "seed"
+    },
+    "qwen2b_p3d_real_eval": {
+     "bootstrap": {
+      "bootstrap_crossings_are_incidental": true,
+      "ci95": null,
+      "n_boot": 20000,
+      "n_boot_with_crossing": 0,
+      "point_bootstrap_median": null,
+      "reason": "the stratum itself has no sign crossing, so the 0 of 20000 resampled draws that produced one are incidental; no interval is quoted",
+      "stable": false
+     },
+     "crossing_bracket": null,
+     "crossing_point": null,
+     "crossing_point_local_ols": null,
+     "family": "qwen2-vl-2b",
+     "fields": [
+      "runs.<i>.condition",
+      "runs.<i>.rank",
+      "runs.<i>.seed",
+      "runs.<i>.dE_eval_real"
+     ],
+     "forward_crossings": [],
+     "max_rank_measured": 16,
+     "mean_dE_by_rank": {
+      "1": -236.007533,
+      "16": -134.6555,
+      "2": -270.9831,
+      "4": -211.040567,
+      "5": -222.326,
+      "6": -212.788167,
+      "8": -169.229033
+     },
+     "min_rank_measured": 1,
+     "model_label_source": null,
+     "n_by_rank": {
+      "1": 3,
+      "16": 3,
+      "2": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "8": 3
+     },
+     "n_records": 21,
+     "n_units": 3,
+     "note": "the archive states its own model: models/Qwen2-VL-2B-Instruct",
+     "protocol": "Qwen2-VL-2B-Instruct, 3 epochs, lr 5e-5, LoRA qkvo, vision tower frozen, condition = real, energy field dE_eval_real",
+     "ranks": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      16
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": "all_negative",
+     "sign_pattern_by_rank": [
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg",
+      "neg"
+     ],
+     "sources": [
+      "outputs/analysis/p3d_qwen_ranksweep.json"
+     ],
+     "status": "no_crossing_in_range",
+     "unit": "seed"
+    },
+    "qwen2b_p3d_real_train": {
+     "bootstrap": {
+      "bootstrap_crossings_are_incidental": true,
+      "ci95": null,
+      "n_boot": 20000,
+      "n_boot_with_crossing": 0,
+      "point_bootstrap_median": null,
+      "reason": "the stratum itself has no sign crossing, so the 0 of 20000 resampled draws that produced one are incidental; no interval is quoted",
+      "stable": false
+     },
+     "crossing_bracket": null,
+     "crossing_point": null,
+     "crossing_point_local_ols": null,
+     "family": "qwen2-vl-2b",
+     "fields": [
+      "runs.<i>.condition",
+      "runs.<i>.rank",
+      "runs.<i>.seed",
+      "runs.<i>.dE_train"
+     ],
+     "forward_crossings": [],
+     "max_rank_measured": 16,
+     "mean_dE_by_rank": {
+      "1": 193.561633,
+      "16": 449.9441,
+      "2": 291.727033,
+      "4": 356.628033,
+      "5": 369.003367,
+      "6": 350.102533,
+      "8": 367.421833
+     },
+     "min_rank_measured": 1,
+     "model_label_source": null,
+     "n_by_rank": {
+      "1": 3,
+      "16": 3,
+      "2": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "8": 3
+     },
+     "n_records": 21,
+     "n_units": 3,
+     "note": "the archive states its own model: models/Qwen2-VL-2B-Instruct",
+     "protocol": "Qwen2-VL-2B-Instruct, 3 epochs, lr 5e-5, LoRA qkvo, vision tower frozen, condition = real, energy field dE_train",
+     "ranks": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      16
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": "all_positive",
+     "sign_pattern_by_rank": [
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos"
+     ],
+     "sources": [
+      "outputs/analysis/p3d_qwen_ranksweep.json"
+     ],
+     "status": "no_crossing_in_range",
+     "unit": "seed"
+    }
+   },
+   "strata_without_a_sign_crossing": [
+    "qwen2b_blankimg",
+    "qwen2b_p3d_blank_train",
+    "qwen2b_p3d_real_eval",
+    "qwen2b_p3d_real_train"
+   ],
+   "why_not_single": "4 of 5 strata show no sign change anywhere in their measured rank range (qwen2b_blankimg, qwen2b_p3d_blank_train, qwen2b_p3d_real_eval, qwen2b_p3d_real_train), so those strata cannot pin a crossing at all"
+  },
+  "qwen2-vl-7b": {
+   "backbone": "Qwen2-VL-7B (label inferred, see stratum model_label_source)",
+   "common_intersection_of_stratum_ci95": null,
+   "crossing_points_by_stratum": {
+    "qwen_cloud_sweep": null
+   },
+   "family_estimate": null,
+   "family_estimate_bracket": null,
+   "family_estimate_ci95": null,
+   "metric": "same alignment-energy convention, cloud rank sweep",
+   "n_strata": 1,
+   "primary_stratum": "qwen_cloud_sweep",
+   "primary_stratum_why": "the only archived rank curve for this checkpoint",
+   "sensitivity_span": null,
+   "single_rc_supported_within_family": false,
+   "strata": {
+    "qwen_cloud_sweep": {
+     "bootstrap": {
+      "bootstrap_crossings_are_incidental": true,
+      "ci95": null,
+      "n_boot": 20000,
+      "n_boot_with_crossing": 2275,
+      "point_bootstrap_median": null,
+      "reason": "the stratum itself has no sign crossing, so the 2275 of 20000 resampled draws that produced one are incidental; no interval is quoted",
+      "stable": false
+     },
+     "crossing_bracket": null,
+     "crossing_point": null,
+     "crossing_point_local_ols": null,
+     "family": "qwen2-vl-7b",
+     "fields": [
+      "sweep"
+     ],
+     "forward_crossings": [],
+     "max_rank_measured": 64,
+     "mean_dE_by_rank": {
+      "10": 78.666667,
+      "12": 79.333333,
+      "14": 81.333333,
+      "16": 85.333333,
+      "20": 89.333333,
+      "24": 92.666667,
+      "28": 103.333333,
+      "32": 104.0,
+      "4": 78.666667,
+      "48": 154.0,
+      "5": 80.666667,
+      "6": 78.0,
+      "64": 214.0,
+      "7": 82.0,
+      "8": 82.666667
+     },
+     "min_rank_measured": 4,
+     "model_label_source": "the archive stores no model field; the label 'Qwen2-VL-7B' is the one used by the manuscript phase table (sections/experiments.tex, tab:phase) and by outputs/analysis/p3_phase_boundary.json :: meta.archive_files.Qwen",
+     "n_by_rank": {
+      "10": 3,
+      "12": 3,
+      "14": 3,
+      "16": 3,
+      "20": 3,
+      "24": 3,
+      "28": 3,
+      "32": 3,
+      "4": 3,
+      "48": 3,
+      "5": 3,
+      "6": 3,
+      "64": 3,
+      "7": 3,
+      "8": 3
+     },
+     "n_records": 45,
+     "n_units": 3,
+     "note": "the sweep covers r=4..64 with three seeds per rank; the archive stores no image condition field, so this family contributes a single stratum",
+     "protocol": "cloud rank sweep, 15 ranks x 3 seeds, 3 epochs",
+     "ranks": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      10,
+      12,
+      14,
+      16,
+      20,
+      24,
+      28,
+      32,
+      48,
+      64
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": "all_positive",
+     "sign_pattern_by_rank": [
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos",
+      "pos"
+     ],
+     "sources": [
+      "paper3/scripts/outputs/experiments/Qwen_results.json"
+     ],
+     "status": "no_crossing_in_range",
+     "unit": "seed"
+    }
+   },
+   "strata_without_a_sign_crossing": [
+    "qwen_cloud_sweep"
+   ],
+   "why_not_single": "1 of 1 strata show no sign change anywhere in their measured rank range (qwen_cloud_sweep), so those strata cannot pin a crossing at all"
+  },
+  "smolvlm-500m": {
+   "backbone": "SmolVLM-500M-Instruct",
+   "common_intersection_of_stratum_ci95": [
+    5.55636,
+    5.829684
+   ],
+   "crossing_points_by_stratum": {
+    "smolvlm_r5_r6": 5.698748
+   },
+   "family_estimate": 5.698748,
+   "family_estimate_bracket": [
+    5,
+    6
+   ],
+   "family_estimate_ci95": [
+    5.55636,
+    5.829684
+   ],
+   "metric": "same alignment-energy convention",
+   "n_strata": 1,
+   "primary_stratum": "smolvlm_r5_r6",
+   "primary_stratum_why": "the only archived curve for this backbone",
+   "sensitivity_span": [
+    5.698748,
+    5.698748
+   ],
+   "single_rc_supported_within_family": true,
+   "strata": {
+    "smolvlm_r5_r6": {
+     "bootstrap": {
+      "ci95": [
+       5.55636,
+       5.829684
+      ],
+      "n_boot": 20000,
+      "n_boot_with_crossing": 20000,
+      "point_bootstrap_median": 5.698748,
+      "stable": true
+     },
+     "crossing_bracket": [
+      5,
+      6
+     ],
+     "crossing_point": 5.698748,
+     "crossing_point_local_ols": null,
+     "family": "smolvlm-500m",
+     "fields": [
+      "meta.seed",
+      "runs.r5.delta_E",
+      "runs.r6.delta_E"
+     ],
+     "forward_crossings": [
+      {
+       "bracket": [
+        5,
+        6
+       ],
+       "mean_hi": 32.083333,
+       "mean_lo": -74.416667,
+       "point": 5.698748
+      }
+     ],
+     "max_rank_measured": null,
+     "mean_dE_by_rank": {
+      "5": -74.416667,
+      "6": 32.083333
+     },
+     "min_rank_measured": null,
+     "model_label_source": null,
+     "n_by_rank": {
+      "5": 3,
+      "6": 3
+     },
+     "n_records": 6,
+     "n_units": 3,
+     "note": "only r=5 and r=6 were run, so the fit reports the bracket and nothing finer",
+     "protocol": "SmolVLM-500M-Instruct, 20 samples, 3 epochs, lr 5e-5, seeds 42/123/789",
+     "ranks": [
+      5,
+      6
+     ],
+     "reverse_crossings": [],
+     "secondary_forward_crossings": null,
+     "sign_of_all_means": null,
+     "sign_pattern_by_rank": [
+      "neg",
+      "pos"
+     ],
+     "sources": [
+      "outputs/analysis/p3_smolvlm_family_s42.json",
+      "outputs/analysis/p3_smolvlm_family_s123.json",
+      "outputs/analysis/p3_smolvlm_family_s789.json"
+     ],
+     "status": "crossing",
+     "unit": "seed"
+    }
+   },
+   "strata_without_a_sign_crossing": [],
+   "why_not_single": null
+  }
+ },
+ "stability": {
+  "archived_exact_tests_on_the_same_runs": {
+   "adjacent_rank_p_values": {
+    "r3-r4": 0.01003485678408279,
+    "r4-r5": 0.0023490441447097795,
+    "r5-r6": 1.082508822446903e-05,
+    "r6-r7": 1.082508822446903e-05,
+    "r7-r8": 0.07086102751737426
+   },
+   "crossing_between": [
+    5,
+    6
+   ],
+   "n_pairs": 15,
+   "n_separating_holm_p05": 14,
+   "n_separating_raw_p05": 14,
+   "n_splits": 184756,
+   "p_min_attainable": 1.082508822446903e-05,
+   "rank5_ci95_t": [
+    -71.43191045687601,
+    -15.968089543123991
+   ],
+   "rank5_min_equivalent_margin": 66.17223338049698,
+   "rank5_tost_equivalent_to_zero": false,
+   "rank5_tost_p": 0.6516223596255077,
+   "refit_reproduces_archived_means": true,
+   "sign_split": "all 10 runs negative at r=3,4,5 and all 10 runs positive at r=6,7,8"
+  },
+  "curvature_observable": {
+   "by_rank": {
+    "12": {
+     "eps": [
+      0.001,
+      0.0003
+     ],
+     "fields": [
+      "meta.model",
+      "meta.eps",
+      "runs.<i>.rank",
+      "runs.<i>.second_order_over_first_order.<eps>"
+     ],
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "n_batches": 3,
+     "seed": 42,
+     "seed_source": "no suffix in the file name, so the archive default seed",
+     "share_all_negative_eps_0.0003": true,
+     "share_all_negative_eps_0.001": true,
+     "share_at_operating_lr_from_eps_0.0003": -0.104528,
+     "share_at_operating_lr_from_eps_0.001": -0.020284,
+     "share_mean_eps_0.0003": -0.627171,
+     "share_mean_eps_0.001": -0.405681,
+     "share_sd_eps_0.0003": 0.07246,
+     "share_sd_eps_0.001": 0.035421,
+     "source": "outputs/analysis/p3_hessian_probe_r12.json"
+    },
+    "16": {
+     "eps": [
+      0.001,
+      0.0003
+     ],
+     "fields": [
+      "meta.model",
+      "meta.eps",
+      "runs.<i>.rank",
+      "runs.<i>.second_order_over_first_order.<eps>"
+     ],
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "n_batches": 3,
+     "seed": 42,
+     "seed_source": "no suffix in the file name, so the archive default seed",
+     "share_all_negative_eps_0.0003": true,
+     "share_all_negative_eps_0.001": true,
+     "share_at_operating_lr_from_eps_0.0003": -0.112158,
+     "share_at_operating_lr_from_eps_0.001": -0.01396,
+     "share_mean_eps_0.0003": -0.672947,
+     "share_mean_eps_0.001": -0.279204,
+     "share_sd_eps_0.0003": 0.057705,
+     "share_sd_eps_0.001": 0.041032,
+     "source": "outputs/analysis/p3_hessian_probe_r16.json"
+    },
+    "24": {
+     "eps": [
+      0.001,
+      0.0003
+     ],
+     "fields": [
+      "meta.model",
+      "meta.eps",
+      "runs.<i>.rank",
+      "runs.<i>.second_order_over_first_order.<eps>"
+     ],
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "n_batches": 3,
+     "seed": 789,
+     "seed_source": "file name suffix",
+     "share_all_negative_eps_0.0003": true,
+     "share_all_negative_eps_0.001": false,
+     "share_at_operating_lr_from_eps_0.0003": -0.095359,
+     "share_at_operating_lr_from_eps_0.001": -0.000336,
+     "share_mean_eps_0.0003": -0.572152,
+     "share_mean_eps_0.001": -0.006724,
+     "share_sd_eps_0.0003": 0.046067,
+     "share_sd_eps_0.001": 0.085896,
+     "source": "outputs/analysis/p3_hessian_probe_r24_s789.json"
+    },
+    "5": {
+     "eps": [
+      0.001,
+      0.0003
+     ],
+     "fields": [
+      "meta.model",
+      "meta.eps",
+      "runs.<i>.rank",
+      "runs.<i>.second_order_over_first_order.<eps>"
+     ],
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "n_batches": 3,
+     "seed": 42,
+     "seed_source": "no suffix in the file name, so the archive default seed",
+     "share_all_negative_eps_0.0003": true,
+     "share_all_negative_eps_0.001": true,
+     "share_at_operating_lr_from_eps_0.0003": -0.092593,
+     "share_at_operating_lr_from_eps_0.001": -0.035632,
+     "share_mean_eps_0.0003": -0.55556,
+     "share_mean_eps_0.001": -0.712631,
+     "share_sd_eps_0.0003": 0.183726,
+     "share_sd_eps_0.001": 0.080705,
+     "source": "outputs/analysis/p3_hessian_probe_r5.json"
+    },
+    "6": {
+     "eps": [
+      0.001,
+      0.0003
+     ],
+     "fields": [
+      "meta.model",
+      "meta.eps",
+      "runs.<i>.rank",
+      "runs.<i>.second_order_over_first_order.<eps>"
+     ],
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "n_batches": 3,
+     "seed": 42,
+     "seed_source": "no suffix in the file name, so the archive default seed",
+     "share_all_negative_eps_0.0003": true,
+     "share_all_negative_eps_0.001": true,
+     "share_at_operating_lr_from_eps_0.0003": -0.083366,
+     "share_at_operating_lr_from_eps_0.001": -0.03477,
+     "share_mean_eps_0.0003": -0.500198,
+     "share_mean_eps_0.001": -0.695409,
+     "share_sd_eps_0.0003": 0.026838,
+     "share_sd_eps_0.001": 0.063469,
+     "source": "outputs/analysis/p3_hessian_probe_r6.json"
+    },
+    "64": {
+     "eps": [
+      0.001,
+      0.0003
+     ],
+     "fields": [
+      "meta.model",
+      "meta.eps",
+      "runs.<i>.rank",
+      "runs.<i>.second_order_over_first_order.<eps>"
+     ],
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "n_batches": 3,
+     "seed": 42,
+     "seed_source": "file name suffix",
+     "share_all_negative_eps_0.0003": true,
+     "share_all_negative_eps_0.001": true,
+     "share_at_operating_lr_from_eps_0.0003": -0.026799,
+     "share_at_operating_lr_from_eps_0.001": -0.002267,
+     "share_mean_eps_0.0003": -0.160795,
+     "share_mean_eps_0.001": -0.045334,
+     "share_sd_eps_0.0003": 0.017524,
+     "share_sd_eps_0.001": 0.03229,
+     "source": "outputs/analysis/p3_hessian_probe_r64_s42.json"
+    },
+    "8": {
+     "eps": [
+      0.001,
+      0.0003
+     ],
+     "fields": [
+      "meta.model",
+      "meta.eps",
+      "runs.<i>.rank",
+      "runs.<i>.second_order_over_first_order.<eps>"
+     ],
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "n_batches": 3,
+     "seed": 42,
+     "seed_source": "no suffix in the file name, so the archive default seed",
+     "share_all_negative_eps_0.0003": true,
+     "share_all_negative_eps_0.001": true,
+     "share_at_operating_lr_from_eps_0.0003": -0.094948,
+     "share_at_operating_lr_from_eps_0.001": -0.029772,
+     "share_mean_eps_0.0003": -0.569689,
+     "share_mean_eps_0.001": -0.595434,
+     "share_sd_eps_0.0003": 0.038887,
+     "share_sd_eps_0.001": 0.066866,
+     "source": "outputs/analysis/p3_hessian_probe_r8.json"
+    }
+   },
+   "check_against_manuscript_claim_row": "the manuscript's claim table already marks 'curvature sign stable across ranks, seeds and stacks' as not supported; the archived flips listed in significant_flips are the evidence for that row",
+   "manuscript_tab_hessian_check": {
+    "archive_r5_mean_share_at_lr": -0.035631525641091,
+    "archive_r6_mean_share_at_lr": -0.03477046105145031,
+    "recomputed_r5_mean_share_at_lr": -0.035632,
+    "recomputed_r6_mean_share_at_lr": -0.03477,
+    "reproduces_manuscript_to_4dp": true
+   },
+   "no_zero_crossing_on_the_primary_seed_curve": true,
+   "primary_seed": 42,
+   "primary_seed_curve_share_by_rank": {
+    "eps_0.0003": {
+     "all_negative": true,
+     "monotone_rising_toward_zero": false,
+     "values_by_rank": {
+      "12": -0.627171,
+      "16": -0.672947,
+      "5": -0.55556,
+      "6": -0.500198,
+      "64": -0.160795,
+      "8": -0.569689
+     }
+    },
+    "eps_0.001": {
+     "all_negative": true,
+     "monotone_rising_toward_zero": true,
+     "values_by_rank": {
+      "12": -0.405681,
+      "16": -0.279204,
+      "5": -0.712631,
+      "6": -0.695409,
+      "64": -0.045334,
+      "8": -0.595434
+     }
+    }
+   },
+   "probe_eps_levels": [
+    0.0003,
+    0.001
+   ],
+   "ranks_measured": [
+    5,
+    6,
+    8,
+    12,
+    16,
+    24,
+    64
+   ],
+   "sign_unanimous_across_batches_and_seeds": false,
+   "significant_flips": [
+    {
+     "eps": 0.001,
+     "seed": 789,
+     "source": "outputs/analysis/p3_hessian_probe_r24_s789.json"
+    }
+   ]
+  },
+  "environment_share_of_r5_variance": {
+   "env_share": 0.4520380976240466,
+   "share_ci95": [
+    0.21198180448528658,
+    0.7471951281145658
+   ],
+   "sigma_env": 31.148928826613844,
+   "sigma_seed": 34.294997813092216,
+   "stack_means_at_r5": {
+    "torch 2.12/cu130": -43.7,
+    "torch 2.4/cu121": 25.25,
+    "torch 2.9/cu130": -23.0
+   }
+  },
+  "manuscript_consistency_checks": [
+   {
+    "agrees": false,
+    "archive_crossing_point": 4.957447,
+    "archive_means": {
+     "r4": -60.0,
+     "r5": 2.666667,
+     "r6": 133.5
+    },
+    "claim": "the ShareGPT stratum is described as flipping sign between r=5 and r=6",
+    "manuscript_anchor": "paper3/paper_ieee/supplementary/supplementary.tex, caption of tab:sharegpt",
+    "reading": "does the manuscript's stated bracket match its own archived means? No: the archived means cross zero between r=4 and r=5, not between r=5 and r=6"
+   },
+   {
+    "agrees": false,
+    "archive_bracket": [
+     32,
+     64
+    ],
+    "archive_crossing_point": 46.759029,
+    "caption_present": true,
+    "claim": "the one-epoch stratum is described in its figure caption as flipping 'earlier' than the 3-epoch crossing",
+    "manuscript_anchor": "paper3/paper_ieee/supplementary/supplementary.tex, caption of fig:ers",
+    "reading": "the archived one-epoch crossing is at a much higher rank than the 3-epoch bracket, so 'earlier' reads as a wording inconsistency rather than a number"
+   }
+  ],
+  "primary_stratum_sign_unanimity": {
+   "all_runs_at_r5_negative": true,
+   "all_runs_at_r6_positive": true,
+   "r5": {
+    "mean": -43.7,
+    "n": 10
+   },
+   "r6": {
+    "mean": 87.3,
+    "n": 10
+   }
+  }
+ }
+}

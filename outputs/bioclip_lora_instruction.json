@@ -1,0 +1,57 @@
+{
+ "meta": {
+  "train_pairs": 3440,
+  "epochs": 10,
+  "losses": [
+   4.6812,
+   3.0523,
+   2.6568,
+   2.3203,
+   1.99,
+   1.7061,
+   1.4577,
+   1.2456,
+   1.1003,
+   1.0467
+  ],
+  "data": "MarineLife-16K QA (text-tower LoRA only, r16/a32)",
+  "note": "contrastive training identical to full-FT replica; LoRA (r16/a32) applied to both towers (matching c_fc/c_proj/out_proj layers); dual-tower PEFT variant"
+ },
+ "marine": {
+  "sigma_m": 0.0598,
+  "mean_m": 0.248,
+  "top1_0": 19.963,
+  "tau_l1": 0.3435,
+  "tau_text1": 0.5458
+ },
+ "retrieval": {
+  "q_ans": {
+   "n": 3440,
+   "video_R1": 11.657,
+   "video_R5": 33.866,
+   "frame_R1": 9.477,
+   "frame_R5": 25.901
+  },
+  "q_only": {
+   "n": 3440,
+   "video_R1": 4.36,
+   "video_R5": 14.099,
+   "frame_R1": 3.401,
+   "frame_R5": 10.523
+  },
+  "obj": {
+   "n": 3440,
+   "video_R1": 7.558,
+   "video_R5": 23.081,
+   "frame_R1": 6.453,
+   "frame_R5": 17.529
+  },
+  "ans": {
+   "n": 3440,
+   "video_R1": 8.227,
+   "video_R5": 24.593,
+   "frame_R1": 6.483,
+   "frame_R5": 17.907
+  }
+ }
+}

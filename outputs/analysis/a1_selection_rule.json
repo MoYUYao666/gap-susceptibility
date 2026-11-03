@@ -1,0 +1,471 @@
+{
+ "eps": [
+  0.01,
+  0.02
+ ],
+ "selection": {
+  "synthetic_configs": {
+   "n": 17,
+   "oracle_top1": 78.08,
+   "rules": {
+    "oracle": {
+     "index": 12,
+     "top1": 78.08,
+     "regret": 0.0
+    },
+    "min_CG": {
+     "index": 7,
+     "top1": 33.68,
+     "regret": 44.4
+    },
+    "min_M(0.01)": {
+     "index": 12,
+     "top1": 78.08,
+     "regret": 0.0
+    }
+   }
+  },
+  "templates": {
+   "clip32": {
+    "rows": [
+     {
+      "template": "a photo of a {}.",
+      "top1": 59.199999999999996,
+      "mass_0.01": 0.6782,
+      "mass_0.02": 0.8724
+     },
+     {
+      "template": "a photo of the {}.",
+      "top1": 58.06,
+      "mass_0.01": 0.7028,
+      "mass_0.02": 0.8906
+     },
+     {
+      "template": "a bad photo of a {}.",
+      "top1": 60.24,
+      "mass_0.01": 0.683,
+      "mass_0.02": 0.8778
+     },
+     {
+      "template": "a cropped photo of a {}.",
+      "top1": 59.31999999999999,
+      "mass_0.01": 0.6846,
+      "mass_0.02": 0.8768
+     },
+     {
+      "template": "a close-up photo of a {}.",
+      "top1": 57.82000000000001,
+      "mass_0.01": 0.6946,
+      "mass_0.02": 0.8836
+     },
+     {
+      "template": "a bright photo of a {}.",
+      "top1": 58.5,
+      "mass_0.01": 0.6772,
+      "mass_0.02": 0.8736
+     },
+     {
+      "template": "a photo of one {}.",
+      "top1": 58.81999999999999,
+      "mass_0.01": 0.6914,
+      "mass_0.02": 0.885
+     },
+     {
+      "template": "a pixelated photo of a {}.",
+      "top1": 57.86,
+      "mass_0.01": 0.6884,
+      "mass_0.02": 0.8796
+     },
+     {
+      "template": "an image of a {}.",
+      "top1": 59.040000000000006,
+      "mass_0.01": 0.6858,
+      "mass_0.02": 0.8758
+     },
+     {
+      "template": "{}",
+      "top1": 55.67999999999999,
+      "mass_0.01": 0.72,
+      "mass_0.02": 0.899
+     }
+    ],
+    "oracle_top1": 60.24,
+    "spearman_mass_top1": -0.709090909090909,
+    "rules": {
+     "oracle": {
+      "index": 2,
+      "top1": 60.24,
+      "regret": 0.0
+     },
+     "default_template": {
+      "index": 0,
+      "top1": 59.199999999999996,
+      "regret": 1.0400000000000063
+     },
+     "min_mass_0.01": {
+      "index": 5,
+      "top1": 58.5,
+      "regret": 1.740000000000002
+     },
+     "min_mass_0.02": {
+      "index": 0,
+      "top1": 59.199999999999996,
+      "regret": 1.0400000000000063
+     }
+    }
+   },
+   "clip16": {
+    "rows": [
+     {
+      "template": "a photo of a {}.",
+      "top1": 63.4,
+      "mass_0.01": 0.6304,
+      "mass_0.02": 0.841
+     },
+     {
+      "template": "a photo of the {}.",
+      "top1": 63.12,
+      "mass_0.01": 0.646,
+      "mass_0.02": 0.8526
+     },
+     {
+      "template": "a bad photo of a {}.",
+      "top1": 64.92,
+      "mass_0.01": 0.62,
+      "mass_0.02": 0.8358
+     },
+     {
+      "template": "a cropped photo of a {}.",
+      "top1": 64.25999999999999,
+      "mass_0.01": 0.6296,
+      "mass_0.02": 0.837
+     },
+     {
+      "template": "a close-up photo of a {}.",
+      "top1": 62.56,
+      "mass_0.01": 0.6378,
+      "mass_0.02": 0.8488
+     },
+     {
+      "template": "a bright photo of a {}.",
+      "top1": 63.12,
+      "mass_0.01": 0.6322,
+      "mass_0.02": 0.8328
+     },
+     {
+      "template": "a photo of one {}.",
+      "top1": 63.839999999999996,
+      "mass_0.01": 0.6376,
+      "mass_0.02": 0.8462
+     },
+     {
+      "template": "a pixelated photo of a {}.",
+      "top1": 62.82,
+      "mass_0.01": 0.654,
+      "mass_0.02": 0.8694
+     },
+     {
+      "template": "an image of a {}.",
+      "top1": 64.38000000000001,
+      "mass_0.01": 0.6152,
+      "mass_0.02": 0.8332
+     },
+     {
+      "template": "{}",
+      "top1": 60.040000000000006,
+      "mass_0.01": 0.6618,
+      "mass_0.02": 0.8702
+     }
+    ],
+    "oracle_top1": 64.92,
+    "spearman_mass_top1": -0.8997002046464955,
+    "rules": {
+     "oracle": {
+      "index": 2,
+      "top1": 64.92,
+      "regret": 0.0
+     },
+     "default_template": {
+      "index": 0,
+      "top1": 63.4,
+      "regret": 1.5200000000000031
+     },
+     "min_mass_0.01": {
+      "index": 8,
+      "top1": 64.38000000000001,
+      "regret": 0.539999999999992
+     },
+     "min_mass_0.02": {
+      "index": 5,
+      "top1": 63.12,
+      "regret": 1.8000000000000043
+     }
+    }
+   },
+   "openclip": {
+    "rows": [
+     {
+      "template": "a photo of a {}.",
+      "top1": 61.980000000000004,
+      "mass_0.01": 0.5706,
+      "mass_0.02": 0.7504
+     },
+     {
+      "template": "a photo of the {}.",
+      "top1": 61.160000000000004,
+      "mass_0.01": 0.578,
+      "mass_0.02": 0.763
+     },
+     {
+      "template": "a bad photo of a {}.",
+      "top1": 61.0,
+      "mass_0.01": 0.5812,
+      "mass_0.02": 0.7596
+     },
+     {
+      "template": "a cropped photo of a {}.",
+      "top1": 60.56,
+      "mass_0.01": 0.5896,
+      "mass_0.02": 0.7634
+     },
+     {
+      "template": "a close-up photo of a {}.",
+      "top1": 61.22,
+      "mass_0.01": 0.5852,
+      "mass_0.02": 0.7604
+     },
+     {
+      "template": "a bright photo of a {}.",
+      "top1": 61.660000000000004,
+      "mass_0.01": 0.5734,
+      "mass_0.02": 0.7538
+     },
+     {
+      "template": "a photo of one {}.",
+      "top1": 61.260000000000005,
+      "mass_0.01": 0.5774,
+      "mass_0.02": 0.7514
+     },
+     {
+      "template": "a pixelated photo of a {}.",
+      "top1": 59.540000000000006,
+      "mass_0.01": 0.603,
+      "mass_0.02": 0.7842
+     },
+     {
+      "template": "an image of a {}.",
+      "top1": 61.58,
+      "mass_0.01": 0.5792,
+      "mass_0.02": 0.7614
+     },
+     {
+      "template": "{}",
+      "top1": 60.0,
+      "mass_0.01": 0.5812,
+      "mass_0.02": 0.7536
+     }
+    ],
+    "oracle_top1": 61.980000000000004,
+    "spearman_mass_top1": -0.8449887057152897,
+    "rules": {
+     "oracle": {
+      "index": 0,
+      "top1": 61.980000000000004,
+      "regret": 0.0
+     },
+     "default_template": {
+      "index": 0,
+      "top1": 61.980000000000004,
+      "regret": 0.0
+     },
+     "min_mass_0.01": {
+      "index": 0,
+      "top1": 61.980000000000004,
+      "regret": 0.0
+     },
+     "min_mass_0.02": {
+      "index": 0,
+      "top1": 61.980000000000004,
+      "regret": 0.0
+     }
+    }
+   },
+   "siglip": {
+    "rows": [
+     {
+      "template": "a photo of a {}.",
+      "top1": 73.34,
+      "mass_0.01": 0.502,
+      "mass_0.02": 0.7502
+     },
+     {
+      "template": "a photo of the {}.",
+      "top1": 71.67999999999999,
+      "mass_0.01": 0.5376,
+      "mass_0.02": 0.7854
+     },
+     {
+      "template": "a bad photo of a {}.",
+      "top1": 73.88,
+      "mass_0.01": 0.5104,
+      "mass_0.02": 0.764
+     },
+     {
+      "template": "a cropped photo of a {}.",
+      "top1": 72.8,
+      "mass_0.01": 0.5166,
+      "mass_0.02": 0.7574
+     },
+     {
+      "template": "a close-up photo of a {}.",
+      "top1": 71.86,
+      "mass_0.01": 0.5294,
+      "mass_0.02": 0.7738
+     },
+     {
+      "template": "a bright photo of a {}.",
+      "top1": 73.02,
+      "mass_0.01": 0.5154,
+      "mass_0.02": 0.7586
+     },
+     {
+      "template": "a photo of one {}.",
+      "top1": 71.61999999999999,
+      "mass_0.01": 0.538,
+      "mass_0.02": 0.7722
+     },
+     {
+      "template": "a pixelated photo of a {}.",
+      "top1": 72.18,
+      "mass_0.01": 0.523,
+      "mass_0.02": 0.7704
+     },
+     {
+      "template": "an image of a {}.",
+      "top1": 72.36,
+      "mass_0.01": 0.5148,
+      "mass_0.02": 0.7564
+     },
+     {
+      "template": "{}",
+      "top1": 71.96000000000001,
+      "mass_0.01": 0.5186,
+      "mass_0.02": 0.7714
+     }
+    ],
+    "oracle_top1": 73.88,
+    "spearman_mass_top1": -0.9393939393939393,
+    "rules": {
+     "oracle": {
+      "index": 2,
+      "top1": 73.88,
+      "regret": 0.0
+     },
+     "default_template": {
+      "index": 0,
+      "top1": 73.34,
+      "regret": 0.539999999999992
+     },
+     "min_mass_0.01": {
+      "index": 0,
+      "top1": 73.34,
+      "regret": 0.539999999999992
+     },
+     "min_mass_0.02": {
+      "index": 0,
+      "top1": 73.34,
+      "regret": 0.539999999999992
+     }
+    }
+   },
+   "vitl": {
+    "rows": [
+     {
+      "template": "a photo of a {}.",
+      "top1": 70.92,
+      "mass_0.01": 0.5112,
+      "mass_0.02": 0.7276
+     },
+     {
+      "template": "a photo of the {}.",
+      "top1": 70.92,
+      "mass_0.01": 0.5102,
+      "mass_0.02": 0.7312
+     },
+     {
+      "template": "a bad photo of a {}.",
+      "top1": 71.89999999999999,
+      "mass_0.01": 0.512,
+      "mass_0.02": 0.7226
+     },
+     {
+      "template": "a cropped photo of a {}.",
+      "top1": 70.84,
+      "mass_0.01": 0.506,
+      "mass_0.02": 0.7186
+     },
+     {
+      "template": "a close-up photo of a {}.",
+      "top1": 69.84,
+      "mass_0.01": 0.525,
+      "mass_0.02": 0.7438
+     },
+     {
+      "template": "a bright photo of a {}.",
+      "top1": 70.26,
+      "mass_0.01": 0.511,
+      "mass_0.02": 0.718
+     },
+     {
+      "template": "a photo of one {}.",
+      "top1": 70.52000000000001,
+      "mass_0.01": 0.511,
+      "mass_0.02": 0.725
+     },
+     {
+      "template": "a pixelated photo of a {}.",
+      "top1": 69.78,
+      "mass_0.01": 0.5246,
+      "mass_0.02": 0.7434
+     },
+     {
+      "template": "an image of a {}.",
+      "top1": 71.58,
+      "mass_0.01": 0.5074,
+      "mass_0.02": 0.7262
+     },
+     {
+      "template": "{}",
+      "top1": 67.52,
+      "mass_0.01": 0.5438,
+      "mass_0.02": 0.7714
+     }
+    ],
+    "oracle_top1": 71.89999999999999,
+    "spearman_mass_top1": -0.5792682926829269,
+    "rules": {
+     "oracle": {
+      "index": 2,
+      "top1": 71.89999999999999,
+      "regret": 0.0
+     },
+     "default_template": {
+      "index": 0,
+      "top1": 70.92,
+      "regret": 0.9799999999999898
+     },
+     "min_mass_0.01": {
+      "index": 3,
+      "top1": 70.84,
+      "regret": 1.059999999999988
+     },
+     "min_mass_0.02": {
+      "index": 5,
+      "top1": 70.26,
+      "regret": 1.6399999999999864
+     }
+    }
+   }
+  }
+ }
+}

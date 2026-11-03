@@ -1,0 +1,46 @@
+{
+ "ranks": [
+  "r16",
+  "r32",
+  "r4",
+  "r64",
+  "r8"
+ ],
+ "ordering_per_rank": {
+  "r16": [
+   "llm_mid",
+   "llm_deep",
+   "llm_shallow",
+   "vis"
+  ],
+  "r32": [
+   "llm_mid",
+   "llm_deep",
+   "llm_shallow",
+   "vis"
+  ],
+  "r4": [
+   "llm_mid",
+   "llm_deep",
+   "llm_shallow",
+   "vis"
+  ],
+  "r64": [
+   "llm_mid",
+   "llm_deep",
+   "llm_shallow",
+   "vis"
+  ],
+  "r8": [
+   "llm_mid",
+   "llm_deep",
+   "llm_shallow",
+   "vis"
+  ]
+ },
+ "kendall_W": 1.0,
+ "chi2": 15.0,
+ "p": 0.0018166489665722985,
+ "mean_pairwise_spearman": 1.0,
+ "note": "kendall_W/chi2 recomputed 2026-09-09: the stored values (1.512 / 22.68) were invalid (W must be <= 1); with five identical rankings W = 1.0 and chi2 = m(n-1)W = 15."
+}

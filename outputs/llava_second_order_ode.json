@@ -1,0 +1,253 @@
+{
+ "trajectories": {
+  "4": {
+   "epochs": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "E": [
+    3921.0,
+    3880.5,
+    3805.0,
+    3848.5,
+    4071.0,
+    4387.5,
+    4767.0,
+    5553.0,
+    6925.0
+   ],
+   "n_nan_tail": 2,
+   "note": ""
+  },
+  "5": {
+   "epochs": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "E": [
+    3921.0,
+    3844.5,
+    3777.0,
+    3907.0,
+    4248.5,
+    4508.0,
+    5170.0,
+    6369.0
+   ],
+   "n_nan_tail": 3,
+   "note": "10-epoch protocol: E diverges beyond epoch 7 and training collapses (NaN loss) at epochs 9-10; the first 7 epochs trace the alignment-rebound/damage mechanism"
+  },
+  "6": {
+   "epochs": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "E": [
+    3921.0,
+    3831.5,
+    3815.5,
+    4025.0,
+    4412.5,
+    5020.0,
+    6202.0
+   ],
+   "n_nan_tail": 4,
+   "note": "10-epoch protocol, terminated after epoch 7 (E returned NaN at epoch 7; training loss normal through epoch 7); collapse at rank 6 occurs earlier than at rank 5 (epoch 9). 3-epoch reference values preserved in verify_r6_s42.json."
+  }
+ },
+ "fits": {
+  "r4": {
+   "n_points": 9,
+   "E": [
+    3921.0,
+    3880.5,
+    3805.0,
+    3848.5,
+    4071.0,
+    4387.5,
+    4767.0,
+    5553.0,
+    6925.0
+   ],
+   "nan_tail": 2,
+   "M0_first_order": {
+    "params": [
+     1000000.0,
+     3273.48335,
+     0.00033
+    ],
+    "r2": 0.7167,
+    "rmse": 527.4,
+    "aicc": 123.62
+   },
+   "M1_first_order_drift": {
+    "params": [
+     -100000.0,
+     4088.14493,
+     0.04408,
+     4186.25512
+    ],
+    "r2": 0.9718,
+    "rmse": 166.49,
+    "aicc": 110.07
+   },
+   "M2_damped_second_order": {
+    "params": [
+     4374.3128,
+     -74036.85198,
+     -0.28486,
+     0.00124,
+     1.56437
+    ],
+    "r2": 0.998,
+    "rmse": 44.72,
+    "aicc": 98.41
+   },
+   "damping_ratio_zeta": -1.0,
+   "M0_max_abs_residual_after_min": 1023.63,
+   "model_selection": "M2"
+  },
+  "r5": {
+   "n_points": 8,
+   "E": [
+    3921.0,
+    3844.5,
+    3777.0,
+    3907.0,
+    4248.5,
+    4508.0,
+    5170.0,
+    6369.0
+   ],
+   "nan_tail": 3,
+   "M0_first_order": {
+    "params": [
+     999999.99957,
+     3372.43438,
+     0.00031
+    ],
+    "r2": 0.7301,
+    "rmse": 436.1,
+    "aicc": 109.25
+   },
+   "M1_first_order_drift": {
+    "params": [
+     -99999.99998,
+     4022.07045,
+     0.04515,
+     4336.01725
+    ],
+    "r2": 0.9778,
+    "rmse": 125.04,
+    "aicc": 98.59
+   },
+   "M2_damped_second_order": {
+    "params": [
+     4686.43322,
+     -47225.44071,
+     -0.26545,
+     6.28,
+     -1.55399
+    ],
+    "r2": 0.9958,
+    "rmse": 54.31,
+    "aicc": 103.91
+   },
+   "damping_ratio_zeta": -0.0422,
+   "M0_max_abs_residual_after_min": 836.23,
+   "model_selection": "M1"
+  },
+  "r6": {
+   "n_points": 7,
+   "E": [
+    3921.0,
+    3831.5,
+    3815.5,
+    4025.0,
+    4412.5,
+    5020.0,
+    6202.0
+   ],
+   "nan_tail": 4,
+   "M0_first_order": {
+    "params": [
+     999999.99923,
+     3409.31186,
+     0.00035
+    ],
+    "r2": 0.7414,
+    "rmse": 414.01,
+    "aicc": 98.36
+   },
+   "M1_first_order_drift": {
+    "params": [
+     -100000.0,
+     4001.1436,
+     0.05092,
+     4910.2476
+    ],
+    "r2": 0.9869,
+    "rmse": 93.06,
+    "aicc": 91.47
+   },
+   "M2_damped_second_order": {
+    "params": [
+     5996.46441,
+     -111707.70068,
+     -0.22402,
+     6.28,
+     -1.55214
+    ],
+    "r2": 0.999,
+    "rmse": 25.63,
+    "aicc": 115.41
+   },
+   "damping_ratio_zeta": -0.0356,
+   "M0_max_abs_residual_after_min": 702.04,
+   "model_selection": "M1"
+  }
+ },
+ "summary": {
+  "ranks": [
+   "r4",
+   "r5",
+   "r6"
+  ],
+  "M0_mean_r2": 0.7294,
+  "M1_mean_r2": 0.9788,
+  "M2_mean_r2": 0.9976,
+  "selected_model_per_rank": {
+   "r4": "M2",
+   "r5": "M1",
+   "r6": "M1"
+  },
+  "zeta_per_rank": {
+   "r4": -1.0,
+   "r5": -0.0422,
+   "r6": -0.0356
+  },
+  "M0_residual_after_min_per_rank": {
+   "r4": 1023.63,
+   "r5": 836.23,
+   "r6": 702.04
+  }
+ }
+}

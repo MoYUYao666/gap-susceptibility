@@ -1,0 +1,54 @@
+{
+ "seed42_plus_new_seeds_all": {
+  "label": "seed42_plus_new_seeds_all",
+  "n": 9
+ },
+ "seed42_only": {
+  "label": "seed42_only",
+  "n": 3
+ },
+ "seed42_and_43": {
+  "label": "seed42_and_43",
+  "n": 6
+ },
+ "seed42_and_44": {
+  "label": "seed42_and_44",
+  "n": 6
+ },
+ "seeds43_44_only": {
+  "label": "seeds43_44_only",
+  "n": 6
+ },
+ "with_flickr30k_control_seed42": {
+  "label": "with_flickr30k_control_seed42",
+  "n": 4
+ },
+ "with_flickr30k_control_all_seeds": {
+  "label": "with_flickr30k_control_all_seeds",
+  "n": 10
+ },
+ "with_archived_flickr30k_all": {
+  "label": "with_archived_flickr30k_all",
+  "n": 13
+ },
+ "controlled_trainer_plus_archived": {
+  "label": "controlled_trainer_plus_archived",
+  "n": 7
+ },
+ "margin_pearson_top1": 0.9672,
+ "frac_correct_pearson_top1": 0.9999,
+ "within_from_archive": {
+  "coco": {
+   "spearman_tau_vs_top1_within_dataset": -0.5,
+   "spearman_CG_vs_top1_within_dataset": 1.0
+  },
+  "food101": {
+   "spearman_tau_vs_top1_within_dataset": -0.5,
+   "spearman_CG_vs_top1_within_dataset": 0.5
+  },
+  "dtd": {
+   "spearman_tau_vs_top1_within_dataset": 1.0,
+   "spearman_CG_vs_top1_within_dataset": 0.5
+  }
+ }
+}

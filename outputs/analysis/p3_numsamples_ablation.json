@@ -1,0 +1,47 @@
+{
+ "protocol": "rank 6, seed 42, three epochs; only --num-samples varies (16 train / 4 eval by design)",
+ "runs": {
+  "n12": {
+   "num_samples": 12,
+   "rank": 6,
+   "seed": 42,
+   "E": [
+    3921.0,
+    3838.5,
+    3771.5,
+    3961.5
+   ],
+   "ok": true,
+   "delta_E": 40.5,
+   "elapsed_min": 11.4
+  },
+  "n32": {
+   "num_samples": 32,
+   "rank": 6,
+   "seed": 42,
+   "E": [
+    3921.0,
+    3828.0,
+    3758.0,
+    3965.5
+   ],
+   "ok": true,
+   "delta_E": 44.5,
+   "elapsed_min": 37.5
+  },
+  "n64": {
+   "num_samples": 64,
+   "rank": 6,
+   "seed": 42,
+   "E": [
+    3921.0,
+    3820.0,
+    3789.5,
+    3951.0
+   ],
+   "ok": true,
+   "delta_E": 30.0,
+   "elapsed_min": 79.3
+  }
+ }
+}

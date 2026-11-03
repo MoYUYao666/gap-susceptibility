@@ -1,0 +1,2658 @@
+{
+ "meta": {
+  "script": "tools/_p291_peft_lr_sweep.py",
+  "script_sha1": "0d3353cabf82c8ed519e592056290c12c0ac7a7a",
+  "purpose": "PR R1.6 last open item -- LoRA / Adapter learning-rate sweep under the same protocol as the full-FT sweep, to test the strictest fairness question (each method at its own optimum)",
+  "status": "complete",
+  "model": "openai/clip-vit-base-patch32",
+  "peft_proof": "every non-PEFT parameter asserted requires_grad==False; n_trainable asserted equal to the architecture-derived literal and strictly smaller than n_total (runs[*].peft_proof)",
+  "protocol": {
+   "train": "flickr30k captions (0, 2000), shuffle=True, num_workers=0",
+   "val": "flickr30k captions (2000, 3000)",
+   "epochs": 10,
+   "batch": 64,
+   "amp": "fp16",
+   "optimizer": "AdamW",
+   "weight_decay": 0.01,
+   "scheduler": "cosine per step",
+   "grad_clip": 1.0,
+   "zero_shot_eval_images": 14288,
+   "identical_to": "tools/_p263_fullft_lr_sweep.py (task-5)",
+   "evaluation_reused_from": "tools/_p263_fullft_lr_sweep.py (zeroshot_imagenet1k / gap_and_retrieval)"
+  },
+  "grid": {
+   "configs": [
+    "lora_both",
+    "lora_text",
+    "adapter_both"
+   ],
+   "lrs": [
+    1e-05,
+    3e-05,
+    0.0001,
+    0.0003
+   ],
+   "seeds": [
+    42,
+    123
+   ]
+  },
+  "expected_trainable": {
+   "lora_both": {
+    "n": 491520,
+    "note": "q,v; 12 vision layers + 12 text layers"
+   },
+   "lora_text": {
+    "n": 196608,
+    "note": "q,v; 12 text layers only"
+   },
+   "adapter_both": {
+    "n": 3965952,
+    "note": "bottleneck 64 on self_attn+mlp, both towers"
+   }
+  },
+  "configs_detail": {
+   "lora_both": "LoRA r=8 alpha=16 on q_proj,v_proj of both towers",
+   "lora_text": "LoRA r=8 alpha=16 on q_proj,v_proj of the text tower only",
+   "adapter_both": "bottleneck Adapter (d=64, GELU) on self_attn and mlp of both towers"
+  },
+  "inputs": {
+   "imagenet_parquet_shards": 14,
+   "frozen_baseline_source": "pr_fullft_lr_sweep_full.json :: frozen (identical evaluation protocol)",
+   "fullft_sweep": "outputs\\analysis\\pr_fullft_lr_sweep_full.json",
+   "fullft_sweep_sha1": "34b03720e8763d5a5046f3cffc2128f6a57e6cca"
+  },
+  "run_order": "sequential, one GPU process at a time",
+  "timestamp_utc": "2026-10-12T05:36:40.359460+00:00",
+  "elapsed_s": 4213.7
+ },
+ "frozen": {
+  "n_total_params": 151277313,
+  "n_trainable_params": 151277313,
+  "zero_shot": {
+   "top1_pct": 59.910414333706605,
+   "n_images": 14288,
+   "template": "a photo of a {}",
+   "n_available_images": 50000,
+   "subset_rule": "first 14288 images in sorted-shard iteration order = the archived protocol's n_images",
+   "class_names": "parquet features['label'].names as-is (synset style, underscores -> spaces)"
+  },
+  "gap_retrieval": {
+   "CG": 0.8156740665435791,
+   "DG": 0.8635778492678873,
+   "R@1_i2t": 0.18200001120567322,
+   "R@1_t2i": 0.1290000081062317,
+   "R@1_mean": 0.15550000965595245,
+   "n_pairs": 1000
+  },
+  "_source": "pr_fullft_lr_sweep_full.json :: frozen (identical evaluation protocol)"
+ },
+ "runs": [
+  {
+   "config": "lora_both",
+   "lr": 1e-05,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 491520,
+    "n_trainable_from_modules": 491520,
+    "n_trainable_expected_literal": 491520,
+    "expected_note": "q,v; 12 vision layers + 12 text layers",
+    "trainable_fraction": 0.003249,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 96,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn.v_proj",
+     "vision.encoder.layers.0.self_attn.q_proj",
+     "vision.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815613,
+    "DG": 0.863525,
+    "R@1_i2t": 0.182,
+    "R@1_t2i": 0.132,
+    "R@1_mean": 0.157,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.4771805174889103,
+     0.3955713491286001,
+     0.36974099903337415,
+     0.31502160862568884,
+     0.3341082147052211,
+     0.293836330694537,
+     0.3050248271995975,
+     0.2942163982698994,
+     0.2758459326240324,
+     0.28560838007157846
+    ],
+    "epoch_seconds": [
+     24.1,
+     25.6,
+     24.2,
+     23.5,
+     22.8,
+     22.9,
+     23.6,
+     23.4,
+     23.0,
+     23.5
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 60.72,
+    "zero_shot_n_images": 14288,
+    "CG": 0.810238,
+    "DG": 0.860633,
+    "R@1_i2t": 0.188,
+    "R@1_t2i": 0.167,
+    "R@1_mean": 0.1775,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.2856,
+   "peak_allocated_mb": 3061.3,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_both_lr1e-05_seed42\\peft_state_last.pt",
+   "weights_sha1": "3176f4b7ac9eb90f2a9284fcf21027dd7bc083e9",
+   "weights_bytes": 1999027,
+   "error": null
+  },
+  {
+   "config": "lora_both",
+   "lr": 3e-05,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 491520,
+    "n_trainable_from_modules": 491520,
+    "n_trainable_expected_literal": 491520,
+    "expected_note": "q,v; 12 vision layers + 12 text layers",
+    "trainable_fraction": 0.003249,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 96,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn.v_proj",
+     "vision.encoder.layers.0.self_attn.q_proj",
+     "vision.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815613,
+    "DG": 0.863525,
+    "R@1_i2t": 0.182,
+    "R@1_t2i": 0.132,
+    "R@1_mean": 0.157,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.4452290650336973,
+     0.3084000546124674,
+     0.26485908800555813,
+     0.21322399522027663,
+     0.22904333592422546,
+     0.19975284607179702,
+     0.20371664844212994,
+     0.18972639763547527,
+     0.17789516453781434,
+     0.1901001670668202
+    ],
+    "epoch_seconds": [
+     23.5,
+     23.6,
+     23.7,
+     24.0,
+     26.5,
+     26.1,
+     26.7,
+     25.4,
+     24.2,
+     22.9
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 60.42,
+    "zero_shot_n_images": 14288,
+    "CG": 0.820078,
+    "DG": 0.868561,
+    "R@1_i2t": 0.186,
+    "R@1_t2i": 0.174,
+    "R@1_mean": 0.18,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1901,
+   "peak_allocated_mb": 3045.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_both_lr3e-05_seed42\\peft_state_last.pt",
+   "weights_sha1": "45c8fc64f42871558f93068b39057f0c7efb2f61",
+   "weights_bytes": 1999027,
+   "error": null
+  },
+  {
+   "config": "lora_both",
+   "lr": 0.0001,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 491520,
+    "n_trainable_from_modules": 491520,
+    "n_trainable_expected_literal": 491520,
+    "expected_note": "q,v; 12 vision layers + 12 text layers",
+    "trainable_fraction": 0.003249,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 96,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn.v_proj",
+     "vision.encoder.layers.0.self_attn.q_proj",
+     "vision.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815613,
+    "DG": 0.863525,
+    "R@1_i2t": 0.182,
+    "R@1_t2i": 0.132,
+    "R@1_mean": 0.157,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.4053987610724665,
+     0.22268023197689363,
+     0.18418560008848867,
+     0.15513525879190815,
+     0.17549466912544542,
+     0.14766471015830193,
+     0.15283732512785542,
+     0.13682150215871872,
+     0.12971245978147752,
+     0.14093440086130174
+    ],
+    "epoch_seconds": [
+     22.8,
+     22.7,
+     22.5,
+     22.4,
+     22.4,
+     22.2,
+     22.3,
+     22.1,
+     22.2,
+     22.3
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 57.41,
+    "zero_shot_n_images": 14288,
+    "CG": 0.852239,
+    "DG": 0.89729,
+    "R@1_i2t": 0.184,
+    "R@1_t2i": 0.172,
+    "R@1_mean": 0.178,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1409,
+   "peak_allocated_mb": 3045.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_both_lr0.0001_seed42\\peft_state_last.pt",
+   "weights_sha1": "ac331106dee81a19183cdac76102ef22fd3d0e5c",
+   "weights_bytes": 1999027,
+   "error": null
+  },
+  {
+   "config": "lora_both",
+   "lr": 0.0003,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 491520,
+    "n_trainable_from_modules": 491520,
+    "n_trainable_expected_literal": 491520,
+    "expected_note": "q,v; 12 vision layers + 12 text layers",
+    "trainable_fraction": 0.003249,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 96,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn.v_proj",
+     "vision.encoder.layers.0.self_attn.q_proj",
+     "vision.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815613,
+    "DG": 0.863525,
+    "R@1_i2t": 0.182,
+    "R@1_t2i": 0.132,
+    "R@1_mean": 0.157,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.4082185414529616,
+     0.21067176783277142,
+     0.19322687675876002,
+     0.15729304354998372,
+     0.18554949484044506,
+     0.14197671822001856,
+     0.14861702979091676,
+     0.13156041875481606,
+     0.12561134441244987,
+     0.13747293598228885
+    ],
+    "epoch_seconds": [
+     24.7,
+     24.6,
+     24.0,
+     23.7,
+     23.8,
+     23.6,
+     23.9,
+     24.7,
+     25.6,
+     25.6
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 47.95,
+    "zero_shot_n_images": 14288,
+    "CG": 0.937424,
+    "DG": 0.959227,
+    "R@1_i2t": 0.17,
+    "R@1_t2i": 0.153,
+    "R@1_mean": 0.1615,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1375,
+   "peak_allocated_mb": 3045.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_both_lr0.0003_seed42\\peft_state_last.pt",
+   "weights_sha1": "abab990873c2408e03c9c954691045639c459328",
+   "weights_bytes": 1999027,
+   "error": null
+  },
+  {
+   "config": "lora_text",
+   "lr": 1e-05,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_text",
+    "n_total_params": 151277313,
+    "n_trainable_params": 196608,
+    "n_trainable_from_modules": 196608,
+    "n_trainable_expected_literal": 196608,
+    "expected_note": "q,v; 12 text layers only",
+    "trainable_fraction": 0.0013,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 48,
+    "peft_module_names_sample": [
+     "text.encoder.layers.0.self_attn.v_proj",
+     "text.encoder.layers.0.self_attn.q_proj",
+     "text.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 24
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815682,
+    "DG": 0.863581,
+    "R@1_i2t": 0.177,
+    "R@1_t2i": 0.154,
+    "R@1_mean": 0.1655,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.49588715164892133,
+     0.4686194533301938,
+     0.4316116273403168,
+     0.4169324626845698,
+     0.40006518460089163,
+     0.39800804565029757,
+     0.36838824470197,
+     0.3657594491397181,
+     0.37071409004349865,
+     0.38809946804277357
+    ],
+    "epoch_seconds": [
+     22.6,
+     22.2,
+     21.9,
+     22.1,
+     21.8,
+     22.1,
+     22.1,
+     21.8,
+     22.2,
+     21.9
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 59.95,
+    "zero_shot_n_images": 14288,
+    "CG": 0.810701,
+    "DG": 0.86035,
+    "R@1_i2t": 0.182,
+    "R@1_t2i": 0.155,
+    "R@1_mean": 0.1685,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.3881,
+   "peak_allocated_mb": 1877.1,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_text_lr1e-05_seed42\\peft_state_last.pt",
+   "weights_sha1": "7a8a430a8817de3c6227cda3ff124339e7a2ef70",
+   "weights_bytes": 803203,
+   "error": null
+  },
+  {
+   "config": "lora_text",
+   "lr": 3e-05,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_text",
+    "n_total_params": 151277313,
+    "n_trainable_params": 196608,
+    "n_trainable_from_modules": 196608,
+    "n_trainable_expected_literal": 196608,
+    "expected_note": "q,v; 12 text layers only",
+    "trainable_fraction": 0.0013,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 48,
+    "peft_module_names_sample": [
+     "text.encoder.layers.0.self_attn.v_proj",
+     "text.encoder.layers.0.self_attn.q_proj",
+     "text.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 24
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815682,
+    "DG": 0.863581,
+    "R@1_i2t": 0.177,
+    "R@1_t2i": 0.154,
+    "R@1_mean": 0.1655,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.4777658052982823,
+     0.4111089744875508,
+     0.35706645250320435,
+     0.3411455822567786,
+     0.3126524571449526,
+     0.3082535105847543,
+     0.27367997409835937,
+     0.27431786468913477,
+     0.2758663599529574,
+     0.28687016137184634
+    ],
+    "epoch_seconds": [
+     22.2,
+     21.6,
+     21.6,
+     21.6,
+     21.8,
+     21.2,
+     21.8,
+     21.3,
+     21.4,
+     21.1
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 59.66,
+    "zero_shot_n_images": 14288,
+    "CG": 0.818194,
+    "DG": 0.866204,
+    "R@1_i2t": 0.173,
+    "R@1_t2i": 0.167,
+    "R@1_mean": 0.17,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.2869,
+   "peak_allocated_mb": 1877.1,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_text_lr3e-05_seed42\\peft_state_last.pt",
+   "weights_sha1": "a0b548e20c9f0cad2c728b3cca5ffe1ff8910f2c",
+   "weights_bytes": 803203,
+   "error": null
+  },
+  {
+   "config": "lora_text",
+   "lr": 0.0001,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_text",
+    "n_total_params": 151277313,
+    "n_trainable_params": 196608,
+    "n_trainable_from_modules": 196608,
+    "n_trainable_expected_literal": 196608,
+    "expected_note": "q,v; 12 text layers only",
+    "trainable_fraction": 0.0013,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 48,
+    "peft_module_names_sample": [
+     "text.encoder.layers.0.self_attn.v_proj",
+     "text.encoder.layers.0.self_attn.q_proj",
+     "text.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 24
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815682,
+    "DG": 0.863581,
+    "R@1_i2t": 0.177,
+    "R@1_t2i": 0.154,
+    "R@1_mean": 0.1655,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.44325402571308997,
+     0.323131128184257,
+     0.25787014802617414,
+     0.23834994267071447,
+     0.20998261424322281,
+     0.1949977246263335,
+     0.16432156221520516,
+     0.16495960938834375,
+     0.16846585802493558,
+     0.16762387848669483
+    ],
+    "epoch_seconds": [
+     22.0,
+     21.9,
+     22.3,
+     23.1,
+     23.9,
+     24.9,
+     28.4,
+     31.4,
+     39.6,
+     41.9
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 57.1,
+    "zero_shot_n_images": 14288,
+    "CG": 0.790903,
+    "DG": 0.849917,
+    "R@1_i2t": 0.176,
+    "R@1_t2i": 0.16,
+    "R@1_mean": 0.168,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1676,
+   "peak_allocated_mb": 1877.1,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_text_lr0.0001_seed42\\peft_state_last.pt",
+   "weights_sha1": "a51069956c1006bb25ea52c19a949efd3e3c141f",
+   "weights_bytes": 803203,
+   "error": null
+  },
+  {
+   "config": "lora_text",
+   "lr": 0.0003,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_text",
+    "n_total_params": 151277313,
+    "n_trainable_params": 196608,
+    "n_trainable_from_modules": 196608,
+    "n_trainable_expected_literal": 196608,
+    "expected_note": "q,v; 12 text layers only",
+    "trainable_fraction": 0.0013,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 48,
+    "peft_module_names_sample": [
+     "text.encoder.layers.0.self_attn.v_proj",
+     "text.encoder.layers.0.self_attn.q_proj",
+     "text.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 24
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815682,
+    "DG": 0.863581,
+    "R@1_i2t": 0.177,
+    "R@1_t2i": 0.154,
+    "R@1_mean": 0.1655,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.4143075135446364,
+     0.2669470014591371,
+     0.19762437069608318,
+     0.1808780268315346,
+     0.16215307890407502,
+     0.14611144988767563,
+     0.12166518141185084,
+     0.125461857765913,
+     0.13087322559928702,
+     0.11599074724701143
+    ],
+    "epoch_seconds": [
+     33.4,
+     33.3,
+     26.4,
+     25.9,
+     25.1,
+     24.6,
+     25.2,
+     24.2,
+     23.7,
+     23.3
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 50.72,
+    "zero_shot_n_images": 14288,
+    "CG": 0.768731,
+    "DG": 0.835061,
+    "R@1_i2t": 0.177,
+    "R@1_t2i": 0.157,
+    "R@1_mean": 0.167,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.116,
+   "peak_allocated_mb": 1877.1,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_text_lr0.0003_seed42\\peft_state_last.pt",
+   "weights_sha1": "b7123c1ed4a1cd8b442407a58f83ff82757b20d9",
+   "weights_bytes": 803203,
+   "error": null
+  },
+  {
+   "config": "adapter_both",
+   "lr": 1e-05,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "adapter_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 3965952,
+    "n_trainable_from_modules": 3965952,
+    "n_trainable_expected_literal": 3965952,
+    "expected_note": "bottleneck 64 on self_attn+mlp, both towers",
+    "trainable_fraction": 0.026216,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.adapter.down.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.down.bias",
+     "text_model.encoder.layers.0.self_attn.adapter.up.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.up.bias"
+    ],
+    "n_trainable_tensors": 192,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn",
+     "vision.encoder.layers.0.mlp",
+     "vision.encoder.layers.1.self_attn"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 1.261692,
+    "DG": 1.264335,
+    "R@1_i2t": 0.001,
+    "R@1_t2i": 0.001,
+    "R@1_mean": 0.001,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     4.2195459181262605,
+     4.1672761978641635,
+     4.151217552923387,
+     4.138677781628024,
+     4.1262536817981355,
+     4.1115835866620465,
+     4.0964862454322075,
+     4.0846139231035785,
+     4.079452022429435,
+     4.0755846577305945
+    ],
+    "epoch_seconds": [
+     23.4,
+     23.1,
+     23.3,
+     23.0,
+     22.8,
+     22.7,
+     23.1,
+     22.8,
+     22.7,
+     22.8
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 0.18,
+    "zero_shot_n_images": 14288,
+    "CG": 1.239488,
+    "DG": 1.24247,
+    "R@1_i2t": 0.003,
+    "R@1_t2i": 0.002,
+    "R@1_mean": 0.0025,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 4.0756,
+   "peak_allocated_mb": 3092.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\adapter_both_lr1e-05_seed42\\peft_state_last.pt",
+   "weights_sha1": "0e044d7e675babecedc38913a54d7c810f5e47d6",
+   "weights_bytes": 15928943,
+   "error": null
+  },
+  {
+   "config": "adapter_both",
+   "lr": 3e-05,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "adapter_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 3965952,
+    "n_trainable_from_modules": 3965952,
+    "n_trainable_expected_literal": 3965952,
+    "expected_note": "bottleneck 64 on self_attn+mlp, both towers",
+    "trainable_fraction": 0.026216,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.adapter.down.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.down.bias",
+     "text_model.encoder.layers.0.self_attn.adapter.up.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.up.bias"
+    ],
+    "n_trainable_tensors": 192,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn",
+     "vision.encoder.layers.0.mlp",
+     "vision.encoder.layers.1.self_attn"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 1.261692,
+    "DG": 1.264335,
+    "R@1_i2t": 0.001,
+    "R@1_t2i": 0.001,
+    "R@1_mean": 0.001,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     4.1841287920551915,
+     4.1303863525390625,
+     4.025596372542843,
+     3.7363088054041707,
+     3.4552870104389806,
+     3.250094444521012,
+     3.08502709481024,
+     3.0079076443949053,
+     2.953964617944533,
+     2.9263069168213875
+    ],
+    "epoch_seconds": [
+     23.1,
+     23.0,
+     22.8,
+     22.9,
+     22.9,
+     22.6,
+     22.4,
+     22.5,
+     22.4,
+     22.5
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 1.26,
+    "zero_shot_n_images": 14288,
+    "CG": 1.137841,
+    "DG": 1.147958,
+    "R@1_i2t": 0.025,
+    "R@1_t2i": 0.017,
+    "R@1_mean": 0.021,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 2.9263,
+   "peak_allocated_mb": 3092.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\adapter_both_lr3e-05_seed42\\peft_state_last.pt",
+   "weights_sha1": "264ef6de102589b7a6562d21242bcd9ad3aace1a",
+   "weights_bytes": 15928943,
+   "error": null
+  },
+  {
+   "config": "adapter_both",
+   "lr": 0.0001,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "adapter_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 3965952,
+    "n_trainable_from_modules": 3965952,
+    "n_trainable_expected_literal": 3965952,
+    "expected_note": "bottleneck 64 on self_attn+mlp, both towers",
+    "trainable_fraction": 0.026216,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.adapter.down.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.down.bias",
+     "text_model.encoder.layers.0.self_attn.adapter.up.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.up.bias"
+    ],
+    "n_trainable_tensors": 192,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn",
+     "vision.encoder.layers.0.mlp",
+     "vision.encoder.layers.1.self_attn"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 1.261692,
+    "DG": 1.264335,
+    "R@1_i2t": 0.001,
+    "R@1_t2i": 0.001,
+    "R@1_mean": 0.001,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     4.1413539763419855,
+     3.640107185609879,
+     2.683503443194974,
+     1.5305454788669464,
+     0.9099641250025842,
+     0.628828356342931,
+     0.5388218121182534,
+     0.49776629286427654,
+     0.4666663706302643,
+     0.4420447176502597
+    ],
+    "epoch_seconds": [
+     22.9,
+     22.5,
+     22.5,
+     22.5,
+     22.3,
+     22.5,
+     22.5,
+     22.5,
+     22.5,
+     22.6
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 16.83,
+    "zero_shot_n_images": 14288,
+    "CG": 0.928403,
+    "DG": 0.955512,
+    "R@1_i2t": 0.137,
+    "R@1_t2i": 0.125,
+    "R@1_mean": 0.131,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.442,
+   "peak_allocated_mb": 3092.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\adapter_both_lr0.0001_seed42\\peft_state_last.pt",
+   "weights_sha1": "2349fa40ab4ae2661dded66441552cbad41713f3",
+   "weights_bytes": 15928943,
+   "error": null
+  },
+  {
+   "config": "adapter_both",
+   "lr": 0.0003,
+   "seed": 42,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "adapter_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 3965952,
+    "n_trainable_from_modules": 3965952,
+    "n_trainable_expected_literal": 3965952,
+    "expected_note": "bottleneck 64 on self_attn+mlp, both towers",
+    "trainable_fraction": 0.026216,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.adapter.down.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.down.bias",
+     "text_model.encoder.layers.0.self_attn.adapter.up.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.up.bias"
+    ],
+    "n_trainable_tensors": 192,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn",
+     "vision.encoder.layers.0.mlp",
+     "vision.encoder.layers.1.self_attn"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 1.261692,
+    "DG": 1.264335,
+    "R@1_i2t": 0.001,
+    "R@1_t2i": 0.001,
+    "R@1_mean": 0.001,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     3.9921877461095012,
+     2.619473930328123,
+     0.9747143753113285,
+     0.49276582752504655,
+     0.35163124242136556,
+     0.25620875002876403,
+     0.23977267862327636,
+     0.2122248918298752,
+     0.21264235627266667,
+     0.18417036341082665
+    ],
+    "epoch_seconds": [
+     23.1,
+     23.0,
+     22.8,
+     22.7,
+     22.8,
+     22.9,
+     22.4,
+     22.7,
+     22.7,
+     22.5
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 22.98,
+    "zero_shot_n_images": 14288,
+    "CG": 0.890294,
+    "DG": 0.92499,
+    "R@1_i2t": 0.156,
+    "R@1_t2i": 0.143,
+    "R@1_mean": 0.1495,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1842,
+   "peak_allocated_mb": 3092.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\adapter_both_lr0.0003_seed42\\peft_state_last.pt",
+   "weights_sha1": "c705eee39752940b5eb56343d74b56733e4e1600",
+   "weights_bytes": 15928943,
+   "error": null
+  },
+  {
+   "config": "lora_both",
+   "lr": 1e-05,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 491520,
+    "n_trainable_from_modules": 491520,
+    "n_trainable_expected_literal": 491520,
+    "expected_note": "q,v; 12 vision layers + 12 text layers",
+    "trainable_fraction": 0.003249,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 96,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn.v_proj",
+     "vision.encoder.layers.0.self_attn.q_proj",
+     "vision.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815591,
+    "DG": 0.8635,
+    "R@1_i2t": 0.178,
+    "R@1_t2i": 0.159,
+    "R@1_mean": 0.1685,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.48014735310308393,
+     0.40273962145851505,
+     0.3867471073904345,
+     0.3452129123672362,
+     0.31659403635609534,
+     0.2968996417137884,
+     0.3093744064531019,
+     0.3052091761942833,
+     0.26303351694537747,
+     0.2735596135739357
+    ],
+    "epoch_seconds": [
+     21.6,
+     21.5,
+     21.5,
+     21.8,
+     21.8,
+     21.8,
+     22.6,
+     22.1,
+     22.0,
+     22.0
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 60.65,
+    "zero_shot_n_images": 14288,
+    "CG": 0.810323,
+    "DG": 0.858626,
+    "R@1_i2t": 0.182,
+    "R@1_t2i": 0.169,
+    "R@1_mean": 0.1755,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.2736,
+   "peak_allocated_mb": 3061.3,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_both_lr1e-05_seed123\\peft_state_last.pt",
+   "weights_sha1": "fcf9e0cfbcd34db738119b26ab2eac096e90a195",
+   "weights_bytes": 1999027,
+   "error": null
+  },
+  {
+   "config": "lora_both",
+   "lr": 3e-05,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 491520,
+    "n_trainable_from_modules": 491520,
+    "n_trainable_expected_literal": 491520,
+    "expected_note": "q,v; 12 vision layers + 12 text layers",
+    "trainable_fraction": 0.003249,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 96,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn.v_proj",
+     "vision.encoder.layers.0.self_attn.q_proj",
+     "vision.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815591,
+    "DG": 0.8635,
+    "R@1_i2t": 0.178,
+    "R@1_t2i": 0.159,
+    "R@1_mean": 0.1685,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.44321899933199727,
+     0.30904029886568746,
+     0.2809512254691893,
+     0.2419699627545572,
+     0.21120305888114438,
+     0.19434067390618787,
+     0.2082998226246526,
+     0.19998495256708515,
+     0.1674971705482852,
+     0.17392811143109876
+    ],
+    "epoch_seconds": [
+     22.8,
+     22.6,
+     22.5,
+     22.4,
+     22.6,
+     22.4,
+     22.4,
+     22.4,
+     22.3,
+     22.3
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 60.62,
+    "zero_shot_n_images": 14288,
+    "CG": 0.816179,
+    "DG": 0.861755,
+    "R@1_i2t": 0.181,
+    "R@1_t2i": 0.181,
+    "R@1_mean": 0.181,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1739,
+   "peak_allocated_mb": 3045.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_both_lr3e-05_seed123\\peft_state_last.pt",
+   "weights_sha1": "e9a0c834e9605985d991b41a1887f2d045ef9d48",
+   "weights_bytes": 1999027,
+   "error": null
+  },
+  {
+   "config": "lora_both",
+   "lr": 0.0001,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 491520,
+    "n_trainable_from_modules": 491520,
+    "n_trainable_expected_literal": 491520,
+    "expected_note": "q,v; 12 vision layers + 12 text layers",
+    "trainable_fraction": 0.003249,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 96,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn.v_proj",
+     "vision.encoder.layers.0.self_attn.q_proj",
+     "vision.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815591,
+    "DG": 0.8635,
+    "R@1_i2t": 0.178,
+    "R@1_t2i": 0.159,
+    "R@1_mean": 0.1685,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.39284076709901133,
+     0.2227300318979448,
+     0.20601831953371724,
+     0.17843788645921216,
+     0.15599091351032257,
+     0.1361151793070378,
+     0.1603802724050418,
+     0.14959001649291284,
+     0.11924147437657079,
+     0.129510568154435
+    ],
+    "epoch_seconds": [
+     25.2,
+     25.0,
+     25.2,
+     25.6,
+     25.2,
+     25.4,
+     25.3,
+     24.9,
+     25.3,
+     25.3
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 57.99,
+    "zero_shot_n_images": 14288,
+    "CG": 0.854228,
+    "DG": 0.889807,
+    "R@1_i2t": 0.178,
+    "R@1_t2i": 0.169,
+    "R@1_mean": 0.1735,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1295,
+   "peak_allocated_mb": 3045.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_both_lr0.0001_seed123\\peft_state_last.pt",
+   "weights_sha1": "f81fb725023c3e253fdbfbf6f8e571db942899ae",
+   "weights_bytes": 1999027,
+   "error": null
+  },
+  {
+   "config": "lora_both",
+   "lr": 0.0003,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 491520,
+    "n_trainable_from_modules": 491520,
+    "n_trainable_expected_literal": 491520,
+    "expected_note": "q,v; 12 vision layers + 12 text layers",
+    "trainable_fraction": 0.003249,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 96,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn.v_proj",
+     "vision.encoder.layers.0.self_attn.q_proj",
+     "vision.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815591,
+    "DG": 0.8635,
+    "R@1_i2t": 0.178,
+    "R@1_t2i": 0.159,
+    "R@1_mean": 0.1685,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.3923177012512761,
+     0.21683250752187544,
+     0.20792643533598992,
+     0.19496451270195744,
+     0.1553419506357562,
+     0.1393471870931887,
+     0.1548764891922474,
+     0.14753685062450747,
+     0.11272557797811684,
+     0.11954578685183678
+    ],
+    "epoch_seconds": [
+     25.4,
+     25.5,
+     25.3,
+     25.4,
+     25.6,
+     25.6,
+     25.4,
+     25.2,
+     25.5,
+     25.6
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 48.08,
+    "zero_shot_n_images": 14288,
+    "CG": 0.932793,
+    "DG": 0.954063,
+    "R@1_i2t": 0.191,
+    "R@1_t2i": 0.18,
+    "R@1_mean": 0.1855,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1195,
+   "peak_allocated_mb": 3045.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_both_lr0.0003_seed123\\peft_state_last.pt",
+   "weights_sha1": "3e72265f3d24a98033c2f2c8ba770345c1273728",
+   "weights_bytes": 1999027,
+   "error": null
+  },
+  {
+   "config": "lora_text",
+   "lr": 1e-05,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_text",
+    "n_total_params": 151277313,
+    "n_trainable_params": 196608,
+    "n_trainable_from_modules": 196608,
+    "n_trainable_expected_literal": 196608,
+    "expected_note": "q,v; 12 text layers only",
+    "trainable_fraction": 0.0013,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 48,
+    "peft_module_names_sample": [
+     "text.encoder.layers.0.self_attn.v_proj",
+     "text.encoder.layers.0.self_attn.q_proj",
+     "text.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 24
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815011,
+    "DG": 0.863088,
+    "R@1_i2t": 0.186,
+    "R@1_t2i": 0.145,
+    "R@1_mean": 0.1655,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.4818250402327507,
+     0.45009096159088996,
+     0.4356718294082149,
+     0.4118500236541994,
+     0.4002200321805093,
+     0.41601089123756657,
+     0.3935610253003336,
+     0.40941395874946346,
+     0.3957559201986559,
+     0.3859937854351536
+    ],
+    "epoch_seconds": [
+     23.6,
+     23.5,
+     23.4,
+     23.3,
+     23.4,
+     23.1,
+     23.4,
+     23.1,
+     23.2,
+     23.0
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 60.18,
+    "zero_shot_n_images": 14288,
+    "CG": 0.805956,
+    "DG": 0.856268,
+    "R@1_i2t": 0.175,
+    "R@1_t2i": 0.153,
+    "R@1_mean": 0.164,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.386,
+   "peak_allocated_mb": 1877.1,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_text_lr1e-05_seed123\\peft_state_last.pt",
+   "weights_sha1": "5f23f7463d4e69a0e7196d1857be6059401c131f",
+   "weights_bytes": 803203,
+   "error": null
+  },
+  {
+   "config": "lora_text",
+   "lr": 3e-05,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_text",
+    "n_total_params": 151277313,
+    "n_trainable_params": 196608,
+    "n_trainable_from_modules": 196608,
+    "n_trainable_expected_literal": 196608,
+    "expected_note": "q,v; 12 text layers only",
+    "trainable_fraction": 0.0013,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 48,
+    "peft_module_names_sample": [
+     "text.encoder.layers.0.self_attn.v_proj",
+     "text.encoder.layers.0.self_attn.q_proj",
+     "text.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 24
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815011,
+    "DG": 0.863088,
+    "R@1_i2t": 0.186,
+    "R@1_t2i": 0.145,
+    "R@1_mean": 0.1655,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.466187332426348,
+     0.39902573823928833,
+     0.3647303720635752,
+     0.3366093611524951,
+     0.31409454105361817,
+     0.3246405244834961,
+     0.3024403308668444,
+     0.30856369724196775,
+     0.29800180586115005,
+     0.287261507203502
+    ],
+    "epoch_seconds": [
+     23.9,
+     23.5,
+     23.4,
+     23.6,
+     23.3,
+     23.1,
+     22.9,
+     23.1,
+     23.0,
+     23.0
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 59.88,
+    "zero_shot_n_images": 14288,
+    "CG": 0.81278,
+    "DG": 0.861082,
+    "R@1_i2t": 0.172,
+    "R@1_t2i": 0.159,
+    "R@1_mean": 0.1655,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.2873,
+   "peak_allocated_mb": 1877.1,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_text_lr3e-05_seed123\\peft_state_last.pt",
+   "weights_sha1": "88dcde46976ea6a143bd6d5907142696d8067bd0",
+   "weights_bytes": 803203,
+   "error": null
+  },
+  {
+   "config": "lora_text",
+   "lr": 0.0001,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_text",
+    "n_total_params": 151277313,
+    "n_trainable_params": 196608,
+    "n_trainable_from_modules": 196608,
+    "n_trainable_expected_literal": 196608,
+    "expected_note": "q,v; 12 text layers only",
+    "trainable_fraction": 0.0013,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 48,
+    "peft_module_names_sample": [
+     "text.encoder.layers.0.self_attn.v_proj",
+     "text.encoder.layers.0.self_attn.q_proj",
+     "text.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 24
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815011,
+    "DG": 0.863088,
+    "R@1_i2t": 0.186,
+    "R@1_t2i": 0.145,
+    "R@1_mean": 0.1655,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.4360446208907712,
+     0.31870234397149855,
+     0.2623383510977991,
+     0.233574079890405,
+     0.20677219535554608,
+     0.21352595138934352,
+     0.1892834786445864,
+     0.18537112854180798,
+     0.18440967365618674,
+     0.17373508263018825
+    ],
+    "epoch_seconds": [
+     23.3,
+     23.4,
+     23.2,
+     23.1,
+     23.8,
+     24.8,
+     22.9,
+     21.8,
+     21.2,
+     21.7
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 57.54,
+    "zero_shot_n_images": 14288,
+    "CG": 0.790177,
+    "DG": 0.847585,
+    "R@1_i2t": 0.182,
+    "R@1_t2i": 0.161,
+    "R@1_mean": 0.1715,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1737,
+   "peak_allocated_mb": 1877.1,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_text_lr0.0001_seed123\\peft_state_last.pt",
+   "weights_sha1": "0639e4312467dc743629fbbf06a4404255d426fa",
+   "weights_bytes": 803203,
+   "error": null
+  },
+  {
+   "config": "lora_text",
+   "lr": 0.0003,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "lora_text",
+    "n_total_params": 151277313,
+    "n_trainable_params": 196608,
+    "n_trainable_from_modules": 196608,
+    "n_trainable_expected_literal": 196608,
+    "expected_note": "q,v; 12 text layers only",
+    "trainable_fraction": 0.0013,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.v_proj.lora_B",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_A",
+     "text_model.encoder.layers.0.self_attn.q_proj.lora_B"
+    ],
+    "n_trainable_tensors": 48,
+    "peft_module_names_sample": [
+     "text.encoder.layers.0.self_attn.v_proj",
+     "text.encoder.layers.0.self_attn.q_proj",
+     "text.encoder.layers.1.self_attn.v_proj"
+    ],
+    "n_peft_modules": 24
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 0.815011,
+    "DG": 0.863088,
+    "R@1_i2t": 0.186,
+    "R@1_t2i": 0.145,
+    "R@1_mean": 0.1655,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     0.4180191505339838,
+     0.25708965284209095,
+     0.20250233406982115,
+     0.1696838239027608,
+     0.15700275018330542,
+     0.16304314917614382,
+     0.1454418765441064,
+     0.1426024385277302,
+     0.13595286636583268,
+     0.12935668338210352
+    ],
+    "epoch_seconds": [
+     22.6,
+     22.2,
+     22.4,
+     22.3,
+     22.5,
+     22.7,
+     22.4,
+     22.1,
+     22.3,
+     22.9
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 52.25,
+    "zero_shot_n_images": 14288,
+    "CG": 0.768718,
+    "DG": 0.833733,
+    "R@1_i2t": 0.175,
+    "R@1_t2i": 0.164,
+    "R@1_mean": 0.1695,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.1294,
+   "peak_allocated_mb": 1877.1,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\lora_text_lr0.0003_seed123\\peft_state_last.pt",
+   "weights_sha1": "7b474032b2533ca318cf5f39466daa083569e3fd",
+   "weights_bytes": 803203,
+   "error": null
+  },
+  {
+   "config": "adapter_both",
+   "lr": 1e-05,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "adapter_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 3965952,
+    "n_trainable_from_modules": 3965952,
+    "n_trainable_expected_literal": 3965952,
+    "expected_note": "bottleneck 64 on self_attn+mlp, both towers",
+    "trainable_fraction": 0.026216,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.adapter.down.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.down.bias",
+     "text_model.encoder.layers.0.self_attn.adapter.up.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.up.bias"
+    ],
+    "n_trainable_tensors": 192,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn",
+     "vision.encoder.layers.0.mlp",
+     "vision.encoder.layers.1.self_attn"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 1.234069,
+    "DG": 1.241236,
+    "R@1_i2t": 0.002,
+    "R@1_t2i": 0.001,
+    "R@1_mean": 0.0015,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     4.2748162054246475,
+     4.1962728192729335,
+     4.1681592387537805,
+     4.155844411542339,
+     4.145764750819052,
+     4.1379803073021675,
+     4.1331742809664815,
+     4.1298911802230345,
+     4.126761159589214,
+     4.125917496219758
+    ],
+    "epoch_seconds": [
+     24.2,
+     24.7,
+     24.6,
+     24.1,
+     23.7,
+     24.5,
+     23.6,
+     24.5,
+     24.1,
+     24.0
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 0.08,
+    "zero_shot_n_images": 14288,
+    "CG": 1.21471,
+    "DG": 1.218871,
+    "R@1_i2t": 0.002,
+    "R@1_t2i": 0.001,
+    "R@1_mean": 0.0015,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 4.1259,
+   "peak_allocated_mb": 3092.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\adapter_both_lr1e-05_seed123\\peft_state_last.pt",
+   "weights_sha1": "462ce2c20752044afaf1656b04c28dc7086d62fb",
+   "weights_bytes": 15928943,
+   "error": null
+  },
+  {
+   "config": "adapter_both",
+   "lr": 3e-05,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "adapter_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 3965952,
+    "n_trainable_from_modules": 3965952,
+    "n_trainable_expected_literal": 3965952,
+    "expected_note": "bottleneck 64 on self_attn+mlp, both towers",
+    "trainable_fraction": 0.026216,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.adapter.down.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.down.bias",
+     "text_model.encoder.layers.0.self_attn.adapter.up.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.up.bias"
+    ],
+    "n_trainable_tensors": 192,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn",
+     "vision.encoder.layers.0.mlp",
+     "vision.encoder.layers.1.self_attn"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 1.234069,
+    "DG": 1.241236,
+    "R@1_i2t": 0.002,
+    "R@1_t2i": 0.001,
+    "R@1_mean": 0.0015,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     4.220387120400706,
+     4.1488662227507564,
+     4.110040480090726,
+     3.9855135025516635,
+     3.758600419567477,
+     3.5787332596317416,
+     3.4428593420213267,
+     3.3410857108331498,
+     3.28963993441674,
+     3.267764091491699
+    ],
+    "epoch_seconds": [
+     24.8,
+     25.9,
+     24.2,
+     23.9,
+     24.4,
+     24.4,
+     23.9,
+     24.2,
+     24.5,
+     25.5
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 1.05,
+    "zero_shot_n_images": 14288,
+    "CG": 1.127649,
+    "DG": 1.141642,
+    "R@1_i2t": 0.019,
+    "R@1_t2i": 0.008,
+    "R@1_mean": 0.0135,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 3.2678,
+   "peak_allocated_mb": 3092.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\adapter_both_lr3e-05_seed123\\peft_state_last.pt",
+   "weights_sha1": "0614635a6c920885d57974d2c3096424545a7540",
+   "weights_bytes": 15928943,
+   "error": null
+  },
+  {
+   "config": "adapter_both",
+   "lr": 0.0001,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "adapter_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 3965952,
+    "n_trainable_from_modules": 3965952,
+    "n_trainable_expected_literal": 3965952,
+    "expected_note": "bottleneck 64 on self_attn+mlp, both towers",
+    "trainable_fraction": 0.026216,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.adapter.down.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.down.bias",
+     "text_model.encoder.layers.0.self_attn.adapter.up.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.up.bias"
+    ],
+    "n_trainable_tensors": 192,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn",
+     "vision.encoder.layers.0.mlp",
+     "vision.encoder.layers.1.self_attn"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 1.234069,
+    "DG": 1.241236,
+    "R@1_i2t": 0.002,
+    "R@1_t2i": 0.001,
+    "R@1_mean": 0.0015,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     4.173075029926915,
+     3.935511927450857,
+     3.226316644299415,
+     2.000815349240457,
+     1.1234429651691067,
+     0.7594476649838109,
+     0.6192022840822896,
+     0.5112363426916061,
+     0.5072544409382728,
+     0.5059524524596429
+    ],
+    "epoch_seconds": [
+     26.4,
+     24.7,
+     23.6,
+     23.4,
+     24.4,
+     24.4,
+     24.9,
+     25.0,
+     25.0,
+     24.7
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 17.39,
+    "zero_shot_n_images": 14288,
+    "CG": 0.932629,
+    "DG": 0.957389,
+    "R@1_i2t": 0.129,
+    "R@1_t2i": 0.106,
+    "R@1_mean": 0.1175,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.506,
+   "peak_allocated_mb": 3092.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\adapter_both_lr0.0001_seed123\\peft_state_last.pt",
+   "weights_sha1": "19d042042dee39c3b6451979f74cf62b6d5ce7cb",
+   "weights_bytes": 15928943,
+   "error": null
+  },
+  {
+   "config": "adapter_both",
+   "lr": 0.0003,
+   "seed": 123,
+   "batch": 64,
+   "amp": "fp16",
+   "epochs": 10,
+   "steps_per_epoch": 31,
+   "total_steps": 310,
+   "weight_decay": 0.01,
+   "grad_clip": 1.0,
+   "scheduler": "cosine (per step)",
+   "peft_proof": {
+    "config": "adapter_both",
+    "n_total_params": 151277313,
+    "n_trainable_params": 3965952,
+    "n_trainable_from_modules": 3965952,
+    "n_trainable_expected_literal": 3965952,
+    "expected_note": "bottleneck 64 on self_attn+mlp, both towers",
+    "trainable_fraction": 0.026216,
+    "all_non_peft_parameters_frozen": true,
+    "wrapped_original_modules_frozen": true,
+    "is_peft_not_full_finetuning": true,
+    "trainable_param_names_sample": [
+     "text_model.encoder.layers.0.self_attn.adapter.down.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.down.bias",
+     "text_model.encoder.layers.0.self_attn.adapter.up.weight",
+     "text_model.encoder.layers.0.self_attn.adapter.up.bias"
+    ],
+    "n_trainable_tensors": 192,
+    "peft_module_names_sample": [
+     "vision.encoder.layers.0.self_attn",
+     "vision.encoder.layers.0.mlp",
+     "vision.encoder.layers.1.self_attn"
+    ],
+    "n_peft_modules": 48
+   },
+   "post_injection_gap_retrieval": {
+    "CG": 1.234069,
+    "DG": 1.241236,
+    "R@1_i2t": 0.002,
+    "R@1_t2i": 0.001,
+    "R@1_mean": 0.0015,
+    "n_pairs": 1000
+   },
+   "history": {
+    "train_loss": [
+     4.1347405218308975,
+     3.3428447169642292,
+     1.3986995643185032,
+     0.5848890071915042,
+     0.38123173531024684,
+     0.2766892506230262,
+     0.24250368533595915,
+     0.19994673156930554,
+     0.21428703684960643,
+     0.20571898596902047
+    ],
+    "epoch_seconds": [
+     23.4,
+     23.5,
+     23.2,
+     23.6,
+     24.3,
+     23.9,
+     24.4,
+     23.8,
+     24.1,
+     24.0
+    ]
+   },
+   "final": {
+    "zero_shot_imagenet1k_top1_pct": 23.78,
+    "zero_shot_n_images": 14288,
+    "CG": 0.883916,
+    "DG": 0.916878,
+    "R@1_i2t": 0.151,
+    "R@1_t2i": 0.12,
+    "R@1_mean": 0.1355,
+    "n_pairs": 1000
+   },
+   "final_train_loss": 0.2057,
+   "peak_allocated_mb": 3092.5,
+   "weights_path": "outputs\\analysis\\pr_peft_sweep\\adapter_both_lr0.0003_seed123\\peft_state_last.pt",
+   "weights_sha1": "24f65d54418a78bff1203dc673a386a1a544ac45",
+   "weights_bytes": 15928943,
+   "error": null
+  }
+ ],
+ "analysis": {
+  "grid": {
+   "lora_both@1e-05": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 60.69,
+    "zero_shot_top1_pct_sd": 0.05,
+    "zero_shot_values": [
+     60.72,
+     60.65
+    ],
+    "dCG_mean": -0.0054,
+    "dCG_sd": 0.0001,
+    "dCG_values": [
+     -0.005436066543579088,
+     -0.005351066543579086
+    ],
+    "dDG_mean": -0.0039,
+    "dDG_sd": 0.0014,
+    "R@1_mean": 0.1765,
+    "R@1_sd": 0.0014,
+    "R@1_values": [
+     0.1775,
+     0.1755
+    ],
+    "n_trainable_params": 491520
+   },
+   "lora_both@3e-05": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 60.52,
+    "zero_shot_top1_pct_sd": 0.14,
+    "zero_shot_values": [
+     60.42,
+     60.62
+    ],
+    "dCG_mean": 0.0025,
+    "dCG_sd": 0.0028,
+    "dCG_values": [
+     0.004403933456420872,
+     0.0005049334564208863
+    ],
+    "dDG_mean": 0.0016,
+    "dDG_sd": 0.0048,
+    "R@1_mean": 0.1805,
+    "R@1_sd": 0.0007,
+    "R@1_values": [
+     0.18,
+     0.181
+    ],
+    "n_trainable_params": 491520
+   },
+   "lora_both@0.0001": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 57.7,
+    "zero_shot_top1_pct_sd": 0.41,
+    "zero_shot_values": [
+     57.41,
+     57.99
+    ],
+    "dCG_mean": 0.0376,
+    "dCG_sd": 0.0014,
+    "dCG_values": [
+     0.03656493345642087,
+     0.038553933456420886
+    ],
+    "dDG_mean": 0.03,
+    "dDG_sd": 0.0053,
+    "R@1_mean": 0.1757,
+    "R@1_sd": 0.0032,
+    "R@1_values": [
+     0.178,
+     0.1735
+    ],
+    "n_trainable_params": 491520
+   },
+   "lora_both@0.0003": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 48.02,
+    "zero_shot_top1_pct_sd": 0.09,
+    "zero_shot_values": [
+     47.95,
+     48.08
+    ],
+    "dCG_mean": 0.1194,
+    "dCG_sd": 0.0033,
+    "dCG_values": [
+     0.12174993345642093,
+     0.11711893345642088
+    ],
+    "dDG_mean": 0.0931,
+    "dDG_sd": 0.0037,
+    "R@1_mean": 0.1735,
+    "R@1_sd": 0.017,
+    "R@1_values": [
+     0.1615,
+     0.1855
+    ],
+    "n_trainable_params": 491520
+   },
+   "lora_text@1e-05": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 60.06,
+    "zero_shot_top1_pct_sd": 0.16,
+    "zero_shot_values": [
+     59.95,
+     60.18
+    ],
+    "dCG_mean": -0.0073,
+    "dCG_sd": 0.0034,
+    "dCG_values": [
+     -0.004973066543579097,
+     -0.009718066543579096
+    ],
+    "dDG_mean": -0.0053,
+    "dDG_sd": 0.0029,
+    "R@1_mean": 0.1663,
+    "R@1_sd": 0.0032,
+    "R@1_values": [
+     0.1685,
+     0.164
+    ],
+    "n_trainable_params": 196608
+   },
+   "lora_text@3e-05": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 59.77,
+    "zero_shot_top1_pct_sd": 0.16,
+    "zero_shot_values": [
+     59.66,
+     59.88
+    ],
+    "dCG_mean": -0.0002,
+    "dCG_sd": 0.0038,
+    "dCG_values": [
+     0.0025199334564208753,
+     -0.0028940665435791546
+    ],
+    "dDG_mean": 0.0001,
+    "dDG_sd": 0.0036,
+    "R@1_mean": 0.1678,
+    "R@1_sd": 0.0032,
+    "R@1_values": [
+     0.17,
+     0.1655
+    ],
+    "n_trainable_params": 196608
+   },
+   "lora_text@0.0001": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 57.32,
+    "zero_shot_top1_pct_sd": 0.31,
+    "zero_shot_values": [
+     57.1,
+     57.54
+    ],
+    "dCG_mean": -0.0251,
+    "dCG_sd": 0.0005,
+    "dCG_values": [
+     -0.02477106654357908,
+     -0.025497066543579083
+    ],
+    "dDG_mean": -0.0148,
+    "dDG_sd": 0.0016,
+    "R@1_mean": 0.1698,
+    "R@1_sd": 0.0025,
+    "R@1_values": [
+     0.168,
+     0.1715
+    ],
+    "n_trainable_params": 196608
+   },
+   "lora_text@0.0003": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 51.48,
+    "zero_shot_top1_pct_sd": 1.08,
+    "zero_shot_values": [
+     50.72,
+     52.25
+    ],
+    "dCG_mean": -0.0469,
+    "dCG_sd": 0.0,
+    "dCG_values": [
+     -0.04694306654357905,
+     -0.04695606654357909
+    ],
+    "dDG_mean": -0.0292,
+    "dDG_sd": 0.0009,
+    "R@1_mean": 0.1683,
+    "R@1_sd": 0.0018,
+    "R@1_values": [
+     0.167,
+     0.1695
+    ],
+    "n_trainable_params": 196608
+   },
+   "adapter_both@1e-05": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 0.13,
+    "zero_shot_top1_pct_sd": 0.07,
+    "zero_shot_values": [
+     0.18,
+     0.08
+    ],
+    "dCG_mean": 0.4114,
+    "dCG_sd": 0.0175,
+    "dCG_values": [
+     0.4238139334564208,
+     0.39903593345642085
+    ],
+    "dDG_mean": 0.3671,
+    "dDG_sd": 0.0167,
+    "R@1_mean": 0.002,
+    "R@1_sd": 0.0007,
+    "R@1_values": [
+     0.0025,
+     0.0015
+    ],
+    "n_trainable_params": 3965952
+   },
+   "adapter_both@3e-05": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 1.16,
+    "zero_shot_top1_pct_sd": 0.15,
+    "zero_shot_values": [
+     1.26,
+     1.05
+    ],
+    "dCG_mean": 0.3171,
+    "dCG_sd": 0.0072,
+    "dCG_values": [
+     0.322166933456421,
+     0.3119749334564208
+    ],
+    "dDG_mean": 0.2812,
+    "dDG_sd": 0.0045,
+    "R@1_mean": 0.0173,
+    "R@1_sd": 0.0053,
+    "R@1_values": [
+     0.021,
+     0.0135
+    ],
+    "n_trainable_params": 3965952
+   },
+   "adapter_both@0.0001": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 17.11,
+    "zero_shot_top1_pct_sd": 0.4,
+    "zero_shot_values": [
+     16.83,
+     17.39
+    ],
+    "dCG_mean": 0.1148,
+    "dCG_sd": 0.003,
+    "dCG_values": [
+     0.11272893345642088,
+     0.11695493345642094
+    ],
+    "dDG_mean": 0.0929,
+    "dDG_sd": 0.0013,
+    "R@1_mean": 0.1242,
+    "R@1_sd": 0.0095,
+    "R@1_values": [
+     0.131,
+     0.1175
+    ],
+    "n_trainable_params": 3965952
+   },
+   "adapter_both@0.0003": {
+    "n_seeds": 2,
+    "zero_shot_top1_pct_mean": 23.38,
+    "zero_shot_top1_pct_sd": 0.57,
+    "zero_shot_values": [
+     22.98,
+     23.78
+    ],
+    "dCG_mean": 0.0714,
+    "dCG_sd": 0.0045,
+    "dCG_values": [
+     0.07461993345642093,
+     0.06824193345642093
+    ],
+    "dDG_mean": 0.0574,
+    "dDG_sd": 0.0057,
+    "R@1_mean": 0.1425,
+    "R@1_sd": 0.0099,
+    "R@1_values": [
+     0.1495,
+     0.1355
+    ],
+    "n_trainable_params": 3965952
+   }
+  },
+  "best": {
+   "best_run_by_zero_shot": {
+    "config": "lora_both",
+    "lr": 1e-05,
+    "seed": 42,
+    "zero_shot_top1_pct": 60.72,
+    "dCG": -0.0054,
+    "dDG": -0.0029,
+    "R@1_mean": 0.1775
+   },
+   "best_lr_per_config": {
+    "lora_both": {
+     "best_zero_shot": 1e-05,
+     "best_dCG": 1e-05,
+     "n_runs": 8
+    },
+    "lora_text": {
+     "best_zero_shot": 1e-05,
+     "best_dCG": 0.0003,
+     "n_runs": 8
+    },
+    "adapter_both": {
+     "best_zero_shot": 0.0003,
+     "best_dCG": 0.0003,
+     "n_runs": 8
+    }
+   }
+  },
+  "vs_fullft": {
+   "source": "pr_fullft_lr_sweep_full.json :: analysis.per_lr / runs[*]",
+   "frozen_zero_shot_top1_pct": 59.910414333706605,
+   "fullft_best_lr": 1e-06,
+   "fullft_best_zero_shot_top1_pct": 61.02,
+   "fullft_best_dCG": -0.0074,
+   "fullft_best_R@1": 0.178,
+   "fullft_per_lr": {
+    "1e-06": {
+     "n_seeds": 3,
+     "zero_shot_top1_pct_mean": 60.87,
+     "zero_shot_top1_pct_sd": 0.21,
+     "zero_shot_top1_pct_values": [
+      61.02,
+      60.95,
+      60.63
+     ],
+     "dCG_mean": -0.0016,
+     "dCG_sd": 0.0052,
+     "dCG_values": [
+      -0.0074,
+      0.0027,
+      -0.0
+     ],
+     "dDG_mean": 0.0019,
+     "dDG_sd": 0.0047,
+     "R@1_mean_of_runs": 0.1808,
+     "R@1_sd": 0.0028,
+     "seeds_collapsed_below_20pct": 0,
+     "n_seeds_total": 3,
+     "metric_sources": [
+      "trained and evaluated by tools/_p263_fullft_lr_sweep.py in this session"
+     ]
+    },
+    "1e-05": {
+     "n_seeds": 3,
+     "zero_shot_top1_pct_mean": 52.18,
+     "zero_shot_top1_pct_sd": 1.03,
+     "zero_shot_top1_pct_values": [
+      53.2,
+      52.18,
+      51.15
+     ],
+     "dCG_mean": 0.186,
+     "dCG_sd": 0.0047,
+     "dCG_values": [
+      0.1806,
+      0.1887,
+      0.1887
+     ],
+     "dDG_mean": 0.1549,
+     "dDG_sd": 0.0036,
+     "R@1_mean_of_runs": 0.17,
+     "R@1_sd": 0.0022,
+     "seeds_collapsed_below_20pct": 0,
+     "n_seeds_total": 3,
+     "metric_sources": [
+      "trained and evaluated by tools/_p263_fullft_lr_sweep.py in this session"
+     ]
+    },
+    "3e-05": {
+     "n_seeds": 1,
+     "zero_shot_top1_pct_mean": 31.44,
+     "zero_shot_top1_pct_sd": null,
+     "zero_shot_top1_pct_values": [
+      31.44
+     ],
+     "dCG_mean": 0.2498,
+     "dCG_sd": null,
+     "dCG_values": [
+      0.2498
+     ],
+     "dDG_mean": 0.2102,
+     "dDG_sd": null,
+     "R@1_mean_of_runs": 0.1455,
+     "R@1_sd": null,
+     "seeds_collapsed_below_20pct": 0,
+     "n_seeds_total": 1,
+     "metric_sources": [
+      "checkpoint re-evaluation by tools/_p265_fullft_reeval.py (identical protocol, imported from _p263)"
+     ]
+    },
+    "0.0001": {
+     "n_seeds": 1,
+     "zero_shot_top1_pct_mean": 0.14,
+     "zero_shot_top1_pct_sd": null,
+     "zero_shot_top1_pct_values": [
+      0.14
+     ],
+     "dCG_mean": 0.7969,
+     "dCG_sd": null,
+     "dCG_values": [
+      0.7969
+     ],
+     "dDG_mean": 0.7547,
+     "dDG_sd": null,
+     "R@1_mean_of_runs": 0.003,
+     "R@1_sd": null,
+     "seeds_collapsed_below_20pct": 1,
+     "n_seeds_total": 1,
+     "metric_sources": [
+      "checkpoint re-evaluation by tools/_p265_fullft_reeval.py (identical protocol, imported from _p263)"
+     ]
+    },
+    "0.0003": {
+     "n_seeds": 1,
+     "zero_shot_top1_pct_mean": 0.08,
+     "zero_shot_top1_pct_sd": null,
+     "zero_shot_top1_pct_values": [
+      0.08
+     ],
+     "dCG_mean": 0.8001,
+     "dCG_sd": null,
+     "dCG_values": [
+      0.8001
+     ],
+     "dDG_mean": 0.7522,
+     "dDG_sd": null,
+     "R@1_mean_of_runs": 0.001,
+     "R@1_sd": null,
+     "seeds_collapsed_below_20pct": 1,
+     "n_seeds_total": 1,
+     "metric_sources": [
+      "checkpoint re-evaluation by tools/_p265_fullft_reeval.py (identical protocol, imported from _p263)"
+     ]
+    }
+   },
+   "delta_best_peft_minus_best_fullft": {
+    "zero_shot_pp": -0.3,
+    "dCG": 0.0019,
+    "R@1": -0.0005
+   },
+   "interpretation_rule": "positive zero_shot_pp / negative dCG favour the PEFT method at its own best learning rate"
+  }
+ }
+}

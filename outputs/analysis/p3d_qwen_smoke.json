@@ -1,0 +1,35 @@
+{
+ "by_device": {
+  "cpu": {
+   "experiment": "p3d_qwen_smoke",
+   "script": "tools/_p464_qwen_ranksweep.py",
+   "rank": 4,
+   "dataset": "coco",
+   "load_seconds": 2.5,
+   "step_seconds": 358.366,
+   "loss": 2.8995,
+   "n_peft_params": 1089536,
+   "peak_allocated_GiB": null,
+   "peak_reserved_GiB": null,
+   "max_pixels": 16384,
+   "min_pixels": 4096
+  },
+  "cuda": {
+   "experiment": "p3d_qwen_smoke",
+   "script": "tools/_p464_qwen_ranksweep.py",
+   "device": "cuda",
+   "rank": 4,
+   "dataset": "coco",
+   "load_seconds": 3.8,
+   "step_seconds": 0.832,
+   "loss": 2.8895,
+   "n_peft_params": 1089536,
+   "peak_allocated_GiB": 4.335,
+   "peak_reserved_GiB": 4.639,
+   "max_pixels": 16384,
+   "min_pixels": 4096
+  }
+ },
+ "script": "tools/_p464_qwen_ranksweep.py",
+ "how": "python tools\\_p464_qwen_ranksweep.py --smoke --device <cpu|cuda> --ranks 4"
+}

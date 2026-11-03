@@ -1,0 +1,131 @@
+{
+  "model": "BioCLIP ViT-B/16 (models/oceanclip-0.15b/bioclip)",
+  "note": "部分结果：操作者于 2026-10-06 要求停止，rank 4 已完成、rank 8 未完成。由 tools/_exp3_bioclip_harvest.py 从运行日志解析落盘。",
+  "protocol": {
+    "max_samples": 5000,
+    "epochs": 10,
+    "batch": 128,
+    "alpha_mult": 2,
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "ranks_planned": [
+      4,
+      8
+    ]
+  },
+  "completed_ranks": [
+    4
+  ],
+  "summary": {
+    "r4_both": {
+      "mean": -0.4515,
+      "sd": 0.0149,
+      "n": 3
+    },
+    "r4_text_only": {
+      "mean": -0.3671,
+      "sd": 0.0104,
+      "n": 3
+    },
+    "r4_vision_only": {
+      "mean": -0.2927,
+      "sd": 0.0022,
+      "n": 3
+    }
+  },
+  "records": [
+    {
+      "rank": 4,
+      "arm": "text_only",
+      "seed": 42,
+      "n_lora_layers": 36,
+      "n_trainable": 294912,
+      "delta_cg": -0.3584,
+      "initial_cg": 1.7969,
+      "final_cg": 1.4385
+    },
+    {
+      "rank": 4,
+      "arm": "text_only",
+      "seed": 123,
+      "n_lora_layers": 36,
+      "n_trainable": 294912,
+      "delta_cg": -0.3786,
+      "initial_cg": 1.7838,
+      "final_cg": 1.4052
+    },
+    {
+      "rank": 4,
+      "arm": "text_only",
+      "seed": 456,
+      "n_lora_layers": 36,
+      "n_trainable": 294912,
+      "delta_cg": -0.3644,
+      "initial_cg": 1.7925,
+      "final_cg": 1.4281
+    },
+    {
+      "rank": 4,
+      "arm": "both",
+      "seed": 42,
+      "n_lora_layers": 72,
+      "n_trainable": 737280,
+      "delta_cg": -0.4625,
+      "initial_cg": 1.7958,
+      "final_cg": 1.3333
+    },
+    {
+      "rank": 4,
+      "arm": "both",
+      "seed": 123,
+      "n_lora_layers": 72,
+      "n_trainable": 737280,
+      "delta_cg": -0.4346,
+      "initial_cg": 1.7813,
+      "final_cg": 1.3467
+    },
+    {
+      "rank": 4,
+      "arm": "both",
+      "seed": 456,
+      "n_lora_layers": 72,
+      "n_trainable": 737280,
+      "delta_cg": -0.4574,
+      "initial_cg": 1.7941,
+      "final_cg": 1.3367
+    },
+    {
+      "rank": 4,
+      "arm": "vision_only",
+      "seed": 42,
+      "n_lora_layers": 36,
+      "n_trainable": 442368,
+      "delta_cg": -0.2915,
+      "initial_cg": 1.7931,
+      "final_cg": 1.5016
+    },
+    {
+      "rank": 4,
+      "arm": "vision_only",
+      "seed": 123,
+      "n_lora_layers": 36,
+      "n_trainable": 442368,
+      "delta_cg": -0.2952,
+      "initial_cg": 1.796,
+      "final_cg": 1.5008
+    },
+    {
+      "rank": 4,
+      "arm": "vision_only",
+      "seed": 456,
+      "n_lora_layers": 36,
+      "n_trainable": 442368,
+      "delta_cg": -0.2914,
+      "initial_cg": 1.793,
+      "final_cg": 1.5016
+    }
+  ]
+}

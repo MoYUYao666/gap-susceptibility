@@ -1,0 +1,309 @@
+{
+  "script": "tools/_p366_gallery_noise_fix.py",
+  "why": "rev-1 of _p360 left the vision LoRA active during the init pass for the vision-side arms.  In practice only DRAW 0 was affected, because the loop zeroes the vision B at the end of every draw, so draws 1..N-1 already differenced against the pristine tower (verified: their CG_init equals the text_only arm's CG_init draw-for-draw).  This script rebuilds every arm's init against the text_only CG_init series, which is exact for all draws because the step-0 model and the per-item augmentation seed are identical across arms.",
+  "archived_seed42": {
+    "text_only": {
+      "source": "outputs\\strict_freeze\\text_only\\seed42\\results.json",
+      "CG_initial": 0.8183289170265198,
+      "CG_final": 0.7740361094474792,
+      "delta_CG": -0.04429280757904053,
+      "R1_initial_unrecorded": "the trainer records no step-0 R@1; only the final task metrics are archived",
+      "R1_final": 0.6180000007152557
+    },
+    "both": {
+      "source": "outputs\\strict_freeze\\both\\seed42\\results.json",
+      "CG_initial": 0.8184322118759155,
+      "CG_final": 0.7931378483772278,
+      "delta_CG": -0.025294363498687744,
+      "R1_initial_unrecorded": "the trainer records no step-0 R@1; only the final task metrics are archived",
+      "R1_final": 0.6890000104904175
+    },
+    "vision_only": {
+      "source": "outputs\\strict_freeze\\vision_only\\seed42\\results.json",
+      "CG_initial": 0.8189773559570312,
+      "CG_final": 0.8297464847564697,
+      "delta_CG": 0.010769128799438477,
+      "R1_initial_unrecorded": "the trainer records no step-0 R@1; only the final task metrics are archived",
+      "R1_final": 0.699999988079071
+    }
+  },
+  "corrected": {
+    "clip_b32_text_only": {
+      "source_json": "outputs\\analysis\\dinov2_hetero\\gallery_noise\\results.json",
+      "n_draws": 12,
+      "init_state_used_for_correction": "clip_b32_text_only CG_init series (identical pristine step-0 model, identical per-item augmentation seed per draw)",
+      "init_source": "outputs/analysis/dinov2_hetero/norm_probe/results.json :: frozen.clip_aug_r0 (augmented gallery, pristine model, same head) -- used because rev-1 computed this arm's T_init with the adapted text LoRA already loaded",
+      "CG_init_assumed": 0.6766694784164429,
+      "DG_init_assumed": 0.7508043198812819,
+      "R1_init_assumed": 0.2800000011920929,
+      "CG_init_draw_noise_measured_elsewhere": "the frozen CG's draw-to-draw sd is ~0.0005 (clip_aug_r0 vs clip_aug_r1 in norm_probe: 0.6767 vs 0.6768)",
+      "CG_final": {
+        "n": 12,
+        "mean": 0.7740831673145294,
+        "sd": 0.0004361520831411386,
+        "min": 0.7731621861457825,
+        "max": 0.7747347950935364,
+        "range": 0.0015726089477539062
+      },
+      "R1_final": {
+        "n": 12,
+        "mean": 0.6204166760047277,
+        "sd": 0.007774773671723767,
+        "min": 0.6110000014305115,
+        "max": 0.6360000371932983,
+        "range": 0.025000035762786865
+      },
+      "DG_final": {
+        "n": 12,
+        "mean": 0.8376066039005915,
+        "sd": 0.00044438732846706445,
+        "min": 0.8370200395584106,
+        "max": 0.8384265899658203,
+        "range": 0.001406550407409668
+      },
+      "delta_CG_paired_same_draw": {
+        "n": 12,
+        "mean": -0.04448593656222025,
+        "sd": 0.0001918468666898471,
+        "min": -0.04480105638504028,
+        "max": -0.04423093795776367,
+        "range": 0.0005701184272766113
+      },
+      "delta_CG_protocol_independent_draws": {
+        "n": 12,
+        "mean": -0.04448593656222025,
+        "sd": 0.0007000510822822871,
+        "min": -0.04532283544540405,
+        "max": -0.04320633411407471,
+        "range": 0.0021165013313293457
+      },
+      "delta_R1_paired_same_draw": {
+        "n": 12,
+        "mean": 0.05100000401337942,
+        "sd": 0.009409886852217785,
+        "min": 0.03399991989135742,
+        "max": 0.06300002336502075,
+        "range": 0.02900010347366333
+      },
+      "raw_rev1_dCG_is_invalid_for_this_arm": false,
+      "raw_rev1_dCG_mean": -0.04448593780398369,
+      "archived_delta_CG": -0.04429280757904053,
+      "archived_R1": 0.6180000007152557
+    },
+    "clip_b32_both": {
+      "source_json": "outputs\\analysis\\dinov2_hetero\\gallery_noise\\results.json",
+      "n_draws": 12,
+      "init_state_used_for_correction": "clip_b32_text_only CG_init series (identical pristine step-0 model, identical per-item augmentation seed per draw)",
+      "init_source": "outputs/analysis/dinov2_hetero/norm_probe/results.json :: frozen.clip_aug_r0 (augmented gallery, pristine model, same head) -- used because rev-1 computed this arm's T_init with the adapted text LoRA already loaded",
+      "CG_init_assumed": 0.6766694784164429,
+      "DG_init_assumed": 0.7508043198812819,
+      "R1_init_assumed": 0.2800000011920929,
+      "CG_init_draw_noise_measured_elsewhere": "the frozen CG's draw-to-draw sd is ~0.0005 (clip_aug_r0 vs clip_aug_r1 in norm_probe: 0.6767 vs 0.6768)",
+      "CG_final": {
+        "n": 12,
+        "mean": 0.7932805567979813,
+        "sd": 0.0002606706411719424,
+        "min": 0.7927964925765991,
+        "max": 0.7939132452011108,
+        "range": 0.0011167526245117188
+      },
+      "R1_final": {
+        "n": 12,
+        "mean": 0.6949166705211004,
+        "sd": 0.005501371581187496,
+        "min": 0.6869999766349792,
+        "max": 0.7039999961853027,
+        "range": 0.017000019550323486
+      },
+      "DG_final": {
+        "n": 12,
+        "mean": 0.8357804864645004,
+        "sd": 0.00026714772183657903,
+        "min": 0.835381269454956,
+        "max": 0.8363730311393738,
+        "range": 0.0009917616844177246
+      },
+      "delta_CG_paired_same_draw": {
+        "n": 12,
+        "mean": -0.025288547078768413,
+        "sd": 0.00040633569410558157,
+        "min": -0.025900721549987793,
+        "max": -0.024753451347351074,
+        "range": 0.0011472702026367188
+      },
+      "delta_CG_protocol_independent_draws": {
+        "n": 12,
+        "mean": -0.025288547078768413,
+        "sd": 0.00045028334711419687,
+        "min": -0.025969743728637695,
+        "max": -0.024535715579986572,
+        "range": 0.001434028148651123
+      },
+      "delta_R1_paired_same_draw": {
+        "n": 12,
+        "mean": 0.1254999985297521,
+        "sd": 0.010816666604677663,
+        "min": 0.10699999332427979,
+        "max": 0.14100003242492676,
+        "range": 0.03400003910064697
+      },
+      "raw_rev1_dCG_is_invalid_for_this_arm": true,
+      "raw_rev1_dCG_mean": -0.026614153757691383,
+      "archived_delta_CG": -0.025294363498687744,
+      "archived_R1": 0.6890000104904175
+    },
+    "clip_b32_vision_only": {
+      "source_json": "outputs\\analysis\\dinov2_hetero\\gallery_noise\\results.json",
+      "n_draws": 12,
+      "init_state_used_for_correction": "clip_b32_text_only CG_init series (identical pristine step-0 model, identical per-item augmentation seed per draw)",
+      "init_source": "outputs/analysis/dinov2_hetero/norm_probe/results.json :: frozen.clip_aug_r0 (augmented gallery, pristine model, same head) -- used because rev-1 computed this arm's T_init with the adapted text LoRA already loaded",
+      "CG_init_assumed": 0.6766694784164429,
+      "DG_init_assumed": 0.7508043198812819,
+      "R1_init_assumed": 0.2800000011920929,
+      "CG_init_draw_noise_measured_elsewhere": "the frozen CG's draw-to-draw sd is ~0.0005 (clip_aug_r0 vs clip_aug_r1 in norm_probe: 0.6767 vs 0.6768)",
+      "CG_final": {
+        "n": 12,
+        "mean": 0.8295724242925644,
+        "sd": 0.0003129370747971935,
+        "min": 0.8292321562767029,
+        "max": 0.8302980661392212,
+        "range": 0.0010659098625183105
+      },
+      "R1_final": {
+        "n": 12,
+        "mean": 0.6781666626532873,
+        "sd": 0.0061175358681366376,
+        "min": 0.6629999876022339,
+        "max": 0.6840000152587891,
+        "range": 0.021000027656555176
+      },
+      "DG_final": {
+        "n": 12,
+        "mean": 0.8608269145091375,
+        "sd": 0.000284010959284395,
+        "min": 0.8604449033737183,
+        "max": 0.8613555431365967,
+        "range": 0.000910639762878418
+      },
+      "delta_CG_paired_same_draw": {
+        "n": 12,
+        "mean": 0.011003320415814718,
+        "sd": 0.0003894792092814114,
+        "min": 0.01054394245147705,
+        "max": 0.011662185192108154,
+        "range": 0.0011182427406311035
+      },
+      "delta_CG_protocol_independent_draws": {
+        "n": 12,
+        "mean": 0.011003320415814718,
+        "sd": 0.0005379638701762337,
+        "min": 0.010183990001678467,
+        "max": 0.011908948421478271,
+        "range": 0.0017249584197998047
+      },
+      "delta_R1_paired_same_draw": {
+        "n": 12,
+        "mean": 0.10874999066193898,
+        "sd": 0.011258360494935452,
+        "min": 0.08799993991851807,
+        "max": 0.13300001621246338,
+        "range": 0.04500007629394531
+      },
+      "raw_rev1_dCG_is_invalid_for_this_arm": true,
+      "raw_rev1_dCG_mean": 0.010121683590114117,
+      "archived_delta_CG": 0.010769128799438477,
+      "archived_R1": 0.699999988079071
+    },
+    "dinov2_het_text_only_seed42": {
+      "source_json": "outputs\\analysis\\dinov2_hetero\\gallery_noise\\results.json",
+      "n_draws": 12,
+      "init_state_used_for_correction": "archived frozen re-measurement (augmented draw)",
+      "init_source": "outputs/analysis/dinov2_hetero/norm_probe/results.json :: frozen.clip_aug_r0 (augmented gallery, pristine model, same head) -- used because rev-1 computed this arm's T_init with the adapted text LoRA already loaded",
+      "CG_init_assumed": 0.6766694784164429,
+      "DG_init_assumed": 0.7508043198812819,
+      "R1_init_assumed": 0.2800000011920929,
+      "CG_init_draw_noise_measured_elsewhere": "the frozen CG's draw-to-draw sd is ~0.0005 (clip_aug_r0 vs clip_aug_r1 in norm_probe: 0.6767 vs 0.6768)",
+      "CG_final": {
+        "n": 12,
+        "mean": 0.28560982396205264,
+        "sd": 0.00027270605510256384,
+        "min": 0.28512269258499146,
+        "max": 0.2860485315322876,
+        "range": 0.0009258389472961426
+      },
+      "R1_final": {
+        "n": 12,
+        "mean": 0.35875000307957333,
+        "sd": 0.004454309259204036,
+        "min": 0.3500000238418579,
+        "max": 0.36399999260902405,
+        "range": 0.013999968767166138
+      },
+      "DG_final": {
+        "n": 12,
+        "mean": 0.3047199497620265,
+        "sd": 0.00030088437398121775,
+        "min": 0.304105281829834,
+        "max": 0.30513235926628113,
+        "range": 0.0010270774364471436
+      },
+      "delta_CG_paired_same_draw": {
+        "n": 12,
+        "mean": -0.3910596544543902,
+        "sd": 0.00027270605510256384,
+        "min": -0.3915467858314514,
+        "max": -0.3906209468841553,
+        "range": 0.0009258389472961426
+      },
+      "delta_CG_protocol_independent_draws": {
+        "n": 12,
+        "mean": -0.3910596544543902,
+        "sd": 0.00027270605510256384,
+        "min": -0.3915467858314514,
+        "max": -0.3906209468841553,
+        "range": 0.0009258389472961426
+      },
+      "delta_R1_paired_same_draw": {
+        "n": 12,
+        "mean": 0.07875000188748042,
+        "sd": 0.004454309259204036,
+        "min": 0.07000002264976501,
+        "max": 0.08399999141693115,
+        "range": 0.013999968767166138
+      },
+      "raw_rev1_dCG_is_invalid_for_this_arm": true,
+      "raw_rev1_dCG_mean": 0.0,
+      "archived_delta_CG": -0.3912653923034668,
+      "archived_R1": 0.3540000021457672
+    }
+  },
+  "protocol_note": {
+    "delta_CG_sd_same_draw_vs_independent": {
+      "clip_b32_text_only": {
+        "same_draw_sd": 0.0001918468666898471,
+        "independent_sd": 0.0007000510822822871
+      },
+      "clip_b32_both": {
+        "same_draw_sd": 0.00040633569410558157,
+        "independent_sd": 0.00045028334711419687
+      },
+      "clip_b32_vision_only": {
+        "same_draw_sd": 0.0003894792092814114,
+        "independent_sd": 0.0005379638701762337
+      },
+      "dinov2_het_text_only_seed42": {
+        "same_draw_sd": 0.00027270605510256384,
+        "independent_sd": 0.00027270605510256384
+      }
+    },
+    "paper_arm_separation_delta_CG": {
+      "source": "outputs/analysis/dinov2_hetero/clip_baseline_check.json :: rows 'CLIP B/32 r8' published",
+      "text_only_minus_both": -0.0207,
+      "both_minus_vision_only": -0.0364
+    },
+    "paper_R1_separation": {
+      "text_only_vs_both": 0.06899999999999995,
+      "both_vs_vision_only": 0.0129999999999999
+    }
+  }
+}

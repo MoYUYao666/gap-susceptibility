@@ -1,0 +1,16 @@
+{
+  "experiment": "dinov2_hetero_frozen",
+  "head": "random",
+  "n_trainable_params": 0,
+  "CG": 0.8716835379600525,
+  "DG": 0.9078320150524805,
+  "R@1": 0.005000000121071935,
+  "max_samples": 5000,
+  "batch_size": 128,
+  "vision_tower": "models/dinov2-base",
+  "text_tower": "models/clip-vit-base-patch32",
+  "heterogeneous_pairing": true,
+  "source": {
+    "script": "tools/_p293_dinov2_hetero_strict.py"
+  }
+}

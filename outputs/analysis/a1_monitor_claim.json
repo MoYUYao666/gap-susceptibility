@@ -1,0 +1,16 @@
+{
+ "keyword_counts": {
+  "zero-overhead": 2,
+  "monitor": 23,
+  "monitoring": 14,
+  "overhead": 2,
+  "threshold": 2,
+  "early": 16,
+  "training-time": 15
+ },
+ "checks": {
+  "① 可算性（无额外开销）": "top-\\$?k\\$? (class )?sets|already (available|computed)|validation pass",
+  "② 何时报警（阈值/趋势）": "threshold|alarm|warn|falls below|erosion.*earlier|earlier.*than top-1",
+  "③ 实际用它做过决策": "we (use|used|select|selected|chose).{0,60}(tau|\\\\tau)|(tau|\\\\tau).{0,40}(select|choose|early stop)"
+ }
+}

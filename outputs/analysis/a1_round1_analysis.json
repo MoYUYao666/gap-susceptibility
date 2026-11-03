@@ -1,0 +1,103 @@
+{
+ "trainmass": {
+  "per_run": {
+   "dtd": {
+    "oracle_epoch": 8,
+    "oracle_top1": 65.1063829787234,
+    "eval_mass_epoch": 8,
+    "eval_mass_top1": 65.1063829787234,
+    "eval_mass_regret": 0.0,
+    "train_mass_epoch": 10,
+    "train_mass_top1": 64.39716312056738,
+    "train_mass_regret": 0.7092198581560183,
+    "min_cg_regret": 0.5673758865248146,
+    "last_regret": 0.7092198581560183,
+    "first_regret": 6.950354609929079
+   },
+   "food101": {
+    "oracle_epoch": 6,
+    "oracle_top1": 76.65016501650165,
+    "eval_mass_epoch": 6,
+    "eval_mass_top1": 76.65016501650165,
+    "eval_mass_regret": 0.0,
+    "train_mass_epoch": 8,
+    "train_mass_top1": 75.82508250825083,
+    "train_mass_regret": 0.8250825082508157,
+    "min_cg_regret": 4.8679867986798655,
+    "last_regret": 1.7326732673267315,
+    "first_regret": 1.897689768976889
+   },
+   "fathomnet8": {
+    "oracle_epoch": 7,
+    "oracle_top1": 60.0,
+    "eval_mass_epoch": 10,
+    "eval_mass_top1": 60.0,
+    "eval_mass_regret": 0.0,
+    "train_mass_epoch": 10,
+    "train_mass_top1": 60.0,
+    "train_mass_regret": 0.0,
+    "min_cg_regret": 16.666666666666664,
+    "last_regret": 0.0,
+    "first_regret": 11.666666666666664
+   },
+   "inat_wild": {
+    "oracle_epoch": 9,
+    "oracle_top1": 49.30555555555556,
+    "eval_mass_epoch": 10,
+    "eval_mass_top1": 45.13888888888889,
+    "eval_mass_regret": 4.166666666666664,
+    "train_mass_epoch": 10,
+    "train_mass_top1": 45.13888888888889,
+    "train_mass_regret": 4.166666666666664,
+    "min_cg_regret": 7.638888888888886,
+    "last_regret": 4.166666666666664,
+    "first_regret": 31.250000000000004
+   }
+  },
+  "summary": {
+   "eval_mass_regret": {
+    "mean": 1.041666666666666,
+    "max": 4.166666666666664
+   },
+   "train_mass_regret": {
+    "mean": 1.4252422582683746,
+    "max": 4.166666666666664
+   },
+   "min_cg_regret": {
+    "mean": 7.4352295601900575,
+    "max": 16.666666666666664
+   },
+   "last_regret": {
+    "mean": 1.6521399480373535,
+    "max": 4.166666666666664
+   },
+   "first_regret": {
+    "mean": 12.94117776139316,
+    "max": 31.250000000000004
+   }
+  }
+ },
+ "retrieval": {
+  "oracle_epoch": 6,
+  "oracle_R1": 22.794117647058822,
+  "min_mass01_epoch": 8,
+  "min_mass01_R1": 22.058823529411764,
+  "min_mass01_regret": 0.735294117647058,
+  "min_cg_regret": 2.9411764705882355,
+  "last_regret": 2.9411764705882355,
+  "first_regret": 1.470588235294116,
+  "epochs": 10
+ },
+ "epochs_saved": {
+  "large": {
+   "n": 16,
+   "mean_epochs_saved": 2.5625,
+   "mean_extra_regret_vs_last": 0.06466803595253046
+  },
+  "small": {
+   "n": 4,
+   "mean_epochs_saved": 0.75,
+   "mean_extra_regret_vs_last": 1.6666666666666679
+  }
+ }
+}

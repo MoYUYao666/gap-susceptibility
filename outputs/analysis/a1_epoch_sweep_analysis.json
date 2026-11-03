@@ -1,0 +1,61 @@
+{
+ "source": "outputs\\a1_epoch_sweep.json",
+ "n_checkpoints": 100,
+ "within_spearman": {
+  "coco": {
+   "n": 30,
+   "spearman": 0.6703,
+   "pearson": 0.7722,
+   "t": 4.78
+  },
+  "dtd": {
+   "n": 30,
+   "spearman": 0.9702,
+   "pearson": 0.9664,
+   "t": 21.183
+  },
+  "flickr30k_ref": {
+   "n": 10,
+   "spearman": 0.9152,
+   "pearson": 0.9688,
+   "t": 6.421
+  },
+  "food101": {
+   "n": 30,
+   "spearman": 0.3971,
+   "pearson": 0.5176,
+   "t": 2.29
+  }
+ },
+ "within_fisher": 0.8401,
+ "pooled": {
+  "spearman": 0.7599,
+  "pearson": 0.7915,
+  "n": 100
+ },
+ "dataset_means": {
+  "coco": 58.1993,
+  "dtd": 56.0053,
+  "food101": 58.9987,
+  "flickr30k_ref": 58.204
+ },
+ "dataset_identity_spearman": 0.3998,
+ "residual_after_removing_dataset_mean": {
+  "pearson": 0.7883,
+  "spearman": 0.7237
+ },
+ "per_seed_trajectory": {
+  "coco|s42": 0.9273,
+  "coco|s43": 0.8909,
+  "coco|s44": 0.7576,
+  "dtd|s42": 1.0,
+  "dtd|s43": 1.0,
+  "dtd|s44": 0.9636,
+  "flickr30k_ref|s42": 0.9152,
+  "food101|s42": 0.8788,
+  "food101|s43": 0.4545,
+  "food101|s44": 0.6485
+ },
+ "per_seed_fisher": 0.9451,
+ "verdict": "tau_has_within_ranking_power"
+}

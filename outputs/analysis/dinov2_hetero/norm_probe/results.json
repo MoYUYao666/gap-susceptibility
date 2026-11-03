@@ -1,0 +1,339 @@
+{
+  "script": "tools/_p357_dinov2_norm_probe.py",
+  "device": "cpu",
+  "revision": "rev-2 (2026-10-12): bootstrap inputs L2-normalised (rev-1 was invalid); ridge_probe dropped (rev-1 crashed on tune indices beyond the max_samples-truncated dataset, and the normalisation question it was meant to probe was answered by the frozen/paired blocks alone)",
+  "torch": "2.9.1+cu130",
+  "threads": 4,
+  "protocol_facts": {
+    "train_split_transform": "Compose(\n    Resize(size=(224, 224), interpolation=bicubic, max_size=None, antialias=True)\n    RandomHorizontalFlip(p=0.5)\n    ColorJitter(brightness=(0.9, 1.1), contrast=(0.9, 1.1), saturation=(0.9, 1.1), hue=None)\n    ToTensor()\n    Normalize(mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])\n)",
+    "clean_split_transform": "Compose(\n    Resize(size=(224, 224), interpolation=bicubic, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])\n)",
+    "gallery_is_the_train_split_object": true,
+    "transform_origin": "src/dataset.py:401-425 -- create_dataloaders splits the `split='train'` dataset object, so val keeps the train transform",
+    "val_indices_sha1_16": "d69098c0074eca13",
+    "n_pairs": 500,
+    "same_index_two_reads_max_abs_diff": 0.15007781982421875,
+    "same_index_two_reads_differ": true,
+    "clean_index_two_reads_max_abs_diff": 0.0
+  },
+  "source": {
+    "archive_frozen": "outputs/analysis/dinov2_hetero/fitted/frozen/results.json",
+    "archive_text_only_seed42": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/results.json",
+    "head_checkpoint": "outputs/analysis/dinov2_hetero/heads/fitted.pt",
+    "head_meta": {
+      "head": "fitted",
+      "tuning_split": "flickr30k train captions [5000, 10000)",
+      "tuning_n": 5000,
+      "epochs": 10,
+      "batch": 128,
+      "lr": 0.0001,
+      "seed": 42,
+      "n_head_params": 656384,
+      "val_R@1_after_fitting": 0.28200000524520874,
+      "fit_seconds": 3440.8,
+      "note": "head fitted on a split disjoint from the arm training data ([0,5000)) and from the gap/retrieval evaluation; frozen for every arm"
+    },
+    "lora_checkpoint": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/last_checkpoint.pt",
+    "p293_constants": {
+      "TRAIN_MAX_SAMPLES": 5000,
+      "RANK": 8,
+      "ALPHA": 16,
+      "EVAL_PAIRS": 500,
+      "CHANCE_R1": 0.002,
+      "TUNE_SPLIT": [
+        5000,
+        10000
+      ]
+    }
+  },
+  "frozen": {
+    "clip_clean": {
+      "tag": "clip_clean",
+      "n_pairs": 500,
+      "CG": 0.6769103407859802,
+      "DG": 0.7511580248177973,
+      "CG_norm": 0.02991549326406646,
+      "mean_cosine_pos": 0.24111486971378326,
+      "mean_cosine_neg": 0.02236487902700901,
+      "cosine_separation": 0.21874999068677425,
+      "R@1_i2t": 0.2879999876022339,
+      "R@1_t2i": 0.25999999046325684,
+      "R@1": 0.27399998903274536,
+      "R@5_i2t": 0.6179999709129333,
+      "R@5_t2i": 0.6159999966621399,
+      "R@5": 0.6169999837875366
+    },
+    "imagenet_clean": {
+      "tag": "imagenet_clean",
+      "n_pairs": 500,
+      "CG": 0.6767876744270325,
+      "DG": 0.7510279108833915,
+      "CG_norm": 0.02991007212567675,
+      "mean_cosine_pos": 0.24151493608951569,
+      "mean_cosine_neg": 0.0224455613642931,
+      "cosine_separation": 0.2190693747252226,
+      "R@1_i2t": 0.28999999165534973,
+      "R@1_t2i": 0.26600000262260437,
+      "R@1": 0.27799999713897705,
+      "R@5_i2t": 0.6179999709129333,
+      "R@5_t2i": 0.6100000143051147,
+      "R@5": 0.613999992609024
+    },
+    "dinov2_native": {
+      "tag": "dinov2_native",
+      "n_pairs": 500,
+      "CG": 0.6785355806350708,
+      "DG": 0.7521087911343566,
+      "CG_norm": 0.02998731939646312,
+      "mean_cosine_pos": 0.23967106640338898,
+      "mean_cosine_neg": 0.02209780365228653,
+      "cosine_separation": 0.21757326275110245,
+      "R@1_i2t": 0.3019999861717224,
+      "R@1_t2i": 0.24199999868869781,
+      "R@1": 0.2719999924302101,
+      "R@5_i2t": 0.6399999856948853,
+      "R@5_t2i": 0.6140000224113464,
+      "R@5": 0.6270000040531158
+    },
+    "clip_aug_r0": {
+      "tag": "clip_aug_r0",
+      "n_pairs": 500,
+      "CG": 0.6766694784164429,
+      "DG": 0.7508043198812819,
+      "CG_norm": 0.02990484855063943,
+      "mean_cosine_pos": 0.24163419008255005,
+      "mean_cosine_neg": 0.022620510309934616,
+      "cosine_separation": 0.21901367977261543,
+      "R@1_i2t": 0.2840000092983246,
+      "R@1_t2i": 0.2759999930858612,
+      "R@1": 0.2800000011920929,
+      "R@5_i2t": 0.6140000224113464,
+      "R@5_t2i": 0.6119999885559082,
+      "R@5": 0.6130000054836273
+    }
+  },
+  "bootstrap_CG_frozen": {
+    "clip_clean": {
+      "n_boot": 2000,
+      "seed": 12345,
+      "mean": 0.6786050200462341,
+      "sd": 0.004042031243443489,
+      "q025": 0.6705994009971619,
+      "q975": 0.6862746477127075,
+      "note": "rev-2: inputs L2-normalised before resampling"
+    },
+    "imagenet_clean": {
+      "n_boot": 2000,
+      "seed": 12345,
+      "mean": 0.678480327129364,
+      "sd": 0.004055676981806755,
+      "q025": 0.6705222725868225,
+      "q975": 0.6861357092857361,
+      "note": "rev-2: inputs L2-normalised before resampling"
+    },
+    "dinov2_native": {
+      "n_boot": 2000,
+      "seed": 12345,
+      "mean": 0.6802394986152649,
+      "sd": 0.004176756367087364,
+      "q025": 0.6720054745674133,
+      "q975": 0.6881893873214722,
+      "note": "rev-2: inputs L2-normalised before resampling"
+    },
+    "clip_aug_r0": {
+      "n_boot": 2000,
+      "seed": 12345,
+      "mean": 0.678360641002655,
+      "sd": 0.004071246832609177,
+      "q025": 0.670353353023529,
+      "q975": 0.6860812902450562,
+      "note": "rev-2: inputs L2-normalised before resampling"
+    }
+  },
+  "paired_boot_dinov2native_minus_clipclean": {
+    "n_boot": 2000,
+    "seed": 999,
+    "mean": 0.0016053725266829133,
+    "sd": 0.0007819146849215031,
+    "q025": 0.00010410250251879916,
+    "q975": 0.0031569318380206823,
+    "note": "rev-2: inputs L2-normalised before resampling"
+  },
+  "text_only_lora_update": {
+    "n_layers": 24,
+    "frobenius_total": 8.337108577024438,
+    "max_abs": 0.03845765069127083,
+    "frobenius_per_layer_mean": 1.6710365116596222,
+    "checkpoint_epoch": 10,
+    "source": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/last_checkpoint.pt :: lora_state_dict -> ||scaling*(A@B)||_F per layer",
+    "note": "the quantity `backbone_delta` cannot carry: it compares only pre-existing weights, which strict freezing holds at zero"
+  },
+  "adapted": {
+    "clip_clean": {
+      "frozen": {
+        "tag": "clip_clean_frozen",
+        "n_pairs": 500,
+        "CG": 0.6769103407859802,
+        "DG": 0.7511580248177973,
+        "CG_norm": 0.02991549326406646,
+        "mean_cosine_pos": 0.24111486971378326,
+        "mean_cosine_neg": 0.02236487902700901,
+        "cosine_separation": 0.21874999068677425,
+        "R@1_i2t": 0.2879999876022339,
+        "R@1_t2i": 0.25999999046325684,
+        "R@1": 0.27399998903274536,
+        "R@5_i2t": 0.6179999709129333,
+        "R@5_t2i": 0.6159999966621399,
+        "R@5": 0.6169999837875366
+      },
+      "adapted": {
+        "tag": "clip_clean_adapted",
+        "n_pairs": 500,
+        "CG": 0.28536084294319153,
+        "DG": 0.30479257128613446,
+        "CG_norm": 0.012611286695640005,
+        "mean_cosine_pos": 0.37694135308265686,
+        "mean_cosine_neg": -0.0031501015182584524,
+        "cosine_separation": 0.3800914546009153,
+        "R@1_i2t": 0.3619999885559082,
+        "R@1_t2i": 0.34599998593330383,
+        "R@1": 0.353999987244606,
+        "R@5_i2t": 0.7279999852180481,
+        "R@5_t2i": 0.6919999718666077,
+        "R@5": 0.7099999785423279
+      },
+      "delta_CG_paired": -0.3915494978427887,
+      "delta_DG_paired": -0.4463654535316628,
+      "delta_R1_paired": 0.07999999821186066
+    },
+    "dinov2_native": {
+      "frozen": {
+        "tag": "dinov2_native_frozen",
+        "n_pairs": 500,
+        "CG": 0.6785355806350708,
+        "DG": 0.7521087911343566,
+        "CG_norm": 0.02998731939646312,
+        "mean_cosine_pos": 0.23967106640338898,
+        "mean_cosine_neg": 0.02209780365228653,
+        "cosine_separation": 0.21757326275110245,
+        "R@1_i2t": 0.3019999861717224,
+        "R@1_t2i": 0.24199999868869781,
+        "R@1": 0.2719999924302101,
+        "R@5_i2t": 0.6399999856948853,
+        "R@5_t2i": 0.6140000224113464,
+        "R@5": 0.6270000040531158
+      },
+      "adapted": {
+        "tag": "dinov2_native_adapted",
+        "n_pairs": 500,
+        "CG": 0.28930094838142395,
+        "DG": 0.3076628404073383,
+        "CG_norm": 0.012785416400262763,
+        "mean_cosine_pos": 0.3737089931964874,
+        "mean_cosine_neg": -0.0034443186596035957,
+        "cosine_separation": 0.377153311856091,
+        "R@1_i2t": 0.3580000102519989,
+        "R@1_t2i": 0.33000001311302185,
+        "R@1": 0.3440000116825104,
+        "R@5_i2t": 0.7279999852180481,
+        "R@5_t2i": 0.6940000057220459,
+        "R@5": 0.710999995470047
+      },
+      "delta_CG_paired": -0.38923463225364685,
+      "delta_DG_paired": -0.44444595072701826,
+      "delta_R1_paired": 0.07200001925230026
+    },
+    "imagenet_clean": {
+      "frozen": {
+        "tag": "imagenet_clean_frozen",
+        "n_pairs": 500,
+        "CG": 0.6767876744270325,
+        "DG": 0.7510279108833915,
+        "CG_norm": 0.02991007212567675,
+        "mean_cosine_pos": 0.24151493608951569,
+        "mean_cosine_neg": 0.0224455613642931,
+        "cosine_separation": 0.2190693747252226,
+        "R@1_i2t": 0.28999999165534973,
+        "R@1_t2i": 0.26600000262260437,
+        "R@1": 0.27799999713897705,
+        "R@5_i2t": 0.6179999709129333,
+        "R@5_t2i": 0.6100000143051147,
+        "R@5": 0.613999992609024
+      },
+      "adapted": {
+        "tag": "imagenet_clean_adapted",
+        "n_pairs": 500,
+        "CG": 0.2850390076637268,
+        "DG": 0.3044180240341278,
+        "CG_norm": 0.012597063451356593,
+        "mean_cosine_pos": 0.3775293231010437,
+        "mean_cosine_neg": -0.0030610165558755398,
+        "cosine_separation": 0.38059033965691924,
+        "R@1_i2t": 0.37599998712539673,
+        "R@1_t2i": 0.34599998593330383,
+        "R@1": 0.3609999865293503,
+        "R@5_i2t": 0.7279999852180481,
+        "R@5_t2i": 0.6840000152587891,
+        "R@5": 0.7060000002384186
+      },
+      "delta_CG_paired": -0.39174866676330566,
+      "delta_DG_paired": -0.44660988684926367,
+      "delta_R1_paired": 0.08299998939037323
+    },
+    "clip_aug_r0": {
+      "frozen": {
+        "tag": "clip_aug_r0_frozen",
+        "n_pairs": 500,
+        "CG": 0.6766694784164429,
+        "DG": 0.7508043198812819,
+        "CG_norm": 0.02990484855063943,
+        "mean_cosine_pos": 0.24163419008255005,
+        "mean_cosine_neg": 0.022620510309934616,
+        "cosine_separation": 0.21901367977261543,
+        "R@1_i2t": 0.2840000092983246,
+        "R@1_t2i": 0.2759999930858612,
+        "R@1": 0.2800000011920929,
+        "R@5_i2t": 0.6140000224113464,
+        "R@5_t2i": 0.6119999885559082,
+        "R@5": 0.6130000054836273
+      },
+      "adapted": {
+        "tag": "clip_aug_r0_adapted",
+        "n_pairs": 500,
+        "CG": 0.28563591837882996,
+        "DG": 0.30488088875626557,
+        "CG_norm": 0.012623443427257365,
+        "mean_cosine_pos": 0.3768104016780853,
+        "mean_cosine_neg": -0.003135238541290164,
+        "cosine_separation": 0.3799456402193755,
+        "R@1_i2t": 0.3540000021457672,
+        "R@1_t2i": 0.36000001430511475,
+        "R@1": 0.357000008225441,
+        "R@5_i2t": 0.7379999756813049,
+        "R@5_t2i": 0.6959999799728394,
+        "R@5": 0.7169999778270721
+      },
+      "delta_CG_paired": -0.3910335600376129,
+      "delta_DG_paired": -0.44592343112501637,
+      "delta_R1_paired": 0.07700000703334808
+    }
+  },
+  "paired_boot_deltaCG_text_only_clip_clean": {
+    "n_boot": 2000,
+    "seed": 999,
+    "mean": -0.3892059028148651,
+    "sd": 0.004476891364902258,
+    "q025": -0.39786502718925476,
+    "q975": -0.38047465682029724,
+    "note": "rev-2: inputs L2-normalised before resampling"
+  },
+  "paired_boot_deltaCG_text_only_dinov2_native": {
+    "n_boot": 2000,
+    "seed": 999,
+    "mean": -0.3869200348854065,
+    "sd": 0.004547754302620888,
+    "q025": -0.3957887291908264,
+    "q975": -0.37813228368759155,
+    "note": "rev-2: inputs L2-normalised before resampling"
+  },
+  "wall_sec": 669.7
+}

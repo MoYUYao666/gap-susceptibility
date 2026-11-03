@@ -1,0 +1,101 @@
+{
+ "meta": {
+  "script": "tools/_p1612_objective_control_multimodel.py",
+  "mode": "apply",
+  "model": "llava15-7b",
+  "model_repo": "llava-hf/llava-1.5-7b-hf",
+  "model_family": "llava-1.5",
+  "model_class": "LlavaForConditionalGeneration",
+  "model_source": "models/llava-hf",
+  "revision": "local snapshot (llava-hf); no hash recorded",
+  "protocol": "match",
+  "protocol_note": "E-table-size protocol; LLaVA is held at batch 2 because its image is a fixed 336x336 CLIP crop and its LM is 7B",
+  "nonfinite_steps_skipped": 0,
+  "epochs_reported": 3,
+  "epochs_requested": 3,
+  "final_epoch_truncated": false,
+  "objective": "contrastive",
+  "arm": "both",
+  "seed": 42,
+  "epochs": 3,
+  "num_samples": 320,
+  "batch": 2,
+  "batch_origin": "protocol default",
+  "lr": 5e-05,
+  "precision": "4-bit nf4",
+  "max_image_tokens": 196,
+  "image_tokens_realised": 1152,
+  "image_token_budget_applied_via": "size.longest_edge",
+  "image_token_id": 32000,
+  "backbone_path": "model",
+  "lm_head_called": false,
+  "dataset": "data/marine_captions (536 image-caption pairs; first --num-samples used)",
+  "lora": {
+   "r": 8,
+   "alpha": 16,
+   "dropout": 0.05
+  },
+  "lora_targets": 370,
+  "n_trainable": 23633920,
+  "n_vision_adapters": 288,
+  "n_language_adapters": 448,
+  "n_projector_adapters": 4,
+  "gradient_checkpointing": true,
+  "measurement": {
+   "I": "mean pool of final hidden state over image-token positions",
+   "T": "mean pool over caption positions (after last image token, before <|im_end|>)",
+   "normalisation": "L2 per side, no projection",
+   "DG*": "mean_i ||I_i - T_i||^2",
+   "scope": "whole evaluation set, measured once before training and once per epoch"
+  },
+  "elapsed_sec": 1803.6,
+  "versions": {
+   "torch": "2.12.1+cu130",
+   "cuda": "13.0",
+   "transformers": "5.16.1",
+   "peft": "0.20.0",
+   "python": "3.12.3"
+  },
+  "hostname": "autodl-container-d81e4f8fad-25e5e2de",
+  "platform": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+  "device": "NVIDIA GeForce RTX 4080 SUPER",
+  "contrastive_protocol": {
+   "loss": "symmetric cross-entropy over I @ T.T within the batch",
+   "eval": "image+caption forward pass"
+  },
+  "frozen_signature": {
+   "model": "llava15-7b",
+   "model_repo": "llava-hf/llava-1.5-7b-hf",
+   "protocol": "match",
+   "num_samples": 320,
+   "image_tokens": 196,
+   "batch": 2,
+   "seed": 42,
+   "precision": "4-bit nf4",
+   "arm": "both",
+   "mode": "apply"
+  },
+  "ab_check": {
+   "verdict": "MISMATCH (recorded, not fatal)",
+   "problems": "A/B mismatch between the two objectives of llava15-7b seed 42: frozen_dg_star differs by 5.73% (0.48193359375 vs 0.455810546875) although the untrained forward pass should be identical\nBoth objectives must share protocol and adaptation setup."
+  }
+ },
+ "frozen_dg_star": 0.48193359375,
+ "frozen_cg": 0.59814453125,
+ "dg_star": [
+  0.322265625,
+  0.227783203125,
+  0.1683349609375
+ ],
+ "cg": [
+  0.427734375,
+  0.352294921875,
+  0.2449951171875
+ ],
+ "loss": [
+  0.6013008117675781,
+  0.44335250854492186,
+  0.42370758056640623
+ ],
+ "delta_DG_percent": -65.0709219858156
+}

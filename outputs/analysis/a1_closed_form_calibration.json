@@ -1,0 +1,69 @@
+{
+ "source": "D:\\Realdesktop\\Wan\\Important\\New\\outputs\\a1_margins.json",
+ "model": "CLIP ViT-B/32 frozen, ImageNet-5k",
+ "n_pairs": 50000,
+ "gap_norm": 0.8153436183929443,
+ "sigma_b": 0.09524815817523943,
+ "k_best": 0.55,
+ "mae_uncalibrated": 0.11529150827139,
+ "mae_calibrated": 0.017074182601165742,
+ "max_abs_err_calibrated": 0.03534885987131922,
+ "r_calibrated": 0.9952309752182693,
+ "rows": [
+  {
+   "lambda": -2.0,
+   "measured": 0.20020666666666667,
+   "pred_k1": 0.09310943522364101,
+   "pred_calibrated": 0.16485780679534745
+  },
+  {
+   "lambda": -1.0,
+   "measured": 0.3295488888888889,
+   "pred_k1": 0.17997554770572477,
+   "pred_calibrated": 0.30010122733108624
+  },
+  {
+   "lambda": -0.5,
+   "measured": 0.4924022222222222,
+   "pred_k1": 0.32290808763014245,
+   "pred_calibrated": 0.4782487977383165
+  },
+  {
+   "lambda": -0.25,
+   "measured": 0.6537266666666667,
+   "pred_k1": 0.5036076638353049,
+   "pred_calibrated": 0.6541683944266128
+  },
+  {
+   "lambda": 0.25,
+   "measured": 0.6354777777777777,
+   "pred_k1": 0.5036076638353049,
+   "pred_calibrated": 0.6541683944266128
+  },
+  {
+   "lambda": 0.5,
+   "measured": 0.4617111111111111,
+   "pred_k1": 0.32290808763014245,
+   "pred_calibrated": 0.4782487977383165
+  },
+  {
+   "lambda": 1.0,
+   "measured": 0.28834666666666664,
+   "pred_k1": 0.17997554770572477,
+   "pred_calibrated": 0.30010122733108624
+  },
+  {
+   "lambda": 2.0,
+   "measured": 0.15411111111111112,
+   "pred_k1": 0.09310943522364101,
+   "pred_calibrated": 0.16485780679534745
+  },
+  {
+   "lambda": 4.0,
+   "measured": 0.06827555555555556,
+   "pred_k1": 0.046981623434530384,
+   "pred_calibrated": 0.08482196566837719
+  }
+ ],
+ "note": "one constant multiplies the bias scale; the shape was already right, so a small k should absorb the level offset. The fitted k must then be frozen and tested on the other benchmarks."
+}

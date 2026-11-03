@@ -1,0 +1,40 @@
+{
+  "script": "tools/_p1767b_cv_compare.py",
+  "n_trajectories": 829,
+  "models": {
+    "constant": {
+      "median_cv_r2": -0.32014458367631704,
+      "median_cv_mae": 0.02941567962518846,
+      "mean_aic": -59.77320777895053,
+      "wins_cv_mae": 183,
+      "n": 829
+    },
+    "linear": {
+      "median_cv_r2": 0.12859386468836487,
+      "median_cv_mae": 0.01848883808916348,
+      "mean_aic": -66.63877744558422,
+      "wins_cv_mae": 290,
+      "n": 829
+    },
+    "power": {
+      "median_cv_r2": 0.35070313051465873,
+      "median_cv_mae": 0.017704462567820132,
+      "mean_aic": -70.85016060921318,
+      "wins_cv_mae": 46,
+      "n": 829
+    },
+    "ode": {
+      "median_cv_r2": 0.4478086599710802,
+      "median_cv_mae": 0.015286430936065252,
+      "mean_aic": -74.85947851888794,
+      "wins_cv_mae": 310,
+      "n": 829
+    },
+    "power_minus_ode_mae": {
+      "mean": 0.0031947980472970946,
+      "t": 20.845009238331706,
+      "p": 6.700874795027925e-78,
+      "n": 829
+    }
+  }
+}

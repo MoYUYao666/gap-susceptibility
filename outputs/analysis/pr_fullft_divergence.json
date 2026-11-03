@@ -1,0 +1,238 @@
+{
+ "script": "tools/_p297_divergence_compare.py",
+ "script_sha1": "0a86f6401b36e6d30489c8ef59835c215231c67b",
+ "purpose": "task-7 question C: characterise the lr=1e-4 train/val trajectory against the 2026-08 archive and decide whether the divergence is reproducible",
+ "sources": {
+  "extension": "outputs\\analysis\\pr_fullft_lr_sweep_ext.json",
+  "extension_sha1": "0dd7915c5f994edc5842ed636b3a2ba8e3c951eb",
+  "reproduction": null,
+  "reproduction_sha1": null,
+  "archive_dir": "outputs\\imagenet_zs_rerun",
+  "merged": "outputs\\analysis\\pr_fullft_lr_sweep_full.json"
+ },
+ "archive_environment_record": {
+  "searched": "outputs/**/*env*.json and any torch/cuDNN version field in the archive",
+  "found": false,
+  "note": "the archived full-FT results.json records only the optimisation config (dataset, epochs, lr, weight_decay, scheduler, seed, amp, grad_clip); no torch/cuDNN/transformers version is stored anywhere in outputs/, so a version-drift explanation cannot be tested from the archive"
+ },
+ "seed42_determinism_vs_first_run": null,
+ "per_seed": {
+  "42": {
+   "seed": 42,
+   "archive": {
+    "source": "outputs\\imagenet_zs_rerun\\full_ft\\results.json",
+    "train": [
+     3.8584,
+     4.1158,
+     4.1292,
+     3.8752,
+     3.6458,
+     3.3793,
+     3.1755,
+     3.0431,
+     2.8162,
+     2.7167
+    ],
+    "val": [
+     4.1296,
+     4.1295,
+     4.1267,
+     4.1094,
+     4.3051,
+     5.1586,
+     5.5889,
+     6.5767,
+     7.6121,
+     7.8772
+    ]
+   }
+  },
+  "123": {
+   "seed": 123,
+   "this_session": {
+    "source": "outputs\\analysis\\pr_fullft_lr_sweep_ext.json",
+    "train": [
+     1.9619,
+     0.692,
+     0.4102,
+     0.3659,
+     0.2894,
+     0.2202,
+     0.1952,
+     0.1485,
+     0.1383,
+     0.1184
+    ],
+    "val": [
+     2.7629,
+     3.213,
+     3.2354,
+     3.4319,
+     3.7213,
+     3.5339,
+     3.2185,
+     3.0946,
+     3.053,
+     3.0268
+    ]
+   },
+   "archive": {
+    "source": "outputs\\imagenet_zs_rerun\\full_ft_s123\\results.json",
+    "train": [
+     1.9327,
+     0.6634,
+     0.4408,
+     0.3635,
+     0.2827,
+     0.2314,
+     0.1924,
+     0.1472,
+     0.1312,
+     0.1213
+    ],
+    "val": [
+     2.7792,
+     3.2984,
+     3.6854,
+     3.5046,
+     3.6605,
+     3.6214,
+     3.3358,
+     3.215,
+     3.1198,
+     3.103
+    ]
+   },
+   "first_divergence_val_loss": {
+    "epoch": 1,
+    "this_run": 2.7629096806049347,
+    "reference": 2.779151350259781,
+    "abs_diff": 0.01624166965484619
+   },
+   "first_divergence_train_loss": {
+    "epoch": 1,
+    "this_run": 1.9618875961149893,
+    "reference": 1.93266580440104,
+    "abs_diff": 0.02922179171394923
+   },
+   "val_loss_max_abs_diff_after_divergence": 0.45001131296157837,
+   "final_agreement": {
+    "this_session_zero_shot_top1_pct": 4.15,
+    "archive_zero_shot_top1_pct": 4.12,
+    "abs_diff_zero_shot_pp": 0.03,
+    "this_session_dCG": 0.26,
+    "archive_dCG": 0.2609,
+    "abs_diff_dCG": 0.0009
+   }
+  },
+  "999": {
+   "seed": 999,
+   "this_session": {
+    "source": "outputs\\analysis\\pr_fullft_lr_sweep_ext.json",
+    "train": [
+     2.2847,
+     0.7621,
+     0.4288,
+     0.3638,
+     0.2838,
+     0.2369,
+     0.2076,
+     0.1524,
+     0.1494,
+     0.1234
+    ],
+    "val": [
+     2.7655,
+     3.3122,
+     3.5597,
+     3.5265,
+     3.7625,
+     3.5868,
+     3.3404,
+     3.1539,
+     3.1062,
+     3.0732
+    ]
+   },
+   "archive": {
+    "source": "outputs\\imagenet_zs_rerun\\full_ft_s999\\results.json",
+    "train": [
+     2.2442,
+     0.7245,
+     0.4441,
+     0.327,
+     0.2849,
+     0.2263,
+     0.1973,
+     0.1447,
+     0.1261,
+     0.1203
+    ],
+    "val": [
+     3.1194,
+     3.1909,
+     3.7149,
+     3.9524,
+     3.4916,
+     3.3998,
+     3.3152,
+     3.1628,
+     3.1015,
+     3.0897
+    ]
+   },
+   "first_divergence_val_loss": {
+    "epoch": 1,
+    "this_run": 2.765490159392357,
+    "reference": 3.1194301396608353,
+    "abs_diff": 0.3539399802684784
+   },
+   "first_divergence_train_loss": {
+    "epoch": 1,
+    "this_run": 2.2846751386119473,
+    "reference": 2.244215004146099,
+    "abs_diff": 0.040460134465848174
+   },
+   "val_loss_max_abs_diff_after_divergence": 0.42593108117580414,
+   "final_agreement": {
+    "this_session_zero_shot_top1_pct": 3.59,
+    "archive_zero_shot_top1_pct": 3.39,
+    "abs_diff_zero_shot_pp": 0.2,
+    "this_session_dCG": 0.2679,
+    "archive_dCG": 0.2672,
+    "abs_diff_dCG": 0.0007
+   }
+  }
+ },
+ "verdict": {
+  "within_session_reproduction_run_executed": false,
+  "within_session_reproducible": null,
+  "seeds_compared_with_archive": 2,
+  "first_divergence_epoch_vs_archive": [
+   1,
+   1
+  ],
+  "final_metric_agreement_with_archive": {
+   "123": {
+    "this_session_zero_shot_top1_pct": 4.15,
+    "archive_zero_shot_top1_pct": 4.12,
+    "abs_diff_zero_shot_pp": 0.03,
+    "this_session_dCG": 0.26,
+    "archive_dCG": 0.2609,
+    "abs_diff_dCG": 0.0009
+   },
+   "999": {
+    "this_session_zero_shot_top1_pct": 3.59,
+    "archive_zero_shot_top1_pct": 3.39,
+    "abs_diff_zero_shot_pp": 0.2,
+    "this_session_dCG": 0.2679,
+    "archive_dCG": 0.2672,
+    "abs_diff_dCG": 0.0007
+   }
+  },
+  "max_abs_zero_shot_gap_pp": 0.2,
+  "max_abs_dCG_gap": 0.0009,
+  "cause": "undetermined",
+  "statement": "The lr=1e-4 trajectories part company with the 2026-08 archive from the FIRST epoch (val-loss divergence at epochs [1, 1]), so accumulated floating-point drift in later epochs cannot explain it: the two runs drew different data/augmentation orders or ran in different library versions from the start. Final metrics nevertheless agree closely on average (max |zero-shot| gap 0.2 pp, max |dCG| gap 0.0009), and the seed-42 case is the outlier. Which of data order, library version or an unrecorded code difference is responsible is UNDETERMINED, because the archived artefacts store neither a torch/cuDNN/transformers version nor a data fingerprint; this session's environment is torch 2.9.1+cu130 and cannot be assumed for the archived runs."
+ }
+}

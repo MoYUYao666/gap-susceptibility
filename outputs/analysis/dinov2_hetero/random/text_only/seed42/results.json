@@ -1,0 +1,87 @@
+{
+  "experiment": "dinov2_hetero_strict",
+  "heterogeneous_pairing": true,
+  "vision_tower": "models/dinov2-base",
+  "text_tower": "models/clip-vit-base-patch32",
+  "head": "random",
+  "arm": "text_only",
+  "seed": 42,
+  "strict_freeze": true,
+  "n_trainable_params": 196608,
+  "n_trainable_vision_side": 0,
+  "n_trainable_text_side": 196608,
+  "n_trainable_from_trainer": 196608,
+  "rank": 8,
+  "alpha": 16,
+  "epochs": 10,
+  "max_samples": 5000,
+  "batch_size": 128,
+  "image_size": 224,
+  "eval_gallery_pairs": 500,
+  "chance_R@1": 0.002,
+  "data_dir": ".",
+  "image_normalisation": "CLIP mean/std (src/dataset.py:19-20), not DINOv2's ImageNet stats",
+  "logit_scale": 2.659260036932778,
+  "logit_scale_trainable": false,
+  "elapsed_sec": 731.2,
+  "CG_initial": 0.8718504309654236,
+  "CG_final": 0.573061466217041,
+  "DG_initial": 0.907874635715347,
+  "DG_final": 0.5957614567471636,
+  "delta_CG": -0.29878896474838257,
+  "delta_DG": -0.31211317896818336,
+  "R@1": 0.07600000128149986,
+  "R@1_i2t": 0.0860000029206276,
+  "R@1_t2i": 0.06599999964237213,
+  "R@5": 0.2770000025629997,
+  "backbone_delta": {
+    "other": {
+      "tensors": 1,
+      "nonzero_tensors": 0,
+      "max_abs_delta": 0.0,
+      "frobenius": 0.0
+    },
+    "vision": {
+      "tensors": 223,
+      "nonzero_tensors": 0,
+      "max_abs_delta": 0.0,
+      "frobenius": 0.0
+    },
+    "text": {
+      "tensors": 197,
+      "nonzero_tensors": 0,
+      "max_abs_delta": 0.0,
+      "frobenius": 0.0
+    },
+    "head": {
+      "tensors": 4,
+      "nonzero_tensors": 0,
+      "max_abs_delta": 0.0,
+      "frobenius": 0.0
+    }
+  },
+  "backbone_delta_note": "pre-existing weights only; 0 under strict freezing is the freeze verification, not a measure of adaptation",
+  "lora_update_norm_frobenius": {
+    "text": 9.795868832436005
+  },
+  "lora_update_sum_of_layer_frobenius": {
+    "text": 46.26516306400299
+  },
+  "lora_update_max_abs": {
+    "text": 0.03571520745754242
+  },
+  "lora_update_definitions": {
+    "lora_update_norm_frobenius": "sqrt(sum_layers ||scaling*A@B||_F^2)",
+    "lora_update_sum_of_layer_frobenius": "sum_layers ||scaling*A@B||_F"
+  },
+  "final_train_loss": 3.15360626578331,
+  "final_val_loss": 3.4949466586112976,
+  "source": {
+    "script": "tools/_p293_dinov2_hetero_strict.py",
+    "trainer": "src/trainer.py::GapAwareTrainer (unmodified)",
+    "gap_metrics": "src/gap_metrics.py::GapTracker (unmodified)",
+    "head_checkpoint": null
+  },
+  "finished_utc": "2026-10-12T13:04:48+00:00",
+  "lora_norm_validity": "measured live, after the zeroing fix; values are the in-process measurement"
+}

@@ -1,0 +1,199 @@
+{
+ "settings": {
+  "clip_imagenet5k": {
+   "CG": 0.8554955124855042,
+   "top1": 59.099999999999994,
+   "n_points": 28,
+   "n_healthy": 16,
+   "n_degraded": 12
+  },
+  "openclip_imagenet5k": {
+   "CG": 0.7906367182731628,
+   "top1": 62.36000000000001,
+   "n_points": 11,
+   "n_healthy": 3,
+   "n_degraded": 8
+  },
+  "siglip_imagenet5k": {
+   "CG": 1.115527629852295,
+   "top1": 73.34,
+   "n_points": 11,
+   "n_healthy": 3,
+   "n_degraded": 8
+  },
+  "dtd_own": {
+   "CG": 1.0184519290924072,
+   "top1": 41.620000000000005,
+   "n_points": 28,
+   "n_healthy": 21,
+   "n_degraded": 7
+  },
+  "food101_own": {
+   "CG": 0.9528389573097229,
+   "top1": 80.64,
+   "n_points": 28,
+   "n_healthy": 19,
+   "n_degraded": 9
+  }
+ },
+ "per_setting_fit": [
+  {
+   "setting": "clip_imagenet5k",
+   "fit_threshold": 0.896524,
+   "in_setting_balanced_accuracy": 0.6666666666666666,
+   "frozen_CG": 0.8554955124855042,
+   "frozen_top1": 59.099999999999994
+  },
+  {
+   "setting": "openclip_imagenet5k",
+   "fit_threshold": 0.835388,
+   "in_setting_balanced_accuracy": 0.6875,
+   "frozen_CG": 0.7906367182731628,
+   "frozen_top1": 62.36000000000001
+  },
+  {
+   "setting": "siglip_imagenet5k",
+   "fit_threshold": 1.168191,
+   "in_setting_balanced_accuracy": 0.6875,
+   "frozen_CG": 1.115527629852295,
+   "frozen_top1": 73.34
+  },
+  {
+   "setting": "dtd_own",
+   "fit_threshold": 1.0691,
+   "in_setting_balanced_accuracy": 0.7857142857142857,
+   "frozen_CG": 1.0184519290924072,
+   "frozen_top1": 41.620000000000005
+  },
+  {
+   "setting": "food101_own",
+   "fit_threshold": 1.003321,
+   "in_setting_balanced_accuracy": 0.7222222222222222,
+   "frozen_CG": 0.9528389573097229,
+   "frozen_top1": 80.64
+  }
+ ],
+ "transfer": {
+  "clip_imagenet5k": {
+   "openclip_imagenet5k": {
+    "threshold": 0.896524,
+    "balanced_accuracy": 0.6875
+   },
+   "siglip_imagenet5k": {
+    "threshold": 0.896524,
+    "balanced_accuracy": 0.1875
+   },
+   "dtd_own": {
+    "threshold": 0.896524,
+    "balanced_accuracy": 0.3333333333333333
+   },
+   "food101_own": {
+    "threshold": 0.896524,
+    "balanced_accuracy": 0.2222222222222222
+   }
+  },
+  "openclip_imagenet5k": {
+   "clip_imagenet5k": {
+    "threshold": 0.835388,
+    "balanced_accuracy": 0.2916666666666667
+   },
+   "siglip_imagenet5k": {
+    "threshold": 0.835388,
+    "balanced_accuracy": 0.25
+   },
+   "dtd_own": {
+    "threshold": 0.835388,
+    "balanced_accuracy": 0.3333333333333333
+   },
+   "food101_own": {
+    "threshold": 0.835388,
+    "balanced_accuracy": 0.2222222222222222
+   }
+  },
+  "siglip_imagenet5k": {
+   "clip_imagenet5k": {
+    "threshold": 1.168191,
+    "balanced_accuracy": 0.5833333333333334
+   },
+   "openclip_imagenet5k": {
+    "threshold": 1.168191,
+    "balanced_accuracy": 0.625
+   },
+   "dtd_own": {
+    "threshold": 1.168191,
+    "balanced_accuracy": 0.7857142857142857
+   },
+   "food101_own": {
+    "threshold": 1.168191,
+    "balanced_accuracy": 0.6666666666666666
+   }
+  },
+  "dtd_own": {
+   "clip_imagenet5k": {
+    "threshold": 1.0691,
+    "balanced_accuracy": 0.625
+   },
+   "openclip_imagenet5k": {
+    "threshold": 1.0691,
+    "balanced_accuracy": 0.6875
+   },
+   "siglip_imagenet5k": {
+    "threshold": 1.0691,
+    "balanced_accuracy": 0.1875
+   },
+   "food101_own": {
+    "threshold": 1.0691,
+    "balanced_accuracy": 0.7222222222222222
+   }
+  },
+  "food101_own": {
+   "clip_imagenet5k": {
+    "threshold": 1.003321,
+    "balanced_accuracy": 0.6666666666666666
+   },
+   "openclip_imagenet5k": {
+    "threshold": 1.003321,
+    "balanced_accuracy": 0.6875
+   },
+   "siglip_imagenet5k": {
+    "threshold": 1.003321,
+    "balanced_accuracy": 0.1875
+   },
+   "dtd_own": {
+    "threshold": 1.003321,
+    "balanced_accuracy": 0.3333333333333333
+   }
+  }
+ },
+ "summary": {
+  "frozen_CG_min": 0.7906367182731628,
+  "frozen_CG_max": 1.115527629852295,
+  "frozen_CG_ratio": 1.4109231257166115,
+  "frozen_CG_spread": 0.3248909115791321,
+  "frozen_top1_min": 41.620000000000005,
+  "frozen_top1_max": 80.64,
+  "transfer_balanced_accuracy": [
+   0.6875,
+   0.1875,
+   0.3333333333333333,
+   0.2222222222222222,
+   0.2916666666666667,
+   0.25,
+   0.3333333333333333,
+   0.2222222222222222,
+   0.5833333333333334,
+   0.625,
+   0.7857142857142857,
+   0.6666666666666666,
+   0.625,
+   0.6875,
+   0.1875,
+   0.7222222222222222,
+   0.6666666666666666,
+   0.6875,
+   0.1875,
+   0.3333333333333333
+  ],
+  "interpretation": "A single absolute threshold would need the frozen gap of a healthy model to sit below the threshold in every setting; the frozen gaps themselves span a factor of 1.41, so no such threshold exists."
+ }
+}

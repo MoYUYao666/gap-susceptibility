@@ -1,0 +1,54 @@
+{
+ "blocks": [
+  "vis",
+  "llm_shallow",
+  "llm_mid",
+  "llm_deep"
+ ],
+ "gamma_abs": {
+  "vis": 8092.164583224058,
+  "llm_shallow": 1614.323403664818,
+  "llm_mid": 8717.194066253305,
+  "llm_deep": 2726.687970560789
+ },
+ "budget": 64,
+ "policies": {
+  "exp(beta=3e-4)": {
+   "alloc": {
+    "vis": 5,
+    "llm_shallow": 32,
+    "llm_mid": 4,
+    "llm_deep": 23
+   },
+   "obj": 189702.0
+  },
+  "exp(beta=1e-4)": {
+   "alloc": {
+    "vis": 12,
+    "llm_shallow": 21,
+    "llm_mid": 11,
+    "llm_deep": 20
+   },
+   "obj": 281430.0
+  },
+  "uniform": {
+   "alloc": {
+    "vis": 16,
+    "llm_shallow": 16,
+    "llm_mid": 16,
+    "llm_deep": 16
+   },
+   "obj": 338406.0
+  },
+  "greedy(lowest|Gamma|)": {
+   "alloc": {
+    "vis": 0,
+    "llm_shallow": 64,
+    "llm_mid": 0,
+    "llm_deep": 0
+   },
+   "obj": 103317.0
+  }
+ },
+ "note": "objective-space comparison of Corollary 2 (linear risk with budget C=64) on LLaVA r8 Gamma orderings; not post-training measurements"
+}

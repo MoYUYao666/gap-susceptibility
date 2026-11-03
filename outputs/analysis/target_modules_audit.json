@@ -1,0 +1,108 @@
+{
+ "code_defaults": {
+  "src\\lora.py": [
+   "[\"q_proj\", \"v_proj\"]"
+  ],
+  "tools\\clip_bioclip_joint_training.py": [
+   "['c_fc', 'c_proj', 'q_proj', 'k_proj', 'v_proj', 'out_proj']"
+  ],
+  "tools\\clip_bioclip_lora_instruction.py": [
+   "['c_fc', 'c_proj', 'q_proj', 'k_proj', 'v_proj', 'out_proj']"
+  ],
+  "tools\\clip_llava_instruction_dynamics.py": [
+   "['q_proj', 'k_proj', 'v_proj', 'o_proj',\n                        'gate_proj', 'up_proj', 'down_proj']"
+  ],
+  "tools\\clip_ocean_peft.py": [
+   "['qkv', 'c_fc', 'c_proj', 'in_proj', 'out_proj']",
+   "['qkv', 'c_fc', 'c_proj', 'in_proj', 'out_proj']"
+  ],
+  "tools\\clip_ocean_peft_ms.py": [
+   "['qkv', 'c_fc', 'c_proj', 'in_proj', 'out_proj']",
+   "['qkv', 'c_fc', 'c_proj', 'in_proj', 'out_proj']"
+  ],
+  "tools\\clip_sonar_peft.py": [
+   "['q_proj', 'v_proj', 'k_proj', 'out_proj',\n                                             'fc1', 'fc2', 'c_fc', 'c_proj', 'in_proj', 'out_proj']"
+  ],
+  "tools\\clip_sonar_peft_ms.py": [
+   "['q_proj', 'v_proj', 'k_proj', 'out_proj', 'fc1', 'fc2']"
+  ],
+  "tools\\clip_vlm_instruction_dynamics.py": [
+   "['q_proj', 'k_proj', 'v_proj', 'o_proj',\n                        'gate_proj', 'up_proj', 'down_proj']"
+  ],
+  "tools\\clip_vlm_vision_instruction_dynamics.py": [
+   "['q_proj', 'k_proj', 'v_proj', 'o_proj',\n                        'gate_proj', 'up_proj', 'down_proj']"
+  ],
+  "tools\\verify_block_config.py": [
+   "['q_proj', 'k_proj', 'v_proj', 'o_proj']"
+  ],
+  "tools\\_bench_vis.py": [
+   "['q_proj', 'k_proj', 'v_proj', 'o_proj',\n                        'gate_proj', 'up_proj', 'down_proj']"
+  ],
+  "tools\\_p291_peft_lr_sweep.py": [
+   "[\"q_proj\", \"v_proj\"]"
+  ],
+  "tools\\_p293_dinov2_hetero_strict.py": [
+   "[\"q_proj\", \"v_proj\"]"
+  ],
+  "tools\\_p309_audit_lora_injection.py": [
+   "[\"q_proj\",\"v_proj\"]"
+  ],
+  "tools\\_p310_audit_target_modules.py": [
+   "[\"q_proj\",\"v_proj\"]"
+  ],
+  "tools\\_p51_diag_qwen_bf16.py": [
+   "[\"qkv\", \"proj\", \"fc1\", \"fc2\"]"
+  ]
+ },
+ "clip_vit_b32": {
+  "class": "CLIPModel",
+  "found": {
+   "q_proj": 24,
+   "v_proj": 24,
+   "k_proj": 24,
+   "out_proj": 24
+  }
+ },
+ "clip_vit_b16": {
+  "class": "CLIPModel",
+  "found": {
+   "q_proj": 24,
+   "v_proj": 24,
+   "k_proj": 24,
+   "out_proj": 24
+  }
+ },
+ "siglip_b16": {
+  "class": "SiglipModel",
+  "found": {
+   "q_proj": 24,
+   "v_proj": 24,
+   "k_proj": 24,
+   "out_proj": 25
+  }
+ },
+ "openclip_laion2b": {
+  "class": "CLIPModel",
+  "found": {
+   "q_proj": 24,
+   "v_proj": 24,
+   "k_proj": 24,
+   "out_proj": 24
+  }
+ },
+ "dinov2_base": {
+  "class": "Dinov2Model",
+  "found": {
+   "query": 12,
+   "value": 12,
+   "key": 12
+  }
+ },
+ "verdict": {
+  "clip_vit_b32": "OK(q_proj/v_proj 存在)",
+  "clip_vit_b16": "OK(q_proj/v_proj 存在)",
+  "siglip_b16": "OK(q_proj/v_proj 存在)",
+  "openclip_laion2b": "OK(q_proj/v_proj 存在)",
+  "dinov2_base": "🔴 需改用 ['query', 'value', 'key']"
+ }
+}

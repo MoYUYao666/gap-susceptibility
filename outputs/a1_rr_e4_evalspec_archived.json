@@ -1,0 +1,23 @@
+[
+  {
+    "tag": "flickr30k_text_only_r8",
+    "ckpt": "outputs/imagenet_zs/text_only_r8/best_checkpoint.pt",
+    "vision": false,
+    "text": true,
+    "trained_on": "Flickr30k rows 0..1999, LoRA text-only r8 a16, 10 epochs / 320 steps (archived outputs/imagenet_zs/text_only_r8)"
+  },
+  {
+    "tag": "flickr30k_both_r8",
+    "ckpt": "outputs/imagenet_zs/both_r8/best_checkpoint.pt",
+    "vision": true,
+    "text": true,
+    "trained_on": "Flickr30k rows 0..1999, LoRA both r8 a16, 10 epochs / 320 steps (archived outputs/imagenet_zs/both_r8)"
+  },
+  {
+    "tag": "flickr30k_retrain_both_ep10",
+    "ckpt": "outputs/a1_retrain/both/epoch10.pt",
+    "vision": true,
+    "text": true,
+    "trained_on": "Flickr30k rows 0..1999, LoRA both r8 a16, 10 epochs (archived retrain outputs/a1_retrain/both)"
+  }
+]

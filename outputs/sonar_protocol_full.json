@@ -1,0 +1,182 @@
+{
+ "meta": {
+  "dataset": "NKSID (Bohai Bay, Oculus M750d), FULL 2617",
+  "n_classes": 8,
+  "n_images": 2617,
+  "per_class": {
+   "big propeller": 203,
+   "cylinder": 288,
+   "fishing net": 20,
+   "floats": 951,
+   "iron pipeline": 112,
+   "small propeller": 94,
+   "soft pipeline": 115,
+   "tire": 834
+  }
+ },
+ "clip_frozen": {
+  "gap_norm": 1.0911,
+  "sigma_m": 0.0247,
+  "mean_m": 0.5107,
+  "top1_0": 14.941,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 1.567,
+    "tau_meas": 0.5217,
+    "tau_pred": 0.5217,
+    "CG": 1.449
+   },
+   {
+    "lambda": -0.5,
+    "top1": 3.477,
+    "tau_meas": 0.6256,
+    "tau_pred": 0.6256,
+    "CG": 1.3364
+   },
+   {
+    "lambda": 0.0,
+    "top1": 14.941,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.0911
+   },
+   {
+    "lambda": 0.5,
+    "top1": 16.469,
+    "tau_meas": 0.1631,
+    "tau_pred": 0.1631,
+    "CG": 0.5787
+   },
+   {
+    "lambda": 1.0,
+    "top1": 5.235,
+    "tau_meas": -0.0807,
+    "tau_pred": -0.0807,
+    "CG": 0.0377
+   },
+   {
+    "lambda": 2.0,
+    "top1": 5.197,
+    "tau_meas": -0.2031,
+    "tau_pred": -0.2031,
+    "CG": 0.4984
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": -0.0228,
+    "CG": 0.0331
+   }
+  ]
+ },
+ "sonar_ft_full": {
+  "gap_norm": 1.1445,
+  "sigma_m": 0.0136,
+  "mean_m": 0.6795,
+  "top1_0": 99.885,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 99.35,
+    "tau_meas": 0.7764,
+    "tau_pred": 0.7764,
+    "CG": 1.5862
+   },
+   {
+    "lambda": -0.5,
+    "top1": 99.924,
+    "tau_meas": 0.8724,
+    "tau_pred": 0.8724,
+    "CG": 1.451
+   },
+   {
+    "lambda": 0.0,
+    "top1": 99.885,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.1445
+   },
+   {
+    "lambda": 0.5,
+    "top1": 99.962,
+    "tau_meas": 0.8028,
+    "tau_pred": 0.8028,
+    "CG": 0.5696
+   },
+   {
+    "lambda": 1.0,
+    "top1": 99.885,
+    "tau_meas": 0.7202,
+    "tau_pred": 0.7202,
+    "CG": 0.097
+   },
+   {
+    "lambda": 2.0,
+    "top1": 89.836,
+    "tau_meas": 0.5839,
+    "tau_pred": 0.5839,
+    "CG": 0.4079
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.7261,
+    "CG": 0.1248
+   }
+  ]
+ },
+ "clip_flickrft": {
+  "gap_norm": 1.1342,
+  "sigma_m": 0.0222,
+  "mean_m": 0.4965,
+  "top1_0": 27.971,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 35.728,
+    "tau_meas": 0.4242,
+    "tau_pred": 0.4242,
+    "CG": 1.4572
+   },
+   {
+    "lambda": -0.5,
+    "top1": 33.512,
+    "tau_meas": 0.5211,
+    "tau_pred": 0.5211,
+    "CG": 1.3571
+   },
+   {
+    "lambda": 0.0,
+    "top1": 27.971,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.1342
+   },
+   {
+    "lambda": 0.5,
+    "top1": 10.814,
+    "tau_meas": 0.1444,
+    "tau_pred": 0.1444,
+    "CG": 0.6261
+   },
+   {
+    "lambda": 1.0,
+    "top1": 5.502,
+    "tau_meas": -0.0906,
+    "tau_pred": -0.0906,
+    "CG": 0.0811
+   },
+   {
+    "lambda": 2.0,
+    "top1": 4.165,
+    "tau_meas": -0.2267,
+    "tau_pred": -0.2267,
+    "CG": 0.5225
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": -0.0392,
+    "CG": 0.0691
+   }
+  ]
+ }
+}

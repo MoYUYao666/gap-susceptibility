@@ -1,0 +1,90 @@
+{
+  "script": "tools/_p361_protocol_facts.py",
+  "facts": {
+    "clip_b32_logit_scale": {
+      "value": 4.605170249938965,
+      "ln_1_over_0.07": 2.659260036932778,
+      "dinov2_script_constant": 2.659260036932778,
+      "equal_to_dinov2_constant": false,
+      "source_model": "models/clip-vit-base-patch32 (logit_scale parameter)",
+      "source_script": "tools/_p293_dinov2_hetero_strict.py:108 LOGIT_SCALE_INIT",
+      "why_it_matters": "the strict-freeze control freezes every parameter except LoRA A/B, so this pretrained value is the temperature both experiments train under; it does not enter CG/DG/R@1 at all"
+    },
+    "dinov2_preprocessor": {
+      "path": "models/dinov2-base/preprocessor_config.json",
+      "image_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "image_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "size": {
+        "shortest_edge": 256
+      },
+      "crop_size": {
+        "height": 224,
+        "width": 224
+      },
+      "resample": 3,
+      "do_center_crop": true,
+      "do_rescale": true,
+      "note": "shortest_edge 256 -> centre-crop 224 is DINOv2's own eval geometry, so image_size=224 is NOT an out-of-distribution resolution by itself; the mean/std differ from CLIP's and src/dataset.py:19-20 uses CLIP's"
+    },
+    "clip_preprocessor": {
+      "source": "src/dataset.py:19-20 CLIP_MEAN/CLIP_STD used for every image",
+      "clip_mean": [
+        0.48145466,
+        0.4578275,
+        0.40821073
+      ],
+      "clip_std": [
+        0.26862954,
+        0.26130258,
+        0.27577711
+      ],
+      "geometry": "Resize((224,224), BICUBIC)  -- note: not the shortest-edge-256 crop that either model's own preprocessor uses"
+    },
+    "trainable_params_closed_form": {
+      "clip_b32": {
+        "text_side_512x12": 196608,
+        "vision_side_768x12": 294912
+      },
+      "dinov2_base": {
+        "text_side_512x12": 196608,
+        "vision_side_768x12": 294912
+      },
+      "note": "both towers are 12-layer, text hidden 512, vision hidden 768"
+    },
+    "trainable_params_from_archive": {
+      "source_clip": "outputs/strict_freeze/{text_only,both,vision_only}/seed42/results.json :: n_trainable_params",
+      "source_dinov2": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/results.json :: n_trainable_params / n_trainable_vision_side / n_trainable_text_side",
+      "values": {
+        "clip_text_only": 196608,
+        "clip_both": 491520,
+        "clip_vision_only": 294912,
+        "dinov2_text_only": 196608,
+        "dinov2_text_side": 196608,
+        "dinov2_vision_side": 0
+      }
+    },
+    "paper_frozen_reference": {
+      "path": "outputs/strict_freeze/frozen/results.json",
+      "keys": [
+        "backbone_delta",
+        "batch_size",
+        "effective_rank_final",
+        "experiment",
+        "max_samples",
+        "n_trainable_params"
+      ],
+      "has_CG": false,
+      "has_DG": false,
+      "has_R1": false,
+      "why_it_matters": "the paper's strict-freeze control records no frozen-baseline CG/DG/R@1 at all (experiments/strict_freeze_control.py:312-339 only writes effective rank + backbone_delta), so the paper's Delta-CG column is a within-run final-minus-initial quantity and the frozen model's retrieval has no archive source"
+    }
+  }
+}

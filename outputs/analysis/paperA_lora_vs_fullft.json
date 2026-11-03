@@ -1,0 +1,63 @@
+{
+ "by_family": [
+  {
+   "family": "lora",
+   "n_runs": 55,
+   "n_configs": 18,
+   "alpha_mean": -0.02450768738468684,
+   "beta_mean": 0.06585365727921254,
+   "R2_mean": 0.9486153770148054
+  },
+  {
+   "family": "adapter",
+   "n_runs": 30,
+   "n_configs": 10,
+   "alpha_mean": -0.03928564350384576,
+   "beta_mean": 0.3781195099324473,
+   "R2_mean": 0.6694456761943198
+  },
+  {
+   "family": "full_ft",
+   "n_runs": 11,
+   "n_configs": 5,
+   "alpha_mean": -0.04134205796670596,
+   "beta_mean": 0.10320965381204145,
+   "R2_mean": 0.9217284153459521
+  }
+ ],
+ "matched_site": [
+  {
+   "site": "text_only",
+   "family": "lora",
+   "n": 22,
+   "alpha_mean": -0.02504003827041986,
+   "beta_mean": 0.06700484855288,
+   "R2_mean": 0.9554901381766697
+  },
+  {
+   "site": "text_only",
+   "family": "adapter",
+   "n": 15,
+   "alpha_mean": -0.047512445389393705,
+   "beta_mean": 0.5509867567287997,
+   "R2_mean": 0.7299157245141535
+  },
+  {
+   "site": "both",
+   "family": "lora",
+   "n": 27,
+   "alpha_mean": -0.02401970456585633,
+   "beta_mean": 0.062659723033158,
+   "R2_mean": 0.947408955142883
+  },
+  {
+   "site": "both",
+   "family": "adapter",
+   "n": 15,
+   "alpha_mean": -0.0310588416182978,
+   "beta_mean": 0.20525226313609482,
+   "R2_mean": 0.6089756278744861
+  }
+ ],
+ "note": "alpha/beta/R2 are first-order ODE parameters of the gap trajectory; full-tower runs use the 'other' site label in the ledger"
+}

@@ -1,0 +1,86 @@
+{
+  "experiment": "dinov2_hetero_strict",
+  "heterogeneous_pairing": true,
+  "vision_tower": "models/dinov2-base",
+  "text_tower": "models/clip-vit-base-patch32",
+  "head": "fitted",
+  "arm": "text_only",
+  "seed": 42,
+  "strict_freeze": true,
+  "n_trainable_params": 196608,
+  "n_trainable_vision_side": 0,
+  "n_trainable_text_side": 196608,
+  "n_trainable_from_trainer": 196608,
+  "rank": 8,
+  "alpha": 16,
+  "epochs": 10,
+  "max_samples": 5000,
+  "batch_size": 128,
+  "image_size": 224,
+  "eval_gallery_pairs": 500,
+  "chance_R@1": 0.002,
+  "data_dir": ".",
+  "image_normalisation": "CLIP mean/std (src/dataset.py:19-20), not DINOv2's ImageNet stats",
+  "logit_scale": 2.659260036932778,
+  "logit_scale_trainable": false,
+  "elapsed_sec": 4030.0,
+  "CG_initial": 0.6767632961273193,
+  "CG_final": 0.28549790382385254,
+  "DG_initial": 0.7508993722764914,
+  "DG_final": 0.30465055071783226,
+  "delta_CG": -0.3912653923034668,
+  "delta_DG": -0.44624882155865914,
+  "R@1": 0.3540000021457672,
+  "R@1_i2t": 0.3540000021457672,
+  "R@1_t2i": 0.3540000021457672,
+  "R@5": 0.7100000083446503,
+  "backbone_delta": {
+    "other": {
+      "tensors": 1,
+      "nonzero_tensors": 0,
+      "max_abs_delta": 0.0,
+      "frobenius": 0.0
+    },
+    "vision": {
+      "tensors": 223,
+      "nonzero_tensors": 0,
+      "max_abs_delta": 0.0,
+      "frobenius": 0.0
+    },
+    "text": {
+      "tensors": 197,
+      "nonzero_tensors": 0,
+      "max_abs_delta": 0.0,
+      "frobenius": 0.0
+    },
+    "head": {
+      "tensors": 4,
+      "nonzero_tensors": 0,
+      "max_abs_delta": 0.0,
+      "frobenius": 0.0
+    }
+  },
+  "final_train_loss": 1.2709259279072285,
+  "final_val_loss": 1.627376228570938,
+  "source": {
+    "script": "tools/_p293_dinov2_hetero_strict.py",
+    "trainer": "src/trainer.py::GapAwareTrainer (unmodified)",
+    "gap_metrics": "src/gap_metrics.py::GapTracker (unmodified)",
+    "head_checkpoint": "outputs/analysis/dinov2_hetero/heads/fitted.pt"
+  },
+  "finished_utc": "2026-10-12T08:43:59+00:00",
+  "lora_norm_invalid_reason": "invalid: this run loaded pre-fix code that zeroed the trained LoRA matrices before measuring them, so the 0.0 values above are an artefact of the instrumentation bug and are not a finding; the trained matrices were recovered separately from the run's checkpoints",
+  "lora_norm_recovered_from": "outputs/analysis/dinov2_hetero/fitted/text_only/seed42/lora_norm_recovered.json",
+  "lora_update_recovered": {
+    "frobenius_of_scaled_update": {
+      "definition": "sqrt(sum_layers ||scaling*A@B||_F^2)",
+      "value": 8.3371
+    },
+    "sum_of_per_layer_frobenius": {
+      "definition": "sum_layers ||scaling*A@B||_F   (NOT a norm of any single matrix)",
+      "value": 40.1049,
+      "per_layer_mean": 1.671
+    },
+    "note": null
+  }
+}

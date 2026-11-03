@@ -1,0 +1,326 @@
+{
+ "hits": [
+  {
+   "file": "sections\\conclusion.tex",
+   "line": 7,
+   "rule": "30× 应已删除",
+   "match": "30\\times",
+   "allowed": false,
+   "ctx": "($6 \\leq r \\leq 20$), and collapse ($r \\geq 24$)---robust across sample sizes from 16 to 256. Counterfactual validation demonstrates that $\\Gamma$-based allocation reduces allocation uncertainty by $30\\times$ compared to"
+  },
+  {
+   "file": "sections\\conclusion.tex",
+   "line": 7,
+   "rule": "30× 应已删除",
+   "match": "reduces allocation uncertainty",
+   "allowed": false,
+   "ctx": "regimes---safe ($r < 6$), damaging ($6 \\leq r \\leq 20$), and collapse ($r \\geq 24$)---robust across sample sizes from 16 to 256. Counterfactual validation demonstrates that $\\Gamma$-based allocation reduces allocation un"
+  },
+  {
+   "file": "sections\\conclusion.tex",
+   "line": 7,
+   "rule": "r_c 属协议",
+   "match": "universal",
+   "allowed": true,
+   "ctx": "(a $2.7\\times$ gradual increase vs.\\ LLaVA's $46\\times$ surge). This architecture-dependence demonstrates $\\Gamma$ as a diagnostic tool revealing intrinsic modality balance differences, rather than a universal brute-forc"
+  },
+  {
+   "file": "sections\\conclusion.tex",
+   "line": 7,
+   "rule": "旧 run 计数",
+   "match": "190 runs",
+   "allowed": false,
+   "ctx": "Partial Ordering Preservation); (C5) the companion ODE theory~\\cite{wan2026gap} is recovered as the $K=\\{\\text{vision},\\text{text}\\}$ case. Experimental validation confirms these predictions through 190 runs (181 sweep r"
+  },
+  {
+   "file": "sections\\conclusion.tex",
+   "line": 7,
+   "rule": "旧 run 计数",
+   "match": "181 sweep",
+   "allowed": false,
+   "ctx": "dering Preservation); (C5) the companion ODE theory~\\cite{wan2026gap} is recovered as the $K=\\{\\text{vision},\\text{text}\\}$ case. Experimental validation confirms these predictions through 190 runs (181 sweep runs plus 9"
+  },
+  {
+   "file": "sections\\discussion.tex",
+   "line": 5,
+   "rule": "唯一性需 R3′",
+   "match": "exactly one",
+   "allowed": false,
+   "ctx": "-$\\|\\nabla E\\|^2$ is block-decomposable and fails only additivity---so the honest statement is that the allocation problem admits a canonical statistic once one accepts additivity, not that it admits exactly one uncondit"
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 325,
+   "rule": "30× 应已删除",
+   "match": "30\\times",
+   "allowed": true,
+   "ctx": "\\ref{fig:counterfactual}) Theory achieves $\\Delta E = -108 \\pm 27$ (mean $\\pm$ sample std over 5 seeds). Random allocation produces $\\Delta E = 491 \\pm 808$ (sample std over 15 runs). That spread is $30\\times$ the Theory"
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 530,
+   "rule": "30× 应已删除",
+   "match": "30\\times",
+   "allowed": true,
+   "ctx": "l environment---while $r=6$ is positive regardless of it. We claim a transition whose location is bracketed by two ranks, not a sharply localised one. \\textbf{Worst case rather than dispersion.} The $30\\times$ ratio of s"
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 507,
+   "rule": "r_c 属协议",
+   "match": "model-independent",
+   "allowed": true,
+   "ctx": "tent with the absence of a transition we report for Qwen2-VL, and we therefore claim a threshold that is bounded rather than universal: $r_c \\in [5,6]$ for the LLaVA configuration studied here, not a model-independent co"
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 506,
+   "rule": "r_c 属协议",
+   "match": "universal",
+   "allowed": true,
+   "ctx": "oduce a sign flip under real image-text pairs at this scale. That is consistent with the absence of a transition we report for Qwen2-VL, and we therefore claim a threshold that is bounded rather than universal: $r_c \\in "
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 149,
+   "rule": "arch 相关应撤回",
+   "match": "Architecture-dependent",
+   "allowed": false,
+   "ctx": "dients destabilize the representation geometry, consistent with the monotonic growth of $|\\Delta E|$ from $r=16$ to $r=20$ ($+1572$ to $+2860$) immediately preceding the collapse. \\textbf{Finding 2: Architecture-dependen"
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 464,
+   "rule": "arch 相关应撤回",
+   "match": "architecture-dependent",
+   "allowed": true,
+   "ctx": "etween architectures rather than hiding it: at $n = 16$ the dual encoder's real-image training \\emph{lowers} $\\Delta E$ while the decoder's \\emph{raises} it, so the sign of the effect of real data is architecture-depende"
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 593,
+   "rule": "arch 相关应撤回",
+   "match": "architecture-dependent",
+   "allowed": true,
+   "ctx": "elch $t=8.60$, $p=0.004$, $r{=}32$ vs.\\ $r{=}64$). Unlike the Effective Rank Saturation plateau on CLIP retrieval~\\cite{wan2026gap}, $\\Delta E$ differs between $r=16$ and $r=32$---consistent with the architecture-depende"
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 334,
+   "rule": "分配应未胜随机",
+   "match": "beats the uniform-rank",
+   "allowed": true,
+   "ctx": "n the comparative controls that this question requires. In a capacity-matched comparison---every arm at exactly $7{,}237{,}632$ trainable parameters, verified per run---the $\\Gamma$-guided allocation beats the uniform-ra"
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 494,
+   "rule": "blank 不应被称中性",
+   "match": "neutral probe",
+   "allowed": true,
+   "ctx": "t one budget ($+122\\%$ at $15$ tokens against $+104\\%$ at $55$), which is why we report the $n = 16$ curve and flag the counter-example rather than quote a percentage. \\textbf{Blank images are not a neutral probe.} The d"
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 16,
+   "rule": "唯一性需 R3′",
+   "match": "is not proposed",
+   "allowed": true,
+   "ctx": "k decomposability, directional coupling preservation, and first-order observability---$\\Gamma_k = \\langle \\nabla_{M_k}E, u_{M_k}\\rangle$ is the \\emph{unique} admissible allocation statistic. $\\Gamma$ is not proposed; it "
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 16,
+   "rule": "唯一性需 R3′",
+   "match": "it is forced",
+   "allowed": true,
+   "ctx": ", directional coupling preservation, and first-order observability---$\\Gamma_k = \\langle \\nabla_{M_k}E, u_{M_k}\\rangle$ is the \\emph{unique} admissible allocation statistic. $\\Gamma$ is not proposed; it is forced by the "
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 18,
+   "rule": "phase transition 应降级",
+   "match": "phase transition at",
+   "allowed": false,
+   "ctx": "recovery of our prior retrieval theory as a special case. \\item \\textbf{Experimental validation} (Sec.~\\ref{sec:experiments}): Zero-shot Predictive Transfer on LLaVA-1.5-7B confirms an alignment phase transition at $r_c "
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 18,
+   "rule": "arch 相关应撤回",
+   "match": "architecture-dependent",
+   "allowed": false,
+   "ctx": "roviding worst-case protection (every $\\Gamma$-guided seed beats the worst random run; NaN in 2/15 random runs). Qwen2-VL-7B exhibits no phase transition and rank-insensitive alignment, demonstrating architecture-depende"
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 18,
+   "rule": "旧 run 计数",
+   "match": "190 runs",
+   "allowed": false,
+   "ctx": "-guided seed beats the worst random run; NaN in 2/15 random runs). Qwen2-VL-7B exhibits no phase transition and rank-insensitive alignment, demonstrating architecture-dependent diagnostic capability. 190 runs (181 sweep "
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 18,
+   "rule": "旧 run 计数",
+   "match": "181 sweep",
+   "allowed": false,
+   "ctx": "ed beats the worst random run; NaN in 2/15 random runs). Qwen2-VL-7B exhibits no phase transition and rank-insensitive alignment, demonstrating architecture-dependent diagnostic capability. 190 runs (181 sweep runs plus "
+  },
+  {
+   "file": "sections\\related_work.tex",
+   "line": 13,
+   "rule": "唯一性需 R3′",
+   "match": "it is forced",
+   "allowed": true,
+   "ctx": "--$\\Gamma = \\langle \\nabla E, u \\rangle$---is the unique admissible first-order allocation statistic under the requirements imposed by the PEFT allocation problem. The allocation rule is not learned; it is forced. \\subse"
+  },
+  {
+   "file": "sections\\related_work.tex",
+   "line": 21,
+   "rule": "phase transition 应降级",
+   "match": "phase transition at",
+   "allowed": false,
+   "ctx": "ed phase transition behavior in LoRA training: computational efficiency~\\cite{hu2025loralimits} and landscape convexity~\\cite{loraconvex2025} degrade sharply beyond critical thresholds. Our alignment phase transition at "
+  },
+  {
+   "file": "sections\\theory.tex",
+   "line": 230,
+   "rule": "arch 相关应撤回",
+   "match": "architecture-dependent",
+   "allowed": false,
+   "ctx": "u2025loralimits}, landscape convexity~\\cite{loraconvex2025}); our phase transition is the \\emph{cross-modal} manifestation of this general phenomenon. \\textbf{Prediction.} The critical rank $r_c$ is architecture-dependen"
+  },
+  {
+   "file": "cover_letter_prl.tex",
+   "line": 34,
+   "rule": "30× 应已删除",
+   "match": "30\\times",
+   "allowed": true,
+   "ctx": "tical rank $r_c \\in [5,6]$ in LLaVA but not in Qwen-VL, which we attribute to architectural differences and report as a diagnostic finding rather than smoothing over; and random allocation suffers a $30\\times$ larger sta"
+  },
+  {
+   "file": "cover_letter_prl.tex",
+   "line": 28,
+   "rule": "唯一性需 R3′",
+   "match": "is not proposed",
+   "allowed": true,
+   "ctx": "the blocks of a network. The paper shows that this decision can be made \\emph{before} training, from the frozen model alone. The central object is the cross-modal gradient coupling $\\Gamma_k$, which is not proposed heuri"
+  },
+  {
+   "file": "cover_letter_prl.tex",
+   "line": 34,
+   "rule": "旧 run 计数",
+   "match": "190 runs",
+   "allowed": true,
+   "ctx": "ect areas of machine learning and computer vision, and the cross-architecture transfer result speaks to representation analysis rather than to a single application. \\vspace{0.5em} \\textbf{Evidence.} 190 runs (181 sweep r"
+  },
+  {
+   "file": "cover_letter_prl.tex",
+   "line": 34,
+   "rule": "旧 run 计数",
+   "match": "181 sweep",
+   "allowed": true,
+   "ctx": "of machine learning and computer vision, and the cross-architecture transfer result speaks to representation analysis rather than to a single application. \\vspace{0.5em} \\textbf{Evidence.} 190 runs (181 sweep runs plus 9"
+  }
+ ],
+ "needs_action": [
+  {
+   "file": "sections\\conclusion.tex",
+   "line": 7,
+   "rule": "30× 应已删除",
+   "match": "30\\times",
+   "allowed": false,
+   "ctx": "($6 \\leq r \\leq 20$), and collapse ($r \\geq 24$)---robust across sample sizes from 16 to 256. Counterfactual validation demonstrates that $\\Gamma$-based allocation reduces allocation uncertainty by $30\\times$ compared to"
+  },
+  {
+   "file": "sections\\conclusion.tex",
+   "line": 7,
+   "rule": "30× 应已删除",
+   "match": "reduces allocation uncertainty",
+   "allowed": false,
+   "ctx": "regimes---safe ($r < 6$), damaging ($6 \\leq r \\leq 20$), and collapse ($r \\geq 24$)---robust across sample sizes from 16 to 256. Counterfactual validation demonstrates that $\\Gamma$-based allocation reduces allocation un"
+  },
+  {
+   "file": "sections\\conclusion.tex",
+   "line": 7,
+   "rule": "旧 run 计数",
+   "match": "190 runs",
+   "allowed": false,
+   "ctx": "Partial Ordering Preservation); (C5) the companion ODE theory~\\cite{wan2026gap} is recovered as the $K=\\{\\text{vision},\\text{text}\\}$ case. Experimental validation confirms these predictions through 190 runs (181 sweep r"
+  },
+  {
+   "file": "sections\\conclusion.tex",
+   "line": 7,
+   "rule": "旧 run 计数",
+   "match": "181 sweep",
+   "allowed": false,
+   "ctx": "dering Preservation); (C5) the companion ODE theory~\\cite{wan2026gap} is recovered as the $K=\\{\\text{vision},\\text{text}\\}$ case. Experimental validation confirms these predictions through 190 runs (181 sweep runs plus 9"
+  },
+  {
+   "file": "sections\\discussion.tex",
+   "line": 5,
+   "rule": "唯一性需 R3′",
+   "match": "exactly one",
+   "allowed": false,
+   "ctx": "-$\\|\\nabla E\\|^2$ is block-decomposable and fails only additivity---so the honest statement is that the allocation problem admits a canonical statistic once one accepts additivity, not that it admits exactly one uncondit"
+  },
+  {
+   "file": "sections\\experiments.tex",
+   "line": 149,
+   "rule": "arch 相关应撤回",
+   "match": "Architecture-dependent",
+   "allowed": false,
+   "ctx": "dients destabilize the representation geometry, consistent with the monotonic growth of $|\\Delta E|$ from $r=16$ to $r=20$ ($+1572$ to $+2860$) immediately preceding the collapse. \\textbf{Finding 2: Architecture-dependen"
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 18,
+   "rule": "phase transition 应降级",
+   "match": "phase transition at",
+   "allowed": false,
+   "ctx": "recovery of our prior retrieval theory as a special case. \\item \\textbf{Experimental validation} (Sec.~\\ref{sec:experiments}): Zero-shot Predictive Transfer on LLaVA-1.5-7B confirms an alignment phase transition at $r_c "
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 18,
+   "rule": "arch 相关应撤回",
+   "match": "architecture-dependent",
+   "allowed": false,
+   "ctx": "roviding worst-case protection (every $\\Gamma$-guided seed beats the worst random run; NaN in 2/15 random runs). Qwen2-VL-7B exhibits no phase transition and rank-insensitive alignment, demonstrating architecture-depende"
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 18,
+   "rule": "旧 run 计数",
+   "match": "190 runs",
+   "allowed": false,
+   "ctx": "-guided seed beats the worst random run; NaN in 2/15 random runs). Qwen2-VL-7B exhibits no phase transition and rank-insensitive alignment, demonstrating architecture-dependent diagnostic capability. 190 runs (181 sweep "
+  },
+  {
+   "file": "sections\\introduction.tex",
+   "line": 18,
+   "rule": "旧 run 计数",
+   "match": "181 sweep",
+   "allowed": false,
+   "ctx": "ed beats the worst random run; NaN in 2/15 random runs). Qwen2-VL-7B exhibits no phase transition and rank-insensitive alignment, demonstrating architecture-dependent diagnostic capability. 190 runs (181 sweep runs plus "
+  },
+  {
+   "file": "sections\\related_work.tex",
+   "line": 21,
+   "rule": "phase transition 应降级",
+   "match": "phase transition at",
+   "allowed": false,
+   "ctx": "ed phase transition behavior in LoRA training: computational efficiency~\\cite{hu2025loralimits} and landscape convexity~\\cite{loraconvex2025} degrade sharply beyond critical thresholds. Our alignment phase transition at "
+  },
+  {
+   "file": "sections\\theory.tex",
+   "line": 230,
+   "rule": "arch 相关应撤回",
+   "match": "architecture-dependent",
+   "allowed": false,
+   "ctx": "u2025loralimits}, landscape convexity~\\cite{loraconvex2025}); our phase transition is the \\emph{cross-modal} manifestation of this general phenomenon. \\textbf{Prediction.} The critical rank $r_c$ is architecture-dependen"
+  }
+ ]
+}

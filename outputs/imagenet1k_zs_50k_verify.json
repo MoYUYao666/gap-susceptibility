@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "n_images": 50000,
+    "protocol": "single template \"a photo of a {}\", 50k full val, plain class names",
+    "source": "tools/p1_imagenet_verify.py",
+    "not_overwriting": "outputs/imagenet1k_zs_50k_plain.json",
+    "elapsed_min": 30.8
+  },
+  "archive": {
+    "frozen": 59.28,
+    "text_only_r8": 58.66,
+    "both_r8": 59.67,
+    "full_ft_s42": 0.13,
+    "full_ft_s123": 4.09,
+    "full_ft_s999": 3.54
+  },
+  "rerun": {
+    "frozen": 59.29,
+    "text_only_r8": 58.68,
+    "both_r8": 59.66,
+    "full_ft_s42": 0.13,
+    "full_ft_s123": 4.1,
+    "full_ft_s999": 3.55
+  },
+  "delta": {
+    "frozen": 0.01,
+    "text_only_r8": 0.02,
+    "both_r8": -0.01,
+    "full_ft_s42": 0.0,
+    "full_ft_s123": 0.01,
+    "full_ft_s999": 0.01
+  }
+}

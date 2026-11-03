@@ -1,0 +1,51 @@
+{
+ "script": "tools/_p359_transform_chain.py",
+ "chains": {
+  "train": [
+   [
+    0,
+    "Subset",
+    null
+   ],
+   [
+    1,
+    "Flickr30kDataset",
+    "Compose(     Resize(size=(224, 224), interpolation=bicubic, max_size=None, antialias=True)     RandomHorizontalFlip(p=0.5)     ColorJitter(brightness=(0.9, 1.1), contrast=(0.9, 1.1), saturation=(0.9, 1.1), hue=None)     "
+   ]
+  ],
+  "val": [
+   [
+    0,
+    "Subset",
+    null
+   ],
+   [
+    1,
+    "Flickr30kDataset",
+    "Compose(     Resize(size=(224, 224), interpolation=bicubic, max_size=None, antialias=True)     RandomHorizontalFlip(p=0.5)     ColorJitter(brightness=(0.9, 1.1), contrast=(0.9, 1.1), saturation=(0.9, 1.1), hue=None)     "
+   ]
+  ],
+  "test": [
+   [
+    0,
+    "Subset",
+    null
+   ],
+   [
+    1,
+    "Flickr30kDataset",
+    "Compose(     Resize(size=(224, 224), interpolation=bicubic, max_size=None, antialias=True)     RandomHorizontalFlip(p=0.5)     ColorJitter(brightness=(0.9, 1.1), contrast=(0.9, 1.1), saturation=(0.9, 1.1), hue=None)     "
+   ]
+  ]
+ },
+ "val_chain_has_train_transform": true,
+ "same_index_two_reads_max_abs_diff": [
+  3.5568408966064453,
+  3.8269808292388916,
+  3.5568408966064453,
+  3.8269808292388916,
+  0.2551320791244507
+ ],
+ "max_abs_diff_overall": 3.8269808292388916,
+ "verdict": "评测画廊确实带随机变换（每次评测为不同抽样）"
+}

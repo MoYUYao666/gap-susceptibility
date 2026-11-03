@@ -1,0 +1,117 @@
+{
+ "source": "outputs/a1_margins.json",
+ "model": "CLIP ViT-B/32 frozen (ImageNet-5k)",
+ "lambda_grid": [
+  -2.0,
+  -1.0,
+  -0.5,
+  -0.25,
+  0.25,
+  0.5,
+  1.0,
+  2.0,
+  4.0
+ ],
+ "rows": [
+  {
+   "lam": -2.0,
+   "tau_meas": 0.20020666666666667,
+   "tau_gauss": 0.09310943344846687,
+   "tau_exact": 0.202,
+   "top1_meas": 1.08,
+   "top1_gauss": 34.175379338328646
+  },
+  {
+   "lam": -1.0,
+   "tau_meas": 0.3295488888888889,
+   "tau_gauss": 0.17997554448696418,
+   "tau_exact": 0.33103999999999995,
+   "top1_meas": 5.92,
+   "top1_gauss": 38.30092524400145
+  },
+  {
+   "lam": -0.5,
+   "tau_meas": 0.4924022222222222,
+   "tau_gauss": 0.32290808284303363,
+   "tau_exact": 0.49348000000000003,
+   "top1_meas": 29.520000000000003,
+   "top1_gauss": 44.59073259529387
+  },
+  {
+   "lam": -0.25,
+   "tau_meas": 0.6537266666666667,
+   "tau_gauss": 0.503607658614682,
+   "tau_exact": 0.65448,
+   "top1_meas": 53.080000000000005,
+   "top1_gauss": 51.073901520546244
+  },
+  {
+   "lam": 0.25,
+   "tau_meas": 0.6354777777777777,
+   "tau_gauss": 0.503607658614682,
+   "tau_exact": 0.63616,
+   "top1_meas": 56.14,
+   "top1_gauss": 51.073901520546244
+  },
+  {
+   "lam": 0.5,
+   "tau_meas": 0.4617111111111111,
+   "tau_gauss": 0.32290808284303363,
+   "tau_exact": 0.4628,
+   "top1_meas": 47.88,
+   "top1_gauss": 44.59073259529387
+  },
+  {
+   "lam": 1.0,
+   "tau_meas": 0.28834666666666664,
+   "tau_gauss": 0.17997554448696418,
+   "tau_exact": 0.2898,
+   "top1_meas": 31.879999999999995,
+   "top1_gauss": 38.30092524400145
+  },
+  {
+   "lam": 2.0,
+   "tau_meas": 0.15411111111111112,
+   "tau_gauss": 0.09310943344846687,
+   "tau_exact": 0.15588000000000002,
+   "top1_meas": 13.459999999999999,
+   "top1_gauss": 34.175379338328646
+  },
+  {
+   "lam": 4.0,
+   "tau_meas": 0.06827555555555556,
+   "tau_gauss": 0.04698162252289678,
+   "tau_exact": 0.0702,
+   "top1_meas": 3.5000000000000004,
+   "top1_gauss": 31.93591073109485
+  }
+ ],
+ "summary": {
+  "tau_gauss": {
+   "mae": 0.11529151170638625,
+   "pearson_r": 0.9865215722846404,
+   "max_abs_err": 0.16949413937918856
+  },
+  "tau_exact": {
+   "mae": 0.0013370370370370363,
+   "pearson_r": 0.9999999564572396,
+   "max_abs_err": 0.001924444444444437
+  },
+  "top1_gauss": {
+   "mae": 16.27563520607362,
+   "pearson_r": 0.9190767759958007,
+   "max_abs_err": 33.09537933832865
+  },
+  "tau_gauss_50k": {
+   "mae": 0.14675872523308356,
+   "pearson_r": 0.9864170103142863,
+   "max_abs_err": 0.16949191715696638
+  },
+  "tau_exact_50k": {
+   "mae": 0.0009133333333333216,
+   "pearson_r": 0.9999987600882445,
+   "max_abs_err": 0.0010800000000000254
+  }
+ },
+ "note": "The exact branch inverts the same per-image margins that define the measured tau, so its agreement is near-tautological; the Gaussian branch uses only aggregate scales and is the candidate independent predictor."
+}

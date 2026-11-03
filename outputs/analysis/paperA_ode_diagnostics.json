@@ -1,0 +1,122 @@
+{
+ "n_runs": 96,
+ "R2_overall": {
+  "mean": 0.8582940478171809,
+  "median": 0.940404553343051,
+  "min": 0.0007129306252369183,
+  "max": 0.9773493814761667,
+  "share_above_0.9": 0.6354166666666666,
+  "share_below_0.5": 0.08333333333333333
+ },
+ "by_condition": [
+  {
+   "family": "adapter",
+   "site": "both",
+   "n": 15,
+   "R2_mean": 0.6089756278744861,
+   "R2_min": 0.0030140378997801642,
+   "R2_max": 0.9072157011837084,
+   "share_R2_above_0.9": 0.06666666666666667,
+   "share_R2_below_0.5": 0.4,
+   "alpha_mean": -0.0310588416182978,
+   "beta_mean": 0.20525226313609482
+  },
+  {
+   "family": "adapter",
+   "site": "text_only",
+   "n": 15,
+   "R2_mean": 0.7299157245141535,
+   "R2_min": 0.0007129306252369183,
+   "R2_max": 0.9168557843423687,
+   "share_R2_above_0.9": 0.06666666666666667,
+   "share_R2_below_0.5": 0.13333333333333333,
+   "alpha_mean": -0.047512445389393705,
+   "beta_mean": 0.5509867567287997
+  },
+  {
+   "family": "full_ft",
+   "site": "other",
+   "n": 11,
+   "R2_mean": 0.9217284153459521,
+   "R2_min": 0.8471598509781385,
+   "R2_max": 0.9749207893561487,
+   "share_R2_above_0.9": 0.6363636363636364,
+   "share_R2_below_0.5": 0.0,
+   "alpha_mean": -0.04134205796670596,
+   "beta_mean": 0.10320965381204145
+  },
+  {
+   "family": "lora",
+   "site": "both",
+   "n": 27,
+   "R2_mean": 0.947408955142883,
+   "R2_min": 0.8878700617058276,
+   "R2_max": 0.9748904338929762,
+   "share_R2_above_0.9": 0.9629629629629629,
+   "share_R2_below_0.5": 0.0,
+   "alpha_mean": -0.02401970456585633,
+   "beta_mean": 0.062659723033158
+  },
+  {
+   "family": "lora",
+   "site": "other",
+   "n": 6,
+   "R2_mean": 0.9288368178449559,
+   "R2_min": 0.8139714652626437,
+   "R2_max": 0.9773493814761667,
+   "share_R2_above_0.9": 0.6666666666666666,
+   "share_R2_below_0.5": 0.0,
+   "alpha_mean": -0.024751656821736436,
+   "beta_mean": 0.07600532671634402
+  },
+  {
+   "family": "lora",
+   "site": "text_only",
+   "n": 22,
+   "R2_mean": 0.9554901381766697,
+   "R2_min": 0.9335709781309781,
+   "R2_max": 0.9720236169331296,
+   "share_R2_above_0.9": 1.0,
+   "share_R2_below_0.5": 0.0,
+   "alpha_mean": -0.02504003827041986,
+   "beta_mean": 0.06700484855288
+  }
+ ],
+ "worst_runs": [
+  {
+   "conf": "adapter/adapter_text_only_d64",
+   "family": "adapter",
+   "site": "text_only",
+   "rank": 64,
+   "R2": 0.0007129306252369183
+  },
+  {
+   "conf": "adapter/adapter_both_d4",
+   "family": "adapter",
+   "site": "both",
+   "rank": 4,
+   "R2": 0.0030140378997801642
+  },
+  {
+   "conf": "adapter/adapter_both_d8",
+   "family": "adapter",
+   "site": "both",
+   "rank": 8,
+   "R2": 0.07817665703713883
+  },
+  {
+   "conf": "adapter/adapter_both_d16",
+   "family": "adapter",
+   "site": "both",
+   "rank": 16,
+   "R2": 0.2502368983897739
+  },
+  {
+   "conf": "adapter/adapter_text_only_d64",
+   "family": "adapter",
+   "site": "text_only",
+   "rank": 64,
+   "R2": 0.26819109590674206
+  }
+ ]
+}

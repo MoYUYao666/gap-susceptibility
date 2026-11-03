@@ -1,0 +1,56 @@
+{
+ "rows": {
+  "text_only": {
+   "Gamma_v": 4.524893250957784,
+   "Gamma_t": 2.119273907640899,
+   "norm_v": 5.986865852593991,
+   "norm_t": 4.090376874042103,
+   "prod_v": 27.08992889079217,
+   "prod_t": 8.668628981575173,
+   "sum_prod": 35.75855787236734,
+   "cg_delta": -0.0465049147605896,
+   "cos_v": 0.7558033472550979,
+   "cos_t": 0.5181121380501638
+  },
+  "both": {
+   "Gamma_v": 4.632822930158079,
+   "Gamma_t": 2.0713987144538413,
+   "norm_v": 6.077451143091321,
+   "norm_t": 4.057053983242321,
+   "prod_v": 28.155755012628898,
+   "prod_t": 8.40377640535798,
+   "sum_prod": 36.559531417986875,
+   "cg_delta": -0.02582501173019409,
+   "cos_v": 0.7622970256905387,
+   "cos_t": 0.5105672054179615
+  },
+  "vision_only": {
+   "Gamma_v": 4.660929899467441,
+   "Gamma_t": 1.9881941838174795,
+   "norm_v": 6.077451143091321,
+   "norm_t": 3.962711965241714,
+   "prod_v": 28.326573745386916,
+   "prod_t": 7.87864088143751,
+   "sum_prod": 36.20521462682443,
+   "cg_delta": 0.010572373867034912,
+   "cos_v": 0.7669218212911276,
+   "cos_t": 0.501725636699463
+  }
+ },
+ "dispersion": {
+  "sum_prod_pct": 2.2141978267565756,
+  "cg_delta_range": 0.05707728862762451,
+  "ratio": 125.22126646724716
+ },
+ "caveat": "cos in _p58 is the angle to the SUM of all trainable grads, not to each modality's own grad; so Gamma_m*norm is a formal value, not the inner product. Measuring <grad_m DG*, g_m> directly is required to test the theory.",
+ "ordering_by_theory": [
+  "both",
+  "vision_only",
+  "text_only"
+ ],
+ "ordering_by_measurement": [
+  "text_only",
+  "both",
+  "vision_only"
+ ]
+}

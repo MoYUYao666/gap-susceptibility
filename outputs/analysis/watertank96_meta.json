@@ -1,0 +1,22 @@
+{
+ "source": "data/second_sonar/watertank96.hdf5",
+ "classes": [
+  "can",
+  "bottle",
+  "drink-carton",
+  "chain",
+  "propeller",
+  "tire",
+  "hook",
+  "valve",
+  "shampoo-bottle",
+  "standing-bottle",
+  "background"
+ ],
+ "counts": {
+  "train": 1838,
+  "val": 394,
+  "test": 395
+ },
+ "conversion": "per-split min-max to uint8, bicubic resize to 224, RGB"
+}

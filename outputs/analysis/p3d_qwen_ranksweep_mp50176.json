@@ -1,0 +1,217 @@
+{
+ "experiment": "p3d_qwen2vl2b_ranksweep_real_vs_blank",
+ "script": "tools/_p464_qwen_ranksweep.py",
+ "source_of_truth": "runs[*] —— 只增不改的逐 run 明细且自带超参；顶层 protocol/train_spec 只是说明；派生聚合见 p3d_qwen_summary.json",
+ "train_spec": {
+  "model": "models/Qwen2-VL-2B-Instruct",
+  "dataset": "coco",
+  "lr": 5e-05,
+  "epochs": 3,
+  "batch": 1,
+  "lora_targets": [
+   "q_proj",
+   "k_proj",
+   "v_proj",
+   "o_proj"
+  ],
+  "lora_alpha": "2*rank",
+  "dtype": "bfloat16",
+  "min_pixels": 4096,
+  "max_pixels": 50176
+ },
+ "generated_at_utc": "2026-10-13T00:15:25+00:00",
+ "model": "models/Qwen2-VL-2B-Instruct",
+ "dataset": "coco",
+ "manifest": "outputs/analysis/p3d_manifest.json",
+ "protocol": {
+  "lr": 5e-05,
+  "epochs": 3,
+  "batch": 1,
+  "lora_targets": [
+   "q_proj",
+   "k_proj",
+   "v_proj",
+   "o_proj"
+  ],
+  "lora_alpha": "2*rank",
+  "vision_frozen": true,
+  "dtype": "bfloat16",
+  "E_def": "mean||mean(h_vis)-mean(h_lang)||^2 last layer",
+  "E_train": "在训练条件自身的数据上（可与论文 ΔE 类比）",
+  "E_eval_real": "在清单 test 划分的前 4 张【held-out 真实图】上（与训练集无重叠，跨条件可比）",
+  "loss": "CE on assistant response tokens only, logits[:, :-1]",
+  "min_pixels": 4096,
+  "max_pixels": 50176,
+  "blank": "no image passed = Qwen 的纯文本路径；另见 --conditions blank 时用全零图"
+ },
+ "runs": [
+  {
+   "rank": 4,
+   "condition": "real",
+   "n_train": 16,
+   "seed": 42,
+   "n_peft_params": 1089536,
+   "device": "cuda",
+   "min_pixels": 4096,
+   "max_pixels": 50176,
+   "sec_per_sample": 1.348,
+   "E_train_epochs": [
+    14717.7668,
+    14536.096,
+    14303.0854,
+    14163.5806
+   ],
+   "E_eval_real_epochs": [
+    9470.5242,
+    9232.8743,
+    8844.3231,
+    8678.5922
+   ],
+   "loss_epochs": [
+    3.0363,
+    2.2346,
+    1.8526
+   ],
+   "dE_train": -554.1862,
+   "dE_eval_real": -791.932,
+   "seconds": 21.6,
+   "lr": 5e-05,
+   "epochs": 3,
+   "batch": 1,
+   "dtype": "bfloat16",
+   "lora_targets": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj"
+   ],
+   "lora_alpha": "2*rank"
+  },
+  {
+   "rank": 4,
+   "condition": "blank",
+   "n_train": 16,
+   "seed": 42,
+   "n_peft_params": 1089536,
+   "device": "cuda",
+   "min_pixels": 4096,
+   "max_pixels": 50176,
+   "sec_per_sample": 0.975,
+   "E_train_epochs": [
+    22207.1591,
+    22038.2675,
+    21770.8561,
+    22018.655
+   ],
+   "E_eval_real_epochs": [
+    9470.5242,
+    9311.2698,
+    9062.5646,
+    9119.1304
+   ],
+   "loss_epochs": [
+    3.4484,
+    2.7435,
+    2.5307
+   ],
+   "dE_train": -188.504,
+   "dE_eval_real": -351.3938,
+   "seconds": 15.6,
+   "lr": 5e-05,
+   "epochs": 3,
+   "batch": 1,
+   "dtype": "bfloat16",
+   "lora_targets": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj"
+   ],
+   "lora_alpha": "2*rank"
+  },
+  {
+   "rank": 16,
+   "condition": "real",
+   "n_train": 16,
+   "seed": 42,
+   "n_peft_params": 4358144,
+   "device": "cuda",
+   "min_pixels": 4096,
+   "max_pixels": 50176,
+   "sec_per_sample": 1.103,
+   "E_train_epochs": [
+    14717.7668,
+    14339.9727,
+    14221.9611,
+    14246.6013
+   ],
+   "E_eval_real_epochs": [
+    9470.5242,
+    8841.0765,
+    8711.8218,
+    8692.4827
+   ],
+   "loss_epochs": [
+    2.5655,
+    1.8028,
+    1.6943
+   ],
+   "dE_train": -471.1656,
+   "dE_eval_real": -778.0415,
+   "seconds": 17.7,
+   "lr": 5e-05,
+   "epochs": 3,
+   "batch": 1,
+   "dtype": "bfloat16",
+   "lora_targets": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj"
+   ],
+   "lora_alpha": "2*rank"
+  },
+  {
+   "rank": 16,
+   "condition": "blank",
+   "n_train": 16,
+   "seed": 42,
+   "n_peft_params": 4358144,
+   "device": "cuda",
+   "min_pixels": 4096,
+   "max_pixels": 50176,
+   "sec_per_sample": 1.148,
+   "E_train_epochs": [
+    22207.1591,
+    21860.6216,
+    22203.1199,
+    22158.0424
+   ],
+   "E_eval_real_epochs": [
+    9470.5242,
+    9127.4888,
+    9213.6694,
+    9284.5801
+   ],
+   "loss_epochs": [
+    3.0211,
+    2.4851,
+    2.3382
+   ],
+   "dE_train": -49.1167,
+   "dE_eval_real": -185.9441,
+   "seconds": 18.4,
+   "lr": 5e-05,
+   "epochs": 3,
+   "batch": 1,
+   "dtype": "bfloat16",
+   "lora_targets": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj"
+   ],
+   "lora_alpha": "2*rank"
+  }
+ ]
+}
