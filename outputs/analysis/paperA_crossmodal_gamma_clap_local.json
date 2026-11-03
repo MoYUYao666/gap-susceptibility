@@ -1,0 +1,21 @@
+{
+  "script": "tools/_p1773_local_crossmodal.py",
+  "backbone": "laion/clap-htsat-unfused",
+  "modality_pair": "audio-text",
+  "device": "cuda",
+  "n_pairs": 4,
+  "dg": 0.0023477987851947546,
+  "grad_norm": {
+    "audio": 0.012665647082030773,
+    "text": 0.04200423136353493
+  },
+  "gamma_relative": {
+    "audio": 0.2886938306078242,
+    "text": 0.9574214704971792
+  },
+  "ordering_by_gamma": [
+    "text",
+    "audio"
+  ],
+  "note": "deterministic synthetic tones paired with matching captions; measures the geometry of the encoder pair"
+}

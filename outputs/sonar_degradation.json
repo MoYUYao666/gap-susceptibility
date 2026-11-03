@@ -1,0 +1,41 @@
+{
+ "meta": {
+  "model": "clip_frozen",
+  "dataset": "NKSID",
+  "n_images": 650
+ },
+ "rows": [
+  {
+   "degrade": "speckle_p20",
+   "lam_eff": 0.0261,
+   "tau_meas": 0.5252,
+   "tau_pred": 0.9425,
+   "diff": 0.4172,
+   "top1": 11.385
+  },
+  {
+   "degrade": "speckle_p40",
+   "lam_eff": 0.0236,
+   "tau_meas": 0.4751,
+   "tau_pred": 0.9465,
+   "diff": 0.4714,
+   "top1": 7.385
+  },
+  {
+   "degrade": "blur_r2",
+   "lam_eff": 0.0386,
+   "tau_meas": 0.1843,
+   "tau_pred": 0.9265,
+   "diff": 0.7422,
+   "top1": 21.538
+  },
+  {
+   "degrade": "shadow_strip",
+   "lam_eff": -0.0025,
+   "tau_meas": 0.62,
+   "tau_pred": 0.9951,
+   "diff": 0.3751,
+   "top1": 16.462
+  }
+ ]
+}

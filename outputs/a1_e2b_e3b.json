@@ -1,0 +1,49 @@
+{
+  "gap_norm": 0.8151,
+  "results": {
+    "E2b_input_dependent": [
+      {
+        "k": 1,
+        "top1": 41.74,
+        "tau_top5": 0.4396
+      },
+      {
+        "k": 16,
+        "top1": 42.6,
+        "tau_top5": 0.4354
+      },
+      {
+        "k": 64,
+        "top1": 42.16,
+        "tau_top5": 0.4356
+      }
+    ],
+    "E3b_real_checkpoints": [
+      {
+        "name": "text_only_r8",
+        "top1": 59.26,
+        "tau_top5": 1.0
+      },
+      {
+        "name": "both_r8",
+        "top1": 59.82,
+        "tau_top5": 0.7947
+      },
+      {
+        "name": "full_ft_s42",
+        "top1": 0.14,
+        "tau_top5": -0.0831
+      },
+      {
+        "name": "full_ft_s123",
+        "top1": 7.42,
+        "tau_top5": 0.1214
+      },
+      {
+        "name": "full_ft_s999",
+        "top1": 7.02,
+        "tau_top5": 0.1217
+      }
+    ]
+  }
+}

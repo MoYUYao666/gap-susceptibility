@@ -1,0 +1,64 @@
+{
+ "targets": {
+  "Flickr30k.text_only": -0.064,
+  "Flickr30k.both": -0.032,
+  "Flickr30k.vision_only": -0.003,
+  "COCO.text_only": -0.041,
+  "COCO.both": -0.052,
+  "COCO.vision_only": 0.031,
+  "BLIP1.text_only": 0.047,
+  "BLIP1.both": 0.152,
+  "ViTL.text_only": -0.036,
+  "ViTL.both": 0.128
+ },
+ "found": {
+  "Flickr30k.text_only": [
+   "outputs\\flickr30k\\rq2_text_only\\results.json"
+  ],
+  "Flickr30k.both": [
+   "outputs\\flickr30k\\rq2_both\\results.json"
+  ],
+  "Flickr30k.vision_only": [
+   "outputs\\flickr30k\\rq2_vision_only\\results.json",
+   "outputs\\flickr30k_seeds\\rq1_rank32\\seed1024\\results.json",
+   "outputs\\flickr30k_seeds\\rq1_rank32\\seed42\\results.json",
+   "outputs\\flickr30k_seeds\\rq1_rank32\\seed456\\results.json",
+   "outputs\\siglip_strict\\seed789\\s7_siglip_lora_r4_both\\results.json",
+   "outputs\\strict_freeze_rank\\r32\\both\\seed42\\results.json"
+  ],
+  "COCO.text_only": [
+   "outputs\\coco\\rq2_text_only_coco\\results.json",
+   "outputs\\coco_sweep\\r4\\text_only\\seed456\\results.json",
+   "outputs\\phase1\\adapter_d8_text\\results.json"
+  ],
+  "COCO.both": [
+   "outputs\\coco\\rq2_both_coco\\results.json",
+   "outputs\\coco_sweep\\r2\\both\\seed42\\results.json"
+  ],
+  "COCO.vision_only": [
+   "outputs\\coco\\rq2_vision_only_coco\\results.json",
+   "outputs\\siglip_strict\\seed123\\s7_siglip_lora_r4_both\\results.json"
+  ],
+  "BLIP1.text_only": [
+   "outputs\\blip2\\b4_blip2_lora_text_only\\results.json"
+  ],
+  "BLIP1.both": [
+   "outputs\\blip2\\b4_blip2_lora_both\\results.json",
+   "outputs\\theory\\beta_pilot\\beta_pilot_full_ft\\seed123\\results.json",
+   "outputs\\theory\\v1_trajectory\\v1_both_r16\\seed123\\results.json",
+   "outputs\\theory\\v1_trajectory\\v1_both_r1\\seed123\\results.json",
+   "outputs\\theory\\v1_trajectory\\v1_both_r1\\seed456\\results.json",
+   "outputs\\theory\\v1_trajectory\\v1_text_only_r1\\seed456\\results.json",
+   "outputs\\theory\\v1_trajectory\\v1_text_only_r2\\seed42\\results.json"
+  ],
+  "ViTL.text_only": [
+   "outputs\\flickr30k\\rq3_complete\\results.json",
+   "outputs\\vitl\\vitl_text_only\\results.json"
+  ],
+  "ViTL.both": [
+   "outputs\\vitl\\vitl_rank4\\results.json"
+  ]
+ },
+ "missing": {},
+ "n_files_scanned": 570
+}

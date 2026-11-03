@@ -1,0 +1,129 @@
+{
+ "families": {
+  "uniform": [
+   "uniform"
+  ],
+  "exponential_eq5_literal": [
+   "exp_beta_0",
+   "exp_beta_1e-4",
+   "exp_beta_1e-6",
+   "exp_beta_1e3",
+   "exp_beta_1e9",
+   "exp_beta_3e-4",
+   "exp_beta_paper_0.137"
+  ],
+  "exponential_eq5_cost_aware": [
+   "exp_ca_beta_1e-4",
+   "exp_ca_beta_1e9",
+   "exp_ca_beta_paper_0.137"
+  ],
+  "inverse_exponential_sanity_check": [
+   "inverse_beta_1e-4",
+   "inverse_beta_1e9",
+   "inverse_beta_paper_0.137"
+  ],
+  "linear_objective_true_optimum": [
+   "exact_opt"
+  ],
+  "corner_beta_inf": [
+   "corner"
+  ],
+  "random_same_budget": [
+   "random_00",
+   "random_01",
+   "random_02",
+   "random_03",
+   "random_04",
+   "random_05",
+   "random_06",
+   "random_07",
+   "random_08",
+   "random_09",
+   "random_10",
+   "random_11",
+   "random_12",
+   "random_13"
+  ]
+ },
+ "duplicate_groups": {
+  "(4, 4, 4, 4)": [
+   "exp_beta_0",
+   "exp_beta_1e-4",
+   "exp_beta_1e-6",
+   "inverse_beta_1e-4",
+   "uniform"
+  ],
+  "(4, 2, 2, 9)": [
+   "exp_beta_1e3",
+   "exp_beta_1e9",
+   "exp_beta_3e-4",
+   "exp_beta_paper_0.137",
+   "exp_ca_beta_1e9",
+   "exp_ca_beta_paper_0.137",
+   "random_13"
+  ],
+  "(4, 6, 2, 6)": [
+   "exp_ca_beta_1e-4",
+   "random_00"
+  ],
+  "(4, 15, 1, 1)": [
+   "inverse_beta_1e9",
+   "inverse_beta_paper_0.137",
+   "random_12"
+  ],
+  "(4, 1, 3, 8)": [
+   "corner",
+   "exact_opt",
+   "random_04"
+  ]
+ },
+ "independent_random_plans": [
+  "random_01",
+  "random_02",
+  "random_03",
+  "random_05",
+  "random_06",
+  "random_07",
+  "random_08",
+  "random_09",
+  "random_10",
+  "random_11"
+ ],
+ "excluded_random_plans": [
+  [
+   "random_00",
+   "与 non-random 方案重复",
+   [
+    "exp_ca_beta_1e-4"
+   ]
+  ],
+  [
+   "random_04",
+   "与 non-random 方案重复",
+   [
+    "exact_opt",
+    "corner"
+   ]
+  ],
+  [
+   "random_12",
+   "与 non-random 方案重复",
+   [
+    "inverse_beta_paper_0.137",
+    "inverse_beta_1e9"
+   ]
+  ],
+  [
+   "random_13",
+   "与 non-random 方案重复",
+   [
+    "exp_beta_3e-4",
+    "exp_beta_paper_0.137",
+    "exp_beta_1e3",
+    "exp_beta_1e9",
+    "exp_ca_beta_paper_0.137",
+    "exp_ca_beta_1e9"
+   ]
+  ]
+ ]
+}

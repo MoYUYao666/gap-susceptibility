@@ -1,0 +1,96 @@
+{
+  "frozen_reference_cg": 0.8184,
+  "frozen_reference_source": {
+    "rq2_text_only": {
+      "initial_cg": 0.8183847665786743,
+      "initial_dg": 0.8652344554653089
+    },
+    "rq2_both": {
+      "initial_cg": 0.818446159362793,
+      "initial_dg": 0.8654907719524196
+    },
+    "rq1_rank4": {
+      "initial_cg": 0.8182860016822815,
+      "initial_dg": 0.8654709469332714
+    }
+  },
+  "note": "delta_common = cg_final - frozen CG on the identical protocol; delta_old is the published convention (final - post-injection initial)",
+  "adapter_text_only": {
+    "n": 5,
+    "dCG_old_mean": -0.1155,
+    "dCG_common_mean": 0.1848,
+    "R1_mean": 0.2346
+  },
+  "adapter_all_7": {
+    "n": 7,
+    "dCG_old_mean": -0.1001,
+    "dCG_common_mean": 0.2293,
+    "R1_mean": 0.173
+  },
+  "adapter_both": {
+    "n": 1,
+    "dCG_common_mean": 0.5003
+  },
+  "adapter_vision_only": {
+    "n": 1,
+    "dCG_common_mean": 0.1806
+  },
+  "runs": [
+    {
+      "run": "adapter_d16_both",
+      "cg_init_adapter_state": 1.3585234880447388,
+      "cg_final": 1.3186595439910889,
+      "delta_old": -0.0398639440536499,
+      "delta_common": 0.5002872347831726,
+      "R@1": 0.0020000000949949026
+    },
+    {
+      "run": "adapter_d16_text",
+      "cg_init_adapter_state": 1.1014213562011719,
+      "cg_final": 1.0551789999008179,
+      "delta_old": -0.046242356300354004,
+      "delta_common": 0.2368066906929016,
+      "R@1": 0.07199999876320362
+    },
+    {
+      "run": "adapter_d16_vis",
+      "cg_init_adapter_state": 1.082407832145691,
+      "cg_final": 0.9989955425262451,
+      "delta_old": -0.0834122896194458,
+      "delta_common": 0.18062323331832886,
+      "R@1": 0.036000000312924385
+    },
+    {
+      "run": "adapter_d32_text",
+      "cg_init_adapter_state": 1.1254189014434814,
+      "cg_final": 0.9212856292724609,
+      "delta_old": -0.2041332721710205,
+      "delta_common": 0.10291332006454468,
+      "R@1": 0.4580000042915344
+    },
+    {
+      "run": "adapter_d4_text",
+      "cg_init_adapter_state": 1.1464053392410278,
+      "cg_final": 1.0772430896759033,
+      "delta_old": -0.06916224956512451,
+      "delta_common": 0.25887078046798706,
+      "R@1": 0.03300000156741589
+    },
+    {
+      "run": "adapter_d64_text",
+      "cg_init_adapter_state": 1.0986891984939575,
+      "cg_final": 0.8819655179977417,
+      "delta_old": -0.21672368049621582,
+      "delta_common": 0.06359320878982544,
+      "R@1": 0.5740000009536743
+    },
+    {
+      "run": "adapter_d8_text",
+      "cg_init_adapter_state": 1.1214587688446045,
+      "cg_final": 1.0803492069244385,
+      "delta_old": -0.041109561920166016,
+      "delta_common": 0.2619768977165222,
+      "R@1": 0.03600000019650906
+    }
+  ]
+}

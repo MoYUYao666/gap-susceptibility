@@ -1,0 +1,453 @@
+{
+ "meta": {
+  "script": "tools/_p1503_p3_gapfill.py",
+  "task": "R1 gap-fill pack",
+  "lr": 5e-05
+ },
+ "curvature": {
+  "5": {
+   "rows": [
+    {
+     "batch": 0,
+     "g2": 335.3275292924395,
+     "gHg": -463880.5389404297,
+     "share_at_lr": -0.034584137777119314,
+     "per_group": {
+      "vision": -794548.4585232206,
+      "llm": 12397.766113281252
+     }
+    },
+    {
+     "batch": 1,
+     "g2": 418.3892721641314,
+     "gHg": -539274.2156982422,
+     "share_at_lr": -0.03222323393408426,
+     "per_group": {
+      "vision": -1965321.4348687069,
+      "llm": -10956.658257378474
+     }
+    },
+    {
+     "batch": 2,
+     "g2": 261.45618221233434,
+     "gHg": -419241.90521240234,
+     "share_at_lr": -0.04008720521206941,
+     "per_group": {
+      "vision": -1058610.2803548179,
+      "llm": -11210.97140842014
+     }
+    }
+   ],
+   "mean_share_at_lr": -0.035631525641091,
+   "sd_share_at_lr": 0.004035254275561855
+  },
+  "6": {
+   "rows": [
+    {
+     "batch": 0,
+     "g2": 394.69711846804285,
+     "gHg": -531298.6373901367,
+     "share_at_lr": -0.03365230024051683,
+     "per_group": {
+      "vision": -1326264.2754448787,
+      "llm": 8095.6353081597235
+     }
+    },
+    {
+     "batch": 1,
+     "g2": 481.98049160742084,
+     "gHg": -622861.8621826172,
+     "share_at_lr": -0.032307420789239434,
+     "per_group": {
+      "vision": -1501994.6628146705,
+      "llm": -13775.295681423613
+     }
+    },
+    {
+     "batch": 2,
+     "g2": 298.99005071787997,
+     "gHg": -458670.61614990234,
+     "share_at_lr": -0.038351662124594676,
+     "per_group": {
+      "vision": -1049613.952636719,
+      "llm": -826.5177408854169
+     }
+    }
+   ],
+   "mean_share_at_lr": -0.03477046105145031,
+   "sd_share_at_lr": 0.0031734722354756465
+  }
+ },
+ "ntk": {
+  "meta": {
+   "script": "tools/_p1502_p3_ntk_allocation.py",
+   "task": "R3.9 NTK/gradient baseline",
+   "model": "CLIP ViT-B/32",
+   "data": "marine image-caption pairs",
+   "budget": 16,
+   "n_batches": 4
+  },
+  "ntk_trace": {
+   "vision": 48957.11353765958,
+   "text_shallow": 23786.130313434638,
+   "text_mid": 8437.430426052655,
+   "text_deep": 1853.7549417179544
+  },
+  "gamma_abs": {
+   "vision": 0.29840957981529453,
+   "text_shallow": 0.25322052467769635,
+   "text_mid": 0.1958032660804747,
+   "text_deep": 0.13529416882859854
+  },
+  "allocation_ntk": {
+   "vision": 8,
+   "text_shallow": 5,
+   "text_mid": 2,
+   "text_deep": 1
+  },
+  "allocation_gamma": {
+   "vision": 5,
+   "text_shallow": 5,
+   "text_mid": 4,
+   "text_deep": 2
+  },
+  "allocation_uniform": {
+   "vision": 4,
+   "text_shallow": 4,
+   "text_mid": 4,
+   "text_deep": 4
+  }
+ },
+ "environment": {
+  "meta": {
+   "script": "tools/_p1500_p3_env_matrix.py",
+   "task": "R1 R3.18 environment/seed matrix",
+   "hardware": "single RTX 4060 Laptop 8GB",
+   "cuda": null,
+   "torch": null,
+   "torch_error": "ModuleNotFoundError(\"No module named 'torch'\")"
+  },
+  "seeds": {
+   "5": {
+    "123": 8.0,
+    "42": 0.0,
+    "789": -36.5,
+    "999": -27.0
+   },
+   "6": {
+    "123": 25.5,
+    "42": 96.5,
+    "789": 32.0,
+    "999": 62.0
+   }
+  },
+  "software_pairs": {
+   "verify_r5_s42.json": {
+    "delta_E": -39.5,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_b1_partial.json": {
+    "delta_E": null,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_b2_partial.json": {
+    "delta_E": null,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_e10.json": {
+    "delta_E": NaN,
+    "note": "10-epoch protocol: E diverges beyond epoch 7 and training collapses (NaN loss) at epochs 9-10; the first 7 epochs trace the alignment-rebound/damage mechanism",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr0.001_nw_float1_sgd.json": {
+    "delta_E": 677.0,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr2e-05_nw.json": {
+    "delta_E": -6.0,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_bfloat_adamw.json": {
+    "delta_E": -25.0,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_cap_e3.json": {
+    "delta_E": -83.5,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_e10_bcuniform.json": {
+    "delta_E": NaN,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_a32.json": {
+    "delta_E": 1621.0,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json": {
+    "delta_E": -73.5,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json": {
+    "delta_E": -49.5,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_gmimage.json": {
+    "delta_E": -76.5,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_gmtext.json": {
+    "delta_E": -3.5,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_lang.json": {
+    "delta_E": -34.5,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_tq.json": {
+    "delta_E": -15.0,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_cap_e3.json": {
+    "delta_E": 66.5,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_adamw_imgs_e3.json": {
+    "delta_E": 83.0,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_lr5e-05_nw_float1_sgd.json": {
+    "delta_E": -10.5,
+    "note": "",
+    "torch": null,
+    "transformers": null
+   },
+   "verify_r5_s42_tf457.json": {
+    "delta_E": 0.0,
+    "note": "cross-version reproducibility run: transformers 4.57.0 (vs reference 5.16.1); identical trajectory shape (down-down-up), net delta_E 0.0 vs -18.0 reference (0.5",
+    "torch": null,
+    "transformers": null
+   }
+  },
+  "spread": {
+   "5": {
+    "n": 4,
+    "mean": -13.875,
+    "min": -36.5,
+    "max": 8.0
+   },
+   "6": {
+    "n": 4,
+    "mean": 54.0,
+    "min": 25.5,
+    "max": 96.5
+   }
+  }
+ },
+ "seeds": {
+  "n_seeds": {
+   "r5": 5,
+   "r6": 5
+  },
+  "values": {
+   "r5": {
+    "42": -10.5,
+    "123": 8.0,
+    "789": -36.5,
+    "999": -27.0,
+    "1024": -49.0
+   },
+   "r6": {
+    "42": 115.0,
+    "123": 25.5,
+    "789": 32.0,
+    "999": 62.0,
+    "1024": 93.0
+   }
+  },
+  "r5": {
+   "mean": -23.0,
+   "sd": 22.31311273668468,
+   "n_positive": 1
+  },
+  "r6": {
+   "mean": 65.5,
+   "sd": 38.53894134508627,
+   "n_positive": 5
+  },
+  "difference_of_means": 88.5,
+  "permutation": {
+   "p_two_sided": 0.007936507936507936,
+   "n_splits": 252,
+   "p_min_attainable": 0.007936507936507936
+  },
+  "source_archives": [
+   "outputs/analysis/p3_rerun_protocol.json",
+   "outputs/analysis/p3_rerun_extra.json",
+   "outputs/analysis/p3_rerun_seeds.json"
+  ]
+ },
+ "captioning": {
+  "5": {
+   "bleu4": 0.0,
+   "exact_match": 0.0,
+   "n_eval": 4
+  },
+  "6": {
+   "bleu4": 0.0,
+   "exact_match": 0.0,
+   "n_eval": 4
+  },
+  "None": {
+   "bleu4": 0.0,
+   "exact_match": 0.0,
+   "n_eval": 4
+  }
+ },
+ "caption_metrics": {
+  "meta": {
+   "script": "tools/_p1504_p3_caption_metrics.py"
+  },
+  "arms": {
+   "5": {
+    "bleu4": 0.0,
+    "exact_match": 0.0,
+    "token_f1": 0.17872697859631656,
+    "clip_sim_mean": 0.32329824566841125,
+    "n_eval": 4,
+    "hypotheses": [
+     "The image is a black and white photograph of a fishing boat, possibly a fishing trawler, with a large fish on the deck. The fish is positioned in the center of the boat, and it appears to be a",
+     "The image features a large fish, possibly a snake or a lizard, lying on a table. The fish appears to be cut in half, revealing its internal structure. The fish is placed on a piece of paper, which is",
+     "The image features a large fish, possibly a sturgeon, swimming in a body of water. The fish is captured in a dynamic pose, with its mouth open, as if it is about to take a bite out of something",
+     "The image is a black and white illustration of a fish, likely a sturgeon, with its mouth open. The fish is depicted in four different positions, showcasing its various stages of movement. The illustration is accompanied"
+    ],
+    "refs": [
+     "a fish laying on the ground in a room",
+     "a fish with a long tail and a long tail",
+     "a fish with a long tail and a long tail",
+     "fish of pennsylvania, plate 17"
+    ]
+   },
+   "6": {
+    "bleu4": 0.0,
+    "exact_match": 0.0,
+    "token_f1": 0.17872697859631656,
+    "clip_sim_mean": 0.32329824566841125,
+    "n_eval": 4,
+    "hypotheses": [
+     "The image is a black and white photograph of a fishing boat, possibly a fishing trawler, with a large fish on the deck. The fish is positioned in the center of the boat, and it appears to be a",
+     "The image features a large fish, possibly a snake or a lizard, lying on a table. The fish appears to be cut in half, revealing its internal structure. The fish is placed on a piece of paper, which is",
+     "The image features a large fish, possibly a sturgeon, swimming in a body of water. The fish is captured in a dynamic pose, with its mouth open, as if it is about to take a bite out of something",
+     "The image is a black and white illustration of a fish, likely a sturgeon, with its mouth open. The fish is depicted in four different positions, showcasing its various stages of movement. The illustration is accompanied"
+    ],
+    "refs": [
+     "a fish laying on the ground in a room",
+     "a fish with a long tail and a long tail",
+     "a fish with a long tail and a long tail",
+     "fish of pennsylvania, plate 17"
+    ]
+   },
+   "None": {
+    "bleu4": 0.0,
+    "exact_match": 0.0,
+    "token_f1": 0.17872697859631656,
+    "clip_sim_mean": 0.32329824566841125,
+    "n_eval": 4,
+    "hypotheses": [
+     "The image is a black and white photograph of a fishing boat, possibly a fishing trawler, with a large fish on the deck. The fish is positioned in the center of the boat, and it appears to be a",
+     "The image features a large fish, possibly a snake or a lizard, lying on a table. The fish appears to be cut in half, revealing its internal structure. The fish is placed on a piece of paper, which is",
+     "The image features a large fish, possibly a sturgeon, swimming in a body of water. The fish is captured in a dynamic pose, with its mouth open, as if it is about to take a bite out of something",
+     "The image is a black and white illustration of a fish, likely a sturgeon, with its mouth open. The fish is depicted in four different positions, showcasing its various stages of movement. The illustration is accompanied"
+    ],
+    "refs": [
+     "a fish laying on the ground in a room",
+     "a fish with a long tail and a long tail",
+     "a fish with a long tail and a long tail",
+     "fish of pennsylvania, plate 17"
+    ]
+   }
+  }
+ },
+ "trained_arms": [
+  {
+   "label": "NTK allocation 8/5/2/1",
+   "file": "verify_r1_s42_ntk_arm.json",
+   "delta_E": 396.0,
+   "E": [
+    3921.0,
+    3793.5,
+    3836.0,
+    4317.0
+   ],
+   "n_trainable": null
+  },
+  {
+   "label": "Gamma allocation 5/5/4/2",
+   "file": "verify_r1_s42_bcexplicit_v5_s5_m4_d2.json",
+   "delta_E": 196.5,
+   "E": [
+    3921.0,
+    3776.0,
+    3821.0,
+    4117.5
+   ],
+   "n_trainable": null
+  }
+ ],
+ "qwen25": [
+  [
+   5,
+   608.0,
+   [
+    21216.0,
+    21376.0,
+    21360.0,
+    21824.0
+   ]
+  ],
+  [
+   6,
+   -48.0,
+   [
+    21216.0,
+    21344.0,
+    21472.0,
+    21168.0
+   ]
+  ]
+ ]
+}

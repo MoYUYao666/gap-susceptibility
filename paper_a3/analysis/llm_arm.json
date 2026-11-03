@@ -1,0 +1,101 @@
+{
+ "note": "matched subsets, joint site",
+ "datasets": {
+  "rsicd": [
+   {
+    "arm": "human",
+    "label": "Human captions",
+    "n": 3,
+    "R@1_mean": 0.1172,
+    "R@1_sd": 0.0029,
+    "values": [
+     0.1143,
+     0.1201,
+     0.1172
+    ]
+   },
+   {
+    "arm": "llmcaption",
+    "label": "LLM captions",
+    "n": 3,
+    "R@1_mean": 0.1045,
+    "R@1_sd": 0.0029,
+    "values": [
+     0.1074,
+     0.1016,
+     0.1045
+    ]
+   },
+   {
+    "arm": "templated",
+    "label": "Templated",
+    "n": 3,
+    "R@1_mean": 0.0368,
+    "R@1_sd": 0.002,
+    "values": [
+     0.0352,
+     0.0391,
+     0.0361
+    ]
+   },
+   {
+    "arm": "metadata",
+    "label": "Metadata",
+    "n": 3,
+    "R@1_mean": 0.0075,
+    "R@1_sd": 0.0012,
+    "values": [
+     0.0088,
+     0.0068,
+     0.0068
+    ]
+   }
+  ],
+  "nwpu_captions": [
+   {
+    "arm": "llmcaption",
+    "label": "LLM captions",
+    "n": 2,
+    "R@1_mean": 0.2329,
+    "R@1_sd": 0.0008,
+    "values": [
+     0.2335,
+     0.2324
+    ]
+   },
+   {
+    "arm": "human",
+    "label": "Human captions",
+    "n": 2,
+    "R@1_mean": 0.1508,
+    "R@1_sd": 0.0,
+    "values": [
+     0.1508,
+     0.1508
+    ]
+   },
+   {
+    "arm": "templated",
+    "label": "Templated",
+    "n": 2,
+    "R@1_mean": 0.0769,
+    "R@1_sd": 0.0022,
+    "values": [
+     0.0754,
+     0.0785
+    ]
+   },
+   {
+    "arm": "metadata",
+    "label": "Metadata",
+    "n": 2,
+    "R@1_mean": 0.0165,
+    "R@1_sd": 0.0,
+    "values": [
+     0.0165,
+     0.0165
+    ]
+   }
+  ]
+ }
+}

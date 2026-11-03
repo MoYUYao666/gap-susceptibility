@@ -1,0 +1,2616 @@
+{
+ "meta": {
+  "script": "tools/_p1634_p3_allocation_paired.py",
+  "purpose": "standalone paired re-analysis of Paper 3's Gamma-guided vs uniform allocation claim, including reproduction of the cross-paper addendum",
+  "git_commit": "7bed09ee180431946edf04f3f81ba60925f3f769",
+  "git_commit_note": "informational only and excluded from the idempotency hash, because committing the script changes the commit while the analysis result must not change",
+  "archive_paths": {
+   "runs_by_tag": "outputs/analysis/p3_alloc_runs/<tag>/summary.json::runs.<plan>__seed<seed>.delta_E / .loss_last",
+   "run_file": "outputs/analysis/p3_alloc_runs/<tag>/<plan>__seed<seed>.json::delta_E",
+   "per_plan_aggregates": "outputs/analysis/p3_alloc_results.json::per_plan.<plan>.delta_E / ::comparisons.<plan>.vs_uniform",
+   "random_pool": "outputs/analysis/p3_alloc_random_pool.json::random_pool / ::gamma / ::tests / ::verdict",
+   "addendum": "outputs/analysis/paperA_strict_bootstrap.json::cross_paper_addendum_p3_allocation",
+   "earlier_experiments": "paper3/scripts/outputs/experiments/all_results.json"
+  },
+  "field_paths_used": {
+   "per_run_delta_E": "runs.<plan>__seed<seed>.delta_E",
+   "per_run_loss_last": "runs.<plan>__seed<seed>.loss_last",
+   "per_plan_mean": "per_plan.<plan>.delta_E.mean",
+   "per_plan_sd": "per_plan.<plan>.delta_E.sd",
+   "per_plan_n": "per_plan.<plan>.delta_E.n",
+   "welch": "comparisons.exp_beta_paper_0.137.vs_uniform.{welch_t,df,p_two_sided}",
+   "pool": "random_pool.{mean,sd,values,per_plan}",
+   "pool_gamma": "gamma.{n,mean,sd,values}",
+   "pool_percentile": "gamma_mean_percentile_in_random_pool",
+   "pool_verdict": "verdict",
+   "experiment_group_energy": "<group>[*].E[0] and E[-1]"
+  },
+  "tags": {
+   "capacity_matched": "main",
+   "matched_loss": [
+    "exp_lr0.0003",
+    "uniform_lr0.0003"
+   ],
+   "learning_rate_sweep_1e-3": [
+    "exp_lr0.001",
+    "uniform_lr0.001"
+   ]
+  },
+  "plans": {
+   "gamma_guided": "exp_beta_paper_0.137",
+   "uniform": "uniform",
+   "reversed": "inverse_beta_paper_0.137",
+   "corner": "corner"
+  },
+  "bootstrap": {
+   "resamples": 20000,
+   "rng_seed": 20261024,
+   "jitter_rng_seed": 20261025,
+   "rng": "numpy.random.default_rng, per-comparison stream derived from the label hash",
+   "ci": "percentile, 95% (2.5th-97.5th of the bootstrap distribution)",
+   "paired": "one resample of pair indices applied to both arms, so the pairing is inside the resample"
+  },
+  "equivalence_settings": {
+   "alpha": 0.05,
+   "margin": 1899.897185980862,
+   "margin_source": "derived from the data: one sample sd (ddof=1) of the uniform arm, arms.uniform.sd_ddof1_sample"
+  },
+  "archive_repairs": {},
+  "idempotency": {
+   "timestamps_inside_hashed_part": false,
+   "hash_definition": "sha256 of the canonical JSON serialization (sort_keys=True, separators=(',',':')) of this document without meta.result_sha256"
+  },
+  "result_sha256": "249d805f66c106108ab3b4a39ddaeec400023652ab27f0594f1ada77395631ea"
+ },
+ "arms": {
+  "exp_beta_paper_0.137": {
+   "n": 6,
+   "mean": 1477.4501953125,
+   "median": 1597.384765625,
+   "min": -1052.962890625,
+   "max": 3234.931640625,
+   "sd_ddof1_sample": 1563.3373668985585,
+   "sd_ddof0_population": 1427.1252347351176,
+   "se_of_mean_ddof1": 638.2298074546136,
+   "ci95_percentile": [
+    258.5218098958333,
+    2561.4814453125
+   ],
+   "ci95_halfwidth": 1151.4798177083333,
+   "mc_jitter_max_endpoint_shift": 24.2197265625,
+   "values": [
+    3234.931640625,
+    2705.53125,
+    782.431640625,
+    -1052.962890625,
+    1002.244140625,
+    2192.525390625
+   ],
+   "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137]",
+   "archived_aggregate": {
+    "mean": 1477.4501953125,
+    "sd": 1563.3373668985585,
+    "median": 1597.384765625,
+    "min": -1052.962890625,
+    "max": 3234.931640625,
+    "n": 6,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E",
+    "matches_recomputation": true,
+    "sd_convention": "the archived sd equals the sample sd (ddof=1)"
+   },
+   "loss_last_mean": 1.3761667972236562,
+   "loss_last_source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137].*.loss_last",
+   "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1011,
+    1213
+   ]
+  },
+  "uniform": {
+   "n": 6,
+   "mean": 5047.548502604167,
+   "median": 5145.6728515625,
+   "min": 2841.630859375,
+   "max": 8205.662109375,
+   "sd_ddof1_sample": 1899.897185980862,
+   "sd_ddof0_population": 1734.3609095038435,
+   "se_of_mean_ddof1": 775.6297782337911,
+   "ci95_percentile": [
+    3775.2265625,
+    6500.354817708333
+   ],
+   "ci95_halfwidth": 1362.5641276041665,
+   "mc_jitter_max_endpoint_shift": 78.15559895833303,
+   "values": [
+    5543.607421875,
+    5491.048828125,
+    8205.662109375,
+    4800.296875,
+    3403.044921875,
+    2841.630859375
+   ],
+   "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform]",
+   "archived_aggregate": {
+    "mean": 5047.548502604167,
+    "sd": 1899.8971859808623,
+    "median": 5145.6728515625,
+    "min": 2841.630859375,
+    "max": 8205.662109375,
+    "n": 6,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.uniform.delta_E",
+    "matches_recomputation": true,
+    "sd_convention": "the archived sd equals the sample sd (ddof=1)"
+   },
+   "loss_last_mean": 1.3733809256227687,
+   "loss_last_source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform].*.loss_last",
+   "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1011,
+    1213
+   ]
+  },
+  "inverse_beta_paper_0.137": {
+   "n": 6,
+   "mean": 2470.2080078125,
+   "median": 1225.287109375,
+   "min": -1237.236328125,
+   "max": 9911.458984375,
+   "sd_ddof1_sample": 4111.2182242525605,
+   "sd_ddof0_population": 3753.0116004157667,
+   "se_of_mean_ddof1": 1678.3978117749866,
+   "ci95_percentile": [
+    -171.986328125,
+    5720.681966145833
+   ],
+   "ci95_halfwidth": 2946.3341471354165,
+   "mc_jitter_max_endpoint_shift": 81.330078125,
+   "values": [
+    893.263671875,
+    4225.130859375,
+    1557.310546875,
+    -528.6796875,
+    9911.458984375,
+    -1237.236328125
+   ],
+   "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=inverse_beta_paper_0.137]",
+   "archived_aggregate": {
+    "mean": 2470.2080078125,
+    "sd": 4111.2182242525605,
+    "median": 1225.287109375,
+    "min": -1237.236328125,
+    "max": 9911.458984375,
+    "n": 6,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137.delta_E",
+    "matches_recomputation": true,
+    "sd_convention": "the archived sd equals the sample sd (ddof=1)"
+   },
+   "loss_last_mean": 1.333358142459474,
+   "loss_last_source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=inverse_beta_paper_0.137].*.loss_last",
+   "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1011,
+    1213
+   ]
+  },
+  "corner": {
+   "n": 6,
+   "mean": 2343.8977864583335,
+   "median": 3331.123046875,
+   "min": -1741.384765625,
+   "max": 4412.607421875,
+   "sd_ddof1_sample": 2426.091625165446,
+   "sd_ddof0_population": 2214.7085161291384,
+   "se_of_mean_ddof1": 990.4477584824887,
+   "ci95_percentile": [
+    440.2161458333333,
+    3925.5247395833335
+   ],
+   "ci95_halfwidth": 1742.654296875,
+   "mc_jitter_max_endpoint_shift": 0.0,
+   "values": [
+    4159.431640625,
+    3518.380859375,
+    3143.865234375,
+    -1741.384765625,
+    4412.607421875,
+    570.486328125
+   ],
+   "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=corner]",
+   "archived_aggregate": {
+    "mean": 2343.8977864583335,
+    "sd": 2426.091625165446,
+    "median": 3331.123046875,
+    "min": -1741.384765625,
+    "max": 4412.607421875,
+    "n": 6,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.corner.delta_E",
+    "matches_recomputation": true,
+    "sd_convention": "the archived sd equals the sample sd (ddof=1)"
+   },
+   "loss_last_mean": 1.3761414576971827,
+   "loss_last_source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=corner].*.loss_last",
+   "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1011,
+    1213
+   ]
+  }
+ },
+ "paired": {
+  "capacity_matched_by_seed": {
+   "n_pairs": 6,
+   "pairs": [
+    {
+     "seed": 42,
+     "gamma_guided": 3234.931640625,
+     "uniform": 5543.607421875,
+     "difference": -2308.67578125
+    },
+    {
+     "seed": 123,
+     "gamma_guided": 2705.53125,
+     "uniform": 5491.048828125,
+     "difference": -2785.517578125
+    },
+    {
+     "seed": 456,
+     "gamma_guided": 782.431640625,
+     "uniform": 8205.662109375,
+     "difference": -7423.23046875
+    },
+    {
+     "seed": 789,
+     "gamma_guided": -1052.962890625,
+     "uniform": 4800.296875,
+     "difference": -5853.259765625
+    },
+    {
+     "seed": 1011,
+     "gamma_guided": 1002.244140625,
+     "uniform": 3403.044921875,
+     "difference": -2400.80078125
+    },
+    {
+     "seed": 1213,
+     "gamma_guided": 2192.525390625,
+     "uniform": 2841.630859375,
+     "difference": -649.10546875
+    }
+   ],
+   "mean_difference": -3570.0983072916665,
+   "sd_of_differences_ddof1": 2536.3620906915976,
+   "se_of_mean_difference_ddof1": 1035.4654875221943,
+   "ci95_percentile": [
+    -5524.157552083333,
+    -1850.3134765625
+   ],
+   "ci95_excludes_zero": true,
+   "bootstrap_share_difference_le_zero": 1.0,
+   "bootstrap_share_difference_ge_zero": 0.0,
+   "mc_jitter_max_endpoint_shift": 14.93326822916606,
+   "per_pair_differences": [
+    -2308.67578125,
+    -2785.517578125,
+    -7423.23046875,
+    -5853.259765625,
+    -2400.80078125,
+    -649.10546875
+   ],
+   "pair_signs": [
+    "negative",
+    "negative",
+    "negative",
+    "negative",
+    "negative",
+    "negative"
+   ],
+   "n_pairs_negative": 6,
+   "n_pairs_positive": 0,
+   "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+   "pairing_unit": "seed label; both arms carry runs at seeds [42, 123, 456, 789, 1011, 1213]"
+  },
+  "random_pool_by_seed": {
+   "n_pairs": 3,
+   "pairs": [
+    {
+     "seed": 42,
+     "gamma_guided": 3234.931640625,
+     "mean_over_random_plans": 741.1474609375,
+     "difference": -2493.7841796875
+    },
+    {
+     "seed": 123,
+     "gamma_guided": 2705.53125,
+     "mean_over_random_plans": 4635.0146484375,
+     "difference": 1929.4833984375
+    },
+    {
+     "seed": 456,
+     "gamma_guided": 782.431640625,
+     "mean_over_random_plans": 4666.129296875,
+     "difference": 3883.6976562500004
+    }
+   ],
+   "mean_difference": 1106.465625,
+   "sd_of_differences_ddof1": 3267.4282445791678,
+   "se_of_mean_difference_ddof1": 1886.450576565569,
+   "ci95_percentile": [
+    -2493.7841796875,
+    3883.6976562500004
+   ],
+   "ci95_excludes_zero": false,
+   "bootstrap_share_difference_le_zero": 0.26025,
+   "bootstrap_share_difference_ge_zero": 0.73975,
+   "mc_jitter_max_endpoint_shift": 0.0,
+   "per_pair_differences": [
+    -2493.7841796875,
+    1929.4833984375,
+    3883.6976562500004
+   ],
+   "pair_signs": [
+    "negative",
+    "positive",
+    "positive"
+   ],
+   "n_pairs_negative": 1,
+   "n_pairs_positive": 2,
+   "source": "outputs/analysis/p3_alloc_runs/main/<random_plan>__seed<seed>.json::delta_E vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] (paired on the seeds [42, 123, 456] shared by all ten random plans; each unit is the mean over the plans)",
+   "pairing_unit": "seed label; all ten random plans were run at seeds [42, 123, 456], so the mean over the ten plans can be paired with the Gamma-guided arm at those seeds",
+   "note": "this variant removes the seed main effect but averages the between-plan spread away; the plan-level variant below keeps that spread instead"
+  },
+  "random_pool_by_plan": {
+   "n_pairs": 10,
+   "pairs": [
+    {
+     "plan": "random_01",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": 5457.049479166667,
+     "difference": -3979.599283854167
+    },
+    {
+     "plan": "random_02",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": 9125.866536458334,
+     "difference": -7648.416341145834
+    },
+    {
+     "plan": "random_03",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": -1450.310546875,
+     "difference": 2927.7607421875
+    },
+    {
+     "plan": "random_05",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": -222.19140625,
+     "difference": 1699.6416015625
+    },
+    {
+     "plan": "random_06",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": 4188.719401041667,
+     "difference": -2711.269205729167
+    },
+    {
+     "plan": "random_07",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": 2822.0657552083335,
+     "difference": -1344.6155598958335
+    },
+    {
+     "plan": "random_08",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": 2509.3470052083335,
+     "difference": -1031.8968098958335
+    },
+    {
+     "plan": "random_09",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": 5024.768229166667,
+     "difference": -3547.318033854167
+    },
+    {
+     "plan": "random_10",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": 4277.642578125,
+     "difference": -2800.1923828125
+    },
+    {
+     "plan": "random_11",
+     "gamma_guided_mean": 1477.4501953125,
+     "random_plan_mean": 1741.34765625,
+     "difference": -263.8974609375
+    }
+   ],
+   "mean_difference": -1869.9802734375,
+   "sd_of_differences_ddof1": 3010.0895615033232,
+   "se_of_mean_difference_ddof1": 951.8738975447991,
+   "ci95_percentile": [
+    -3653.5913427734376,
+    -122.77513671875204
+   ],
+   "ci95_excludes_zero": true,
+   "bootstrap_share_difference_le_zero": 0.9809,
+   "bootstrap_share_difference_ge_zero": 0.0191,
+   "mc_jitter_max_endpoint_shift": 23.49252115885605,
+   "per_pair_differences": [
+    -3979.599283854167,
+    -7648.416341145834,
+    2927.7607421875,
+    1699.6416015625,
+    -2711.269205729167,
+    -1344.6155598958335,
+    -1031.8968098958335,
+    -3547.318033854167,
+    -2800.1923828125,
+    -263.8974609375
+   ],
+   "pair_signs": [
+    "negative",
+    "negative",
+    "positive",
+    "positive",
+    "negative",
+    "negative",
+    "negative",
+    "negative",
+    "negative",
+    "negative"
+   ],
+   "n_pairs_negative": 8,
+   "n_pairs_positive": 2,
+   "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+   "note": "the Gamma-guided arm is a single plan, so this paired form reduces to a one-sample bootstrap of the fixed Gamma-guided mean minus the pool mean; it keeps the between-plan spread, and it is the form the earlier addendum used"
+  }
+ },
+ "equivalence": {
+  "capacity_matched_tost": {
+   "test": "TOST, two one-sided paired t-tests, alpha = 0.05, df = 5",
+   "n_pairs": 6,
+   "mean_difference": -3570.0983072916665,
+   "sd_of_differences_ddof1": 2536.3620906915976,
+   "se_of_mean_difference_ddof1": 1035.4654875221943,
+   "ci95_paired_t": [
+    -6231.847080944521,
+    -908.3495336388128
+   ],
+   "margin": 1899.897185980862,
+   "t_for_lower_bound": -1.6129954512607598,
+   "t_for_upper_bound": -5.282643950173457,
+   "p_lower": 0.9161678137131604,
+   "p_upper": 0.0016189486082765266,
+   "p_tost": 0.9161678137131604,
+   "equivalent_at_margin": false,
+   "equivalence_ci_within_margin": false,
+   "smallest_equivalent_margin": 6231.847080944521,
+   "smallest_equivalent_margin_definition": "smallest margin at which the paired TOST passes, i.e. max(|CI lower|, |CI upper|) of the 95% paired t interval",
+   "source": "arms.exp_beta_paper_0.137.values vs arms.uniform.values",
+   "margin_rationale": "the pre-declared margin is one sample sd of the uniform arm (1899.8972). It is the natural seed-to-seed scale of the comparison arm, so a difference smaller than it is smaller than the arm's own spread. It is data-derived rather than pre-registered, so the equivalence statement is conditional on it and the smallest equivalent margin is reported alongside.",
+   "margin_source": "derived from the data: one sample sd (ddof=1) of the uniform arm, arms.uniform.sd_ddof1_sample"
+  },
+  "margin_policy": {
+   "pre_declared_margin": 1899.897185980862,
+   "derivation": "derived from the data: one sample sd (ddof=1) of the uniform arm, arms.uniform.sd_ddof1_sample",
+   "why_this_margin": "the pre-declared margin is one sample sd of the uniform arm (1899.8972). It is the natural seed-to-seed scale of the comparison arm, so a difference smaller than it is smaller than the arm's own spread. It is data-derived rather than pre-registered, so the equivalence statement is conditional on it and the smallest equivalent margin is reported alongside.",
+   "status": "data-derived calibration, not a pre-registered equivalence bound; every equivalence statement in this file is conditional on it",
+   "alternatives_reported": {
+    "smallest_equivalent_margin_capacity_matched": 6231.847080944521,
+    "note": "the smallest margin at which TOST would pass is reported for each tested contrast"
+   },
+   "archived_dispersion_for_reference": {
+    "uniform_sd_ddof1": 1899.897185980862,
+    "gamma_guided_sd_ddof1": 1563.3373668985585,
+    "uniform_sd_ddof0": 1734.3609095038435,
+    "gamma_guided_sd_ddof0": 1427.1252347351176,
+    "source": "arms.<plan>.sd_ddof1_sample / .sd_ddof0_population"
+   }
+  },
+  "matched_loss_tost": {
+   "test": "TOST, two one-sided paired t-tests, alpha = 0.05, df = 1",
+   "n_pairs": 2,
+   "mean_difference": 3125.68359375,
+   "sd_of_differences_ddof1": 3898.9260244736147,
+   "se_of_mean_difference_ddof1": 2756.9570312499995,
+   "ci95_paired_t": [
+    -31904.77689414887,
+    38156.14408164887
+   ],
+   "margin": 1899.897185980862,
+   "t_for_lower_bound": 1.822872363539258,
+   "t_for_upper_bound": 0.4446157099566287,
+   "p_lower": 0.1597138971077908,
+   "p_upper": 0.6331704591112892,
+   "p_tost": 0.6331704591112892,
+   "equivalent_at_margin": false,
+   "equivalence_ci_within_margin": false,
+   "smallest_equivalent_margin": 38156.14408164887,
+   "smallest_equivalent_margin_definition": "smallest margin at which the paired TOST passes, i.e. max(|CI lower|, |CI upper|) of the 95% paired t interval",
+   "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform]",
+   "margin_rationale": "same margin as the capacity-matched TOST (one sample sd of the uniform arm at the capacity-matched tag, 1899.8972) so the two contrasts are read on one scale"
+  },
+  "random_pool_tost": {
+   "test": "TOST, two one-sided paired t-tests, alpha = 0.05, df = 2",
+   "n_pairs": 3,
+   "mean_difference": 1106.465625,
+   "sd_of_differences_ddof1": 3267.4282445791678,
+   "se_of_mean_difference_ddof1": 1886.450576565569,
+   "ci95_paired_t": [
+    -7010.276097797292,
+    9223.207347797292
+   ],
+   "margin": 1899.897185980862,
+   "t_for_lower_bound": 1.593661052310303,
+   "t_for_upper_bound": -0.42059493677558535,
+   "p_lower": 0.12601883581032927,
+   "p_upper": 0.35746720719759073,
+   "p_tost": 0.35746720719759073,
+   "equivalent_at_margin": false,
+   "equivalence_ci_within_margin": false,
+   "smallest_equivalent_margin": 9223.207347797292,
+   "smallest_equivalent_margin_definition": "smallest margin at which the paired TOST passes, i.e. max(|CI lower|, |CI upper|) of the 95% paired t interval",
+   "source": "paired.random_pool_by_seed (the ten-plan mean at each of the seeds [42, 123, 456])",
+   "margin_rationale": "same margin as the capacity-matched TOST (one sample sd of the uniform arm at the capacity-matched tag, 1899.8972)",
+   "seed_count_note": "three seed-paired units only, because the ten random plans were run at seeds [42, 123, 456]"
+  },
+  "reversed_rule_tost": {
+   "test": "TOST, two one-sided paired t-tests, alpha = 0.05, df = 5",
+   "n_pairs": 6,
+   "mean_difference": -2577.3404947916665,
+   "sd_of_differences_ddof1": 4795.15009117948,
+   "se_of_mean_difference_ddof1": 1957.6118272416597,
+   "ci95_paired_t": [
+    -7609.541899125892,
+    2454.8609095425595
+   ],
+   "margin": 1899.897185980862,
+   "t_for_lower_bound": -0.3460559950566628,
+   "t_for_upper_bound": -2.287091658554753,
+   "p_lower": 0.6283067706613108,
+   "p_upper": 0.03545329979663969,
+   "p_tost": 0.6283067706613108,
+   "equivalent_at_margin": false,
+   "equivalence_ci_within_margin": false,
+   "smallest_equivalent_margin": 7609.541899125892,
+   "smallest_equivalent_margin_definition": "smallest margin at which the paired TOST passes, i.e. max(|CI lower|, |CI upper|) of the 95% paired t interval",
+   "source": "controls.reversed_rule vs arms.uniform",
+   "margin_rationale": "same margin as the capacity-matched TOST (one sample sd of the uniform arm at the capacity-matched tag, 1899.8972)"
+  },
+  "learning_rate_sweep_1e-3_tost": {
+   "test": "TOST, two one-sided paired t-tests, alpha = 0.05, df = 1",
+   "n_pairs": 2,
+   "mean_difference": -2068.439453125,
+   "sd_of_differences_ddof1": 8210.495812079269,
+   "se_of_mean_difference_ddof1": 5805.697265625,
+   "ci95_paired_t": [
+    -75836.81754640584,
+    71699.93864015584
+   ],
+   "margin": 1899.897185980862,
+   "t_for_lower_bound": -0.029030495293314924,
+   "t_for_upper_bound": -0.6835245548544219,
+   "p_lower": 0.5092380990391377,
+   "p_upper": 0.3091468586268459,
+   "p_tost": 0.5092380990391377,
+   "equivalent_at_margin": false,
+   "equivalence_ci_within_margin": false,
+   "smallest_equivalent_margin": 75836.81754640584,
+   "smallest_equivalent_margin_definition": "smallest margin at which the paired TOST passes, i.e. max(|CI lower|, |CI upper|) of the 95% paired t interval",
+   "source": "1e-3 sweep arms",
+   "margin_rationale": "same margin as the capacity-matched TOST (one sample sd of the uniform arm at the capacity-matched tag, 1899.8972); note that the uniform arm's own sd at 1e-3 is larger than this margin",
+   "seed_count_note": "two seeds per arm as archived"
+  },
+  "all_contrasts_summary": [
+   {
+    "contrast": "capacity-matched: Gamma-guided minus uniform, paired by seed",
+    "n_pairs": 6,
+    "mean_difference": -3570.0983072916665,
+    "ci95_bootstrap": [
+     -5524.157552083333,
+     -1850.3134765625
+    ],
+    "tost_p_at_margin": 0.9161678137131604,
+    "equivalent_at_margin": false,
+    "smallest_equivalent_margin": 6231.847080944521,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)"
+   },
+   {
+    "contrast": "matched-loss: Gamma-guided minus uniform, paired by seed",
+    "n_pairs": 2,
+    "mean_difference": 3125.68359375,
+    "ci95_bootstrap": [
+     368.7265625,
+     5882.640625
+    ],
+    "tost_p_at_margin": 0.6331704591112892,
+    "equivalent_at_margin": false,
+    "smallest_equivalent_margin": 38156.14408164887,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform] (paired on the shared seed labels)"
+   },
+   {
+    "contrast": "random pool: Gamma-guided minus the ten-plan mean, paired by seed",
+    "n_pairs": 3,
+    "mean_difference": 1106.465625,
+    "ci95_bootstrap": [
+     -2493.7841796875,
+     3883.6976562500004
+    ],
+    "tost_p_at_margin": 0.35746720719759073,
+    "equivalent_at_margin": false,
+    "smallest_equivalent_margin": 9223.207347797292,
+    "source": "outputs/analysis/p3_alloc_runs/main/<random_plan>__seed<seed>.json::delta_E vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] (paired on the seeds [42, 123, 456] shared by all ten random plans; each unit is the mean over the plans)"
+   },
+   {
+    "contrast": "reversed rule minus uniform, paired by seed",
+    "n_pairs": 6,
+    "mean_difference": -2577.3404947916665,
+    "ci95_bootstrap": [
+     -5418.277994791667,
+     1255.3509114583333
+    ],
+    "tost_p_at_margin": 0.6283067706613108,
+    "equivalent_at_margin": false,
+    "smallest_equivalent_margin": 7609.541899125892,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=inverse_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)"
+   },
+   {
+    "contrast": "1e-3 sweep: Gamma-guided minus uniform, paired by seed",
+    "n_pairs": 2,
+    "mean_difference": -2068.439453125,
+    "ci95_bootstrap": [
+     -7874.13671875,
+     3737.2578125
+    ],
+    "tost_p_at_margin": 0.5092380990391377,
+    "equivalent_at_margin": false,
+    "smallest_equivalent_margin": 75836.81754640584,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json::runs[plan=uniform]"
+   }
+  ]
+ },
+ "controls": {
+  "capacity_matched": {
+   "definition": "equal expected trainable-parameter budget at the same learning rate (lr = 5e-05); the two arms are the Gamma-guided interior solution and the uniform rank allocation, each run at the same six seeds",
+   "archive": "outputs/analysis/p3_alloc_runs/main/summary.json::runs",
+   "arms": {
+    "exp_beta_paper_0.137": {
+     "mean": 1477.4501953125,
+     "sd_ddof1_sample": 1563.3373668985585,
+     "sd_ddof0_population": 1427.1252347351176,
+     "n": 6,
+     "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011,
+      1213
+     ],
+     "loss_last_mean": 1.3761667972236562,
+     "loss_last_source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137].*.loss_last"
+    },
+    "uniform": {
+     "mean": 5047.548502604167,
+     "sd_ddof1_sample": 1899.897185980862,
+     "sd_ddof0_population": 1734.3609095038435,
+     "n": 6,
+     "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011,
+      1213
+     ],
+     "loss_last_mean": 1.3733809256227687,
+     "loss_last_source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform].*.loss_last"
+    }
+   },
+   "paired_by_seed": {
+    "n_pairs": 6,
+    "pairs": [
+     {
+      "seed": 42,
+      "gamma_guided": 3234.931640625,
+      "uniform": 5543.607421875,
+      "difference": -2308.67578125
+     },
+     {
+      "seed": 123,
+      "gamma_guided": 2705.53125,
+      "uniform": 5491.048828125,
+      "difference": -2785.517578125
+     },
+     {
+      "seed": 456,
+      "gamma_guided": 782.431640625,
+      "uniform": 8205.662109375,
+      "difference": -7423.23046875
+     },
+     {
+      "seed": 789,
+      "gamma_guided": -1052.962890625,
+      "uniform": 4800.296875,
+      "difference": -5853.259765625
+     },
+     {
+      "seed": 1011,
+      "gamma_guided": 1002.244140625,
+      "uniform": 3403.044921875,
+      "difference": -2400.80078125
+     },
+     {
+      "seed": 1213,
+      "gamma_guided": 2192.525390625,
+      "uniform": 2841.630859375,
+      "difference": -649.10546875
+     }
+    ],
+    "mean_difference": -3570.0983072916665,
+    "sd_of_differences_ddof1": 2536.3620906915976,
+    "se_of_mean_difference_ddof1": 1035.4654875221943,
+    "ci95_percentile": [
+     -5524.157552083333,
+     -1850.3134765625
+    ],
+    "ci95_excludes_zero": true,
+    "bootstrap_share_difference_le_zero": 1.0,
+    "bootstrap_share_difference_ge_zero": 0.0,
+    "mc_jitter_max_endpoint_shift": 14.93326822916606,
+    "per_pair_differences": [
+     -2308.67578125,
+     -2785.517578125,
+     -7423.23046875,
+     -5853.259765625,
+     -2400.80078125,
+     -649.10546875
+    ],
+    "pair_signs": [
+     "negative",
+     "negative",
+     "negative",
+     "negative",
+     "negative",
+     "negative"
+    ],
+    "n_pairs_negative": 6,
+    "n_pairs_positive": 0,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "pairing_unit": "seed label; both arms carry runs at seeds [42, 123, 456, 789, 1011, 1213]"
+   },
+   "welch_unpaired": {
+    "test": "Welch two-sample t-test (unpaired), two-sided",
+    "welch_t": -3.55424822074182,
+    "df": 9.642524000879323,
+    "p_two_sided": 0.005537165222964369,
+    "source": "outputs/analysis/p3_alloc_results.json::comparisons.exp_beta_paper_0.137.vs_uniform (recomputed)",
+    "archived": {
+     "welch_t": -3.5542482207418193,
+     "df": 9.642524000879323,
+     "p_two_sided": 0.005537165222964371,
+     "source": "outputs/analysis/p3_alloc_results.json::comparisons.exp_beta_paper_0.137.vs_uniform",
+     "matches_recomputation": true
+    },
+    "budget_note": "both arms were trained with the same expected trainable-parameter budget (outputs/analysis/p3_alloc_results.json::budget_params = 7237632, same_budget_assert_passed = True)"
+   },
+   "loss_gap": {
+    "gamma_minus_uniform": 0.0027858716008875017,
+    "interpretation": "the two arms do not end at the same training loss under the capacity-matched setting; this gap is what motivates the matched-loss control"
+   }
+  },
+  "matched_loss": {
+   "definition": "both arms trained at the higher learning rate (lr = 0.0003) so that their final training losses coincide, which is what the capacity-matched pair does not do",
+   "archive": [
+    "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json",
+    "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json"
+   ],
+   "lr": 0.0003,
+   "arms": {
+    "exp_beta_paper_0.137": {
+     "n": 2,
+     "mean": 5967.751953125,
+     "median": 5967.751953125,
+     "min": 2591.244140625,
+     "max": 9344.259765625,
+     "sd_ddof1_sample": 4775.103141896211,
+     "sd_ddof0_population": 3376.5078125,
+     "se_of_mean_ddof1": 3376.5078124999995,
+     "ci95_percentile": [
+      2591.244140625,
+      9344.259765625
+     ],
+     "ci95_halfwidth": 3376.5078125,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "values": [
+      2591.244140625,
+      9344.259765625
+     ],
+     "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137]",
+     "seeds": [
+      42,
+      123
+     ],
+     "loss_last_mean": 0.5872333103097844,
+     "loss_last_source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137].*.loss_last"
+    },
+    "uniform": {
+     "n": 2,
+     "mean": 2842.068359375,
+     "median": 2842.068359375,
+     "min": 2222.517578125,
+     "max": 3461.619140625,
+     "sd_ddof1_sample": 876.1771174225967,
+     "sd_ddof0_population": 619.55078125,
+     "se_of_mean_ddof1": 619.55078125,
+     "ci95_percentile": [
+      2222.517578125,
+      3461.619140625
+     ],
+     "ci95_halfwidth": 619.55078125,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "values": [
+      2222.517578125,
+      3461.619140625
+     ],
+     "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform]",
+     "seeds": [
+      42,
+      123
+     ],
+     "loss_last_mean": 0.5826203386313864,
+     "loss_last_source": "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform].*.loss_last"
+    }
+   },
+   "paired_by_seed": {
+    "n_pairs": 2,
+    "pairs": [
+     {
+      "seed": 42,
+      "gamma_guided": 2591.244140625,
+      "uniform": 2222.517578125,
+      "difference": 368.7265625
+     },
+     {
+      "seed": 123,
+      "gamma_guided": 9344.259765625,
+      "uniform": 3461.619140625,
+      "difference": 5882.640625
+     }
+    ],
+    "mean_difference": 3125.68359375,
+    "sd_of_differences_ddof1": 3898.9260244736147,
+    "se_of_mean_difference_ddof1": 2756.9570312499995,
+    "ci95_percentile": [
+     368.7265625,
+     5882.640625
+    ],
+    "ci95_excludes_zero": true,
+    "bootstrap_share_difference_le_zero": 0.0,
+    "bootstrap_share_difference_ge_zero": 1.0,
+    "mc_jitter_max_endpoint_shift": 0.0,
+    "per_pair_differences": [
+     368.7265625,
+     5882.640625
+    ],
+    "pair_signs": [
+     "positive",
+     "positive"
+    ],
+    "n_pairs_negative": 0,
+    "n_pairs_positive": 2,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "pairing_unit": "seed label; both arms carry runs at seeds [42, 123]",
+    "power_note": "two seeds per arm as archived; with n=2 the percentile CI is the seed spread, not a 5% false-positive guarantee"
+   },
+   "loss_gap": {
+    "gamma_minus_uniform": 0.004612971678398026,
+    "capacity_matched_loss_gap_for_comparison": 0.0027858716008875017,
+    "interpretation": "the matched-loss setting reduces the final-loss gap between the two arms"
+   },
+   "tost_same_margin": {
+    "test": "TOST, two one-sided paired t-tests, alpha = 0.05, df = 1",
+    "n_pairs": 2,
+    "mean_difference": 3125.68359375,
+    "sd_of_differences_ddof1": 3898.9260244736147,
+    "se_of_mean_difference_ddof1": 2756.9570312499995,
+    "ci95_paired_t": [
+     -31904.77689414887,
+     38156.14408164887
+    ],
+    "margin": 1899.897185980862,
+    "t_for_lower_bound": 1.822872363539258,
+    "t_for_upper_bound": 0.4446157099566287,
+    "p_lower": 0.1597138971077908,
+    "p_upper": 0.6331704591112892,
+    "p_tost": 0.6331704591112892,
+    "equivalent_at_margin": false,
+    "equivalence_ci_within_margin": false,
+    "smallest_equivalent_margin": 38156.14408164887,
+    "smallest_equivalent_margin_definition": "smallest margin at which the paired TOST passes, i.e. max(|CI lower|, |CI upper|) of the 95% paired t interval",
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform]",
+    "margin_rationale": "same margin as the capacity-matched TOST (one sample sd of the uniform arm at the capacity-matched tag, 1899.8972) so the two contrasts are read on one scale"
+   }
+  },
+  "random_pool": {
+   "definition": "ten random same-budget allocations (four further random draws were excluded as duplicates of rule solutions, see random_plans_excluded_as_duplicate_of_corner), three seeds each",
+   "archive": "outputs/analysis/p3_alloc_random_pool.json",
+   "per_run_archive": "outputs/analysis/p3_alloc_runs/main/<random_plan>__seed<seed>.json::delta_E",
+   "n_plans": 10,
+   "n_runs": 30,
+   "plans": [
+    "random_01",
+    "random_02",
+    "random_03",
+    "random_05",
+    "random_06",
+    "random_07",
+    "random_08",
+    "random_09",
+    "random_10",
+    "random_11"
+   ],
+   "plan_seeds": {
+    "random_01": [
+     42,
+     123,
+     456
+    ],
+    "random_02": [
+     42,
+     123,
+     456
+    ],
+    "random_03": [
+     42,
+     123,
+     456
+    ],
+    "random_05": [
+     42,
+     123,
+     456
+    ],
+    "random_06": [
+     42,
+     123,
+     456
+    ],
+    "random_07": [
+     42,
+     123,
+     456
+    ],
+    "random_08": [
+     42,
+     123,
+     456
+    ],
+    "random_09": [
+     42,
+     123,
+     456
+    ],
+    "random_10": [
+     42,
+     123,
+     456
+    ],
+    "random_11": [
+     42,
+     123,
+     456
+    ]
+   },
+   "excluded_plans": {
+    "random_00": "exp_ca_beta_1e-4",
+    "random_04": "corner",
+    "random_12": "inverse_beta_paper_0.137",
+    "random_13": "exp_beta_paper_0.137"
+   },
+   "pool_mean_over_plans": {
+    "n": 10,
+    "mean": 3347.43046875,
+    "median": 3505.392578125,
+    "min": -1450.310546875,
+    "max": 9125.866536458334,
+    "sd_ddof1_sample": 3010.0895615033232,
+    "sd_ddof0_population": 2855.6216926343977,
+    "se_of_mean_ddof1": 951.8738975447991,
+    "ci95_percentile": [
+     1604.9870166015626,
+     5152.865755208333
+    ],
+    "ci95_halfwidth": 1773.9393693033853,
+    "mc_jitter_max_endpoint_shift": 16.547617187500236,
+    "values": [
+     5457.049479166667,
+     9125.866536458334,
+     -1450.310546875,
+     -222.19140625,
+     4188.719401041667,
+     2822.0657552083335,
+     2509.3470052083335,
+     5024.768229166667,
+     4277.642578125,
+     1741.34765625
+    ],
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "plan_labels": [
+     "random_01",
+     "random_02",
+     "random_03",
+     "random_05",
+     "random_06",
+     "random_07",
+     "random_08",
+     "random_09",
+     "random_10",
+     "random_11"
+    ],
+    "per_plan_values_source": "recomputed from the per-run files outputs/analysis/p3_alloc_runs/main/<plan>__seed<seed>.json; asserted equal to the archived per-plan means"
+   },
+   "pool_mean_over_runs": {
+    "n": 30,
+    "mean": 3347.43046875,
+    "median": 1911.515625,
+    "min": -1987.689453125,
+    "max": 18574.705078125,
+    "sd_ddof1_sample": 4771.180234255462,
+    "sd_ddof0_population": 4690.986619766146,
+    "se_of_mean_ddof1": 871.0943467414997,
+    "ci95_percentile": [
+     1789.58744140625,
+     5112.4776285807275
+    ],
+    "ci95_halfwidth": 1661.4450935872387,
+    "mc_jitter_max_endpoint_shift": 33.36980143229266,
+    "values": [
+     11751.837890625,
+     838.970703125,
+     3780.33984375,
+     4559.607421875,
+     4243.287109375,
+     18574.705078125,
+     -563.775390625,
+     -1799.466796875,
+     -1987.689453125,
+     -319.173828125,
+     -1411.205078125,
+     1063.8046875,
+     917.396484375,
+     -482.041015625,
+     12130.802734375,
+     5355.775390625,
+     -1696.216796875,
+     4806.638671875,
+     5362.146484375,
+     1085.533203125,
+     1080.361328125,
+     11989.451171875,
+     1041.36328125,
+     2043.490234375,
+     4808.498046875,
+     3811.708984375,
+     4212.720703125,
+     2488.3828125,
+     1779.541015625,
+     956.119140625
+    ],
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.values"
+   },
+   "archived_pool_mean_sd": {
+    "mean": 3347.43046875,
+    "sd": 4771.180234255462,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.mean / ::random_pool.sd",
+    "note": "the archived sd is over the 30 individual runs (ddof=1), not over the ten plan means"
+   },
+   "gamma_mean": 1477.4501953125,
+   "gamma_percentile_recomputed": 46.666666666666664,
+   "gamma_percentile_definition": "percent of the individual random runs below the Gamma-guided mean (the archived definition, tools/_p458_random_pool_test.py)",
+   "gamma_percentile_archived": 46.666666666666664,
+   "archived_tests": {
+    "welch_t": -1.7316542608935601,
+    "welch_p": 0.09535253384506043,
+    "mannwhitney_u": 71.0,
+    "mannwhitney_p": 0.4421375588358511,
+    "levene_mixed_pool_W": 1.859067926777826,
+    "levene_mixed_pool_p": 0.18169308013137084,
+    "levene_within_resid_W": 1.9160076009853246,
+    "levene_within_resid_p": 0.17531641592308767,
+    "levene_note": "inherited from outputs/analysis/p3_alloc_random_pool.json :: levene_note, translated from the Chinese original for repository language compliance; the variance criterion uses within_resid (the Gamma-guided arm against the within-group residual pool); the mixed_pool version mixes between-plan differences and must not be compared directly"
+   },
+   "archived_verdict": "UNDERPOWERED_TO_DISTINGUISH",
+   "archived_variance_claim_allowed": false,
+   "archived_power_diagnosis": {
+    "within_plan_seed_ranges": {
+     "random_01": 10912.8671875,
+     "random_02": 14331.41796875,
+     "random_03": 1423.9140625,
+     "random_05": 2475.009765625,
+     "random_06": 12612.84375,
+     "random_07": 7051.9921875,
+     "random_08": 4281.78515625,
+     "random_09": 10948.087890625,
+     "random_10": 996.7890625,
+     "random_11": 1532.263671875
+    },
+    "max_within_plan_range": 14331.41796875,
+    "between_plan_mean_diff": 1869.9802734374998,
+    "ratio": 7.663940722970946,
+    "underpowered": true,
+    "rule": "inherited from outputs/analysis/p3_alloc_random_pool.json :: rule, translated from the Chinese original for repository language compliance; if the within-plan seed range is at least the between-plan mean difference, the comparison is called underpowered"
+   },
+   "paired_by_seed_with_gamma": {
+    "n_pairs": 3,
+    "pairs": [
+     {
+      "seed": 42,
+      "gamma_guided": 3234.931640625,
+      "mean_over_random_plans": 741.1474609375,
+      "difference": -2493.7841796875
+     },
+     {
+      "seed": 123,
+      "gamma_guided": 2705.53125,
+      "mean_over_random_plans": 4635.0146484375,
+      "difference": 1929.4833984375
+     },
+     {
+      "seed": 456,
+      "gamma_guided": 782.431640625,
+      "mean_over_random_plans": 4666.129296875,
+      "difference": 3883.6976562500004
+     }
+    ],
+    "mean_difference": 1106.465625,
+    "sd_of_differences_ddof1": 3267.4282445791678,
+    "se_of_mean_difference_ddof1": 1886.450576565569,
+    "ci95_percentile": [
+     -2493.7841796875,
+     3883.6976562500004
+    ],
+    "ci95_excludes_zero": false,
+    "bootstrap_share_difference_le_zero": 0.26025,
+    "bootstrap_share_difference_ge_zero": 0.73975,
+    "mc_jitter_max_endpoint_shift": 0.0,
+    "per_pair_differences": [
+     -2493.7841796875,
+     1929.4833984375,
+     3883.6976562500004
+    ],
+    "pair_signs": [
+     "negative",
+     "positive",
+     "positive"
+    ],
+    "n_pairs_negative": 1,
+    "n_pairs_positive": 2,
+    "source": "outputs/analysis/p3_alloc_runs/main/<random_plan>__seed<seed>.json::delta_E vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] (paired on the seeds [42, 123, 456] shared by all ten random plans; each unit is the mean over the plans)",
+    "pairing_unit": "seed label; all ten random plans were run at seeds [42, 123, 456], so the mean over the ten plans can be paired with the Gamma-guided arm at those seeds",
+    "note": "this variant removes the seed main effect but averages the between-plan spread away; the plan-level variant below keeps that spread instead"
+   },
+   "paired_by_plan_with_gamma": {
+    "n_pairs": 10,
+    "pairs": [
+     {
+      "plan": "random_01",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": 5457.049479166667,
+      "difference": -3979.599283854167
+     },
+     {
+      "plan": "random_02",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": 9125.866536458334,
+      "difference": -7648.416341145834
+     },
+     {
+      "plan": "random_03",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": -1450.310546875,
+      "difference": 2927.7607421875
+     },
+     {
+      "plan": "random_05",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": -222.19140625,
+      "difference": 1699.6416015625
+     },
+     {
+      "plan": "random_06",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": 4188.719401041667,
+      "difference": -2711.269205729167
+     },
+     {
+      "plan": "random_07",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": 2822.0657552083335,
+      "difference": -1344.6155598958335
+     },
+     {
+      "plan": "random_08",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": 2509.3470052083335,
+      "difference": -1031.8968098958335
+     },
+     {
+      "plan": "random_09",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": 5024.768229166667,
+      "difference": -3547.318033854167
+     },
+     {
+      "plan": "random_10",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": 4277.642578125,
+      "difference": -2800.1923828125
+     },
+     {
+      "plan": "random_11",
+      "gamma_guided_mean": 1477.4501953125,
+      "random_plan_mean": 1741.34765625,
+      "difference": -263.8974609375
+     }
+    ],
+    "mean_difference": -1869.9802734375,
+    "sd_of_differences_ddof1": 3010.0895615033232,
+    "se_of_mean_difference_ddof1": 951.8738975447991,
+    "ci95_percentile": [
+     -3653.5913427734376,
+     -122.77513671875204
+    ],
+    "ci95_excludes_zero": true,
+    "bootstrap_share_difference_le_zero": 0.9809,
+    "bootstrap_share_difference_ge_zero": 0.0191,
+    "mc_jitter_max_endpoint_shift": 23.49252115885605,
+    "per_pair_differences": [
+     -3979.599283854167,
+     -7648.416341145834,
+     2927.7607421875,
+     1699.6416015625,
+     -2711.269205729167,
+     -1344.6155598958335,
+     -1031.8968098958335,
+     -3547.318033854167,
+     -2800.1923828125,
+     -263.8974609375
+    ],
+    "pair_signs": [
+     "negative",
+     "negative",
+     "positive",
+     "positive",
+     "negative",
+     "negative",
+     "negative",
+     "negative",
+     "negative",
+     "negative"
+    ],
+    "n_pairs_negative": 8,
+    "n_pairs_positive": 2,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "note": "the Gamma-guided arm is a single plan, so this paired form reduces to a one-sample bootstrap of the fixed Gamma-guided mean minus the pool mean; it keeps the between-plan spread, and it is the form the earlier addendum used"
+   },
+   "plan_deviations_from_gamma_mean": {
+    "gamma_mean": 1477.4501953125,
+    "gamma_sd_ddof1": 1563.3373668985585,
+    "gamma_mean_source": "outputs/analysis/p3_alloc_random_pool.json::gamma.mean",
+    "gamma_sd_source": "arms.exp_beta_paper_0.137.sd_ddof1_sample",
+    "plans_lower_than_gamma_mean": 2,
+    "plans_beyond_one_gamma_sd_lower": 2,
+    "per_plan": [
+     {
+      "plan": "random_03",
+      "plan_mean": -1450.310546875,
+      "difference_from_gamma_mean": -2927.7607421875,
+      "lower_than_gamma_mean": true,
+      "beyond_one_gamma_sd_lower": true,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_03.mean"
+     },
+     {
+      "plan": "random_05",
+      "plan_mean": -222.19140625,
+      "difference_from_gamma_mean": -1699.6416015625,
+      "lower_than_gamma_mean": true,
+      "beyond_one_gamma_sd_lower": true,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_05.mean"
+     },
+     {
+      "plan": "random_11",
+      "plan_mean": 1741.34765625,
+      "difference_from_gamma_mean": 263.8974609375,
+      "lower_than_gamma_mean": false,
+      "beyond_one_gamma_sd_lower": false,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_11.mean"
+     },
+     {
+      "plan": "random_08",
+      "plan_mean": 2509.3470052083335,
+      "difference_from_gamma_mean": 1031.8968098958335,
+      "lower_than_gamma_mean": false,
+      "beyond_one_gamma_sd_lower": false,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_08.mean"
+     },
+     {
+      "plan": "random_07",
+      "plan_mean": 2822.0657552083335,
+      "difference_from_gamma_mean": 1344.6155598958335,
+      "lower_than_gamma_mean": false,
+      "beyond_one_gamma_sd_lower": false,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_07.mean"
+     },
+     {
+      "plan": "random_06",
+      "plan_mean": 4188.719401041667,
+      "difference_from_gamma_mean": 2711.269205729167,
+      "lower_than_gamma_mean": false,
+      "beyond_one_gamma_sd_lower": false,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_06.mean"
+     },
+     {
+      "plan": "random_10",
+      "plan_mean": 4277.642578125,
+      "difference_from_gamma_mean": 2800.1923828125,
+      "lower_than_gamma_mean": false,
+      "beyond_one_gamma_sd_lower": false,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_10.mean"
+     },
+     {
+      "plan": "random_09",
+      "plan_mean": 5024.768229166667,
+      "difference_from_gamma_mean": 3547.318033854167,
+      "lower_than_gamma_mean": false,
+      "beyond_one_gamma_sd_lower": false,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_09.mean"
+     },
+     {
+      "plan": "random_01",
+      "plan_mean": 5457.049479166667,
+      "difference_from_gamma_mean": 3979.599283854167,
+      "lower_than_gamma_mean": false,
+      "beyond_one_gamma_sd_lower": false,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_01.mean"
+     },
+     {
+      "plan": "random_02",
+      "plan_mean": 9125.866536458334,
+      "difference_from_gamma_mean": 7648.416341145834,
+      "lower_than_gamma_mean": false,
+      "beyond_one_gamma_sd_lower": false,
+      "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan.random_02.mean"
+     }
+    ],
+    "manuscript_cross_check": {
+     "manuscript_text": "three allocations have a lower mean than the Gamma-guided arm, two of them by more than that arm's own seed-to-seed spread (-2928 and -1700), the third by 264",
+     "recomputed_two_beyond_one_sd": [
+      -2927.76,
+      -1699.64
+     ],
+     "recomputed_third_lowest": 263.9,
+     "reconciles": false,
+     "note": "the third-lowest plan mean is 1741.3477, which is 263.8975 relative to the Gamma-guided mean: above it, not below by 264. The two beyond-one-sd values do reproduce (-2928, -1700). Recorded as a discrepancy for a separate round; nothing in this file depends on it."
+    }
+   }
+  },
+  "reversed_rule": {
+   "definition": "the inverse-beta plan: the same rank ordering as the Gamma-guided plan but assigned in the opposite direction, run at the capacity-matched tag",
+   "archive": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=inverse_beta_paper_0.137]",
+   "plan": "inverse_beta_paper_0.137",
+   "arms": {
+    "inverse_beta_paper_0.137": {
+     "n": 6,
+     "mean": 2470.2080078125,
+     "median": 1225.287109375,
+     "sd_ddof1_sample": 4111.2182242525605,
+     "sd_ddof0_population": 3753.0116004157667,
+     "min": -1237.236328125,
+     "max": 9911.458984375,
+     "values": [
+      893.263671875,
+      4225.130859375,
+      1557.310546875,
+      -528.6796875,
+      9911.458984375,
+      -1237.236328125
+     ],
+     "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1011,
+      1213
+     ],
+     "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=inverse_beta_paper_0.137]"
+    }
+   },
+   "paired_by_seed_vs_uniform": {
+    "n_pairs": 6,
+    "pairs": [
+     {
+      "seed": 42,
+      "reversed_rule": 893.263671875,
+      "uniform": 5543.607421875,
+      "difference": -4650.34375
+     },
+     {
+      "seed": 123,
+      "reversed_rule": 4225.130859375,
+      "uniform": 5491.048828125,
+      "difference": -1265.91796875
+     },
+     {
+      "seed": 456,
+      "reversed_rule": 1557.310546875,
+      "uniform": 8205.662109375,
+      "difference": -6648.3515625
+     },
+     {
+      "seed": 789,
+      "reversed_rule": -528.6796875,
+      "uniform": 4800.296875,
+      "difference": -5328.9765625
+     },
+     {
+      "seed": 1011,
+      "reversed_rule": 9911.458984375,
+      "uniform": 3403.044921875,
+      "difference": 6508.4140625
+     },
+     {
+      "seed": 1213,
+      "reversed_rule": -1237.236328125,
+      "uniform": 2841.630859375,
+      "difference": -4078.8671875
+     }
+    ],
+    "mean_difference": -2577.3404947916665,
+    "sd_of_differences_ddof1": 4795.15009117948,
+    "se_of_mean_difference_ddof1": 1957.6118272416597,
+    "ci95_percentile": [
+     -5418.277994791667,
+     1255.3509114583333
+    ],
+    "ci95_excludes_zero": false,
+    "bootstrap_share_difference_le_zero": 0.92045,
+    "bootstrap_share_difference_ge_zero": 0.07955,
+    "mc_jitter_max_endpoint_shift": 17.48893229166606,
+    "per_pair_differences": [
+     -4650.34375,
+     -1265.91796875,
+     -6648.3515625,
+     -5328.9765625,
+     6508.4140625,
+     -4078.8671875
+    ],
+    "pair_signs": [
+     "negative",
+     "negative",
+     "negative",
+     "negative",
+     "positive",
+     "negative"
+    ],
+    "n_pairs_negative": 5,
+    "n_pairs_positive": 1,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=inverse_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)"
+   },
+   "archived_aggregate": {
+    "mean": 2470.2080078125,
+    "sd": 4111.2182242525605,
+    "median": 1225.287109375,
+    "min": -1237.236328125,
+    "max": 9911.458984375,
+    "n": 6,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137.delta_E",
+    "matches_recomputation": true,
+    "sd_convention": "the archived sd equals the sample sd (ddof=1)"
+   },
+   "tost_same_margin": {
+    "test": "TOST, two one-sided paired t-tests, alpha = 0.05, df = 5",
+    "n_pairs": 6,
+    "mean_difference": -2577.3404947916665,
+    "sd_of_differences_ddof1": 4795.15009117948,
+    "se_of_mean_difference_ddof1": 1957.6118272416597,
+    "ci95_paired_t": [
+     -7609.541899125892,
+     2454.8609095425595
+    ],
+    "margin": 1899.897185980862,
+    "t_for_lower_bound": -0.3460559950566628,
+    "t_for_upper_bound": -2.287091658554753,
+    "p_lower": 0.6283067706613108,
+    "p_upper": 0.03545329979663969,
+    "p_tost": 0.6283067706613108,
+    "equivalent_at_margin": false,
+    "equivalence_ci_within_margin": false,
+    "smallest_equivalent_margin": 7609.541899125892,
+    "smallest_equivalent_margin_definition": "smallest margin at which the paired TOST passes, i.e. max(|CI lower|, |CI upper|) of the 95% paired t interval",
+    "source": "controls.reversed_rule vs arms.uniform",
+    "margin_rationale": "same margin as the capacity-matched TOST (one sample sd of the uniform arm at the capacity-matched tag, 1899.8972)"
+   }
+  },
+  "learning_rate_sweep_1e-3": {
+   "definition": "the same two plans re-run at lr = 1e-3; two seeds per arm as archived, quoted in the same manuscript paragraph",
+   "archive": [
+    "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json",
+    "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json"
+   ],
+   "arms": {
+    "exp_beta_paper_0.137@lr0.001": {
+     "n": 2,
+     "mean": 2867.408203125,
+     "median": 2867.408203125,
+     "min": 2249.978515625,
+     "max": 3484.837890625,
+     "sd_ddof1_sample": 873.1774378742818,
+     "sd_ddof0_population": 617.4296875,
+     "se_of_mean_ddof1": 617.4296875,
+     "ci95_percentile": [
+      2249.978515625,
+      3484.837890625
+     ],
+     "ci95_halfwidth": 617.4296875,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "values": [
+      3484.837890625,
+      2249.978515625
+     ],
+     "source": "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json::runs[plan=exp_beta_paper_0.137]",
+     "seeds": [
+      42,
+      123
+     ],
+     "loss_last_mean": 0.24022574964897103,
+     "loss_last_source": "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json::runs[plan=exp_beta_paper_0.137].*.loss_last"
+    },
+    "uniform@lr0.001": {
+     "n": 2,
+     "mean": 4935.84765625,
+     "median": 4935.84765625,
+     "min": -1487.279296875,
+     "max": 11358.974609375,
+     "sd_ddof1_sample": 9083.67324995355,
+     "sd_ddof0_population": 6423.126953125,
+     "se_of_mean_ddof1": 6423.126953124999,
+     "ci95_percentile": [
+      -1487.279296875,
+      11358.974609375
+     ],
+     "ci95_halfwidth": 6423.126953125,
+     "mc_jitter_max_endpoint_shift": 0.0,
+     "values": [
+      11358.974609375,
+      -1487.279296875
+     ],
+     "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json::runs[plan=uniform]",
+     "seeds": [
+      42,
+      123
+     ],
+     "loss_last_mean": 0.229422429344595,
+     "loss_last_source": "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json::runs[plan=uniform].*.loss_last"
+    }
+   },
+   "tost_same_margin": {
+    "test": "TOST, two one-sided paired t-tests, alpha = 0.05, df = 1",
+    "n_pairs": 2,
+    "mean_difference": -2068.439453125,
+    "sd_of_differences_ddof1": 8210.495812079269,
+    "se_of_mean_difference_ddof1": 5805.697265625,
+    "ci95_paired_t": [
+     -75836.81754640584,
+     71699.93864015584
+    ],
+    "margin": 1899.897185980862,
+    "t_for_lower_bound": -0.029030495293314924,
+    "t_for_upper_bound": -0.6835245548544219,
+    "p_lower": 0.5092380990391377,
+    "p_upper": 0.3091468586268459,
+    "p_tost": 0.5092380990391377,
+    "equivalent_at_margin": false,
+    "equivalence_ci_within_margin": false,
+    "smallest_equivalent_margin": 75836.81754640584,
+    "smallest_equivalent_margin_definition": "smallest margin at which the paired TOST passes, i.e. max(|CI lower|, |CI upper|) of the 95% paired t interval",
+    "source": "1e-3 sweep arms",
+    "margin_rationale": "same margin as the capacity-matched TOST (one sample sd of the uniform arm at the capacity-matched tag, 1899.8972); note that the uniform arm's own sd at 1e-3 is larger than this margin",
+    "seed_count_note": "two seeds per arm as archived"
+   }
+  },
+  "earlier_llava_counterfactual_groups": {
+   "definition": "the earlier rank-level LLaVA counterfactual groups archived under paper3/scripts/outputs/experiments/; reported for traceability, not paired",
+   "archive": "paper3/scripts/outputs/experiments/all_results.json",
+   "groups": {
+    "Theory": {
+     "n_runs": 5,
+     "n_nonfinite": 0,
+     "n_finite": 5,
+     "mean_finite": -108.0,
+     "sd_ddof1_finite": 26.73013280924732,
+     "source": "paper3/scripts/outputs/experiments/all_results.json::Theory[*].E (last minus first epoch)",
+     "note": "read at the group level only: this archive carries no seed/plan pairing with the allocation arms, so it is not used in any paired comparison"
+    },
+    "Random": {
+     "n_runs": 15,
+     "n_nonfinite": 2,
+     "n_finite": 13,
+     "mean_finite": 490.8076923076923,
+     "sd_ddof1_finite": 808.0758921264124,
+     "source": "paper3/scripts/outputs/experiments/all_results.json::Random[*].E (last minus first epoch)",
+     "note": "read at the group level only: this archive carries no seed/plan pairing with the allocation arms, so it is not used in any paired comparison"
+    },
+    "Violation_r16": {
+     "n_runs": 5,
+     "n_nonfinite": 0,
+     "n_finite": 5,
+     "mean_finite": 1507.8,
+     "sd_ddof1_finite": 154.6567166339697,
+     "source": "paper3/scripts/outputs/experiments/all_results.json::Violation_r16[*].E (last minus first epoch)",
+     "note": "read at the group level only: this archive carries no seed/plan pairing with the allocation arms, so it is not used in any paired comparison"
+    },
+    "Violation_r32": {
+     "n_runs": 5,
+     "n_nonfinite": 5,
+     "n_finite": 0,
+     "mean_finite": null,
+     "sd_ddof1_finite": null,
+     "source": "paper3/scripts/outputs/experiments/all_results.json::Violation_r32[*].E (last minus first epoch)",
+     "note": "read at the group level only: this archive carries no seed/plan pairing with the allocation arms, so it is not used in any paired comparison"
+    }
+   }
+  }
+ },
+ "conclusion": {
+  "question": "can the Gamma-guided allocation be claimed to beat the uniform allocation?",
+  "answer": "no (bounded: not beaten at the capacity-matched setting, and not equated either -- the difference is resolvable in the opposite direction)",
+  "answer_short": "no",
+  "bounded": true,
+  "headline": "Under the capacity-matched design the Gamma-guided allocation does not beat the uniform allocation; it is significantly worse. The paired seed-level difference is -3570.1 [-5524.2, -1850.3] (95% percentile bootstrap, 6 pairs, all 6 per-seed differences negative), and no resample of the paired differences reaches zero. Equivalence is also rejected: at a margin of one uniform sample sd (1900) the paired TOST gives p = 0.916, and TOST would not pass until the margin reached 6232, so the arms are not equivalent -- they are separated, in the direction opposite to the claim. The unpaired Welch test on the same six seed pairs gives p = 0.0055, which is the digit the manuscript prints.",
+  "claim_status": {
+   "gamma_beats_uniform_capacity_matched": false,
+   "gamma_distinguishable_from_uniform_capacity_matched": true,
+   "direction": "Gamma-guided is lower (worse) than uniform",
+   "equivalence_at_one_uniform_sd": false,
+   "smallest_equivalent_margin": 6231.847080944521
+  },
+  "conditions_under_which_the_claim_reverses": [
+   {
+    "condition": "matching the two arms on training loss as well as on parameter budget",
+    "evidence": "controls.matched_loss.paired_by_seed: mean difference +3125.7 [+368.7, +5882.6], 2 of 2 seed pairs positive, i.e. the sign reverses, but n = 2 pairs per arm and the CI only covers the seed spread",
+    "verdict": "sign reverses; not a basis for a superiority claim at n = 2"
+   },
+   {
+    "condition": "comparing against the random-allocation pool instead of the uniform plan",
+    "evidence": "controls.random_pool.paired_by_seed_with_gamma: mean difference +1106.5 [-2493.8, +3883.7] on 3 seed-paired units (each unit the mean over the ten random plans); the archived verdict for this control is UNDERPOWERED_TO_DISTINGUISH",
+    "verdict": "difference not resolved at this seed count; the archived verdict is underpowered"
+   },
+   {
+    "condition": "using the reversed (inverse-beta) rule instead of the Gamma-guided rule",
+    "evidence": "controls.reversed_rule: mean +2470.2, sample sd 4111.2 over 6 seeds, paired against uniform -2577.3 [-5418.3, +1255.4]",
+    "verdict": "the rule's own sign flip does not beat uniform either"
+   },
+   {
+    "condition": "moving to the 1e-3 learning-rate sweep",
+    "evidence": "controls.learning_rate_sweep_1e-3: Gamma-guided +2867.4 +/- 873.2 vs uniform +4935.8 +/- 9083.7, two seeds per arm",
+    "verdict": "unresolved: the uniform arm's spread at 1e-3 exceeds the between-arm gap"
+   }
+  ],
+  "caveats_that_must_survive": [
+   "the capacity-matched comparison rests on 6 seeds per arm; the percentile CI is over those seeds",
+   "the matched-loss comparison rests on n = 2 seeds per arm; its CI is the seed spread, not a 5% false-positive guarantee",
+   "the equivalence margin is data-derived (one sample sd of the uniform arm), not pre-registered; the equivalence statement is conditional on that margin and the smallest equivalent margin is 6232",
+   "the random pool is ten plans; four further random draws were excluded because they duplicate rule solutions",
+   "the 1e-3 sweep and the matched-loss control have two seeds per arm",
+   "the manuscript's printed +1478 is a rounding artefact of 1477.4502, which rounds to +1477"
+  ],
+  "not_claimed": [
+   "no claim that the Gamma-guided allocation improves alignment energy over uniform",
+   "no claim about which allocation is better in general; the reversal under matched loss and the underpowered random-pool comparison are both reported rather than resolved",
+   "no claim that the two arms are equivalent: equivalence is rejected at one uniform sample sd"
+  ],
+  "headline_value_paths": {
+   "capacity_matched_mean_difference": "paired.capacity_matched_by_seed.mean_difference",
+   "capacity_matched_ci95": "paired.capacity_matched_by_seed.ci95_percentile",
+   "capacity_matched_n_negative": "paired.capacity_matched_by_seed.n_pairs_negative",
+   "equivalence_margin": "equivalence.capacity_matched_tost.margin",
+   "equivalence_p_tost": "equivalence.capacity_matched_tost.p_tost",
+   "equivalence_smallest_margin": "equivalence.capacity_matched_tost.smallest_equivalent_margin",
+   "welch_p": "controls.capacity_matched.welch_unpaired.p_two_sided",
+   "matched_loss_mean_difference": "controls.matched_loss.paired_by_seed.mean_difference",
+   "matched_loss_ci95": "controls.matched_loss.paired_by_seed.ci95_percentile",
+   "random_pool_mean_difference": "paired.random_pool_by_seed.mean_difference",
+   "reversed_rule_mean_difference": "controls.reversed_rule.paired_by_seed_vs_uniform.mean_difference"
+  }
+ },
+ "addendum_reproduction": {
+  "addendum_source": "outputs/analysis/paperA_strict_bootstrap.json::cross_paper_addendum_p3_allocation",
+  "generating_script": "tools/_p1595_bootstrap_ci_round.py",
+  "reproduced_here_by": "tools/_p1634_p3_allocation_paired.py",
+  "n_checks": 49,
+  "n_failures": 0,
+  "all_reproduced": true,
+  "checks": [
+   {
+    "claim": "capacity-matched Gamma-guided mean (+1477)",
+    "addendum_value": 1477.4501953125,
+    "recomputed": 1477.4501953125,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.mean",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched Gamma-guided sd (+/-1563)",
+    "addendum_value": 1563.3373668985585,
+    "recomputed": 1563.3373668985585,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.sd",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched Gamma-guided population sd (+1427)",
+    "addendum_value": 1427.1252347351176,
+    "recomputed": 1427.1252347351176,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "recomputed from outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137]",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched uniform mean (+5048)",
+    "addendum_value": 5047.548502604167,
+    "recomputed": 5047.548502604167,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.uniform.delta_E.mean",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched uniform sd (+/-1900)",
+    "addendum_value": 1899.897185980862,
+    "recomputed": 1899.897185980862,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.uniform.delta_E.sd",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched uniform population sd (+1734)",
+    "addendum_value": 1734.3609095038435,
+    "recomputed": 1734.3609095038435,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "recomputed from outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform]",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched paired mean difference (-3570)",
+    "addendum_value": -3570.0983072916665,
+    "recomputed": -3570.0983072916665,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched paired 95% CI low (-5524)",
+    "addendum_value": -5524.157552083333,
+    "recomputed": -5524.157552083333,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched paired 95% CI high (-1850)",
+    "addendum_value": -1850.3134765625,
+    "recomputed": -1850.3134765625,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched sd of differences (2536)",
+    "addendum_value": 2536.3620906915976,
+    "recomputed": 2536.3620906915976,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched bootstrap share <= 0 (1.0)",
+    "addendum_value": 1.0,
+    "recomputed": 1.0,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": "no resample of the paired differences reaches zero"
+   },
+   {
+    "claim": "capacity-matched CI endpoint jitter (14.93)",
+    "addendum_value": 14.93326822916606,
+    "recomputed": 14.93326822916606,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": "Monte-Carlo jitter of the CI endpoints, second rng stream"
+   },
+   {
+    "claim": "capacity-matched paired ordering: every per-pair difference negative",
+    "addendum_value": "6/6 negative",
+    "recomputed": null,
+    "abs_difference": null,
+    "matches": true,
+    "tolerance": null,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": "per-pair values [-2308.67578125, -2785.517578125, -7423.23046875, -5853.259765625, -2400.80078125, -649.10546875]"
+   },
+   {
+    "claim": "capacity-matched Welch t (-3.55425)",
+    "addendum_value": -3.5542482207418193,
+    "recomputed": -3.55424822074182,
+    "abs_difference": 4.440892098500626e-16,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_results.json::comparisons.exp_beta_paper_0.137.vs_uniform.welch_t",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched Welch df (9.6425)",
+    "addendum_value": 9.642524000879323,
+    "recomputed": 9.642524000879323,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_results.json::comparisons.exp_beta_paper_0.137.vs_uniform.df",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched Welch p (0.0055372)",
+    "addendum_value": 0.005537165222964371,
+    "recomputed": 0.005537165222964369,
+    "abs_difference": 1.734723475976807e-18,
+    "matches": true,
+    "tolerance": 5e-05,
+    "source": "outputs/analysis/p3_alloc_results.json::comparisons.exp_beta_paper_0.137.vs_uniform.p_two_sided",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched loss_last mean, Gamma-guided (1.3761668)",
+    "addendum_value": 1.3761667972236562,
+    "recomputed": 1.3761667972236562,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=exp_beta_paper_0.137].*.loss_last",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched loss_last mean, uniform (1.3733809)",
+    "addendum_value": 1.3733809256227687,
+    "recomputed": 1.3733809256227687,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/main/summary.json::runs[plan=uniform].*.loss_last",
+    "note": ""
+   },
+   {
+    "claim": "capacity-matched archived aggregate cross-check",
+    "addendum_value": "per_plan mean/sd/median/min/max",
+    "recomputed": null,
+    "abs_difference": null,
+    "matches": true,
+    "tolerance": null,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan",
+    "note": ""
+   },
+   {
+    "claim": "matched-loss Gamma-guided mean (+5968)",
+    "addendum_value": 5967.751953125,
+    "recomputed": 5967.751953125,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137]",
+    "note": ""
+   },
+   {
+    "claim": "matched-loss uniform mean (+2842)",
+    "addendum_value": 2842.068359375,
+    "recomputed": 2842.068359375,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform]",
+    "note": ""
+   },
+   {
+    "claim": "matched-loss paired mean difference (+3126)",
+    "addendum_value": 3125.68359375,
+    "recomputed": 3125.68359375,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": ""
+   },
+   {
+    "claim": "matched-loss paired 95% CI low (+369)",
+    "addendum_value": 368.7265625,
+    "recomputed": 368.7265625,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": ""
+   },
+   {
+    "claim": "matched-loss paired 95% CI high (+5883)",
+    "addendum_value": 5882.640625,
+    "recomputed": 5882.640625,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": ""
+   },
+   {
+    "claim": "matched-loss paired ordering: both per-pair differences positive",
+    "addendum_value": "2/2 positive",
+    "recomputed": null,
+    "abs_difference": null,
+    "matches": true,
+    "tolerance": null,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": "per-pair values [368.7265625, 5882.640625]; the sign is reversed relative to the capacity-matched control"
+   },
+   {
+    "claim": "matched-loss paired n = 2",
+    "addendum_value": 2,
+    "recomputed": null,
+    "abs_difference": null,
+    "matches": true,
+    "tolerance": null,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137] vs outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform] (paired on the shared seed labels)",
+    "note": "two seeds per arm as archived; the CI covers the seed spread only"
+   },
+   {
+    "claim": "matched-loss loss_last mean, Gamma-guided (0.5872333)",
+    "addendum_value": 0.5872333103097844,
+    "recomputed": 0.5872333103097844,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.0003/summary.json::runs[plan=exp_beta_paper_0.137].*.loss_last",
+    "note": ""
+   },
+   {
+    "claim": "matched-loss loss_last mean, uniform (0.5826203)",
+    "addendum_value": 0.5826203386313864,
+    "recomputed": 0.5826203386313864,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.0003/summary.json::runs[plan=uniform].*.loss_last",
+    "note": ""
+   },
+   {
+    "claim": "random pool mean over 30 runs (+3347)",
+    "addendum_value": 3347.43046875,
+    "recomputed": 3347.43046875,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.mean",
+    "note": ""
+   },
+   {
+    "claim": "random pool sd over 30 runs (+/-4771)",
+    "addendum_value": 4771.180234255462,
+    "recomputed": 4771.180234255462,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.sd",
+    "note": ""
+   },
+   {
+    "claim": "random pool mean over the ten plans (+3347.43)",
+    "addendum_value": 3347.43046875,
+    "recomputed": 3347.43046875,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "note": ""
+   },
+   {
+    "claim": "random pool sd over the ten plans (3010.09)",
+    "addendum_value": 3010.0895615033232,
+    "recomputed": 3010.0895615033232,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "note": ""
+   },
+   {
+    "claim": "random pool pooled 95% CI low (1604.99)",
+    "addendum_value": 1604.9870166015626,
+    "recomputed": 1604.9870166015626,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "note": ""
+   },
+   {
+    "claim": "random pool pooled 95% CI high (5152.87)",
+    "addendum_value": 5152.865755208333,
+    "recomputed": 5152.865755208333,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "note": ""
+   },
+   {
+    "claim": "random pool Gamma-guided percentile (46.667)",
+    "addendum_value": 46.666666666666664,
+    "recomputed": 46.666666666666664,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.values vs ::gamma.mean",
+    "note": ""
+   },
+   {
+    "claim": "random pool archived percentile == recomputed",
+    "addendum_value": 46.666666666666664,
+    "recomputed": null,
+    "abs_difference": null,
+    "matches": true,
+    "tolerance": null,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::gamma_mean_percentile_in_random_pool",
+    "note": ""
+   },
+   {
+    "claim": "random pool ten plans",
+    "addendum_value": 10,
+    "recomputed": null,
+    "abs_difference": null,
+    "matches": true,
+    "tolerance": null,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_plans_used",
+    "note": ""
+   },
+   {
+    "claim": "random pool thirty runs",
+    "addendum_value": 30,
+    "recomputed": null,
+    "abs_difference": null,
+    "matches": true,
+    "tolerance": null,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.values",
+    "note": ""
+   },
+   {
+    "claim": "random pool paired-by-plan mean difference (-1869.98)",
+    "addendum_value": -1869.9802734375,
+    "recomputed": -1869.9802734375,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "note": ""
+   },
+   {
+    "claim": "random pool paired-by-plan 95% CI low (-3653.59)",
+    "addendum_value": -3653.5913427734376,
+    "recomputed": -3653.5913427734376,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "note": ""
+   },
+   {
+    "claim": "random pool paired-by-plan 95% CI high (-122.78)",
+    "addendum_value": -122.77513671875204,
+    "recomputed": -122.77513671875204,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "note": ""
+   },
+   {
+    "claim": "random pool paired-by-plan jitter (23.49)",
+    "addendum_value": 23.49252115885605,
+    "recomputed": 23.49252115885605,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-06,
+    "source": "outputs/analysis/p3_alloc_random_pool.json::random_pool.per_plan[*].mean",
+    "note": ""
+   },
+   {
+    "claim": "1e-3 sweep, Gamma-guided mean (+2867)",
+    "addendum_value": 2867.408203125,
+    "recomputed": 2867.408203125,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json::runs[plan=exp_beta_paper_0.137]",
+    "note": ""
+   },
+   {
+    "claim": "1e-3 sweep, Gamma-guided sd (+/-873)",
+    "addendum_value": 873.1774378742818,
+    "recomputed": 873.1774378742818,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/exp_lr0.001/summary.json::runs[plan=exp_beta_paper_0.137]",
+    "note": ""
+   },
+   {
+    "claim": "1e-3 sweep, uniform mean (+4936)",
+    "addendum_value": 4935.84765625,
+    "recomputed": 4935.84765625,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json::runs[plan=uniform]",
+    "note": ""
+   },
+   {
+    "claim": "1e-3 sweep, uniform sd (+/-9084)",
+    "addendum_value": 9083.67324995355,
+    "recomputed": 9083.67324995355,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_runs/uniform_lr0.001/summary.json::runs[plan=uniform]",
+    "note": ""
+   },
+   {
+    "claim": "reversed rule mean (+2470)",
+    "addendum_value": 2470.2080078125,
+    "recomputed": 2470.2080078125,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137.delta_E.mean",
+    "note": ""
+   },
+   {
+    "claim": "reversed rule sd (+/-4111)",
+    "addendum_value": 4111.2182242525605,
+    "recomputed": 4111.2182242525605,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 1e-09,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137.delta_E.sd",
+    "note": ""
+   },
+   {
+    "claim": "reversed rule n = 6",
+    "addendum_value": 6,
+    "recomputed": null,
+    "abs_difference": null,
+    "matches": true,
+    "tolerance": null,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.inverse_beta_paper_0.137.delta_E.n",
+    "note": ""
+   },
+   {
+    "claim": "rounding: archive Gamma-guided mean rounds to +1477, not +1478",
+    "addendum_value": 1477.0,
+    "recomputed": 1477.0,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 0.5,
+    "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.mean",
+    "note": "this is the +1478 vs +1477 artefact the task names"
+   },
+   {
+    "claim": "rounding: Welch p 0.00553717 rounds to 0.0055",
+    "addendum_value": 0.0055,
+    "recomputed": 0.0055,
+    "abs_difference": 0.0,
+    "matches": true,
+    "tolerance": 5e-05,
+    "source": "outputs/analysis/p3_alloc_results.json::comparisons.exp_beta_paper_0.137.vs_uniform.p_two_sided",
+    "note": "four-decimal rounding of the archive p value"
+   }
+  ],
+  "manuscript_digits_note": "the addendum also records which *printed* digits were rounding artefacts; that record is carried into docs/p3_allocation_text.md"
+ },
+ "print_to_json_assertions": [
+  {
+   "name": "arm exp_beta_paper_0.137: mean delta_E",
+   "value": 1477.4501953125,
+   "path": "arms.exp_beta_paper_0.137.mean",
+   "note": "",
+   "matches": true,
+   "json_value": 1477.4501953125
+  },
+  {
+   "name": "arm exp_beta_paper_0.137: sample sd (ddof=1)",
+   "value": 1563.3373668985585,
+   "path": "arms.exp_beta_paper_0.137.sd_ddof1_sample",
+   "note": "",
+   "matches": true,
+   "json_value": 1563.3373668985585
+  },
+  {
+   "name": "arm exp_beta_paper_0.137: population sd (ddof=0)",
+   "value": 1427.1252347351176,
+   "path": "arms.exp_beta_paper_0.137.sd_ddof0_population",
+   "note": "",
+   "matches": true,
+   "json_value": 1427.1252347351176
+  },
+  {
+   "name": "arm uniform: mean delta_E",
+   "value": 5047.548502604167,
+   "path": "arms.uniform.mean",
+   "note": "",
+   "matches": true,
+   "json_value": 5047.548502604167
+  },
+  {
+   "name": "arm uniform: sample sd (ddof=1)",
+   "value": 1899.897185980862,
+   "path": "arms.uniform.sd_ddof1_sample",
+   "note": "",
+   "matches": true,
+   "json_value": 1899.897185980862
+  },
+  {
+   "name": "arm uniform: population sd (ddof=0)",
+   "value": 1734.3609095038435,
+   "path": "arms.uniform.sd_ddof0_population",
+   "note": "",
+   "matches": true,
+   "json_value": 1734.3609095038435
+  },
+  {
+   "name": "arm inverse_beta_paper_0.137: mean delta_E",
+   "value": 2470.2080078125,
+   "path": "arms.inverse_beta_paper_0.137.mean",
+   "note": "",
+   "matches": true,
+   "json_value": 2470.2080078125
+  },
+  {
+   "name": "arm inverse_beta_paper_0.137: sample sd (ddof=1)",
+   "value": 4111.2182242525605,
+   "path": "arms.inverse_beta_paper_0.137.sd_ddof1_sample",
+   "note": "",
+   "matches": true,
+   "json_value": 4111.2182242525605
+  },
+  {
+   "name": "arm inverse_beta_paper_0.137: population sd (ddof=0)",
+   "value": 3753.0116004157667,
+   "path": "arms.inverse_beta_paper_0.137.sd_ddof0_population",
+   "note": "",
+   "matches": true,
+   "json_value": 3753.0116004157667
+  },
+  {
+   "name": "arm corner: mean delta_E",
+   "value": 2343.8977864583335,
+   "path": "arms.corner.mean",
+   "note": "",
+   "matches": true,
+   "json_value": 2343.8977864583335
+  },
+  {
+   "name": "arm corner: sample sd (ddof=1)",
+   "value": 2426.091625165446,
+   "path": "arms.corner.sd_ddof1_sample",
+   "note": "",
+   "matches": true,
+   "json_value": 2426.091625165446
+  },
+  {
+   "name": "arm corner: population sd (ddof=0)",
+   "value": 2214.7085161291384,
+   "path": "arms.corner.sd_ddof0_population",
+   "note": "",
+   "matches": true,
+   "json_value": 2214.7085161291384
+  },
+  {
+   "name": "paired by seed: mean difference",
+   "value": -3570.0983072916665,
+   "path": "paired.capacity_matched_by_seed.mean_difference",
+   "note": "",
+   "matches": true,
+   "json_value": -3570.0983072916665
+  },
+  {
+   "name": "paired by seed: 95% CI low",
+   "value": -5524.157552083333,
+   "path": "paired.capacity_matched_by_seed.ci95_percentile[0]",
+   "note": "",
+   "matches": true,
+   "json_value": -5524.157552083333
+  },
+  {
+   "name": "paired by seed: 95% CI high",
+   "value": -1850.3134765625,
+   "path": "paired.capacity_matched_by_seed.ci95_percentile[1]",
+   "note": "",
+   "matches": true,
+   "json_value": -1850.3134765625
+  },
+  {
+   "name": "paired by seed: negative pairs (of 6)",
+   "value": 6,
+   "path": "paired.capacity_matched_by_seed.n_pairs_negative",
+   "note": "",
+   "matches": true,
+   "json_value": 6
+  },
+  {
+   "name": "random pool paired by seed: mean difference",
+   "value": 1106.465625,
+   "path": "paired.random_pool_by_seed.mean_difference",
+   "note": "",
+   "matches": true,
+   "json_value": 1106.465625
+  },
+  {
+   "name": "random pool paired by seed: 95% CI low",
+   "value": -2493.7841796875,
+   "path": "paired.random_pool_by_seed.ci95_percentile[0]",
+   "note": "",
+   "matches": true,
+   "json_value": -2493.7841796875
+  },
+  {
+   "name": "random pool paired by seed: 95% CI high",
+   "value": 3883.6976562500004,
+   "path": "paired.random_pool_by_seed.ci95_percentile[1]",
+   "note": "",
+   "matches": true,
+   "json_value": 3883.6976562500004
+  },
+  {
+   "name": "random pool paired by seed: negative pairs (of 3)",
+   "value": 1,
+   "path": "paired.random_pool_by_seed.n_pairs_negative",
+   "note": "",
+   "matches": true,
+   "json_value": 1
+  },
+  {
+   "name": "random pool paired by plan: mean difference",
+   "value": -1869.9802734375,
+   "path": "paired.random_pool_by_plan.mean_difference",
+   "note": "",
+   "matches": true,
+   "json_value": -1869.9802734375
+  },
+  {
+   "name": "TOST p (margin = one uniform sd)",
+   "value": 0.9161678137131604,
+   "path": "equivalence.capacity_matched_tost.p_tost",
+   "note": "",
+   "matches": true,
+   "json_value": 0.9161678137131604
+  },
+  {
+   "name": "TOST margin",
+   "value": 1899.897185980862,
+   "path": "equivalence.capacity_matched_tost.margin",
+   "note": "",
+   "matches": true,
+   "json_value": 1899.897185980862
+  },
+  {
+   "name": "TOST smallest equivalent margin",
+   "value": 6231.847080944521,
+   "path": "equivalence.capacity_matched_tost.smallest_equivalent_margin",
+   "note": "",
+   "matches": true,
+   "json_value": 6231.847080944521
+  },
+  {
+   "name": "matched-loss: paired mean difference",
+   "value": 3125.68359375,
+   "path": "controls.matched_loss.paired_by_seed.mean_difference",
+   "note": "",
+   "matches": true,
+   "json_value": 3125.68359375
+  },
+  {
+   "name": "matched-loss: 95% CI low",
+   "value": 368.7265625,
+   "path": "controls.matched_loss.paired_by_seed.ci95_percentile[0]",
+   "note": "",
+   "matches": true,
+   "json_value": 368.7265625
+  },
+  {
+   "name": "matched-loss: 95% CI high",
+   "value": 5882.640625,
+   "path": "controls.matched_loss.paired_by_seed.ci95_percentile[1]",
+   "note": "",
+   "matches": true,
+   "json_value": 5882.640625
+  },
+  {
+   "name": "matched-loss: positive pairs (of 2)",
+   "value": 2,
+   "path": "controls.matched_loss.paired_by_seed.n_pairs_positive",
+   "note": "",
+   "matches": true,
+   "json_value": 2
+  },
+  {
+   "name": "matched-loss TOST p (same margin)",
+   "value": 0.6331704591112892,
+   "path": "equivalence.matched_loss_tost.p_tost",
+   "note": "",
+   "matches": true,
+   "json_value": 0.6331704591112892
+  },
+  {
+   "name": "matched-loss TOST smallest equivalent margin",
+   "value": 38156.14408164887,
+   "path": "equivalence.matched_loss_tost.smallest_equivalent_margin",
+   "note": "",
+   "matches": true,
+   "json_value": 38156.14408164887
+  },
+  {
+   "name": "random pool: plans lower than the Gamma-guided mean",
+   "value": 2,
+   "path": "controls.random_pool.plan_deviations_from_gamma_mean.plans_lower_than_gamma_mean",
+   "note": "",
+   "matches": true,
+   "json_value": 2
+  },
+  {
+   "name": "random pool: plans beyond one Gamma-guided sd lower",
+   "value": 2,
+   "path": "controls.random_pool.plan_deviations_from_gamma_mean.plans_beyond_one_gamma_sd_lower",
+   "note": "",
+   "matches": true,
+   "json_value": 2
+  },
+  {
+   "name": "random pool: mean over the ten plans",
+   "value": 3347.43046875,
+   "path": "controls.random_pool.pool_mean_over_plans.mean",
+   "note": "",
+   "matches": true,
+   "json_value": 3347.43046875
+  },
+  {
+   "name": "random pool: sd over the thirty runs",
+   "value": 4771.180234255462,
+   "path": "controls.random_pool.pool_mean_over_runs.sd_ddof1_sample",
+   "note": "",
+   "matches": true,
+   "json_value": 4771.180234255462
+  },
+  {
+   "name": "random pool: Gamma-guided percentile",
+   "value": 46.666666666666664,
+   "path": "controls.random_pool.gamma_percentile_recomputed",
+   "note": "",
+   "matches": true,
+   "json_value": 46.666666666666664
+  },
+  {
+   "name": "reversed rule: mean",
+   "value": 2470.2080078125,
+   "path": "controls.reversed_rule.arms.inverse_beta_paper_0.137.mean",
+   "note": "",
+   "matches": true,
+   "json_value": 2470.2080078125
+  },
+  {
+   "name": "reversed rule: sample sd",
+   "value": 4111.2182242525605,
+   "path": "controls.reversed_rule.arms.inverse_beta_paper_0.137.sd_ddof1_sample",
+   "note": "",
+   "matches": true,
+   "json_value": 4111.2182242525605
+  },
+  {
+   "name": "random pool TOST p (same margin)",
+   "value": 0.35746720719759073,
+   "path": "equivalence.random_pool_tost.p_tost",
+   "note": "",
+   "matches": true,
+   "json_value": 0.35746720719759073
+  },
+  {
+   "name": "random pool TOST smallest equivalent margin",
+   "value": 9223.207347797292,
+   "path": "equivalence.random_pool_tost.smallest_equivalent_margin",
+   "note": "",
+   "matches": true,
+   "json_value": 9223.207347797292
+  },
+  {
+   "name": "reversed rule TOST p (same margin)",
+   "value": 0.6283067706613108,
+   "path": "equivalence.reversed_rule_tost.p_tost",
+   "note": "",
+   "matches": true,
+   "json_value": 0.6283067706613108
+  },
+  {
+   "name": "1e-3 sweep TOST p (same margin)",
+   "value": 0.5092380990391377,
+   "path": "equivalence.learning_rate_sweep_1e-3_tost.p_tost",
+   "note": "",
+   "matches": true,
+   "json_value": 0.5092380990391377
+  }
+ ],
+ "rounding_artefacts": {
+  "printed_plus_1478_vs_archive": {
+   "printed": 1478.0,
+   "archive_value": 1477.4501953125,
+   "rounded_to_integer": 1477.0,
+   "correct_rounding": 1477.0,
+   "artefact": true,
+   "source": "outputs/analysis/p3_alloc_results.json::per_plan.exp_beta_paper_0.137.delta_E.mean",
+   "note": "the manuscript printed +1478 in one section; the archive mean 1477.4502 rounds to +1477"
+  },
+  "welch_p_printed_0_0055": {
+   "printed": 0.0055,
+   "archive_value": 0.005537165222964369,
+   "rounded_to_4dp": 0.0055,
+   "artefact": false,
+   "source": "outputs/analysis/p3_alloc_results.json::comparisons.exp_beta_paper_0.137.vs_uniform.p_two_sided",
+   "note": "the manuscript quotes Welch p = 0.0055, printed from 0.00553717"
+  },
+  "gamma_percentile_printed_47": {
+   "printed": 47.0,
+   "archive_value": 46.666666666666664,
+   "rounded_to_integer": 47.0,
+   "artefact": false,
+   "source": "outputs/analysis/p3_alloc_random_pool.json::gamma_mean_percentile_in_random_pool",
+   "note": "the manuscript prints the 47th percentile; the archive value is 46.667"
+  }
+ }
+}

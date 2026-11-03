@@ -1,0 +1,204 @@
+{
+ "source": "outputs\\a1_epoch_sweep.json",
+ "criteria_summary": {
+  "ep1": {
+   "mean_top1": 59.44,
+   "mean_loss": 0.05,
+   "median_loss": 0.0,
+   "n_zero_loss": 8,
+   "n": 10
+  },
+  "ep2": {
+   "mean_top1": 58.796,
+   "mean_loss": 0.694,
+   "median_loss": 0.7,
+   "n_zero_loss": 2,
+   "n": 10
+  },
+  "ep3": {
+   "mean_top1": 58.17,
+   "mean_loss": 1.32,
+   "median_loss": 1.36,
+   "n_zero_loss": 0,
+   "n": 10
+  },
+  "tau_peak": {
+   "mean_top1": 59.44,
+   "mean_loss": 0.05,
+   "median_loss": 0.0,
+   "n_zero_loss": 8,
+   "n": 10
+  },
+  "top1_peak": {
+   "mean_top1": 59.49,
+   "mean_loss": 0.0,
+   "median_loss": 0.0,
+   "n_zero_loss": 10,
+   "n": 10
+  },
+  "ep10": {
+   "mean_top1": 57.142,
+   "mean_loss": 2.348,
+   "median_loss": 2.26,
+   "n_zero_loss": 0,
+   "n": 10
+  }
+ },
+ "per_trajectory": {
+  "coco|seed42": {
+   "ep1": 60.14,
+   "ep2": 60.18,
+   "ep3": 59.3,
+   "tau_peak": 60.14,
+   "top1_peak": 60.18,
+   "ep10": 58.14,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 2
+  },
+  "coco|seed43": {
+   "ep1": 59.52,
+   "ep2": 58.82,
+   "ep3": 57.56,
+   "tau_peak": 59.52,
+   "top1_peak": 59.52,
+   "ep10": 56.94,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 1
+  },
+  "coco|seed44": {
+   "ep1": 60.02,
+   "ep2": 59.32,
+   "ep3": 58.06,
+   "tau_peak": 60.02,
+   "top1_peak": 60.02,
+   "ep10": 57.54,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 1
+  },
+  "dtd|seed42": {
+   "ep1": 58.96,
+   "ep2": 57.64,
+   "ep3": 57.08,
+   "tau_peak": 58.96,
+   "top1_peak": 58.96,
+   "ep10": 55.42,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 1
+  },
+  "dtd|seed43": {
+   "ep1": 59.44,
+   "ep2": 58.06,
+   "ep3": 57.6,
+   "tau_peak": 59.44,
+   "top1_peak": 59.44,
+   "ep10": 55.74,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 1
+  },
+  "dtd|seed44": {
+   "ep1": 58.06,
+   "ep2": 56.8,
+   "ep3": 55.78,
+   "tau_peak": 58.06,
+   "top1_peak": 58.06,
+   "ep10": 53.5,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 1
+  },
+  "flickr30k_ref|seed42": {
+   "ep1": 59.28,
+   "ep2": 58.82,
+   "ep3": 58.46,
+   "tau_peak": 59.28,
+   "top1_peak": 59.28,
+   "ep10": 57.8,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 1
+  },
+  "food101|seed42": {
+   "ep1": 58.96,
+   "ep2": 59.42,
+   "ep3": 59.06,
+   "tau_peak": 58.96,
+   "top1_peak": 59.42,
+   "ep10": 58.22,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 2
+  },
+  "food101|seed43": {
+   "ep1": 60.72,
+   "ep2": 60.32,
+   "ep3": 60.08,
+   "tau_peak": 60.72,
+   "top1_peak": 60.72,
+   "ep10": 59.78,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 1
+  },
+  "food101|seed44": {
+   "ep1": 59.3,
+   "ep2": 58.58,
+   "ep3": 58.72,
+   "tau_peak": 59.3,
+   "top1_peak": 59.3,
+   "ep10": 58.34,
+   "tau_peak_epoch": 1,
+   "top1_peak_epoch": 1
+  }
+ },
+ "best_fixed_epoch": "ep1",
+ "tau_beat_best_fixed": false,
+ "D1_first_drop": {
+  "coco|seed42": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 3,
+   "tau_earlier": true
+  },
+  "coco|seed43": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "tau_earlier": false
+  },
+  "coco|seed44": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "tau_earlier": false
+  },
+  "dtd|seed42": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "tau_earlier": false
+  },
+  "dtd|seed43": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "tau_earlier": false
+  },
+  "dtd|seed44": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "tau_earlier": false
+  },
+  "flickr30k_ref|seed42": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "tau_earlier": false
+  },
+  "food101|seed42": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 3,
+   "tau_earlier": true
+  },
+  "food101|seed43": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "tau_earlier": false
+  },
+  "food101|seed44": {
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "tau_earlier": false
+  }
+ },
+ "D1_tau_earlier_count": 2
+}

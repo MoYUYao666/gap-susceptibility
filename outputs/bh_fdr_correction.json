@@ -1,0 +1,98 @@
+{
+ "tests": [
+  [
+   "sharegpt_r5_eq0",
+   0.92,
+   "ShareGPT r=5 sign test (n=3)"
+  ],
+  [
+   "llava_r5_eq0",
+   0.37,
+   "LLaVA r=5 sign test (n=3)"
+  ],
+  [
+   "llava_r6_eq0",
+   0.17,
+   "LLaVA r=6 sign test (n=3)"
+  ],
+  [
+   "sharegpt_r6_eq0",
+   0.013,
+   "ShareGPT r=6 sign test (n=3)"
+  ],
+  [
+   "sharegpt_welch_56",
+   0.011,
+   "ShareGPT Welch t across r=5..6"
+  ],
+  [
+   "llava_pooled_45_vs_67",
+   0.0014,
+   "LLaVA pooled r{4,5} vs r{6,7} t"
+  ],
+  [
+   "binomial_ordering",
+   0.031,
+   "ordering DeltaE(6)>DeltaE(5) in 6 configs, 2^-5"
+  ]
+ ],
+ "bh_fdr": [
+  {
+   "name": "llava_pooled_45_vs_67",
+   "p": 0.0014,
+   "rank": 1,
+   "bh_q": 0.0098,
+   "survives_005": true,
+   "survives_010": true
+  },
+  {
+   "name": "sharegpt_welch_56",
+   "p": 0.011,
+   "rank": 2,
+   "bh_q": 0.0385,
+   "survives_005": true,
+   "survives_010": true
+  },
+  {
+   "name": "sharegpt_r6_eq0",
+   "p": 0.013,
+   "rank": 3,
+   "bh_q": 0.0303,
+   "survives_005": true,
+   "survives_010": true
+  },
+  {
+   "name": "binomial_ordering",
+   "p": 0.031,
+   "rank": 4,
+   "bh_q": 0.0542,
+   "survives_005": false,
+   "survives_010": true
+  },
+  {
+   "name": "llava_r6_eq0",
+   "p": 0.17,
+   "rank": 5,
+   "bh_q": 0.238,
+   "survives_005": false,
+   "survives_010": false
+  },
+  {
+   "name": "llava_r5_eq0",
+   "p": 0.37,
+   "rank": 6,
+   "bh_q": 0.4317,
+   "survives_005": false,
+   "survives_010": false
+  },
+  {
+   "name": "sharegpt_r5_eq0",
+   "p": 0.92,
+   "rank": 7,
+   "bh_q": 0.92,
+   "survives_005": false,
+   "survives_010": false
+  }
+ ],
+ "summary": "FDR<=0.05: llava_pooled_45_vs_67, sharegpt_welch_56, sharegpt_r6_eq0 | FDR<=0.10: llava_pooled_45_vs_67, sharegpt_welch_56, sharegpt_r6_eq0, binomial_ordering"
+}

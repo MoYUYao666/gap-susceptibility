@@ -1,0 +1,83 @@
+{
+ "r4": {
+  "Flickr30k|text_only": {
+   "n": 5,
+   "mean": -0.03038,
+   "sd": 0.00385,
+   "r1": null,
+   "files": [
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed1011\\results.json",
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed123\\results.json",
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed42\\results.json",
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed456\\results.json",
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed789\\results.json"
+   ]
+  },
+  "Flickr30k|both": {
+   "n": 5,
+   "mean": -0.02037,
+   "sd": 0.00284,
+   "r1": null,
+   "files": [
+    "outputs\\strict_freeze_b32_r4\\both\\seed1011\\results.json",
+    "outputs\\strict_freeze_b32_r4\\both\\seed123\\results.json",
+    "outputs\\strict_freeze_b32_r4\\both\\seed42\\results.json",
+    "outputs\\strict_freeze_b32_r4\\both\\seed456\\results.json",
+    "outputs\\strict_freeze_b32_r4\\both\\seed789\\results.json"
+   ]
+  },
+  "Flickr30k|vision_only": {
+   "n": 5,
+   "mean": 0.01658,
+   "sd": 0.00553,
+   "r1": null,
+   "files": [
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed1011\\results.json",
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed123\\results.json",
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed42\\results.json",
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed456\\results.json",
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed789\\results.json"
+   ]
+  },
+  "COCO|text_only": {
+   "n": 5,
+   "mean": -0.04301,
+   "sd": 0.00278,
+   "r1": null,
+   "files": [
+    "outputs\\coco_sweep_text_only\\r4\\text_only\\seed1011\\results.json",
+    "outputs\\coco_sweep_text_only\\r4\\text_only\\seed123\\results.json",
+    "outputs\\coco_sweep_text_only\\r4\\text_only\\seed42\\results.json",
+    "outputs\\coco_sweep_text_only\\r4\\text_only\\seed456\\results.json",
+    "outputs\\coco_sweep_text_only\\r4\\text_only\\seed789\\results.json"
+   ]
+  },
+  "COCO|both": {
+   "n": 3,
+   "mean": -0.0886,
+   "sd": 0.00263,
+   "r1": null,
+   "files": [
+    "outputs\\coco_sweep\\r4\\both\\seed123\\results.json",
+    "outputs\\coco_sweep\\r4\\both\\seed42\\results.json",
+    "outputs\\coco_sweep\\r4\\both\\seed456\\results.json"
+   ]
+  }
+ },
+ "verdict": {
+  "Flickr30k": {
+   "best": "text_only",
+   "text_only": -0.03038,
+   "both": -0.02037,
+   "margin": 0.01001
+  },
+  "COCO": {
+   "best": "both",
+   "text_only": -0.04301,
+   "both": -0.0886,
+   "margin": 0.04559
+  }
+ },
+ "flip_holds_r4": true,
+ "convention": "ΔCG 越负越保护"
+}

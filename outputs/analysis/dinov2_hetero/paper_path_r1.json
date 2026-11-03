@@ -1,0 +1,96 @@
+{
+  "script": "tools/_p369_reproduce_clip_arm_r1.py",
+  "question": "does the archived R@1 reproduce through the protocol's own loader and metric function, from the archived checkpoint?",
+  "loader": {
+    "val_pairs": 500,
+    "batch_size": 128,
+    "source": "src.dataset.create_dataloaders(data_dir='.', max_samples=5000) -- the protocol's own loader, i.e. with the augmented gallery transform"
+  },
+  "metric": "src.trainer.GapAwareTrainer._compute_retrieval_metrics (unmodified)",
+  "arms": {
+    "text_only": {
+      "checkpoint": "outputs\\strict_freeze\\text_only\\seed42\\last_checkpoint.pt",
+      "checkpoint_epoch": 10,
+      "repeat_R1": [
+        0.6260000169277191,
+        0.6049999892711639,
+        0.6270000040531158,
+        0.6209999918937683
+      ],
+      "mean": 0.6197500005364418,
+      "sd": 0.010177599039102753,
+      "min": 0.6049999892711639,
+      "max": 0.6270000040531158,
+      "archived_R1_final": 0.6180000007152557,
+      "archived_source": "outputs/strict_freeze/text_only/seed42/results.json :: final_task_metrics.R@1",
+      "archived_R1_series_in_checkpoint": [
+        0.601,
+        0.609,
+        0.616,
+        0.613,
+        0.623,
+        0.614,
+        0.618,
+        0.61,
+        0.622,
+        0.618
+      ]
+    },
+    "both": {
+      "checkpoint": "outputs\\strict_freeze\\both\\seed42\\last_checkpoint.pt",
+      "checkpoint_epoch": 10,
+      "repeat_R1": [
+        0.6940000057220459,
+        0.695000022649765,
+        0.6889999806880951,
+        0.69200000166893
+      ],
+      "mean": 0.692500002682209,
+      "sd": 0.0026457679370559426,
+      "min": 0.6889999806880951,
+      "max": 0.695000022649765,
+      "archived_R1_final": 0.6890000104904175,
+      "archived_source": "outputs/strict_freeze/both/seed42/results.json :: final_task_metrics.R@1",
+      "archived_R1_series_in_checkpoint": [
+        0.665,
+        0.677,
+        0.671,
+        0.685,
+        0.685,
+        0.68,
+        0.693,
+        0.691,
+        0.69,
+        0.689
+      ]
+    },
+    "vision_only": {
+      "checkpoint": "outputs\\strict_freeze\\vision_only\\seed42\\last_checkpoint.pt",
+      "checkpoint_epoch": 10,
+      "repeat_R1": [
+        0.6820000112056732,
+        0.675000011920929,
+        0.6809999942779541,
+        0.6780000030994415
+      ],
+      "mean": 0.6790000051259995,
+      "sd": 0.0031622746443947555,
+      "min": 0.675000011920929,
+      "max": 0.6820000112056732,
+      "archived_R1_final": 0.699999988079071,
+      "archived_source": "outputs/strict_freeze/vision_only/seed42/results.json :: final_task_metrics.R@1",
+      "archived_R1_series_in_checkpoint": [
+        0.643,
+        0.652,
+        0.674,
+        0.673,
+        0.68,
+        0.675,
+        0.688,
+        0.694,
+        0.682,
+        0.7
+      ]
+    }
+  }
+}

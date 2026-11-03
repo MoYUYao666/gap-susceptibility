@@ -1,0 +1,97 @@
+{
+  "script": "tools/_p1768_theory_checks.py",
+  "definitions": {
+    "n_k": "|g_k|^2 block norm",
+    "Gamma_k": "<g_k, u>",
+    "eps": 0.9,
+    "u": [
+      0.9578262852211513,
+      0.2873478855663454
+    ]
+  },
+  "C1": {
+    "sweep": [
+      {
+        "x2_scale": 0.25,
+        "norm1": 1.29025,
+        "norm2": 1.105,
+        "norm_order": "1>2",
+        "gamma1": 1.1000634885764922,
+        "gamma2": 1.0200849937605263,
+        "gamma_order": "1>2"
+      },
+      {
+        "x2_scale": 0.5,
+        "norm1": 1.621,
+        "norm2": 1.45,
+        "norm_order": "1>2",
+        "gamma1": 1.2423006919318331,
+        "gamma2": 1.178126330822016,
+        "gamma_order": "1>2"
+      },
+      {
+        "x2_scale": 1.0,
+        "norm1": 2.404,
+        "norm2": 2.29,
+        "norm_order": "1>2",
+        "gamma1": 1.5267750986425153,
+        "gamma2": 1.494209004944996,
+        "gamma_order": "1>2"
+      },
+      {
+        "x2_scale": 1.5,
+        "norm1": 3.349,
+        "norm2": 3.329999999999999,
+        "norm_order": "1>2",
+        "gamma1": 1.8112495053531972,
+        "gamma2": 1.810291679067976,
+        "gamma_order": "1>2"
+      },
+      {
+        "x2_scale": 2.0,
+        "norm1": 4.456,
+        "norm2": 4.57,
+        "norm_order": "2>1",
+        "gamma1": 2.095723912063879,
+        "gamma2": 2.1263743531909562,
+        "gamma_order": "2>1"
+      },
+      {
+        "x2_scale": 3.0,
+        "norm1": 7.156000000000001,
+        "norm2": 7.649999999999999,
+        "norm_order": "2>1",
+        "gamma1": 2.664672725485243,
+        "gamma2": 2.7585397014369155,
+        "gamma_order": "2>1"
+      },
+      {
+        "x2_scale": 4.0,
+        "norm1": 10.504000000000001,
+        "norm2": 11.53,
+        "norm_order": "2>1",
+        "gamma1": 3.233621538906607,
+        "gamma2": 3.3907050496828752,
+        "gamma_order": "2>1"
+      }
+    ],
+    "disagreements": 0
+  },
+  "C2": {
+    "draws": 4000,
+    "disagreement_rate": 0.2555
+  },
+  "C3": {
+    "status": "the block-orthogonal formulation is refuted; the open-set formulation is proved one line",
+    "counterexample": {
+      "lambda": 1.7,
+      "max_gap_on_D": 0.0,
+      "gaps_off_D": [
+        1.7000000000000002,
+        0.27200000000000024
+      ]
+    },
+    "open_set_violations": 0,
+    "statement": "additivity on a nonempty OPEN set plus continuity already implies global additivity (hence R3'), whereas additivity on the closed subclass {x1.x2 = 0} does not"
+  }
+}

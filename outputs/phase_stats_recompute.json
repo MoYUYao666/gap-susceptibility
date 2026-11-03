@@ -1,0 +1,433 @@
+{
+ "tests": [
+  {
+   "name": "pooled_45_vs_67",
+   "p": 0.00144,
+   "desc": "phase-table batches: r{4,5} (n=6) vs r{6,7} (n=6), Welch t=-4.65",
+   "n": 12,
+   "family": "paper",
+   "paper_p": 0.0014
+  },
+  {
+   "name": "welch_56_ds2",
+   "p": 0.01142,
+   "desc": "second dataset Welch t r=5 vs r=6, t=-4.81",
+   "n": 6,
+   "family": "paper",
+   "paper_p": 0.011
+  },
+  {
+   "name": "ds2_r6_vs0",
+   "p": 0.01315,
+   "desc": "second dataset r=6 one-sample t vs 0, t=8.63, mean=133.5",
+   "n": 3,
+   "family": "paper",
+   "paper_p": 0.013
+  },
+  {
+   "name": "ds2_r5_vs0",
+   "p": 0.91593,
+   "desc": "second dataset r=5 one-sample t vs 0, t=0.12, mean=2.7",
+   "n": 3,
+   "family": "paper",
+   "paper_p": 0.92
+  },
+  {
+   "name": "llava_r5_vs0",
+   "p": 0.37478,
+   "desc": "phase-table LLaVA r=5 one-sample t vs 0, t=-1.13, mean=-21.0",
+   "n": 3,
+   "family": "paper",
+   "paper_p": 0.37
+  },
+  {
+   "name": "llava_r6_vs0",
+   "p": 0.16993,
+   "desc": "phase-table LLaVA r=6 one-sample t vs 0, t=2.11, mean=62.3",
+   "n": 3,
+   "family": "paper",
+   "paper_p": 0.17
+  },
+  {
+   "name": "config_ordering",
+   "p": 0.03125,
+   "desc": "config-level \u0394E(r6)>\u0394E(r5) in 6/6 configs, exact two-sided binomial",
+   "n": 6,
+   "family": "paper",
+   "paper_p": 0.031
+  }
+ ],
+ "bh_fdr": [
+  {
+   "name": "pooled_45_vs_67",
+   "p": 0.00144,
+   "rank": 1,
+   "bh_q": 0.0101,
+   "survives_005": true,
+   "survives_010": true,
+   "paper_p": 0.0014,
+   "reproduces_paper": true,
+   "desc": "phase-table batches: r{4,5} (n=6) vs r{6,7} (n=6), Welch t=-4.65",
+   "n": 12
+  },
+  {
+   "name": "welch_56_ds2",
+   "p": 0.01142,
+   "rank": 2,
+   "bh_q": 0.0307,
+   "survives_005": true,
+   "survives_010": true,
+   "paper_p": 0.011,
+   "reproduces_paper": true,
+   "desc": "second dataset Welch t r=5 vs r=6, t=-4.81",
+   "n": 6
+  },
+  {
+   "name": "ds2_r6_vs0",
+   "p": 0.01315,
+   "rank": 3,
+   "bh_q": 0.0307,
+   "survives_005": true,
+   "survives_010": true,
+   "paper_p": 0.013,
+   "reproduces_paper": true,
+   "desc": "second dataset r=6 one-sample t vs 0, t=8.63, mean=133.5",
+   "n": 3
+  },
+  {
+   "name": "config_ordering",
+   "p": 0.03125,
+   "rank": 4,
+   "bh_q": 0.0547,
+   "survives_005": false,
+   "survives_010": true,
+   "paper_p": 0.031,
+   "reproduces_paper": true,
+   "desc": "config-level \u0394E(r6)>\u0394E(r5) in 6/6 configs, exact two-sided binomial",
+   "n": 6
+  },
+  {
+   "name": "llava_r6_vs0",
+   "p": 0.16993,
+   "rank": 5,
+   "bh_q": 0.2379,
+   "survives_005": false,
+   "survives_010": false,
+   "paper_p": 0.17,
+   "reproduces_paper": true,
+   "desc": "phase-table LLaVA r=6 one-sample t vs 0, t=2.11, mean=62.3",
+   "n": 3
+  },
+  {
+   "name": "llava_r5_vs0",
+   "p": 0.37478,
+   "rank": 6,
+   "bh_q": 0.4372,
+   "survives_005": false,
+   "survives_010": false,
+   "paper_p": 0.37,
+   "reproduces_paper": true,
+   "desc": "phase-table LLaVA r=5 one-sample t vs 0, t=-1.13, mean=-21.0",
+   "n": 3
+  },
+  {
+   "name": "ds2_r5_vs0",
+   "p": 0.91593,
+   "rank": 7,
+   "bh_q": 0.9159,
+   "survives_005": false,
+   "survives_010": false,
+   "paper_p": 0.92,
+   "reproduces_paper": true,
+   "desc": "second dataset r=5 one-sample t vs 0, t=0.12, mean=2.7",
+   "n": 3
+  }
+ ],
+ "summary": {
+  "paper_batches": {
+   "4": [
+    "E2:s123",
+    "E2:s42",
+    "E2:s999",
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ],
+   "5": [
+    "extra:s123",
+    "extra:s42",
+    "extra:s999",
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ],
+   "6": [
+    "extra:s123",
+    "extra:s42",
+    "extra:s999",
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ],
+   "7": [
+    "extra:s123",
+    "extra:s42",
+    "extra:s999",
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ],
+   "8": [
+    "extra:s123",
+    "extra:s42",
+    "extra:s999",
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ],
+   "10": [
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ],
+   "12": [
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ],
+   "14": [
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ],
+   "16": [
+    "E2:s123",
+    "E2:s42",
+    "E2:s999",
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ],
+   "20": [
+    "sweep:s123",
+    "sweep:s42",
+    "sweep:s999"
+   ]
+  },
+  "configs": {
+   "samples_16": {
+    "r5": 22.0,
+    "r6": 52.0,
+    "ordered": true
+   },
+   "samples_64": {
+    "r5": -59.5,
+    "r6": 16.0,
+    "ordered": true
+   },
+   "samples_128": {
+    "r5": -61.5,
+    "r6": 31.5,
+    "ordered": true
+   },
+   "samples_256": {
+    "r5": -54.5,
+    "r6": 26.5,
+    "ordered": true
+   },
+   "phase_table": {
+    "r5": -21.0,
+    "r6": 62.33,
+    "ordered": true
+   },
+   "second_dataset": {
+    "r5": 2.67,
+    "r6": 133.5,
+    "ordered": true
+   }
+  },
+  "n_tests": 7,
+  "reproduced_paper_values": [
+   "pooled_45_vs_67",
+   "welch_56_ds2",
+   "ds2_r6_vs0",
+   "config_ordering",
+   "llava_r6_vs0",
+   "llava_r5_vs0",
+   "ds2_r5_vs0"
+  ],
+  "not_reproduced": [],
+  "survive_005": [
+   "pooled_45_vs_67",
+   "welch_56_ds2",
+   "ds2_r6_vs0"
+  ],
+  "survive_010": [
+   "pooled_45_vs_67",
+   "welch_56_ds2",
+   "ds2_r6_vs0",
+   "config_ordering"
+  ],
+  "replication_family": {
+   "r5": {
+    "n": 10,
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     47,
+     57,
+     67,
+     123,
+     999
+    ],
+    "mean": -34.7,
+    "std": 44.46,
+    "ci95": [
+     -66.5,
+     -2.9
+    ],
+    "t": -2.468,
+    "p_vs0": 0.03569,
+    "n_positive": 2
+   },
+   "r6": {
+    "n": 10,
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     47,
+     57,
+     67,
+     123,
+     999
+    ],
+    "mean": 69.9,
+    "std": 28.79,
+    "ci95": [
+     49.3,
+     90.5
+    ],
+    "t": 7.677,
+    "p_vs0": 3e-05,
+    "n_positive": 10
+   },
+   "welch_56": {
+    "t": -6.244,
+    "p": 1e-05,
+    "n": [
+     10,
+     10
+    ]
+   },
+   "ordering_r6_gt_r5": {
+    "mean_r5": -34.7,
+    "mean_r6": 69.9,
+    "holds": true,
+    "per_seed_pairs": [
+     {
+      "seed": 7,
+      "r5": -80.0,
+      "r6": 95.5,
+      "holds": true
+     },
+     {
+      "seed": 17,
+      "r5": 5.0,
+      "r6": 55.0,
+      "holds": true
+     },
+     {
+      "seed": 27,
+      "r5": -71.0,
+      "r6": 22.5,
+      "holds": true
+     },
+     {
+      "seed": 37,
+      "r5": -27.5,
+      "r6": 95.5,
+      "holds": true
+     },
+     {
+      "seed": 42,
+      "r5": -18.0,
+      "r6": 93.5,
+      "holds": true
+     },
+     {
+      "seed": 47,
+      "r5": -51.5,
+      "r6": 98.5,
+      "holds": true
+     },
+     {
+      "seed": 57,
+      "r5": -76.5,
+      "r6": 48.0,
+      "holds": true
+     },
+     {
+      "seed": 67,
+      "r5": -41.5,
+      "r6": 83.5,
+      "holds": true
+     },
+     {
+      "seed": 123,
+      "r5": -52.0,
+      "r6": 77.0,
+      "holds": true
+     },
+     {
+      "seed": 999,
+      "r5": 66.0,
+      "r6": 30.0,
+      "holds": false
+     }
+    ],
+    "n_hold": 9,
+    "binom_two_sided_p": 0.02148
+   },
+   "bh_fdr": [
+    {
+     "name": "welch_56",
+     "p": 1e-05,
+     "rank": 1,
+     "bh_q": 0.0,
+     "survives_005": true,
+     "survives_010": true
+    },
+    {
+     "name": "r6_vs0",
+     "p": 3e-05,
+     "rank": 2,
+     "bh_q": 0.0001,
+     "survives_005": true,
+     "survives_010": true
+    },
+    {
+     "name": "per_seed_ordering",
+     "p": 0.02148,
+     "rank": 3,
+     "bh_q": 0.0286,
+     "survives_005": true,
+     "survives_010": true
+    },
+    {
+     "name": "r5_vs0",
+     "p": 0.03569,
+     "rank": 4,
+     "bh_q": 0.0357,
+     "survives_005": true,
+     "survives_010": true
+    }
+   ]
+  }
+ }
+}

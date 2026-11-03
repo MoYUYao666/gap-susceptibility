@@ -1,0 +1,142 @@
+# -*- coding: utf-8 -*-
+"""Markdown / JSON report renderer for the paper-audit mode (English-only artifact)."""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from .model import Report, Severity, Status
+from .registry import DIMENSIONS
+
+STATUS_ORDER = [Status.FAIL, Status.ERROR, Status.WARN, Status.MANUAL, Status.SKIP, Status.PASS]
+DIM_ORDER = list("ABCDEFGHIJ")
+
+
+def _cells(text: str) -> str:
+    return str(text).replace("|", "\\|").replace("\n", "<br>").strip()
+
+
+def render_markdown(report: Report, include_checklist: bool = True) -> str:
+    c = report.counts()
+    gate = report.gate_failures()
+    major = [f for f in report.findings
+             if f.severity == Severity.P1 and f.status in (Status.FAIL, Status.ERROR)]
+    minor = [f for f in report.findings if f.severity == Severity.P2 and f.status == Status.FAIL]
+    lines = []
+    lines.append("# Paper Audit Report - %s" % report.profile_label)
+    lines.append("")
+    lines.append("| field | value |")
+    lines.append("|---|---|")
+    lines.append("| Audit ID | %s |" % getattr(report, "audit_id", "-"))
+    lines.append("| Profile | %s |" % report.profile)
+    lines.append("| Manuscript | %s |" % report.manuscript)
+    lines.append("| Generated | %s |" % report.generated_at)
+    lines.append("| Git commit | %s on %s%s |" % (
+        report.git_commit, report.git_branch or "detached",
+        " (dirty tree)" if report.git_dirty else ""))
+    lines.append("")
+    lines.append("## 1. Verdict")
+    lines.append("")
+    lines.append("**%s** (grade **%s**) - %d blocker(s), %d major(s), %d minor fail(s), %d manual item(s)" % (
+        report.verdict(), report.grade(), len(gate), len(major), len(minor), c.get("MANUAL", 0)))
+    lines.append("")
+    if gate:
+        lines.append("### Submission blockers")
+        lines.append("")
+        lines.append("| check | severity | message | remediation |")
+        lines.append("|---|---|---|---|")
+        for f in gate:
+            lines.append("| %s | %s | %s | %s |" % (
+                f.check_id, f.severity.value, _cells(f.message), _cells(f.remediation or "-")))
+        lines.append("")
+    lines.append("| status | count |")
+    lines.append("|---|---|")
+    for s in (Status.PASS, Status.FAIL, Status.WARN, Status.SKIP, Status.MANUAL, Status.ERROR):
+        lines.append("| %s | %d |" % (s.value, c.get(s.value, 0)))
+    lines.append("")
+    lines.append("## 2. Coverage by dimension")
+    lines.append("")
+    lines.append("| dim | name | pass | fail | warn | skip | manual | error |")
+    lines.append("|---|---|---|---|---|---|---|---|")
+    for d in DIM_ORDER:
+        fs_ = [f for f in report.findings if f.dimension == d]
+        def n(st):
+            return len([f for f in fs_ if f.status == st])
+        lines.append("| %s | %s | %d | %d | %d | %d | %d | %d |" % (
+            d, DIMENSIONS.get(d, ""), n(Status.PASS), n(Status.FAIL), n(Status.WARN),
+            n(Status.SKIP), n(Status.MANUAL), n(Status.ERROR)))
+    lines.append("")
+    lines.append("## 3. Findings")
+    lines.append("")
+    for d in DIM_ORDER:
+        fs_ = [f for f in report.findings if f.dimension == d]
+        if not fs_:
+            continue
+        lines.append("### %s. %s" % (d, DIMENSIONS.get(d, "")))
+        lines.append("")
+        lines.append("| check | severity | status | title | message | evidence | remediation |")
+        lines.append("|---|---|---|---|---|---|---|")
+        for f in sorted(fs_, key=lambda x: (STATUS_ORDER.index(x.status), x.check_id)):
+            lines.append("| %s | %s | %s | %s | %s | %s | %s |" % (
+                f.check_id, f.severity.value, f.status.value, _cells(f.title),
+                _cells(f.message), _cells(f.evidence[:600]), _cells(f.remediation or "-")))
+        lines.append("")
+    lines.append("## 4. Commands executed")
+    lines.append("")
+    if report.commands:
+        for cmd in report.commands:
+            lines.append("- %s" % cmd)
+    else:
+        lines.append("- (none)")
+    lines.append("")
+    lines.append("## 5. Environment")
+    lines.append("")
+    for k, v in report.environment.items():
+        lines.append("- %s: %s" % (k, v))
+    lines.append("")
+    lines.append("## 6. Artefacts")
+    lines.append("")
+    if report.artifacts:
+        for name, digest in sorted(report.artifacts.items()):
+            lines.append("- %s sha256 %s" % (name, digest))
+    else:
+        lines.append("- (none)")
+    lines.append("")
+    if include_checklist:
+        lines.append("## 7. Check registry")
+        lines.append("")
+        lines.append("| id | dim | severity | automated | title | method |")
+        lines.append("|---|---|---|---|---|---|")
+        for chk in report.checks:
+            lines.append("| %s | %s | %s | %s | %s | %s |" % (
+                chk.id, chk.dimension, chk.severity.value,
+                "yes" if chk.automated else "manual", _cells(chk.title), _cells(chk.method)))
+        lines.append("")
+    lines.append("---")
+    lines.append("_Generated by tools/paper_audit. PASS means the automated evidence was found; "
+                 "MANUAL items require an explicit reviewer sign-off._")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def write_report(report: Report, out_dir: Path, stem: str | None = None) -> tuple[Path, Path]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    stem = stem or getattr(report, "audit_id", report.profile)
+    md = out_dir / (stem + ".md")
+    js = out_dir / (stem + ".json")
+    md.write_text(render_markdown(report), encoding="utf-8")
+    payload = report.as_dict()
+    if not payload.get("audit_id"):
+        payload["audit_id"] = stem
+    js.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return md, js
+
+
+def print_summary(report: Report) -> None:
+    c = report.counts()
+    print("%-52s %s  grade %s  pass=%d fail=%d warn=%d manual=%d skip=%d error=%d"
+          % (report.profile_label, report.verdict(), report.grade(), c.get("PASS", 0),
+             c.get("FAIL", 0), c.get("WARN", 0), c.get("MANUAL", 0),
+             c.get("SKIP", 0), c.get("ERROR", 0)))
+    for f in report.gate_failures():
+        print("  BLOCKER %-6s %-6s %s" % (f.check_id, f.severity.value, f.message))

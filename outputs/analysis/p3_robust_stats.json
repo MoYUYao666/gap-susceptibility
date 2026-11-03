@@ -1,0 +1,96 @@
+{
+ "meta": {
+  "script": "tools/_p1538_robust_stats.py",
+  "task": "C3 robust statistics"
+ },
+ "seed5": {
+  "r5": {
+   "n": 5,
+   "mean": -23.0,
+   "sd": 22.31311273668468,
+   "median": -27.0,
+   "mad": 16.5,
+   "min": -49.0,
+   "max": 8.0,
+   "ci95_mean": [
+    -39.015,
+    -6.4
+   ]
+  },
+  "r6": {
+   "n": 5,
+   "mean": 65.5,
+   "sd": 38.53894134508627,
+   "median": 62.0,
+   "mad": 31.0,
+   "min": 25.5,
+   "max": 115.0,
+   "ci95_mean": [
+    35.4,
+    95.6
+   ]
+  }
+ },
+ "allocation_arms": {
+  "arms": {
+   "verify_r1_s42_bcexplicit_v10_s2_m3_d1.json": {
+    "delta_E": 444.0,
+    "E": [
+     3921.0,
+     3789.5,
+     3918.0,
+     4365.0
+    ]
+   },
+   "verify_r1_s42_bcexplicit_v11_s1_m3_d1.json": {
+    "delta_E": 333.0,
+    "E": [
+     3921.0,
+     3814.5,
+     3904.5,
+     4254.0
+    ]
+   },
+   "verify_r1_s42_bcexplicit_v13_s1_m1_d1.json": {
+    "delta_E": 227.0,
+    "E": [
+     3921.0,
+     3781.0,
+     3805.5,
+     4148.0
+    ]
+   },
+   "verify_r1_s42_bcexplicit_v2_s4_m6_d4.json": {
+    "delta_E": 284.0,
+    "E": [
+     3921.0,
+     3794.5,
+     3826.0,
+     4205.0
+    ]
+   },
+   "verify_r1_s42_bcexplicit_v5_s5_m4_d2.json": {
+    "delta_E": 196.5,
+    "E": [
+     3921.0,
+     3776.0,
+     3821.0,
+     4117.5
+    ]
+   }
+  },
+  "across_arms": {
+   "n": 5,
+   "mean": 296.9,
+   "sd": 97.56305653268556,
+   "median": 284.0,
+   "mad": 57.0,
+   "min": 196.5,
+   "max": 444.0,
+   "ci95_mean": [
+    229.9,
+    378.4
+   ]
+  }
+ }
+}

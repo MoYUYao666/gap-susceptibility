@@ -1,0 +1,1249 @@
+{
+  "provenance": {
+    "input_file": "outputs/analysis/dg_r1_reproducible.json",
+    "input_field": "rows[*].{path,dg_final,cg_final,r1}",
+    "input_producer": "tools/p1_dg_r1_recompute.py",
+    "archive_source": "outputs/**/results.json :: final_gap.distribution_gap, final_gap.centroid_gap, final_task_metrics.R@1",
+    "recheck": "all 204 rows independently re-read from their results.json; values match bit-for-bit (0 mismatches)",
+    "labels": "results.json archives NO dataset/model/config field; labels are derived, see label_evidence. family (first path component) is the only archive-literal grouping.",
+    "statsmodels_available": false
+  },
+  "by_family": {
+    "blip2": {
+      "n": 5,
+      "r": -0.9765,
+      "p": 0.0043,
+      "ci95": [
+        -0.9985,
+        -0.6809
+      ]
+    },
+    "coco": {
+      "n": 7,
+      "r": 0.851,
+      "p": 0.015162,
+      "ci95": [
+        0.2727,
+        0.9776
+      ]
+    },
+    "flickr30k": {
+      "n": 29,
+      "r": -0.4641,
+      "p": 0.01122,
+      "ci95": [
+        -0.7098,
+        -0.1175
+      ]
+    },
+    "flickr30k_seeds": {
+      "n": 20,
+      "r": -0.6305,
+      "p": 0.002879,
+      "ci95": [
+        -0.839,
+        -0.2607
+      ]
+    },
+    "imagenet_zs": {
+      "n": 3,
+      "r": -0.2523,
+      "p": 0.837599,
+      "note": "n < 4: correlation reported but not inferential"
+    },
+    "phase1": {
+      "n": 7,
+      "r": -0.9218,
+      "p": 0.003146,
+      "ci95": [
+        -0.9886,
+        -0.5519
+      ]
+    },
+    "route_c": {
+      "n": 8,
+      "r": -0.9861,
+      "p": 7e-06,
+      "ci95": [
+        -0.9976,
+        -0.9223
+      ]
+    },
+    "route_d": {
+      "n": 5,
+      "r": 0.9793,
+      "p": 0.00357,
+      "ci95": [
+        0.7132,
+        0.9987
+      ]
+    },
+    "route_e": {
+      "n": 3,
+      "r": 0.9835,
+      "p": 0.115768,
+      "note": "n < 4: correlation reported but not inferential"
+    },
+    "siglip": {
+      "n": 5,
+      "r": 0.8083,
+      "p": 0.097788,
+      "ci95": [
+        -0.2578,
+        0.9868
+      ]
+    },
+    "theory": {
+      "n": 110,
+      "r": -0.6339,
+      "p": 0.0,
+      "ci95": [
+        -0.734,
+        -0.5068
+      ]
+    },
+    "vitl": {
+      "n": 2,
+      "r": null,
+      "p": null,
+      "note": "n < 4: correlation reported but not inferential"
+    }
+  },
+  "by_dataset": {
+    "DISPUTED": {
+      "n": 3,
+      "r": -0.2523,
+      "p": 0.837599,
+      "note": "n < 4: correlation reported but not inferential"
+    },
+    "UNDOCUMENTED": {
+      "n": 2,
+      "r": null,
+      "p": null,
+      "note": "n < 4: correlation reported but not inferential"
+    },
+    "coco": {
+      "n": 16,
+      "r": -0.5984,
+      "p": 0.01434,
+      "ci95": [
+        -0.8438,
+        -0.1459
+      ]
+    },
+    "flickr30k": {
+      "n": 183,
+      "r": -0.7809,
+      "p": 0.0,
+      "ci95": [
+        -0.8317,
+        -0.717
+      ]
+    }
+  },
+  "by_model": {
+    "BLIP": {
+      "n": 5,
+      "r": -0.9765,
+      "p": 0.0043,
+      "ci95": [
+        -0.9985,
+        -0.6809
+      ]
+    },
+    "CLIP ViT-B/32": {
+      "n": 192,
+      "r": -0.7476,
+      "p": 0.0,
+      "ci95": [
+        -0.804,
+        -0.6777
+      ]
+    },
+    "SigLIP": {
+      "n": 5,
+      "r": 0.8083,
+      "p": 0.097788,
+      "ci95": [
+        -0.2578,
+        0.9868
+      ]
+    },
+    "ViT-L": {
+      "n": 2,
+      "r": null,
+      "p": null,
+      "note": "n < 4: correlation reported but not inferential"
+    }
+  },
+  "by_design_cell": {
+    "DISPUTED | CLIP ViT-B/32": {
+      "n": 3,
+      "r": -0.2523,
+      "p": 0.837599,
+      "note": "n < 4: correlation reported but not inferential"
+    },
+    "UNDOCUMENTED | ViT-L": {
+      "n": 2,
+      "r": null,
+      "p": null,
+      "note": "n < 4: correlation reported but not inferential"
+    },
+    "coco | CLIP ViT-B/32": {
+      "n": 16,
+      "r": -0.5984,
+      "p": 0.01434,
+      "ci95": [
+        -0.8438,
+        -0.1459
+      ]
+    },
+    "flickr30k | BLIP": {
+      "n": 5,
+      "r": -0.9765,
+      "p": 0.0043,
+      "ci95": [
+        -0.9985,
+        -0.6809
+      ]
+    },
+    "flickr30k | CLIP ViT-B/32": {
+      "n": 173,
+      "r": -0.8301,
+      "p": 0.0,
+      "ci95": [
+        -0.8714,
+        -0.7771
+      ]
+    },
+    "flickr30k | SigLIP": {
+      "n": 5,
+      "r": 0.8083,
+      "p": 0.097788,
+      "ci95": [
+        -0.2578,
+        0.9868
+      ]
+    }
+  },
+  "by_config": {
+    "blip2/b3_blip2_lora_r16": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "blip2/b3_blip2_lora_r4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "blip2/b3_blip2_lora_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "blip2/b4_blip2_lora_both": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "blip2/b4_blip2_lora_text_only": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "coco/baseline_full_ft_coco": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "coco/rq1_rank16_coco": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "coco/rq1_rank4_coco": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "coco/rq1_rank8_coco": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "coco/rq2_both_coco": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "coco/rq2_text_only_coco": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "coco/rq2_vision_only_coco": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/alpha_16": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/alpha_32": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/alpha_4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/alpha_64": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/alpha_8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/baseline_full_ft": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/gap_init_r1": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/gap_init_r2": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/gap_init_r4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/gap_init_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/modules_q": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/modules_qv": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/modules_qvko": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/null_lora_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq1_rank16": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq1_rank32": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq1_rank4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq1_rank64": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq1_rank8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq2_both": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq2_text_only": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq2_vision_only": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq3_complete": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq3_img_drop_10": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq3_img_drop_30": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq3_img_drop_50": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq3_txt_mask_10": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq3_txt_mask_30": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k/rq3_txt_mask_50": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "flickr30k_seeds/baseline_full_ft": {
+      "n": 5,
+      "r": -0.1492,
+      "p": 0.810741,
+      "ci95": [
+        -0.9115,
+        0.8442
+      ]
+    },
+    "flickr30k_seeds/rq1_rank32": {
+      "n": 5,
+      "r": 0.7592,
+      "p": 0.136617,
+      "ci95": [
+        -0.3727,
+        0.983
+      ]
+    },
+    "flickr30k_seeds/rq1_rank4": {
+      "n": 5,
+      "r": 0.7955,
+      "p": 0.107517,
+      "ci95": [
+        -0.2909,
+        0.9859
+      ]
+    },
+    "flickr30k_seeds/rq2_text_only": {
+      "n": 5,
+      "r": -0.3476,
+      "p": 0.566479,
+      "ci95": [
+        -0.9412,
+        0.7712
+      ]
+    },
+    "imagenet_zs/both_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "imagenet_zs/full_ft": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "imagenet_zs/text_only_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "phase1/adapter_d16_both": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "phase1/adapter_d16_text": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "phase1/adapter_d16_vis": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "phase1/adapter_d32_text": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "phase1/adapter_d4_text": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "phase1/adapter_d64_text": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "phase1/adapter_d8_text": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_c/c1_gapreg_lam0.01": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_c/c1_gapreg_lam0.1": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_c/c1_gapreg_lam0.5": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_c/c1_gapreg_lam1.0": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_c/c3_gapinit_text_r1": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_c/c3_gapinit_text_r4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_c/c4_alpha_anneal_d0.3": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_c/c4_alpha_anneal_d0.5": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_d/d1_alpha64_text_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_d/d2_r4_alpha64_text": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_d/d3_r4_alpha64_text_qvko": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_d/d4_gapinit_text_alpha64": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_d/d5_r16_alpha64_text": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_e/e1_dges_both_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_e/e2_dges_alpha4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "route_e/e3_dges_text_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "siglip/s3_siglip_lora_r16": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "siglip/s3_siglip_lora_r4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "siglip/s3_siglip_lora_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "siglip/s4_siglip_lora_both": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "siglip/s4_siglip_lora_text_only": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/adapter/adapter_both_d16": {
+      "n": 3,
+      "r": -0.2318,
+      "p": 0.8511,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/adapter/adapter_both_d32": {
+      "n": 3,
+      "r": -0.995,
+      "p": 0.063843,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/adapter/adapter_both_d4": {
+      "n": 3,
+      "r": 0.4289,
+      "p": 0.717785,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/adapter/adapter_both_d64": {
+      "n": 3,
+      "r": -0.5016,
+      "p": 0.665515,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/adapter/adapter_both_d8": {
+      "n": 3,
+      "r": -0.7779,
+      "p": 0.432566,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/adapter/adapter_text_only_d16": {
+      "n": 3,
+      "r": -0.0016,
+      "p": 0.998954,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/adapter/adapter_text_only_d32": {
+      "n": 3,
+      "r": 0.9949,
+      "p": 0.064572,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/adapter/adapter_text_only_d4": {
+      "n": 3,
+      "r": -0.9389,
+      "p": 0.223671,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/adapter/adapter_text_only_d64": {
+      "n": 3,
+      "r": 0.0226,
+      "p": 0.985603,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/adapter/adapter_text_only_d8": {
+      "n": 3,
+      "r": -0.0183,
+      "p": 0.988362,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/beta_pilot/beta_pilot_both_r8": {
+      "n": 3,
+      "r": -0.9313,
+      "p": 0.237265,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/beta_pilot/beta_pilot_full_ft": {
+      "n": 3,
+      "r": 0.5551,
+      "p": 0.625345,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/beta_pilot/beta_pilot_text_r8": {
+      "n": 3,
+      "r": 0.128,
+      "p": 0.918257,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/coco/coco_both_r8": {
+      "n": 3,
+      "r": 0.702,
+      "p": 0.504545,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/coco/coco_full_ft": {
+      "n": 3,
+      "r": -0.9841,
+      "p": 0.113672,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/coco/coco_text_r8": {
+      "n": 3,
+      "r": -0.2465,
+      "p": 0.841443,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/epoch1/v1_both_r1": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_both_r16": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_both_r2": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_both_r32": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_both_r4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_both_r64": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_both_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_text_only_r1": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_text_only_r16": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_text_only_r2": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_text_only_r32": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_text_only_r4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_text_only_r64": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/epoch1/v1_text_only_r8": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/v1_trajectory/v1_both_r1": {
+      "n": 3,
+      "r": 0.0525,
+      "p": 0.966588,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_both_r16": {
+      "n": 3,
+      "r": -0.0347,
+      "p": 0.977879,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_both_r2": {
+      "n": 3,
+      "r": -0.9895,
+      "p": 0.092321,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_both_r32": {
+      "n": 3,
+      "r": -0.9807,
+      "p": 0.12529,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_both_r4": {
+      "n": 3,
+      "r": -0.9477,
+      "p": 0.206782,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_both_r64": {
+      "n": 3,
+      "r": 0.6762,
+      "p": 0.527225,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_both_r8": {
+      "n": 3,
+      "r": 0.8346,
+      "p": 0.371401,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_full_ft": {
+      "n": 3,
+      "r": 0.958,
+      "p": 0.185195,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_text_only_r1": {
+      "n": 3,
+      "r": -0.5329,
+      "p": 0.642197,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_text_only_r16": {
+      "n": 4,
+      "r": -0.0834,
+      "p": 0.916552,
+      "ci95": [
+        -0.967,
+        0.9542
+      ]
+    },
+    "theory/v1_trajectory/v1_text_only_r2": {
+      "n": 3,
+      "r": 0.9985,
+      "p": 0.034991,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_text_only_r32": {
+      "n": 3,
+      "r": 0.4576,
+      "p": 0.697399,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_text_only_r4": {
+      "n": 3,
+      "r": 0.4806,
+      "p": 0.680818,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_text_only_r64": {
+      "n": 3,
+      "r": -0.6844,
+      "p": 0.520164,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/v1_trajectory/v1_text_only_r8": {
+      "n": 3,
+      "r": -0.5666,
+      "p": 0.616488,
+      "ci95": [
+        NaN,
+        NaN
+      ]
+    },
+    "theory/verify_accum/full_ft_accum1_bs32": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "theory/verify_accum/full_ft_accum4_bs32": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "vitl/vitl_rank4": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    },
+    "vitl/vitl_text_only": {
+      "n": 1,
+      "r": null,
+      "p": null,
+      "note": "n < 3: correlation reported but not inferential"
+    }
+  },
+  "pooled_within_family": {
+    "n_groups": 11,
+    "n_rows": 202,
+    "r_within": -0.5506,
+    "r_within_p": 0.0,
+    "groups": [
+      "blip2",
+      "coco",
+      "flickr30k",
+      "flickr30k_seeds",
+      "imagenet_zs",
+      "phase1",
+      "route_c",
+      "route_d",
+      "route_e",
+      "siglip",
+      "theory"
+    ],
+    "rows_per_group": [
+      5,
+      7,
+      29,
+      20,
+      3,
+      7,
+      8,
+      5,
+      3,
+      5,
+      110
+    ]
+  },
+  "pooled_within_design_cell": {
+    "n_groups": 5,
+    "n_rows": 202,
+    "r_within": -0.731,
+    "r_within_p": 0.0,
+    "groups": [
+      "DISPUTED | CLIP ViT-B/32",
+      "coco | CLIP ViT-B/32",
+      "flickr30k | BLIP",
+      "flickr30k | CLIP ViT-B/32",
+      "flickr30k | SigLIP"
+    ],
+    "rows_per_group": [
+      3,
+      16,
+      5,
+      173,
+      5
+    ]
+  },
+  "pooled_within_dataset": {
+    "n_groups": 3,
+    "n_rows": 202,
+    "r_within": -0.7512,
+    "r_within_p": 0.0,
+    "groups": [
+      "DISPUTED",
+      "coco",
+      "flickr30k"
+    ],
+    "rows_per_group": [
+      3,
+      16,
+      183
+    ]
+  },
+  "pooled_within_model": {
+    "n_groups": 3,
+    "n_rows": 202,
+    "r_within": -0.7073,
+    "r_within_p": 0.0,
+    "groups": [
+      "BLIP",
+      "CLIP ViT-B/32",
+      "SigLIP"
+    ],
+    "rows_per_group": [
+      5,
+      192,
+      5
+    ]
+  },
+  "note": "'pooled_within_*' centres DG and R@1 inside each group and then correlates the stacked deviations: the pure within-group slope. Compare with the pooled r over all 204 rows.",
+  "by_family_within_dataset": {
+    "DISPUTED": {
+      "dataset_r": -0.2523,
+      "n_dataset": 3,
+      "by_family": {
+        "imagenet_zs": {
+          "n": 3,
+          "r": -0.2523
+        }
+      }
+    },
+    "UNDOCUMENTED": {
+      "dataset_r": null,
+      "n_dataset": 2,
+      "by_family": {
+        "vitl": {
+          "n": 2,
+          "r": null
+        }
+      }
+    },
+    "coco": {
+      "dataset_r": -0.5984,
+      "n_dataset": 16,
+      "by_family": {
+        "coco": {
+          "n": 7,
+          "r": 0.851
+        },
+        "theory": {
+          "n": 9,
+          "r": -0.3589
+        }
+      }
+    },
+    "flickr30k": {
+      "dataset_r": -0.7809,
+      "n_dataset": 183,
+      "by_family": {
+        "blip2": {
+          "n": 5,
+          "r": -0.9765
+        },
+        "flickr30k": {
+          "n": 29,
+          "r": -0.4641
+        },
+        "flickr30k_seeds": {
+          "n": 20,
+          "r": -0.6305
+        },
+        "phase1": {
+          "n": 7,
+          "r": -0.9218
+        },
+        "route_c": {
+          "n": 8,
+          "r": -0.9861
+        },
+        "route_d": {
+          "n": 5,
+          "r": 0.9793
+        },
+        "route_e": {
+          "n": 3,
+          "r": 0.9835
+        },
+        "siglip": {
+          "n": 5,
+          "r": 0.8083
+        },
+        "theory": {
+          "n": 101,
+          "r": -0.8542
+        }
+      }
+    }
+  }
+}

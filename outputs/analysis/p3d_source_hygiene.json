@@ -1,0 +1,61 @@
+{
+ "p3d_clip_ranksweep.json": {
+  "n_runs": 79,
+  "per_run_hp": [
+   "batch",
+   "device",
+   "epochs",
+   "lr",
+   "n_train"
+  ],
+  "protocol_keys": 12,
+  "devices": [
+   "cuda"
+  ]
+ },
+ "p3d_qwen_ranksweep.json": {
+  "n_runs": 43,
+  "per_run_hp": [
+   "batch",
+   "device",
+   "dtype",
+   "epochs",
+   "lora_targets",
+   "lr",
+   "max_pixels",
+   "min_pixels",
+   "n_train"
+  ],
+  "protocol_keys": 14,
+  "devices": [
+   "cpu",
+   "cuda"
+  ]
+ },
+ "p3d_qwen_ranksweep_mp50176.json": {
+  "n_runs": 4,
+  "per_run_hp": [
+   "batch",
+   "device",
+   "dtype",
+   "epochs",
+   "lora_targets",
+   "lr",
+   "max_pixels",
+   "min_pixels",
+   "n_train"
+  ],
+  "protocol_keys": 14,
+  "devices": [
+   "cuda"
+  ]
+ },
+ "p3d_summary.json": {
+  "has_fingerprint": true,
+  "has_note": true
+ },
+ "p3d_qwen_summary.json": {
+  "has_fingerprint": true,
+  "has_note": true
+ }
+}

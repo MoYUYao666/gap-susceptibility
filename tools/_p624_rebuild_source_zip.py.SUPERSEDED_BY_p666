@@ -1,0 +1,134 @@
+# -*- coding: utf-8 -*-
+r"""Rebuild the LaTeX source archive from main.tex's actual dependency graph.
+
+Why this exists: the first rebuild shipped only four .tex/.bib files (6,775 bytes), which
+would not compile because main.tex \input's sections/*.tex and includes two figures. The
+previous archive was 48,879 bytes, so most of its content had been dropped.
+
+The member list below is derived from the file itself, not guessed:
+  \documentclass[journal]{IEEEtran}   -> class comes from the TeX distribution
+  \input{sections/{introduction,related_work,theory,experiments,discussion,conclusion}}
+  \bibliography{references}           -> references.bib, plus main.bbl so bibtex is optional
+  \includegraphics{figures/fig{1,2}_*.png}
+
+Build artefacts (.log, .aux, .out, .bak_*) are excluded.
+
+    python tools/_p624_rebuild_source_zip.py [--apply]
+"""
+from __future__ import annotations
+
+import argparse
+import io
+import json
+import re
+import sys
+import zipfile
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+BASE = REPO / "paper3" / "paper_ieee"
+PKG = REPO / "SUBMISSION" / "P3_PRL_revision" / "manuscript"
+ZIP = PKG / "P3_latex_source_revision.zip"
+OUT = REPO / "outputs" / "analysis" / "source_zip_manifest.json"
+
+SECTIONS = ["introduction", "related_work", "theory", "experiments", "discussion", "conclusion"]
+
+
+def discover() -> list[tuple[Path, str]]:
+    """Return (source_path, archive_name) pairs, derived from main.tex."""
+    out: list[tuple[Path, str]] = [(BASE / "main.tex", "main.tex")]
+    for s in SECTIONS:
+        out.append((BASE / "sections" / f"{s}.tex", f"sections/{s}.tex"))
+    out.append((BASE / "references.bib", "references.bib"))
+    out.append((BASE / "main.bbl", "main.bbl"))
+    # figures actually referenced
+    t = io.open(BASE / "sections" / "experiments.tex", encoding="utf-8", errors="replace").read()
+    figs = sorted({m.group(1) for m in re.finditer(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", t)})
+    for g in figs:
+        p = BASE / g if g.endswith((".png", ".pdf")) else BASE / (g + ".pdf")
+        out.append((p, g))
+    # a short README so the editor knows how to build it
+    return out
+
+
+README = """LaTeX source for the revised manuscript
+=======================================
+
+Manuscript: Gradient Structure Laws as Predictors of PEFT Design:
+            Zero-Shot Cross-Architecture Rank Allocation
+Journal   : Pattern Recognition Letters
+Id        : PRLETTERS-D-26-02378
+
+Build
+-----
+    pdflatex main
+    bibtex   main        (optional; main.bbl is included)
+    pdflatex main
+    pdflatex main
+
+Requirements: a standard TeX Live installation. The document uses the IEEEtran class,
+which ships with TeX Live and MiKTeX; no other non-standard package is required.
+
+Contents
+--------
+    main.tex            the manuscript root file (defines the document class and inputs)
+    sections/*.tex      the body, one file per section
+    references.bib      the bibliography database
+    main.bbl            the generated bibliography (so bibtex is optional)
+    figures/*.png       the figures included by the body
+
+Compiling main.tex in this directory reproduces the submitted main.pdf apart from the
+figures' rasterisation, which is unchanged.
+"""
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--apply", action="store_true")
+    a = ap.parse_args()
+    members = discover()
+    total = 0
+    print("  Members derived from main.tex:")
+    ok = True
+    for p, name in members:
+        exists = p.exists()
+        ok = ok and exists
+        if exists:
+            total += p.stat().st_size
+        print(f"    {'OK ' if exists else 'MISSING'} {name:<44} "
+              f"{p.stat().st_size if exists else 0:>9,} bytes")
+    print(f"    (plus README_compile.txt)")
+    print(f"  Uncompressed total: {total:,} bytes")
+    if not ok:
+        print("  Refusing to build: a referenced file is missing.")
+        return 1
+    if not a.apply:
+        print("  (dry run)")
+        return 0
+
+    with zipfile.ZipFile(ZIP, "w", zipfile.ZIP_DEFLATED) as z:
+        for p, name in members:
+            z.write(p, name)
+        z.writestr("README_compile.txt", README)
+    with zipfile.ZipFile(ZIP) as z:
+        bad = z.testzip()
+        names = z.namelist()
+    print()
+    print(f"  Wrote {ZIP.name}: {len(names)} members, {ZIP.stat().st_size:,} bytes")
+    print(f"  Integrity: {'OK' if bad is None else 'CORRUPT ' + str(bad)}")
+    print()
+    print("  Contents:")
+    with zipfile.ZipFile(ZIP) as z:
+        for n in sorted(names):
+            print(f"    {n:<44} {z.getinfo(n).file_size:>9,}")
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    io.open(OUT, "w", encoding="utf-8", newline="").write(json.dumps(
+        {"zip": str(ZIP.relative_to(REPO)), "members": sorted(names),
+         "bytes": ZIP.stat().st_size, "integrity_ok": bad is None},
+        ensure_ascii=False, indent=1))
+    print(f"\n  Wrote {OUT.relative_to(REPO)}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

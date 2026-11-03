@@ -1,0 +1,611 @@
+{
+ "domains": [
+  {
+   "domain": "bioclip|image",
+   "n": 8,
+   "cg_range": [
+    0.0194,
+    0.8726
+   ],
+   "top1_range": [
+    14.925,
+    21.704
+   ],
+   "r_CG_top1": 0.3450920636799074,
+   "r_tau_top1": 0.8469326724590756
+  },
+  {
+   "domain": "bioclip|text",
+   "n": 4,
+   "cg_range": [
+    0.0158,
+    0.5241
+   ],
+   "top1_range": [
+    18.657,
+    21.704
+   ],
+   "r_CG_top1": 0.21292181843431995,
+   "r_tau_top1": 0.9533083063899419
+  },
+  {
+   "domain": "oceanclip|image",
+   "n": 8,
+   "cg_range": [
+    0.1359,
+    1.53
+   ],
+   "top1_range": [
+    19.652,
+    24.44
+   ],
+   "r_CG_top1": 0.3274842127121046,
+   "r_tau_top1": 0.8157636931738154
+  },
+  {
+   "domain": "oceanclip|text",
+   "n": 4,
+   "cg_range": [
+    0.1881,
+    1.0209
+   ],
+   "top1_range": [
+    23.507,
+    24.378
+   ],
+   "r_CG_top1": 0.6537681213301676,
+   "r_tau_top1": 0.7713700138274917
+  },
+  {
+   "domain": "openclip_tf|image",
+   "n": 8,
+   "cg_range": [
+    0.0537,
+    1.3136
+   ],
+   "top1_range": [
+    2.612,
+    7.4
+   ],
+   "r_CG_top1": 0.8927419534538503,
+   "r_tau_top1": 0.7468632431234119
+  },
+  {
+   "domain": "openclip_tf|text",
+   "n": 4,
+   "cg_range": [
+    0.0688,
+    0.8489
+   ],
+   "top1_range": [
+    2.612,
+    7.027
+   ],
+   "r_CG_top1": 0.8001701647715113,
+   "r_tau_top1": 0.9995126339883363
+  },
+  {
+   "domain": "siglip|image",
+   "n": 8,
+   "cg_range": [
+    0.0381,
+    1.5225
+   ],
+   "top1_range": [
+    2.114,
+    16.107
+   ],
+   "r_CG_top1": 0.48700538629120227,
+   "r_tau_top1": 0.8280139160591895
+  },
+  {
+   "domain": "siglip|text",
+   "n": 4,
+   "cg_range": [
+    0.0449,
+    1.1297
+   ],
+   "top1_range": [
+    9.515,
+    15.547
+   ],
+   "r_CG_top1": 0.7769569543654589,
+   "r_tau_top1": 0.814593242831891
+  },
+  {
+   "domain": "NKSID|clip_frozen",
+   "n": 6,
+   "cg_range": [
+    0.0303,
+    1.448
+   ],
+   "top1_range": [
+    4.462,
+    19.692
+   ],
+   "r_CG_top1": -0.7698535108131117,
+   "r_tau_top1": -0.3349705196337464
+  },
+  {
+   "domain": "NKSID|sonar_ft",
+   "n": 6,
+   "cg_range": [
+    0.0801,
+    1.5562
+   ],
+   "top1_range": [
+    91.231,
+    96.923
+   ],
+   "r_CG_top1": -0.5080123417491496,
+   "r_tau_top1": 0.5547291180627864
+  }
+ ],
+ "threshold_transfer": {
+  "bioclip|image->bioclip|text": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "bioclip|image->oceanclip|image": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.375
+  },
+  "bioclip|image->oceanclip|text": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.25
+  },
+  "bioclip|image->openclip_tf|image": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.0
+  },
+  "bioclip|image->openclip_tf|text": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.25
+  },
+  "bioclip|image->siglip|image": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.125
+  },
+  "bioclip|image->siglip|text": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.25
+  },
+  "bioclip|image->NKSID|clip_frozen": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.6666666666666666
+  },
+  "bioclip|image->NKSID|sonar_ft": {
+   "threshold": 0.7275560000000001,
+   "fit_BA": 0.625,
+   "test_BA": 0.6666666666666666
+  },
+  "bioclip|text->bioclip|image": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "bioclip|text->oceanclip|image": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "bioclip|text->oceanclip|text": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "bioclip|text->openclip_tf|image": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "bioclip|text->openclip_tf|text": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "bioclip|text->siglip|image": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "bioclip|text->siglip|text": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "bioclip|text->NKSID|clip_frozen": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "bioclip|text->NKSID|sonar_ft": {
+   "threshold": 0.0158,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "oceanclip|image->bioclip|image": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "oceanclip|image->bioclip|text": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "oceanclip|image->oceanclip|text": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "oceanclip|image->openclip_tf|image": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.375
+  },
+  "oceanclip|image->openclip_tf|text": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "oceanclip|image->siglip|image": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.375
+  },
+  "oceanclip|image->siglip|text": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.5
+  },
+  "oceanclip|image->NKSID|clip_frozen": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.8333333333333333
+  },
+  "oceanclip|image->NKSID|sonar_ft": {
+   "threshold": 1.223298,
+   "fit_BA": 0.75,
+   "test_BA": 0.8333333333333333
+  },
+  "oceanclip|text->bioclip|image": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "oceanclip|text->bioclip|text": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "oceanclip|text->oceanclip|image": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "oceanclip|text->openclip_tf|image": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "oceanclip|text->openclip_tf|text": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "oceanclip|text->siglip|image": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "oceanclip|text->siglip|text": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "oceanclip|text->NKSID|clip_frozen": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "oceanclip|text->NKSID|sonar_ft": {
+   "threshold": 0.1881,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "openclip_tf|image->bioclip|image": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "openclip_tf|image->bioclip|text": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "openclip_tf|image->oceanclip|image": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "openclip_tf|image->oceanclip|text": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "openclip_tf|image->openclip_tf|text": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "openclip_tf|image->siglip|image": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "openclip_tf|image->siglip|text": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "openclip_tf|image->NKSID|clip_frozen": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "openclip_tf|image->NKSID|sonar_ft": {
+   "threshold": 0.0537,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "openclip_tf|text->bioclip|image": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "openclip_tf|text->bioclip|text": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "openclip_tf|text->oceanclip|image": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "openclip_tf|text->oceanclip|text": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "openclip_tf|text->openclip_tf|image": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "openclip_tf|text->siglip|image": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "openclip_tf|text->siglip|text": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "openclip_tf|text->NKSID|clip_frozen": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "openclip_tf|text->NKSID|sonar_ft": {
+   "threshold": 0.0688,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "siglip|image->bioclip|image": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "siglip|image->bioclip|text": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "siglip|image->oceanclip|image": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.625
+  },
+  "siglip|image->oceanclip|text": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "siglip|image->openclip_tf|image": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "siglip|image->openclip_tf|text": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "siglip|image->siglip|text": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.5
+  },
+  "siglip|image->NKSID|clip_frozen": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.6666666666666666
+  },
+  "siglip|image->NKSID|sonar_ft": {
+   "threshold": 1.41117,
+   "fit_BA": 0.625,
+   "test_BA": 0.8333333333333333
+  },
+  "siglip|text->bioclip|image": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "siglip|text->bioclip|text": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.25
+  },
+  "siglip|text->oceanclip|image": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "siglip|text->oceanclip|text": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "siglip|text->openclip_tf|image": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "siglip|text->openclip_tf|text": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "siglip|text->siglip|image": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.375
+  },
+  "siglip|text->NKSID|clip_frozen": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.6666666666666666
+  },
+  "siglip|text->NKSID|sonar_ft": {
+   "threshold": 0.0449,
+   "fit_BA": 0.5,
+   "test_BA": 0.5
+  },
+  "NKSID|clip_frozen->bioclip|image": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "NKSID|clip_frozen->bioclip|text": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "NKSID|clip_frozen->oceanclip|image": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.625
+  },
+  "NKSID|clip_frozen->oceanclip|text": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "NKSID|clip_frozen->openclip_tf|image": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "NKSID|clip_frozen->openclip_tf|text": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "NKSID|clip_frozen->siglip|image": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "NKSID|clip_frozen->siglip|text": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "NKSID|clip_frozen->NKSID|sonar_ft": {
+   "threshold": 1.0864865,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.6666666666666666
+  },
+  "NKSID|sonar_ft->bioclip|image": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "NKSID|sonar_ft->bioclip|text": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "NKSID|sonar_ft->oceanclip|image": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.625
+  },
+  "NKSID|sonar_ft->oceanclip|text": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "NKSID|sonar_ft->openclip_tf|image": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "NKSID|sonar_ft->openclip_tf|text": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.5
+  },
+  "NKSID|sonar_ft->siglip|image": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "NKSID|sonar_ft->siglip|text": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.25
+  },
+  "NKSID|sonar_ft->NKSID|clip_frozen": {
+   "threshold": 1.128131,
+   "fit_BA": 0.8333333333333333,
+   "test_BA": 0.8333333333333333
+  }
+ },
+ "text_side_surgery": [
+  {
+   "domain": "clip_frozen",
+   "lambda": "text1.0",
+   "tau_meas": 0.0298,
+   "CG": 0.0265
+  },
+  {
+   "domain": "sonar_ft",
+   "lambda": "text1.0",
+   "tau_meas": 0.8988,
+   "CG": 0.0974
+  }
+ ],
+ "note": "degraded = top-1 below the domain median; larger centroid gap marks degradation"
+}

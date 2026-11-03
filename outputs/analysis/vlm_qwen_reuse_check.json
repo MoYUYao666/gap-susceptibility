@@ -1,0 +1,171 @@
+{
+  "experiment": "vlm_qwen_reuse_check",
+  "question": "PR R2.3 -- do the decoder-VLM arms order the same way as the dual encoders, as reported from this archive?",
+  "model": "Qwen2-VL-2B-Instruct under strict freezing (bf16, reproducible)",
+  "source_of_numbers": {
+    "raw_runs": "outputs/vlm_seeds_bf16/<arm>_seed<seed>.json  field: dg_star (3 epochs)",
+    "definition": "src/dg_star_tracker.py: DG* = mean((z_I - z_T)^2), z L2-normalised",
+    "reduction_pct": "100 * (dg_star[0] - dg_star[-1]) / dg_star[0]",
+    "archived_aggregate": "outputs/analysis/vlm_bf16_seeds_verdict.json",
+    "archived_detail": "outputs/analysis/vlm_bf16_detail.json",
+    "protocol": "max_samples 400, 3 epochs, batch 2, bf16 (4bit=false in every file)"
+  },
+  "per_arm": {
+    "text_only": {
+      "n_seeds": 13,
+      "seeds": [
+        1011,
+        123,
+        1313,
+        1616,
+        1919,
+        2323,
+        2727,
+        3131,
+        3737,
+        4141,
+        42,
+        456,
+        789
+      ],
+      "dg_star_reduction_pct_mean": 66.469,
+      "dg_star_reduction_pct_sd": 8.316,
+      "dg_star_reduction_pct_min": 47.798,
+      "dg_star_reduction_pct_max": 78.769,
+      "dg_star_initial_mean": 0.3357,
+      "dg_star_final_mean": 0.1101,
+      "cg_initial_mean": 0.2487,
+      "cg_final_mean": 0.0806,
+      "n_trainable_params": [
+        9232384
+      ],
+      "any_4bit": [
+        false
+      ],
+      "published_pct": [
+        66.5,
+        8.3
+      ],
+      "agrees_with_published": true
+    },
+    "both": {
+      "n_seeds": 13,
+      "seeds": [
+        1011,
+        123,
+        1313,
+        1616,
+        1919,
+        2323,
+        2727,
+        3131,
+        3737,
+        4141,
+        42,
+        456,
+        789
+      ],
+      "dg_star_reduction_pct_mean": 87.938,
+      "dg_star_reduction_pct_sd": 5.352,
+      "dg_star_reduction_pct_min": 73.14,
+      "dg_star_reduction_pct_max": 95.051,
+      "dg_star_initial_mean": 0.5936,
+      "dg_star_final_mean": 0.0659,
+      "cg_initial_mean": 0.3498,
+      "cg_final_mean": 0.0585,
+      "n_trainable_params": [
+        14494912
+      ],
+      "any_4bit": [
+        false
+      ],
+      "published_pct": [
+        87.9,
+        5.4
+      ],
+      "agrees_with_published": true
+    },
+    "vision_only": {
+      "n_seeds": 13,
+      "seeds": [
+        1011,
+        123,
+        1313,
+        1616,
+        1919,
+        2323,
+        2727,
+        3131,
+        3737,
+        4141,
+        42,
+        456,
+        789
+      ],
+      "dg_star_reduction_pct_mean": 18.028,
+      "dg_star_reduction_pct_sd": 8.776,
+      "dg_star_reduction_pct_min": 8.512,
+      "dg_star_reduction_pct_max": 35.716,
+      "dg_star_initial_mean": 2.1422,
+      "dg_star_final_mean": 1.7571,
+      "cg_initial_mean": 1.3227,
+      "cg_final_mean": 0.9308,
+      "n_trainable_params": [
+        5262528
+      ],
+      "any_4bit": [
+        false
+      ],
+      "published_pct": [
+        18.0,
+        8.8
+      ],
+      "agrees_with_published": true
+    }
+  },
+  "checks": [
+    {
+      "arm": "text_only",
+      "recomputed": [
+        66.47,
+        8.32
+      ],
+      "published": [
+        66.5,
+        8.3
+      ],
+      "pass": true
+    },
+    {
+      "arm": "both",
+      "recomputed": [
+        87.94,
+        5.35
+      ],
+      "published": [
+        87.9,
+        5.4
+      ],
+      "pass": true
+    },
+    {
+      "arm": "vision_only",
+      "recomputed": [
+        18.03,
+        8.78
+      ],
+      "published": [
+        18.0,
+        8.8
+      ],
+      "pass": true
+    }
+  ],
+  "ordering_by_dg_star_reduction_desc": [
+    "both",
+    "text_only",
+    "vision_only"
+  ],
+  "conclusion": "vision-only is the weakest arm by a margin no seed ordering can close (its largest reduction 35.7% is below text-only's smallest 47.8% and both's smallest 73.1%); the two stronger arms are not resolved against each other (ranges overlap).",
+  "all_published_values_reproduced": true
+}

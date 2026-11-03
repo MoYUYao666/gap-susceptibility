@@ -1,0 +1,132 @@
+{
+ "mode": "vis_mean_lang_mean",
+ "n_samples": 16,
+ "E_by_n": {
+  "4": {
+   "mean": 0.633,
+   "std": 0.018
+  },
+  "8": {
+   "mean": 0.618,
+   "std": 0.025
+  },
+  "16": {
+   "mean": 0.609,
+   "std": 0.024
+  }
+ },
+ "block_mean_gdot": {
+  "llm_mid": 5.75,
+  "llm_shallow": 64.66,
+  "llm_deep": 33.39,
+  "llm_other": 18594.62
+ },
+ "block_order_full": [
+  "llm_other",
+  "llm_shallow",
+  "llm_deep",
+  "llm_mid"
+ ],
+ "layer_order_top5": [
+  30,
+  4,
+  31,
+  5,
+  3
+ ],
+ "layer_gdot_full": {
+  "0": 3.97,
+  "1": 3.929,
+  "2": 6.921,
+  "3": 8.258,
+  "4": 12.095,
+  "5": 9.689,
+  "6": 6.484,
+  "7": 4.753,
+  "8": 3.78,
+  "9": 2.979,
+  "10": 1.804,
+  "11": 0.808,
+  "12": 0.637,
+  "13": 0.691,
+  "14": 0.549,
+  "15": 0.761,
+  "16": 0.467,
+  "17": 0.349,
+  "18": 0.435,
+  "19": 0.292,
+  "20": 0.314,
+  "21": 0.452,
+  "22": 0.46,
+  "23": 0.18,
+  "24": 0.196,
+  "25": 0.104,
+  "26": 0.326,
+  "27": 0.219,
+  "28": 0.47,
+  "29": 0.332,
+  "30": 19.528,
+  "31": 11.576
+ },
+ "layer_abs_gdot_depth_spearman": {
+  "rho": -0.571,
+  "p": 0.0006
+ },
+ "layer_u_shape": {
+  "argmax_layer": 30,
+  "argmin_layer": 25,
+  "u_spearman_absdepth": 0.574,
+  "u_p": 0.0006,
+  "note": "correlation of |layer Gamma| with distance from the argmax layer (positive => inverted-U / peaked profile)"
+ },
+ "layer_order_by_n": {
+  "4": {
+   "top3": [
+    4,
+    30,
+    5
+   ],
+   "argmin": 25
+  },
+  "8": {
+   "top3": [
+    30,
+    4,
+    5
+   ],
+   "argmin": 25
+  },
+  "16": {
+   "top3": [
+    30,
+    4,
+    31
+   ],
+   "argmin": 25
+  }
+ },
+ "agg_block_order": [
+  "llm_shallow",
+  "llm_deep",
+  "llm_mid"
+ ],
+ "granularity_consistency": {
+  "blocks_compared": [
+   "llm_shallow",
+   "llm_mid",
+   "llm_deep"
+  ],
+  "spearman": 1.0,
+  "p": 0.0,
+  "note": "layer-aggregated sum vs direct per-block Gamma for the three layer-only blocks (llm_other excluded: dominated by lm_head/embeddings)"
+ },
+ "bootstrap": {
+  "n_resamples": 500,
+  "top2_freq": {
+   "('llm_other', 'llm_shallow')": 0.972,
+   "('llm_other', 'llm_deep')": 0.028
+  },
+  "spearman_vs_full_mean": 0.994,
+  "spearman_vs_full_p5": 1.0
+ }
+}

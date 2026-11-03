@@ -1,0 +1,48 @@
+{
+ "meta": {
+  "script": "tools/_p1595_qwen_objective_control.py",
+  "objective": "contrastive",
+  "arm": "both",
+  "seed": 42,
+  "epochs": 1,
+  "num_samples": 160,
+  "batch": 4,
+  "lr": 0.0001,
+  "model": "master",
+  "precision": "bf16",
+  "max_image_tokens": 12,
+  "dataset": "data/marine_captions (536 image-caption pairs; first --num-samples used)",
+  "reduced_budget_note": "control protocol: 64 image tokens/image, batch 4, 160 pairs, 3 epochs; identical for both objectives",
+  "lora": {
+   "r": 8,
+   "alpha": 16,
+   "dropout": 0.05
+  },
+  "n_trainable": 14494912,
+  "n_vision_adapters": 258,
+  "n_language_adapters": 392,
+  "measurement": {
+   "I": "mean pool of final hidden state over image-token positions",
+   "T": "mean pool over caption positions (after last image token, before <|im_end|>)",
+   "normalisation": "L2 per side, no projection",
+   "DG*": "mean_i ||I_i - T_i||^2"
+  },
+  "elapsed_sec": 46.2,
+  "contrastive_protocol": {
+   "loss": "symmetric cross-entropy over I @ T.T within the batch",
+   "eval": "image+caption forward pass"
+  }
+ },
+ "frozen_dg_star": 1.0703125,
+ "frozen_cg": 0.86328125,
+ "dg_star": [
+  0.283203125
+ ],
+ "cg": [
+  0.3125
+ ],
+ "loss": [
+  1.1830078125
+ ],
+ "delta_DG_percent": -73.54014598540147
+}

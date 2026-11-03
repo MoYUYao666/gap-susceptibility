@@ -1,0 +1,234 @@
+{
+ "definition": {
+  "I": "mean pool of final hidden state over image-token positions",
+  "T": "mean pool of final hidden state over caption-token positions (labels != -100)",
+  "normalisation": "L2 per side, no projection",
+  "DG*": "mean_i ||I_i - T_i||^2",
+  "CG": "||mean I - mean T||",
+  "DG_emp": "sqrt(CG^2 + ||sd_I - sd_T||^2)",
+  "held_out": "COCO val2014 ids[1500:2000], the sweep's held-out slice",
+  "adapters": "outputs/llava_canonical/*_ckpt.pt (the 2026-10-17 canonical retrain)"
+ },
+ "runs": {
+  "frozen": {
+   "clean": {
+    "dg_star": 0.3565603693326314,
+    "cg": 0.5213917725616031,
+    "dg_emp": 0.5429474533978812,
+    "dg_min": 0.30264467000961304,
+    "dg_max": 0.45961517095565796,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.3885019256008996,
+    "cg": 0.5553361915406727,
+    "dg_emp": 0.5730196609076882,
+    "dg_min": 0.32932567596435547,
+    "dg_max": 0.4941190481185913,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 63.6,
+   "tag": "frozen"
+  },
+  "both_s123": {
+   "clean": {
+    "dg_star": 0.6971108459291004,
+    "cg": 0.7129032782145909,
+    "dg_emp": 0.7321357721463118,
+    "dg_min": 0.6099390983581543,
+    "dg_max": 0.7607032060623169,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.6804324587186178,
+    "cg": 0.7075415215795002,
+    "dg_emp": 0.7255372949408712,
+    "dg_min": 0.5905929803848267,
+    "dg_max": 0.7521708011627197,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 90.9,
+   "tag": "both_s123"
+  },
+  "both_s42": {
+   "clean": {
+    "dg_star": 0.6633623564054095,
+    "cg": 0.6956490070100815,
+    "dg_emp": 0.7144247932267943,
+    "dg_min": 0.5728476047515869,
+    "dg_max": 0.7503765225410461,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.6494534062960792,
+    "cg": 0.6918102493361821,
+    "dg_emp": 0.7092552568645439,
+    "dg_min": 0.5564529895782471,
+    "dg_max": 0.7390912175178528,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 90.2,
+   "tag": "both_s42"
+  },
+  "both_s456": {
+   "clean": {
+    "dg_star": 0.7324774407205128,
+    "cg": 0.7338496124933637,
+    "dg_emp": 0.754505217135606,
+    "dg_min": 0.6382109522819519,
+    "dg_max": 0.7943829298019409,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.7125593319771781,
+    "cg": 0.7279906868934631,
+    "dg_emp": 0.7461704758112608,
+    "dg_min": 0.6183147430419922,
+    "dg_max": 0.7780438661575317,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 90.2,
+   "tag": "both_s456"
+  },
+  "text_only_s123": {
+   "clean": {
+    "dg_star": 0.6557860062235877,
+    "cg": 0.6851555402316745,
+    "dg_emp": 0.70892675981289,
+    "dg_min": 0.5636653900146484,
+    "dg_max": 0.7284919619560242,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.6466705534193251,
+    "cg": 0.6868957025664193,
+    "dg_emp": 0.7072048819627285,
+    "dg_min": 0.5529447197914124,
+    "dg_max": 0.7185580730438232,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 87.3,
+   "tag": "text_only_s123"
+  },
+  "text_only_s42": {
+   "clean": {
+    "dg_star": 0.5976207483382452,
+    "cg": 0.6597146268874879,
+    "dg_emp": 0.6814695818255533,
+    "dg_min": 0.5045658349990845,
+    "dg_max": 0.6802140474319458,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.6008682970016722,
+    "cg": 0.6698136282345605,
+    "dg_emp": 0.6881374120967356,
+    "dg_min": 0.5061870813369751,
+    "dg_max": 0.6833995580673218,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 86.3,
+   "tag": "text_only_s42"
+  },
+  "text_only_s456": {
+   "clean": {
+    "dg_star": 0.6000208476233104,
+    "cg": 0.658037006855011,
+    "dg_emp": 0.6817240651082018,
+    "dg_min": 0.5019202828407288,
+    "dg_max": 0.6589221954345703,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.5849707779430208,
+    "cg": 0.6556272355336992,
+    "dg_emp": 0.6753809983859431,
+    "dg_min": 0.48972976207733154,
+    "dg_max": 0.6455947756767273,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 87.5,
+   "tag": "text_only_s456"
+  },
+  "vision_only_s123": {
+   "clean": {
+    "dg_star": 0.8066100762003944,
+    "cg": 0.8336690257466028,
+    "dg_emp": 0.8481882231886742,
+    "dg_min": 0.7159175276756287,
+    "dg_max": 0.8757727742195129,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.7693887617852952,
+    "cg": 0.8145610207603091,
+    "dg_emp": 0.8275903732991412,
+    "dg_min": 0.6870934963226318,
+    "dg_max": 0.8322099447250366,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 68.5,
+   "tag": "vision_only_s123"
+  },
+  "vision_only_s42": {
+   "clean": {
+    "dg_star": 0.711438915086171,
+    "cg": 0.7807992639995757,
+    "dg_emp": 0.8003945543272659,
+    "dg_min": 0.6363675594329834,
+    "dg_max": 0.7772419452667236,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.665241056964511,
+    "cg": 0.7550394298538329,
+    "dg_emp": 0.7724480177321119,
+    "dg_min": 0.5945315957069397,
+    "dg_max": 0.7269817590713501,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 68.2,
+   "tag": "vision_only_s42"
+  },
+  "vision_only_s456": {
+   "clean": {
+    "dg_star": 0.8510310564722333,
+    "cg": 0.8632708617619106,
+    "dg_emp": 0.8788203642788439,
+    "dg_min": 0.7762633562088013,
+    "dg_max": 0.9232186079025269,
+    "n_batches": 63
+   },
+   "prompt": {
+    "dg_star": 0.8141976074566917,
+    "cg": 0.845055896138388,
+    "dg_emp": 0.8589575501914679,
+    "dg_min": 0.7415520548820496,
+    "dg_max": 0.8863351345062256,
+    "n_batches": 63
+   },
+   "n_caption_tokens_mean": 27.702,
+   "n_image_tokens_mean": 576.0,
+   "seconds": 67.9,
+   "tag": "vision_only_s456"
+  }
+ }
+}

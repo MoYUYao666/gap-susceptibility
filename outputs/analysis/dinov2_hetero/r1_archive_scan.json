@@ -1,0 +1,390 @@
+{
+  "script": "tools/_p293j_r1_provenance_exhaustive.py",
+  "method": "group every archived results.json that carries initial_gap, final_gap and final_task_metrics.R@1 by (directory, n_trainable_params); compare each group mean against each published cell at the published precision",
+  "n_usable_runs_scanned": 418,
+  "n_groups": 175,
+  "min_runs_per_group": 3,
+  "per_cell": {
+    "CLIP B/32 r8 / text_only": {
+      "published_delta_CG": -0.0465,
+      "published_R1": 0.624,
+      "own_tree": "outputs/strict_freeze",
+      "own_tree_means": {
+        "R1": 0.6238,
+        "delta_CG": -0.0465,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          196608
+        ],
+        "groups": [
+          "outputs/strict_freeze/text_only"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [
+        {
+          "group": "outputs/strict_freeze/text_only",
+          "n_seeds": 5,
+          "n_trainable_params": 196608,
+          "R1_mean": 0.6238,
+          "delta_CG_mean": -0.0465,
+          "delta_CG_matches_published": true,
+          "is_own_tree": true
+        }
+      ],
+      "category": "own_tree_exact"
+    },
+    "CLIP B/32 r8 / both": {
+      "published_delta_CG": -0.0258,
+      "published_R1": 0.693,
+      "own_tree": "outputs/strict_freeze",
+      "own_tree_means": {
+        "R1": 0.6932,
+        "delta_CG": -0.02583,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          491520
+        ],
+        "groups": [
+          "outputs/strict_freeze/both"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [
+        {
+          "group": "outputs/strict_freeze/both",
+          "n_seeds": 5,
+          "n_trainable_params": 491520,
+          "R1_mean": 0.6932,
+          "delta_CG_mean": -0.02583,
+          "delta_CG_matches_published": true,
+          "is_own_tree": true
+        }
+      ],
+      "category": "own_tree_exact"
+    },
+    "CLIP B/32 r8 / vision_only": {
+      "published_delta_CG": 0.0106,
+      "published_R1": 0.68,
+      "own_tree": "outputs/strict_freeze",
+      "own_tree_means": {
+        "R1": 0.68,
+        "delta_CG": 0.01057,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          294912
+        ],
+        "groups": [
+          "outputs/strict_freeze/vision_only"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [
+        {
+          "group": "outputs/strict_freeze/vision_only",
+          "n_seeds": 5,
+          "n_trainable_params": 294912,
+          "R1_mean": 0.68,
+          "delta_CG_mean": 0.01057,
+          "delta_CG_matches_published": true,
+          "is_own_tree": true
+        }
+      ],
+      "category": "own_tree_exact"
+    },
+    "CLIP B/32 r4 / text_only": {
+      "published_delta_CG": -0.0304,
+      "published_R1": 0.621,
+      "own_tree": "outputs/strict_freeze_b32_r4",
+      "own_tree_means": {
+        "R1": 0.6222,
+        "delta_CG": -0.03038,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          98304
+        ],
+        "groups": [
+          "outputs/strict_freeze_b32_r4/text_only"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [],
+      "category": "unreproducible_at_printed_precision"
+    },
+    "CLIP B/32 r4 / both": {
+      "published_delta_CG": -0.0204,
+      "published_R1": 0.679,
+      "own_tree": "outputs/strict_freeze_b32_r4",
+      "own_tree_means": {
+        "R1": 0.6796,
+        "delta_CG": -0.02037,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          245760
+        ],
+        "groups": [
+          "outputs/strict_freeze_b32_r4/both"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [],
+      "category": "unreproducible_at_printed_precision"
+    },
+    "CLIP B/32 r4 / vision_only": {
+      "published_delta_CG": 0.0166,
+      "published_R1": 0.67,
+      "own_tree": "outputs/strict_freeze_b32_r4",
+      "own_tree_means": {
+        "R1": 0.6698,
+        "delta_CG": 0.01658,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          147456
+        ],
+        "groups": [
+          "outputs/strict_freeze_b32_r4/vision_only"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [
+        {
+          "group": "outputs/strict_freeze_b32_r4/vision_only",
+          "n_seeds": 5,
+          "n_trainable_params": 147456,
+          "R1_mean": 0.6698,
+          "delta_CG_mean": 0.01658,
+          "delta_CG_matches_published": true,
+          "is_own_tree": true
+        },
+        {
+          "group": "outputs/strict_freeze_oclip/r4/vision_only",
+          "n_seeds": 5,
+          "n_trainable_params": 147456,
+          "R1_mean": 0.6698,
+          "delta_CG_mean": 0.09962,
+          "delta_CG_matches_published": false,
+          "is_own_tree": false
+        }
+      ],
+      "category": "own_tree_exact"
+    },
+    "CLIP B/16 r4 / text_only": {
+      "published_delta_CG": -0.0166,
+      "published_R1": 0.651,
+      "own_tree": "outputs/strict_freeze_b16/r4",
+      "own_tree_means": {
+        "R1": 0.6502,
+        "delta_CG": -0.01657,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          98304
+        ],
+        "groups": [
+          "outputs/strict_freeze_b16/r4/text_only"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [],
+      "category": "unreproducible_at_printed_precision"
+    },
+    "CLIP B/16 r4 / both": {
+      "published_delta_CG": 0.0124,
+      "published_R1": 0.707,
+      "own_tree": "outputs/strict_freeze_b16/r4",
+      "own_tree_means": {
+        "R1": 0.707,
+        "delta_CG": 0.01236,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          245760
+        ],
+        "groups": [
+          "outputs/strict_freeze_b16/r4/both"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [
+        {
+          "group": "outputs/strict_freeze_b16/r4/both",
+          "n_seeds": 5,
+          "n_trainable_params": 245760,
+          "R1_mean": 0.707,
+          "delta_CG_mean": 0.01236,
+          "delta_CG_matches_published": true,
+          "is_own_tree": true
+        }
+      ],
+      "category": "own_tree_exact"
+    },
+    "CLIP B/16 r4 / vision_only": {
+      "published_delta_CG": 0.0376,
+      "published_R1": 0.686,
+      "own_tree": "outputs/strict_freeze_b16/r4",
+      "own_tree_means": {
+        "R1": 0.686,
+        "delta_CG": 0.03755,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          147456
+        ],
+        "groups": [
+          "outputs/strict_freeze_b16/r4/vision_only"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [
+        {
+          "group": "outputs/strict_freeze_b16/r4/vision_only",
+          "n_seeds": 5,
+          "n_trainable_params": 147456,
+          "R1_mean": 0.686,
+          "delta_CG_mean": 0.03755,
+          "delta_CG_matches_published": true,
+          "is_own_tree": true
+        }
+      ],
+      "category": "own_tree_exact"
+    },
+    "OpenCLIP / text_only": {
+      "published_delta_CG": 0.0802,
+      "published_R1": 0.643,
+      "own_tree": "outputs/strict_freeze_oclip/r4",
+      "own_tree_means": {
+        "R1": 0.6366,
+        "delta_CG": 0.08016,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          98304
+        ],
+        "groups": [
+          "outputs/strict_freeze_oclip/r4/text_only"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [
+        {
+          "group": "outputs/strict_freeze_openclip/text_only",
+          "n_seeds": 5,
+          "n_trainable_params": 196608,
+          "R1_mean": 0.6428,
+          "delta_CG_mean": 0.06945,
+          "delta_CG_matches_published": false,
+          "is_own_tree": false
+        }
+      ],
+      "category": "another_tree_explains"
+    },
+    "OpenCLIP / both": {
+      "published_delta_CG": 0.0864,
+      "published_R1": 0.68,
+      "own_tree": "outputs/strict_freeze_oclip/r4",
+      "own_tree_means": {
+        "R1": 0.6818,
+        "delta_CG": 0.08639,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          245760
+        ],
+        "groups": [
+          "outputs/strict_freeze_oclip/r4/both"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [
+        {
+          "group": "outputs/strict_freeze_b32_r4/both",
+          "n_seeds": 5,
+          "n_trainable_params": 245760,
+          "R1_mean": 0.6796,
+          "delta_CG_mean": -0.02037,
+          "delta_CG_matches_published": false,
+          "is_own_tree": false
+        },
+        {
+          "group": "outputs/strict_freeze_openclip/both",
+          "n_seeds": 5,
+          "n_trainable_params": 491520,
+          "R1_mean": 0.6798,
+          "delta_CG_mean": 0.08814,
+          "delta_CG_matches_published": false,
+          "is_own_tree": false
+        },
+        {
+          "group": "outputs/strict_freeze_openclip_rank/r4/both",
+          "n_seeds": 5,
+          "n_trainable_params": 245760,
+          "R1_mean": 0.6796,
+          "delta_CG_mean": 0.08396,
+          "delta_CG_matches_published": false,
+          "is_own_tree": false
+        },
+        {
+          "group": "outputs/strict_freeze_rank/r4/both",
+          "n_seeds": 3,
+          "n_trainable_params": 245760,
+          "R1_mean": 0.67967,
+          "delta_CG_mean": -0.01841,
+          "delta_CG_matches_published": false,
+          "is_own_tree": false
+        }
+      ],
+      "category": "another_tree_explains"
+    },
+    "OpenCLIP / vision_only": {
+      "published_delta_CG": 0.0996,
+      "published_R1": 0.672,
+      "own_tree": "outputs/strict_freeze_oclip/r4",
+      "own_tree_means": {
+        "R1": 0.6698,
+        "delta_CG": 0.09962,
+        "n_seeds": 5,
+        "n_trainable_params": [
+          147456
+        ],
+        "groups": [
+          "outputs/strict_freeze_oclip/r4/vision_only"
+        ]
+      },
+      "own_tree_delta_CG_exact": true,
+      "matching_groups": [
+        {
+          "group": "outputs/strict_freeze_openclip/vision_only",
+          "n_seeds": 5,
+          "n_trainable_params": 294912,
+          "R1_mean": 0.6724,
+          "delta_CG_mean": 0.09252,
+          "delta_CG_matches_published": false,
+          "is_own_tree": false
+        }
+      ],
+      "category": "another_tree_explains"
+    }
+  },
+  "summary": {
+    "own_tree_exact": [
+      "CLIP B/16 r4 / both",
+      "CLIP B/16 r4 / vision_only",
+      "CLIP B/32 r4 / vision_only",
+      "CLIP B/32 r8 / both",
+      "CLIP B/32 r8 / text_only",
+      "CLIP B/32 r8 / vision_only"
+    ],
+    "unreproducible_at_printed_precision": [
+      "CLIP B/16 r4 / text_only",
+      "CLIP B/32 r4 / both",
+      "CLIP B/32 r4 / text_only"
+    ],
+    "another_tree_explains": [
+      "OpenCLIP / both",
+      "OpenCLIP / text_only",
+      "OpenCLIP / vision_only"
+    ]
+  },
+  "counts": {
+    "own_tree_exact": 6,
+    "unreproducible_at_printed_precision": 3,
+    "another_tree_explains": 3
+  },
+  "delta_CG_exact_all": true,
+  "conclusion": "Delta-CG is exact for all 12 cells against the tree each row is identified with. The R@1 column splits three ways: 6 cells are reproduced by their own tree's complete seed set, 3 are reproduced only by a DIFFERENT archive group (for the OpenCLIP row that group is the rank-8 tree, so that row's two halves come from different runs), and 3 are not reproducible from any group's complete seed set at the printed precision. Seed-subset matches are deliberately NOT counted as a source -- see tools/_p293l_subset_null_check.py for the measured ~0.3% chance rate."
+}

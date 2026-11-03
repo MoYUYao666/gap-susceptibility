@@ -1,0 +1,40 @@
+{
+ "meta": {
+  "script": "tools/_p1502_p3_ntk_allocation.py",
+  "task": "R3.9 NTK/gradient baseline",
+  "model": "CLIP ViT-B/32",
+  "data": "marine image-caption pairs",
+  "budget": 16,
+  "n_batches": 4
+ },
+ "ntk_trace": {
+  "vision": 48957.11353765958,
+  "text_shallow": 23786.130313434638,
+  "text_mid": 8437.430426052655,
+  "text_deep": 1853.7549417179544
+ },
+ "gamma_abs": {
+  "vision": 0.29840957981529453,
+  "text_shallow": 0.25322052467769635,
+  "text_mid": 0.1958032660804747,
+  "text_deep": 0.13529416882859854
+ },
+ "allocation_ntk": {
+  "vision": 8,
+  "text_shallow": 5,
+  "text_mid": 2,
+  "text_deep": 1
+ },
+ "allocation_gamma": {
+  "vision": 5,
+  "text_shallow": 5,
+  "text_mid": 4,
+  "text_deep": 2
+ },
+ "allocation_uniform": {
+  "vision": 4,
+  "text_shallow": 4,
+  "text_mid": 4,
+  "text_deep": 4
+ }
+}

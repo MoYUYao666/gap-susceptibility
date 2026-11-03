@@ -1,0 +1,242 @@
+{
+ "script": "tools/_p458_random_pool_test.py",
+ "gamma_plan": "exp_beta_paper_0.137",
+ "random_plans_used": [
+  "random_01",
+  "random_02",
+  "random_03",
+  "random_05",
+  "random_06",
+  "random_07",
+  "random_08",
+  "random_09",
+  "random_10",
+  "random_11"
+ ],
+ "random_plans_excluded_as_duplicate_of_corner": {
+  "random_00": "exp_ca_beta_1e-4",
+  "random_04": "corner",
+  "random_12": "inverse_beta_paper_0.137",
+  "random_13": "exp_beta_paper_0.137"
+ },
+ "gamma": {
+  "n": 6,
+  "mean": 1477.4501953125,
+  "sd": 1563.3373668985585,
+  "values": [
+   1002.244140625,
+   2192.525390625,
+   2705.53125,
+   3234.931640625,
+   782.431640625,
+   -1052.962890625
+  ]
+ },
+ "random_pool": {
+  "n": 30,
+  "mean": 3347.43046875,
+  "sd": 4771.180234255462,
+  "values": [
+   11751.837890625,
+   838.970703125,
+   3780.33984375,
+   4559.607421875,
+   4243.287109375,
+   18574.705078125,
+   -563.775390625,
+   -1799.466796875,
+   -1987.689453125,
+   -319.173828125,
+   -1411.205078125,
+   1063.8046875,
+   917.396484375,
+   -482.041015625,
+   12130.802734375,
+   5355.775390625,
+   -1696.216796875,
+   4806.638671875,
+   5362.146484375,
+   1085.533203125,
+   1080.361328125,
+   11989.451171875,
+   1041.36328125,
+   2043.490234375,
+   4808.498046875,
+   3811.708984375,
+   4212.720703125,
+   2488.3828125,
+   1779.541015625,
+   956.119140625
+  ],
+  "per_plan": {
+   "random_01": {
+    "n": 3,
+    "mean": 5457.049479166667,
+    "sd": 5646.34252982653,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 1,
+     "llm_deep": 7,
+     "llm_shallow": 7
+    },
+    "linear_objective": 45675.63143509278
+   },
+   "random_02": {
+    "n": 3,
+    "mean": 9125.866536458334,
+    "sd": 8184.46253427121,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 2,
+     "llm_deep": 3,
+     "llm_shallow": 10
+    },
+    "linear_objective": 63653.46730025856
+   },
+   "random_03": {
+    "n": 3,
+    "mean": -1450.310546875,
+    "sd": 773.5084870457856,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 7,
+     "llm_deep": 1,
+     "llm_shallow": 1
+    },
+    "linear_objective": 38649.20151427337
+   },
+   "random_05": {
+    "n": 3,
+    "mean": -222.19140625,
+    "sd": 1240.3517757472414,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 1,
+     "llm_deep": 10,
+     "llm_shallow": 3
+    },
+    "linear_objective": 26526.72391645709
+   },
+   "random_06": {
+    "n": 3,
+    "mean": 4188.719401041667,
+    "sd": 6913.54627411359,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 3,
+     "llm_deep": 2,
+     "llm_shallow": 9
+    },
+    "linear_objective": 62482.39564678866
+   },
+   "random_07": {
+    "n": 3,
+    "mean": 2822.0657552083335,
+    "sd": 3922.568762853672,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 1,
+     "llm_deep": 4,
+     "llm_shallow": 11
+    },
+    "linear_objective": 64824.538953728465
+   },
+   "random_08": {
+    "n": 3,
+    "mean": 2509.3470052083335,
+    "sd": 2470.598174192428,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 3,
+     "llm_deep": 5,
+     "llm_shallow": 5
+    },
+    "linear_objective": 43333.488128152974
+   },
+   "random_09": {
+    "n": 3,
+    "mean": 5024.768229166667,
+    "sd": 6052.369038391843,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 4,
+     "llm_deep": 1,
+     "llm_shallow": 8
+    },
+    "linear_objective": 61311.323993318765
+   },
+   "random_10": {
+    "n": 3,
+    "mean": 4277.642578125,
+    "sd": 501.55582557681845,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 6,
+     "llm_deep": 2,
+     "llm_shallow": 2
+    },
+    "linear_objective": 39820.273167743275
+   },
+   "random_11": {
+    "n": 3,
+    "mean": 1741.34765625,
+    "sd": 766.8455121875758,
+    "ranks": {
+     "vision": 4,
+     "llm_mid": 5,
+     "llm_deep": 3,
+     "llm_shallow": 3
+    },
+    "linear_objective": 40991.34482121318
+   }
+  }
+ },
+ "tests": {
+  "welch_t": -1.7316542608935601,
+  "welch_p": 0.09535253384506043,
+  "mannwhitney_u": 71.0,
+  "mannwhitney_p": 0.4421375588358511,
+  "levene_mixed_pool_W": 1.859067926777826,
+  "levene_mixed_pool_p": 0.18169308013137084,
+  "levene_within_resid_W": 1.9160076009853246,
+  "levene_within_resid_p": 0.17531641592308767,
+  "levene_note": "方差判据用 within_resid（Γ-guided vs 组内残差池）；mixed_pool 版本含组间差异，不应直接比"
+ },
+ "variance_decomposition": {
+  "between_arm_sd": 3010.0895615033237,
+  "within_arm_sd_median": 3196.58346852305,
+  "mixed_pool_sd": 4771.180234255462,
+  "gamma_sd": 1563.3373668985585,
+  "note": "池 sd 同时含组间与组内；Γ-guided sd 是单一方案组内 sd —— 两者不是同一个量"
+ },
+ "variance_claim_allowed": false,
+ "variance_claim_rule": "只有当 Levene(Γ-guided vs 组内残差池) p<0.05 且 Γ-guided sd 点估计更小时，才允许写「方差更小」；否则写「不可区分」且不得提及方差",
+ "gamma_mean_percentile_in_random_pool": 46.666666666666664,
+ "gamma_worse_than_pool": false,
+ "power_diagnosis": {
+  "within_plan_seed_ranges": {
+   "random_01": 10912.8671875,
+   "random_02": 14331.41796875,
+   "random_03": 1423.9140625,
+   "random_05": 2475.009765625,
+   "random_06": 12612.84375,
+   "random_07": 7051.9921875,
+   "random_08": 4281.78515625,
+   "random_09": 10948.087890625,
+   "random_10": 996.7890625,
+   "random_11": 1532.263671875
+  },
+  "max_within_plan_range": 14331.41796875,
+  "between_plan_mean_diff": 1869.9802734374998,
+  "ratio": 7.663940722970946,
+  "underpowered": true,
+  "rule": "同分配内 seed 极差 ≥ 方案间均值差 ⇒ 判为功效不足"
+ },
+ "verdict": "UNDERPOWERED_TO_DISTINGUISH",
+ "verdict_rules": {
+  "GAMMA_NOT_BETTER_THAN_RANDOM": "Γ-guided 均值更高 且 位置检验 p<0.05 且 **功效诊断通过**",
+  "UNDERPOWERED_TO_DISTINGUISH": "最大同分配内 seed 极差 ≥ 方案间均值差（噪声压过效应）",
+  "INDISTINGUISHABLE_BUT_LOWER_VARIANCE": "功效通过 + 位置不可区分 + Levene p<0.05 且 Γ-guided 方差更小",
+  "INDISTINGUISHABLE": "以上都不成立"
+ }
+}

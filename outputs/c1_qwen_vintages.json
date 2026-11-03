@@ -1,0 +1,207 @@
+{
+ "provenance": {
+  "noise_vintage": "autodl RTX 4080 SUPER 32760MiB, driver 580.142 (seeded noise image per seed)",
+  "blank_vintage": "autodl RTX 4080 (non-SUPER) 32760MiB, driver 595.71.05 (deterministic black image)",
+  "caveat": "两套 vintage 在图像协议与设备上同时不同；vintage 内臂间比较干净，跨 vintage 只比臂序/符号。"
+ },
+ "noise": {
+  "E0_set": [
+   27008,
+   35776,
+   45440,
+   46592
+  ],
+  "rows": {
+   "42": {
+    "projonly": 384.0,
+    "prhi16_llmlo2": -848.0,
+    "prlo2_llmhi16": -736.0
+   },
+   "123": {
+    "projonly": 128.0,
+    "prhi16_llmlo2": -4320.0,
+    "prlo2_llmhi16": -4064.0
+   },
+   "456": {
+    "projonly": 64.0,
+    "prhi16_llmlo2": -2624.0,
+    "prlo2_llmhi16": -1856.0
+   },
+   "999": {
+    "projonly": 96.0,
+    "prhi16_llmlo2": -1568.0,
+    "prlo2_llmhi16": -1184.0
+   }
+  },
+  "mean": {
+   "projonly": 168.0,
+   "prhi16_llmlo2": -2340.0,
+   "prlo2_llmhi16": -1960.0
+  },
+  "sd": {
+   "projonly": 126.74383614203887,
+   "prhi16_llmlo2": 1306.0535976750725,
+   "prlo2_llmhi16": 1278.47409046879
+  },
+  "n_positive": {
+   "projonly": 4,
+   "prhi16_llmlo2": 0,
+   "prlo2_llmhi16": 0
+  },
+  "order_ok": 4,
+  "n_seeds": 4,
+  "welch_vs_projonly": {
+   "prhi16_llmlo2": {
+    "t": 3.31,
+    "p": 0.044155,
+    "n": [
+     4,
+     4
+    ],
+    "mean_a": 168.0,
+    "mean_b": -2340.0
+   },
+   "prlo2_llmhi16": {
+    "t": 2.869,
+    "p": 0.062639,
+    "n": [
+     4,
+     4
+    ],
+    "mean_a": 168.0,
+    "mean_b": -1960.0
+   }
+  }
+ },
+ "blank": {
+  "E0_set": [
+   60224
+  ],
+  "rows": {
+   "42": {
+    "projonly": -384.0,
+    "prhi16_llmlo2": -3904.0,
+    "prlo2_llmhi16": -4288.0
+   },
+   "123": {
+    "projonly": -704.0,
+    "prhi16_llmlo2": -4672.0,
+    "prlo2_llmhi16": -4096.0
+   },
+   "456": {
+    "projonly": -320.0,
+    "prhi16_llmlo2": -4544.0,
+    "prlo2_llmhi16": -4352.0
+   },
+   "999": {
+    "projonly": -320.0,
+    "prhi16_llmlo2": -4544.0,
+    "prlo2_llmhi16": -3584.0
+   }
+  },
+  "mean": {
+   "projonly": -432.0,
+   "prhi16_llmlo2": -4416.0,
+   "prlo2_llmhi16": -4080.0
+  },
+  "sd": {
+   "projonly": 159.1979899370592,
+   "prhi16_llmlo2": 300.1866086286995,
+   "prlo2_llmhi16": 301.4630989026684
+  },
+  "n_positive": {
+   "projonly": 0,
+   "prhi16_llmlo2": 0,
+   "prlo2_llmhi16": 0
+  },
+  "order_ok": 3,
+  "n_seeds": 4,
+  "welch_vs_projonly": {
+   "prhi16_llmlo2": {
+    "t": 20.308,
+    "p": 1.2e-05,
+    "n": [
+     4,
+     4
+    ],
+    "mean_a": -432.0,
+    "mean_b": -4416.0
+   },
+   "prlo2_llmhi16": {
+    "t": 18.534,
+    "p": 1.8e-05,
+    "n": [
+     4,
+     4
+    ],
+    "mean_a": -432.0,
+    "mean_b": -4080.0
+   }
+  }
+ },
+ "block_signs": {
+  "blank": {
+   "42": {
+    "uniform": -3968.0,
+    "theory": -3776.0,
+    "violation": -3904.0
+   },
+   "123": {
+    "uniform": -3776.0,
+    "theory": -3648.0,
+    "violation": -4032.0
+   },
+   "456": {
+    "uniform": -3840.0,
+    "theory": -3776.0,
+    "violation": -4160.0
+   }
+  },
+  "noise_v2": {
+   "42": {
+    "uniform": -752.0,
+    "theory": -672.0,
+    "violation": -896.0
+   },
+   "123": {
+    "uniform": -4096.0,
+    "theory": -3872.0,
+    "violation": -4512.0
+   },
+   "456": {
+    "uniform": -2176.0,
+    "theory": -2496.0,
+    "violation": -2496.0
+   }
+  },
+  "archive": {
+   "42": {
+    "uniform": 216.0,
+    "theory": 224.0,
+    "violation": 232.0
+   },
+   "123": {
+    "uniform": -64.0,
+    "theory": -70.0,
+    "violation": -70.0
+   },
+   "456": {
+    "uniform": 306.0,
+    "theory": 296.0,
+    "violation": 304.0
+   }
+  }
+ },
+ "sign_sets": {
+  "blank": [
+   "-"
+  ],
+  "noise_v2": [
+   "-"
+  ],
+  "archive": [
+   "+",
+   "-"
+  ]
+ }
+}

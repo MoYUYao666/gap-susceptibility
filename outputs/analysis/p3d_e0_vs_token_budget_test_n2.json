@@ -1,0 +1,126 @@
+{
+ "experiment": "p3d_e0_vs_token_budget",
+ "script": "tools/_p472_e0_vs_token_budget.py",
+ "generated_at_utc": "2026-10-12T20:07:15+00:00",
+ "model": "models/Qwen2-VL-2B-Instruct",
+ "dtype": "bfloat16",
+ "device": "cpu",
+ "n_samples": 2,
+ "split": "test",
+ "data": "outputs/analysis/p3d_manifest.json datasets.coco.test（held-out）",
+ "E_def": "mean||mean(h_vis)-mean(h_lang)||^2, last hidden state（与 _p464 同一口径）",
+ "no_training": "E0 只需一次前向；对给定输入是确定性的 → 无 seed 噪声",
+ "blank_control": "Image.new('RGB', real.size) 同尺寸纯黑，保证两条件 token 数相同",
+ "paper_operating_point_tokens": 576,
+ "paper_source": "paper3/scripts/run_training.py:237 (img_tokens=576); blank 图见 :227",
+ "rows": [
+  {
+   "max_pixels": 16384,
+   "min_pixels": 4096,
+   "tokens_real": [
+    15,
+    15
+   ],
+   "tokens_blank": [
+    15,
+    15
+   ],
+   "mean_tokens": 15.0,
+   "tokens_match": true,
+   "E0_real": 10225.14306640625,
+   "E0_blank": 22724.896484375,
+   "gap_pct": 122.24526675852115,
+   "E0_real_list": [
+    9329.962890625,
+    11120.3232421875
+   ],
+   "E0_blank_list": [
+    23179.296875,
+    22270.49609375
+   ],
+   "seconds": 12.4,
+   "device": "cpu"
+  },
+  {
+   "max_pixels": 50176,
+   "min_pixels": 4096,
+   "tokens_real": [
+    54,
+    54
+   ],
+   "tokens_blank": [
+    54,
+    54
+   ],
+   "mean_tokens": 54.0,
+   "tokens_match": true,
+   "E0_real": 11065.963623046875,
+   "E0_blank": 22542.9130859375,
+   "gap_pct": 103.71396340927596,
+   "E0_real_list": [
+    8061.83642578125,
+    14070.0908203125
+   ],
+   "E0_blank_list": [
+    22890.34765625,
+    22195.478515625
+   ],
+   "seconds": 33.0,
+   "device": "cpu"
+  },
+  {
+   "max_pixels": 451584,
+   "min_pixels": 4096,
+   "tokens_real": [
+    345,
+    391
+   ],
+   "tokens_blank": [
+    345,
+    391
+   ],
+   "mean_tokens": 368.0,
+   "tokens_match": true,
+   "E0_real": 8355.909423828125,
+   "E0_blank": 23193.1171875,
+   "gap_pct": 177.56544513708297,
+   "E0_real_list": [
+    8666.755859375,
+    8045.06298828125
+   ],
+   "E0_blank_list": [
+    23340.71484375,
+    23045.51953125
+   ],
+   "seconds": 231.7,
+   "device": "cpu"
+  },
+  {
+   "max_pixels": 802816,
+   "min_pixels": 451584,
+   "tokens_real": [
+    600,
+    588
+   ],
+   "tokens_blank": [
+    600,
+    588
+   ],
+   "mean_tokens": 594.0,
+   "tokens_match": true,
+   "E0_real": 8099.0498046875,
+   "E0_blank": 23401.564453125,
+   "gap_pct": 188.94209836295659,
+   "E0_real_list": [
+    8196.6220703125,
+    8001.4775390625
+   ],
+   "E0_blank_list": [
+    23555.451171875,
+    23247.677734375
+   ],
+   "seconds": 421.8,
+   "device": "cpu"
+  }
+ ]
+}

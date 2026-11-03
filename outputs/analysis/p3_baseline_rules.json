@@ -1,0 +1,67 @@
+{
+ "meta": {
+  "script": "tools/_p1514_p3_baseline_rules.py",
+  "budget": 16,
+  "probe": {
+   "samples": 20,
+   "epochs": 3
+  },
+  "note": "block-level reimplementations in the spirit of HALoRA / IGU-LoRA / ShapLoRA; not the official implementations"
+ },
+ "mass": {
+  "vision": 1179648,
+  "text_shallow": 2097152,
+  "text_mid": 4194304,
+  "text_deep": 2097152
+ },
+ "halora": {
+  "vision": 2,
+  "text_shallow": 4,
+  "text_mid": 6,
+  "text_deep": 4
+ },
+ "igu_raw": {
+  "vision": -0.081290917278011,
+  "text_shallow": -0.009306926455838038,
+  "text_mid": -0.021906529704710926,
+  "text_deep": 0.0018045853628109395
+ },
+ "igu_weights": {
+  "vision": 0.081290917278011,
+  "text_shallow": 0.009306926455838038,
+  "text_mid": 0.021906529704710926,
+  "text_deep": 0.0018045853628109395
+ },
+ "shapley": {
+  "vision": 0.046620368957519524,
+  "text_shallow": 0.007456938425699869,
+  "text_mid": 0.014647165934244791,
+  "text_deep": -0.0015257199605305989
+ },
+ "shapley_weights": {
+  "vision": 0.046620368957519524,
+  "text_shallow": 0.007456938425699869,
+  "text_mid": 0.014647165934244791,
+  "text_deep": 0.0015257199605305989
+ },
+ "allocation": {
+  "halora": {
+   "vision": 2,
+   "text_shallow": 4,
+   "text_mid": 6,
+   "text_deep": 4
+  },
+  "igu": {
+   "vision": 11,
+   "text_shallow": 1,
+   "text_mid": 3,
+   "text_deep": 1
+  },
+  "shap": {
+   "vision": 10,
+   "text_shallow": 2,
+   "text_mid": 3,
+   "text_deep": 1
+  }
+ }
+}

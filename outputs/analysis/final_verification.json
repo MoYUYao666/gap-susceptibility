@@ -1,0 +1,472 @@
+{
+ "script": "tools/_p1454_final_verify.py",
+ "started_utc": "2026-10-28T03:11:54Z",
+ "head_at_start": "4b3b6de9 2026-10-28 11:11:43 +0800 Tidy paper3: superseded versions and build clutter to \u5f03\u7528, documentation into docs/, evaluation data into data/",
+ "accepted_deviations_enabled": true,
+ "frozen": {
+  "n": 12,
+  "bad": [],
+  "pass": true
+ },
+ "provenance_gate": {
+  "pass": true,
+  "tail": [
+   "  gate: PASS"
+  ]
+ },
+ "a1_ledger": {
+  "pass": true,
+  "detail": "216 pass / 0 fail / 216 total"
+ },
+ "audits": {
+  "a1_paa": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 63,
+   "fail": 0,
+   "warn": 1,
+   "blockers": [],
+   "rc": 0,
+   "pass_ok": true,
+   "hard_failures": [],
+   "accepted_deviations": [],
+   "warn_findings": [
+    {
+     "check": "I-02",
+     "severity": "P1",
+     "title": "Package copies match the live manuscript files",
+     "message": "frozen submitted package (not compared with the live draft)"
+    }
+   ],
+   "report_paths": [
+    "docs\\audits\\AUD-a1_paa-20261028T031205Z.json",
+    "docs\\audits\\AUD-a1_paa-20261028T031205Z.md"
+   ]
+  },
+  "paperA_nc": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 69,
+   "fail": 0,
+   "warn": 1,
+   "blockers": [],
+   "rc": 0,
+   "pass_ok": true,
+   "hard_failures": [],
+   "accepted_deviations": [],
+   "warn_findings": [
+    {
+     "check": "I-02",
+     "severity": "P1",
+     "title": "Package copies match the live manuscript files",
+     "message": "frozen submitted package (not compared with the live draft)"
+    }
+   ],
+   "report_paths": [
+    "docs\\audits\\AUD-paperA_nc-20261028T031218Z.json",
+    "docs\\audits\\AUD-paperA_nc-20261028T031218Z.md"
+   ]
+  },
+  "paperA_springer": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 64,
+   "fail": 0,
+   "warn": 1,
+   "blockers": [],
+   "rc": 0,
+   "pass_ok": true,
+   "hard_failures": [],
+   "accepted_deviations": [],
+   "warn_findings": [
+    {
+     "check": "I-02",
+     "severity": "P1",
+     "title": "Package copies match the live manuscript files",
+     "message": "frozen submitted package (not compared with the live draft)"
+    }
+   ],
+   "report_paths": [
+    "docs\\audits\\AUD-paperA_springer-20261028T031227Z.json",
+    "docs\\audits\\AUD-paperA_springer-20261028T031227Z.md"
+   ]
+  },
+  "p3_prl": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 57,
+   "fail": 0,
+   "warn": 1,
+   "blockers": [],
+   "rc": 0,
+   "pass_ok": true,
+   "hard_failures": [],
+   "accepted_deviations": [],
+   "warn_findings": [
+    {
+     "check": "I-02",
+     "severity": "P1",
+     "title": "Package copies match the live manuscript files",
+     "message": "frozen submitted package (not compared with the live draft)"
+    }
+   ],
+   "report_paths": [
+    "docs\\audits\\AUD-p3_prl-20261028T031234Z.json",
+    "docs\\audits\\AUD-p3_prl-20261028T031234Z.md"
+   ]
+  },
+  "a23_joe": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 65,
+   "fail": 0,
+   "warn": 2,
+   "blockers": [],
+   "rc": 0,
+   "pass_ok": true,
+   "hard_failures": [],
+   "accepted_deviations": [],
+   "warn_findings": [
+    {
+     "check": "B-06",
+     "severity": "P2",
+     "title": "No unresolved LaTeX warnings",
+     "message": "17 LaTeX warnings"
+    },
+    {
+     "check": "I-02",
+     "severity": "P1",
+     "title": "Package copies match the live manuscript files",
+     "message": "frozen submitted package (not compared with the live draft)"
+    }
+   ],
+   "report_paths": [
+    "docs\\audits\\AUD-a23_joe-20261028T031245Z.json",
+    "docs\\audits\\AUD-a23_joe-20261028T031245Z.md"
+   ]
+  },
+  "prl_commentary": {
+   "verdict": "READY",
+   "grade": "A",
+   "pass": 61,
+   "fail": 0,
+   "warn": 1,
+   "blockers": [],
+   "rc": 0,
+   "pass_ok": true,
+   "hard_failures": [],
+   "accepted_deviations": [],
+   "warn_findings": [
+    {
+     "check": "I-02",
+     "severity": "P1",
+     "title": "Package copies match the live manuscript files",
+     "message": "frozen submitted package (not compared with the live draft)"
+    }
+   ],
+   "report_paths": [
+    "docs\\audits\\AUD-prl_commentary-20261028T031248Z.json",
+    "docs\\audits\\AUD-prl_commentary-20261028T031248Z.md"
+   ]
+  }
+ },
+ "p3_audit_check": {
+  "pass": true
+ },
+ "p3_audit_pdf": {
+  "pass": true
+ },
+ "a23_verify": {
+  "pass": true
+ },
+ "commentary_check": {
+  "pass": true
+ },
+ "staged_packages": {
+  "rc": 0,
+  "pass": true,
+  "wrong": {},
+  "missing_packages": [],
+  "json": "outputs\\analysis\\staged_package_check.json",
+  "json_mtime_local": "2026-10-28 11:13:54"
+ },
+ "staged_freshness": {
+  "rows": {
+   "A1_PAA_next": {
+    "package": "A1_PAA_next",
+    "live": "paper_a1/main.pdf",
+    "shipped_pdf": "SUBMISSION\\_venue_builds\\A1_PAA_next\\Manuscript.pdf",
+    "status": "ok",
+    "shipped_snapshot_local": "2026-10-24 17:17:23",
+    "live_pdf_local": "2026-10-25 18:55:43",
+    "shipped_pages_actual": 64,
+    "live_pages": 64,
+    "recorded_shipped_pages": 64
+   },
+   "A23_JOE_next": {
+    "package": "A23_JOE_next",
+    "live": "paper_a2/main_ieee.pdf",
+    "shipped_pdf": "SUBMISSION\\_venue_builds\\A23_JOE_next\\Manuscript.pdf",
+    "status": "ok",
+    "shipped_snapshot_local": "2026-10-24 17:17:24",
+    "live_pdf_local": "2026-10-28 10:02:29",
+    "shipped_pages_actual": 72,
+    "live_pages": 74,
+    "recorded_shipped_pages": 72
+   },
+   "Commentary_PRL_next": {
+    "package": "Commentary_PRL_next",
+    "live": "paper_review_prl/main_prl.pdf",
+    "shipped_pdf": "SUBMISSION\\_venue_builds\\Commentary_PRL_next\\Manuscript.pdf",
+    "status": "ok",
+    "shipped_snapshot_local": "2026-10-24 17:17:25",
+    "live_pdf_local": "2026-10-25 18:52:00",
+    "shipped_pages_actual": 7,
+    "live_pages": 7,
+    "recorded_shipped_pages": 7
+   },
+   "P3_PRL_next": {
+    "package": "P3_PRL_next",
+    "live": "paper3/paper_ieee/main.pdf",
+    "shipped_pdf": "SUBMISSION\\_venue_builds\\P3_PRL_next\\Manuscript.pdf",
+    "status": "ok",
+    "shipped_snapshot_local": "2026-10-24 17:17:24",
+    "live_pdf_local": "2026-10-25 18:52:41",
+    "shipped_pages_actual": 10,
+    "live_pages": 10,
+    "recorded_shipped_pages": 10
+   },
+   "PaperA_Neurocomputing_next": {
+    "package": "PaperA_Neurocomputing_next",
+    "live": "paper\u5408/main_nc.pdf",
+    "shipped_pdf": "SUBMISSION\\_venue_builds\\PaperA_Neurocomputing_next\\Manuscript.pdf",
+    "status": "ok",
+    "shipped_snapshot_local": "2026-10-24 17:17:25",
+    "live_pdf_local": "2026-10-26 12:43:31",
+    "shipped_pages_actual": 77,
+    "live_pages": 79,
+    "recorded_shipped_pages": 77
+   }
+  },
+  "warnings": [
+   {
+    "code": "live_draft_newer_than_staged",
+    "package": "A1_PAA_next",
+    "detail": "live draft paper_a1/main.pdf is newer than the staged snapshot (2026-10-25 18:55:43 vs 2026-10-24 17:17:23)"
+   },
+   {
+    "code": "stale_staged_snapshot",
+    "package": "A23_JOE_next",
+    "detail": "staged snapshot (2026-10-24 17:17:24) has 72 pages but the live draft paper_a2/main_ieee.pdf has 74 pages"
+   },
+   {
+    "code": "live_draft_newer_than_staged",
+    "package": "A23_JOE_next",
+    "detail": "live draft paper_a2/main_ieee.pdf is newer than the staged snapshot (2026-10-28 10:02:29 vs 2026-10-24 17:17:24)"
+   },
+   {
+    "code": "live_draft_newer_than_staged",
+    "package": "Commentary_PRL_next",
+    "detail": "live draft paper_review_prl/main_prl.pdf is newer than the staged snapshot (2026-10-25 18:52:00 vs 2026-10-24 17:17:25)"
+   },
+   {
+    "code": "live_draft_newer_than_staged",
+    "package": "P3_PRL_next",
+    "detail": "live draft paper3/paper_ieee/main.pdf is newer than the staged snapshot (2026-10-25 18:52:41 vs 2026-10-24 17:17:24)"
+   },
+   {
+    "code": "stale_staged_snapshot",
+    "package": "PaperA_Neurocomputing_next",
+    "detail": "staged snapshot (2026-10-24 17:17:25) has 77 pages but the live draft paper\u5408/main_nc.pdf has 79 pages"
+   },
+   {
+    "code": "live_draft_newer_than_staged",
+    "package": "PaperA_Neurocomputing_next",
+    "detail": "live draft paper\u5408/main_nc.pdf is newer than the staged snapshot (2026-10-26 12:43:31 vs 2026-10-24 17:17:25)"
+   }
+  ],
+  "n_warnings": 7
+ },
+ "pages": {
+  "counts": {
+   "paper_a1/main.pdf": 64,
+   "paper\u5408/main_nc.pdf": 79,
+   "paper\u5408/main_springer.pdf": 56,
+   "paper3/paper_ieee/main.pdf": 10,
+   "paper_a2/main_ieee.pdf": 74,
+   "paper_review_prl/main_prl.pdf": 7
+  },
+  "pass": true
+ },
+ "bootstrap_integration": {
+  "pass": true,
+  "checks": {
+   "sd_range_dual_encoder_rows": true,
+   "sd_range_bioclip_arms": true,
+   "sd_blanket_claim_absent": true,
+   "sd_claim_checked_against_archive": true,
+   "bioclip_sds_reproduce": true,
+   "caption_points_to_section_f": true,
+   "vlm_caption_population_sd": true,
+   "llava_caption_population_sd": true,
+   "vlm_sd_convention_reproduces": true,
+   "llava_sd_convention_reproduces": true,
+   "vlm_printed_sds_unchanged": true,
+   "llava_printed_sds_unchanged": true,
+   "llava_paired_bootstrap_added": true,
+   "llava_paired_ci_reproduces": true,
+   "llava_unpaired_caveat_kept": true,
+   "section_f_bootstrap_paragraph": true,
+   "section_f_arm_intervals": true,
+   "section_f_siglip_reversal": true,
+   "section_f_eighteen_cells": true,
+   "siglip_reversal_ci_reproduces": true,
+   "design_states_bootstrap_source": true,
+   "section_h_untouched_in_source": true,
+   "section_h_block_present": true,
+   "edits_confined_to_section_h": true
+  },
+  "section_h_first_line": 421
+ },
+ "decoder_ladder_integration": {
+  "pass": true,
+  "checks": {
+   "qwen2vl-2b_contrastive_archive_present": true,
+   "qwen2vl-2b_contrastive_protocol_match": true,
+   "qwen2vl-2b_contrastive_source_cited": true,
+   "qwen2vl-2b_generative_archive_present": true,
+   "qwen2vl-2b_generative_protocol_match": true,
+   "qwen2vl-2b_generative_source_cited": true,
+   "llava15-7b_contrastive_archive_present": true,
+   "llava15-7b_contrastive_protocol_match": true,
+   "llava15-7b_contrastive_source_cited": true,
+   "llava15-7b_generative_archive_present": true,
+   "llava15-7b_generative_protocol_match": true,
+   "llava15-7b_generative_source_cited": true,
+   "qwen25vl-7b_generative_archive_present": true,
+   "qwen25vl-7b_generative_protocol_match": true,
+   "qwen25vl-7b_generative_source_cited": true,
+   "ladder_table_has_five_rungs": true,
+   "qwen2vl-2b_contrastive_row_matches_archive": true,
+   "qwen2vl-2b_generative_row_matches_archive": true,
+   "llava15-7b_contrastive_row_matches_archive": true,
+   "llava15-7b_generative_row_matches_archive": true,
+   "qwen25vl-7b_generative_row_matches_archive": true,
+   "caveat_single_seed_direction": true,
+   "llava_trajectory_reproduces": true,
+   "llava_frozen_mismatch_reproduces": true,
+   "llava_lr_difference_reproduces": true,
+   "llava_mismatch_verdict_stated": true,
+   "caveat_llava_lr_and_trajectory": true,
+   "caveat_local_control_cap_correction": true,
+   "caveat_3b_rung_not_run": true,
+   "bounded_reading_present": true,
+   "table_referenced_and_labelled": true,
+   "source_line_names_script": true,
+   "cap_correction_cites_public_paths": true,
+   "local_control_contrastive_archive_unchanged": true,
+   "local_control_generative_archive_unchanged": true
+  }
+ },
+ "git_clean": {
+  "pass": true,
+  "n_dirty": 0,
+  "dirty": [],
+  "n_dirty_other": 0,
+  "dirty_other": [],
+  "n_dirty_audit_reports": 0,
+  "dirty_audit_reports": [],
+  "n_self_output_excluded": 0,
+  "n_self_audit_reports_excluded": 0,
+  "self_reports": [
+   "docs\\audits\\AUD-a1_paa-20261028T031205Z.json",
+   "docs\\audits\\AUD-a1_paa-20261028T031205Z.md",
+   "docs\\audits\\AUD-a23_joe-20261028T031245Z.json",
+   "docs\\audits\\AUD-a23_joe-20261028T031245Z.md",
+   "docs\\audits\\AUD-p3_prl-20261028T031234Z.json",
+   "docs\\audits\\AUD-p3_prl-20261028T031234Z.md",
+   "docs\\audits\\AUD-paperA_nc-20261028T031218Z.json",
+   "docs\\audits\\AUD-paperA_nc-20261028T031218Z.md",
+   "docs\\audits\\AUD-paperA_springer-20261028T031227Z.json",
+   "docs\\audits\\AUD-paperA_springer-20261028T031227Z.md",
+   "docs\\audits\\AUD-prl_commentary-20261028T031248Z.json",
+   "docs\\audits\\AUD-prl_commentary-20261028T031248Z.md"
+  ],
+  "head": "4b3b6de9 2026-10-28 11:11:43 +0800 Tidy paper3: superseded versions and build clutter to \u5f03\u7528, documentation into docs/, evaluation data into data/",
+  "note": "excluded from the count: outputs/analysis/final_verification.json (this script's own output) and the docs/audits/AUD-* reports this run generated; leftover audit reports from earlier runs are counted separately from real pending work, and both are listed"
+ },
+ "hard_failures": [],
+ "accepted_deviations": [],
+ "warnings": [
+  {
+   "code": "audit_warn:a1_paa:I-02",
+   "detail": "a1_paa I-02 (P1): Package copies match the live manuscript files"
+  },
+  {
+   "code": "audit_warn:paperA_nc:I-02",
+   "detail": "paperA_nc I-02 (P1): Package copies match the live manuscript files"
+  },
+  {
+   "code": "audit_warn:paperA_springer:I-02",
+   "detail": "paperA_springer I-02 (P1): Package copies match the live manuscript files"
+  },
+  {
+   "code": "audit_warn:p3_prl:I-02",
+   "detail": "p3_prl I-02 (P1): Package copies match the live manuscript files"
+  },
+  {
+   "code": "audit_warn:a23_joe:B-06",
+   "detail": "a23_joe B-06 (P2): No unresolved LaTeX warnings"
+  },
+  {
+   "code": "audit_warn:a23_joe:I-02",
+   "detail": "a23_joe I-02 (P1): Package copies match the live manuscript files"
+  },
+  {
+   "code": "audit_warn:prl_commentary:I-02",
+   "detail": "prl_commentary I-02 (P1): Package copies match the live manuscript files"
+  },
+  {
+   "code": "live_draft_newer_than_staged",
+   "detail": "live draft paper_a1/main.pdf is newer than the staged snapshot (2026-10-25 18:55:43 vs 2026-10-24 17:17:23)",
+   "package": "A1_PAA_next"
+  },
+  {
+   "code": "stale_staged_snapshot",
+   "detail": "staged snapshot (2026-10-24 17:17:24) has 72 pages but the live draft paper_a2/main_ieee.pdf has 74 pages",
+   "package": "A23_JOE_next"
+  },
+  {
+   "code": "live_draft_newer_than_staged",
+   "detail": "live draft paper_a2/main_ieee.pdf is newer than the staged snapshot (2026-10-28 10:02:29 vs 2026-10-24 17:17:24)",
+   "package": "A23_JOE_next"
+  },
+  {
+   "code": "live_draft_newer_than_staged",
+   "detail": "live draft paper_review_prl/main_prl.pdf is newer than the staged snapshot (2026-10-25 18:52:00 vs 2026-10-24 17:17:25)",
+   "package": "Commentary_PRL_next"
+  },
+  {
+   "code": "live_draft_newer_than_staged",
+   "detail": "live draft paper3/paper_ieee/main.pdf is newer than the staged snapshot (2026-10-25 18:52:41 vs 2026-10-24 17:17:24)",
+   "package": "P3_PRL_next"
+  },
+  {
+   "code": "stale_staged_snapshot",
+   "detail": "staged snapshot (2026-10-24 17:17:25) has 77 pages but the live draft paper\u5408/main_nc.pdf has 79 pages",
+   "package": "PaperA_Neurocomputing_next"
+  },
+  {
+   "code": "live_draft_newer_than_staged",
+   "detail": "live draft paper\u5408/main_nc.pdf is newer than the staged snapshot (2026-10-26 12:43:31 vs 2026-10-24 17:17:25)",
+   "package": "PaperA_Neurocomputing_next"
+  }
+ ],
+ "warning_count": 14,
+ "verdict": "PASS WITH 14 WARNING(S)",
+ "all_pass": true,
+ "all_green": false,
+ "finished_utc": "2026-10-28T03:13:57Z",
+ "elapsed_sec": 123.1,
+ "head_at_finish": "4b3b6de9 2026-10-28 11:11:43 +0800 Tidy paper3: superseded versions and build clutter to \u5f03\u7528, documentation into docs/, evaluation data into data/"
+}

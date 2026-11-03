@@ -1,0 +1,106 @@
+{
+ "script": "tools/_p451_baseline_adalora.py",
+ "target_budget_params": 7237632,
+ "runs": {
+  "adalora__seed42": {
+   "script": "tools/_p451_baseline_adalora.py",
+   "method": "AdaLoRA (peft AdaLoraConfig + rank_pattern)",
+   "peft_version": "0.20.0",
+   "target_budget_params": 7237632,
+   "n_modules": 324,
+   "rank_distribution": {
+    "4": 324
+   },
+   "sum_rank_cost": 7237632,
+   "budget_exact_match_by_cost_model": true,
+   "per_block_params_by_cost_model": {
+    "vision": 2621440,
+    "llm_shallow": 989184,
+    "llm_mid": 2308096,
+    "llm_deep": 1318912
+   },
+   "search_error": null,
+   "note": "AdaLoRA 训练中动态升降 rank ⇒ 参数量会变化；这里只保证**初始**按成本模型精确等于预算，训练后实测值另行归档",
+   "n_trainable_measured": 7238928,
+   "measured_matches_budget": false,
+   "per_block_params_measured": {
+    "vision": 2621952,
+    "llm_shallow": 989352,
+    "llm_mid": 2308488,
+    "llm_deep": 1319136
+   },
+   "seed": 42,
+   "epochs": 4,
+   "batch": 1,
+   "n_train": 32,
+   "n_eval": 32,
+   "lr": 0.001,
+   "n_trainable_init_measured": 7238928,
+   "E0": 23470.845703125,
+   "E0_per_sample": [
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125,
+    23470.845703125
+   ],
+   "E1": 22713.54296875,
+   "delta_E": -757.302734375,
+   "E_trajectory": [
+    23470.845703125,
+    20885.912109375,
+    27331.119140625,
+    22573.556640625,
+    22713.54296875
+   ],
+   "train_loss": [
+    1.5457676908699796,
+    1.4159848815761507,
+    1.1521118256496266,
+    0.9767399990014383
+   ],
+   "loss_first": 1.5457676908699796,
+   "loss_last": 0.9767399990014383,
+   "n_trainable_final_measured": 7238928,
+   "n_trainable_per_epoch": [
+    7238928,
+    7238928,
+    7238928,
+    7238928
+   ],
+   "n_trainable_change_pct": 0.0,
+   "delta_E_per_sample_mean": -757.302734375,
+   "delta_E_per_sample_sd": 0.0,
+   "peak_gpu_gib": 9.418,
+   "ok": true,
+   "elapsed_sec": 880.9
+  }
+ }
+}

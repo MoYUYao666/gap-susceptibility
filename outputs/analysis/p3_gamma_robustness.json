@@ -1,0 +1,3766 @@
+{
+ "meta": {
+  "script": "tools/_p1636_p3_gamma_robustness.py",
+  "task": "P3 Gamma robustness / applicability boundary from archives only (no new training)",
+  "source_archives": {
+   "alloc_plans": "outputs/analysis/p3_alloc_plans.json",
+   "alloc_results": "outputs/analysis/p3_alloc_results.json",
+   "alloc_summary_main": "outputs/analysis/p3_alloc_runs/main/summary.json",
+   "clip_ranksweep": "outputs/analysis/p3d_clip_ranksweep.json",
+   "env_matrix3": "outputs/analysis/p3_env_matrix3.json",
+   "env_variance": "outputs/analysis/p3_env_variance.json",
+   "gamma_batch_sensitivity": "outputs/analysis/p3_gamma_batch_sensitivity.json",
+   "gamma_blip": "outputs/analysis/p3_blip_gamma.json",
+   "gamma_bootstrap": "outputs/analysis/p3_gamma_bootstrap.json",
+   "gamma_clip": "outputs/analysis/gamma_clip.json",
+   "gamma_qwen_blocks": "outputs/analysis/p3_alloc_gamma_qwen2vl2b.json",
+   "gamma_siglip": "outputs/analysis/p3_siglip_gamma.json",
+   "gamma_theory_check": "outputs/analysis/gamma_theory_check.json",
+   "gapfill_summary": "outputs/analysis/p3_gapfill_summary.json",
+   "hessian_qwen2b_r5": "outputs/analysis/p3_hessian_probe_qwen2b_r5.json",
+   "hessian_r12": "outputs/analysis/p3_hessian_probe_r12.json",
+   "hessian_r16": "outputs/analysis/p3_hessian_probe_r16.json",
+   "hessian_r24": "outputs/analysis/p3_hessian_probe_r24.json",
+   "hessian_r24_s123": "outputs/analysis/p3_hessian_probe_r24_s123.json",
+   "hessian_r24_s789": "outputs/analysis/p3_hessian_probe_r24_s789.json",
+   "hessian_r5": "outputs/analysis/p3_hessian_probe_r5.json",
+   "hessian_r6": "outputs/analysis/p3_hessian_probe_r6.json",
+   "hessian_r64": "outputs/analysis/cloud_p3_hessian_probe_r64.json",
+   "hessian_r64_s42": "outputs/analysis/p3_hessian_probe_r64_s42.json",
+   "hessian_r8": "outputs/analysis/p3_hessian_probe_r8.json",
+   "llava_ordering_stability": "outputs/llava_gamma_ordering_stability.json",
+   "phase_boundary": "outputs/analysis/p3_phase_boundary.json",
+   "qwen_ranksweep": "outputs/analysis/p3d_qwen_ranksweep.json",
+   "rank_separation": "outputs/analysis/p3_rank_separation_extended.json",
+   "reproducibility": "outputs/analysis/p3_reproducibility.json"
+  },
+  "source_archives_sha256": {
+   "alloc_plans": "4b923b868aca7a00ab26ba965655ac97965b1f50766752189e4e5d25cf063c2a",
+   "alloc_results": "f13c014ed024966256147158b632f82ac9aeeb473abd50695e38526ad8ac8d8c",
+   "alloc_summary_main": "a84f82b63aaf2c495c0c9e7938e950e7c4e93d34b19a022b3f1fc6418d02b35f",
+   "clip_ranksweep": "0cf8e8729c276f90f709f49fddfdd323a4faaf8e41734bbdada6e04c553ca78b",
+   "env_matrix3": "1948af5fa86557ea061f19008a52ca880ca4d16ae332256f7c65d06d32ad9e7d",
+   "env_variance": "035d3f3258efd365d429f10f5fe075f029629cf6546c3a0ed1d2f2575a457367",
+   "gamma_batch_sensitivity": "568e1c546646ef36794483b86e6e0071002eee6af62262737bd7d827f205871d",
+   "gamma_blip": "f31c04fa666fce76fc4092fa28bb0545d7cd5c8983c3afc2ddf0d5957afd6061",
+   "gamma_bootstrap": "b390b2129e5fcb644354ec969edfbb87ce7293d79ece5b68b43b86b22daf5b5c",
+   "gamma_clip": "2b47fdb55119d4838b8dc3b6de1a98b2aa420d3304fbc5deb964297fe52ddffe",
+   "gamma_qwen_blocks": "0df84c8d43d8a046693a21eb0957ac3ad72517a15dc421fb4498a23b768c02ca",
+   "gamma_siglip": "a0db334d85c606e20ad395f6facf7cb3b2bfe1faf8d11cc1a8b27e0ec6fb8131",
+   "gamma_theory_check": "c2b67bb4321ce9519fe06128c2d89aa60b7d510299a71546315042ad6872fa8b",
+   "gapfill_summary": "37acb688420ebd8131ca11edb38b8d3a3fcd7c3477181e2490c31a8dfad33685",
+   "hessian_qwen2b_r5": "a0acf789869e9d75d041e535b271bd5b7189473476b07f7db411c9e87f54d83b",
+   "hessian_r12": "3cfb1e2bfa4229b3f74b2ad20c0d72c5189fcb160303a8ca0d15d30307e019c5",
+   "hessian_r16": "90a937fc7f3848f66a2db569f10b9f7eb0e9aa1216b658b9d30016bc08055506",
+   "hessian_r24": "6abc51636e5e73afc9f1d5f4af42f127d955c3b3f220ef1c2af893bbcb63daac",
+   "hessian_r24_s123": "a0ab7ae752906e6ea79c789b93f333bec4ba55a70f7f25f65029b66beff93118",
+   "hessian_r24_s789": "928104cd30d2b650e614c21071e9932ad0c423e77d23f9331a621b6e353484a4",
+   "hessian_r5": "4bf6df07af6393f5bc2de019fe9aa4403251dc52035f976e5943297ec3516332",
+   "hessian_r6": "7f5d0377b447a1a80492f1318cd637070853e1afc590fc92fad1be5e9f0f45a5",
+   "hessian_r64": "e44a26873ea7972d1c45f0b3d12ada54c445054fdb7832806bada97460c5637c",
+   "hessian_r64_s42": "0cde2d585ef2091034a5382df85a6329ed10ef8bd0abbc85ec31f4d89f49e6b6",
+   "hessian_r8": "bac158665a8a08e6c1760c0e48dab955fd43455f5b7321efc0e0401363aae1c7",
+   "llava_ordering_stability": "13e69303a7408447b2057457c1a251476ee1d3e376ce8157791e21a275f036fc",
+   "phase_boundary": "2f55fdfa19d7f6cc74a5b0ef75b6d65411a4fc2b752b5095349e36fb32d1534b",
+   "qwen_ranksweep": "4022cc68b8417277f274cc54062e948429763af1b631fd53d2dda068a5503771",
+   "rank_separation": "8796452148d827109a5d42979d24e4492382c85e89487dec552b00e62ef2edaa",
+   "reproducibility": "eb96c1b2c9a5a102a8d038c83b98c1d727a45d951c08f5d522cae33bbb24bd83"
+  },
+  "source_experiment_files": {
+   "r5_s42_bs1": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+   "r5_s42_bs2": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+   "r5_s42_bs1_cloud": "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json",
+   "r5_s42_bs2_cloud": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json",
+   "r6_s42_bs1": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+   "r6_s42_bs2": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json",
+   "r6_s42_bs1_cloud": "paper3/scripts/outputs/experiments/cloud_verify_r6_s42.json",
+   "r6_s42_bs2_cloud": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json"
+  },
+  "field_paths": {
+   "rank_sensitivity": "outputs/analysis/p3_rank_separation_extended.json :: ranks[r].{mean,sd,n,values_by_seed}, separation.pairs, rank5_equivalence, vqa_equivalence",
+   "rank_sensitivity_downstream_clip": "outputs/analysis/p3d_clip_ranksweep.json :: runs[*].{rank,condition,n_train,seed,dE_test,R@1}",
+   "rank_sensitivity_downstream_qwen": "outputs/analysis/p3d_qwen_ranksweep.json :: runs[*].{rank,condition,seed,dE_eval_real}",
+   "rank_sensitivity_ordering": "outputs/llava_gamma_ordering_stability.json :: {ordering_per_rank,kendall_W,mean_pairwise_spearman}",
+   "batch_sensitivity_families": "outputs/analysis/p3_reproducibility.json :: batch_effect.batches[*].per_rank_dE, batch_effect.shared_rank_comparison",
+   "batch_sensitivity_cells": "paper3/scripts/outputs/experiments/verify_r{5,6}_s42_lr5e-05_nw_float1_adamw_e3_bcuniform{,_b2,_b2_cloud}.json and cloud_verify_r{5,6}_s42.json :: delta_E, batch_size",
+   "batch_sensitivity_gamma": "outputs/analysis/p3_gamma_batch_sensitivity.json :: conditions[*].{n,draw,gamma,gamma_sd,abs_order,ranks}, summary[*].cv",
+   "noise_break_even": "outputs/analysis/p3_alloc_plans.json :: {gamma_abs,gamma_measured,cost_per_rank,budget_params,beta_grid,beta_star_1_over_sigma,plans.exp_beta_paper_0.137,uniform_linear_objective,exact_budget_allocations}",
+   "noise_break_even_repeats": "outputs/analysis/p3_alloc_gamma_qwen2vl2b.json :: gamma_across_seeds[*].{mean,sd_across_seeds,per_seed}",
+   "noise_break_even_hessian": "outputs/analysis/p3_hessian_probe_r24.json, p3_hessian_probe_r24_s123.json, p3_hessian_probe_r24_s789.json, cloud_p3_hessian_probe_r64.json, p3_hessian_probe_qwen2b_r5.json :: runs[*].{g2,second_order_over_first_order,share_at_lr}",
+   "noise_break_even_advantage": "outputs/analysis/p3_alloc_results.json :: comparisons.exp_beta_paper_0.137.vs_uniform",
+   "backbone_coverage": "outputs/analysis/{gamma_clip,p3_siglip_gamma,p3_blip_gamma,p3_alloc_gamma_qwen2vl2b,gamma_theory_check}.json"
+  },
+  "n_boot": 20000,
+  "rng_seed": 20261024,
+  "idempotent": true,
+  "note": "no wall-clock field inside the hashed part, so re-running reproduces the file byte for byte; self_sha256 covers everything except generated_utc and self_sha256 itself",
+  "self_sha256": "de69adcfba29e4fad577e5c2b4e7769b36c587825f5429f2756df82924b38950"
+ },
+ "rank_sensitivity": {
+  "primary_arm": "blank-image (text-only) LLaVA-1.5-7B LoRA protocol, paper3/scripts/outputs/experiments/cloud_verify_r<R>_s*.json",
+  "primary_field": "delta_E",
+  "primary_ranks": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8
+  ],
+  "primary_n_seeds_per_rank": 10,
+  "per_rank": {
+   "3": {
+    "n_seeds": 10,
+    "mean": -120.7,
+    "sd": 6.575205953681857,
+    "min": -129.5,
+    "max": -108.5,
+    "n_negative": 10,
+    "n_positive": 0,
+    "values_by_seed": {
+     "7": -125.5,
+     "17": -129.5,
+     "27": -122.5,
+     "37": -125.5,
+     "42": -114.0,
+     "123": -119.5,
+     "456": -108.5,
+     "789": -124.5,
+     "999": -114.0,
+     "1024": -123.5
+    },
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     123,
+     456,
+     789,
+     999,
+     1024
+    ],
+    "source_field": "delta_E"
+   },
+   "4": {
+    "n_seeds": 10,
+    "mean": -97.65,
+    "sd": 24.18108765130303,
+    "min": -142.0,
+    "max": -66.5,
+    "n_negative": 10,
+    "n_positive": 0,
+    "values_by_seed": {
+     "7": -66.5,
+     "17": -96.5,
+     "27": -108.5,
+     "37": -88.5,
+     "42": -85.0,
+     "123": -124.5,
+     "456": -142.0,
+     "789": -83.5,
+     "999": -112.5,
+     "1024": -69.0
+    },
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     123,
+     456,
+     789,
+     999,
+     1024
+    ],
+    "source_field": "delta_E"
+   },
+   "5": {
+    "n_seeds": 10,
+    "mean": -43.7,
+    "sd": 38.766537689667935,
+    "min": -114.5,
+    "max": -7.5,
+    "n_negative": 10,
+    "n_positive": 0,
+    "values_by_seed": {
+     "7": -63.5,
+     "17": -7.5,
+     "27": -114.5,
+     "37": -12.5,
+     "42": -26.5,
+     "123": -7.5,
+     "456": -66.0,
+     "789": -19.0,
+     "999": -24.0,
+     "1024": -96.0
+    },
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     123,
+     456,
+     789,
+     999,
+     1024
+    ],
+    "source_field": "delta_E"
+   },
+   "6": {
+    "n_seeds": 10,
+    "mean": 87.3,
+    "sd": 29.882361947402277,
+    "min": 43.0,
+    "max": 132.5,
+    "n_negative": 0,
+    "n_positive": 10,
+    "values_by_seed": {
+     "7": 95.0,
+     "17": 132.5,
+     "27": 43.0,
+     "37": 90.5,
+     "42": 56.0,
+     "123": 46.5,
+     "456": 104.5,
+     "789": 118.0,
+     "999": 94.5,
+     "1024": 92.5
+    },
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     123,
+     456,
+     789,
+     999,
+     1024
+    ],
+    "source_field": "delta_E"
+   },
+   "7": {
+    "n_seeds": 10,
+    "mean": 195.0,
+    "sd": 32.63689119181952,
+    "min": 134.5,
+    "max": 250.0,
+    "n_negative": 0,
+    "n_positive": 10,
+    "values_by_seed": {
+     "7": 250.0,
+     "17": 221.5,
+     "27": 190.5,
+     "37": 184.5,
+     "42": 191.5,
+     "123": 166.0,
+     "456": 199.0,
+     "789": 228.0,
+     "999": 184.5,
+     "1024": 134.5
+    },
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     123,
+     456,
+     789,
+     999,
+     1024
+    ],
+    "source_field": "delta_E"
+   },
+   "8": {
+    "n_seeds": 10,
+    "mean": 235.0,
+    "sd": 56.83846506645927,
+    "min": 137.5,
+    "max": 313.0,
+    "n_negative": 0,
+    "n_positive": 10,
+    "values_by_seed": {
+     "7": 242.5,
+     "17": 261.5,
+     "27": 137.5,
+     "37": 262.0,
+     "42": 147.0,
+     "123": 224.5,
+     "456": 246.0,
+     "789": 296.5,
+     "999": 313.0,
+     "1024": 219.5
+    },
+    "seeds": [
+     7,
+     17,
+     27,
+     37,
+     42,
+     123,
+     456,
+     789,
+     999,
+     1024
+    ],
+    "source_field": "delta_E"
+   }
+  },
+  "adjacent_rank_tests": {
+   "r3-r4": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.0390625,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -59.0,
+     "17": -33.0,
+     "27": -14.0,
+     "37": -37.0,
+     "42": -29.0,
+     "123": 5.0,
+     "456": 33.5,
+     "789": -41.0,
+     "999": -1.5,
+     "1024": -54.5
+    },
+    "all_diffs_same_sign": false,
+    "archive_sign_separated_passthrough": false
+   },
+   "r4-r5": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.013671875,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -3.0,
+     "17": -89.0,
+     "27": 6.0,
+     "37": -76.0,
+     "42": -58.5,
+     "123": -117.0,
+     "456": -76.0,
+     "789": -64.5,
+     "999": -88.5,
+     "1024": 27.0
+    },
+    "all_diffs_same_sign": false,
+    "archive_sign_separated_passthrough": false
+   },
+   "r5-r6": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -158.5,
+     "17": -140.0,
+     "27": -157.5,
+     "37": -103.0,
+     "42": -82.5,
+     "123": -54.0,
+     "456": -170.5,
+     "789": -137.0,
+     "999": -118.5,
+     "1024": -188.5
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r6-r7": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -155.0,
+     "17": -89.0,
+     "27": -147.5,
+     "37": -94.0,
+     "42": -135.5,
+     "123": -119.5,
+     "456": -94.5,
+     "789": -110.0,
+     "999": -90.0,
+     "1024": -42.0
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r7-r8": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.060546875,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": 7.5,
+     "17": -40.0,
+     "27": 53.0,
+     "37": -77.5,
+     "42": 44.5,
+     "123": -58.5,
+     "456": -47.0,
+     "789": -68.5,
+     "999": -128.5,
+     "1024": -85.0
+    },
+    "all_diffs_same_sign": false,
+    "archive_sign_separated_passthrough": false
+   }
+  },
+  "all_pair_tests": {
+   "r3-r4": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.0390625,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -59.0,
+     "17": -33.0,
+     "27": -14.0,
+     "37": -37.0,
+     "42": -29.0,
+     "123": 5.0,
+     "456": 33.5,
+     "789": -41.0,
+     "999": -1.5,
+     "1024": -54.5
+    },
+    "all_diffs_same_sign": false,
+    "archive_sign_separated_passthrough": false
+   },
+   "r3-r5": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -62.0,
+     "17": -122.0,
+     "27": -8.0,
+     "37": -113.0,
+     "42": -87.5,
+     "123": -112.0,
+     "456": -42.5,
+     "789": -105.5,
+     "999": -90.0,
+     "1024": -27.5
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": false
+   },
+   "r3-r6": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -220.5,
+     "17": -262.0,
+     "27": -165.5,
+     "37": -216.0,
+     "42": -170.0,
+     "123": -166.0,
+     "456": -213.0,
+     "789": -242.5,
+     "999": -208.5,
+     "1024": -216.0
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r3-r7": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -375.5,
+     "17": -351.0,
+     "27": -313.0,
+     "37": -310.0,
+     "42": -305.5,
+     "123": -285.5,
+     "456": -307.5,
+     "789": -352.5,
+     "999": -298.5,
+     "1024": -258.0
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r3-r8": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -368.0,
+     "17": -391.0,
+     "27": -260.0,
+     "37": -387.5,
+     "42": -261.0,
+     "123": -344.0,
+     "456": -354.5,
+     "789": -421.0,
+     "999": -427.0,
+     "1024": -343.0
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r4-r5": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.013671875,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -3.0,
+     "17": -89.0,
+     "27": 6.0,
+     "37": -76.0,
+     "42": -58.5,
+     "123": -117.0,
+     "456": -76.0,
+     "789": -64.5,
+     "999": -88.5,
+     "1024": 27.0
+    },
+    "all_diffs_same_sign": false,
+    "archive_sign_separated_passthrough": false
+   },
+   "r4-r6": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -161.5,
+     "17": -229.0,
+     "27": -151.5,
+     "37": -179.0,
+     "42": -141.0,
+     "123": -171.0,
+     "456": -246.5,
+     "789": -201.5,
+     "999": -207.0,
+     "1024": -161.5
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r4-r7": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -316.5,
+     "17": -318.0,
+     "27": -299.0,
+     "37": -273.0,
+     "42": -276.5,
+     "123": -290.5,
+     "456": -341.0,
+     "789": -311.5,
+     "999": -297.0,
+     "1024": -203.5
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r4-r8": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -309.0,
+     "17": -358.0,
+     "27": -246.0,
+     "37": -350.5,
+     "42": -232.0,
+     "123": -349.0,
+     "456": -388.0,
+     "789": -380.0,
+     "999": -425.5,
+     "1024": -288.5
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r5-r6": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -158.5,
+     "17": -140.0,
+     "27": -157.5,
+     "37": -103.0,
+     "42": -82.5,
+     "123": -54.0,
+     "456": -170.5,
+     "789": -137.0,
+     "999": -118.5,
+     "1024": -188.5
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r5-r7": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -313.5,
+     "17": -229.0,
+     "27": -305.0,
+     "37": -197.0,
+     "42": -218.0,
+     "123": -173.5,
+     "456": -265.0,
+     "789": -247.0,
+     "999": -208.5,
+     "1024": -230.5
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r5-r8": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -306.0,
+     "17": -269.0,
+     "27": -252.0,
+     "37": -274.5,
+     "42": -173.5,
+     "123": -232.0,
+     "456": -312.0,
+     "789": -315.5,
+     "999": -337.0,
+     "1024": -315.5
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r6-r7": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -155.0,
+     "17": -89.0,
+     "27": -147.5,
+     "37": -94.0,
+     "42": -135.5,
+     "123": -119.5,
+     "456": -94.5,
+     "789": -110.0,
+     "999": -90.0,
+     "1024": -42.0
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r6-r8": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.001953125,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": -147.5,
+     "17": -129.0,
+     "27": -94.5,
+     "37": -171.5,
+     "42": -91.0,
+     "123": -178.0,
+     "456": -141.5,
+     "789": -178.5,
+     "999": -218.5,
+     "1024": -127.0
+    },
+    "all_diffs_same_sign": true,
+    "archive_sign_separated_passthrough": true
+   },
+   "r7-r8": {
+    "n_patterns": 1024,
+    "p_two_sided": 0.060546875,
+    "p_min_attainable": 0.001953125,
+    "diffs_a_minus_b_by_seed": {
+     "7": 7.5,
+     "17": -40.0,
+     "27": 53.0,
+     "37": -77.5,
+     "42": 44.5,
+     "123": -58.5,
+     "456": -47.0,
+     "789": -68.5,
+     "999": -128.5,
+     "1024": -85.0
+    },
+    "all_diffs_same_sign": false,
+    "archive_sign_separated_passthrough": false
+   }
+  },
+  "n_pairs": 15,
+  "n_pairs_sign_separated": 12,
+  "n_pairs_not_sign_separated": 3,
+  "non_sign_separated_pairs": [
+   "r3-r4",
+   "r4-r5",
+   "r7-r8"
+  ],
+  "sign_split": {
+   "fully_negative_ranks": [
+    3,
+    4,
+    5
+   ],
+   "fully_positive_ranks": [
+    6,
+    7,
+    8
+   ],
+   "crossing_between": [
+    5,
+    6
+   ],
+   "strictly_ordered_pairs": [
+    "r3-r5",
+    "r3-r6",
+    "r3-r7",
+    "r3-r8",
+    "r4-r6",
+    "r4-r7",
+    "r4-r8",
+    "r5-r6",
+    "r5-r7",
+    "r5-r8",
+    "r6-r7",
+    "r6-r8"
+   ],
+   "not_strictly_ordered_pairs": [
+    "r3-r4",
+    "r4-r5",
+    "r7-r8"
+   ],
+   "definition": "strictly ordered = every one of the ten shared seeds has the same sign of the paired difference; the archive's own separation.pairs[*].p_exact is computed from pooled runs and is deliberately not recomputed here"
+  },
+  "vqa_rad_300q": {
+   "n_questions": 300,
+   "declared_margin": 0.05,
+   "arms": {
+    "base": {
+     "rank": null,
+     "accuracy": 0.33,
+     "token_f1": 0.3563144345907504,
+     "archive": "outputs/analysis/cloud_vqa1793_base.json"
+    },
+    "5": {
+     "rank": 5,
+     "accuracy": 0.3933333333333333,
+     "token_f1": 0.4276411273911274,
+     "archive": "outputs/analysis/cloud_vqa1793_5.json"
+    },
+    "6": {
+     "rank": 6,
+     "accuracy": 0.35,
+     "token_f1": 0.42098223073223073,
+     "archive": "outputs/analysis/cloud_vqa1793_6.json"
+    }
+   },
+   "contrast_r5_minus_r6": {
+    "accuracy": 0.043333333333333335,
+    "accuracy_ci95": [
+     0.003333333333333355,
+     0.08333333333333331
+    ],
+    "token_f1": 0.006658896658896685,
+    "token_f1_ci95": [
+     -0.028441682391682394,
+     0.04139215830465828
+    ],
+    "token_f1_equivalent_at_margin": true
+   },
+   "verdict": "supported on token F1 (delta +0.0067, TOST p=0.0074 at +/-0.05); NOT supported on exact-match accuracy, where r=5 is higher than r=6 by +0.0433 (95% CI [+0.0033, +0.0833]) -- a small reversal, not an ordering in the alignment-energy direction.  The accuracy ordering can only be excluded above a margin of 0.0767."
+  },
+  "rank5_near_zero_band": {
+   "mean": -43.7,
+   "sd": 38.766537689667935,
+   "ci95_t": [
+    -71.43191045687601,
+    -15.968089543123991
+   ],
+   "declared_margin": 38.766537689667935,
+   "tost_p": 0.6516223596255077,
+   "equivalent_at_declared_margin": false,
+   "min_equivalent_margin": 66.17223338049698,
+   "min_equivalent_margin_in_seed_sd": 1.706942051679101
+  },
+  "downstream_clip_rank_sweep": {
+   "model": "models/clip-vit-base-patch32",
+   "ranks_covered": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    8,
+    16
+   ],
+   "cells": [
+    {
+     "rank": 1,
+     "condition": "blank",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0032933333333333334,
+     "dE_test_sd": 0.0010146114198713383,
+     "R1_mean": 0.7107000000000001
+    },
+    {
+     "rank": 1,
+     "condition": "blank",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0010076666666666667,
+     "dE_test_sd": 0.0041139787716191895,
+     "R1_mean": 0.7025666666666667
+    },
+    {
+     "rank": 1,
+     "condition": "real",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": 4.7999999999999994e-05,
+     "dE_test_sd": 0.0004984094702150031,
+     "R1_mean": 0.7056333333333334
+    },
+    {
+     "rank": 1,
+     "condition": "real",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0027493333333333332,
+     "dE_test_sd": 0.0021231687011006293,
+     "R1_mean": 0.7164666666666667
+    },
+    {
+     "rank": 2,
+     "condition": "blank",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0036866666666666667,
+     "dE_test_sd": 0.0006570915714977126,
+     "R1_mean": 0.7107
+    },
+    {
+     "rank": 2,
+     "condition": "real",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": 0.00031666666666666665,
+     "dE_test_sd": 0.0004188344939631087,
+     "R1_mean": 0.7040000000000001
+    },
+    {
+     "rank": 4,
+     "condition": "blank",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.005404,
+     "dE_test_sd": 0.000723897782839539,
+     "R1_mean": 0.7109333333333333
+    },
+    {
+     "rank": 4,
+     "condition": "blank",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0009546666666666667,
+     "dE_test_sd": 0.007332202965912314,
+     "R1_mean": 0.7007666666666666
+    },
+    {
+     "rank": 4,
+     "condition": "real",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": 0.0006186666666666667,
+     "dE_test_sd": 0.0002251251503793686,
+     "R1_mean": 0.7037
+    },
+    {
+     "rank": 4,
+     "condition": "real",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0029736666666666666,
+     "dE_test_sd": 0.0010468583157874486,
+     "R1_mean": 0.7233
+    },
+    {
+     "rank": 5,
+     "condition": "blank",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.006279,
+     "dE_test_sd": 0.00012842118205342917,
+     "R1_mean": 0.7106
+    },
+    {
+     "rank": 5,
+     "condition": "blank",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0030510000000000003,
+     "dE_test_sd": 0.0037028800952771885,
+     "R1_mean": 0.7006333333333333
+    },
+    {
+     "rank": 5,
+     "condition": "real",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": 0.00019400000000000003,
+     "dE_test_sd": 0.0003027391616557065,
+     "R1_mean": 0.7054
+    },
+    {
+     "rank": 5,
+     "condition": "real",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0029603333333333335,
+     "dE_test_sd": 0.0007348444279800544,
+     "R1_mean": 0.7210000000000001
+    },
+    {
+     "rank": 6,
+     "condition": "blank",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.006491666666666666,
+     "dE_test_sd": 0.0005357894486954118,
+     "R1_mean": 0.7104666666666667
+    },
+    {
+     "rank": 6,
+     "condition": "blank",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0009126666666666663,
+     "dE_test_sd": 0.00559680304578724,
+     "R1_mean": 0.6978333333333334
+    },
+    {
+     "rank": 6,
+     "condition": "real",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": 0.00035000000000000005,
+     "dE_test_sd": 5.4525223520862346e-05,
+     "R1_mean": 0.7050666666666666
+    },
+    {
+     "rank": 6,
+     "condition": "real",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0024086666666666666,
+     "dE_test_sd": 0.0006621044731259058,
+     "R1_mean": 0.7220333333333334
+    },
+    {
+     "rank": 8,
+     "condition": "blank",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0074986666666666665,
+     "dE_test_sd": 0.0004741121526952592,
+     "R1_mean": 0.7119333333333334
+    },
+    {
+     "rank": 8,
+     "condition": "blank",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0025239999999999998,
+     "dE_test_sd": 0.0026173627948757887,
+     "R1_mean": 0.6996333333333333
+    },
+    {
+     "rank": 8,
+     "condition": "real",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": 0.000644,
+     "dE_test_sd": 8.190848551890092e-05,
+     "R1_mean": 0.7037999999999999
+    },
+    {
+     "rank": 8,
+     "condition": "real",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.001183,
+     "dE_test_sd": 0.0010040044820617087,
+     "R1_mean": 0.7219333333333333
+    },
+    {
+     "rank": 16,
+     "condition": "blank",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.009098,
+     "dE_test_sd": 0.0003516205340989059,
+     "R1_mean": 0.7107000000000001
+    },
+    {
+     "rank": 16,
+     "condition": "blank",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": -0.0014483333333333334,
+     "dE_test_sd": 0.004224690560660429,
+     "R1_mean": 0.6927333333333333
+    },
+    {
+     "rank": 16,
+     "condition": "real",
+     "n_train": 16,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": 0.0009230000000000001,
+     "dE_test_sd": 0.0002671572570603315,
+     "R1_mean": 0.7028666666666666
+    },
+    {
+     "rank": 16,
+     "condition": "real",
+     "n_train": 1024,
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_test_mean": 1.166666666666668e-05,
+     "dE_test_sd": 0.0009764713684145242,
+     "R1_mean": 0.7241
+    }
+   ],
+   "contrast_r5_minus_r6_real_n1024": {
+    "n_pairs": 3,
+    "mean": -0.0005516666666666668,
+    "ci95": [
+     -0.000915,
+     -0.00017900000000000034
+    ],
+    "ci95_excludes_zero": true,
+    "seeds_paired": [
+     42,
+     123,
+     999
+    ],
+    "differences_by_seed": {
+     "42": -0.00017900000000000034,
+     "123": -0.0005610000000000001,
+     "999": -0.000915
+    },
+    "dR1_delta_mean": -0.0010333333333332935
+   }
+  },
+  "downstream_qwen_rank_sweep": {
+   "model": "models/Qwen2-VL-2B-Instruct",
+   "ranks_covered": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    8,
+    16
+   ],
+   "cells": [
+    {
+     "rank": 1,
+     "condition": "blank",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -260.2027,
+     "dE_sd": 60.32344954899379
+    },
+    {
+     "rank": 1,
+     "condition": "real",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -236.00753333333333,
+     "dE_sd": 23.392437862765252
+    },
+    {
+     "rank": 2,
+     "condition": "blank",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -205.80696666666668,
+     "dE_sd": 45.17432678815848
+    },
+    {
+     "rank": 2,
+     "condition": "real",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -270.9831,
+     "dE_sd": 33.48801285878279
+    },
+    {
+     "rank": 4,
+     "condition": "blank",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -28.919033333333335,
+     "dE_sd": 74.24499363757353
+    },
+    {
+     "rank": 4,
+     "condition": "real",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -211.04056666666665,
+     "dE_sd": 58.157356220544735
+    },
+    {
+     "rank": 5,
+     "condition": "blank",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -65.67056666666666,
+     "dE_sd": 132.92028979058588
+    },
+    {
+     "rank": 5,
+     "condition": "real",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -222.32600000000002,
+     "dE_sd": 60.133605097066976
+    },
+    {
+     "rank": 6,
+     "condition": "blank",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": 7.55416666666667,
+     "dE_sd": 102.69961458955595
+    },
+    {
+     "rank": 6,
+     "condition": "real",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -212.78816666666668,
+     "dE_sd": 33.66999303836181
+    },
+    {
+     "rank": 8,
+     "condition": "blank",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": 149.16973333333334,
+     "dE_sd": 57.32994582976103
+    },
+    {
+     "rank": 8,
+     "condition": "real",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -169.22903333333332,
+     "dE_sd": 33.904500716178276
+    },
+    {
+     "rank": 16,
+     "condition": "blank",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": 178.73846666666668,
+     "dE_sd": 28.785564342102685
+    },
+    {
+     "rank": 16,
+     "condition": "real",
+     "n_seeds": 3,
+     "seeds": [
+      42,
+      123,
+      999
+     ],
+     "dE_mean": -134.6555,
+     "dE_sd": 96.76789134439171
+    }
+   ],
+   "rank_means": {
+    "1": -248.10511666666667,
+    "2": -238.39503333333334,
+    "4": -119.9798,
+    "5": -143.99828333333335,
+    "6": -102.617,
+    "8": -10.02964999999999,
+    "16": 22.041483333333346
+   },
+   "spearman_rank_vs_dE": 0.9642857142857143
+  },
+  "gamma_block_ordering_vs_rank": {
+   "llava": {
+    "kendall_W": 1.0,
+    "chi2": 15.0,
+    "p": 0.0018166489665722985,
+    "mean_pairwise_spearman": 1.0,
+    "ranks": [
+     "r16",
+     "r32",
+     "r4",
+     "r64",
+     "r8"
+    ],
+    "n_distinct_orderings": 1
+   },
+   "clip_batch_draws": [
+    {
+     "n": 2,
+     "draw": 2,
+     "abs_order": [
+      "text_shallow",
+      "text_mid",
+      "vision",
+      "text_deep"
+     ],
+     "ranks": {
+      "text_shallow": 11,
+      "text_mid": 2,
+      "text_deep": 1,
+      "vision": 2
+     },
+     "gamma": {
+      "text_shallow": -228.82455611228943,
+      "text_mid": -51.10156397397319,
+      "text_deep": -6.017722663780053,
+      "vision": -43.47608124379379
+     },
+     "gamma_sd": {
+      "text_shallow": 493.502444367787,
+      "text_mid": 109.20821145029052,
+      "text_deep": 5.53454995395946,
+      "vision": 52.79180690862702
+     }
+    },
+    {
+     "n": 4,
+     "draw": 2,
+     "abs_order": [
+      "vision",
+      "text_shallow",
+      "text_mid",
+      "text_deep"
+     ],
+     "ranks": {
+      "text_shallow": 6,
+      "text_mid": 2,
+      "text_deep": 1,
+      "vision": 7
+     },
+     "gamma": {
+      "text_shallow": -55.079356145734586,
+      "text_mid": -17.00759502314031,
+      "text_deep": -4.289735732289652,
+      "vision": -58.452152216729395
+     },
+     "gamma_sd": {
+      "text_shallow": 417.86208364165503,
+      "text_mid": 101.85513221856792,
+      "text_deep": 0.6533908055993383,
+      "vision": 25.686774002501853
+     }
+    },
+    {
+     "n": 8,
+     "draw": 2,
+     "abs_order": [
+      "text_shallow",
+      "text_mid",
+      "vision",
+      "text_deep"
+     ],
+     "ranks": {
+      "text_shallow": 10,
+      "text_mid": 3,
+      "text_deep": 1,
+      "vision": 2
+     },
+     "gamma": {
+      "text_shallow": -185.59183496671417,
+      "text_mid": -47.515509552011885,
+      "text_deep": -4.609563772256176,
+      "vision": -36.45159271782419
+     },
+     "gamma_sd": {
+      "text_shallow": 285.66144737755315,
+      "text_mid": 64.34612310144749,
+      "text_deep": 2.7562907319001027,
+      "vision": 21.006752812134092
+     }
+    },
+    {
+     "n": 16,
+     "draw": 1,
+     "abs_order": [
+      "text_shallow",
+      "text_mid",
+      "vision",
+      "text_deep"
+     ],
+     "ranks": {
+      "text_shallow": 9,
+      "text_mid": 3,
+      "text_deep": 1,
+      "vision": 3
+     },
+     "gamma": {
+      "text_shallow": -101.35086644557305,
+      "text_mid": -29.67953148856759,
+      "text_deep": -2.5971682989038527,
+      "vision": -26.39852272826829
+     },
+     "gamma_sd": {
+      "text_shallow": 147.8128072848655,
+      "text_mid": 40.40962066913319,
+      "text_deep": 1.3772682599271835,
+      "vision": 3.1028771995425473
+     }
+    }
+   ],
+   "qwen_seeds": {
+    "seeds": [
+     42,
+     101,
+     202
+    ],
+    "per_seed_abs": {
+     "42": {
+      "vision": 943.0311097365714,
+      "llm_shallow": 7356.444582539797,
+      "llm_mid": 3930.87848495543,
+      "llm_deep": 1042.900514280796
+     },
+     "101": {
+      "vision": 627.0789427643606,
+      "llm_shallow": 3459.7444401085377,
+      "llm_mid": 4440.191449075937,
+      "llm_deep": 138.1088128581643
+     },
+     "202": {
+      "vision": 1044.0904076029624,
+      "llm_shallow": 4359.2342402637005,
+      "llm_mid": 4376.12853371799,
+      "llm_deep": 1989.7818666696548
+     }
+    },
+    "per_seed_order": {
+     "42": [
+      "llm_shallow",
+      "llm_mid",
+      "llm_deep",
+      "vision"
+     ],
+     "101": [
+      "llm_mid",
+      "llm_shallow",
+      "vision",
+      "llm_deep"
+     ],
+     "202": [
+      "llm_mid",
+      "llm_shallow",
+      "llm_deep",
+      "vision"
+     ]
+    },
+    "n_distinct_orderings": 3,
+    "reference_seed": "101",
+    "reference_order": [
+     "llm_mid",
+     "llm_shallow",
+     "vision",
+     "llm_deep"
+    ],
+    "order_stable_across_seeds": false
+   }
+  },
+  "gamma_theory_vs_measurement_ordering": {
+   "ordering_by_theory": [
+    "both",
+    "vision_only",
+    "text_only"
+   ],
+   "ordering_by_measurement": [
+    "text_only",
+    "both",
+    "vision_only"
+   ],
+   "orders_agree": false,
+   "caveat": "cos in _p58 is the angle to the SUM of all trainable grads, not to each modality's own grad; so Gamma_m*norm is a formal value, not the inner product. Measuring <grad_m DG*, g_m> directly is required to test the theory."
+  }
+ },
+ "batch_sensitivity": {
+  "batch_families": {
+   "E2": {
+    "n_runs": 12,
+    "E0_values": [
+     3930.5
+    ],
+    "ranks_covered": [
+     4,
+     16
+    ],
+    "ranks_covered_with_3_seeds": [
+     4,
+     16
+    ],
+    "per_rank": {
+     "4": {
+      "n": 3,
+      "mean": -105.16666666666667,
+      "sd": 25.798901785411978,
+      "min": -125.0,
+      "max": -76.0,
+      "n_negative": 3,
+      "n_positive": 0
+     },
+     "16": {
+      "n": 3,
+      "mean": 1571.5,
+      "sd": 82.63776376451628,
+      "min": 1506.5,
+      "max": 1664.5,
+      "n_negative": 0,
+      "n_positive": 3
+     }
+    },
+    "spearman_rank_vs_dE": 1.0,
+    "all_ranks_negative": false,
+    "all_ranks_positive": false,
+    "n_ranks_sign_disagreeing_with_primary_crossing": 0
+   },
+   "extra": {
+    "n_runs": 15,
+    "E0_values": [
+     3927.0,
+     3930.5
+    ],
+    "ranks_covered": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "ranks_covered_with_3_seeds": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "per_rank": {
+     "5": {
+      "n": 3,
+      "mean": -21.0,
+      "sd": 32.10529551335729,
+      "min": -51.5,
+      "max": 12.5,
+      "n_negative": 2,
+      "n_positive": 1
+     },
+     "6": {
+      "n": 3,
+      "mean": 62.333333333333336,
+      "sd": 51.28921264099629,
+      "min": 30.5,
+      "max": 121.5,
+      "n_negative": 0,
+      "n_positive": 3
+     },
+     "7": {
+      "n": 3,
+      "mean": 191.5,
+      "sd": 53.35962893424204,
+      "min": 133.0,
+      "max": 237.5,
+      "n_negative": 0,
+      "n_positive": 3
+     },
+     "8": {
+      "n": 3,
+      "mean": 311.3333333333333,
+      "sd": 59.53430383680768,
+      "min": 253.0,
+      "max": 372.0,
+      "n_negative": 0,
+      "n_positive": 3
+     }
+    },
+    "spearman_rank_vs_dE": 1.0,
+    "all_ranks_negative": false,
+    "all_ranks_positive": false,
+    "n_ranks_sign_disagreeing_with_primary_crossing": 1
+   },
+   "sweep": {
+    "n_runs": 45,
+    "E0_values": [
+     3927.0
+    ],
+    "ranks_covered": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     10,
+     12,
+     14,
+     16,
+     20
+    ],
+    "ranks_covered_with_3_seeds": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     10,
+     12,
+     14,
+     16,
+     20
+    ],
+    "per_rank": {
+     "4": {
+      "n": 3,
+      "mean": -30.166666666666668,
+      "sd": 8.69386757049665,
+      "min": -40.0,
+      "max": -23.5,
+      "n_negative": 3,
+      "n_positive": 0
+     },
+     "5": {
+      "n": 3,
+      "mean": -48.666666666666664,
+      "sd": 7.285830998131464,
+      "min": -55.5,
+      "max": -41.0,
+      "n_negative": 3,
+      "n_positive": 0
+     },
+     "6": {
+      "n": 3,
+      "mean": -54.5,
+      "sd": 3.5,
+      "min": -58.0,
+      "max": -51.0,
+      "n_negative": 3,
+      "n_positive": 0
+     },
+     "7": {
+      "n": 3,
+      "mean": -60.833333333333336,
+      "sd": 2.565800719723442,
+      "min": -63.0,
+      "max": -58.0,
+      "n_negative": 3,
+      "n_positive": 0
+     },
+     "8": {
+      "n": 3,
+      "mean": -71.66666666666667,
+      "sd": 6.251666444503684,
+      "min": -78.0,
+      "max": -65.5,
+      "n_negative": 3,
+      "n_positive": 0
+     },
+     "10": {
+      "n": 3,
+      "mean": -84.5,
+      "sd": 5.0,
+      "min": -89.5,
+      "max": -79.5,
+      "n_negative": 3,
+      "n_positive": 0
+     },
+     "12": {
+      "n": 3,
+      "mean": -99.0,
+      "sd": 3.0413812651491097,
+      "min": -102.5,
+      "max": -97.0,
+      "n_negative": 3,
+      "n_positive": 0
+     },
+     "14": {
+      "n": 3,
+      "mean": -106.0,
+      "sd": 3.605551275463989,
+      "min": -110.0,
+      "max": -103.0,
+      "n_negative": 3,
+      "n_positive": 0
+     },
+     "16": {
+      "n": 3,
+      "mean": 950.6666666666666,
+      "sd": 926.1157235104765,
+      "min": -117.0,
+      "max": 1537.0,
+      "n_negative": 1,
+      "n_positive": 2
+     },
+     "20": {
+      "n": 3,
+      "mean": 2859.6666666666665,
+      "sd": 286.0145683935232,
+      "min": 2658.0,
+      "max": 3187.0,
+      "n_negative": 0,
+      "n_positive": 3
+     }
+    },
+    "spearman_rank_vs_dE": -0.01818181818181818,
+    "all_ranks_negative": false,
+    "all_ranks_positive": false,
+    "n_ranks_sign_disagreeing_with_primary_crossing": 3
+   }
+  },
+  "shared_rank_comparison": {
+   "5": {
+    "extra_mean": -21.0,
+    "sweep_mean": -48.666666666666664,
+    "difference": 27.666666666666664,
+    "sign_agreement": true
+   },
+   "6": {
+    "extra_mean": 62.333333333333336,
+    "sweep_mean": -54.5,
+    "difference": 116.83333333333334,
+    "sign_agreement": false
+   },
+   "7": {
+    "extra_mean": 191.5,
+    "sweep_mean": -60.833333333333336,
+    "difference": 252.33333333333334,
+    "sign_agreement": false
+   },
+   "8": {
+    "extra_mean": 311.3333333333333,
+    "sweep_mean": -71.66666666666667,
+    "difference": 383.0,
+    "sign_agreement": false
+   }
+  },
+  "ordering_reversal_within_families": {
+   "shared_ranks": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "extra_means": {
+    "5": -21.0,
+    "6": 62.333333333333336,
+    "7": 191.5,
+    "8": 311.3333333333333
+   },
+   "sweep_means": {
+    "5": -48.666666666666664,
+    "6": -54.5,
+    "7": -60.833333333333336,
+    "8": -71.66666666666667
+   },
+   "extra_increases_with_rank": true,
+   "sweep_increases_with_rank": false,
+   "direction_reverses_between_families": true,
+   "extra_spearman": 1.0,
+   "sweep_spearman": -1.0
+  },
+  "batchsize_cell_comparison": {
+   "r5_s42_local_rtx4060": {
+    "rank": 5,
+    "seed": 42,
+    "environment": "local_rtx4060",
+    "lr": 5e-05,
+    "epochs": 3,
+    "lora_alpha": 10,
+    "block_config": "uniform",
+    "E0_bs1": 3921.0,
+    "E0_bs2": 3921.0,
+    "delta_E_bs1": -43.0,
+    "delta_E_bs2": -73.5,
+    "delta_E_bs2_minus_bs1": -30.5,
+    "source_bs1": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+    "source_bs2": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json"
+   },
+   "r5_s42_cloud_rtx4080s": {
+    "rank": 5,
+    "seed": 42,
+    "environment": "cloud_rtx4080s",
+    "lr": 5e-05,
+    "epochs": 3,
+    "lora_alpha": 10,
+    "block_config": "uniform",
+    "E0_bs1": 3926.0,
+    "E0_bs2": 3926.0,
+    "delta_E_bs1": -26.5,
+    "delta_E_bs2": -49.5,
+    "delta_E_bs2_minus_bs1": -23.0,
+    "source_bs1": "paper3/scripts/outputs/experiments/cloud_verify_r5_s42.json",
+    "source_bs2": "paper3/scripts/outputs/experiments/verify_r5_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json"
+   },
+   "r6_s42_local_rtx4060": {
+    "rank": 6,
+    "seed": 42,
+    "environment": "local_rtx4060",
+    "lr": 5e-05,
+    "epochs": 3,
+    "lora_alpha": 12,
+    "block_config": "uniform",
+    "E0_bs1": 3921.0,
+    "E0_bs2": 3921.0,
+    "delta_E_bs1": 66.5,
+    "delta_E_bs2": 36.0,
+    "delta_E_bs2_minus_bs1": -30.5,
+    "source_bs1": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform.json",
+    "source_bs2": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2.json"
+   },
+   "r6_s42_cloud_rtx4080s": {
+    "rank": 6,
+    "seed": 42,
+    "environment": "cloud_rtx4080s",
+    "lr": 5e-05,
+    "epochs": 3,
+    "lora_alpha": 12,
+    "block_config": "uniform",
+    "E0_bs1": 3926.0,
+    "E0_bs2": 3926.0,
+    "delta_E_bs1": 56.0,
+    "delta_E_bs2": 22.0,
+    "delta_E_bs2_minus_bs1": -34.0,
+    "source_bs1": "paper3/scripts/outputs/experiments/cloud_verify_r6_s42.json",
+    "source_bs2": "paper3/scripts/outputs/experiments/verify_r6_s42_lr5e-05_nw_float1_adamw_e3_bcuniform_b2_cloud.json"
+   }
+  },
+  "batchsize_paired_by_rank": {
+   "5": {
+    "n_environments": 2,
+    "delta_E_bs1": [
+     -43.0,
+     -26.5
+    ],
+    "delta_E_bs2": [
+     -73.5,
+     -49.5
+    ],
+    "differences": [
+     -30.5,
+     -23.0
+    ],
+    "mean_difference": -26.75,
+    "sign_agreement_across_environments": true,
+    "n_cells_preserving_primary_side": 2,
+    "n_cells_preserving_primary_side_at_bs2": 2,
+    "primary_side": "negative"
+   },
+   "6": {
+    "n_environments": 2,
+    "delta_E_bs1": [
+     66.5,
+     56.0
+    ],
+    "delta_E_bs2": [
+     36.0,
+     22.0
+    ],
+    "differences": [
+     -30.5,
+     -34.0
+    ],
+    "mean_difference": -32.25,
+    "sign_agreement_across_environments": true,
+    "n_cells_preserving_primary_side": 2,
+    "n_cells_preserving_primary_side_at_bs2": 2,
+    "primary_side": "positive"
+   }
+  },
+  "gamma_estimation_batch_size": {
+   "model": "CLIP ViT-B/32 + LoRA r=8",
+   "sizes": [
+    2,
+    4,
+    8,
+    16
+   ],
+   "n_draws": 3,
+   "conditions": [
+    {
+     "n": 2,
+     "draw": 2,
+     "abs_order": [
+      "text_shallow",
+      "text_mid",
+      "vision",
+      "text_deep"
+     ],
+     "ranks": {
+      "text_shallow": 11,
+      "text_mid": 2,
+      "text_deep": 1,
+      "vision": 2
+     }
+    },
+    {
+     "n": 4,
+     "draw": 2,
+     "abs_order": [
+      "vision",
+      "text_shallow",
+      "text_mid",
+      "text_deep"
+     ],
+     "ranks": {
+      "text_shallow": 6,
+      "text_mid": 2,
+      "text_deep": 1,
+      "vision": 7
+     }
+    },
+    {
+     "n": 8,
+     "draw": 2,
+     "abs_order": [
+      "text_shallow",
+      "text_mid",
+      "vision",
+      "text_deep"
+     ],
+     "ranks": {
+      "text_shallow": 10,
+      "text_mid": 3,
+      "text_deep": 1,
+      "vision": 2
+     }
+    },
+    {
+     "n": 16,
+     "draw": 1,
+     "abs_order": [
+      "text_shallow",
+      "text_mid",
+      "vision",
+      "text_deep"
+     ],
+     "ranks": {
+      "text_shallow": 9,
+      "text_mid": 3,
+      "text_deep": 1,
+      "vision": 3
+     }
+    }
+   ],
+   "summary_cv": {
+    "text_shallow": 0.5523987649599712,
+    "text_mid": 0.4384142134132596,
+    "text_deep": 0.320866081152319,
+    "vision": 0.3270224248740842
+   },
+   "allocation_rank_spread": {
+    "vision": {
+     "min": 2,
+     "max": 7
+    },
+    "text_shallow": {
+     "min": 6,
+     "max": 11
+    },
+    "text_mid": {
+     "min": 2,
+     "max": 3
+    },
+    "text_deep": {
+     "min": 1,
+     "max": 1
+    }
+   },
+   "top_block_by_size": [
+    "text_shallow",
+    "vision",
+    "text_shallow",
+    "text_shallow"
+   ],
+   "top_block_stable": false,
+   "vision_rank_by_size": [
+    2,
+    7,
+    2,
+    3
+   ],
+   "allocation_flips_between_adjacent_sizes": true
+  },
+  "gamma_source_batch_size": {
+   "model": "models/Qwen2-VL-2B-Instruct",
+   "batch_size": 4,
+   "n_batch": 5,
+   "reference_rank": 4,
+   "gamma_abs_mean": {
+    "vision": 871.4001533679648,
+    "llm_shallow": 5058.474420970678,
+    "llm_mid": 4249.066155916452,
+    "llm_deep": 361.66338841567443
+   },
+   "note": "Gamma for the allocation plans is estimated at batch_size 4 on 20 alpaca texts; no archive re-estimates it at another batch size for this backbone"
+  },
+  "support_counts": {
+   "n_batch_families": 3,
+   "n_batch_families_total_runs": 72,
+   "n_ranks_covered_by_at_least_one_family": 10,
+   "n_ranks_shared_by_two_families": 4,
+   "n_shared_ranks_sign_disagreeing": 3,
+   "n_batchsize_cells": 4,
+   "n_batchsize_ranks": 2,
+   "n_batchsize_seeds_per_rank": 1,
+   "n_gamma_estimation_batch_sizes": 4,
+   "n_gamma_estimation_backbones": 1
+  },
+  "conclusions": {
+   "crossing_survives_batch_family_switch": false,
+   "crossing_survives_batchsize_1_to_2": true,
+   "n_batchsize_cells_preserving_side_at_bs1": 4,
+   "n_batchsize_cells_preserving_side_at_bs2": 4,
+   "n_batchsize_cells": 4,
+   "gamma_allocation_stable_over_estimation_batch_size": false,
+   "n_configurations_supporting_crossing_break": 3
+  }
+ },
+ "noise_break_even": {
+  "method": "Perturbation model: a uniform relative drift on every block, Gamma_k -> Gamma_k * (1 + rho); rho is reported in the same units as the relative dispersion of repeated Gamma estimates, so it can be compared with observed noise directly. Four thresholds are computed, all closed-form. (a) rho_order: the smallest rho at which the ordering of the |Gamma_k| can change. For adjacent order statistics under a uniform drift the swap condition is (1+rho) G_(i+1) >= (1-rho) G_(i), i.e. rho >= (G_(i) - G_(i+1)) / (G_(i) + G_(i+1)); rho_order is the minimum of that over adjacent pairs (rho_split is the same minimum over all pairs, a stricter reading). (b) rho_reweight: the drift at which a non-heavy block first becomes numerically distinguishable from zero in the allocation weights. w_k/w_heaviest = exp(-beta (|Gamma_k| - |Gamma_heaviest|)); at beta = 0.137 and the archived |Gamma| this log-odds is 600-644, i.e. the weights are one-hot to below 1e-260, so the allocation rule has no intermediate resolution at its own reference beta. The drift at which the closest block reaches the double-precision floor ln(1/eps) ~ 708 is reported as rho_reweight, with the archived log-odds at rho = 0. (c) rho_uniform: under a uniform relative drift the weight ratio moves further from uniform, never toward it, so no rho makes the target ranks rank-4 for every block; this threshold is reported as absent rather than as a number. (d) rho_adv: the smallest rho at which the archived Gamma plan stops beating the uniform plan on the allocation objective sum_k rank_k |Gamma_k|; the constraint set is scale-free, so the plan cost ratio is scale-invariant and the break-even has the closed form 2 * obj(uniform) / obj(Gamma). Not computed: the perturbation that would change the archived plan itself. The archives fix the softmin weights (reproduced exactly here) but do not document the map from those weights to the archived plan, so no break-even for that map is asserted.",
+  "perturbation_model": "uniform relative drift on every block: Gamma_k -> Gamma_k*(1+rho)",
+  "reference": {
+   "beta_paper": 0.137,
+   "beta_star_1_over_sigma": 0.0004231217244253151,
+   "beta_paper_over_beta_star": 323.7838950152553,
+   "budget_params": 7237632.0,
+   "cost_per_rank": {
+    "vision": 655360.0,
+    "llm_shallow": 247296.0,
+    "llm_mid": 577024.0,
+    "llm_deep": 329728.0
+   },
+   "gamma_abs": {
+    "vision": 871.4001533679648,
+    "llm_shallow": 5058.474420970678,
+    "llm_mid": 4249.066155916452,
+    "llm_deep": 361.66338841567443
+   },
+   "gamma_measured": {
+    "vision": -871.4001533679648,
+    "llm_shallow": 5058.474420970678,
+    "llm_mid": 4249.066155916452,
+    "llm_deep": -361.66338841567443
+   },
+   "point_allocation": {
+    "vision": 4,
+    "llm_mid": 2,
+    "llm_deep": 9,
+    "llm_shallow": 2
+   },
+   "point_softmin_weights": {
+    "vision": 4.693605659181161e-31,
+    "llm_shallow": 3.527941577342956e-280,
+    "llm_mid": 5.081276080589155e-232,
+    "llm_deep": 1.0
+   },
+   "plan_source": "outputs/analysis/p3_alloc_plans.json :: plans.exp_beta_paper_0.137"
+  },
+  "softmin_reimplementation_check": [
+   {
+    "plan": "exp_beta_0",
+    "beta": 0.0,
+    "archived_ranks": {
+     "vision": 4,
+     "llm_mid": 4,
+     "llm_deep": 4,
+     "llm_shallow": 4
+    },
+    "archived_softmin_weights": {
+     "vision": 0.25,
+     "llm_shallow": 0.25,
+     "llm_mid": 0.25,
+     "llm_deep": 0.25
+    },
+    "recomputed_softmin_weights": {
+     "vision": 0.25,
+     "llm_shallow": 0.25,
+     "llm_mid": 0.25,
+     "llm_deep": 0.25
+    },
+    "softmin_weights_match": true,
+    "nearest_archived_plan_by_target_rank": {
+     "vision": 4,
+     "llm_mid": 1,
+     "llm_deep": 1,
+     "llm_shallow": 15
+    },
+    "nearest_plan_matches_archived": false
+   },
+   {
+    "plan": "exp_beta_1e-6",
+    "beta": 1e-06,
+    "archived_ranks": {
+     "vision": 4,
+     "llm_mid": 4,
+     "llm_deep": 4,
+     "llm_shallow": 4
+    },
+    "archived_softmin_weights": {
+     "vision": 0.2504408022394953,
+     "llm_shallow": 0.24939438025295335,
+     "llm_mid": 0.24959632384196806,
+     "llm_deep": 0.25056849366558326
+    },
+    "recomputed_softmin_weights": {
+     "vision": 0.250441,
+     "llm_shallow": 0.249394,
+     "llm_mid": 0.249596,
+     "llm_deep": 0.250568
+    },
+    "softmin_weights_match": true,
+    "nearest_archived_plan_by_target_rank": {
+     "vision": 4,
+     "llm_mid": 1,
+     "llm_deep": 1,
+     "llm_shallow": 15
+    },
+    "nearest_plan_matches_archived": false
+   },
+   {
+    "plan": "exp_beta_1e-4",
+    "beta": 0.0001,
+    "archived_ranks": {
+     "vision": 4,
+     "llm_mid": 4,
+     "llm_deep": 4,
+     "llm_shallow": 4
+    },
+    "archived_softmin_weights": {
+     "vision": 0.2920941553635597,
+     "llm_shallow": 0.19216776631789387,
+     "llm_mid": 0.20836880277833583,
+     "llm_deep": 0.30736927554021054
+    },
+    "recomputed_softmin_weights": {
+     "vision": 0.292094,
+     "llm_shallow": 0.192168,
+     "llm_mid": 0.208369,
+     "llm_deep": 0.307369
+    },
+    "softmin_weights_match": true,
+    "nearest_archived_plan_by_target_rank": {
+     "vision": 4,
+     "llm_mid": 1,
+     "llm_deep": 10,
+     "llm_shallow": 3
+    },
+    "nearest_plan_matches_archived": false
+   },
+   {
+    "plan": "exp_beta_3e-4",
+    "beta": 0.0003,
+    "archived_ranks": {
+     "vision": 4,
+     "llm_mid": 2,
+     "llm_deep": 9,
+     "llm_shallow": 2
+    },
+    "archived_softmin_weights": {
+     "vision": 0.3554913257994216,
+     "llm_shallow": 0.10122832091723101,
+     "llm_mid": 0.1290501447960931,
+     "llm_deep": 0.4142302084872541
+    },
+    "recomputed_softmin_weights": {
+     "vision": 0.355491,
+     "llm_shallow": 0.101228,
+     "llm_mid": 0.12905,
+     "llm_deep": 0.41423
+    },
+    "softmin_weights_match": true,
+    "nearest_archived_plan_by_target_rank": {
+     "vision": 4,
+     "llm_mid": 1,
+     "llm_deep": 10,
+     "llm_shallow": 3
+    },
+    "nearest_plan_matches_archived": false
+   },
+   {
+    "plan": "exp_beta_paper_0.137",
+    "beta": 0.137,
+    "archived_ranks": {
+     "vision": 4,
+     "llm_mid": 2,
+     "llm_deep": 9,
+     "llm_shallow": 2
+    },
+    "archived_softmin_weights": {
+     "vision": 4.6936056591807604e-31,
+     "llm_shallow": 3.527941577342555e-280,
+     "llm_mid": 5.081276080589155e-232,
+     "llm_deep": 1.0
+    },
+    "recomputed_softmin_weights": {
+     "vision": 0.0,
+     "llm_shallow": 0.0,
+     "llm_mid": 0.0,
+     "llm_deep": 1.0
+    },
+    "softmin_weights_match": true,
+    "nearest_archived_plan_by_target_rank": {
+     "vision": 4,
+     "llm_mid": 1,
+     "llm_deep": 10,
+     "llm_shallow": 3
+    },
+    "nearest_plan_matches_archived": false
+   }
+  ],
+  "softmin_weight_check_summary": {
+   "n_plans_checked": 5,
+   "n_softmin_weights_reproduced": 5,
+   "n_archived_plans_reproduced_by_nearest_target_rank": 0,
+   "verdict": "the exp(-beta|Gamma|) weights are reproduced exactly, but the archived plan is not the archived-plan-set member nearest to the target rank B*w_k; the map from weights to plan is not documented in the archive"
+  },
+  "lattice_regeneration": {
+   "source": "outputs/analysis/p3_alloc_plans.json :: exact_budget_allocations, rank_upper_bounds",
+   "n_archived": 15,
+   "n_declared": 15,
+   "archive_flag_exact_budget_allocations_truncated": false,
+   "rank_upper_bounds": {
+    "vision": 9,
+    "llm_shallow": 22,
+    "llm_mid": 10,
+    "llm_deep": 17
+   },
+   "budget_params": 7237632.0,
+   "n_every_archived_plan_hits_budget_exactly": 15,
+   "note": "the archived list is used verbatim as the feasible plan set; every entry satisfies sum_k cost_k rank_k = budget exactly, and the archive does not flag the list as truncated. Re-scanning the integer system from cost_per_rank, budget_params and rank_upper_bounds with vision fixed at 4 returns 24 points, so nine solutions that satisfy every documented constraint are absent from the archived list and the list is treated as the plan set the exponential family was evaluated on"
+  },
+  "rho_order_flip": 0.16001035049197845,
+  "rho_order_flip_gaps": [
+   {
+    "higher": "llm_shallow",
+    "lower": "llm_mid",
+    "abs_gap": 809.4082650542259,
+    "relative_gap_vs_larger": 0.16001035049197845,
+    "rho_to_swap_adjacent": 0.16001035049197845,
+    "rho_to_split_pair": 0.08696263619459066
+   },
+   {
+    "higher": "llm_mid",
+    "lower": "vision",
+    "abs_gap": 3377.666002548487,
+    "relative_gap_vs_larger": 0.7949196078873433,
+    "rho_to_swap_adjacent": 0.7949196078873433,
+    "rho_to_split_pair": 0.659640313700358
+   },
+   {
+    "higher": "vision",
+    "lower": "llm_deep",
+    "abs_gap": 509.73676495229034,
+    "relative_gap_vs_larger": 0.5849629047942623,
+    "rho_to_swap_adjacent": 0.5849629047942623,
+    "rho_to_split_pair": 0.41339050882564476
+   }
+  ],
+  "rho_order_flip_binding_pair": [
+   "llm_shallow>llm_mid"
+  ],
+  "rho_split_all_pairs": 0.08696263619459066,
+  "rho_split_binding_pair": [
+   "llm_shallow>llm_mid"
+  ],
+  "rho_split_all_pair_gaps": [
+   {
+    "higher": "llm_shallow",
+    "lower": "llm_mid",
+    "abs_gap": 809.4082650542259,
+    "rho_to_split_pair": 0.08696263619459066
+   },
+   {
+    "higher": "llm_shallow",
+    "lower": "vision",
+    "abs_gap": 4187.074267602713,
+    "rho_to_split_pair": 0.7060982850669647
+   },
+   {
+    "higher": "llm_shallow",
+    "lower": "llm_deep",
+    "abs_gap": 4696.811032555003,
+    "rho_to_split_pair": 0.8665482682785807
+   },
+   {
+    "higher": "llm_mid",
+    "lower": "vision",
+    "abs_gap": 3377.666002548487,
+    "rho_to_split_pair": 0.659640313700358
+   },
+   {
+    "higher": "llm_mid",
+    "lower": "llm_deep",
+    "abs_gap": 3887.4027675007774,
+    "rho_to_split_pair": 0.8431209703634602
+   },
+   {
+    "higher": "vision",
+    "lower": "llm_deep",
+    "abs_gap": 509.73676495229034,
+    "rho_to_split_pair": 0.41339050882564476
+   }
+  ],
+  "rho_reweight": null,
+  "rho_reweight_binding_block": null,
+  "rho_reweight_per_block": {
+   "vision": {
+    "gamma_abs": 871.4001533679648,
+    "log_odds_vs_heaviest_at_rho_0": 69.83393679846378,
+    "target_rank_at_beta_paper_exact": 3.397059051427066e-24,
+    "rho_to_become_numerically_distinguishable": -9.13833721050615
+   },
+   "llm_shallow": {
+    "gamma_abs": 5058.474420970678,
+    "log_odds_vs_heaviest_at_rho_0": 643.4631114600355,
+    "target_rank_at_beta_paper_exact": 2.5533942854307852e-273,
+    "rho_to_become_numerically_distinguishable": -0.10029617454453373
+   },
+   "llm_mid": {
+    "gamma_abs": 4249.066155916452,
+    "log_odds_vs_heaviest_at_rho_0": 532.5741791476065,
+    "target_rank_at_beta_paper_exact": 3.6776406361706645e-225,
+    "rho_to_become_numerically_distinguishable": -0.3293922757073302
+   },
+   "llm_deep": {
+    "gamma_abs": 361.66338841567443,
+    "log_odds_vs_heaviest_at_rho_0": 0.0,
+    "target_rank_at_beta_paper_exact": 7237632.0,
+    "rho_to_become_numerically_distinguishable": null
+   }
+  },
+  "rho_reweight_reached": false,
+  "weights_are_one_hot_at_beta_paper": true,
+  "rho_uniform_target_ranks": null,
+  "heaviest_block": "llm_deep",
+  "rho_advantage_lost_on_linear_objective": 3.325681866699954,
+  "rho_to_best_competitor": 0.04618582242889698,
+  "objective_values": {
+   "uniform_plan": 42162.41647468307,
+   "gamma_plan": 25355.652262987187,
+   "gamma_over_uniform": 0.6013804326944185
+  },
+  "observed_noise_same_units": {
+   "qwen2vl2b_across_seeds_vision": {
+    "mean": -871.4001533679648,
+    "sd_across_seeds": 217.5382400508472,
+    "relative_sd_of_abs_mean": 0.24964218701369412,
+    "sign_changes_within_3_seeds": false
+   },
+   "qwen2vl2b_across_seeds_llm_shallow": {
+    "mean": 5058.474420970678,
+    "sd_across_seeds": 2040.2868971647822,
+    "relative_sd_of_abs_mean": 0.4033403606246305,
+    "sign_changes_within_3_seeds": false
+   },
+   "qwen2vl2b_across_seeds_llm_mid": {
+    "mean": 4249.066155916452,
+    "sd_across_seeds": 277.41405830408047,
+    "relative_sd_of_abs_mean": 0.06528824172761014,
+    "sign_changes_within_3_seeds": false
+   },
+   "qwen2vl2b_across_seeds_llm_deep": {
+    "mean": -361.66338841567443,
+    "sd_across_seeds": 1528.6507423611672,
+    "relative_sd_of_abs_mean": 4.226722392492288,
+    "sign_changes_within_3_seeds": true
+   },
+   "clip_across_batch_sizes_cv": {
+    "text_shallow": 0.5523987649599712,
+    "text_mid": 0.4384142134132596,
+    "text_deep": 0.320866081152319,
+    "vision": 0.3270224248740842
+   },
+   "clip_text_only_across_variants": {
+    "Gamma_vision": 4.524893250957784,
+    "Gamma_text": 2.119273907640899
+   },
+   "clip_both_across_variants": {
+    "Gamma_vision": 4.632822930158079,
+    "Gamma_text": 2.0713987144538413
+   },
+   "clip_vision_only_across_variants": {
+    "Gamma_vision": 4.660929899467441,
+    "Gamma_text": 1.9881941838174795
+   },
+   "siglip_abs": {
+    "vision": 449.0344853222999,
+    "text_shallow": 1529.3748643785268,
+    "text_mid": 1267.5898762491076,
+    "text_deep": 491.2231311139588
+   },
+   "blip_abs": {
+    "vision": 2.92902482863974,
+    "text_shallow": 3.7604147924848803,
+    "text_mid": 7.368571234585943,
+    "text_deep": 27.51113866560263
+   },
+   "hessian_r24_across_seeds": {
+    "s42": {
+     "source": "outputs/analysis/p3_hessian_probe_r24.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 24,
+     "n_batches": 3,
+     "g2_mean": 1468.2269785870121,
+     "g2_sd": 348.5810649874226,
+     "g2_relative_sd": 0.23741633280903818,
+     "curvature_ratio_eps3e4_mean": -0.6267684037894862,
+     "curvature_ratio_eps3e4_sd": 0.08173774909340734,
+     "curvature_ratio_eps3e4_relative_sd": 0.13041140650871216,
+     "sign_changes_across_batches": false
+    },
+    "s123": {
+     "source": "outputs/analysis/p3_hessian_probe_r24_s123.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 24,
+     "n_batches": 3,
+     "g2_mean": 1562.6921655741028,
+     "g2_sd": 336.219467802617,
+     "g2_relative_sd": 0.21515399847102737,
+     "curvature_ratio_eps3e4_mean": -0.6139984390911307,
+     "curvature_ratio_eps3e4_sd": 0.07196519409933141,
+     "curvature_ratio_eps3e4_relative_sd": 0.11720745447799129,
+     "sign_changes_across_batches": false
+    },
+    "s789": {
+     "source": "outputs/analysis/p3_hessian_probe_r24_s789.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 24,
+     "n_batches": 3,
+     "g2_mean": 1534.897237011863,
+     "g2_sd": 322.4348040142473,
+     "g2_relative_sd": 0.21006931033504445,
+     "curvature_ratio_eps3e4_mean": -0.5721520165292501,
+     "curvature_ratio_eps3e4_sd": 0.046067333144378726,
+     "curvature_ratio_eps3e4_relative_sd": 0.08051589754734986,
+     "sign_changes_across_batches": false
+    },
+    "across_seeds": {
+     "seed_labels": [
+      "s42",
+      "s123",
+      "s789"
+     ],
+     "g2_means": [
+      1468.2269785870121,
+      1562.6921655741028,
+      1534.897237011863
+     ],
+     "g2_mean_of_means": 1521.9387937243257,
+     "g2_sd_across_seeds": 48.547490434148436,
+     "g2_relative_sd_across_seeds": 0.03189845126120231,
+     "curvature_ratio_means": [
+      -0.6267684037894862,
+      -0.6139984390911307,
+      -0.5721520165292501
+     ],
+     "curvature_ratio_relative_sd_across_seeds": 0.047275783711829805,
+     "within_probe_batch_sd": 335.7451122680956,
+     "note": "the r=24 re-runs differ in the seed encoded in the file name (s42 / s123 / s789); the archive meta records no seed field, so the only evidence that these are different seeds is the file naming"
+    }
+   }
+  },
+  "noise_to_tolerance_ratios": {
+   "worst_observed_relative_sd": 4.226722392492288,
+   "worst_observed_relative_sd_over_rho_order": 26.415306131737896,
+   "worst_observed_relative_sd_over_rho_split": 48.6038898709835,
+   "worst_observed_relative_sd_over_rho_reweight": null,
+   "worst_clip_batch_cv": 0.5523987649599712,
+   "worst_clip_batch_cv_over_rho_order": 3.4522689517367424,
+   "n_blocks_whose_observed_relative_sd_exceeds_rho_order": 3,
+   "n_blocks": 4
+  },
+  "per_seed_induced_allocation": {
+   "42": {
+    "gamma_abs": {
+     "vision": 943.0311097365714,
+     "llm_shallow": 7356.444582539797,
+     "llm_mid": 3930.87848495543,
+     "llm_deep": 1042.900514280796
+    },
+    "abs_order": [
+     "llm_shallow",
+     "llm_mid",
+     "llm_deep",
+     "vision"
+    ],
+    "matches_point_order": false,
+    "source": "outputs/analysis/p3_alloc_gamma_qwen2vl2b.json :: per_seed[\"42\"].mean"
+   },
+   "101": {
+    "gamma_abs": {
+     "vision": 627.0789427643606,
+     "llm_shallow": 3459.7444401085377,
+     "llm_mid": 4440.191449075937,
+     "llm_deep": 138.1088128581643
+    },
+    "abs_order": [
+     "llm_mid",
+     "llm_shallow",
+     "vision",
+     "llm_deep"
+    ],
+    "matches_point_order": false,
+    "source": "outputs/analysis/p3_alloc_gamma_qwen2vl2b.json :: per_seed[\"101\"].mean"
+   },
+   "202": {
+    "gamma_abs": {
+     "vision": 1044.0904076029624,
+     "llm_shallow": 4359.2342402637005,
+     "llm_mid": 4376.12853371799,
+     "llm_deep": 1989.7818666696548
+    },
+    "abs_order": [
+     "llm_mid",
+     "llm_shallow",
+     "llm_deep",
+     "vision"
+    ],
+    "matches_point_order": false,
+    "source": "outputs/analysis/p3_alloc_gamma_qwen2vl2b.json :: per_seed[\"202\"].mean"
+   }
+  },
+  "n_seeds_preserving_point_order": 0,
+  "n_seeds_available": 3,
+  "hessian_curvature": {
+   "probes": [
+    {
+     "source": "outputs/analysis/p3_hessian_probe_r5.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 5,
+     "seed_label": "s42",
+     "n_batches": 3,
+     "batches": [
+      0,
+      1,
+      2
+     ],
+     "g2_mean": 338.3909945563018,
+     "g2_sd": 78.51138321938976,
+     "g2_relative_sd": 0.23201380793934503,
+     "curvature_ratio_eps3e4_mean": -0.5555603391942726,
+     "curvature_ratio_eps3e4_sd": 0.18372570894747728,
+     "curvature_ratio_eps3e4_relative_sd": 0.3307034285671545,
+     "curvature_ratio_eps1e3_mean": -0.7126305128218199,
+     "sign_changes_across_batches": false,
+     "vision_share_eps3e4_mean": -1272826.7245822484
+    },
+    {
+     "source": "outputs/analysis/p3_hessian_probe_r6.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 6,
+     "seed_label": "s42",
+     "n_batches": 3,
+     "batches": [
+      0,
+      1,
+      2
+     ],
+     "g2_mean": 391.8892202644479,
+     "g2_sd": 91.52752910178693,
+     "g2_relative_sd": 0.23355459749575125,
+     "curvature_ratio_eps3e4_mean": -0.5001983312002225,
+     "curvature_ratio_eps3e4_sd": 0.02683753508076991,
+     "curvature_ratio_eps3e4_relative_sd": 0.05365378772130932,
+     "curvature_ratio_eps1e3_mean": -0.6954092210290063,
+     "sign_changes_across_batches": false,
+     "vision_share_eps3e4_mean": -1292624.2969654228
+    },
+    {
+     "source": "outputs/analysis/p3_hessian_probe_r8.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 8,
+     "seed_label": "s42",
+     "n_batches": 3,
+     "batches": [
+      0,
+      1,
+      2
+     ],
+     "g2_mean": 529.1530137879677,
+     "g2_sd": 114.50492611507168,
+     "g2_relative_sd": 0.2163928450400057,
+     "curvature_ratio_eps3e4_mean": -0.569689457696568,
+     "curvature_ratio_eps3e4_sd": 0.03888732782695516,
+     "curvature_ratio_eps3e4_relative_sd": 0.06826057126664893,
+     "curvature_ratio_eps1e3_mean": -0.5954335265027358,
+     "sign_changes_across_batches": false,
+     "vision_share_eps3e4_mean": -2027236.0907660592
+    },
+    {
+     "source": "outputs/analysis/p3_hessian_probe_r12.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 12,
+     "seed_label": "s42",
+     "n_batches": 3,
+     "batches": [
+      0,
+      1,
+      2
+     ],
+     "g2_mean": 750.0618816666074,
+     "g2_sd": 157.26889283253226,
+     "g2_relative_sd": 0.20967455709532537,
+     "curvature_ratio_eps3e4_mean": -0.6271705879181061,
+     "curvature_ratio_eps3e4_sd": 0.07245971866581134,
+     "curvature_ratio_eps3e4_relative_sd": 0.11553430607506884,
+     "curvature_ratio_eps1e3_mean": -0.40568078080537084,
+     "sign_changes_across_batches": false,
+     "vision_share_eps3e4_mean": -3086853.0273437505
+    },
+    {
+     "source": "outputs/analysis/p3_hessian_probe_r16.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 16,
+     "seed_label": "s42",
+     "n_batches": 3,
+     "batches": [
+      0,
+      1,
+      2
+     ],
+     "g2_mean": 979.7045088725981,
+     "g2_sd": 224.4440852697696,
+     "g2_relative_sd": 0.2290936534813443,
+     "curvature_ratio_eps3e4_mean": -0.6729466087613453,
+     "curvature_ratio_eps3e4_sd": 0.0577054497396514,
+     "curvature_ratio_eps3e4_relative_sd": 0.08575041316556532,
+     "curvature_ratio_eps1e3_mean": -0.27920419352152326,
+     "sign_changes_across_batches": false,
+     "vision_share_eps3e4_mean": -4355561.291729963
+    },
+    {
+     "source": "outputs/analysis/p3_hessian_probe_r24.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 24,
+     "seed_label": "s42",
+     "n_batches": 3,
+     "batches": [
+      0,
+      1,
+      2
+     ],
+     "g2_mean": 1468.2269785870121,
+     "g2_sd": 348.5810649874226,
+     "g2_relative_sd": 0.23741633280903818,
+     "curvature_ratio_eps3e4_mean": -0.6267684037894862,
+     "curvature_ratio_eps3e4_sd": 0.08173774909340734,
+     "curvature_ratio_eps3e4_relative_sd": 0.13041140650871216,
+     "curvature_ratio_eps1e3_mean": -0.11302338685915773,
+     "sign_changes_across_batches": false,
+     "vision_share_eps3e4_mean": -6015410.246672454
+    },
+    {
+     "source": "outputs/analysis/cloud_p3_hessian_probe_r64.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 64,
+     "seed_label": "s42",
+     "n_batches": 3,
+     "batches": [
+      0,
+      1,
+      2
+     ],
+     "g2_mean": 4641.993179151667,
+     "g2_sd": 348.6432280524373,
+     "g2_relative_sd": 0.07510636370994248,
+     "curvature_ratio_eps3e4_mean": 0.08211365226616417,
+     "curvature_ratio_eps3e4_sd": 0.03544592597788239,
+     "curvature_ratio_eps3e4_relative_sd": 0.4316690952070618,
+     "curvature_ratio_eps1e3_mean": 0.06470765424078413,
+     "sign_changes_across_batches": false,
+     "vision_share_eps3e4_mean": 2511769.7539152927
+    },
+    {
+     "source": "outputs/analysis/p3_hessian_probe_qwen2b_r5.json",
+     "model": "Qwen2-VL-2B-Instruct 4-bit + LoRA r=5",
+     "rank": 5,
+     "seed_label": "s42_qwen2b",
+     "n_batches": 3,
+     "batches": [
+      0,
+      1,
+      2
+     ],
+     "g2_mean": 28.402055029718515,
+     "g2_sd": 0.30186232840301047,
+     "g2_relative_sd": 0.010628186167766965,
+     "curvature_ratio_eps3e4_mean": -0.13228246922948358,
+     "curvature_ratio_eps3e4_sd": 0.10803558233690631,
+     "curvature_ratio_eps3e4_relative_sd": 0.8167037020565909,
+     "curvature_ratio_eps1e3_mean": -0.0034862769459777817,
+     "sign_changes_across_batches": false,
+     "vision_share_eps3e4_mean": null
+    }
+   ],
+   "n_probes": 8,
+   "n_distinct_ranks_probed": 7,
+   "ranks_probed": [
+    5,
+    6,
+    8,
+    12,
+    16,
+    24,
+    64
+   ],
+   "sign_of_curvature_changes_with_rank": true,
+   "curvature_min": -0.6729466087613453,
+   "curvature_max": 0.08211365226616417,
+   "local_r5_r6_llava": {
+    "5": {
+     "mean_share_at_lr": -0.035631525641091,
+     "sd_share_at_lr": 0.004035254275561855,
+     "n_batches": 3,
+     "source": "outputs/analysis/p3_gapfill_summary.json :: curvature.5"
+    },
+    "6": {
+     "mean_share_at_lr": -0.03477046105145031,
+     "sd_share_at_lr": 0.0031734722354756465,
+     "n_batches": 3,
+     "source": "outputs/analysis/p3_gapfill_summary.json :: curvature.6"
+    }
+   },
+   "cross_seed_spread_at_r24": {
+    "s42": {
+     "source": "outputs/analysis/p3_hessian_probe_r24.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 24,
+     "n_batches": 3,
+     "g2_mean": 1468.2269785870121,
+     "g2_sd": 348.5810649874226,
+     "g2_relative_sd": 0.23741633280903818,
+     "curvature_ratio_eps3e4_mean": -0.6267684037894862,
+     "curvature_ratio_eps3e4_sd": 0.08173774909340734,
+     "curvature_ratio_eps3e4_relative_sd": 0.13041140650871216,
+     "sign_changes_across_batches": false
+    },
+    "s123": {
+     "source": "outputs/analysis/p3_hessian_probe_r24_s123.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 24,
+     "n_batches": 3,
+     "g2_mean": 1562.6921655741028,
+     "g2_sd": 336.219467802617,
+     "g2_relative_sd": 0.21515399847102737,
+     "curvature_ratio_eps3e4_mean": -0.6139984390911307,
+     "curvature_ratio_eps3e4_sd": 0.07196519409933141,
+     "curvature_ratio_eps3e4_relative_sd": 0.11720745447799129,
+     "sign_changes_across_batches": false
+    },
+    "s789": {
+     "source": "outputs/analysis/p3_hessian_probe_r24_s789.json",
+     "model": "llava-hf 4-bit nf4 + LoRA qkvo",
+     "rank": 24,
+     "n_batches": 3,
+     "g2_mean": 1534.897237011863,
+     "g2_sd": 322.4348040142473,
+     "g2_relative_sd": 0.21006931033504445,
+     "curvature_ratio_eps3e4_mean": -0.5721520165292501,
+     "curvature_ratio_eps3e4_sd": 0.046067333144378726,
+     "curvature_ratio_eps3e4_relative_sd": 0.08051589754734986,
+     "sign_changes_across_batches": false
+    },
+    "across_seeds": {
+     "seed_labels": [
+      "s42",
+      "s123",
+      "s789"
+     ],
+     "g2_means": [
+      1468.2269785870121,
+      1562.6921655741028,
+      1534.897237011863
+     ],
+     "g2_mean_of_means": 1521.9387937243257,
+     "g2_sd_across_seeds": 48.547490434148436,
+     "g2_relative_sd_across_seeds": 0.03189845126120231,
+     "curvature_ratio_means": [
+      -0.6267684037894862,
+      -0.6139984390911307,
+      -0.5721520165292501
+     ],
+     "curvature_ratio_relative_sd_across_seeds": 0.047275783711829805,
+     "within_probe_batch_sd": 335.7451122680956,
+     "note": "the r=24 re-runs differ in the seed encoded in the file name (s42 / s123 / s789); the archive meta records no seed field, so the only evidence that these are different seeds is the file naming"
+    }
+   },
+   "note": "the curvature probes hold the rank fixed per file and vary the batch (3 batches); they therefore measure within-run batch dispersion, while p3_hessian_probe_r24_s* measure dispersion across seed labels at one rank"
+  },
+  "break_even": {
+   "block_ordering_flips_at_rho": 0.16001035049197845,
+   "block_ordering_flips_binding_pair": "llm_shallow>llm_mid",
+   "block_ordering_splits_at_rho_all_pairs": 0.08696263619459066,
+   "block_numerically_separable_at_rho": null,
+   "target_ranks_equal_at_rho": null,
+   "advantage_on_allocation_objective_lost_at_rho": 3.325681866699954,
+   "worst_observed_relative_sd": 4.226722392492288,
+   "observed_noise_over_ordering_break_even": 26.415306131737896,
+   "statement": "Under a uniform relative drift on every block, the ordering of the |Gamma_k| of the Qwen2-VL-2B allocation can change as soon as rho = 0.1600 (16.0% on every |Gamma_k|), driven by the pair llm_shallow>llm_mid (gap 809.4 energy units on a larger value of 5058.5); across all six block pairs the ordering survives only to rho = 0.0870. The block weights are one-hot at the reference beta (log-odds 0-643 against the heaviest block llm_deep), so the allocation rule has no intermediate resolution at all; no block is within the double-precision floor, so the weights are one-hot for every drift in the scanned range, and no drift makes the four target ranks equal. The advantage over the uniform plan on the allocation objective sum_k rank_k |Gamma_k| survives much longer, to rho = 3.326. The repeated-estimate dispersion actually archived for this backbone is 4.227 relative sd on llm_deep across three seeds -- 26.42x the ordering break-even -- and only 0 of 3 archived seeds reproduce the point ordering of the blocks. Gamma therefore has to be reproducible to better than roughly 16% per block for its ordering to be stable, and it is not measured that precisely anywhere in these archives."
+  }
+ },
+ "backbone_coverage": {
+  "families": {
+   "llava_1_5_7b": {
+    "gamma_archived": false,
+    "gamma_note": "Gamma for LLaVA is measured on CLIP ViT-B/32 by design (clip_peft_gamma_ordering.json, gamma_clip.json); no per-block Gamma archive for LLaVA itself is present in this repository",
+    "downstream_effect_archive": "outputs/analysis/p3_rank_separation_extended.json",
+    "downstream_field": "delta_E",
+    "n_seeds_per_rank": 10,
+    "ranks_covered": [
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "crossing_supported": true,
+    "downstream_task_metric": {
+     "archive": "outputs/analysis/p3_rank_separation_extended.json :: vqa_equivalence",
+     "n_questions": 300,
+     "n_ranks_compared": 2
+    },
+    "block_ordering_stability": "outputs/llava_gamma_ordering_stability.json",
+    "kendall_W": 1.0
+   },
+   "qwen2_vl_2b": {
+    "gamma_archived": true,
+    "gamma_archive": "outputs/analysis/p3_alloc_gamma_qwen2vl2b.json",
+    "gamma_batch_size": 4,
+    "gamma_n_batch": 5,
+    "gamma_reference_rank": 4,
+    "gamma_seeds": [
+     42,
+     101,
+     202
+    ],
+    "gamma_relative_sd_worst": 4.226722392492288,
+    "gamma_sign_flips_across_seeds": [
+     "llm_deep"
+    ],
+    "downstream_effect_archive": "outputs/analysis/p3d_qwen_ranksweep.json",
+    "downstream_field": "dE_eval_real",
+    "ranks_covered": [
+     0,
+     1,
+     2,
+     4,
+     5,
+     6,
+     8,
+     16
+    ],
+    "n_seeds_per_rank": 3,
+    "downstream_task_metric": false,
+    "hessian_probe": "outputs/analysis/p3_hessian_probe_qwen2b_r5.json"
+   },
+   "clip_vit_b32": {
+    "gamma_archived": true,
+    "gamma_archive": "outputs/analysis/gamma_clip.json",
+    "gamma_block_scheme": "vision / text_shallow / text_mid / text_deep",
+    "gamma_estimation_batch_sizes": [
+     2,
+     4,
+     8,
+     16
+    ],
+    "downstream_effect_archive": "outputs/analysis/p3d_clip_ranksweep.json",
+    "downstream_field": "dE_test",
+    "ranks_covered": [
+     0,
+     1,
+     2,
+     4,
+     5,
+     6,
+     8,
+     16
+    ],
+    "n_seeds_per_rank": 3,
+    "downstream_task_metric": {
+     "archive": "outputs/analysis/p3d_clip_ranksweep.json",
+     "metric": "R@1 (Flickr30k self-split)"
+    },
+    "n_runs": 79
+   },
+   "siglip": {
+    "gamma_archived": true,
+    "gamma_archive": "outputs/analysis/p3_siglip_gamma.json",
+    "gamma_budget": 16,
+    "gamma_allocation": {
+     "vision": 2,
+     "text_shallow": 7,
+     "text_mid": 5,
+     "text_deep": 2
+    },
+    "downstream_effect_archive": null,
+    "note": "Gamma and its induced allocation exist; no archive pairs them with a trained downstream effect for this backbone in this repository"
+   },
+   "blip": {
+    "gamma_archived": true,
+    "gamma_archive": "outputs/analysis/p3_blip_gamma.json",
+    "gamma_allocation": {
+     "vision": 1,
+     "text_shallow": 1,
+     "text_mid": 3,
+     "text_deep": 11
+    },
+    "energy": "captioning loss under blank image",
+    "downstream_effect_archive": null,
+    "note": "same limitation as SigLIP: allocation archived, downstream effect not"
+   }
+  },
+  "claims": {
+   "gamma_is_measurable_on_the_target_model": {
+    "holds_on": [
+     "qwen2_vl_2b",
+     "clip_vit_b32",
+     "siglip",
+     "blip"
+    ],
+    "fails_or_untested_on": [
+     "llava_1_5_7b"
+    ],
+    "verdict": "family_specific",
+    "evidence": "three independent families have archived Gamma and an induced allocation; LLaVA's allocation is derived from CLIP ViT-B/32 by design"
+   },
+   "downstream_crossing_between_r5_and_r6_on_llava": {
+    "holds_on": [
+     "llava_1_5_7b"
+    ],
+    "fails_or_untested_on": [
+     "qwen2_vl_2b",
+     "clip_vit_b32",
+     "siglip",
+     "blip"
+    ],
+    "verdict": "family_specific",
+    "evidence": "ten seeds per rank on LLaVA only; the other families do not have the same rank grid at the same seeds"
+   },
+   "gamma_block_ordering_is_rank_invariant": {
+    "holds_on": [
+     "llava_1_5_7b"
+    ],
+    "fails_or_untested_on": [
+     "qwen2_vl_2b",
+     "clip_vit_b32"
+    ],
+    "verdict": "family_specific",
+    "evidence": "LLaVA block ordering has Kendall W = 1.0 over five rank levels; the Qwen per-block Gamma ordering changes between its three seeds and the CLIP block allocation changes between estimation batch sizes"
+   },
+   "gamma_induced_allocation_is_reproducible_under_re_estimation": {
+    "holds_on": [],
+    "fails_or_untested_on": [
+     "llava_1_5_7b",
+     "qwen2_vl_2b",
+     "clip_vit_b32",
+     "siglip",
+     "blip"
+    ],
+    "verdict": "not_supported",
+    "evidence": "the Qwen Gamma spread across three seeds exceeds the allocation break-even; only part of the seeds reproduce the point allocation"
+   }
+  },
+  "n_families_with_gamma": 4,
+  "n_families_with_downstream_effect": 3,
+  "n_families_with_both": 2
+ },
+ "conclusion": {
+  "applicability_boundary": "The Gamma-driven rank allocation is applicable on LLaVA-1.5-7B over ranks 3 to 8 for the alignment-energy effect, with the crossing between r=5 and r=6, and on Qwen2-VL-2B over the ranks that backbone's rank sweep covers; it is not applicable in any configuration where the archives disagree about the sign of the effect. (1) Rank: with ten seeds per rank the LLaVA effect is completely sign-separated -- all ten runs are negative at r=[3, 4, 5] and all ten positive at r=[6, 7, 8] -- so the sign of the effect is the same for every archived seed at every rank, and the crossing is exact. Within a side of the crossing the ordering is weaker: 12 of 15 rank pairs are ordered for every seed, and the pairs that are not are ['r3-r4', 'r4-r5', 'r7-r8'] -- both adjacent pairs below the crossing and the adjacent pair above it. But the ordering is only defined against the alignment energy: on the 300-question VQA-RAD evaluation the same two ranks give token F1 that is statistically equivalent (delta +0.0067, TOST equivalent at the declared margin), and exact-match accuracy reverses (+0.0433, 95% CI [+0.0033, +0.0833]). (2) Batch: the crossing is not batch-invariant. Across the three batch families the corpus contains (E2 (12 runs), extra (15 runs), sweep (45 runs)), of which 4 ranks are shared by two families and 3 of those disagree in sign; inside the shared ranks the direction of the rank trend reverses between families (extra rho=+1.00 vs sweep rho=-1.00). The batch_size 1 to 2 comparison keeps the side of the crossing in 4 of 4 archived cells (from 4 of 4 at batch_size 1) but rests on one seed per rank and reduces the effect. (3) Measurement noise: under a uniform relative perturbation the ordering of the block |Gamma| can already change at rho = 0.1600 (16.0% per block, all six pairs hold only to rho = 0.0870), while the archived repeated-estimate dispersion for the same Gamma is 4.227 relative sd -- 26.4x the ordering break-even. Only 0 of 3 archived seeds reproduce the point ordering. The advantage of the archived plan over the uniform plan on the allocation objective survives much larger perturbations, to rho = 3.33. What the archives cannot support: (a) no archive measures Gamma on LLaVA-1.5-7B itself, so the noise claim is transported from CLIP and Qwen2-VL-2B; (b) no archive re-estimates Gamma at a second batch size on the backbone that owns the allocation (Qwen2-VL-2B, batch_size 4 fixed), so the batch answer for Gamma is one backbone and four sizes on CLIP only; (c) the batch-family disagreement is three seeds per rank, and the batch_size comparison is a single seed per rank, so neither can exclude a seed effect; (d) SigLIP and BLIP have Gamma and an induced allocation but no paired downstream effect, so no claim of the form 'this allocation helps' is available for them; (e) the archives fix the softmin weights of the allocation rule but not the map from those weights to the archived plan, so the perturbation that would change the plan itself cannot be asserted -- what is bounded instead is the perturbation that can change the ordering (rho = 0.160) and the perturbation that removes the plan's advantage on the allocation objective (rho = 3.33), and the archives contain no trained arm whose Gamma was perturbed by either amount.",
+  "supported_regimes": {
+   "backbone": [
+    "LLaVA-1.5-7B (alignment energy, ranks 3-8)",
+    "Qwen2-VL-2B (alignment energy, ranks 4-16)"
+   ],
+   "ranks": {
+    "llava": [
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "qwen2_vl_2b": [
+     0,
+     1,
+     2,
+     4,
+     5,
+     6,
+     8,
+     16
+    ],
+    "clip_vit_b32": [
+     0,
+     1,
+     2,
+     4,
+     5,
+     6,
+     8,
+     16
+    ]
+   },
+   "batch_size": [
+    1,
+    2
+   ],
+   "seeds_per_rank": {
+    "llava_primary": 10,
+    "qwen2_vl_2b": 3,
+    "clip_vit_b32": 3
+   }
+  },
+  "unsupported_or_broken_regimes": {
+   "batch_family": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "ranks_with_batch_sign_disagreement": [
+    6,
+    7,
+    8
+   ],
+   "task_metric_ordering": "VQA-RAD exact-match accuracy reverses the alignment-energy ordering",
+   "unresolved_rank_pair": [
+    "r3-r4",
+    "r4-r5",
+    "r7-r8"
+   ],
+   "backbones_without_downstream_evidence": [
+    "siglip",
+    "blip"
+   ]
+  },
+  "cannot_be_supported_from_these_archives": [
+   "Gamma measured on LLaVA-1.5-7B itself",
+   "Gamma re-estimated at a second batch size on Qwen2-VL-2B",
+   "downstream effect for SigLIP or BLIP allocations",
+   "a seed-paired batch_size comparison at any rank other than 5 and 6, seed 42",
+   "any rank-sweep downstream metric on LLaVA beyond r=5 and r=6 (300 VQA-RAD questions)",
+   "a trained arm whose Gamma was deliberately perturbed by the break-even amount"
+  ]
+ },
+ "assertions": [
+  {
+   "check": "rank 3 mean",
+   "passed": true
+  },
+  {
+   "check": "rank 3 sd",
+   "passed": true
+  },
+  {
+   "check": "rank 3 n",
+   "passed": true
+  },
+  {
+   "check": "rank 3 values_by_seed",
+   "passed": true
+  },
+  {
+   "check": "rank 4 mean",
+   "passed": true
+  },
+  {
+   "check": "rank 4 sd",
+   "passed": true
+  },
+  {
+   "check": "rank 4 n",
+   "passed": true
+  },
+  {
+   "check": "rank 4 values_by_seed",
+   "passed": true
+  },
+  {
+   "check": "rank 5 mean",
+   "passed": true
+  },
+  {
+   "check": "rank 5 sd",
+   "passed": true
+  },
+  {
+   "check": "rank 5 n",
+   "passed": true
+  },
+  {
+   "check": "rank 5 values_by_seed",
+   "passed": true
+  },
+  {
+   "check": "rank 6 mean",
+   "passed": true
+  },
+  {
+   "check": "rank 6 sd",
+   "passed": true
+  },
+  {
+   "check": "rank 6 n",
+   "passed": true
+  },
+  {
+   "check": "rank 6 values_by_seed",
+   "passed": true
+  },
+  {
+   "check": "rank 7 mean",
+   "passed": true
+  },
+  {
+   "check": "rank 7 sd",
+   "passed": true
+  },
+  {
+   "check": "rank 7 n",
+   "passed": true
+  },
+  {
+   "check": "rank 7 values_by_seed",
+   "passed": true
+  },
+  {
+   "check": "rank 8 mean",
+   "passed": true
+  },
+  {
+   "check": "rank 8 sd",
+   "passed": true
+  },
+  {
+   "check": "rank 8 n",
+   "passed": true
+  },
+  {
+   "check": "rank 8 values_by_seed",
+   "passed": true
+  },
+  {
+   "check": "n_pairs",
+   "passed": true
+  },
+  {
+   "check": "crossing",
+   "passed": true
+  },
+  {
+   "check": "r7-r8 unresolved",
+   "passed": true
+  },
+  {
+   "check": "r3-r4 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r3-r4 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r3-r4 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r3-r5 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r3-r5 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r3-r5 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r3-r6 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r3-r6 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r3-r6 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r3-r7 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r3-r7 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r3-r7 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r3-r8 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r3-r8 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r3-r8 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r4-r5 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r4-r5 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r4-r5 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r4-r6 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r4-r6 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r4-r6 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r4-r7 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r4-r7 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r4-r7 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r4-r8 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r4-r8 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r4-r8 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r5-r6 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r5-r6 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r5-r6 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r5-r7 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r5-r7 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r5-r7 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r5-r8 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r5-r8 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r5-r8 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r6-r7 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r6-r7 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r6-r7 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r6-r8 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r6-r8 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r6-r8 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "r7-r8 paired sign-flip p",
+   "passed": true
+  },
+  {
+   "check": "r7-r8 all_diffs_same_sign is strict ordering",
+   "passed": true
+  },
+  {
+   "check": "r7-r8 archive flag carried verbatim",
+   "passed": true
+  },
+  {
+   "check": "paired minimum p",
+   "passed": true
+  },
+  {
+   "check": "n pairs at paired minimum",
+   "passed": true
+  },
+  {
+   "check": "vqa token_f1",
+   "passed": true
+  },
+  {
+   "check": "vqa accuracy",
+   "passed": true
+  },
+  {
+   "check": "r5 tost",
+   "passed": true
+  },
+  {
+   "check": "clip cells are subsets of clip runs",
+   "passed": true
+  },
+  {
+   "check": "clip r5-r6 paired exists",
+   "passed": true
+  },
+  {
+   "check": "batch E2 n_runs",
+   "passed": true
+  },
+  {
+   "check": "batch E2 rank 4 mean",
+   "passed": true
+  },
+  {
+   "check": "batch E2 rank 16 mean",
+   "passed": true
+  },
+  {
+   "check": "batch extra n_runs",
+   "passed": true
+  },
+  {
+   "check": "batch extra rank 5 mean",
+   "passed": true
+  },
+  {
+   "check": "batch extra rank 6 mean",
+   "passed": true
+  },
+  {
+   "check": "batch extra rank 7 mean",
+   "passed": true
+  },
+  {
+   "check": "batch extra rank 8 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep n_runs",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 4 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 5 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 6 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 7 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 8 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 10 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 12 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 14 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 16 mean",
+   "passed": true
+  },
+  {
+   "check": "batch sweep rank 20 mean",
+   "passed": true
+  },
+  {
+   "check": "shared rank 5 difference",
+   "passed": true
+  },
+  {
+   "check": "shared rank 5 sign",
+   "passed": true
+  },
+  {
+   "check": "shared rank 6 difference",
+   "passed": true
+  },
+  {
+   "check": "shared rank 6 sign",
+   "passed": true
+  },
+  {
+   "check": "shared rank 7 difference",
+   "passed": true
+  },
+  {
+   "check": "shared rank 7 sign",
+   "passed": true
+  },
+  {
+   "check": "shared rank 8 difference",
+   "passed": true
+  },
+  {
+   "check": "shared rank 8 sign",
+   "passed": true
+  },
+  {
+   "check": "n shared disagree",
+   "passed": true
+  },
+  {
+   "check": "batchsize r=5 side count at bs2",
+   "passed": true
+  },
+  {
+   "check": "batchsize r=6 side count at bs2",
+   "passed": true
+  },
+  {
+   "check": "batchsize conclusion follows the cells",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_local_rtx4060 bs1 delta_E",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_local_rtx4060 bs2 delta_E",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_local_rtx4060 bs1 batch_size",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_local_rtx4060 bs2 batch_size",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_local_rtx4060 same rank/seed/lr/epochs/alpha",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_cloud_rtx4080s bs1 delta_E",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_cloud_rtx4080s bs2 delta_E",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_cloud_rtx4080s bs1 batch_size",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_cloud_rtx4080s bs2 batch_size",
+   "passed": true
+  },
+  {
+   "check": "r5_s42_cloud_rtx4080s same rank/seed/lr/epochs/alpha",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_local_rtx4060 bs1 delta_E",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_local_rtx4060 bs2 delta_E",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_local_rtx4060 bs1 batch_size",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_local_rtx4060 bs2 batch_size",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_local_rtx4060 same rank/seed/lr/epochs/alpha",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_cloud_rtx4080s bs1 delta_E",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_cloud_rtx4080s bs2 delta_E",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_cloud_rtx4080s bs1 batch_size",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_cloud_rtx4080s bs2 batch_size",
+   "passed": true
+  },
+  {
+   "check": "r6_s42_cloud_rtx4080s same rank/seed/lr/epochs/alpha",
+   "passed": true
+  },
+  {
+   "check": "beta_paper",
+   "passed": true
+  },
+  {
+   "check": "gamma_abs matches plan archive",
+   "passed": true
+  },
+  {
+   "check": "point allocation matches archived Gamma plan",
+   "passed": true
+  },
+  {
+   "check": "re-implemented softmin weights reproduce every archived exp_beta_* weight vector",
+   "passed": true
+  },
+  {
+   "check": "archived plan list is internally budget-exact",
+   "passed": true
+  },
+  {
+   "check": "archived plan list count matches its own declared count",
+   "passed": true
+  },
+  {
+   "check": "weights-to-plan map is recorded as undocumented, not asserted",
+   "passed": true
+  },
+  {
+   "check": "rho_order positive",
+   "passed": true
+  },
+  {
+   "check": "rho_split <= rho_order",
+   "passed": true
+  },
+  {
+   "check": "rho_reweight is absent when no block is within the precision floor",
+   "passed": true
+  },
+  {
+   "check": "weights are one-hot at the reference beta",
+   "passed": true
+  },
+  {
+   "check": "no uniform-target-rank threshold exists",
+   "passed": true
+  },
+  {
+   "check": "rho_adv exceeds the ordering break-even",
+   "passed": true
+  },
+  {
+   "check": "objective values match archive",
+   "passed": true
+  },
+  {
+   "check": "gamma plan objective matches archive",
+   "passed": true
+  },
+  {
+   "check": "archived gamma plan is the one whose objective is compared",
+   "passed": true
+  },
+  {
+   "check": "qwen gamma sd vision",
+   "passed": true
+  },
+  {
+   "check": "qwen gamma sd llm_shallow",
+   "passed": true
+  },
+  {
+   "check": "qwen gamma sd llm_mid",
+   "passed": true
+  },
+  {
+   "check": "qwen gamma sd llm_deep",
+   "passed": true
+  },
+  {
+   "check": "llava has no own gamma",
+   "passed": true
+  },
+  {
+   "check": "qwen gamma batch size",
+   "passed": true
+  },
+  {
+   "check": "kendall W",
+   "passed": true
+  }
+ ]
+}

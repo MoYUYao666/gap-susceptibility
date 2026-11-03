@@ -1,0 +1,397 @@
+{
+ "blocks": [
+  "vision_trunk",
+  "visual_projection",
+  "text_model",
+  "text_projection"
+ ],
+ "gamma": {
+  "full": {
+   "DGstar": {
+    "vision_trunk": -0.09575201777208342,
+    "visual_projection": -0.027763589673365157,
+    "text_model": 0.29811203686901483,
+    "text_projection": -0.023641400194416445
+   },
+   "GD": {
+    "vision_trunk": 37.07490107521418,
+    "visual_projection": -6.504874924818675,
+    "text_model": -415.3865028381606,
+    "text_projection": -7.140675147374471
+   },
+   "negcos": {
+    "vision_trunk": -24.513691251718512,
+    "visual_projection": -7.1074791351954145,
+    "text_model": 76.31667643781611,
+    "text_projection": -6.05219829082489
+   }
+  },
+  "lora": {
+   "DGstar": {
+    "vision_trunk": 0.0005153951224802592,
+    "visual_projection": 0.0,
+    "text_model": 0.0016915820835118704,
+    "text_projection": 0.0
+   },
+   "GD": {
+    "vision_trunk": 0.3318900378012586,
+    "visual_projection": 0.0,
+    "text_model": -3.5079018785812273,
+    "text_projection": 0.0
+   },
+   "negcos": {
+    "vision_trunk": 0.13194117046399848,
+    "visual_projection": 0.0,
+    "text_model": 0.4330449597882762,
+    "text_projection": 0.0
+   }
+  },
+  "adapter": {
+   "DGstar": {
+    "vision_trunk": 0.0009639660595285685,
+    "visual_projection": 0.0,
+    "text_model": 0.0044329114360920725,
+    "text_projection": 0.0
+   },
+   "GD": {
+    "vision_trunk": 0.5230262363979818,
+    "visual_projection": 0.0,
+    "text_model": -6.517048386196014,
+    "text_projection": 0.0
+   },
+   "negcos": {
+    "vision_trunk": 0.24677533037235358,
+    "visual_projection": 0.0,
+    "text_model": 1.1348252823531009,
+    "text_projection": 0.0
+   }
+  },
+  "bitfit": {
+   "DGstar": {
+    "vision_trunk": 0.0018301790251526266,
+    "visual_projection": 0.0,
+    "text_model": 0.009490377901157627,
+    "text_projection": 0.0
+   },
+   "GD": {
+    "vision_trunk": 1.0749357706938554,
+    "visual_projection": 0.0,
+    "text_model": -12.230613972480574,
+    "text_projection": 0.0
+   },
+   "negcos": {
+    "vision_trunk": 0.46852583248939556,
+    "visual_projection": 0.0,
+    "text_model": 2.429536779108503,
+    "text_projection": 0.0
+   }
+  }
+ },
+ "gamma_per_param": {
+  "full": {
+   "DGstar": {
+    "vision_trunk": -1.0948593323738042e-09,
+    "visual_projection": -7.06064597406137e-08,
+    "text_model": 4.719505167420176e-09,
+    "text_projection": -9.018478467718675e-08
+   },
+   "GD": {
+    "vision_trunk": 4.2392632952815335e-07,
+    "visual_projection": -1.6542752392625618e-05,
+    "text_model": -6.576114024817684e-06,
+    "text_projection": -2.7239513959405787e-05
+   },
+   "negcos": {
+    "vision_trunk": -2.8029742100849013e-07,
+    "visual_projection": -1.807525414834446e-05,
+    "text_model": 1.2081932436926797e-06,
+    "text_projection": -2.3087304271030007e-05
+   }
+  },
+  "lora": {
+   "DGstar": {
+    "vision_trunk": 8.738117175297364e-10,
+    "visual_projection": 0.0,
+    "text_model": 4.301915699035315e-09,
+    "text_projection": 0.0
+   },
+   "GD": {
+    "vision_trunk": 5.626933420838396e-07,
+    "visual_projection": 0.0,
+    "text_model": -8.921055802869739e-06,
+    "text_projection": 0.0
+   },
+   "negcos": {
+    "vision_trunk": 2.2369583208550088e-07,
+    "visual_projection": 0.0,
+    "text_model": 1.1012902826646835e-06,
+    "text_projection": 0.0
+   }
+  },
+  "adapter": {
+   "DGstar": {
+    "vision_trunk": 8.103060942615603e-10,
+    "visual_projection": 0.0,
+    "text_model": 5.58762836309605e-09,
+    "text_projection": 0.0
+   },
+   "GD": {
+    "vision_trunk": 4.396538058811312e-07,
+    "visual_projection": 0.0,
+    "text_model": -8.214656424194314e-06,
+    "text_projection": 0.0
+   },
+   "negcos": {
+    "vision_trunk": 2.0743837621411796e-07,
+    "visual_projection": 0.0,
+    "text_model": 1.430432803869571e-06,
+    "text_projection": 0.0
+   }
+  },
+  "bitfit": {
+   "DGstar": {
+    "vision_trunk": 1.778392243035435e-08,
+    "visual_projection": 0.0,
+    "text_model": 1.3936762660299617e-07,
+    "text_projection": 0.0
+   },
+   "GD": {
+    "vision_trunk": 1.0445193667345453e-05,
+    "visual_projection": 0.0,
+    "text_model": -0.0001796084053759483,
+    "text_projection": 0.0
+   },
+   "negcos": {
+    "vision_trunk": 4.552684162093785e-06,
+    "visual_projection": 0.0,
+    "text_model": 3.5678112945084925e-05,
+    "text_projection": 0.0
+   }
+  }
+ },
+ "block_trainable_params": {
+  "full": {
+   "text_model": 63165952,
+   "vision_trunk": 87456000,
+   "visual_projection": 393216,
+   "text_projection": 262144
+  },
+  "lora": {
+   "text_model": 393216,
+   "vision_trunk": 589824
+  },
+  "adapter": {
+   "text_model": 793344,
+   "vision_trunk": 1189632
+  },
+  "bitfit": {
+   "text_model": 68096,
+   "vision_trunk": 102912
+  }
+ },
+ "trainable_total": {
+  "full": 151277313,
+  "lora": 983040,
+  "adapter": 1982976,
+  "bitfit": 171008
+ },
+ "orderings": {
+  "full": {
+   "DGstar": [
+    "text_projection",
+    "visual_projection",
+    "text_model",
+    "vision_trunk"
+   ],
+   "GD": [
+    "text_projection",
+    "visual_projection",
+    "text_model",
+    "vision_trunk"
+   ],
+   "negcos": [
+    "text_projection",
+    "visual_projection",
+    "text_model",
+    "vision_trunk"
+   ]
+  },
+  "lora": {
+   "DGstar": [
+    "text_model",
+    "vision_trunk",
+    "visual_projection",
+    "text_projection"
+   ],
+   "GD": [
+    "text_model",
+    "vision_trunk",
+    "visual_projection",
+    "text_projection"
+   ],
+   "negcos": [
+    "text_model",
+    "vision_trunk",
+    "visual_projection",
+    "text_projection"
+   ]
+  },
+  "adapter": {
+   "DGstar": [
+    "text_model",
+    "vision_trunk",
+    "visual_projection",
+    "text_projection"
+   ],
+   "GD": [
+    "text_model",
+    "vision_trunk",
+    "visual_projection",
+    "text_projection"
+   ],
+   "negcos": [
+    "text_model",
+    "vision_trunk",
+    "visual_projection",
+    "text_projection"
+   ]
+  },
+  "bitfit": {
+   "DGstar": [
+    "text_model",
+    "vision_trunk",
+    "visual_projection",
+    "text_projection"
+   ],
+   "GD": [
+    "text_model",
+    "vision_trunk",
+    "visual_projection",
+    "text_projection"
+   ],
+   "negcos": [
+    "text_model",
+    "vision_trunk",
+    "visual_projection",
+    "text_projection"
+   ]
+  }
+ },
+ "spearman": {
+  "full_vs_lora|DGstar": {
+   "spearman": 0.949,
+   "p": 0.0513
+  },
+  "full_vs_lora|GD": {
+   "spearman": 0.316,
+   "p": 0.6838
+  },
+  "full_vs_lora|negcos": {
+   "spearman": 0.949,
+   "p": 0.0513
+  },
+  "full_vs_adapter|DGstar": {
+   "spearman": 0.949,
+   "p": 0.0513
+  },
+  "full_vs_adapter|GD": {
+   "spearman": 0.316,
+   "p": 0.6838
+  },
+  "full_vs_adapter|negcos": {
+   "spearman": 0.949,
+   "p": 0.0513
+  },
+  "full_vs_bitfit|DGstar": {
+   "spearman": 0.949,
+   "p": 0.0513
+  },
+  "full_vs_bitfit|GD": {
+   "spearman": 0.316,
+   "p": 0.6838
+  },
+  "full_vs_bitfit|negcos": {
+   "spearman": 0.949,
+   "p": 0.0513
+  },
+  "lora_vs_adapter|DGstar": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "lora_vs_adapter|GD": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "lora_vs_adapter|negcos": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "lora_vs_bitfit|DGstar": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "lora_vs_bitfit|GD": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "lora_vs_bitfit|negcos": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "adapter_vs_bitfit|DGstar": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "adapter_vs_bitfit|GD": {
+   "spearman": 1.0,
+   "p": 0.0
+  },
+  "adapter_vs_bitfit|negcos": {
+   "spearman": 1.0,
+   "p": 0.0
+  }
+ },
+ "coupling_deviation_median_rel": {
+  "lora": {
+   "vision_trunk": 1.7981,
+   "visual_projection": 1.0,
+   "text_model": 0.0885,
+   "text_projection": 1.0,
+   "_median": 1.0,
+   "_max": 1.7981
+  },
+  "adapter": {
+   "vision_trunk": 1.7401,
+   "visual_projection": 1.0,
+   "text_model": 0.1839,
+   "text_projection": 1.0,
+   "_median": 1.0,
+   "_max": 1.7401
+  },
+  "bitfit": {
+   "vision_trunk": 17.2431,
+   "visual_projection": 1.0,
+   "text_model": 28.5301,
+   "text_projection": 1.0,
+   "_median": 9.1215,
+   "_max": 28.5301
+  }
+ },
+ "identical_order_to_full": {
+  "DGstar": false,
+  "GD": false,
+  "negcos": false
+ },
+ "config": {
+  "lora_r": 8,
+  "adapter_bottleneck": 64,
+  "batches": 3,
+  "batch_size": 48,
+  "E": [
+   "DGstar",
+   "GD",
+   "negcos"
+  ],
+  "note": "LoRA B \u4e0e adapter up \u91c7\u7528\u975e\u96f6\u5c0f\u5c3a\u5ea6\u968f\u673a\u521d\u59cb\u5316, \u4f7f\u4e24\u56e0\u5b50\u5728\u521d\u59cb\u5316\u70b9\u5747\u643a\u5e26\u68af\u5ea6"
+ }
+}

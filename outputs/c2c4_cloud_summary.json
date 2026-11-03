@@ -1,0 +1,244 @@
+{
+ "source": "cloud clean rerun 2026-09-13 + previous instance (same model card)",
+ "c2_probes": [
+  {
+   "file": "gamma_cost_llava7b_rep1.json",
+   "arch": "llava",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.653,
+   "gamma_fwd": 0.162,
+   "gamma_bwd": 0.491,
+   "gamma_peak": 7.52,
+   "train_step": 0.352,
+   "train_peak": 7.66,
+   "ratio": 1.859,
+   "trainable_float": 264460288,
+   "vram_after_load": 4.04
+  },
+  {
+   "file": "gamma_cost_llava7b_rep2.json",
+   "arch": "llava",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.668,
+   "gamma_fwd": 0.165,
+   "gamma_bwd": 0.503,
+   "gamma_peak": 7.52,
+   "train_step": 0.357,
+   "train_peak": 7.66,
+   "ratio": 1.873,
+   "trainable_float": 264460288,
+   "vram_after_load": 4.04
+  },
+  {
+   "file": "gamma_cost_llava7b_rep3.json",
+   "arch": "llava",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.702,
+   "gamma_fwd": 0.159,
+   "gamma_bwd": 0.543,
+   "gamma_peak": 7.52,
+   "train_step": 0.361,
+   "train_peak": 7.66,
+   "ratio": 1.946,
+   "trainable_float": 264460288,
+   "vram_after_load": 4.04
+  },
+  {
+   "file": "gamma_cost_llava_llava-1.5-7b-hf.json",
+   "arch": "llava",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.707,
+   "gamma_fwd": 0.159,
+   "gamma_bwd": 0.548,
+   "gamma_peak": 7.52,
+   "train_step": 0.369,
+   "train_peak": 7.66,
+   "ratio": 1.917,
+   "trainable_float": 264460288,
+   "vram_after_load": 4.04
+  },
+  {
+   "file": "gamma_cost_llava_llava-1.5-7b-hf_v1.json",
+   "arch": "llava",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.75,
+   "gamma_fwd": 0.177,
+   "gamma_bwd": 0.573,
+   "gamma_peak": 7.52,
+   "train_step": 0.412,
+   "train_peak": 7.66,
+   "ratio": 1.82,
+   "trainable_float": 264460288,
+   "vram_after_load": 4.04
+  },
+  {
+   "file": "gamma_cost_qwen7b_rep1.json",
+   "arch": "qwen",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.598,
+   "gamma_fwd": 0.129,
+   "gamma_bwd": 0.468,
+   "gamma_peak": 7.8,
+   "train_step": 0.416,
+   "train_peak": 8.94,
+   "ratio": 1.436,
+   "trainable_float": 1092377088,
+   "vram_after_load": 5.9
+  },
+  {
+   "file": "gamma_cost_qwen7b_rep2.json",
+   "arch": "qwen",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.587,
+   "gamma_fwd": 0.132,
+   "gamma_bwd": 0.455,
+   "gamma_peak": 7.8,
+   "train_step": 0.382,
+   "train_peak": 8.94,
+   "ratio": 1.538,
+   "trainable_float": 1092377088,
+   "vram_after_load": 5.9
+  },
+  {
+   "file": "gamma_cost_qwen7b_rep3.json",
+   "arch": "qwen",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.538,
+   "gamma_fwd": 0.132,
+   "gamma_bwd": 0.406,
+   "gamma_peak": 7.8,
+   "train_step": 0.366,
+   "train_peak": 8.94,
+   "ratio": 1.468,
+   "trainable_float": 1092377088,
+   "vram_after_load": 5.9
+  },
+  {
+   "file": "gamma_cost_qwen_Qwen2-VL-7B-Instruct.json",
+   "arch": "qwen",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.528,
+   "gamma_fwd": 0.129,
+   "gamma_bwd": 0.4,
+   "gamma_peak": 7.8,
+   "train_step": 0.37,
+   "train_peak": 8.94,
+   "ratio": 1.429,
+   "trainable_float": 1092377088,
+   "vram_after_load": 5.9
+  },
+  {
+   "file": "gamma_cost_qwen_Qwen2-VL-7B-Instruct_v1.json",
+   "arch": "qwen",
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "gamma_total": 0.527,
+   "gamma_fwd": 0.125,
+   "gamma_bwd": 0.401,
+   "gamma_peak": 7.8,
+   "train_step": 0.372,
+   "train_peak": 8.94,
+   "ratio": 1.418,
+   "trainable_float": 1092377088,
+   "vram_after_load": 5.9
+  }
+ ],
+ "c2_summary": {
+  "llava": {
+   "n": 5,
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "trainable_float": 264460288,
+   "gamma_total_median": 0.702,
+   "gamma_total_range": [
+    0.653,
+    0.75
+   ],
+   "gamma_peak_median": 7.52,
+   "train_step_median": 0.361,
+   "train_peak_median": 7.66,
+   "ratio_median": 1.873,
+   "ratio_values": [
+    1.859,
+    1.873,
+    1.946,
+    1.917,
+    1.82
+   ]
+  },
+  "qwen": {
+   "n": 5,
+   "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+   "torch": "2.12.1+cu130",
+   "trainable_float": 1092377088,
+   "gamma_total_median": 0.538,
+   "gamma_total_range": [
+    0.527,
+    0.598
+   ],
+   "gamma_peak_median": 7.8,
+   "train_step_median": 0.372,
+   "train_peak_median": 8.94,
+   "ratio_median": 1.436,
+   "ratio_values": [
+    1.436,
+    1.538,
+    1.468,
+    1.429,
+    1.418
+   ]
+  }
+ },
+ "c4": {
+  "5": {
+   "local": {
+    "E": [
+     3921.0,
+     3838.0,
+     3757.5,
+     3847.5
+    ],
+    "delta_E": -73.5
+   },
+   "cloud": {
+    "E": [
+     3926.0,
+     3847.5,
+     3789.0,
+     3876.5
+    ],
+    "delta_E": -49.5
+   }
+  },
+  "6": {
+   "local": {
+    "E": [
+     3921.0,
+     3837.5,
+     3763.5,
+     3957.0
+    ],
+    "delta_E": 36.0
+   },
+   "cloud": {
+    "E": [
+     3926.0,
+     3839.0,
+     3822.0,
+     3948.0
+    ],
+    "delta_E": 22.0
+   }
+  }
+ },
+ "c5_note": "batch 4/8（r=6, s=42, 3 epochs）在 32760 MiB 的卡上未产生任何 JSON、连逐 epoch 中间态都没有 → 在第一个 epoch 内即崩溃；batch 2 可完成 3 epochs；batch 1 为参考协议。"
+}

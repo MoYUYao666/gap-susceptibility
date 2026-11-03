@@ -1,0 +1,2010 @@
+{
+ "Paper A": {
+  "COCO near-random / R@1<0.001": [
+   {
+    "file": "NC_submission\\latex_source\\sections\\supplement.tex",
+    "line": 3,
+    "text": "$^\\dagger$ BLIP-1 full fine-tuning failed to produce valid gap measurements; BLIP-1 R@1 values are near-random (test set 5K images) except rank-4"
+   },
+   {
+    "file": "sections\\supplement.tex",
+    "line": 3,
+    "text": "$^\\dagger$ BLIP-1 full fine-tuning failed to produce valid gap measurements; BLIP-1 R@1 values are near-random (test set 5K images) except rank-4"
+   }
+  ],
+  "COCO cross-dataset claim": [
+   {
+    "file": "cover_letter.tex",
+    "line": 53,
+    "text": "0028$ for both positions), whereas on MS-COCO both positions"
+   },
+   {
+    "file": "cover_letter_nc.tex",
+    "line": 53,
+    "text": "0028$ for both positions), whereas on MS-COCO both positions"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\conclusion.tex",
+    "line": 9,
+    "text": "Third, we validated the ODE across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO), each fitted separately"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 31,
+    "text": "On MS-COCO under strict freezing the $DG^*$ trajectory changes by $0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 31,
+    "text": "s the embeddings, and its coefficients should not be reported for configurations in which it does not; we report no ODE coefficients for MS-COCO for this reason"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 61,
+    "text": "re are a subset of those originally produced for the rank sweep: $55$ LoRA runs are archived and reproducible ($49$ on Flickr30k, $6$ on MS-COCO) at three seeds per configuration, against the larger set of runs the sweep originally comprised at five seeds"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 61,
+    "text": "ed runs and is reproducible from them; the figures quoted should be read as properties of that archived set, while the per-configuration MS-COCO table in the supplement is drawn from a larger set of runs than those archived with this work and should be read on"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 15,
+    "text": "IP ViT-B/32, CLIP ViT-L/14~\\cite{radford2021clip}, BLIP-1~\\cite{li2022blip}, and SigLIP, using InfoNCE contrastive loss on Flickr30k and MS-COCO, measured by Recall@K"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 32,
+    "text": "Text-only gives the smaller gap increase on every dataset in the table: Flickr30k, MS-COCO, BLIP-1 and ViT-L"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 48,
+    "text": "First, the MS-COCO rows were evaluated with the validation split reused as the retrieval gallery under the same sample cap as training (\\texttt{src/dataset"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 48,
+    "text": "We therefore report the COCO rows as gap measurements and do not treat their retrieval column as evidence about retrieval, and we report no ODE coefficients for MS-COCO for the same reason"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 103,
+    "text": "027$; MS-COCO reproduces the ordering (rank-4 $-0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\introduction.tex",
+    "line": 22,
+    "text": "} We validate the ODE framework across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning the rank sweep $r\\in\\{1,\\dots,64\\}$ in the text-only and both positions, together with a full-fine-tuning pilot and a bias-only BitFit control on a s"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\supplement.tex",
+    "line": 154,
+    "text": "An earlier version of this supplement reported ODE coefficients for MS-COCO in a table"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\supplement.tex",
+    "line": 160,
+    "text": "$DG^*$ trajectory on MS-COCO moves by $0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\supplement.tex",
+    "line": 162,
+    "text": "Fitting the exponential form to the MS-COCO trajectory gives $R^2 = 0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\supplement.tex",
+    "line": 164,
+    "text": "retrieval accuracy explains why: strict freezing on MS-COCO reaches $R@1 = 0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\supplement.tex",
+    "line": 169,
+    "text": "MS-COCO is therefore retained in this paper for what the strict-freezing runs do support --- the"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 4,
+    "text": "We fit the ODE on the 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning CLIP LoRA over two datasets (Flickr30k, MS-COCO), each configuration replicated over five random seeds, complemented by cross-architecture fits on OpenCLIP (bias-only) and gap"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 30,
+    "text": "Of the runs performed for this sweep, 55 LoRA trajectories are archived and analysed here (49 on Flickr30k, 6 on MS-COCO), at three seeds per configuration on Flickr30k, alongside a full-fine-tuning pilot"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 35,
+    "text": "903$ on MS-COCO, and the full-fine-tuning pilot fits at $0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 90,
+    "text": "To verify that the ODE captures dynamics beyond a single dataset, we replicate the full rank sweep on MS-COCO"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 109,
+    "text": "$\\alpha$ is negative for $203$ of the $222$ archived fits on both Flickr30k and COCO, so the protective bound holds across datasets as a dominant tendency rather than without exception; the exceptions are enumerated in Section~\\ref{sec:discussi"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 116,
+    "text": "0028$ for the both-position arm, whereas on MS-COCO the ordering is the reverse:"
+   },
+   {
+    "file": "sections\\conclusion.tex",
+    "line": 9,
+    "text": "Third, we validated the ODE across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO), each fitted separately"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 31,
+    "text": "On MS-COCO under strict freezing the $DG^*$ trajectory changes by $0"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 31,
+    "text": "s the embeddings, and its coefficients should not be reported for configurations in which it does not; we report no ODE coefficients for MS-COCO for this reason"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 61,
+    "text": "re are a subset of those originally produced for the rank sweep: $55$ LoRA runs are archived and reproducible ($49$ on Flickr30k, $6$ on MS-COCO) at three seeds per configuration, against the larger set of runs the sweep originally comprised at five seeds"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 61,
+    "text": "ed runs and is reproducible from them; the figures quoted should be read as properties of that archived set, while the per-configuration MS-COCO table in the supplement is drawn from a larger set of runs than those archived with this work and should be read on"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 15,
+    "text": "IP ViT-B/32, CLIP ViT-L/14~\\cite{radford2021clip}, BLIP-1~\\cite{li2022blip}, and SigLIP, using InfoNCE contrastive loss on Flickr30k and MS-COCO, measured by Recall@K"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 32,
+    "text": "Text-only gives the smaller gap increase on every dataset in the table: Flickr30k, MS-COCO, BLIP-1 and ViT-L"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 48,
+    "text": "First, the MS-COCO rows were evaluated with the validation split reused as the retrieval gallery under the same sample cap as training (\\texttt{src/dataset"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 48,
+    "text": "We therefore report the COCO rows as gap measurements and do not treat their retrieval column as evidence about retrieval, and we report no ODE coefficients for MS-COCO for the same reason"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 103,
+    "text": "027$; MS-COCO reproduces the ordering (rank-4 $-0"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 22,
+    "text": "} We validate the ODE framework across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning the rank sweep $r\\in\\{1,\\dots,64\\}$ in the text-only and both positions, together with a full-fine-tuning pilot and a bias-only BitFit control on a s"
+   },
+   {
+    "file": "sections\\supplement.tex",
+    "line": 154,
+    "text": "An earlier version of this supplement reported ODE coefficients for MS-COCO in a table"
+   },
+   {
+    "file": "sections\\supplement.tex",
+    "line": 160,
+    "text": "$DG^*$ trajectory on MS-COCO moves by $0"
+   },
+   {
+    "file": "sections\\supplement.tex",
+    "line": 162,
+    "text": "Fitting the exponential form to the MS-COCO trajectory gives $R^2 = 0"
+   },
+   {
+    "file": "sections\\supplement.tex",
+    "line": 164,
+    "text": "retrieval accuracy explains why: strict freezing on MS-COCO reaches $R@1 = 0"
+   },
+   {
+    "file": "sections\\supplement.tex",
+    "line": 169,
+    "text": "MS-COCO is therefore retained in this paper for what the strict-freezing runs do support --- the"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 4,
+    "text": "We fit the ODE on the 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning CLIP LoRA over two datasets (Flickr30k, MS-COCO), each configuration replicated over five random seeds, complemented by cross-architecture fits on OpenCLIP (bias-only) and gap"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 30,
+    "text": "Of the runs performed for this sweep, 55 LoRA trajectories are archived and analysed here (49 on Flickr30k, 6 on MS-COCO), at three seeds per configuration on Flickr30k, alongside a full-fine-tuning pilot"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 35,
+    "text": "903$ on MS-COCO, and the full-fine-tuning pilot fits at $0"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 90,
+    "text": "To verify that the ODE captures dynamics beyond a single dataset, we replicate the full rank sweep on MS-COCO"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 109,
+    "text": "$\\alpha$ is negative for $196$ of the $215$ archived fits on both Flickr30k and COCO, so the protective bound holds across datasets as a dominant tendency rather than without exception; the exceptions are enumerated in Section~\\ref{sec:discussi"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 116,
+    "text": "0028$ for the both-position arm, whereas on MS-COCO the ordering is the reverse:"
+   }
+  ],
+  "rank sweep / rank effect": [
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 61,
+    "text": "Ninth, the trajectories analysed here are a subset of those originally produced for the rank sweep: $55$ LoRA runs are archived and reproducible ($49$ on Flickr30k, $6$ on MS-COCO) at three seeds per configuration, against the larger set of runs the sweep or"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 103,
+    "text": "The gap responds monotonically to configured rank over the low end: ranks 4, 8 and 16 hold it down or leave it unchanged, whereas 32 and 64 push it up"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 105,
+    "text": "preserve alignment, but scale with capacity in opposite directions: under the earlier protocol the LoRA benefit peaks in the middle of the rank range and reverses beyond it, whereas larger Adapter bottleneck dimensions reduce the gap more effectively"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 105,
+    "text": "protocol rather than a property of rank: once the backbone is frozen and only the adapter matrices are trained, the text-only arm improves monotonically with rank"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 181,
+    "text": "Under strict freezing, where the optimiser sees only the adapter matrices, the text-only arm improves monotonically with rank instead, reaching $-0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\introduction.tex",
+    "line": 22,
+    "text": "} We validate the ODE framework across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning the rank sweep $r\\in\\{1,\\dots,64\\}$ in the text-only and both positions, together with a full-fine-tuning pilot and a bias-only BitFit control on a second arc"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\related_work.tex",
+    "line": 47,
+    "text": "~\\cite{sun2026narrow} showed that fine-tuning erodes safety alignment, with effects monotonic in LoRA rank"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\theory.tex",
+    "line": 117,
+    "text": "If LoRA rank restricts the adaptation subspace, $\\|g_v\\|$ should grow with rank as $\\|g_v\\| \\propto \\sqrt{r}$ under random projection onto a rank-$r$ subspace"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\theory.tex",
+    "line": 119,
+    "text": "The task gradient concentrates in a low-dimensional subspace across the adapter capacities we probed (rank $r$ from $1$ to $64$)"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 30,
+    "text": "We sweep LoRA rank $r \\in \\{1, 2, 4, 8, 16, 32, 64\\}$ across the text-only and both positions"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 43,
+    "text": "\\caption{Phase 2 rank sweep on Flickr30k: $\\alpha$, $\\beta$, and $R^2$ by rank and position, each fitted separately to every archived run and then averaged ($n=3$ runs per configuration,"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 86,
+    "text": "This \\textbf{Effective Rank Saturation} shows that, over the rank range we probed, the task gradient's effective dimension stays in a narrow band rather than growing with adapter capacity"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 90,
+    "text": "To verify that the ODE captures dynamics beyond a single dataset, we replicate the full rank sweep on MS-COCO"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 119,
+    "text": "text-only arm improves monotonically with rank over the range we ran ($-0"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 61,
+    "text": "Ninth, the trajectories analysed here are a subset of those originally produced for the rank sweep: $55$ LoRA runs are archived and reproducible ($49$ on Flickr30k, $6$ on MS-COCO) at three seeds per configuration, against the larger set of runs the sweep or"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 103,
+    "text": "The gap responds monotonically to configured rank over the low end: ranks 4, 8 and 16 hold it down or leave it unchanged, whereas 32 and 64 push it up"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 105,
+    "text": "preserve alignment, but scale with capacity in opposite directions: under the earlier protocol the LoRA benefit peaks in the middle of the rank range and reverses beyond it, whereas larger Adapter bottleneck dimensions reduce the gap more effectively"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 105,
+    "text": "protocol rather than a property of rank: once the backbone is frozen and only the adapter matrices are trained, the text-only arm improves monotonically with rank"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 181,
+    "text": "Under strict freezing, where the optimiser sees only the adapter matrices, the text-only arm improves monotonically with rank instead, reaching $-0"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 22,
+    "text": "} We validate the ODE framework across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning the rank sweep $r\\in\\{1,\\dots,64\\}$ in the text-only and both positions, together with a full-fine-tuning pilot and a bias-only BitFit control on a second arc"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 47,
+    "text": "~\\cite{sun2026narrow} showed that fine-tuning erodes safety alignment, with effects monotonic in LoRA rank"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 117,
+    "text": "If LoRA rank restricts the adaptation subspace, $\\|g_v\\|$ should grow with rank as $\\|g_v\\| \\propto \\sqrt{r}$ under random projection onto a rank-$r$ subspace"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 119,
+    "text": "The task gradient concentrates in a low-dimensional subspace across the adapter capacities we probed (rank $r$ from $1$ to $64$)"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 30,
+    "text": "We sweep LoRA rank $r \\in \\{1, 2, 4, 8, 16, 32, 64\\}$ across the text-only and both positions"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 43,
+    "text": "\\caption{Phase 2 rank sweep on Flickr30k: $\\alpha$, $\\beta$, and $R^2$ by rank and position, each fitted separately to every archived run and then averaged ($n=3$ runs per configuration,"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 86,
+    "text": "This \\textbf{Effective Rank Saturation} shows that, over the rank range we probed, the task gradient's effective dimension stays in a narrow band rather than growing with adapter capacity"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 90,
+    "text": "To verify that the ODE captures dynamics beyond a single dataset, we replicate the full rank sweep on MS-COCO"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 119,
+    "text": "text-only arm improves monotonically with rank over the range we ran ($-0"
+   }
+  ],
+  "LoRA as the method": [
+   {
+    "file": "cover_letter.tex",
+    "line": 39,
+    "text": "949$ over the LoRA configurations (range $0"
+   },
+   {
+    "file": "cover_letter_nc.tex",
+    "line": 39,
+    "text": "949$ over the LoRA configurations (range $0"
+   },
+   {
+    "file": "main_nc.tex",
+    "line": 54,
+    "text": "apparent advantage: LoRA and full fine-tuning then agree on zero-shot accuracy"
+   },
+   {
+    "file": "main_springer.tex",
+    "line": 55,
+    "text": "apparent advantage: LoRA and full fine-tuning then agree on zero-shot accuracy"
+   },
+   {
+    "file": "NC_submission\\latex_source\\main_nc.tex",
+    "line": 54,
+    "text": "apparent advantage: LoRA and full fine-tuning then agree on zero-shot accuracy"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\conclusion.tex",
+    "line": 7,
+    "text": "y position follows from $g_v = 0$ removing the dominant perturbation source for a given allocation; LoRA's protective effect from $\\alpha < 0$ for all PEFT configurations; and the rank effect from Effective Rank Saturation---the discovery that task gradi"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\conclusion.tex",
+    "line": 9,
+    "text": "Third, we validated the ODE across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO), each fitted separately"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\conclusion.tex",
+    "line": 9,
+    "text": "949$ over the LoRA configurations (range $0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\conclusion.tex",
+    "line": 9,
+    "text": "061$), four LoRA fits fitted leave-one-configuration-out (largest $+0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 6,
+    "text": "The answer, as Section~\\ref{sec:validation} shows, is affirmative for the LoRA configurations: mean $R^2 = 0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 28,
+    "text": "nges in this work are measured from a perturbed reference and are therefore not comparable with the LoRA figures; Section~\\ref{sec:validation} already restricts the Adapter comparison to the common frozen baseline for the same reason"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 28,
+    "text": "ptimal at the bottom of the range ($10^{-7}$--$10^{-6}$, indistinguishable within its seed spread), LoRA at $10^{-5}$, and the both-position bottleneck Adapter only becomes functional from $10^{-4}$ upwards (it collapses to $0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 28,
+    "text": "ng each to its own optimum removes the apparent advantage of adapter methods over full fine-tuning: LoRA at $10^{-5}$ reaches $60"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 28,
+    "text": "The only configuration that clearly narrows the gap is text-only LoRA at $3\\times10^{-4}$ ($\\Delta\\mathrm{CG} = -0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 28,
+    "text": "at $3\\times10^{-5}$, $10^{-4}$ and $3\\times10^{-4}$; and we did not sweep the learning rate of the LoRA and Adapter methods, so the stronger test of tuning every method to its own optimum remains open"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 31,
+    "text": "949$ over the LoRA configurations) validates this approximation, stochastic gradient noise may affect the instantaneous dynamics in ways not captured by the determinist"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 61,
+    "text": ", the trajectories analysed here are a subset of those originally produced for the rank sweep: $55$ LoRA runs are archived and reproducible ($49$ on Flickr30k, $6$ on MS-COCO) at three seeds per configuration, against the larger set of runs the sweep ori"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 4,
+    "text": "In the runs reported throughout this section, text-only and both-position describe which LoRA adapters were \\emph{injected}, not which parts of the network the optimizer was allowed to move: the library does not freeze the backbone, so the opt"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 8,
+    "text": "We systematically explore the PEFT configuration space across five dimensions: \\textbf{method} (LoRA, Adapter, full fine-tuning), \\textbf{rank} $r \\in \\{1,2,4,8,16,32,64\\}$, \\textbf{position} (text-only, vision-only, both), \\textbf{scaling factor} $\\"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 19,
+    "text": "156$ frozen), while text-only LoRA \\emph{reduces} the Centroid Gap ($-0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 32,
+    "text": "\\caption{Effect of LoRA position on CG$\\Delta$ under the earlier adaptation convention, in which the LoRA backbone was not frozen (Section~\\ref{sec:empirical} states the con"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 48,
+    "text": "Second, the BLIP-1 arms were not produced by LoRA injection---BLIP-1 does not support our adapter wrapper, so the runs selectively unfreeze the \\texttt{query} and \\texttt{value} projections instead,"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 92,
+    "text": "\\subsection{LoRA Configuration Space}"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 99,
+    "text": "\\caption{Ablation of LoRA scaling factor $\\alpha$ (left) and target modules (right)"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 105,
+    "text": "Text-only LoRA and Adapter both preserve alignment, but scale with capacity in opposite directions: under the earlier protocol the LoRA benefit peaks in the middle"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 105,
+    "text": "Section~\\ref{sec:validation} shows that the LoRA side of that comparison is an artefact of the protocol rather than a property of rank: once the backbone is frozen and only the adapter matrices are"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 110,
+    "text": "Both methods respond to where the adapters sit and to their dimension, but the direction differs: LoRA favours the text-only setting, whereas for Adapter no consistent text-only advantage is present once every run is scored against a common frozen base"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\introduction.tex",
+    "line": 3,
+    "text": "Methods like LoRA~\\cite{hu2021lora} and Adapter~\\cite{houlsby2019adapter} enable adaptation of billion-parameter models to downstream tasks with minimal computational"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\introduction.tex",
+    "line": 15,
+    "text": "LoRA's protective effect is captured by $\\alpha < 0$ for all ranks (and for full fine-tuning in the matched-setting fits)"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\introduction.tex",
+    "line": 22,
+    "text": "} We validate the ODE framework across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning the rank sweep $r\\in\\{1,\\dots,64\\}$ in the text-only and both positions, together with a full-fine-tuni"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\introduction.tex",
+    "line": 22,
+    "text": "949$ over the LoRA runs, against $0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\related_work.tex",
+    "line": 11,
+    "text": "LoRA~\\cite{hu2021lora} has become the dominant PEFT method for VLMs"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\related_work.tex",
+    "line": 11,
+    "text": "alora} discovered rank imbalance favoring text and FFN, proposing hierarchical budget allocation (HALoRA)"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\related_work.tex",
+    "line": 11,
+    "text": "low matching~\\cite{jiang2026flow}, random-basis full-rank PEFT~\\cite{li2025randlora}, and test-time LoRA~\\cite{wang2025lorattt}"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\related_work.tex",
+    "line": 47,
+    "text": "~\\cite{zhao2026gapinit} introduced Gap-Init, an initialization that aligns LoRA with the gap vector"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\related_work.tex",
+    "line": 47,
+    "text": "~\\cite{sun2026narrow} showed that fine-tuning erodes safety alignment, with effects monotonic in LoRA rank"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\related_work.tex",
+    "line": 49,
+    "text": "hortcut learning''---CLIP's systematic over-reliance on text over visual evidence---and showed that LoRA-based optimization can reduce cross-modal dependency drop by 64\\%"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\theory.tex",
+    "line": 117,
+    "text": "If LoRA rank restricts the adaptation subspace, $\\|g_v\\|$ should grow with rank as $\\|g_v\\| \\propto \\sqrt{r}$ under random projection onto a rank-$r$ subspac"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\theory.tex",
+    "line": 119,
+    "text": "\\textbf{Effective Rank Saturation}, and it implies that beyond a minimal rank threshold, increasing LoRA rank provides no additional gradient capacity---only the risk of disrupting alignment through expanded parameter freedom"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 4,
+    "text": "We fit the ODE on the 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning CLIP LoRA over two datasets (Flickr30k, MS-COCO), each configuration replicated over five random seeds, complemented by cross-architecture fits on OpenCLIP (bi"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 8,
+    "text": "We measure $\\beta$ on three configurations---text-only LoRA ($r{=}8$), both-position LoRA ($r{=}8$), and full fine-tuning---with three seeds each"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 30,
+    "text": "We sweep LoRA rank $r \\in \\{1, 2, 4, 8, 16, 32, 64\\}$ across the text-only and both positions"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 30,
+    "text": "Of the runs performed for this sweep, 55 LoRA trajectories are archived and analysed here (49 on Flickr30k, 6 on MS-COCO), at three seeds per configuration on Flickr30k, alongside a full-fine-tun"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 39,
+    "text": "949$ over the LoRA runs (range $0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 67,
+    "text": "\\textbf{LoRA mean} & $\\mathbf{-0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 73,
+    "text": "061$, four LoRA fits up to $+0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 73,
+    "text": "949$ over the archived LoRA configurations (the full-fine-tuning pilot fits at $0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 109,
+    "text": "949$ over the archived LoRA runs on both CLIP datasets"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 111,
+    "text": "484$---larger than both LoRA ($0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 115,
+    "text": "Both controls below use the same recorded budget ($5000$ samples, $10$ epochs, LoRA rank $8$ with $\\alpha=16$) and the same five seeds, so the two architectures differ in their encoder and their pre-training rather than in how they w"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 126,
+    "text": "217$ and must not be compared with the LoRA figures"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 162,
+    "text": "\\item \\textbf{LoRA's protective bound:} $\\alpha < 0$ for all PEFT configurations across both datasets, contrasted with full fine-tuning's marginal $\\alpha \\approx 0$"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 167,
+    "text": "explanation for the empirical phenomena, validated by 383 experiments spanning three PEFT methods (LoRA, Adapter, BitFit) and two datasets"
+   },
+   {
+    "file": "sections\\conclusion.tex",
+    "line": 7,
+    "text": "y position follows from $g_v = 0$ removing the dominant perturbation source for a given allocation; LoRA's protective effect from $\\alpha < 0$ for all PEFT configurations; and the rank effect from Effective Rank Saturation---the discovery that task gradi"
+   },
+   {
+    "file": "sections\\conclusion.tex",
+    "line": 9,
+    "text": "Third, we validated the ODE across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO), each fitted separately"
+   },
+   {
+    "file": "sections\\conclusion.tex",
+    "line": 9,
+    "text": "949$ over the LoRA configurations (range $0"
+   },
+   {
+    "file": "sections\\conclusion.tex",
+    "line": 9,
+    "text": "061$), four LoRA fits fitted leave-one-configuration-out (largest $+0"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 6,
+    "text": "The answer, as Section~\\ref{sec:validation} shows, is affirmative for the LoRA configurations: mean $R^2 = 0"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 28,
+    "text": "nges in this work are measured from a perturbed reference and are therefore not comparable with the LoRA figures; Section~\\ref{sec:validation} already restricts the Adapter comparison to the common frozen baseline for the same reason"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 28,
+    "text": "ptimal at the bottom of the range ($10^{-7}$--$10^{-6}$, indistinguishable within its seed spread), LoRA at $10^{-5}$, and the both-position bottleneck Adapter only becomes functional from $10^{-4}$ upwards (it collapses to $0"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 28,
+    "text": "ng each to its own optimum removes the apparent advantage of adapter methods over full fine-tuning: LoRA at $10^{-5}$ reaches $60"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 28,
+    "text": "The only configuration that clearly narrows the gap is text-only LoRA at $3\\times10^{-4}$ ($\\Delta\\mathrm{CG} = -0"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 28,
+    "text": "at $3\\times10^{-5}$, $10^{-4}$ and $3\\times10^{-4}$; and we did not sweep the learning rate of the LoRA and Adapter methods, so the stronger test of tuning every method to its own optimum remains open"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 31,
+    "text": "949$ over the LoRA configurations) validates this approximation, stochastic gradient noise may affect the instantaneous dynamics in ways not captured by the determinist"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 61,
+    "text": ", the trajectories analysed here are a subset of those originally produced for the rank sweep: $55$ LoRA runs are archived and reproducible ($49$ on Flickr30k, $6$ on MS-COCO) at three seeds per configuration, against the larger set of runs the sweep ori"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 4,
+    "text": "In the runs reported throughout this section, text-only and both-position describe which LoRA adapters were \\emph{injected}, not which parts of the network the optimizer was allowed to move: the library does not freeze the backbone, so the opt"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 8,
+    "text": "We systematically explore the PEFT configuration space across five dimensions: \\textbf{method} (LoRA, Adapter, full fine-tuning), \\textbf{rank} $r \\in \\{1,2,4,8,16,32,64\\}$, \\textbf{position} (text-only, vision-only, both), \\textbf{scaling factor} $\\"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 19,
+    "text": "156$ frozen), while text-only LoRA \\emph{reduces} the Centroid Gap ($-0"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 32,
+    "text": "\\caption{Effect of LoRA position on CG$\\Delta$ under the earlier adaptation convention, in which the LoRA backbone was not frozen (Section~\\ref{sec:empirical} states the con"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 48,
+    "text": "Second, the BLIP-1 arms were not produced by LoRA injection---BLIP-1 does not support our adapter wrapper, so the runs selectively unfreeze the \\texttt{query} and \\texttt{value} projections instead,"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 92,
+    "text": "\\subsection{LoRA Configuration Space}"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 99,
+    "text": "\\caption{Ablation of LoRA scaling factor $\\alpha$ (left) and target modules (right)"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 105,
+    "text": "Text-only LoRA and Adapter both preserve alignment, but scale with capacity in opposite directions: under the earlier protocol the LoRA benefit peaks in the middle"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 105,
+    "text": "Section~\\ref{sec:validation} shows that the LoRA side of that comparison is an artefact of the protocol rather than a property of rank: once the backbone is frozen and only the adapter matrices are"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 110,
+    "text": "Both methods respond to where the adapters sit and to their dimension, but the direction differs: LoRA favours the text-only setting, whereas for Adapter no consistent text-only advantage is present once every run is scored against a common frozen base"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 3,
+    "text": "Methods like LoRA~\\cite{hu2021lora} and Adapter~\\cite{houlsby2019adapter} enable adaptation of billion-parameter models to downstream tasks with minimal computational"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 15,
+    "text": "LoRA's protective effect is captured by $\\alpha < 0$ for all ranks (and for full fine-tuning in the matched-setting fits)"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 22,
+    "text": "} We validate the ODE framework across 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning the rank sweep $r\\in\\{1,\\dots,64\\}$ in the text-only and both positions, together with a full-fine-tuni"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 22,
+    "text": "949$ over the LoRA runs, against $0"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 11,
+    "text": "LoRA~\\cite{hu2021lora} has become the dominant PEFT method for VLMs"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 11,
+    "text": "alora} discovered rank imbalance favoring text and FFN, proposing hierarchical budget allocation (HALoRA)"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 11,
+    "text": "low matching~\\cite{jiang2026flow}, random-basis full-rank PEFT~\\cite{li2025randlora}, and test-time LoRA~\\cite{wang2025lorattt}"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 47,
+    "text": "~\\cite{zhao2026gapinit} introduced Gap-Init, an initialization that aligns LoRA with the gap vector"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 47,
+    "text": "~\\cite{sun2026narrow} showed that fine-tuning erodes safety alignment, with effects monotonic in LoRA rank"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 49,
+    "text": "hortcut learning''---CLIP's systematic over-reliance on text over visual evidence---and showed that LoRA-based optimization can reduce cross-modal dependency drop by 64\\%"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 117,
+    "text": "If LoRA rank restricts the adaptation subspace, $\\|g_v\\|$ should grow with rank as $\\|g_v\\| \\propto \\sqrt{r}$ under random projection onto a rank-$r$ subspac"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 119,
+    "text": "\\textbf{Effective Rank Saturation}, and it implies that beyond a minimal rank threshold, increasing LoRA rank provides no additional gradient capacity---only the risk of disrupting alignment through expanded parameter freedom"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 4,
+    "text": "We fit the ODE on the 55 archived LoRA runs (49 on Flickr30k, 6 on MS-COCO) spanning CLIP LoRA over two datasets (Flickr30k, MS-COCO), each configuration replicated over five random seeds, complemented by cross-architecture fits on OpenCLIP (bi"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 8,
+    "text": "We measure $\\beta$ on three configurations---text-only LoRA ($r{=}8$), both-position LoRA ($r{=}8$), and full fine-tuning---with three seeds each"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 30,
+    "text": "We sweep LoRA rank $r \\in \\{1, 2, 4, 8, 16, 32, 64\\}$ across the text-only and both positions"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 30,
+    "text": "Of the runs performed for this sweep, 55 LoRA trajectories are archived and analysed here (49 on Flickr30k, 6 on MS-COCO), at three seeds per configuration on Flickr30k, alongside a full-fine-tun"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 39,
+    "text": "949$ over the LoRA runs (range $0"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 67,
+    "text": "\\textbf{LoRA mean} & $\\mathbf{-0"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 73,
+    "text": "061$, four leave-one-configuration-out LoRA fits up to $+0"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 73,
+    "text": "949$ over the archived LoRA configurations (the full-fine-tuning pilot fits at $0"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 109,
+    "text": "949$ over the archived LoRA runs on both CLIP datasets"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 111,
+    "text": "484$---larger than both LoRA ($0"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 115,
+    "text": "Both controls below use the same recorded budget ($5000$ samples, $10$ epochs, LoRA rank $8$ with $\\alpha=16$) and the same five seeds, so the two architectures differ in their encoder and their pre-training rather than in how they w"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 126,
+    "text": "217$ and must not be compared with the LoRA figures"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 162,
+    "text": "\\item \\textbf{LoRA's protective bound:} $\\alpha < 0$ for all PEFT configurations across both datasets, contrasted with full fine-tuning's marginal $\\alpha \\approx 0$"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 167,
+    "text": "explanation for the empirical phenomena, validated by 383 experiments spanning three PEFT methods (LoRA, Adapter, BitFit) and two datasets"
+   }
+  ],
+  "trainable-parameter share": [
+   {
+    "file": "cover_letter.tex",
+    "line": 86,
+    "text": "selection: comparability in parameter-efficient multimodal adaptation''), manuscript number"
+   },
+   {
+    "file": "cover_letter_nc.tex",
+    "line": 86,
+    "text": "selection: comparability in parameter-efficient multimodal adaptation''), manuscript number"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 28,
+    "text": "at $10^{-5}$, and the both-position bottleneck Adapter only becomes functional from $10^{-4}$ upwards (it collapses to $0.13\\%$ zero-shot at $10^{-5}$)"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\discussion.tex",
+    "line": 28,
+    "text": "91\\%$) to $0.1\\%$ and its $\\Delta\\mathrm{CG}$ spans $-0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 4,
+    "text": "We begin by presenting a systematic empirical characterization of modality gap evolution during parameter-efficient fine-tuning"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 71,
+    "text": "6210$, $145{,}170{,}177$ trainable parameters) rather than the strict-freezing mean for that cell ($0"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 71,
+    "text": "6222$, $98{,}304$ trainable parameters)"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\empirical.tex",
+    "line": 153,
+    "text": "r image embeddings under a strictly frozen protocol, in which the optimizer sees only the adapter matrices ($196{,}608$ trainable parameters for the text-only arm) and the vision side registers zero non-zero updates across all $199$ vision tensors"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\introduction.tex",
+    "line": 25,
+    "text": "Together, these contributions establish a principled framework for understanding and predicting how parameter-efficient fine-tuning reshapes cross-modal representation geometry"
+   },
+   {
+    "file": "NC_submission\\latex_source\\sections\\validation.tex",
+    "line": 126,
+    "text": "We repeated that control on SigLIP, whose vision backbone and pre-training objective differ from CLIP's ($294{,}912$ trainable parameters for text-only, with the vision side registering zero, against $589{,}824$ for both-position)"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 28,
+    "text": "at $10^{-5}$, and the both-position bottleneck Adapter only becomes functional from $10^{-4}$ upwards (it collapses to $0.13\\%$ zero-shot at $10^{-5}$)"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 28,
+    "text": "91\\%$) to $0.1\\%$ and its $\\Delta\\mathrm{CG}$ spans $-0"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 4,
+    "text": "We begin by presenting a systematic empirical characterization of modality gap evolution during parameter-efficient fine-tuning"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 71,
+    "text": "6210$, $145{,}170{,}177$ trainable parameters) rather than the strict-freezing mean for that cell ($0"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 71,
+    "text": "6222$, $98{,}304$ trainable parameters)"
+   },
+   {
+    "file": "sections\\empirical.tex",
+    "line": 153,
+    "text": "r image embeddings under a strictly frozen protocol, in which the optimizer sees only the adapter matrices ($196{,}608$ trainable parameters for the text-only arm) and the vision side registers zero non-zero updates across all $199$ vision tensors"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 25,
+    "text": "Together, these contributions establish a principled framework for understanding and predicting how parameter-efficient fine-tuning reshapes cross-modal representation geometry"
+   },
+   {
+    "file": "sections\\validation.tex",
+    "line": 126,
+    "text": "We repeated that control on SigLIP, whose vision backbone and pre-training objective differ from CLIP's ($294{,}912$ trainable parameters for text-only, with the vision side registering zero, against $589{,}824$ for both-position)"
+   }
+  ]
+ },
+ "P3": {
+  "COCO near-random / R@1<0.001": [],
+  "COCO cross-dataset claim": [
+   {
+    "file": "cover_letter_prl.tex",
+    "line": 77,
+    "text": "public (Alpaca, ShareGPT, MS-COCO, Flickr30k, an ImageNet subset; CLIP ViT-B/32, LLaVA-1"
+   },
+   {
+    "file": "main.tex",
+    "line": 95,
+    "text": "MS-COCO, Flickr30k and an ImageNet subset, together with the released weights of CLIP"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 315,
+    "text": "} On Qwen2-VL-2B with real COCO pairs the rank behaviour is stable"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 422,
+    "text": "frozen) with real COCO validation pairs, at ranks $\\{1,2,4,5,6,8,16\\}$ and three seeds"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 447,
+    "text": "frozen) with real COCO validation pairs, at ranks $\\{1,2,4,5,6,8,16\\}$ and three seeds"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 528,
+    "text": "We repeated the sweep on Qwen2-VL-2B with real COCO pairs"
+   }
+  ],
+  "rank sweep / rank effect": [
+   {
+    "file": "PRL_submission\\latex_source\\main.tex",
+    "line": 39,
+    "text": "Experiments confirm an alignment phase transition at critical rank $r_c \\in [5,6]$, robust across sample sizes 16--256, with three distinct regimes: safe, damaging, and collapse"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\appendix.tex",
+    "line": 25,
+    "text": "2), rank $r \\in \\{4,16,32,64\\}$, $\\alpha = 2r$, dropout 0"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\appendix.tex",
+    "line": 100,
+    "text": "$|\\Gamma_k|$ grow monotonically with rank (Table~\\ref{tab:gamma_rank}):"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\conclusion.tex",
+    "line": 5,
+    "text": "te of $\\Delta E$; (C2) KKT optimization forces the exponential allocation $\\mathrm{rank}_k \\propto \\exp(-\\beta|\\Gamma_k|)$; (C3) a critical rank $r_c$ flips the sign of $\\Delta E$, so LoRA rank is not a free parameter; (C4) the $|\\Gamma_k|$ ordering transfers "
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\discussion.tex",
+    "line": 23,
+    "text": "Cross-environment reproducibility of the exact critical rank $r_c$ is therefore an open empirical question rather than an established constant"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 20,
+    "text": "signal of interest is how LoRA rank redistributes capacity across visual"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 37,
+    "text": "We sweep LoRA rank $r \\in \\{4,5,6,7,8,10,12,14,16,20,24,28,32,48,64\\}$"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 45,
+    "text": "LLaVA exhibits a critical rank $r_c \\in [5, 6]$ where $\\Delta E$ flips sign from"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 150,
+    "text": "granularity: reallocating LoRA budget across blocks (shallow rank 8"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 151,
+    "text": "\\ uniform rank 4, rank 2 elsewhere) yields"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 160,
+    "text": "rank sweep across 4 sample sizes $n \\in \\{16, 64, 128, 256\\}$ with 3 epochs"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 196,
+    "text": "rank sweep on ShareGPT~\\cite{sharegpt2023}, an instruction-following dataset"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 205,
+    "text": "reproducing the Alpaca critical rank $r_c \\in [5,6]$"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 233,
+    "text": "} The critical rank $r_c \\in [5, 6]$ reproduces on a second"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\introduction.tex",
+    "line": 17,
+    "text": "s: (C1) first-order gradient flow dynamics; (C2) optimal exponential rank allocation via KKT; (C3) alignment phase transition with critical rank $r_c$; (C4) cross-architecture transfer; (C5) recovery of our prior retrieval theory as a special case"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 259,
+    "text": "} The critical rank $r_c$ is architecture-dependent:"
+   },
+   {
+    "file": "sections\\appendix.tex",
+    "line": 31,
+    "text": "2), rank $r \\in \\{4,16,32,64\\}$, $\\alpha = 2r$, dropout 0"
+   },
+   {
+    "file": "sections\\appendix.tex",
+    "line": 110,
+    "text": "$|\\Gamma_k|$ grow monotonically with rank (Table~\\ref{tab:gamma_rank}):"
+   },
+   {
+    "file": "sections\\conclusion.tex",
+    "line": 14,
+    "text": "$\\mathrm{rank}_k\\propto\\exp(-\\beta|\\Gamma_k|)$; (C3) a critical rank $r_c$ flips the sign of"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 17,
+    "text": "LoRA rank redistributes capacity across visual and language token processing"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 62,
+    "text": "We sweep LoRA rank $r \\in \\{4,5,6,7,8,10,12,14,16,20,24,28,32,48,64\\}$"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 124,
+    "text": "Every rank $r<24$ gives finite $E(t)$ at every epoch"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 132,
+    "text": "LLaVA's $46\\times$ surge), and the increase is monotonic across all 15 ranks (Spearman"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 180,
+    "text": "granularity: reallocating LoRA budget across blocks (shallow rank 8"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 181,
+    "text": "\\ uniform rank 4, rank 2 elsewhere) yields"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 206,
+    "text": "which holds the parameter count fixed across arms; and a rank sweep at matched"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 297,
+    "text": "} We repeated the rank sweep on CLIP ViT-B/32"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 46,
+    "text": "rank $r_c$ flipping the sign of $\\Delta E$; (C4) cross-architecture transfer; (C5)"
+   },
+   {
+    "file": "sections_full\\appendix.tex",
+    "line": 31,
+    "text": "2), rank $r \\in \\{4,16,32,64\\}$, $\\alpha = 2r$, dropout 0"
+   },
+   {
+    "file": "sections_full\\appendix.tex",
+    "line": 110,
+    "text": "$|\\Gamma_k|$ grow monotonically with rank (Table~\\ref{tab:gamma_rank}):"
+   },
+   {
+    "file": "sections_full\\conclusion.tex",
+    "line": 6,
+    "text": "te of $\\Delta E$; (C2) KKT optimization forces the exponential allocation $\\mathrm{rank}_k \\propto \\exp(-\\beta|\\Gamma_k|)$; (C3) a critical rank $r_c$ flips the sign of $\\Delta E$, so LoRA rank is not a free parameter; (C4) the $|\\Gamma_k|$ ordering transfers "
+   },
+   {
+    "file": "sections_full\\discussion.tex",
+    "line": 25,
+    "text": "Cross-environment reproducibility of the exact critical rank $r_c$ is therefore an open empirical question rather than an established constant"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 20,
+    "text": "signal of interest is how LoRA rank redistributes capacity across visual"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 69,
+    "text": "We sweep LoRA rank $r \\in \\{4,5,6,7,8,10,12,14,16,20,24,28,32,48,64\\}$"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 77,
+    "text": "LLaVA exhibits a critical rank $r_c \\in [5, 6]$ where $\\Delta E$ flips sign from"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 152,
+    "text": "LLaVA's $46\\times$ surge), and the increase is monotonic across all 15 ranks (Spearman"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 199,
+    "text": "granularity: reallocating LoRA budget across blocks (shallow rank 8"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 200,
+    "text": "\\ uniform rank 4, rank 2 elsewhere) yields"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 209,
+    "text": "rank sweep across 4 sample sizes $n \\in \\{16, 64, 128, 256\\}$ with 3 epochs"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 232,
+    "text": "rank sweep on ShareGPT~\\cite{sharegpt2023}, an instruction-following dataset"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 241,
+    "text": "reproducing the Alpaca critical rank $r_c \\in [5,6]$"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 271,
+    "text": "} The critical rank $r_c \\in [5, 6]$ reproduces on a second"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 305,
+    "text": "which holds the parameter count fixed across arms; and a rank sweep at matched"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 397,
+    "text": "We repeated the rank sweep on CLIP ViT-B/32"
+   },
+   {
+    "file": "sections_full\\introduction.tex",
+    "line": 20,
+    "text": "s: (C1) first-order gradient flow dynamics; (C2) optimal exponential rank allocation via KKT; (C3) alignment phase transition with critical rank $r_c$; (C4) cross-architecture transfer; (C5) recovery of our prior retrieval theory as a special case"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 252,
+    "text": "} The critical rank $r_c$ should depend on the model's modality balance, although we were unable to verify this prediction: the apparent architecture dependence we first observed did"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 75,
+    "text": "2), rank $r \\in \\{4,16,32,64\\}$, $\\alpha = 2r$, dropout 0"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 154,
+    "text": "$|\\Gamma_k|$ grow monotonically with rank (Table~the main text):"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 359,
+    "text": "rank sweep on ShareGPT~\\cite{sharegpt2023}, an instruction-following dataset"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 368,
+    "text": "reproducing the Alpaca critical rank $r_c \\in [5,6]$"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 398,
+    "text": "} The critical rank $r_c \\in [5, 6]$ reproduces on a second"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 422,
+    "text": "rank sweep across 4 sample sizes $n \\in \\{16, 64, 128, 256\\}$ with 3 epochs"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 479,
+    "text": "We repeated the rank sweep on CLIP ViT-B/32"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 511,
+    "text": "} We repeated the rank sweep on CLIP ViT-B/32 with real"
+   }
+  ],
+  "LoRA as the method": [
+   {
+    "file": "cover_letter_prl.tex",
+    "line": 51,
+    "text": "(3) \\emph{AdaLoRA, at matched budget and swept over the same learning rates, reaches lower"
+   },
+   {
+    "file": "main.tex",
+    "line": 52,
+    "text": "budget; AdaLoRA, swept over the same rates, reaches lower alignment energy than any of our"
+   },
+   {
+    "file": "main_10pp.tex",
+    "line": 52,
+    "text": "budget; AdaLoRA, swept over the same rates, reaches lower alignment energy than any of our"
+   },
+   {
+    "file": "main_body_full.tex",
+    "line": 18,
+    "text": "budget; AdaLoRA, swept over the same rates, reaches lower alignment energy than any of our"
+   },
+   {
+    "file": "PRL_submission\\highlights.tex",
+    "line": 23,
+    "text": "\\item At matched budget, AdaLoRA reaches lower alignment energy than our allocation"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\main.tex",
+    "line": 39,
+    "text": "ate via zero-shot Predictive Transfer: $\\Gamma$ measured on a CLIP retrieval model predicts optimal LoRA rank allocation on LLaVA-1"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\appendix.tex",
+    "line": 25,
+    "text": "5-7B with 4-bit QLoRA (bitsandbytes 0"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\appendix.tex",
+    "line": 61,
+    "text": "partitioned into $K=4$ blocks: vision encoder (LoRA on its attention"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\conclusion.tex",
+    "line": 5,
+    "text": "ank}_k \\propto \\exp(-\\beta|\\Gamma_k|)$; (C3) a critical rank $r_c$ flips the sign of $\\Delta E$, so LoRA rank is not a free parameter; (C4) the $|\\Gamma_k|$ ordering transfers across architectures up to monotonic distortion (Partial Ordering Preservation"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\conclusion.tex",
+    "line": 12,
+    "text": "LLaVA training is reproducible on consumer hardware (RTX 4060, 8GB) via QLoRA 4-bit quantization; cross-architecture verification uses a cloud GPU (\\textasciitilde\\$8 USD)"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\discussion.tex",
+    "line": 11,
+    "text": "The alignment phase transition at $r_c \\in [5,6]$ on LLaVA connects to a growing body of work on LoRA phase transitions (efficiency~\\cite{hu2025loralimits}, landscape convexity~\\cite{loraconvex2025})"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\discussion.tex",
+    "line": 11,
+    "text": "This architecture-dependence traces to text dominance: higher-rank LoRA provides sufficient capacity for the LLM backbone to develop modality-specific biases, amplifying text-token processing at the expense of visual toke"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\discussion.tex",
+    "line": 11,
+    "text": "The different thresholds suggest that $r_c$ is determined by the interplay between LoRA capacity and the pretrained model's inherent modality balance"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\discussion.tex",
+    "line": 23,
+    "text": "Second, per-component LoRA rank allocation uses uniform LLM rank---separate projector vs"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\discussion.tex",
+    "line": 27,
+    "text": "(4) \\textbf{$\\Gamma$-guided PEFT design}: configuring LoRA placement and rank automatically before training would realize the zero-shot design promise"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 7,
+    "text": "instruction-tuned), both with QLoRA 4-bit quantization (bitsandbytes"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 20,
+    "text": "signal of interest is how LoRA rank redistributes capacity across visual"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 37,
+    "text": "We sweep LoRA rank $r \\in \\{4,5,6,7,8,10,12,14,16,20,24,28,32,48,64\\}$"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 150,
+    "text": "granularity: reallocating LoRA budget across blocks (shallow rank 8"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 357,
+    "text": "HALoRA~\\cite{halora2025} & Learned budget allocator & No & No & No \\\\"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 358,
+    "text": "AdaLoRA~\\cite{adalora2023} & Sensitivity score (training) & No & No & No \\\\"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\experiments.tex",
+    "line": 359,
+    "text": "IGU-LoRA~\\cite{igulora2025} & Integrated Gradients & No & No & No \\\\"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\introduction.tex",
+    "line": 3,
+    "text": "Methods like LoRA~\\cite{hu2021} inject low-rank adapters into a frozen backbone, reducing trainable parameters to a fraction of a percent of the total"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\introduction.tex",
+    "line": 3,
+    "text": "uestion remains open: \\emph{given a fixed parameter budget, which parts of the model should receive LoRA adapters, and at what rank?}"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\introduction.tex",
+    "line": 5,
+    "text": "The standard practice---uniform-rank LoRA on all attention layers---ignores a basic structural fact: different parameter blocks (vision encoder, projector, shallow vs"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\related_work.tex",
+    "line": 11,
+    "text": "The problem of allocating LoRA capacity across model components has received substantial recent attention"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\related_work.tex",
+    "line": 11,
+    "text": "AdaLoRA~\\cite{adalora2023} uses SVD-based sensitivity scoring to prune low-importance ranks"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\related_work.tex",
+    "line": 11,
+    "text": "HALoRA~\\cite{halora2025} introduces a component-wise budget allocator balancing vision and text modalities"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\related_work.tex",
+    "line": 11,
+    "text": "IGU-LoRA~\\cite{igulora2025} applies integrated gradients for pathwise sensitivity estimation"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\related_work.tex",
+    "line": 11,
+    "text": "ShapLoRA~\\cite{shaplora2025} uses Shapley values from cooperative game theory"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\related_work.tex",
+    "line": 17,
+    "text": "Gap-Init~\\cite{zhao2026gapinit} aligns LoRA initialization with the modality-gap direction to stabilize training"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\related_work.tex",
+    "line": 19,
+    "text": "\\subsection{LoRA Theory and Phase Transitions}"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\related_work.tex",
+    "line": 21,
+    "text": "Recent theoretical work has identified phase transition behavior in LoRA training: computational efficiency~\\cite{hu2025loralimits} and landscape convexity~\\cite{loraconvex2025} degrade sharply beyond critical thresholds"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\related_work.tex",
+    "line": 25,
+    "text": "CAST learns activation manifold mappings to transfer LoRA modules across architectures, achieving 85--95\\% performance retention"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 7,
+    "text": "Given a fixed PEFT parameter budget $C$, we must assign LoRA capacity"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 19,
+    "text": "\\item \\textbf{R2 -- Coordinate invariance}: Different PEFT methods (LoRA,"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 24,
+    "text": "Euclidean gradient descent; the non-orthogonal case (including the LoRA"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 44,
+    "text": "cannot be computed pre-training; without (R2), LoRA and Adapter give"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 151,
+    "text": "} Under LoRA, $\\|\\Delta\\theta\\| \\ll \\|\\theta_0\\|$"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 249,
+    "text": "Below $r_c$, LoRA capacity is insufficient to"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 255,
+    "text": "appear in the LoRA literature (efficiency~\\cite{hu2025loralimits},"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 286,
+    "text": "(LoRA $A/B$, Adapter bottlenecks) do not preserve the inner product"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 291,
+    "text": "framework and exponential allocation hold quantitatively under LoRA,"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\theory.tex",
+    "line": 293,
+    "text": "under LoRA on LLaVA---the orthogonal restriction, while a formal"
+   },
+   {
+    "file": "sections\\appendix.tex",
+    "line": 31,
+    "text": "5-7B with 4-bit QLoRA (bitsandbytes 0"
+   },
+   {
+    "file": "sections\\appendix.tex",
+    "line": 68,
+    "text": "partitioned into $K=4$ blocks: vision encoder (LoRA on its attention"
+   },
+   {
+    "file": "sections\\conclusion.tex",
+    "line": 28,
+    "text": "allocation of the same budget; and AdaLoRA, over the same rates, is better than any of our"
+   },
+   {
+    "file": "sections\\conclusion.tex",
+    "line": 38,
+    "text": "on consumer hardware (RTX 4060, 8GB) via QLoRA 4-bit quantization; cross-architecture"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 18,
+    "text": "The crossing on LLaVA sits in $r\\in[5,6]$ and connects to work on LoRA phase transitions"
+   },
+   {
+    "file": "sections\\discussion.tex",
+    "line": 25,
+    "text": "QLoRA, it does not reappear under real image--text pairs at the scales we could run, and the"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 7,
+    "text": "instruction-tuned), both with QLoRA 4-bit quantization (bitsandbytes"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 17,
+    "text": "LoRA rank redistributes capacity across visual and language token processing"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 62,
+    "text": "We sweep LoRA rank $r \\in \\{4,5,6,7,8,10,12,14,16,20,24,28,32,48,64\\}$"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 180,
+    "text": "granularity: reallocating LoRA budget across blocks (shallow rank 8"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 269,
+    "text": "AdaLoRA at the same trainable-parameter count and swept its learning rate over the"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 273,
+    "text": "The advantage of AdaLoRA is therefore"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 286,
+    "text": "\\emph{is} affordable, a method like AdaLoRA should be preferred, and our results say"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 357,
+    "text": "which we measured it---blank images, $16$ training samples and 4-bit QLoRA on"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 4,
+    "text": "to adapt pretrained multimodal systems: LoRA~\\cite{hu2021} injects low-rank adapters into a"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 9,
+    "text": "Uniform-rank LoRA ignores a structural fact: parameter blocks (vision encoder, projector,"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 52,
+    "text": "4-bit QLoRA), not to the model, since it does not reappear under real image--text pairs"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 55,
+    "text": "the same budget; AdaLoRA over the same rates is better than all our arms"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 11,
+    "text": "The problem of allocating LoRA capacity across model components has received substantial recent attention"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 11,
+    "text": "AdaLoRA~\\cite{adalora2023} uses SVD-based sensitivity scoring to prune low-importance ranks"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 11,
+    "text": "HALoRA~\\cite{halora2025} introduces a component-wise budget allocator balancing vision and text modalities"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 11,
+    "text": "IGU-LoRA~\\cite{igulora2025} applies integrated gradients for pathwise sensitivity estimation"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 11,
+    "text": "ShapLoRA~\\cite{shaplora2025} uses Shapley values from cooperative game theory"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 18,
+    "text": "Gap-Init~\\cite{zhao2026gapinit} aligns LoRA initialization with the modality-gap direction to stabilize training"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 20,
+    "text": "\\subsection{LoRA Theory and Phase Transitions}"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 22,
+    "text": "Recent theoretical work has identified phase transition behavior in LoRA training: computational efficiency~\\cite{hu2025loralimits} and landscape convexity~\\cite{loraconvex2025} degrade sharply beyond critical thresholds"
+   },
+   {
+    "file": "sections\\related_work.tex",
+    "line": 26,
+    "text": "CAST learns activation manifold mappings to transfer LoRA modules across architectures, achieving 85--95\\% performance retention"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 14,
+    "text": "reparameterizations of one effective update (orthogonal subgroup only; LoRA $A/B$ and"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 80,
+    "text": "and $\\mathbb{E}[D_k]=0$; under LoRA $\\|\\Delta\\theta\\|\\ll\\|\\theta_0\\|$, so $H_k$ is negligible"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 93,
+    "text": "27$; LoRA $B=0$ blocks gradient flow); above it it"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 138,
+    "text": "$r_c$ LoRA capacity cannot develop modality-specific biases, so alignment improves through"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 141,
+    "text": "manifestation of the rank thresholds reported for LoRA"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 162,
+    "text": "LoRA $A/B$ and Adapter bottlenecks are not orthogonal, but $\\Gamma$ is computed"
+   },
+   {
+    "file": "sections\\theory.tex",
+    "line": 164,
+    "text": "and our cross-method results hold under LoRA, Adapter and BitFit in Paper~2"
+   },
+   {
+    "file": "sections_full\\appendix.tex",
+    "line": 31,
+    "text": "5-7B with 4-bit QLoRA (bitsandbytes 0"
+   },
+   {
+    "file": "sections_full\\appendix.tex",
+    "line": 68,
+    "text": "partitioned into $K=4$ blocks: vision encoder (LoRA on its attention"
+   },
+   {
+    "file": "sections_full\\conclusion.tex",
+    "line": 6,
+    "text": "ank}_k \\propto \\exp(-\\beta|\\Gamma_k|)$; (C3) a critical rank $r_c$ flips the sign of $\\Delta E$, so LoRA rank is not a free parameter; (C4) the $|\\Gamma_k|$ ordering transfers across architectures up to monotonic distortion (Partial Ordering Preservation"
+   },
+   {
+    "file": "sections_full\\conclusion.tex",
+    "line": 18,
+    "text": "random allocation of the same budget; and an adaptive baseline (AdaLoRA), swept over"
+   },
+   {
+    "file": "sections_full\\conclusion.tex",
+    "line": 27,
+    "text": "LLaVA training is reproducible on consumer hardware (RTX 4060, 8GB) via QLoRA 4-bit quantization; cross-architecture verification uses a cloud GPU (\\textasciitilde\\$8 USD)"
+   },
+   {
+    "file": "sections_full\\discussion.tex",
+    "line": 13,
+    "text": "he crossing we observe on LLaVA sits in $r \\in [5,6]$, and it connects to a growing body of work on LoRA phase transitions (efficiency~\\cite{hu2025loralimits}, landscape convexity~\\cite{loraconvex2025})"
+   },
+   {
+    "file": "sections_full\\discussion.tex",
+    "line": 13,
+    "text": "It appears under blank images at $16$ training samples with 4-bit QLoRA; it does not reappear under real image--text pairs at the scales we could run, and the apparent architecture dependence we had reported did not survi"
+   },
+   {
+    "file": "sections_full\\discussion.tex",
+    "line": 25,
+    "text": "Second, per-component LoRA rank allocation uses uniform LLM rank---separate projector vs"
+   },
+   {
+    "file": "sections_full\\discussion.tex",
+    "line": 29,
+    "text": "(4) \\textbf{$\\Gamma$-guided PEFT design}: configuring LoRA placement and rank automatically before training would realize the zero-shot design promise"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 7,
+    "text": "instruction-tuned), both with QLoRA 4-bit quantization (bitsandbytes"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 20,
+    "text": "signal of interest is how LoRA rank redistributes capacity across visual"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 69,
+    "text": "We sweep LoRA rank $r \\in \\{4,5,6,7,8,10,12,14,16,20,24,28,32,48,64\\}$"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 199,
+    "text": "granularity: reallocating LoRA budget across blocks (shallow rank 8"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 368,
+    "text": "AdaLoRA at the same trainable-parameter count and swept its learning rate over the"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 372,
+    "text": "The advantage of AdaLoRA is therefore"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 385,
+    "text": "\\emph{is} affordable, a method like AdaLoRA should be preferred, and our results say"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 399,
+    "text": "7058$), with LoRA on the text tower only, and compared it against the"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 421,
+    "text": "a dual encoder we repeated the sweep on Qwen2-VL-2B (LoRA on $q,k,v,o$, vision tower"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 481,
+    "text": "which we measured it---blank images, $16$ training samples and 4-bit QLoRA on"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 592,
+    "text": "HALoRA~\\cite{halora2025} & Learned budget allocator & No & No & No \\\\"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 593,
+    "text": "AdaLoRA~\\cite{adalora2023} & Sensitivity score (training) & No & No & No \\\\"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 594,
+    "text": "IGU-LoRA~\\cite{igulora2025} & Integrated Gradients & No & No & No \\\\"
+   },
+   {
+    "file": "sections_full\\introduction.tex",
+    "line": 3,
+    "text": "Methods like LoRA~\\cite{hu2021} inject low-rank adapters into a frozen backbone, reducing trainable parameters to a fraction of a percent of the total"
+   },
+   {
+    "file": "sections_full\\introduction.tex",
+    "line": 3,
+    "text": "uestion remains open: \\emph{given a fixed parameter budget, which parts of the model should receive LoRA adapters, and at what rank?}"
+   },
+   {
+    "file": "sections_full\\introduction.tex",
+    "line": 5,
+    "text": "The standard practice---uniform-rank LoRA on all attention layers---ignores a basic structural fact: different parameter blocks (vision encoder, projector, shallow vs"
+   },
+   {
+    "file": "sections_full\\introduction.tex",
+    "line": 26,
+    "text": "$16$ training samples, 4-bit QLoRA---rather than a model-independent constant, and it"
+   },
+   {
+    "file": "sections_full\\introduction.tex",
+    "line": 30,
+    "text": "random allocation of the same budget; an adaptive baseline (AdaLoRA) reaches lower"
+   },
+   {
+    "file": "sections_full\\related_work.tex",
+    "line": 11,
+    "text": "The problem of allocating LoRA capacity across model components has received substantial recent attention"
+   },
+   {
+    "file": "sections_full\\related_work.tex",
+    "line": 11,
+    "text": "AdaLoRA~\\cite{adalora2023} uses SVD-based sensitivity scoring to prune low-importance ranks"
+   },
+   {
+    "file": "sections_full\\related_work.tex",
+    "line": 11,
+    "text": "HALoRA~\\cite{halora2025} introduces a component-wise budget allocator balancing vision and text modalities"
+   },
+   {
+    "file": "sections_full\\related_work.tex",
+    "line": 11,
+    "text": "IGU-LoRA~\\cite{igulora2025} applies integrated gradients for pathwise sensitivity estimation"
+   },
+   {
+    "file": "sections_full\\related_work.tex",
+    "line": 11,
+    "text": "ShapLoRA~\\cite{shaplora2025} uses Shapley values from cooperative game theory"
+   },
+   {
+    "file": "sections_full\\related_work.tex",
+    "line": 18,
+    "text": "Gap-Init~\\cite{zhao2026gapinit} aligns LoRA initialization with the modality-gap direction to stabilize training"
+   },
+   {
+    "file": "sections_full\\related_work.tex",
+    "line": 20,
+    "text": "\\subsection{LoRA Theory and Phase Transitions}"
+   },
+   {
+    "file": "sections_full\\related_work.tex",
+    "line": 22,
+    "text": "Recent theoretical work has identified phase transition behavior in LoRA training: computational efficiency~\\cite{hu2025loralimits} and landscape convexity~\\cite{loraconvex2025} degrade sharply beyond critical thresholds"
+   },
+   {
+    "file": "sections_full\\related_work.tex",
+    "line": 26,
+    "text": "CAST learns activation manifold mappings to transfer LoRA modules across architectures, achieving 85--95\\% performance retention"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 7,
+    "text": "Given a fixed PEFT parameter budget $C$, we must assign LoRA capacity"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 20,
+    "text": "\\item \\textbf{R2 -- Coordinate invariance}: Different PEFT methods (LoRA,"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 25,
+    "text": "Euclidean gradient descent; the non-orthogonal case (including the LoRA"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 56,
+    "text": "cannot be computed pre-training; without (R2), LoRA and Adapter give"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 138,
+    "text": "} Under LoRA, $\\|\\Delta\\theta\\| \\ll \\|\\theta_0\\|$"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 242,
+    "text": "Below $r_c$, LoRA capacity is insufficient to"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 248,
+    "text": "appear in the LoRA literature (efficiency~\\cite{hu2025loralimits},"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 276,
+    "text": "(LoRA $A/B$, Adapter bottlenecks) do not preserve the inner product"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 281,
+    "text": "framework and exponential allocation hold quantitatively under LoRA,"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 283,
+    "text": "under LoRA on LLaVA---the orthogonal restriction, while a formal"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 75,
+    "text": "5-7B with 4-bit QLoRA (bitsandbytes 0"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 112,
+    "text": "partitioned into $K=4$ blocks: vision encoder (LoRA on its attention"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 302,
+    "text": "HALoRA~\\cite{halora2025} & Learned budget allocator & No & No & No \\\\"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 303,
+    "text": "AdaLoRA~\\cite{adalora2023} & Sensitivity score (training) & No & No & No \\\\"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 304,
+    "text": "IGU-LoRA~\\cite{igulora2025} & Integrated Gradients & No & No & No \\\\"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 446,
+    "text": "a dual encoder we repeated the sweep on Qwen2-VL-2B (LoRA on $q,k,v,o$, vision tower"
+   },
+   {
+    "file": "supplementary\\supplementary.tex",
+    "line": 481,
+    "text": "7058$), with LoRA on the text tower only, and compared it against the"
+   }
+  ],
+  "trainable-parameter share": [
+   {
+    "file": "PRL_submission\\latex_source\\sections\\conclusion.tex",
+    "line": 9,
+    "text": "Hessian eigenvalues and the Neural Tangent Kernel---for diagnosing and predicting cross-modal alignment dynamics under parameter-efficient fine-tuning"
+   },
+   {
+    "file": "PRL_submission\\latex_source\\sections\\introduction.tex",
+    "line": 3,
+    "text": "Methods like LoRA~\\cite{hu2021} inject low-rank adapters into a frozen backbone, reducing trainable parameters to a fraction of a percent of the total"
+   },
+   {
+    "file": "sections\\conclusion.tex",
+    "line": 34,
+    "text": "under parameter-efficient fine-tuning"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 196,
+    "text": "costs $C\\sum_k c_k$ trainable parameters ($c_k$ as in~(A3)), so the Random"
+   },
+   {
+    "file": "sections\\experiments.tex",
+    "line": 198,
+    "text": "trainable parameters, from $7{,}237{,}632$ at $C=4$ to $115{,}802{,}112$ at"
+   },
+   {
+    "file": "sections\\introduction.tex",
+    "line": 5,
+    "text": "frozen backbone, reducing trainable parameters to a fraction of a percent"
+   },
+   {
+    "file": "sections_full\\conclusion.tex",
+    "line": 23,
+    "text": "Hessian eigenvalues and the Neural Tangent Kernel---for diagnosing and predicting cross-modal alignment dynamics under parameter-efficient fine-tuning"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 295,
+    "text": "costs $C\\sum_k c_k$ trainable parameters ($c_k$ as in~(A3)), so the Random"
+   },
+   {
+    "file": "sections_full\\experiments.tex",
+    "line": 297,
+    "text": "trainable parameters, from $7{,}237{,}632$ at $C=4$ to $115{,}802{,}112$ at"
+   },
+   {
+    "file": "sections_full\\introduction.tex",
+    "line": 3,
+    "text": "Methods like LoRA~\\cite{hu2021} inject low-rank adapters into a frozen backbone, reducing trainable parameters to a fraction of a percent of the total"
+   },
+   {
+    "file": "sections_full\\theory.tex",
+    "line": 165,
+    "text": "This is a budget on \\emph{rank}, not on trainable parameters: the"
+   }
+  ]
+ }
+}

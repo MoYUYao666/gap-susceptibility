@@ -1,0 +1,64 @@
+{
+  "provenance": {
+    "input_file": "outputs/analysis/dg_r1_reproducible.json",
+    "input_field": "rows[*].{path,dg_final,cg_final,r1}",
+    "input_producer": "tools/p1_dg_r1_recompute.py",
+    "archive_source": "outputs/**/results.json :: final_gap.distribution_gap, final_gap.centroid_gap, final_task_metrics.R@1",
+    "recheck": "all 204 rows independently re-read from their results.json; values match bit-for-bit (0 mismatches)",
+    "labels": "results.json archives NO dataset/model/config field; labels are derived, see label_evidence. family (first path component) is the only archive-literal grouping.",
+    "statsmodels_available": false
+  },
+  "naive_row_bootstrap": {
+    "n_clusters": 204,
+    "n_resamples": 10000,
+    "r_mean": -0.7161,
+    "ci95": [
+      -0.787,
+      -0.6404
+    ],
+    "ci_width": 0.1466,
+    "frac_r_ge_0": 0.0
+  },
+  "clustered_by_family": {
+    "n_clusters": 12,
+    "n_resamples": 10000,
+    "r_mean": -0.7385,
+    "ci95": [
+      -0.8871,
+      -0.6152
+    ],
+    "ci_width": 0.2719,
+    "frac_r_ge_0": 0.0
+  },
+  "clustered_by_design_cell": {
+    "n_clusters": 6,
+    "n_resamples": 10000,
+    "r_mean": -0.6378,
+    "ci95": [
+      -0.8484,
+      -0.076
+    ],
+    "ci_width": 0.7724,
+    "frac_r_ge_0": 0.0124
+  },
+  "clustered_by_config": {
+    "n_clusters": 125,
+    "n_resamples": 10000,
+    "r_mean": -0.716,
+    "ci95": [
+      -0.8195,
+      -0.5989
+    ],
+    "ci_width": 0.2206,
+    "frac_r_ge_0": 0.0
+  },
+  "point_estimate_r": -0.7142,
+  "fisher_ci95": [
+    -0.7755,
+    -0.6396
+  ],
+  "n_boot": 10000,
+  "seed": 20261012,
+  "widening_design_cell_vs_naive": 5.2688,
+  "widening_family_vs_naive": 1.8547
+}

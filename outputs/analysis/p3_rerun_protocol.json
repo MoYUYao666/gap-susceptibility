@@ -1,0 +1,53 @@
+{
+ "protocol": "current paper3/scripts/run_training.py defaults: num_samples=20 (16 train / 4 eval), lr=5e-5, attn_targets=qkvo, float16, batch_size=1, blank-image protocol",
+ "script": "paper3/scripts/run_training.py",
+ "seed": 42,
+ "epochs": 3,
+ "runs": {
+  "r5_s42": {
+   "rank": 5,
+   "seed": 42,
+   "epochs": 3,
+   "E": [
+    3921.0,
+    3827.0,
+    3770.0,
+    3910.5
+   ],
+   "ok": true,
+   "delta_E": -10.5,
+   "elapsed_min": 22.9,
+   "returncode": 0
+  },
+  "r6_s42": {
+   "rank": 6,
+   "seed": 42,
+   "epochs": 3,
+   "E": [
+    3921.0,
+    3842.0,
+    3797.0,
+    4036.0
+   ],
+   "ok": true,
+   "delta_E": 115.0,
+   "elapsed_min": 23.0,
+   "returncode": 0
+  },
+  "r16_s42": {
+   "rank": 16,
+   "seed": 42,
+   "epochs": 3,
+   "E": [
+    3921.0,
+    3687.5,
+    4025.5,
+    5156.0
+   ],
+   "ok": true,
+   "delta_E": 1235.0,
+   "elapsed_min": 28.2,
+   "returncode": 0
+  }
+ }
+}

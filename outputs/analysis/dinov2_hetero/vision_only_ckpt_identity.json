@@ -1,0 +1,86 @@
+{
+  "script": "tools/_p370_vision_only_checkpoint_identity.py",
+  "why": "p369: protocol loader+metric on last_checkpoint.pt gives 0.675-0.682, archived says 0.7000",
+  "checkpoints": {
+    "best_checkpoint.pt": {
+      "epoch": 9,
+      "n_val_losses": 9,
+      "task_R1_per_epoch": [
+        0.643,
+        0.652,
+        0.674,
+        0.673,
+        0.68,
+        0.675,
+        0.688,
+        0.694,
+        0.682
+      ],
+      "val_losses": [
+        0.5092,
+        0.4564,
+        0.4333,
+        0.4247,
+        0.4106,
+        0.4178,
+        0.4004,
+        0.4075,
+        0.3997
+      ]
+    },
+    "last_checkpoint.pt": {
+      "epoch": 10,
+      "n_val_losses": 10,
+      "task_R1_per_epoch": [
+        0.643,
+        0.652,
+        0.674,
+        0.673,
+        0.68,
+        0.675,
+        0.688,
+        0.694,
+        0.682,
+        0.7
+      ],
+      "val_losses": [
+        0.5092,
+        0.4564,
+        0.4333,
+        0.4247,
+        0.4106,
+        0.4178,
+        0.4004,
+        0.4075,
+        0.3997,
+        0.4057
+      ]
+    }
+  },
+  "best_equals_last_weights": false,
+  "evaluations": {
+    "best_checkpoint.pt": {
+      "epoch": 9,
+      "R1_fresh_draws": [
+        0.6800000071525574,
+        0.6769999861717224,
+        0.6789999902248383
+      ],
+      "mean": 0.6786666611830393,
+      "sd": 0.001527534830680605,
+      "recorded_series_value_at_that_epoch": 0.682
+    },
+    "last_checkpoint.pt": {
+      "epoch": 10,
+      "R1_fresh_draws": [
+        0.6820000112056732,
+        0.68299999833107,
+        0.68299999833107
+      ],
+      "mean": 0.682666669289271,
+      "sd": 0.0005773428360339612,
+      "recorded_series_value_at_that_epoch": 0.7
+    }
+  },
+  "archived_R1_final": 0.7
+}

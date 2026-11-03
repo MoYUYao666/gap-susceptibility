@@ -1,0 +1,240 @@
+{
+ "script": "tools/_p257_pr_causal_repro_check.py",
+ "purpose": "each condition is seeded independently, so conditions present in both passes must reproduce bit-for-bit; this checks the pipeline is deterministic",
+ "run1": "outputs\\analysis\\_p255_run1_5seed_superseded.json",
+ "run1_status": "complete",
+ "run1_seeds": [
+  42,
+  123,
+  456,
+  789,
+  1024
+ ],
+ "run1_script_sha1": "124bf788e4ef28da28c6eb2f1992b3d0956ebcfe",
+ "run2": "outputs\\analysis\\pr_relative_perturbation.json",
+ "run2_status": "complete",
+ "run2_seeds": [
+  42,
+  123,
+  456,
+  789,
+  1024,
+  2048,
+  4096,
+  8192,
+  16384,
+  32768
+ ],
+ "run2_script_sha1": "3148c9f40d93a89325a2effb9fc88bb83dc2a6ca",
+ "script_sha1_identical": false,
+ "n_run1_rows": 166,
+ "n_compared": 136,
+ "n_not_rerun_in_run2": 30,
+ "not_rerun": [
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.1,
+   "seed": 42
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.1,
+   "seed": 123
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.1,
+   "seed": 456
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.1,
+   "seed": 789
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.1,
+   "seed": 1024
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.1,
+   "seed": 42
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.1,
+   "seed": 123
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.1,
+   "seed": 456
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.1,
+   "seed": 789
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.1,
+   "seed": 1024
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.3,
+   "seed": 42
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.3,
+   "seed": 123
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.3,
+   "seed": 456
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.3,
+   "seed": 789
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "vision",
+   "level": 0.3,
+   "seed": 1024
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.3,
+   "seed": 42
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.3,
+   "seed": 123
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.3,
+   "seed": 456
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.3,
+   "seed": 789
+  },
+  {
+   "protocol": "rel_uniform",
+   "tower": "text",
+   "level": 0.3,
+   "seed": 1024
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "vision",
+   "level": 0.03611200024881402,
+   "seed": 42
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "vision",
+   "level": 0.03611200024881402,
+   "seed": 123
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "vision",
+   "level": 0.03611200024881402,
+   "seed": 456
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "vision",
+   "level": 0.03611200024881402,
+   "seed": 789
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "vision",
+   "level": 0.03611200024881402,
+   "seed": 1024
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "text",
+   "level": 0.03611200024881402,
+   "seed": 42
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "text",
+   "level": 0.03611200024881402,
+   "seed": 123
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "text",
+   "level": 0.03611200024881402,
+   "seed": 456
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "text",
+   "level": 0.03611200024881402,
+   "seed": 789
+  },
+  {
+   "protocol": "abs_raw",
+   "tower": "text",
+   "level": 0.03611200024881402,
+   "seed": 1024
+  }
+ ],
+ "max_abs_diff_per_field": {
+  "CG": 0.0,
+  "DG": 0.0,
+  "drop_pct_i2t": 0.0,
+  "rel_injected": 0.0,
+  "dW_frob_total": 0.0,
+  "R1.R@1_i2t": 0.0,
+  "R1.R@1_t2i": 0.0,
+  "R1.R@5_i2t": 0.0,
+  "R1.R@10_i2t": 0.0
+ },
+ "worst_case_per_field": {
+  "CG": null,
+  "DG": null,
+  "drop_pct_i2t": null,
+  "rel_injected": null,
+  "dW_frob_total": null,
+  "R1.R@1_i2t": null,
+  "R1.R@1_t2i": null,
+  "R1.R@5_i2t": null,
+  "R1.R@10_i2t": null
+ },
+ "tolerance": 1e-09,
+ "verdict": "PASS: every overlapping condition reproduced exactly",
+ "fields_exceeding_tolerance": {}
+}

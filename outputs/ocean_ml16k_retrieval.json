@@ -1,0 +1,85 @@
+{
+ "meta": {
+  "dataset": "MarineLife-16K (HF; README claims 2000 videos, actual release: 427 videos)",
+  "n_frames": 3416,
+  "n_queries": 3440,
+  "note": "qa.jsonl Q/A only; metadata/attributes_captions.csv absent in release"
+ },
+ "bioclip": {
+  "q_ans": {
+   "n": 3440,
+   "video_R1": 0.872,
+   "video_R5": 3.198,
+   "frame_R1": 0.785,
+   "frame_R5": 2.529
+  },
+  "q_only": {
+   "n": 3440,
+   "video_R1": 0.494,
+   "video_R5": 1.86,
+   "frame_R1": 0.407,
+   "frame_R5": 1.57
+  },
+  "obj": {
+   "n": 3440,
+   "video_R1": 0.436,
+   "video_R5": 3.488,
+   "frame_R1": 1.366,
+   "frame_R5": 4.535
+  },
+  "ans": {
+   "n": 3440,
+   "video_R1": 0.465,
+   "video_R5": 2.384,
+   "frame_R1": 0.552,
+   "frame_R5": 2.587
+  }
+ },
+ "oceanclip": {
+  "q_ans": {
+   "n": 3440,
+   "video_R1": 0.262,
+   "video_R5": 1.599,
+   "frame_R1": 0.233,
+   "frame_R5": 1.134
+  },
+  "q_only": {
+   "n": 3440,
+   "video_R1": 0.291,
+   "video_R5": 1.25,
+   "frame_R1": 0.174,
+   "frame_R5": 0.988
+  },
+  "obj": {
+   "n": 3440,
+   "video_R1": 0.233,
+   "video_R5": 0.959,
+   "frame_R1": 0.233,
+   "frame_R5": 0.93
+  },
+  "ans": {
+   "n": 3440,
+   "video_R1": 0.291,
+   "video_R5": 1.541,
+   "frame_R1": 0.262,
+   "frame_R5": 0.959
+  }
+ },
+ "openclip_tf": {
+  "q_ans": {
+   "n": 3440,
+   "video_R1": 1.919,
+   "frame_R1": 2.035
+  },
+  "q_only": {
+   "n": 3440,
+   "video_R1": 0.959,
+   "frame_R1": 0.872
+  },
+  "ans": {
+   "n": 3440,
+   "video_R1": 2.326,
+   "frame_R1": 2.209
+  }
+ }
+}

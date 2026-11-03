@@ -1,0 +1,378 @@
+{
+ "meta": {
+  "script": "tools/_p1613_p3_cloud_runner.py",
+  "job": "vqa-full --aggregate",
+  "task": "S28 VQA-RAD equivalence bound on the full 451-question test set, paired by question, with the same procedure as tools/_p1595_p3_rank_separation.py",
+  "n_questions": 451,
+  "n_boot": 20000,
+  "rng_seed": 20261024,
+  "alpha": 0.05,
+  "declared_margins": {
+   "accuracy": 0.05,
+   "token_f1": 0.05
+  },
+  "method": "paired (by question) percentile bootstrap CI of the difference plus TOST equivalence against the pre-declared margin; the contrast function is imported from tools/_p1595_p3_rank_separation.py",
+  "archives": [
+   "outputs/analysis/cloud_vqa_full451_base.json",
+   "outputs/analysis/cloud_vqa_full451_5.json",
+   "outputs/analysis/cloud_vqa_full451_6.json"
+  ],
+  "field_names_shared_with_300q_archives": [
+   "accuracy",
+   "token_f1",
+   "yes_no_accuracy",
+   "n_yes_no",
+   "refs",
+   "hypotheses",
+   "relaxed_accuracy"
+  ],
+  "deterministic": true,
+  "note": "no wall-clock field is written, so re-running this aggregation on unchanged inputs reproduces this file byte for byte"
+ },
+ "arms": {
+  "base": {
+   "rank": null,
+   "n": 451,
+   "accuracy": 0.3303769401330377,
+   "token_f1": 0.3553271479656259,
+   "yes_no_accuracy": 0.5537848605577689,
+   "n_yes_no": 251,
+   "archive": "outputs/analysis/cloud_vqa_full451_base.json",
+   "adapter_dir": null,
+   "adapter_source": "none"
+  },
+  "5": {
+   "rank": 5,
+   "n": 451,
+   "accuracy": 0.38802660753880264,
+   "token_f1": 0.4216548758356437,
+   "yes_no_accuracy": 0.549800796812749,
+   "n_yes_no": 251,
+   "archive": "outputs/analysis/cloud_vqa_full451_5.json",
+   "adapter_dir": "outputs/p3_vqa_adapters/r5_step",
+   "adapter_source": "pre_existing"
+  },
+  "6": {
+   "rank": 6,
+   "n": 451,
+   "accuracy": 0.3348115299334812,
+   "token_f1": 0.39831643082653906,
+   "yes_no_accuracy": 0.5338645418326693,
+   "n_yes_no": 251,
+   "archive": "outputs/analysis/cloud_vqa_full451_6.json",
+   "adapter_dir": "outputs/p3_vqa_adapters/r6_step",
+   "adapter_source": "pre_existing"
+  }
+ },
+ "refs_identical_across_arms": true,
+ "refs_sha256": {
+  "base": "9730a9091d9b58a4340df9d04bb3adb6680257d16980a3092d9cecd5cda3e167",
+  "5": "9730a9091d9b58a4340df9d04bb3adb6680257d16980a3092d9cecd5cda3e167",
+  "6": "9730a9091d9b58a4340df9d04bb3adb6680257d16980a3092d9cecd5cda3e167"
+ },
+ "vqa_equivalence": {
+  "archives": [
+   "outputs/analysis/cloud_vqa_full451_base.json",
+   "outputs/analysis/cloud_vqa_full451_5.json",
+   "outputs/analysis/cloud_vqa_full451_6.json"
+  ],
+  "n_questions": 451,
+  "pairing": "the same 451 held-out questions in the same order in all arms (refs arrays byte-identical across arms, see refs_sha256)",
+  "declared_margin": 0.05,
+  "declared_margin_rule": "0.05 on both metrics, pre-declared and carried over unchanged from the 300-question analysis.  A single arm on 451 questions has a binomial standard error of about 0.022 in accuracy, so differences below roughly two standard errors (~0.045) remain at the resolution limit of this evaluation set; the margin is not re-fitted to the larger set, and the smallest equivalent margin is reported alongside every contrast.",
+  "arms": {
+   "base": {
+    "rank": null,
+    "train_samples": 0,
+    "n": 451,
+    "accuracy": 0.3303769401330377,
+    "token_f1": 0.3553271479656259,
+    "yes_no_accuracy": 0.5537848605577689,
+    "n_yes_no": 251,
+    "archive": "outputs/analysis/cloud_vqa_full451_base.json",
+    "adapter_dir": null,
+    "adapter_source": "none",
+    "adapter_sha256": null
+   },
+   "5": {
+    "rank": 5,
+    "train_samples": 1793,
+    "n": 451,
+    "accuracy": 0.38802660753880264,
+    "token_f1": 0.4216548758356437,
+    "yes_no_accuracy": 0.549800796812749,
+    "n_yes_no": 251,
+    "archive": "outputs/analysis/cloud_vqa_full451_5.json",
+    "adapter_dir": "outputs/p3_vqa_adapters/r5_step",
+    "adapter_source": "pre_existing",
+    "adapter_sha256": "1615d21ecf2d6200effa9b1c180d1256934d22d3cbb16f6b8695ea902b64767b"
+   },
+   "6": {
+    "rank": 6,
+    "train_samples": 1793,
+    "n": 451,
+    "accuracy": 0.3348115299334812,
+    "token_f1": 0.39831643082653906,
+    "yes_no_accuracy": 0.5338645418326693,
+    "n_yes_no": 251,
+    "archive": "outputs/analysis/cloud_vqa_full451_6.json",
+    "adapter_dir": "outputs/p3_vqa_adapters/r6_step",
+    "adapter_source": "pre_existing",
+    "adapter_sha256": "5f681f3f80ee0fa2db1626b98f64113554305fd133f41a3867ebf74c2affee42"
+   }
+  },
+  "contrasts": {
+   "base_minus_5": {
+    "accuracy": {
+     "n_boot": 20000,
+     "delta": -0.05764966740576494,
+     "boot_mean": -0.05759501108647448,
+     "boot_se": 0.01989045347046814,
+     "ci95": [
+      -0.09756097560975607,
+      -0.017738359201773857
+     ],
+     "ci90": [
+      -0.09090909090909088,
+      -0.024390243902439046
+     ],
+     "excludes_zero_95": true,
+     "p_one_sided_positive": 0.9986,
+     "tost_margin": 0.05,
+     "tost_p_lower": 0.6528,
+     "tost_p_upper": 0.0,
+     "tost_p": 0.6528,
+     "equivalent_at_declared_margin": false,
+     "min_equivalent_margin": 0.09090909090909088
+    },
+    "token_f1": {
+     "n_boot": 20000,
+     "delta": -0.06632772787001778,
+     "boot_mean": -0.06628141035082737,
+     "boot_se": 0.020107131682563086,
+     "ci95": [
+      -0.10559018609451341,
+      -0.026502626624144612
+     ],
+     "ci90": [
+      -0.09909440289832502,
+      -0.03289830920027486
+     ],
+     "excludes_zero_95": true,
+     "p_one_sided_positive": 0.99955,
+     "tost_margin": 0.05,
+     "tost_p_lower": 0.7924,
+     "tost_p_upper": 0.0,
+     "tost_p": 0.7924,
+     "equivalent_at_declared_margin": false,
+     "min_equivalent_margin": 0.09909440289832502
+    }
+   },
+   "base_minus_6": {
+    "accuracy": {
+     "n_boot": 20000,
+     "delta": -0.004434589800443478,
+     "boot_mean": -0.004606430155210643,
+     "boot_se": 0.017821579154690705,
+     "ci95": [
+      -0.039911308203991136,
+      0.03104212860310418
+     ],
+     "ci90": [
+      -0.03325942350332595,
+      0.024390243902439046
+     ],
+     "excludes_zero_95": false,
+     "p_one_sided_positive": 0.6271,
+     "tost_margin": 0.05,
+     "tost_p_lower": 0.0057,
+     "tost_p_upper": 0.0009,
+     "tost_p": 0.0057,
+     "equivalent_at_declared_margin": true,
+     "min_equivalent_margin": 0.03325942350332595
+    },
+    "token_f1": {
+     "n_boot": 20000,
+     "delta": -0.042989282860913136,
+     "boot_mean": -0.04316052927509897,
+     "boot_se": 0.01822677638153149,
+     "ci95": [
+      -0.07904636087142283,
+      -0.007422795131987185
+     ],
+     "ci90": [
+      -0.07271764106797377,
+      -0.01304870361131475
+     ],
+     "excludes_zero_95": true,
+     "p_one_sided_positive": 0.9913,
+     "tost_margin": 0.05,
+     "tost_p_lower": 0.3538,
+     "tost_p_upper": 0.0,
+     "tost_p": 0.3538,
+     "equivalent_at_declared_margin": false,
+     "min_equivalent_margin": 0.07271764106797377
+    }
+   },
+   "5_minus_6": {
+    "accuracy": {
+     "n_boot": 20000,
+     "delta": 0.05321507760532146,
+     "boot_mean": 0.053359977827050986,
+     "boot_se": 0.01661159186534816,
+     "ci95": [
+      0.02217294900221728,
+      0.08647450110864746
+     ],
+     "ci90": [
+      0.026607538802660757,
+      0.08203991130820398
+     ],
+     "excludes_zero_95": true,
+     "p_one_sided_positive": 0.0006,
+     "tost_margin": 0.05,
+     "tost_p_lower": 0.0,
+     "tost_p_upper": 0.5778,
+     "tost_p": 0.5778,
+     "equivalent_at_declared_margin": false,
+     "min_equivalent_margin": 0.08203991130820398
+    },
+    "token_f1": {
+     "n_boot": 20000,
+     "delta": 0.023338445009104647,
+     "boot_mean": 0.0234374179188354,
+     "boot_se": 0.015072719392506427,
+     "ci95": [
+      -0.005544359691581476,
+      0.05336344938522068
+     ],
+     "ci90": [
+      -0.0009212298406315012,
+      0.04834336157878621
+     ],
+     "excludes_zero_95": false,
+     "p_one_sided_positive": 0.0583,
+     "tost_margin": 0.05,
+     "tost_p_lower": 0.0,
+     "tost_p_upper": 0.03965,
+     "tost_p": 0.03965,
+     "equivalent_at_declared_margin": true,
+     "min_equivalent_margin": 0.04834336157878621
+    }
+   }
+  },
+  "method": "paired (by question) percentile bootstrap, 20000 replicates, identical procedure to tools/_p1595_p3_rank_separation.py vqa_contrast(); TOST with the pre-declared margin, min_equivalent_margin = max(-ci90_low, ci90_high)",
+  "claim_verdict": {
+   "both_ranks_improve_over_base": {
+    "accuracy": {
+     "r5": 0.05764966740576494,
+     "r5_resolved": true,
+     "r6": 0.004434589800443478,
+     "r6_resolved": false
+    },
+    "token_f1": {
+     "r5": 0.06632772787001778,
+     "r5_resolved": true,
+     "r6": 0.042989282860913136,
+     "r6_resolved": true
+    },
+    "verdict": "resolved for both ranks on token F1 and for r=5 on accuracy; see the contrast blocks for the intervals"
+   },
+   "ranks_do_not_order": {
+    "accuracy": {
+     "delta_r5_minus_r6": 0.05321507760532146,
+     "ci95": [
+      0.02217294900221728,
+      0.08647450110864746
+     ],
+     "tost_p": 0.5778,
+     "equivalent": false,
+     "min_equivalent_margin": 0.08203991130820398
+    },
+    "token_f1": {
+     "delta_r5_minus_r6": 0.023338445009104647,
+     "ci95": [
+      -0.005544359691581476,
+      0.05336344938522068
+     ],
+     "tost_p": 0.03965,
+     "equivalent": true,
+     "min_equivalent_margin": 0.04834336157878621
+    },
+    "verdict": "On all 451 held-out questions the rank ordering still has no support on token F1 (r=5 minus r=6 = +0.0233, TOST p=0.0396 at the pre-declared margin 0.05) and the exact-match accuracy difference between the two ranks is +0.0532 (95% CI [+0.0222, +0.0865]), whose smallest equivalent margin is 0.0820. Both ranks improve over the base model on token F1 (+0.0663 for r=5, +0.0430 for r=6)."
+   }
+  }
+ },
+ "rank5_equivalence": {
+  "rank": 5,
+  "target": "the r=5 arm against the base model and against the r=6 arm, both metrics",
+  "margin": 0.05,
+  "margin_rule": "0.05, pre-declared before the test was run (unchanged from the 300-question analysis)",
+  "n": 451,
+  "accuracy": {
+   "vs_base_delta": -0.05764966740576494,
+   "vs_base_ci95": [
+    -0.09756097560975607,
+    -0.017738359201773857
+   ],
+   "vs_base_tost_p": 0.6528,
+   "vs_base_min_equivalent_margin": 0.09090909090909088,
+   "vs_r6_delta": 0.05321507760532146,
+   "vs_r6_ci95": [
+    0.02217294900221728,
+    0.08647450110864746
+   ],
+   "vs_r6_tost_p": 0.5778,
+   "vs_r6_min_equivalent_margin": 0.08203991130820398,
+   "tost_p": 0.5778,
+   "equivalent_at_declared_margin": false
+  },
+  "token_f1": {
+   "vs_base_delta": -0.06632772787001778,
+   "vs_base_ci95": [
+    -0.10559018609451341,
+    -0.026502626624144612
+   ],
+   "vs_base_tost_p": 0.7924,
+   "vs_base_min_equivalent_margin": 0.09909440289832502,
+   "vs_r6_delta": 0.023338445009104647,
+   "vs_r6_ci95": [
+    -0.005544359691581476,
+    0.05336344938522068
+   ],
+   "vs_r6_tost_p": 0.03965,
+   "vs_r6_min_equivalent_margin": 0.04834336157878621,
+   "tost_p": 0.03965,
+   "equivalent_at_declared_margin": true
+  },
+  "yes_no_accuracy": {
+   "r5": 0.549800796812749,
+   "n_yes_no": 251
+  },
+  "energy_axis_note": "the r=5 alignment-energy TOST against zero lives in outputs/analysis/p3_rank_separation_extended.json (rank5_equivalence) and is unchanged by this round",
+  "verdict": "On all 451 held-out questions the rank ordering still has no support on token F1 (r=5 minus r=6 = +0.0233, TOST p=0.0396 at the pre-declared margin 0.05) and the exact-match accuracy difference between the two ranks is +0.0532 (95% CI [+0.0222, +0.0865]), whose smallest equivalent margin is 0.0820. Both ranks improve over the base model on token F1 (+0.0663 for r=5, +0.0430 for r=6)."
+ },
+ "smallest_equivalent_margin": {
+  "base_minus_5/accuracy": 0.09090909090909088,
+  "base_minus_5/token_f1": 0.09909440289832502,
+  "base_minus_6/accuracy": 0.03325942350332595,
+  "base_minus_6/token_f1": 0.07271764106797377,
+  "5_minus_6/accuracy": 0.08203991130820398,
+  "5_minus_6/token_f1": 0.04834336157878621
+ },
+ "comparison_to_300q_archive": null,
+ "acceptance": {
+  "three_arms_present": true,
+  "records_per_arm": {
+   "base": 451,
+   "5": 451,
+   "6": 451
+  },
+  "records_are_451": true,
+  "refs_byte_identical_across_arms": true,
+  "refs_match_test_parquet_order": true,
+  "paired_by_question": true,
+  "first_300_reproduces_300q_archive_refs": null,
+  "first_300_hypotheses_identical": null
+ }
+}

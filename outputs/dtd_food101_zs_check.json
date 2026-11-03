@@ -1,0 +1,42 @@
+{
+  "protocol": {
+    "templates": [
+      "a photo of a {}"
+    ],
+    "note": "single template, torchvision class names"
+  },
+  "meta": {
+    "DTD": {
+      "n": 1880,
+      "n_classes": 47,
+      "source": "torchvision DTD test split"
+    },
+    "Food101": {
+      "n": 25250,
+      "n_classes": 101,
+      "source": "torchvision Food101 test split"
+    }
+  },
+  "results": {
+    "DTD": {
+      "frozen": 42.87,
+      "text_only_r8": 43.3,
+      "both_r8": 43.03
+    },
+    "Food101": {
+      "frozen": 82.32,
+      "text_only_r8": 81.58,
+      "both_r8": 81.63
+    }
+  },
+  "paper_footnote_values": {
+    "dtd": {
+      "frozen": 43.27,
+      "both": 42.53
+    },
+    "food101": {
+      "frozen": 80.6,
+      "both": 79.73
+    }
+  }
+}

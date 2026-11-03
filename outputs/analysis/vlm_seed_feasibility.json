@@ -1,0 +1,89 @@
+{
+ "rows": [
+  {
+   "file": "outputs\\vlm_strictfreeze\\4bit\\both_seed42.json",
+   "arm": "both",
+   "seed": null,
+   "4bit": true,
+   "batch": 4,
+   "epochs": 3,
+   "max_samples": 400,
+   "n_lang": 392,
+   "n_vis": 258,
+   "n_trainable": 14494912,
+   "elapsed_sec": 502.4,
+   "cg_span": 0.27611301839351654,
+   "dg_span": 0.5335457772016525,
+   "n_epochs_logged": 3
+  },
+  {
+   "file": "outputs\\vlm_strictfreeze\\4bit\\text_only_seed42.json",
+   "arm": "text_only",
+   "seed": null,
+   "4bit": false,
+   "batch": 2,
+   "epochs": 1,
+   "max_samples": 16,
+   "n_lang": 392,
+   "n_vis": 0,
+   "n_trainable": 9232384,
+   "elapsed_sec": 9.5,
+   "cg_span": 0.0,
+   "dg_span": 0.0,
+   "n_epochs_logged": 1
+  },
+  {
+   "file": "outputs\\vlm_strictfreeze\\4bit\\vision_only_seed42.json",
+   "arm": "vision_only",
+   "seed": null,
+   "4bit": true,
+   "batch": 4,
+   "epochs": 3,
+   "max_samples": 400,
+   "n_lang": 0,
+   "n_vis": 258,
+   "n_trainable": 5262528,
+   "elapsed_sec": 321.9,
+   "cg_span": 0.3055992126464844,
+   "dg_span": 0.23944056034088135,
+   "n_epochs_logged": 3
+  },
+  {
+   "file": "outputs\\vlm_strictfreeze\\text_only_seed42.json",
+   "arm": "text_only",
+   "seed": null,
+   "4bit": false,
+   "batch": 4,
+   "epochs": 3,
+   "max_samples": 400,
+   "n_lang": 392,
+   "n_vis": 0,
+   "n_trainable": 9232384,
+   "elapsed_sec": 191.4,
+   "cg_span": 0.27781832218170166,
+   "dg_span": 0.471146896481514,
+   "n_epochs_logged": 3
+  }
+ ],
+ "full_runs": 3,
+ "avg_sec": 338.6,
+ "arms_full": [
+  "both",
+  "text_only",
+  "vision_only"
+ ],
+ "configs": [
+  [
+   4,
+   400,
+   3,
+   false
+  ],
+  [
+   4,
+   400,
+   3,
+   true
+  ]
+ ]
+}

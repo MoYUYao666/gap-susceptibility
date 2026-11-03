@@ -1,0 +1,282 @@
+{
+ "cells": [
+  {
+   "row": "CLIP_B32_WIT",
+   "arm": "text_only",
+   "dir": "strict_freeze",
+   "n": 5,
+   "pub_dCG": -0.0465,
+   "arc_dCG": -0.046505,
+   "dCG_ok": true,
+   "pub_R1": 0.624,
+   "arc_R1": 0.6238,
+   "R1_ok": true,
+   "ok": true,
+   "n_train": [
+    "196608"
+   ],
+   "files": [
+    "outputs\\strict_freeze\\text_only\\seed1024\\results.json",
+    "outputs\\strict_freeze\\text_only\\seed123\\results.json",
+    "outputs\\strict_freeze\\text_only\\seed42\\results.json",
+    "outputs\\strict_freeze\\text_only\\seed456\\results.json",
+    "outputs\\strict_freeze\\text_only\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "CLIP_B32_WIT",
+   "arm": "both",
+   "dir": "strict_freeze",
+   "n": 5,
+   "pub_dCG": -0.0258,
+   "arc_dCG": -0.025825,
+   "dCG_ok": true,
+   "pub_R1": 0.693,
+   "arc_R1": 0.6932,
+   "R1_ok": true,
+   "ok": true,
+   "n_train": [
+    "491520"
+   ],
+   "files": [
+    "outputs\\strict_freeze\\both\\seed1024\\results.json",
+    "outputs\\strict_freeze\\both\\seed123\\results.json",
+    "outputs\\strict_freeze\\both\\seed42\\results.json",
+    "outputs\\strict_freeze\\both\\seed456\\results.json",
+    "outputs\\strict_freeze\\both\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "CLIP_B32_WIT",
+   "arm": "vision_only",
+   "dir": "strict_freeze",
+   "n": 5,
+   "pub_dCG": 0.0106,
+   "arc_dCG": 0.010572,
+   "dCG_ok": true,
+   "pub_R1": 0.68,
+   "arc_R1": 0.68,
+   "R1_ok": true,
+   "ok": true,
+   "n_train": [
+    "294912"
+   ],
+   "files": [
+    "outputs\\strict_freeze\\vision_only\\seed1024\\results.json",
+    "outputs\\strict_freeze\\vision_only\\seed123\\results.json",
+    "outputs\\strict_freeze\\vision_only\\seed42\\results.json",
+    "outputs\\strict_freeze\\vision_only\\seed456\\results.json",
+    "outputs\\strict_freeze\\vision_only\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "OpenCLIP",
+   "arm": "text_only",
+   "dir": "strict_freeze_oclip/r4",
+   "n": 5,
+   "pub_dCG": 0.0802,
+   "arc_dCG": 0.080158,
+   "dCG_ok": true,
+   "pub_R1": 0.643,
+   "arc_R1": 0.6366,
+   "R1_ok": false,
+   "ok": false,
+   "n_train": [
+    "98304"
+   ],
+   "files": [
+    "outputs\\strict_freeze_oclip\\r4\\text_only\\seed1011\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\text_only\\seed123\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\text_only\\seed42\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\text_only\\seed456\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\text_only\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "OpenCLIP",
+   "arm": "both",
+   "dir": "strict_freeze_oclip/r4",
+   "n": 5,
+   "pub_dCG": 0.0864,
+   "arc_dCG": 0.086389,
+   "dCG_ok": true,
+   "pub_R1": 0.68,
+   "arc_R1": 0.6818,
+   "R1_ok": false,
+   "ok": false,
+   "n_train": [
+    "245760"
+   ],
+   "files": [
+    "outputs\\strict_freeze_oclip\\r4\\both\\seed1011\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\both\\seed123\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\both\\seed42\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\both\\seed456\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\both\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "OpenCLIP",
+   "arm": "vision_only",
+   "dir": "strict_freeze_oclip/r4",
+   "n": 5,
+   "pub_dCG": 0.0996,
+   "arc_dCG": 0.099619,
+   "dCG_ok": true,
+   "pub_R1": 0.672,
+   "arc_R1": 0.6698,
+   "R1_ok": false,
+   "ok": false,
+   "n_train": [
+    "147456"
+   ],
+   "files": [
+    "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed1011\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed123\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed42\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed456\\results.json",
+    "outputs\\strict_freeze_oclip\\r4\\vision_only\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "CLIP_B32_r4",
+   "arm": "text_only",
+   "dir": "strict_freeze_b32_r4",
+   "n": 5,
+   "pub_dCG": -0.0304,
+   "arc_dCG": -0.030382,
+   "dCG_ok": true,
+   "pub_R1": 0.621,
+   "arc_R1": 0.6222,
+   "R1_ok": false,
+   "ok": false,
+   "n_train": [
+    "98304"
+   ],
+   "files": [
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed1011\\results.json",
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed123\\results.json",
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed42\\results.json",
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed456\\results.json",
+    "outputs\\strict_freeze_b32_r4\\text_only\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "CLIP_B32_r4",
+   "arm": "both",
+   "dir": "strict_freeze_b32_r4",
+   "n": 5,
+   "pub_dCG": -0.0204,
+   "arc_dCG": -0.020375,
+   "dCG_ok": true,
+   "pub_R1": 0.679,
+   "arc_R1": 0.6796,
+   "R1_ok": false,
+   "ok": false,
+   "n_train": [
+    "245760"
+   ],
+   "files": [
+    "outputs\\strict_freeze_b32_r4\\both\\seed1011\\results.json",
+    "outputs\\strict_freeze_b32_r4\\both\\seed123\\results.json",
+    "outputs\\strict_freeze_b32_r4\\both\\seed42\\results.json",
+    "outputs\\strict_freeze_b32_r4\\both\\seed456\\results.json",
+    "outputs\\strict_freeze_b32_r4\\both\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "CLIP_B32_r4",
+   "arm": "vision_only",
+   "dir": "strict_freeze_b32_r4",
+   "n": 5,
+   "pub_dCG": 0.0166,
+   "arc_dCG": 0.016577,
+   "dCG_ok": true,
+   "pub_R1": 0.67,
+   "arc_R1": 0.6698,
+   "R1_ok": true,
+   "ok": true,
+   "n_train": [
+    "147456"
+   ],
+   "files": [
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed1011\\results.json",
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed123\\results.json",
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed42\\results.json",
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed456\\results.json",
+    "outputs\\strict_freeze_b32_r4\\vision_only\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "CLIP_B16_r4",
+   "arm": "text_only",
+   "dir": "strict_freeze_b16/r4",
+   "n": 5,
+   "pub_dCG": -0.0166,
+   "arc_dCG": -0.016574,
+   "dCG_ok": true,
+   "pub_R1": 0.651,
+   "arc_R1": 0.6502,
+   "R1_ok": false,
+   "ok": false,
+   "n_train": [
+    "98304"
+   ],
+   "files": [
+    "outputs\\strict_freeze_b16\\r4\\text_only\\seed1011\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\text_only\\seed123\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\text_only\\seed42\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\text_only\\seed456\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\text_only\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "CLIP_B16_r4",
+   "arm": "both",
+   "dir": "strict_freeze_b16/r4",
+   "n": 5,
+   "pub_dCG": 0.0124,
+   "arc_dCG": 0.012357,
+   "dCG_ok": true,
+   "pub_R1": 0.707,
+   "arc_R1": 0.707,
+   "R1_ok": true,
+   "ok": true,
+   "n_train": [
+    "245760"
+   ],
+   "files": [
+    "outputs\\strict_freeze_b16\\r4\\both\\seed1011\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\both\\seed123\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\both\\seed42\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\both\\seed456\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\both\\seed789\\results.json"
+   ]
+  },
+  {
+   "row": "CLIP_B16_r4",
+   "arm": "vision_only",
+   "dir": "strict_freeze_b16/r4",
+   "n": 5,
+   "pub_dCG": 0.0376,
+   "arc_dCG": 0.037551,
+   "dCG_ok": true,
+   "pub_R1": 0.686,
+   "arc_R1": 0.686,
+   "R1_ok": true,
+   "ok": true,
+   "n_train": [
+    "147456"
+   ],
+   "files": [
+    "outputs\\strict_freeze_b16\\r4\\vision_only\\seed1011\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\vision_only\\seed123\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\vision_only\\seed42\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\vision_only\\seed456\\results.json",
+    "outputs\\strict_freeze_b16\\r4\\vision_only\\seed789\\results.json"
+   ]
+  }
+ ],
+ "n_ok": 6,
+ "n_total": 12
+}

@@ -1,0 +1,49 @@
+{
+ "meta": {
+  "script": "tools/_p1595_qwen_objective_control.py",
+  "objective": "generative",
+  "arm": "both",
+  "seed": 42,
+  "epochs": 1,
+  "num_samples": 160,
+  "batch": 4,
+  "lr": 0.0001,
+  "model": "master",
+  "precision": "bf16",
+  "max_image_tokens": 12,
+  "dataset": "data/marine_captions (536 image-caption pairs; first --num-samples used)",
+  "reduced_budget_note": "control protocol: 64 image tokens/image, batch 4, 160 pairs, 3 epochs; identical for both objectives",
+  "lora": {
+   "r": 8,
+   "alpha": 16,
+   "dropout": 0.05
+  },
+  "n_trainable": 14494912,
+  "n_vision_adapters": 258,
+  "n_language_adapters": 392,
+  "measurement": {
+   "I": "mean pool of final hidden state over image-token positions",
+   "T": "mean pool over caption positions (after last image token, before <|im_end|>)",
+   "normalisation": "L2 per side, no projection",
+   "DG*": "mean_i ||I_i - T_i||^2"
+  },
+  "elapsed_sec": 39.6,
+  "generative_protocol": {
+   "prompt": "Describe the image.",
+   "loss": "causal-LM cross-entropy on caption tokens (prompt masked with -100)",
+   "eval": "same image+caption forward pass as the contrastive arm"
+  }
+ },
+ "frozen_dg_star": 1.0703125,
+ "frozen_cg": 0.86328125,
+ "dg_star": [
+  0.91796875
+ ],
+ "cg": [
+  0.7890625
+ ],
+ "loss": [
+  1.5974428609013558
+ ],
+ "delta_DG_percent": -14.233576642335766
+}

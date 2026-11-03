@@ -1,0 +1,218 @@
+{
+ "meta": {
+  "dataset": "mvaldenegro watertank (ARIS 3000)",
+  "n_eval": 352,
+  "n_train": 1646,
+  "classes": [
+   "can",
+   "bottle",
+   "drink-carton",
+   "chain",
+   "propeller",
+   "tire",
+   "hook",
+   "valve",
+   "shampoo-bottle",
+   "standing-bottle"
+  ]
+ },
+ "frozen": {
+  "gap_norm": 1.1151,
+  "sigma_m": 0.0287,
+  "mean_m": 0.5093,
+  "top1_0": 17.33,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 7.955,
+    "tau_meas": 0.3205,
+    "tau_pred": 0.3205,
+    "CG": 1.4593
+   },
+   {
+    "lambda": -0.5,
+    "top1": 9.943,
+    "tau_meas": 0.3892,
+    "tau_pred": 0.3892,
+    "CG": 1.3518
+   },
+   {
+    "lambda": 0.0,
+    "top1": 17.33,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.1151
+   },
+   {
+    "lambda": 0.5,
+    "top1": 15.625,
+    "tau_meas": 0.0114,
+    "tau_pred": 0.0114,
+    "CG": 0.6005
+   },
+   {
+    "lambda": 1.0,
+    "top1": 18.182,
+    "tau_meas": -0.1074,
+    "tau_pred": -0.1074,
+    "CG": 0.0531
+   },
+   {
+    "lambda": 2.0,
+    "top1": 17.33,
+    "tau_meas": -0.1545,
+    "tau_pred": -0.1545,
+    "CG": 0.5099
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": -0.079,
+    "CG": 0.0468
+   }
+  ]
+ },
+ "deg_frozen": [
+  {
+   "deg": "speckle_p20",
+   "lambda_eff": 0.0426,
+   "tau_meas": 0.3295
+  },
+  {
+   "deg": "blur_r2",
+   "lambda_eff": 0.0324,
+   "tau_meas": 0.3659
+  },
+  {
+   "deg": "shadow_strip",
+   "lambda_eff": -0.0004,
+   "tau_meas": 0.4114
+  }
+ ],
+ "flickrft": {
+  "gap_norm": 1.1507,
+  "sigma_m": 0.0309,
+  "mean_m": 0.4911,
+  "top1_0": 13.352,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 10.227,
+    "tau_meas": 0.1534,
+    "tau_pred": 0.1534,
+    "CG": 1.4593
+   },
+   {
+    "lambda": -0.5,
+    "top1": 15.057,
+    "tau_meas": 0.3301,
+    "tau_pred": 0.3301,
+    "CG": 1.3641
+   },
+   {
+    "lambda": 0.0,
+    "top1": 13.352,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.1507
+   },
+   {
+    "lambda": 0.5,
+    "top1": 14.773,
+    "tau_meas": 0.4483,
+    "tau_pred": 0.4483,
+    "CG": 0.6472
+   },
+   {
+    "lambda": 1.0,
+    "top1": 17.33,
+    "tau_meas": 0.3642,
+    "tau_pred": 0.3642,
+    "CG": 0.1005
+   },
+   {
+    "lambda": 2.0,
+    "top1": 17.33,
+    "tau_meas": 0.3318,
+    "tau_pred": 0.3318,
+    "CG": 0.5303
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.3807,
+    "CG": 0.0827
+   }
+  ]
+ },
+ "domainft": {
+  "gap_norm": 1.0636,
+  "sigma_m": 0.0067,
+  "mean_m": 0.66,
+  "top1_0": 99.432,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 99.148,
+    "tau_meas": 0.7455,
+    "tau_pred": 0.7455,
+    "CG": 1.5366
+   },
+   {
+    "lambda": -0.5,
+    "top1": 99.148,
+    "tau_meas": 0.8551,
+    "tau_pred": 0.8551,
+    "CG": 1.3845
+   },
+   {
+    "lambda": 0.0,
+    "top1": 99.432,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.0636
+   },
+   {
+    "lambda": 0.5,
+    "top1": 99.148,
+    "tau_meas": 0.8881,
+    "tau_pred": 0.8881,
+    "CG": 0.525
+   },
+   {
+    "lambda": 1.0,
+    "top1": 98.864,
+    "tau_meas": 0.7943,
+    "tau_pred": 0.7943,
+    "CG": 0.108
+   },
+   {
+    "lambda": 2.0,
+    "top1": 99.148,
+    "tau_meas": 0.6835,
+    "tau_pred": 0.6835,
+    "CG": 0.4049
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.8091,
+    "CG": 0.1386
+   }
+  ]
+ },
+ "deg_domainft": [
+  {
+   "deg": "speckle_p20",
+   "lambda_eff": -0.0133,
+   "tau_meas": 0.3807
+  },
+  {
+   "deg": "blur_r2",
+   "lambda_eff": 0.0132,
+   "tau_meas": 0.2341
+  },
+  {
+   "deg": "shadow_strip",
+   "lambda_eff": -0.0007,
+   "tau_meas": 0.5409
+  }
+ ]
+}

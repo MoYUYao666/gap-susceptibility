@@ -1,0 +1,593 @@
+{
+  "script": "tools/_p293i_r1_provenance.py",
+  "question": "which archive tree reproduces each published tab:position_strict cell?",
+  "why": "the `experiment` field is not unique -- two OpenCLIP trees share the names strict_text_only / strict_both / strict_vision_only, at rank 4 and rank 8",
+  "all_trees": {
+    "outputs/strict_freeze": {
+      "text_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1024,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          196608
+        ],
+        "delta_CG_mean": -0.0465,
+        "R1_mean": 0.6238,
+        "files": [
+          "outputs/strict_freeze/text_only/seed1024/results.json",
+          "outputs/strict_freeze/text_only/seed123/results.json",
+          "outputs/strict_freeze/text_only/seed42/results.json",
+          "outputs/strict_freeze/text_only/seed456/results.json",
+          "outputs/strict_freeze/text_only/seed789/results.json"
+        ]
+      },
+      "both": {
+        "n_seeds": 5,
+        "seeds": [
+          1024,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          491520
+        ],
+        "delta_CG_mean": -0.02583,
+        "R1_mean": 0.6932,
+        "files": [
+          "outputs/strict_freeze/both/seed1024/results.json",
+          "outputs/strict_freeze/both/seed123/results.json",
+          "outputs/strict_freeze/both/seed42/results.json",
+          "outputs/strict_freeze/both/seed456/results.json",
+          "outputs/strict_freeze/both/seed789/results.json"
+        ]
+      },
+      "vision_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1024,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          294912
+        ],
+        "delta_CG_mean": 0.01057,
+        "R1_mean": 0.68,
+        "files": [
+          "outputs/strict_freeze/vision_only/seed1024/results.json",
+          "outputs/strict_freeze/vision_only/seed123/results.json",
+          "outputs/strict_freeze/vision_only/seed42/results.json",
+          "outputs/strict_freeze/vision_only/seed456/results.json",
+          "outputs/strict_freeze/vision_only/seed789/results.json"
+        ]
+      }
+    },
+    "outputs/strict_freeze_b32_r4": {
+      "text_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1011,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          98304
+        ],
+        "delta_CG_mean": -0.03038,
+        "R1_mean": 0.6222,
+        "files": [
+          "outputs/strict_freeze_b32_r4/text_only/seed1011/results.json",
+          "outputs/strict_freeze_b32_r4/text_only/seed123/results.json",
+          "outputs/strict_freeze_b32_r4/text_only/seed42/results.json",
+          "outputs/strict_freeze_b32_r4/text_only/seed456/results.json",
+          "outputs/strict_freeze_b32_r4/text_only/seed789/results.json"
+        ]
+      },
+      "both": {
+        "n_seeds": 5,
+        "seeds": [
+          1011,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          245760
+        ],
+        "delta_CG_mean": -0.02037,
+        "R1_mean": 0.6796,
+        "files": [
+          "outputs/strict_freeze_b32_r4/both/seed1011/results.json",
+          "outputs/strict_freeze_b32_r4/both/seed123/results.json",
+          "outputs/strict_freeze_b32_r4/both/seed42/results.json",
+          "outputs/strict_freeze_b32_r4/both/seed456/results.json",
+          "outputs/strict_freeze_b32_r4/both/seed789/results.json"
+        ]
+      },
+      "vision_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1011,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          147456
+        ],
+        "delta_CG_mean": 0.01658,
+        "R1_mean": 0.6698,
+        "files": [
+          "outputs/strict_freeze_b32_r4/vision_only/seed1011/results.json",
+          "outputs/strict_freeze_b32_r4/vision_only/seed123/results.json",
+          "outputs/strict_freeze_b32_r4/vision_only/seed42/results.json",
+          "outputs/strict_freeze_b32_r4/vision_only/seed456/results.json",
+          "outputs/strict_freeze_b32_r4/vision_only/seed789/results.json"
+        ]
+      }
+    },
+    "outputs/strict_freeze_b16/r4": {
+      "text_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1011,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          98304
+        ],
+        "delta_CG_mean": -0.01657,
+        "R1_mean": 0.6502,
+        "files": [
+          "outputs/strict_freeze_b16/r4/text_only/seed1011/results.json",
+          "outputs/strict_freeze_b16/r4/text_only/seed123/results.json",
+          "outputs/strict_freeze_b16/r4/text_only/seed42/results.json",
+          "outputs/strict_freeze_b16/r4/text_only/seed456/results.json",
+          "outputs/strict_freeze_b16/r4/text_only/seed789/results.json"
+        ]
+      },
+      "both": {
+        "n_seeds": 5,
+        "seeds": [
+          1011,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          245760
+        ],
+        "delta_CG_mean": 0.01236,
+        "R1_mean": 0.707,
+        "files": [
+          "outputs/strict_freeze_b16/r4/both/seed1011/results.json",
+          "outputs/strict_freeze_b16/r4/both/seed123/results.json",
+          "outputs/strict_freeze_b16/r4/both/seed42/results.json",
+          "outputs/strict_freeze_b16/r4/both/seed456/results.json",
+          "outputs/strict_freeze_b16/r4/both/seed789/results.json"
+        ]
+      },
+      "vision_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1011,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          147456
+        ],
+        "delta_CG_mean": 0.03755,
+        "R1_mean": 0.686,
+        "files": [
+          "outputs/strict_freeze_b16/r4/vision_only/seed1011/results.json",
+          "outputs/strict_freeze_b16/r4/vision_only/seed123/results.json",
+          "outputs/strict_freeze_b16/r4/vision_only/seed42/results.json",
+          "outputs/strict_freeze_b16/r4/vision_only/seed456/results.json",
+          "outputs/strict_freeze_b16/r4/vision_only/seed789/results.json"
+        ]
+      }
+    },
+    "outputs/strict_freeze_oclip/r4": {
+      "text_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1011,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          98304
+        ],
+        "delta_CG_mean": 0.08016,
+        "R1_mean": 0.6366,
+        "files": [
+          "outputs/strict_freeze_oclip/r4/text_only/seed1011/results.json",
+          "outputs/strict_freeze_oclip/r4/text_only/seed123/results.json",
+          "outputs/strict_freeze_oclip/r4/text_only/seed42/results.json",
+          "outputs/strict_freeze_oclip/r4/text_only/seed456/results.json",
+          "outputs/strict_freeze_oclip/r4/text_only/seed789/results.json"
+        ]
+      },
+      "both": {
+        "n_seeds": 5,
+        "seeds": [
+          1011,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          245760
+        ],
+        "delta_CG_mean": 0.08639,
+        "R1_mean": 0.6818,
+        "files": [
+          "outputs/strict_freeze_oclip/r4/both/seed1011/results.json",
+          "outputs/strict_freeze_oclip/r4/both/seed123/results.json",
+          "outputs/strict_freeze_oclip/r4/both/seed42/results.json",
+          "outputs/strict_freeze_oclip/r4/both/seed456/results.json",
+          "outputs/strict_freeze_oclip/r4/both/seed789/results.json"
+        ]
+      },
+      "vision_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1011,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          147456
+        ],
+        "delta_CG_mean": 0.09962,
+        "R1_mean": 0.6698,
+        "files": [
+          "outputs/strict_freeze_oclip/r4/vision_only/seed1011/results.json",
+          "outputs/strict_freeze_oclip/r4/vision_only/seed123/results.json",
+          "outputs/strict_freeze_oclip/r4/vision_only/seed42/results.json",
+          "outputs/strict_freeze_oclip/r4/vision_only/seed456/results.json",
+          "outputs/strict_freeze_oclip/r4/vision_only/seed789/results.json"
+        ]
+      }
+    },
+    "outputs/strict_freeze_openclip": {
+      "text_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1024,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          196608
+        ],
+        "delta_CG_mean": 0.06945,
+        "R1_mean": 0.6428,
+        "files": [
+          "outputs/strict_freeze_openclip/text_only/seed1024/results.json",
+          "outputs/strict_freeze_openclip/text_only/seed123/results.json",
+          "outputs/strict_freeze_openclip/text_only/seed42/results.json",
+          "outputs/strict_freeze_openclip/text_only/seed456/results.json",
+          "outputs/strict_freeze_openclip/text_only/seed789/results.json"
+        ]
+      },
+      "both": {
+        "n_seeds": 5,
+        "seeds": [
+          1024,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          491520
+        ],
+        "delta_CG_mean": 0.08814,
+        "R1_mean": 0.6798,
+        "files": [
+          "outputs/strict_freeze_openclip/both/seed1024/results.json",
+          "outputs/strict_freeze_openclip/both/seed123/results.json",
+          "outputs/strict_freeze_openclip/both/seed42/results.json",
+          "outputs/strict_freeze_openclip/both/seed456/results.json",
+          "outputs/strict_freeze_openclip/both/seed789/results.json"
+        ]
+      },
+      "vision_only": {
+        "n_seeds": 5,
+        "seeds": [
+          1024,
+          123,
+          42,
+          456,
+          789
+        ],
+        "n_trainable_params": [
+          294912
+        ],
+        "delta_CG_mean": 0.09252,
+        "R1_mean": 0.6724,
+        "files": [
+          "outputs/strict_freeze_openclip/vision_only/seed1024/results.json",
+          "outputs/strict_freeze_openclip/vision_only/seed123/results.json",
+          "outputs/strict_freeze_openclip/vision_only/seed42/results.json",
+          "outputs/strict_freeze_openclip/vision_only/seed456/results.json",
+          "outputs/strict_freeze_openclip/vision_only/seed789/results.json"
+        ]
+      }
+    }
+  },
+  "per_cell": {
+    "CLIP B/32 r8": {
+      "text_only": {
+        "published_delta_CG": -0.0465,
+        "published_R1": 0.624,
+        "own_tree": "outputs/strict_freeze",
+        "authoritative_tree_delta_CG_mean": -0.0465,
+        "authoritative_tree_R1_mean": 0.6238,
+        "delta_CG_exact": true,
+        "R1_matched_by": [
+          {
+            "tree": "outputs/strict_freeze",
+            "R1_mean": 0.6238,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              196608
+            ]
+          }
+        ],
+        "R1_matched_by_own_tree": true,
+        "R1_explained_by_another_tree": false
+      },
+      "both": {
+        "published_delta_CG": -0.0258,
+        "published_R1": 0.693,
+        "own_tree": "outputs/strict_freeze",
+        "authoritative_tree_delta_CG_mean": -0.02583,
+        "authoritative_tree_R1_mean": 0.6932,
+        "delta_CG_exact": true,
+        "R1_matched_by": [
+          {
+            "tree": "outputs/strict_freeze",
+            "R1_mean": 0.6932,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              491520
+            ]
+          }
+        ],
+        "R1_matched_by_own_tree": true,
+        "R1_explained_by_another_tree": false
+      },
+      "vision_only": {
+        "published_delta_CG": 0.0106,
+        "published_R1": 0.68,
+        "own_tree": "outputs/strict_freeze",
+        "authoritative_tree_delta_CG_mean": 0.01057,
+        "authoritative_tree_R1_mean": 0.68,
+        "delta_CG_exact": true,
+        "R1_matched_by": [
+          {
+            "tree": "outputs/strict_freeze",
+            "R1_mean": 0.68,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              294912
+            ]
+          }
+        ],
+        "R1_matched_by_own_tree": true,
+        "R1_explained_by_another_tree": false
+      }
+    },
+    "CLIP B/32 r4": {
+      "text_only": {
+        "published_delta_CG": -0.0304,
+        "published_R1": 0.621,
+        "own_tree": "outputs/strict_freeze_b32_r4",
+        "authoritative_tree_delta_CG_mean": -0.03038,
+        "authoritative_tree_R1_mean": 0.6222,
+        "delta_CG_exact": true,
+        "R1_matched_by": [],
+        "R1_matched_by_own_tree": false,
+        "R1_explained_by_another_tree": false
+      },
+      "both": {
+        "published_delta_CG": -0.0204,
+        "published_R1": 0.679,
+        "own_tree": "outputs/strict_freeze_b32_r4",
+        "authoritative_tree_delta_CG_mean": -0.02037,
+        "authoritative_tree_R1_mean": 0.6796,
+        "delta_CG_exact": true,
+        "R1_matched_by": [],
+        "R1_matched_by_own_tree": false,
+        "R1_explained_by_another_tree": false
+      },
+      "vision_only": {
+        "published_delta_CG": 0.0166,
+        "published_R1": 0.67,
+        "own_tree": "outputs/strict_freeze_b32_r4",
+        "authoritative_tree_delta_CG_mean": 0.01658,
+        "authoritative_tree_R1_mean": 0.6698,
+        "delta_CG_exact": true,
+        "R1_matched_by": [
+          {
+            "tree": "outputs/strict_freeze_b32_r4",
+            "R1_mean": 0.6698,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              147456
+            ]
+          },
+          {
+            "tree": "outputs/strict_freeze_oclip/r4",
+            "R1_mean": 0.6698,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              147456
+            ]
+          }
+        ],
+        "R1_matched_by_own_tree": true,
+        "R1_explained_by_another_tree": false
+      }
+    },
+    "CLIP B/16 r4": {
+      "text_only": {
+        "published_delta_CG": -0.0166,
+        "published_R1": 0.651,
+        "own_tree": "outputs/strict_freeze_b16/r4",
+        "authoritative_tree_delta_CG_mean": -0.01657,
+        "authoritative_tree_R1_mean": 0.6502,
+        "delta_CG_exact": true,
+        "R1_matched_by": [],
+        "R1_matched_by_own_tree": false,
+        "R1_explained_by_another_tree": false
+      },
+      "both": {
+        "published_delta_CG": 0.0124,
+        "published_R1": 0.707,
+        "own_tree": "outputs/strict_freeze_b16/r4",
+        "authoritative_tree_delta_CG_mean": 0.01236,
+        "authoritative_tree_R1_mean": 0.707,
+        "delta_CG_exact": true,
+        "R1_matched_by": [
+          {
+            "tree": "outputs/strict_freeze_b16/r4",
+            "R1_mean": 0.707,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              245760
+            ]
+          }
+        ],
+        "R1_matched_by_own_tree": true,
+        "R1_explained_by_another_tree": false
+      },
+      "vision_only": {
+        "published_delta_CG": 0.0376,
+        "published_R1": 0.686,
+        "own_tree": "outputs/strict_freeze_b16/r4",
+        "authoritative_tree_delta_CG_mean": 0.03755,
+        "authoritative_tree_R1_mean": 0.686,
+        "delta_CG_exact": true,
+        "R1_matched_by": [
+          {
+            "tree": "outputs/strict_freeze_b16/r4",
+            "R1_mean": 0.686,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              147456
+            ]
+          }
+        ],
+        "R1_matched_by_own_tree": true,
+        "R1_explained_by_another_tree": false
+      }
+    },
+    "OpenCLIP": {
+      "text_only": {
+        "published_delta_CG": 0.0802,
+        "published_R1": 0.643,
+        "own_tree": "outputs/strict_freeze_oclip/r4",
+        "authoritative_tree_delta_CG_mean": 0.08016,
+        "authoritative_tree_R1_mean": 0.6366,
+        "delta_CG_exact": true,
+        "R1_matched_by": [
+          {
+            "tree": "outputs/strict_freeze_openclip",
+            "R1_mean": 0.6428,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              196608
+            ]
+          }
+        ],
+        "R1_matched_by_own_tree": false,
+        "R1_explained_by_another_tree": true
+      },
+      "both": {
+        "published_delta_CG": 0.0864,
+        "published_R1": 0.68,
+        "own_tree": "outputs/strict_freeze_oclip/r4",
+        "authoritative_tree_delta_CG_mean": 0.08639,
+        "authoritative_tree_R1_mean": 0.6818,
+        "delta_CG_exact": true,
+        "R1_matched_by": [
+          {
+            "tree": "outputs/strict_freeze_b32_r4",
+            "R1_mean": 0.6796,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              245760
+            ]
+          },
+          {
+            "tree": "outputs/strict_freeze_openclip",
+            "R1_mean": 0.6798,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              491520
+            ]
+          }
+        ],
+        "R1_matched_by_own_tree": false,
+        "R1_explained_by_another_tree": true
+      },
+      "vision_only": {
+        "published_delta_CG": 0.0996,
+        "published_R1": 0.672,
+        "own_tree": "outputs/strict_freeze_oclip/r4",
+        "authoritative_tree_delta_CG_mean": 0.09962,
+        "authoritative_tree_R1_mean": 0.6698,
+        "delta_CG_exact": true,
+        "R1_matched_by": [
+          {
+            "tree": "outputs/strict_freeze_openclip",
+            "R1_mean": 0.6724,
+            "n_seeds": 5,
+            "n_trainable_params": [
+              294912
+            ]
+          }
+        ],
+        "R1_matched_by_own_tree": false,
+        "R1_explained_by_another_tree": true
+      }
+    }
+  },
+  "conclusion": {
+    "delta_CG_exact_cells": "12/12",
+    "R1_reproduced_by_own_tree": "6/12",
+    "openclip_row_is_a_provenance_mix": true,
+    "explanation": "The published OpenCLIP row combines two different runs: Delta-CG from strict_freeze_oclip/r4 (rank 4, 98,304/245,760/147,456 trainable, seeds 42-1011) and R@1 from strict_freeze_openclip (rank 8, 196,608/491,520/294,912 trainable, seeds 42-1024). The two trees share identical epoch/sample/batch settings and differ in rank and seed set, so the R@1 half of the row is not a measurement of the same configuration as the Delta-CG half. All three published OpenCLIP R@1 values (0.643/0.680/0.672) are reproduced by the rank-8 tree to three decimals.",
+    "not_claimed": "This does not by itself say which half is 'right', and it is not used as evidence anywhere in this task's conclusions; every cross-model statement uses Delta-CG, which is exact for all twelve cells."
+  }
+}

@@ -1,0 +1,64 @@
+{
+ "runs": {
+  "seed123": {
+   "n_epochs": 10,
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "val_loss_first_rise": 3,
+   "tau_earlier_than_top1": false,
+   "tau_not_later_than_vloss": true,
+   "rel_drop_tau": 0.0884,
+   "rel_drop_top1": 0.0252,
+   "rel_rise_vloss": -0.016,
+   "fastest": "tau"
+  },
+  "seed42": {
+   "n_epochs": 10,
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "val_loss_first_rise": 4,
+   "tau_earlier_than_top1": false,
+   "tau_not_later_than_vloss": true,
+   "rel_drop_tau": 0.0629,
+   "rel_drop_top1": 0.0286,
+   "rel_rise_vloss": 0.0111,
+   "fastest": "tau"
+  },
+  "seed456": {
+   "n_epochs": 10,
+   "tau_first_drop": 2,
+   "top1_first_drop": 2,
+   "val_loss_first_rise": 4,
+   "tau_earlier_than_top1": false,
+   "tau_not_later_than_vloss": true,
+   "rel_drop_tau": 0.0712,
+   "rel_drop_top1": 0.0245,
+   "rel_rise_vloss": 0.0053,
+   "fastest": "tau"
+  }
+ },
+ "claims": {
+  "1_earlier_than_top1": {
+   "claim": "τ 是比 top-1 更早的指示器",
+   "supported": 0,
+   "n": 3,
+   "verdict": "不支持"
+  },
+  "2_relatively_fastest": {
+   "claim": "τ 在相对意义上下降最快",
+   "note": "需比较各信号的**相对降幅**（见 ③）",
+   "fastest_counts": {
+    "tau": 3,
+    "top1": 0,
+    "val_loss": 0
+   },
+   "verdict": "支持"
+  },
+  "3_no_extra_forward": {
+   "claim": "τ 只需验证时已有的 top-k 集合",
+   "note": "代码事实（`a1_h_common.per_image_tau` 只读冻结 top-k 与当前分数）",
+   "verdict": "支持（代码事实）"
+  }
+ },
+ "source": "outputs/a1_class_aligned/lr0.0/seed*/eval_epoch*.json"
+}

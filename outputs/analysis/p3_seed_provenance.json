@@ -1,0 +1,326 @@
+{
+ "meta": {
+  "script": "tools/_p44n_seed_provenance.py",
+  "purpose": "R3.17 follow-up: was the paper's 3-seed set the first run or a selection out of ten?  Decide from mtime/ctime + E0 + note fields.",
+  "caveat": "file mtime/ctime are filesystem metadata; a re-run OVERWRITES the same filename, so mtime reflects the LAST write.  verify_r5_s42.json explicitly says it was 'restored 2026-09-09 after a transformers-4.57 reproducibility run temporarily overwrote this file'."
+ },
+ "files_in_mtime_order": [
+  {
+   "file": "verify_r5_s123.json",
+   "rank": 5,
+   "seed": 123,
+   "E0": 3930.5,
+   "dE": -52.0,
+   "epochs": 3,
+   "mtime": "2026-08-13T12:26:21",
+   "ctime": "2026-08-13T12:26:21",
+   "mtime_ts": 1786595181.440282,
+   "note": null
+  },
+  {
+   "file": "verify_r5_s999.json",
+   "rank": 5,
+   "seed": 999,
+   "E0": 3930.5,
+   "dE": 66.0,
+   "epochs": 3,
+   "mtime": "2026-08-13T12:58:35",
+   "ctime": "2026-08-13T12:58:35",
+   "mtime_ts": 1786597115.907556,
+   "note": null
+  },
+  {
+   "file": "verify_r6_s123.json",
+   "rank": 6,
+   "seed": 123,
+   "E0": 3930.5,
+   "dE": 77.0,
+   "epochs": 3,
+   "mtime": "2026-08-13T14:04:41",
+   "ctime": "2026-08-13T14:04:41",
+   "mtime_ts": 1786601081.6657448,
+   "note": null
+  },
+  {
+   "file": "verify_r6_s999.json",
+   "rank": 6,
+   "seed": 999,
+   "E0": 3930.5,
+   "dE": 30.0,
+   "epochs": 3,
+   "mtime": "2026-08-13T14:25:00",
+   "ctime": "2026-08-13T14:25:00",
+   "mtime_ts": 1786602300.3017573,
+   "note": null
+  },
+  {
+   "file": "verify_r5_s42.json",
+   "rank": 5,
+   "seed": 42,
+   "E0": 3930.5,
+   "dE": -18.0,
+   "epochs": 3,
+   "mtime": "2026-09-09T10:17:40",
+   "ctime": "2026-08-13T11:53:58",
+   "mtime_ts": 1788920260.4291632,
+   "note": "reference 3-epoch protocol (transformers 5.16.1); restored 2026-09-09 after a transformers-4.57 reproducibility run temporarily overwrote this file (that run is preserved as verify_r5_s42_tf457.json)"
+  },
+  {
+   "file": "verify_r6_s42.json",
+   "rank": 6,
+   "seed": 42,
+   "E0": 3930.5,
+   "dE": 93.5,
+   "epochs": 3,
+   "mtime": "2026-09-09T10:39:43",
+   "ctime": "2026-08-13T13:32:56",
+   "mtime_ts": 1788921583.52874,
+   "note": "reference 3-epoch protocol (transformers 5.16.1); restored 2026-09-09 after a transformers-4.57 reproducibility run temporarily overwrote this file (that run is preserved as verify_r6_s42_tf457.json)"
+  },
+  {
+   "file": "verify_r5_s7.json",
+   "rank": 5,
+   "seed": 7,
+   "E0": 3921.0,
+   "dE": -80.0,
+   "epochs": 3,
+   "mtime": "2026-09-12T21:24:52",
+   "ctime": "2026-09-12T21:24:52",
+   "mtime_ts": 1789219492.446762,
+   "note": null
+  },
+  {
+   "file": "verify_r5_s17.json",
+   "rank": 5,
+   "seed": 17,
+   "E0": 3921.0,
+   "dE": 5.0,
+   "epochs": 3,
+   "mtime": "2026-09-12T21:53:45",
+   "ctime": "2026-09-12T21:53:45",
+   "mtime_ts": 1789221225.6570866,
+   "note": null
+  },
+  {
+   "file": "verify_r5_s27.json",
+   "rank": 5,
+   "seed": 27,
+   "E0": 3921.0,
+   "dE": -71.0,
+   "epochs": 3,
+   "mtime": "2026-09-12T22:33:39",
+   "ctime": "2026-09-12T22:33:39",
+   "mtime_ts": 1789223619.4652123,
+   "note": null
+  },
+  {
+   "file": "verify_r5_s37.json",
+   "rank": 5,
+   "seed": 37,
+   "E0": 3921.0,
+   "dE": -27.5,
+   "epochs": 3,
+   "mtime": "2026-09-12T22:54:59",
+   "ctime": "2026-09-12T22:54:59",
+   "mtime_ts": 1789224899.3629334,
+   "note": null
+  },
+  {
+   "file": "verify_r5_s47.json",
+   "rank": 5,
+   "seed": 47,
+   "E0": 3921.0,
+   "dE": -51.5,
+   "epochs": 3,
+   "mtime": "2026-09-12T23:16:20",
+   "ctime": "2026-09-12T23:16:20",
+   "mtime_ts": 1789226180.4319675,
+   "note": null
+  },
+  {
+   "file": "verify_r6_s7.json",
+   "rank": 6,
+   "seed": 7,
+   "E0": 3921.0,
+   "dE": 95.5,
+   "epochs": 3,
+   "mtime": "2026-09-12T23:37:39",
+   "ctime": "2026-09-12T23:37:39",
+   "mtime_ts": 1789227459.8177557,
+   "note": null
+  },
+  {
+   "file": "verify_r6_s17.json",
+   "rank": 6,
+   "seed": 17,
+   "E0": 3921.0,
+   "dE": 55.0,
+   "epochs": 3,
+   "mtime": "2026-09-13T00:01:01",
+   "ctime": "2026-09-13T00:01:01",
+   "mtime_ts": 1789228861.1145294,
+   "note": null
+  },
+  {
+   "file": "verify_r6_s27.json",
+   "rank": 6,
+   "seed": 27,
+   "E0": 3921.0,
+   "dE": 22.5,
+   "epochs": 3,
+   "mtime": "2026-09-13T00:22:18",
+   "ctime": "2026-09-13T00:22:18",
+   "mtime_ts": 1789230138.2457516,
+   "note": null
+  },
+  {
+   "file": "verify_r6_s37.json",
+   "rank": 6,
+   "seed": 37,
+   "E0": 3921.0,
+   "dE": 95.5,
+   "epochs": 3,
+   "mtime": "2026-09-13T00:43:31",
+   "ctime": "2026-09-13T00:43:31",
+   "mtime_ts": 1789231411.6721382,
+   "note": null
+  },
+  {
+   "file": "verify_r6_s47.json",
+   "rank": 6,
+   "seed": 47,
+   "E0": 3921.0,
+   "dE": 98.5,
+   "epochs": 3,
+   "mtime": "2026-09-13T01:04:48",
+   "ctime": "2026-09-13T01:04:48",
+   "mtime_ts": 1789232688.9940062,
+   "note": null
+  },
+  {
+   "file": "verify_r5_s57.json",
+   "rank": 5,
+   "seed": 57,
+   "E0": 3921.0,
+   "dE": -76.5,
+   "epochs": 3,
+   "mtime": "2026-09-13T07:50:36",
+   "ctime": "2026-09-13T07:50:36",
+   "mtime_ts": 1789257036.0784721,
+   "note": null
+  },
+  {
+   "file": "verify_r6_s57.json",
+   "rank": 6,
+   "seed": 57,
+   "E0": 3921.0,
+   "dE": 48.0,
+   "epochs": 3,
+   "mtime": "2026-09-13T08:10:39",
+   "ctime": "2026-09-13T08:10:39",
+   "mtime_ts": 1789258239.7637215,
+   "note": null
+  },
+  {
+   "file": "verify_r5_s67.json",
+   "rank": 5,
+   "seed": 67,
+   "E0": 3921.0,
+   "dE": -41.5,
+   "epochs": 3,
+   "mtime": "2026-09-13T08:32:10",
+   "ctime": "2026-09-13T08:32:10",
+   "mtime_ts": 1789259530.2762735,
+   "note": null
+  },
+  {
+   "file": "verify_r6_s67.json",
+   "rank": 6,
+   "seed": 67,
+   "E0": 3921.0,
+   "dE": 83.5,
+   "epochs": 3,
+   "mtime": "2026-09-13T08:54:12",
+   "ctime": "2026-09-13T08:54:12",
+   "mtime_ts": 1789260852.9359324,
+   "note": null
+  }
+ ],
+ "paper_seeds": [
+  42,
+  123,
+  999
+ ],
+ "ten_seeds": [
+  7,
+  17,
+  27,
+  37,
+  42,
+  47,
+  57,
+  67,
+  123,
+  999
+ ],
+ "earliest_three": {
+  "r5": [
+   123,
+   999,
+   42
+  ],
+  "r6": [
+   123,
+   999,
+   42
+  ]
+ },
+ "earliest_three_equals_paper_seeds": {
+  "r5": true,
+  "r6": true
+ },
+ "E0_contiguity_in_time": {
+  "r5": {
+   "E0_sequence_in_mtime_order": [
+    3930.5,
+    3930.5,
+    3930.5,
+    3921.0,
+    3921.0,
+    3921.0,
+    3921.0,
+    3921.0,
+    3921.0,
+    3921.0
+   ],
+   "n_transitions": 1,
+   "contiguous_block": true
+  },
+  "r6": {
+   "E0_sequence_in_mtime_order": [
+    3930.5,
+    3930.5,
+    3930.5,
+    3921.0,
+    3921.0,
+    3921.0,
+    3921.0,
+    3921.0,
+    3921.0,
+    3921.0
+   ],
+   "n_transitions": 1,
+   "contiguous_block": true
+  }
+ },
+ "driver_seed_literals": {
+  "paper3/scripts/run_full_sweep.py": {
+   "SEEDS_literal": "42, 123, 999",
+   "loop_seeds": null
+  },
+  "paper3/scripts/run_e4_counterfactual.py": {
+   "SEEDS_literal": null,
+   "loop_seeds": "42, 123, 456, 789, 999"
+  }
+ }
+}
