@@ -371,6 +371,57 @@ class ImageNetStyleDataset(Dataset):
 # DataLoader 构建
 # ============================================================
 
+
+class ImageNetRParquetDataset(Dataset):
+    """ImageNet-R parquet files (axiong/imagenet-r) as a new-dataset adaptation check.
+
+    The released ImageNet-R has only a test split (30,000 images, 200 ImageNet classes rendered in
+    artistic styles). For the Paper A new-dataset check we use a deterministic image-level split
+    (crc32 0-7 train / 8 val / 9 test), fine-tune on the train part and measure the gap on the held-out
+    part. Labels are ImageNet-1k indices and are mapped to class names with the torchvision metadata.
+    """
+
+    def __init__(self, data_dir, split="train", image_size=224, max_samples=None):
+        import glob
+        import zlib
+        import pandas as pd
+
+        self.image_size = image_size
+        self.transform = get_clip_transform(image_size, is_train=(split == "train"))
+        files = sorted(glob.glob(os.path.join(data_dir, "*.parquet")))
+        if not files:
+            raise FileNotFoundError("no ImageNet-R parquet files under %s" % data_dir)
+        frames = [pd.read_parquet(f) for f in files]
+        df = pd.concat(frames, ignore_index=True)
+        rows = []
+        bucket = {"train": range(0, 8), "val": [8], "test": [9]}[split]
+        for _, row in df.iterrows():
+            img = row["image"]
+            path = str(img.get("path", "")) if isinstance(img, dict) else ""
+            b = zlib.crc32(path.encode("utf-8")) % 10
+            if b not in bucket:
+                continue
+            name = str(row.get("class_name", "")).replace("_", " ")
+            rows.append({"image": img.get("bytes"), "label": name,
+                         "caption": "a photo of a %s" % name, "path": path})
+        self.samples = rows
+        if max_samples and len(rows) > max_samples:
+            import random
+            rng = random.Random(42)
+            self.samples = rng.sample(rows, max_samples)
+        print("ImageNet-R [%s]: %d samples, %d classes" % (split, len(self.samples), len({s["label"] for s in rows})))
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __getitem__(self, idx):
+        import io as _io
+        from PIL import Image
+        s = self.samples[idx]
+        img = Image.open(_io.BytesIO(s["image"])).convert("RGB")
+        return {"image": self.transform(img), "caption": s["caption"], "image_path": s["path"]}
+
+
 def create_dataloaders(
     dataset_name: str = "flickr30k",
     data_dir: str = "./data",
@@ -388,10 +439,48 @@ def create_dataloaders(
     dataset_cls = {
         "flickr30k": Flickr30kDataset,
         "coco": COCODataset,
+        "food101": ImageNetStyleDataset,
+        "imagenet_r": ImageNetRParquetDataset,
     }
 
     if dataset_name not in dataset_cls:
         raise ValueError(f"未知数据集: {dataset_name}, 可选: {list(dataset_cls.keys())}")
+
+    if dataset_name == "imagenet_r":
+        data_root = os.path.join(data_dir, "imagenet_r")
+        train_dataset = ImageNetRParquetDataset(data_root, split="train", image_size=image_size, max_samples=max_samples)
+        val_dataset = ImageNetRParquetDataset(data_root, split="val", image_size=image_size, max_samples=max_samples)
+        test_dataset = ImageNetRParquetDataset(data_root, split="test", image_size=image_size, max_samples=max_samples)
+        loader_kwargs = dict(
+            num_workers=num_workers,
+            collate_fn=_collate_fn,
+            pin_memory=use_pin,
+            persistent_workers=(num_workers > 0),
+        )
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, **loader_kwargs)
+        val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, **loader_kwargs)
+        test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, **loader_kwargs)
+        return train_loader, val_loader, test_loader
+
+    if dataset_name == "food101":
+        # New-dataset robustness check (Paper A revision round, 2026-11-08): fine-grained classification
+        # prompts from Food-101, mapped onto the same contrastive training loop. torchvision expects
+        # root/food-101, so pass the data root directly rather than data_dir/food101.
+        train_dataset = ImageNetStyleDataset("Food101", root=data_dir, split="train",
+                                             image_size=image_size, max_samples=max_samples)
+        test_dataset = ImageNetStyleDataset("Food101", root=data_dir, split="test",
+                                            image_size=image_size, max_samples=max_samples)
+        val_dataset = test_dataset
+        loader_kwargs = dict(
+            num_workers=num_workers,
+            collate_fn=_collate_fn,
+            pin_memory=use_pin,
+            persistent_workers=(num_workers > 0),
+        )
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, **loader_kwargs)
+        val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, **loader_kwargs)
+        test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, **loader_kwargs)
+        return train_loader, val_loader, test_loader
 
     cls = dataset_cls[dataset_name]
     data_root = os.path.join(data_dir, dataset_name)

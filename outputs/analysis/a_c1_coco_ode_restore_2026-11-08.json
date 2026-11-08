@@ -1,0 +1,109 @@
+{
+ "generated": "2026-11-08",
+ "note": "C1 restoration on the cloud instance: COCO training corpus is the val2014 image set (40,504 images, 25k+ caption pairs) because train2014 was too large for the instance disk; 5000 caption pairs are sampled by the loader, batch 128, 10 epochs, matching the archived run configuration (batch 128, 5000 samples, 10 epochs). The grid fit is `_p1_ledger.py::grid_fit`.",
+ "new_runs": [
+  {
+   "config": "r16/both/seed42",
+   "n_epochs": 10,
+   "A": -0.00413,
+   "B": 0.260975,
+   "R2": 0.786426,
+   "dg_star_initial": 1.35995,
+   "dg_star_final": 1.346066
+  },
+  {
+   "config": "r16/text_only/seed42",
+   "n_epochs": 10,
+   "A": 0.001408,
+   "B": 0.187213,
+   "R2": 0.779908,
+   "dg_star_initial": 1.393347,
+   "dg_star_final": 1.398949
+  },
+  {
+   "config": "r16/vision_only/seed42",
+   "n_epochs": 10,
+   "A": -0.005013,
+   "B": 0.19515,
+   "R2": 0.934244,
+   "dg_star_initial": 1.371255,
+   "dg_star_final": 1.350371
+  },
+  {
+   "config": "r4/both/seed42",
+   "n_epochs": 10,
+   "A": -0.005512,
+   "B": 0.232813,
+   "R2": 0.922166,
+   "dg_star_initial": 1.37354,
+   "dg_star_final": 1.353057
+  },
+  {
+   "config": "r4/text_only/seed42",
+   "n_epochs": 10,
+   "A": 0.001461,
+   "B": 0.1357,
+   "R2": 0.918676,
+   "dg_star_initial": 1.388893,
+   "dg_star_final": 1.396348
+  },
+  {
+   "config": "r4/vision_only/seed42",
+   "n_epochs": 10,
+   "A": -0.005257,
+   "B": 0.286531,
+   "R2": 0.861204,
+   "dg_star_initial": 1.37586,
+   "dg_star_final": 1.359408
+  },
+  {
+   "config": "r8/both/seed42",
+   "n_epochs": 10,
+   "A": -0.004848,
+   "B": 0.212048,
+   "R2": 0.922733,
+   "dg_star_initial": 1.368075,
+   "dg_star_final": 1.349034
+  },
+  {
+   "config": "r8/text_only/seed42",
+   "n_epochs": 10,
+   "A": -0.000856,
+   "B": 2.40633,
+   "R2": 0.000778,
+   "dg_star_initial": 1.390636,
+   "dg_star_final": 1.390062
+  },
+  {
+   "config": "r8/vision_only/seed42",
+   "n_epochs": 10,
+   "A": -0.004947,
+   "B": 0.274877,
+   "R2": 0.857684,
+   "dg_star_initial": 1.37448,
+   "dg_star_final": 1.357891
+  }
+ ],
+ "overlapping_with_archive": [
+  {
+   "config": "r4/both/seed42",
+   "new": {
+    "n_epochs": 10,
+    "A": -0.005512,
+    "B": 0.232813,
+    "R2": 0.922166,
+    "dg_star_initial": 1.37354,
+    "dg_star_final": 1.353057
+   },
+   "archived": {
+    "n_epochs": 10,
+    "A": -0.002583,
+    "B": 0.461902,
+    "R2": 0.678611,
+    "dg_star_initial": 1.384308,
+    "dg_star_final": 1.379347
+   },
+   "delta_R2": 0.243555
+  }
+ ]
+}

@@ -1,0 +1,163 @@
+{
+ "generated": "2026-11-08",
+ "protocol": {
+  "model": "siglip-base-patch16-224",
+  "rank": 4,
+  "alpha": 8,
+  "batch_size": 128,
+  "epochs": 10,
+  "max_samples": 5000,
+  "corpus": "Flickr30k full image set",
+  "strict_freeze": "only LoRA A/B trainable (authoritative experiments/siglip_experiments.py)"
+ },
+ "arms": {
+  "both": {
+   "n": 5,
+   "seeds": [
+    "1011",
+    "123",
+    "42",
+    "456",
+    "789"
+   ],
+   "dCG_mean": -0.00794,
+   "dCG_sd": 0.01929,
+   "R@1_mean": 0.6725,
+   "R@1_sd": 0.0193,
+   "archived_rank8_target": -0.0114
+  },
+  "text_only": {
+   "n": 5,
+   "seeds": [
+    "1011",
+    "123",
+    "42",
+    "456",
+    "789"
+   ],
+   "dCG_mean": 0.04447,
+   "dCG_sd": 0.01328,
+   "R@1_mean": 0.4886,
+   "R@1_sd": 0.015,
+   "archived_rank8_target": 0.0664
+  },
+  "vision_only": {
+   "n": 5,
+   "seeds": [
+    "1011",
+    "123",
+    "42",
+    "456",
+    "789"
+   ],
+   "dCG_mean": 0.03449,
+   "dCG_sd": 0.00312,
+   "R@1_mean": 0.4203,
+   "R@1_sd": 0.0111,
+   "archived_rank8_target": 0.0522
+  }
+ },
+ "per_arm": [
+  {
+   "tag": "both",
+   "seed": "1011",
+   "dCG": -0.01051,
+   "R@1": 0.681
+  },
+  {
+   "tag": "text_only",
+   "seed": "1011",
+   "dCG": 0.03061,
+   "R@1": 0.5104
+  },
+  {
+   "tag": "vision_only",
+   "seed": "1011",
+   "dCG": 0.03677,
+   "R@1": 0.4029
+  },
+  {
+   "tag": "both",
+   "seed": "123",
+   "dCG": 0.02516,
+   "R@1": 0.6401
+  },
+  {
+   "tag": "text_only",
+   "seed": "123",
+   "dCG": 0.05564,
+   "R@1": 0.471
+  },
+  {
+   "tag": "vision_only",
+   "seed": "123",
+   "dCG": 0.03727,
+   "R@1": 0.4189
+  },
+  {
+   "tag": "both",
+   "seed": "42",
+   "dCG": -0.01203,
+   "R@1": 0.6713
+  },
+  {
+   "tag": "text_only",
+   "seed": "42",
+   "dCG": 0.05659,
+   "R@1": 0.495
+  },
+  {
+   "tag": "vision_only",
+   "seed": "42",
+   "dCG": 0.03436,
+   "R@1": 0.4312
+  },
+  {
+   "tag": "both",
+   "seed": "456",
+   "dCG": -0.02434,
+   "R@1": 0.6901
+  },
+  {
+   "tag": "text_only",
+   "seed": "456",
+   "dCG": 0.02983,
+   "R@1": 0.486
+  },
+  {
+   "tag": "vision_only",
+   "seed": "456",
+   "dCG": 0.03463,
+   "R@1": 0.42
+  },
+  {
+   "tag": "both",
+   "seed": "789",
+   "dCG": -0.01797,
+   "R@1": 0.6799
+  },
+  {
+   "tag": "text_only",
+   "seed": "789",
+   "dCG": 0.04968,
+   "R@1": 0.4805
+  },
+  {
+   "tag": "vision_only",
+   "seed": "789",
+   "dCG": 0.0294,
+   "R@1": 0.4286
+  }
+ ],
+ "archived_rank4_s7": {
+  "both": {
+   "n": 5,
+   "dCG_mean": 0.00898
+  },
+  "text_only": {
+   "n": 5,
+   "dCG_mean": 0.08307
+  }
+ },
+ "notes": "The archived target values (+0.0664 / -0.0114 / +0.0522) come from the rank-8 cells in outputs/siglip_strict (s4/s6); the task requirement is rank 4. The restored rank-4 cells are compared with the rank-4 s7 archive where available (text_only, both) and quoted against the rank-8 target only to show that the qualitative ordering is preserved."
+}

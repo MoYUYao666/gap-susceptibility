@@ -1,0 +1,204 @@
+{
+ "meta": {
+  "script": "tools/a1_rr_e3_full_rare_mem.py",
+  "experiment": "A1 full rare-species 400-class evaluation (subset-limit removal)",
+  "model": "openai/clip-vit-base-patch32 (frozen)",
+  "template": "a photo of a {}",
+  "surgery_grid": [
+   -2.0,
+   -1.0,
+   -0.5,
+   0.0,
+   0.25,
+   0.5,
+   1.0,
+   2.0,
+   4.0
+  ],
+  "topk_for_tau": 5,
+  "data": "data/rare-species-full (imageomics/rare-species parquet, 9 shards)",
+  "n_classes_total": 400,
+  "n_images": 11983,
+  "class_counts_min": 21,
+  "class_counts_max": 30,
+  "flickr30k_gap_norm": 1.071058
+ },
+ "benchmarks": {
+  "rare_species_full_flickr30k": {
+   "loaded": true,
+   "result": {
+    "gap_variant": "flickr30k",
+    "gap_norm": 1.071058,
+    "n_images": 11983,
+    "n_classes": 400,
+    "sigma_m": 0.0519760400056839,
+    "mean_m": 0.25462213158607483,
+    "top1_frozen": 8.8876,
+    "surgery": {
+     "-2.0": {
+      "top1": 1.1934,
+      "tau": 0.150613,
+      "tau_pred_exact": 0.15063
+     },
+     "-1.0": {
+      "top1": 3.3714,
+      "tau": 0.194142,
+      "tau_pred_exact": 0.194142
+     },
+     "-0.5": {
+      "top1": 7.2937,
+      "tau": 0.27554,
+      "tau_pred_exact": 0.27554
+     },
+     "0.0": {
+      "top1": 8.8876,
+      "tau": 1.0,
+      "tau_pred_exact": 1.0
+     },
+     "0.25": {
+      "top1": 4.9236,
+      "tau": 0.281582,
+      "tau_pred_exact": 0.281599
+     },
+     "0.5": {
+      "top1": 2.0279,
+      "tau": 0.097121,
+      "tau_pred_exact": 0.097121
+     },
+     "1.0": {
+      "top1": 0.7844,
+      "tau": -0.002804,
+      "tau_pred_exact": -0.002804
+     },
+     "2.0": {
+      "top1": 0.267,
+      "tau": -0.051373,
+      "tau_pred_exact": -0.051389
+     },
+     "4.0": {
+      "top1": 0.2504,
+      "tau": -0.075657,
+      "tau_pred_exact": -0.075657
+     }
+    },
+    "exact_predictor_error": {
+     "per_lambda": {
+      "-2.0": 1.7e-05,
+      "-1.0": 0.0,
+      "-0.5": 0.0,
+      "0.0": 0.0,
+      "0.25": 1.7e-05,
+      "0.5": 0.0,
+      "1.0": 0.0,
+      "2.0": 1.7e-05,
+      "4.0": 0.0
+     },
+     "mae": 6e-06,
+     "max_abs_err": 1.7e-05
+    },
+    "class_contraction": {
+     "0.1": {
+      "top1": 9.5218,
+      "tau": 0.851548
+     },
+     "0.25": {
+      "top1": 10.4148,
+      "tau": 0.686656
+     },
+     "0.5": {
+      "top1": 11.9503,
+      "tau": 0.500075
+     }
+    }
+   }
+  },
+  "rare_species_full_self": {
+   "loaded": true,
+   "result": {
+    "gap_variant": "self",
+    "gap_norm": 0.942787,
+    "n_images": 11983,
+    "n_classes": 400,
+    "sigma_m": 0.059420280158519745,
+    "mean_m": 0.5609275698661804,
+    "top1_frozen": 8.8876,
+    "surgery": {
+     "-2.0": {
+      "top1": 0.2587,
+      "tau": 0.219594,
+      "tau_pred_exact": 0.219594
+     },
+     "-1.0": {
+      "top1": 1.3519,
+      "tau": 0.286222,
+      "tau_pred_exact": 0.286222
+     },
+     "-0.5": {
+      "top1": 4.932,
+      "tau": 0.392022,
+      "tau_pred_exact": 0.392022
+     },
+     "0.0": {
+      "top1": 8.8876,
+      "tau": 1.0,
+      "tau_pred_exact": 1.0
+     },
+     "0.25": {
+      "top1": 5.633,
+      "tau": 0.371226,
+      "tau_pred_exact": 0.371209
+     },
+     "0.5": {
+      "top1": 2.9876,
+      "tau": 0.154052,
+      "tau_pred_exact": 0.154035
+     },
+     "1.0": {
+      "top1": 1.4521,
+      "tau": 0.006743,
+      "tau_pred_exact": 0.006726
+     },
+     "2.0": {
+      "top1": 0.484,
+      "tau": -0.075373,
+      "tau_pred_exact": -0.075373
+     },
+     "4.0": {
+      "top1": 0.3505,
+      "tau": -0.116999,
+      "tau_pred_exact": -0.116999
+     }
+    },
+    "exact_predictor_error": {
+     "per_lambda": {
+      "-2.0": 0.0,
+      "-1.0": 0.0,
+      "-0.5": 0.0,
+      "0.0": 0.0,
+      "0.25": 1.7e-05,
+      "0.5": 1.7e-05,
+      "1.0": 1.7e-05,
+      "2.0": 0.0,
+      "4.0": 0.0
+     },
+     "mae": 6e-06,
+     "max_abs_err": 1.7e-05
+    },
+    "class_contraction": {
+     "0.1": {
+      "top1": 9.5218,
+      "tau": 0.851548
+     },
+     "0.25": {
+      "top1": 10.4148,
+      "tau": 0.686656
+     },
+     "0.5": {
+      "top1": 11.9503,
+      "tau": 0.500075
+     }
+    }
+   }
+  }
+ }
+}

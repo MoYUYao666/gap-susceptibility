@@ -1,0 +1,39 @@
+{
+ "protocol": {
+  "dataset": "ImageNet-R",
+  "split": "crc32 0-7/8/9",
+  "backbone": "CLIP ViT-B/32",
+  "rank": 8,
+  "strict_freeze": true,
+  "batch": 64,
+  "max_samples": 5000,
+  "epochs": 10,
+  "seeds": [
+   42,
+   123,
+   456
+  ]
+ },
+ "summary": {
+  "both": [
+   0.0052,
+   0.0027,
+   0.0205
+  ],
+  "text_only": [
+   -0.0288,
+   0.0051,
+   0.026
+  ],
+  "vision_only": [
+   0.0219,
+   0.0016,
+   0.0253
+  ]
+ },
+ "reference_strict_clip_b32": {
+  "text_only": -0.0465,
+  "both": -0.0258,
+  "vision_only": 0.0106
+ }
+}

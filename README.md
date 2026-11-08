@@ -55,7 +55,11 @@ The datasets and model releases used here are public: the remote-sensing corpora
 public CLIP checkpoints named in each project README. What this repository adds is **derived data**: the per-run result
 JSONs, the analysis scripts, the frozen text corpora and the audit records.
 
-The v3.0 snapshot is archived on Zenodo: DOI [10.5281/zenodo.23922049](https://doi.org/10.5281/zenodo.23922049). From v2.8 the published tree contains code and results only; the working planning
+The v3.0 snapshot is archived on Zenodo: DOI [10.5281/zenodo.23922049](https://doi.org/10.5281/zenodo.23922049).
+The v3.1 snapshot adds the November 2026 evidence round (restored COCO ODE grid, ImageNet-R new-dataset check,
+full 400-class rare-species evaluation, second acoustic backbone and deployment operating points, P3 16-seed
+allocation power analysis and the full-protocol SigLIP rank-4 grid); its version DOI is recorded on the release
+page once Zenodo has registered it. From v2.8 the published tree contains code and results only; the working planning
 documents that earlier tags included are no longer part of the repository.
 
 ## License
@@ -66,6 +70,7 @@ should be discussed with the author.
 ### Release history
 
 - **v3.0** (2026-11-03): first clean snapshot of the code and results. Earlier releases are retired.
+- **v3.1** (2026-11-08): adds the November 2026 evidence round (Paper A COCO-ODE and ImageNet-R result JSONs, A1 full rare-species, A2 second-backbone/deployment results, P3 16-seed power analysis and SigLIP rank-4 grid) plus the corresponding analysis scripts.
 
 Archived snapshots are published as GitHub releases; the Zenodo DOI for a snapshot, where one has been registered,
 is recorded on its release page.

@@ -1,0 +1,186 @@
+{
+ "source": "outputs/threshold_calibration.json",
+ "note": "deployment operating points of the gap-health monitor; miss = 1 - sensitivity, false alarm = 1 - specificity",
+ "rows": [
+  {
+   "health": "ret_ge_0.96",
+   "cutoff": 0.5,
+   "cutoff_label": "0.5",
+   "sensitivity": 0.543,
+   "specificity": 0.735,
+   "miss": 0.457,
+   "false_alarm": 0.265,
+   "precision": 0.463,
+   "sens_ci": [
+    0.371,
+    0.707
+   ],
+   "spec_ci": [
+    0.634,
+    0.827
+   ]
+  },
+  {
+   "health": "ret_ge_0.96",
+   "cutoff": 0.6,
+   "cutoff_label": "0.6",
+   "sensitivity": 0.457,
+   "specificity": 0.904,
+   "miss": 0.543,
+   "false_alarm": 0.096,
+   "precision": 0.667,
+   "sens_ci": [
+    0.29,
+    0.621
+   ],
+   "spec_ci": [
+    0.837,
+    0.963
+   ]
+  },
+  {
+   "health": "ret_ge_0.96",
+   "cutoff": 0.7,
+   "cutoff_label": "0.7",
+   "sensitivity": 0.343,
+   "specificity": 0.976,
+   "miss": 0.657,
+   "false_alarm": 0.024,
+   "precision": 0.857,
+   "sens_ci": [
+    0.194,
+    0.512
+   ],
+   "spec_ci": [
+    0.937,
+    1.0
+   ]
+  },
+  {
+   "health": "ret_ge_0.96",
+   "cutoff": 0.8,
+   "cutoff_label": "0.8",
+   "sensitivity": 0.229,
+   "specificity": 0.988,
+   "miss": 0.771,
+   "false_alarm": 0.012,
+   "precision": 0.889,
+   "sens_ci": [
+    0.1,
+    0.375
+   ],
+   "spec_ci": [
+    0.961,
+    1.0
+   ]
+  },
+  {
+   "health": "ret_ge_0.96",
+   "cutoff": 0.9,
+   "cutoff_label": "0.9",
+   "sensitivity": 0.057,
+   "specificity": 1.0,
+   "miss": 0.943,
+   "false_alarm": 0.0,
+   "precision": 1.0,
+   "sens_ci": [
+    0.0,
+    0.147
+   ],
+   "spec_ci": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "health": "ret_ge_0.83",
+   "cutoff": 0.5,
+   "cutoff_label": "0.5",
+   "sensitivity": 0.559,
+   "specificity": 0.864,
+   "miss": 0.441,
+   "false_alarm": 0.136,
+   "precision": 0.805,
+   "sens_ci": [
+    0.434,
+    0.684
+   ],
+   "spec_ci": [
+    0.774,
+    0.946
+   ]
+  },
+  {
+   "health": "ret_ge_0.83",
+   "cutoff": 0.6,
+   "cutoff_label": "0.6",
+   "sensitivity": 0.39,
+   "specificity": 0.983,
+   "miss": 0.61,
+   "false_alarm": 0.017,
+   "precision": 0.958,
+   "sens_ci": [
+    0.263,
+    0.516
+   ],
+   "spec_ci": [
+    0.943,
+    1.0
+   ]
+  },
+  {
+   "health": "ret_ge_0.83",
+   "cutoff": 0.7,
+   "cutoff_label": "0.7",
+   "sensitivity": 0.237,
+   "specificity": 1.0,
+   "miss": 0.763,
+   "false_alarm": 0.0,
+   "precision": 1.0,
+   "sens_ci": [
+    0.133,
+    0.351
+   ],
+   "spec_ci": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "health": "ret_ge_0.83",
+   "cutoff": 0.8,
+   "cutoff_label": "0.8",
+   "sensitivity": 0.153,
+   "specificity": 1.0,
+   "miss": 0.847,
+   "false_alarm": 0.0,
+   "precision": 1.0,
+   "sens_ci": [
+    0.067,
+    0.258
+   ],
+   "spec_ci": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "health": "ret_ge_0.83",
+   "cutoff": 0.9,
+   "cutoff_label": "0.9",
+   "sensitivity": 0.034,
+   "specificity": 1.0,
+   "miss": 0.966,
+   "false_alarm": 0.0,
+   "precision": 1.0,
+   "sens_ci": [
+    0.0,
+    0.089
+   ],
+   "spec_ci": [
+    1.0,
+    1.0
+   ]
+  }
+ ]
+}

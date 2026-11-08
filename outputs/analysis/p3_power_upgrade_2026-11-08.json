@@ -1,0 +1,82 @@
+{
+ "generated": "2026-11-08",
+ "source": {
+  "local": "outputs/analysis/p3_alloc_runs/main",
+  "cloud": "outputs/analysis/p3_alloc_runs_batch1"
+ },
+ "allocation_contrast_16_seeds": {
+  "arms": {
+   "uniform": {
+    "n": 16,
+    "mean": 4025.084,
+    "sd": 2046.493,
+    "seeds": [
+     42,
+     123,
+     456,
+     789,
+     1011,
+     1213,
+     1414,
+     1616,
+     1818,
+     2020,
+     2222,
+     2424,
+     2626,
+     2828,
+     3030,
+     3232
+    ]
+   },
+   "exp_beta_paper_0.137": {
+    "n": 16,
+    "mean": 2185.103,
+    "sd": 2332.134,
+    "seeds": [
+     42,
+     123,
+     456,
+     789,
+     1011,
+     1213,
+     1414,
+     1616,
+     1818,
+     2020,
+     2222,
+     2424,
+     2626,
+     2828,
+     3030,
+     3232
+    ]
+   }
+  },
+  "paired_exp_minus_uniform": {
+   "n": 16,
+   "mean": -1839.981,
+   "sd": 3610.169,
+   "se": 902.542,
+   "ci95": [
+    -3763.299,
+    83.337
+   ]
+  },
+  "paired_ci_excludes_zero": false
+ },
+ "random_pool": {
+  "archive": {
+   "n": 33,
+   "mean": 3143.399,
+   "sd": 4596.448
+  },
+  "exp_vs_random": {
+   "mean_exp": 2185.103,
+   "mean_random": 3143.399,
+   "diff": -958.296,
+   "t": -0.968
+  }
+ },
+ "notes": "The random-pool target of 12 non-duplicate plans is not reachable: the exact same-budget allocation space contains 15 allocations, 4 of which coincide with named/corner plans, leaving 10 non-duplicate random plans. The 16-seed allocation contrast is complete (6 archived + 10 new seeds)."
+}
