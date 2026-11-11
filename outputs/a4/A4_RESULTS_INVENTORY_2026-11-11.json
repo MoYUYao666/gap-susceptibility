@@ -1,0 +1,69 @@
+{
+  "generated": "2026-11-11",
+  "controlled_peft": {
+    "runs": 90,
+    "checkpoints": 270
+  },
+  "extra": {
+    "methods": {
+      "runs": 24,
+      "checkpoints": 72
+    },
+    "retrieval": {
+      "runs": 8,
+      "checkpoints": 24
+    },
+    "siglip": {
+      "runs": 6,
+      "checkpoints": 18
+    },
+    "rank_b32": {
+      "runs": 4,
+      "checkpoints": 12
+    },
+    "rank_b16": {
+      "runs": 4,
+      "checkpoints": 12
+    }
+  },
+  "external": {
+    "cells": 20
+  },
+  "features": {
+    "cells": 30
+  },
+  "total_runs": 156,
+  "total_checkpoints": 408,
+  "top_level": [
+    "a4_analysis_2026-11-09.json",
+    "a4_controlled_analysis_2026-11-10.json",
+    "a4_controlled_bootstrap_2026-11-10.json",
+    "a4_controlled_peft_2026-11-10.json",
+    "a4_dataset_catalog.json",
+    "a4_external_analysis_2026-11-10.json",
+    "a4_extra_analysis_2026-11-10.json",
+    "a4_grouped_validity_2026-11-09.json",
+    "a4_readouts_2026-11-09.json",
+    "a4_spectral_bound_2026-11-10.json"
+  ],
+  "scripts": [
+    "a4_analysis.py",
+    "a4_bootstrap.py",
+    "a4_controlled_analysis.py",
+    "a4_controlled_peft.py",
+    "a4_external_analysis.py",
+    "a4_external_validation.py",
+    "a4_extra_analysis.py",
+    "a4_extra_methods.py",
+    "a4_extra_retrieval.py",
+    "a4_extra_siglip.py",
+    "a4_features.py",
+    "a4_figures.py",
+    "a4_figures_v2.py",
+    "a4_grouped_validity.py",
+    "a4_make_tables.py",
+    "a4_readouts.py",
+    "a4_spectral_bound.py",
+    "fill_declaration_docx.py"
+  ]
+}
