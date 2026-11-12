@@ -11,11 +11,12 @@ no cover letters and no datasets or model weights**.
 | **Controlled text-provenance study (A3)** — `paper_a3/` | four public corpora, seven text sources (human captions, parsed-object descriptions, templates, metadata, human-rich, a repeated-text control and two LLM generators), frozen CLIP backbones with LoRA adapters, 338 run records, and the analysis layer that writes every reported number | under review at the ISPRS Journal of Photogrammetry and Remote Sensing |
 | **Remote-sensing vision–language survey** — `paper_rsvlm_survey/` | the reference corpus (harvest, de-duplication, DOI verification, screening, hand-verified disclosure audit), the corpus trend analysis and the figure scripts used in the article | white paper submitted to IEEE Geoscience and Remote Sensing Magazine; the full review is ready |
 | **Modality-gap validity under PEFT (A4)** — `paper_a4/`, `outputs/a4/` | frozen 5-encoder x 6-dataset readout matrix, 136 trained PEFT runs / 408 checkpoints, 20 public-checkpoint external cells, analysis and figure scripts |
-| **Rank allocation under PEFT (P3)** — `outputs/`, `tools/`, `src/`, `exp/`, `experiments/` | per-run result records, analysis and audit scripts, training code, and the claim ledger behind the paper | under review at Pattern Recognition Letters (new submission after the earlier decision) |
+| **Zero-shot rank allocation measurement (P3 v2)** — `paper3/upgrade_v2/`, `outputs/analysis/p3_v2_*` | PACT protocol audit, nine public downstream evaluations, Qwen2-VL-2B cross-architecture check, and the r5-r6 allocation-contrast forest plot; analysis code and derived result JSONs only | manuscript candidate for **Pattern Recognition**; not submitted |
 
 ## Repository structure
 
 ```
+paper3/upgrade_v2/   P3 v2: PACT audit, public-benchmark analysis, cross-architecture checks, derived JSONs
 paper_a3/            A3: corpus manifests, run records, analysis, training/evaluation code
 paper_a4/            A4: controlled PEFT runs, external validation, analysis/figure scripts
 paper_rsvlm_survey/  Survey: reference corpus, corpus analysis, figure and build scripts
@@ -58,6 +59,8 @@ public CLIP checkpoints named in each project README. What this repository adds 
 JSONs, the analysis scripts, the frozen text corpora and the audit records.
 
 The v3.0 snapshot is archived on Zenodo: DOI [10.5281/zenodo.23922049](https://doi.org/10.5281/zenodo.23922049).
+**2026-11-13 repository update (no new release):** adds the P3 v2 analysis layer — PACT pilot, nine public downstream evaluations (Flickr30k, COCO5k, VQA-RAD, POPE, MarineLife-16K, iNaturalist, DTD, ScienceQA, MMBench), the Qwen2-VL-2B cross-architecture check, and the r5-r6 allocation-contrast summary. This is code and derived results only; it is not a new release or tag.
+
 The v3.1 snapshot is archived under DOI [10.5281/zenodo.24125200](https://doi.org/10.5281/zenodo.24125200) and adds the November 2026 evidence round (restored COCO ODE grid, ImageNet-R new-dataset check,
 full 400-class rare-species evaluation, second acoustic backbone and deployment operating points, P3 16-seed
 allocation power analysis, the full-protocol SigLIP rank-4 grid, and the A4 modality-gap/PEFT evidence block:
