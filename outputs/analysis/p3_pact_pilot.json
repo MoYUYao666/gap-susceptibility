@@ -1,0 +1,46 @@
+{
+ "source": "outputs\\analysis\\p3_gamma_batch_sensitivity.json",
+ "blocks": [
+  "text_deep",
+  "text_mid",
+  "text_shallow",
+  "vision"
+ ],
+ "n_protocols": 4,
+ "pairs": [
+  {
+   "protocol_a": "n=2/draw=2",
+   "protocol_b": "n=4/draw=2",
+   "kendall_tau": 0.5477225575051662
+  },
+  {
+   "protocol_a": "n=2/draw=2",
+   "protocol_b": "n=8/draw=2",
+   "kendall_tau": 0.912870929175277
+  },
+  {
+   "protocol_a": "n=2/draw=2",
+   "protocol_b": "n=16/draw=1",
+   "kendall_tau": 1.0
+  },
+  {
+   "protocol_a": "n=4/draw=2",
+   "protocol_b": "n=8/draw=2",
+   "kendall_tau": 0.3333333333333334
+  },
+  {
+   "protocol_a": "n=4/draw=2",
+   "protocol_b": "n=16/draw=1",
+   "kendall_tau": 0.5477225575051662
+  },
+  {
+   "protocol_a": "n=8/draw=2",
+   "protocol_b": "n=16/draw=1",
+   "kendall_tau": 0.9128709291752769
+  }
+ ],
+ "pact_min": 0.3333333333333334,
+ "pact_mean": 0.70908671778237,
+ "pact_max": 1.0,
+ "interpretation": "Pilot PACT; only four reference-batch conditions, not the full audit."
+}
