@@ -42,5 +42,23 @@
  "pact_min": 0.3333333333333334,
  "pact_mean": 0.70908671778237,
  "pact_max": 1.0,
- "interpretation": "Pilot PACT; only four reference-batch conditions, not the full audit."
+ "leave_one_out": [
+  {
+   "dropped": "n=2/draw=2",
+   "pact_min_if_dropped": 0.3333333333333334
+  },
+  {
+   "dropped": "n=4/draw=2",
+   "pact_min_if_dropped": 0.9128709291752769
+  },
+  {
+   "dropped": "n=8/draw=2",
+   "pact_min_if_dropped": 0.5477225575051662
+  },
+  {
+   "dropped": "n=16/draw=1",
+   "pact_min_if_dropped": 0.3333333333333334
+  }
+ ],
+ "interpretation": "Pilot PACT; only four reference-batch conditions, one draw per condition; no bootstrap CI."
 }

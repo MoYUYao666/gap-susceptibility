@@ -1,0 +1,286 @@
+{
+ "meta": {
+  "method": "paired two-sided bootstrap p-values with add-one correction; Benjamini-Hochberg q separately for base-vs-arm and r5-r6 families",
+  "n_boot": 20000,
+  "seed": 20261113,
+  "note": "descriptive post-hoc check, not a pre-registered multiplicity analysis"
+ },
+ "base_vs_arm": [
+  {
+   "benchmark": "VQA-RAD",
+   "metric": "F1",
+   "contrast": "r5-base",
+   "delta": 0.0663277278700178,
+   "p_boot": 0.000999950002499875,
+   "n": 451,
+   "q_bh": 0.0199990000499975
+  },
+  {
+   "benchmark": "VQA-RAD",
+   "metric": "exact",
+   "contrast": "r5-base",
+   "delta": 0.057649667405764965,
+   "p_boot": 0.005699715014249288,
+   "n": 451,
+   "q_bh": 0.056997150142492875
+  },
+  {
+   "benchmark": "VQA-RAD",
+   "metric": "F1",
+   "contrast": "r6-base",
+   "delta": 0.04298928286091316,
+   "p_boot": 0.015799210039498024,
+   "n": 451,
+   "q_bh": 0.10532806692998682
+  },
+  {
+   "benchmark": "COCO5k",
+   "metric": "F1",
+   "contrast": "r6-base",
+   "delta": -0.0014311148487454817,
+   "p_boot": 0.23228838558072096,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "COCO5k",
+   "metric": "F1",
+   "contrast": "r5-base",
+   "delta": -0.0010338062421986005,
+   "p_boot": 0.3559822008899555,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "Flickr30k",
+   "metric": "F1",
+   "contrast": "r5-base",
+   "delta": 0.0009342155507658239,
+   "p_boot": 0.3896805159742013,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "iNaturalist",
+   "metric": "accuracy",
+   "contrast": "r6-base",
+   "delta": 0.01,
+   "p_boot": 0.7327633618319084,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "ScienceQA",
+   "metric": "accuracy",
+   "contrast": "r5-base",
+   "delta": -0.01,
+   "p_boot": 0.7368631568421579,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "iNaturalist",
+   "metric": "accuracy",
+   "contrast": "r5-base",
+   "delta": 0.01,
+   "p_boot": 0.7393630318484076,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "Flickr30k",
+   "metric": "F1",
+   "contrast": "r6-base",
+   "delta": -0.0004095556809559267,
+   "p_boot": 0.7984600769961502,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "VQA-RAD",
+   "metric": "exact",
+   "contrast": "r6-base",
+   "delta": 0.004434589800443459,
+   "p_boot": 0.8453577321133944,
+   "n": 451,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "POPE",
+   "metric": "accuracy",
+   "contrast": "r5-base",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "POPE",
+   "metric": "accuracy",
+   "contrast": "r6-base",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "MarineLife",
+   "metric": "accuracy",
+   "contrast": "r5-base",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "MarineLife",
+   "metric": "accuracy",
+   "contrast": "r6-base",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "DTD",
+   "metric": "accuracy",
+   "contrast": "r5-base",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "DTD",
+   "metric": "accuracy",
+   "contrast": "r6-base",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "ScienceQA",
+   "metric": "accuracy",
+   "contrast": "r6-base",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "MMBench",
+   "metric": "accuracy",
+   "contrast": "r5-base",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "MMBench",
+   "metric": "accuracy",
+   "contrast": "r6-base",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  }
+ ],
+ "base_vs_arm_min_q": 0.0199990000499975,
+ "base_vs_arm_n": 20,
+ "r5_minus_r6": [
+  {
+   "benchmark": "VQA-RAD",
+   "metric": "exact",
+   "contrast": "r5-r6",
+   "delta": 0.05321507760532151,
+   "p_boot": 0.0014999250037498126,
+   "n": 451,
+   "q_bh": 0.014999250037498125
+  },
+  {
+   "benchmark": "VQA-RAD",
+   "metric": "F1",
+   "contrast": "r5-r6",
+   "delta": 0.02333844500910464,
+   "p_boot": 0.1255937203139843,
+   "n": 451,
+   "q_bh": 0.6279686015699215
+  },
+  {
+   "benchmark": "Flickr30k",
+   "metric": "F1",
+   "contrast": "r5-r6",
+   "delta": 0.0013437712317217504,
+   "p_boot": 0.2710864456777161,
+   "n": 100,
+   "q_bh": 0.903621485592387
+  },
+  {
+   "benchmark": "ScienceQA",
+   "metric": "accuracy",
+   "contrast": "r5-r6",
+   "delta": -0.01,
+   "p_boot": 0.736563171841408,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "COCO5k",
+   "metric": "F1",
+   "contrast": "r5-r6",
+   "delta": 0.00039730860654688116,
+   "p_boot": 0.7566621668916554,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "POPE",
+   "metric": "accuracy",
+   "contrast": "r5-r6",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "MarineLife",
+   "metric": "accuracy",
+   "contrast": "r5-r6",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "iNaturalist",
+   "metric": "accuracy",
+   "contrast": "r5-r6",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "DTD",
+   "metric": "accuracy",
+   "contrast": "r5-r6",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  },
+  {
+   "benchmark": "MMBench",
+   "metric": "accuracy",
+   "contrast": "r5-r6",
+   "delta": 0.0,
+   "p_boot": 1.0,
+   "n": 100,
+   "q_bh": 1.0
+  }
+ ],
+ "r5_minus_r6_min_q": 0.014999250037498125,
+ "r5_minus_r6_n": 10
+}

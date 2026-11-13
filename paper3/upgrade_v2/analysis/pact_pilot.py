@@ -17,10 +17,19 @@ for a,b in itertools.combinations(conds,2):
                  "protocol_b":"n=%d/draw=%d"%(b["n"],b["draw"]),
                  "kendall_tau":tau})
 taus=[r["kendall_tau"] for r in rows]
+# Leave-one-protocol-out sensitivity: which pair, if any, drives the minimum?
+loo=[]
+for drop in range(len(conds)):
+    keep=[i for i in range(len(conds)) if i!=drop]
+    vals=[r["kendall_tau"] for r in rows
+          if all(x in keep for x in [conds.index(next(c for c in conds if "n=%d/draw=%d"%(c["n"],c["draw"])==r["protocol_a"])),
+                                     conds.index(next(c for c in conds if "n=%d/draw=%d"%(c["n"],c["draw"])==r["protocol_b"]))])]
+    loo.append({"dropped":"n=%d/draw=%d"%(conds[drop]["n"],conds[drop]["draw"]),
+                "pact_min_if_dropped":float(min(vals))})
 out={"source":os.path.relpath(src,REPO),"blocks":blocks,"n_protocols":len(conds),
      "pairs":rows,"pact_min":float(min(taus)),"pact_mean":float(np.mean(taus)),
-     "pact_max":float(max(taus)),
-     "interpretation":"Pilot PACT; only four reference-batch conditions, not the full audit."}
+     "pact_max":float(max(taus)),"leave_one_out":loo,
+     "interpretation":"Pilot PACT; only four reference-batch conditions, one draw per condition; no bootstrap CI."}
 dst=os.path.join(REPO,"outputs","analysis","p3_pact_pilot.json")
 io.open(dst,"w",encoding="utf-8",newline="").write(json.dumps(out,indent=1)+"\n")
 lines=["# PACT pilot (2026-11-12)","",
