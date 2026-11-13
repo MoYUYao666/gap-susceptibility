@@ -11,9 +11,8 @@ to its source; the audit appendix repeats the list in the manuscript.
 | Table 3 (public benchmarks) | `outputs/analysis/p3_v2_benchmark_*.json` | `paper3/upgrade_v2/analysis/benchmark_eval.py` |
 | Fig. 2 (VQA-RAD) | `outputs/analysis/p3_rank_separation_extended.json`, `outputs/analysis/p3_vqa_full_equivalence.json` | `paper3/upgrade_v2/figures/make_downstream.py` |
 | Fig. 3 (r5-r6 forest) | `outputs/analysis/p3_v2_allocation_diff.json` | `paper3/upgrade_v2/analysis/allocation_diff.py` |
-| Table 4 (Qwen cross-architecture) | `outputs/analysis/p3_v2_qwen_*.json` | `paper3/upgrade_v2/analysis/qwen_benchmark_eval.py`, `train_qwen_vqa.py` |
-| Table 5 (allocation summary) | `paper3/scripts/outputs/experiments/all_results.json` | direct aggregate |
-| Table 6 (artifact map) | this file and `paper3/upgrade_v2/` | manual |
+| Table 4 (Qwen cross-architecture, six tasks) | `outputs/analysis/p3_v2_qwen_*.json` | `paper3/upgrade_v2/analysis/qwen_benchmark_eval.py`, `train_qwen_vqa.py` |
+| Appendix allocation values (text) | `paper3/scripts/outputs/experiments/all_results.json` | direct aggregate |
 | post-hoc multiplicity check | `outputs/analysis/p3_v2_multiplicity.json` | `paper3/upgrade_v2/analysis/multiplicity.py` |
 | reference-batch PACT values and leave-one-out range | `outputs/analysis/p3_pact_pilot.json` | `pact_pilot.py` |
 | environment variance share ~45% | `outputs/analysis/p3_env_stack_seeds.json` | archived field `env_variance_share` |
