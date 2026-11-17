@@ -1,0 +1,61 @@
+{
+  "n_runs": 36,
+  "n_cal": 18,
+  "n_test": 18,
+  "last_oracle": 30,
+  "last_oracle_fraction": 0.8333333333333334,
+  "mean_gap": 0.004163136017641816,
+  "proxies": {
+    "CG": {
+      "sign": "lower",
+      "test_diff": {
+        "mean": 0.004515817584778172,
+        "ci95_cluster": [
+          0.0,
+          0.01094733154572838
+        ],
+        "n": 18,
+        "n_clusters": 9
+      }
+    },
+    "DG": {
+      "sign": "lower",
+      "test_diff": {
+        "mean": 0.0032335731175833094,
+        "ci95_cluster": [
+          -0.002564488934389727,
+          0.01026290671329428
+        ],
+        "n": 18,
+        "n_clusters": 9
+      }
+    },
+    "spec_eff_rank": {
+      "sign": "higher",
+      "test_diff": {
+        "mean": 0.013224948801532592,
+        "ci95_cluster": [
+          -0.0004751439568297085,
+          0.030499657065155634
+        ],
+        "n": 18,
+        "n_clusters": 9
+      }
+    },
+    "spec_top1_share": {
+      "sign": "lower",
+      "test_diff": {
+        "mean": 0.052240266002386515,
+        "ci95_cluster": [
+          0.0,
+          0.13736963234283003
+        ],
+        "n": 18,
+        "n_clusters": 9
+      }
+    }
+  },
+  "best_proxy": "DG",
+  "best_proxy_diff": 0.0032335731175833094,
+  "note": "SigLIP-B/16 rank-8; 36/36 complete (3 runs rerun locally)."
+}

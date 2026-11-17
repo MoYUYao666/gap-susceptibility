@@ -1,0 +1,126 @@
+{
+  "siglip_b16_r8_pilot": {
+    "name": "siglip_b16_r8_pilot",
+    "n_runs": 6,
+    "n_cal": 3,
+    "n_test": 3,
+    "last_oracle": 5,
+    "last_oracle_fraction": 0.8333333333333334,
+    "mean_gap": 2.1996563377831475e-05,
+    "proxies": {
+      "CG": {
+        "sign": "lower",
+        "test_mean_regret": 0.0,
+        "last_mean_regret": 0.0,
+        "diff": 0.0,
+        "n_test": 3
+      },
+      "DG": {
+        "sign": "lower",
+        "test_mean_regret": 0.0,
+        "last_mean_regret": 0.0,
+        "diff": 0.0,
+        "n_test": 3
+      },
+      "spec_eff_rank": {
+        "sign": "higher",
+        "test_mean_regret": 0.03754396865980458,
+        "last_mean_regret": 0.0,
+        "diff": 0.03754396865980458,
+        "n_test": 3
+      },
+      "spec_top1_share": {
+        "sign": "lower",
+        "test_mean_regret": 0.16453959997056308,
+        "last_mean_regret": 0.0,
+        "diff": 0.16453959997056308,
+        "n_test": 3
+      }
+    },
+    "best_proxy": "CG",
+    "best_proxy_diff": 0.0
+  },
+  "clip_b32_r24_pilot": {
+    "name": "clip_b32_r24_pilot",
+    "n_runs": 6,
+    "n_cal": 3,
+    "n_test": 3,
+    "last_oracle": 5,
+    "last_oracle_fraction": 0.8333333333333334,
+    "mean_gap": 0.0004193732000285129,
+    "proxies": {
+      "CG": {
+        "sign": "lower",
+        "test_mean_regret": 0.023732212454687818,
+        "last_mean_regret": 0.0,
+        "diff": 0.023732212454687818,
+        "n_test": 3
+      },
+      "DG": {
+        "sign": "lower",
+        "test_mean_regret": 0.023732212454687818,
+        "last_mean_regret": 0.0,
+        "diff": 0.023732212454687818,
+        "n_test": 3
+      },
+      "spec_eff_rank": {
+        "sign": "higher",
+        "test_mean_regret": 0.030457180629855845,
+        "last_mean_regret": 0.0,
+        "diff": 0.030457180629855845,
+        "n_test": 3
+      },
+      "spec_top1_share": {
+        "sign": "lower",
+        "test_mean_regret": 0.024766753849318517,
+        "last_mean_regret": 0.0,
+        "diff": 0.024766753849318517,
+        "n_test": 3
+      }
+    },
+    "best_proxy": "CG",
+    "best_proxy_diff": 0.023732212454687818
+  },
+  "clip_b32_split2_r16_pilot": {
+    "name": "clip_b32_split2_r16_pilot",
+    "n_runs": 6,
+    "n_cal": 3,
+    "n_test": 3,
+    "last_oracle": 2,
+    "last_oracle_fraction": 0.3333333333333333,
+    "mean_gap": 0.011060978233519389,
+    "proxies": {
+      "CG": {
+        "sign": "lower",
+        "test_mean_regret": 0.007856057555612287,
+        "last_mean_regret": 0.007856057555612287,
+        "diff": 0.0,
+        "n_test": 3
+      },
+      "DG": {
+        "sign": "lower",
+        "test_mean_regret": 0.007856057555612287,
+        "last_mean_regret": 0.007856057555612287,
+        "diff": 0.0,
+        "n_test": 3
+      },
+      "spec_eff_rank": {
+        "sign": "lower",
+        "test_mean_regret": 0.09061030429400298,
+        "last_mean_regret": 0.007856057555612287,
+        "diff": 0.0827542467383907,
+        "n_test": 3
+      },
+      "spec_top1_share": {
+        "sign": "higher",
+        "test_mean_regret": 0.03572547321406724,
+        "last_mean_regret": 0.007856057555612287,
+        "diff": 0.02786941565845495,
+        "n_test": 3
+      }
+    },
+    "best_proxy": "CG",
+    "best_proxy_diff": 0.0
+  },
+  "note": "6-run descriptive pilots (3 datasets x 2 seeds x both tower); no inferential claim."
+}

@@ -1,0 +1,81 @@
+{
+  "n_runs": 4,
+  "task": "TextVQA Qwen2-VL-2B 4-bit LoRA",
+  "epochs": 3,
+  "train_samples": 80,
+  "test_samples": 12,
+  "last_oracle": 3,
+  "last_oracle_fraction": 0.75,
+  "mean_gap": 0.02083333333333333,
+  "runs": [
+    {
+      "run": "qwen2vl__textvqa__r32__s45__both",
+      "rank": 32,
+      "seed": 45,
+      "em": [
+        0.4166666666666667,
+        0.5,
+        0.4166666666666667
+      ],
+      "last_oracle": false,
+      "gap": 0.08333333333333331,
+      "train_loss": [
+        1.333751393617058,
+        0.5967687438377425,
+        0.2559162729808687
+      ]
+    },
+    {
+      "run": "qwen2vl__textvqa__r32__s47__both",
+      "rank": 32,
+      "seed": 47,
+      "em": [
+        0.5833333333333334,
+        0.5,
+        0.5833333333333334
+      ],
+      "last_oracle": true,
+      "gap": 0.0,
+      "train_loss": [
+        1.3445381910303695,
+        0.5636513412068609,
+        0.23353669681594855
+      ]
+    },
+    {
+      "run": "qwen2vl__textvqa__r8__s45__both",
+      "rank": 8,
+      "seed": 45,
+      "em": [
+        0.6666666666666666,
+        0.75,
+        0.75
+      ],
+      "last_oracle": true,
+      "gap": 0.0,
+      "train_loss": [
+        1.580674476425702,
+        0.7162362227035601,
+        0.313509841446835
+      ]
+    },
+    {
+      "run": "qwen2vl__textvqa__r8__s47__both",
+      "rank": 8,
+      "seed": 47,
+      "em": [
+        0.6666666666666666,
+        0.6666666666666666,
+        0.75
+      ],
+      "last_oracle": true,
+      "gap": 0.0,
+      "train_loss": [
+        1.5897631828084742,
+        0.7445775392319547,
+        0.3679727997661061
+      ]
+    }
+  ],
+  "note": "Small second-task pilot; not a full VQA matrix."
+}

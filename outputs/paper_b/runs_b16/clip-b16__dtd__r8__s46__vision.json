@@ -1,0 +1,70 @@
+{
+ "run": {
+  "backbone": "clip-b16",
+  "dataset": "dtd",
+  "rank": 8,
+  "seed": 46,
+  "tower": "vision",
+  "epochs": 3,
+  "n_train": 3948,
+  "n_test": 1692,
+  "n_classes": 47,
+  "split_seed": 2026,
+  "target": "vision_model.*\\.(q_proj|k_proj|v_proj)$",
+  "lr": 0.0005,
+  "trainable_tensors": 72
+ },
+ "epochs": [
+  {
+   "epoch": 1,
+   "train_loss": 0.5450386348203188,
+   "seconds": 263.6,
+   "conditions": {
+    "original": {
+     "classification_top1": 71.5130023640662,
+     "R1_i2t": 71.5130023640662,
+     "R1_t2i": 91.48936170212765,
+     "ARI": 0.4517323178659438,
+     "CG": 0.9150800704956055,
+     "DG": 0.9732298633228736,
+     "spec_eff_rank": 86.22248840332031,
+     "spec_top1_share": 0.12392108142375946
+    }
+   }
+  },
+  {
+   "epoch": 2,
+   "train_loss": 0.22339148883049081,
+   "seconds": 213.2,
+   "conditions": {
+    "original": {
+     "classification_top1": 75.0,
+     "R1_i2t": 75.0,
+     "R1_t2i": 93.61702127659575,
+     "ARI": 0.474229554007088,
+     "CG": 0.8924392461776733,
+     "DG": 0.9603809795028759,
+     "spec_eff_rank": 85.50835418701172,
+     "spec_top1_share": 0.1116698607802391
+    }
+   }
+  },
+  {
+   "epoch": 3,
+   "train_loss": 0.15181268890089228,
+   "seconds": 236.3,
+   "conditions": {
+    "original": {
+     "classification_top1": 75.82742316784869,
+     "R1_i2t": 75.82742316784869,
+     "R1_t2i": 95.74468085106383,
+     "ARI": 0.4899848357574631,
+     "CG": 0.8675293326377869,
+     "DG": 0.94743525297164,
+     "spec_eff_rank": 90.4849624633789,
+     "spec_top1_share": 0.0970715880393982
+    }
+   }
+  }
+ ]
+}

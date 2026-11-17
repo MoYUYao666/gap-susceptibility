@@ -12,6 +12,7 @@ no cover letters and no datasets or model weights**.
 | **Remote-sensing vision–language survey** — `paper_rsvlm_survey/` | the reference corpus (harvest, de-duplication, DOI verification, screening, hand-verified disclosure audit), the corpus trend analysis and the figure scripts used in the article | white paper submitted to IEEE Geoscience and Remote Sensing Magazine; the full review is ready |
 | **Modality-gap validity under PEFT (A4)** — `paper_a4/`, `outputs/a4/` | frozen 5-encoder x 6-dataset readout matrix, 136 trained PEFT runs / 408 checkpoints, 20 public-checkpoint external cells, analysis and figure scripts |
 | **Zero-shot rank allocation measurement (P3 v2)** — `paper3/upgrade_v2/`, `outputs/analysis/p3_v2_*` | PACT protocol audit, nine public downstream evaluations, Qwen2-VL-2B cross-architecture check, and the r5-r6 allocation-contrast forest plot; analysis code and derived result JSONs only | manuscript candidate for **Pattern Recognition**; not submitted |
+| **PEFT checkpoint selection (Paper B v2)** — `paper_b_v2/`, `outputs/paper_b/` | 552 frozen runs / 1656 checkpoints across CLIP, SigLIP and Qwen2-VL; per-run JSONs, analysis scripts, theory notes and submission gates; no manuscript files | under submission at **Pattern Recognition Letters** |
 
 ## Repository structure
 
@@ -20,6 +21,7 @@ paper3/upgrade_v2/   P3 v2: PACT audit, public-benchmark analysis, cross-archite
 paper_a3/            A3: corpus manifests, run records, analysis, training/evaluation code
 paper_a4/            A4: controlled PEFT runs, external validation, analysis/figure scripts
 paper_rsvlm_survey/  Survey: reference corpus, corpus analysis, figure and build scripts
+paper_b_v2/          Paper B v2: checkpoint-selection data, analysis, theory notes and gates
 outputs/             Per-run result records for the PEFT projects (provenance for every number)
 tools/               Analysis, audit, plotting and verification scripts
 src/                 Shared code (trainer, LoRA, gap susceptibility, metrics, datasets)
@@ -77,6 +79,7 @@ should be discussed with the author.
 
 - **v3.0** (2026-11-03): first clean snapshot of the code and results. Earlier releases are retired.
 - **v3.1** (2026-11-11; DOI 10.5281/zenodo.24125200): adds the November 2026 evidence round (Paper A COCO-ODE and ImageNet-R result JSONs, A1 full rare-species, A2 second-backbone/deployment results, P3 16-seed power analysis and SigLIP rank-4 grid, and the A4 modality-gap/PEFT block: 90 controlled LoRA runs / 270 checkpoints, 46 robustness runs, 20 public-checkpoint cells and the spectral-bound analysis) plus the corresponding analysis scripts.
+- **v3.2** (2026-11-17): adds the Paper B v2 checkpoint-selection evidence (552 frozen runs / 1656 checkpoints; CLIP-B/32, CLIP-B/16, SigLIP-B/16, and TextVQA/VQAv2/ChartQA Qwen2-VL sweeps), per-run JSONs, analysis scripts, theory notes, and submission gates. No manuscript files are included.
 
 Archived snapshots are published as GitHub releases; the Zenodo DOI for a snapshot, where one has been registered,
 is recorded on its release page.
