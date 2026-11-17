@@ -2,6 +2,8 @@
 
 Date: 2026-11-17
 
+Zenodo DOI: **10.5281/zenodo.24297577**
+
 This release adds the derived data, analysis code, theory notes, and submission gates for the Paper B v2
 manuscript on PEFT checkpoint selection.
 

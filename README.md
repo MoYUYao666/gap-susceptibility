@@ -79,7 +79,7 @@ should be discussed with the author.
 
 - **v3.0** (2026-11-03): first clean snapshot of the code and results. Earlier releases are retired.
 - **v3.1** (2026-11-11; DOI 10.5281/zenodo.24125200): adds the November 2026 evidence round (Paper A COCO-ODE and ImageNet-R result JSONs, A1 full rare-species, A2 second-backbone/deployment results, P3 16-seed power analysis and SigLIP rank-4 grid, and the A4 modality-gap/PEFT block: 90 controlled LoRA runs / 270 checkpoints, 46 robustness runs, 20 public-checkpoint cells and the spectral-bound analysis) plus the corresponding analysis scripts.
-- **v3.2** (2026-11-17): adds the Paper B v2 checkpoint-selection evidence (552 frozen runs / 1656 checkpoints; CLIP-B/32, CLIP-B/16, SigLIP-B/16, and TextVQA/VQAv2/ChartQA Qwen2-VL sweeps), per-run JSONs, analysis scripts, theory notes, and submission gates. No manuscript files are included.
+- **v3.2** (2026-11-17; DOI 10.5281/zenodo.24297577): adds the Paper B v2 checkpoint-selection evidence (552 frozen runs / 1656 checkpoints; CLIP-B/32, CLIP-B/16, SigLIP-B/16, and TextVQA/VQAv2/ChartQA Qwen2-VL sweeps), per-run JSONs, analysis scripts, theory notes, and submission gates. No manuscript files are included.
 
 Archived snapshots are published as GitHub releases; the Zenodo DOI for a snapshot, where one has been registered,
 is recorded on its release page.
