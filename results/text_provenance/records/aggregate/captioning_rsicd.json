@@ -1,0 +1,53 @@
+{
+  "arms": [
+    {
+      "arm": "human",
+      "bleu4": 0.0693,
+      "bleu4_vs_human": 0.0693,
+      "cider_lite": 0.077,
+      "cider_vs_human": 0.0758,
+      "dataset": "rsicd",
+      "distinct4": 0.264,
+      "n_test": 200,
+      "n_train": 7997,
+      "template_token_share": 0.3856
+    },
+    {
+      "arm": "templated",
+      "bleu4": 0.6681,
+      "bleu4_vs_human": 0.0,
+      "cider_lite": 0.2275,
+      "cider_vs_human": 0.0365,
+      "dataset": "rsicd",
+      "distinct4": 0.0402,
+      "n_test": 200,
+      "n_train": 7998,
+      "template_token_share": 0.6295
+    },
+    {
+      "arm": "segmented",
+      "bleu4": 0.7923,
+      "bleu4_vs_human": 0.0,
+      "cider_lite": 0.3141,
+      "cider_vs_human": 0.0405,
+      "dataset": "rsicd",
+      "distinct4": 0.0633,
+      "n_test": 200,
+      "n_train": 8000,
+      "template_token_share": 0.4926
+    },
+    {
+      "arm": "metadata",
+      "bleu4": 0.8688,
+      "bleu4_vs_human": 0.0,
+      "cider_lite": 0.3681,
+      "cider_vs_human": 0.0401,
+      "dataset": "rsicd",
+      "distinct4": 0.0438,
+      "n_test": 200,
+      "n_train": 8000,
+      "template_token_share": 0.6005
+    }
+  ],
+  "dataset": "rsicd"
+}

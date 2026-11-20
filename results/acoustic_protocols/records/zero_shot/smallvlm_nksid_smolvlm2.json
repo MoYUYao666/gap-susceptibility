@@ -1,0 +1,86 @@
+{
+ "model": "smolvlm2",
+ "images": 380,
+ "per_class_cap": 60,
+ "correct": 70,
+ "accuracy": 0.1842,
+ "macro_accuracy": 0.1762,
+ "unknown_answers": 0,
+ "chance": 0.1429,
+ "per_class": {
+  "big_propeller": 0.6667,
+  "cylinder": 0.0,
+  "fishing_net": 0.1,
+  "floats": 0.0,
+  "iron_pipeline": 0.0,
+  "small_propeller": 0.4667,
+  "soft_pipeline": 0.0
+ },
+ "confusion": {
+  "big_propeller": {
+   "big_propeller": 40,
+   "cylinder": 0,
+   "fishing_net": 0,
+   "floats": 0,
+   "iron_pipeline": 0,
+   "small_propeller": 20,
+   "soft_pipeline": 0
+  },
+  "cylinder": {
+   "big_propeller": 42,
+   "cylinder": 0,
+   "fishing_net": 0,
+   "floats": 0,
+   "iron_pipeline": 0,
+   "small_propeller": 18,
+   "soft_pipeline": 0
+  },
+  "fishing_net": {
+   "big_propeller": 4,
+   "cylinder": 0,
+   "fishing_net": 2,
+   "floats": 0,
+   "iron_pipeline": 0,
+   "small_propeller": 14,
+   "soft_pipeline": 0
+  },
+  "floats": {
+   "big_propeller": 25,
+   "cylinder": 0,
+   "fishing_net": 0,
+   "floats": 0,
+   "iron_pipeline": 0,
+   "small_propeller": 35,
+   "soft_pipeline": 0
+  },
+  "iron_pipeline": {
+   "big_propeller": 48,
+   "cylinder": 0,
+   "fishing_net": 0,
+   "floats": 1,
+   "iron_pipeline": 0,
+   "small_propeller": 11,
+   "soft_pipeline": 0
+  },
+  "small_propeller": {
+   "big_propeller": 32,
+   "cylinder": 0,
+   "fishing_net": 0,
+   "floats": 0,
+   "iron_pipeline": 0,
+   "small_propeller": 28,
+   "soft_pipeline": 0
+  },
+  "soft_pipeline": {
+   "big_propeller": 35,
+   "cylinder": 0,
+   "fishing_net": 0,
+   "floats": 0,
+   "iron_pipeline": 0,
+   "small_propeller": 25,
+   "soft_pipeline": 0
+  }
+ },
+ "prompt": "This is a forward-looking sonar image. Which object does it show? Choose exactly one option from this list and answer with that option only: big propeller; cylinder; fishing net; floats; iron pipeline; small propeller; soft pipeline.",
+ "wall_seconds": 569.0
+}

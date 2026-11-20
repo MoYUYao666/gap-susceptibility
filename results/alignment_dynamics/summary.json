@@ -1,0 +1,43 @@
+{
+  "ode_inputs": 96,
+  "matched_lora": 55,
+  "matched_lora_ode_mean": 0.9486153770148056,
+  "matched_lora_linear_mean": 0.9272191614512854,
+  "negative_fitted_alpha": 92,
+  "strict_freeze_records": 104,
+  "pilot_signed_alpha": {
+    "outputs/theory/beta_pilot/beta_pilot_both_r8/seed123/beta_results.json": -0.0003945308927896157,
+    "outputs/theory/beta_pilot/beta_pilot_both_r8/seed42/beta_results.json": -0.00029448620256012763,
+    "outputs/theory/beta_pilot/beta_pilot_both_r8/seed456/beta_results.json": -0.0006204958766989982,
+    "outputs/theory/beta_pilot/beta_pilot_full_ft/seed123/beta_results.json": -0.0013054085184331903,
+    "outputs/theory/beta_pilot/beta_pilot_full_ft/seed42/beta_results.json": -0.0005505207567453922,
+    "outputs/theory/beta_pilot/beta_pilot_full_ft/seed456/beta_results.json": -0.0006601796563711318,
+    "outputs/theory/beta_pilot/beta_pilot_text_r8/seed123/beta_results.json": -0.0002624928445850328,
+    "outputs/theory/beta_pilot/beta_pilot_text_r8/seed42/beta_results.json": null,
+    "outputs/theory/beta_pilot/beta_pilot_text_r8/seed456/beta_results.json": -0.00043700933554152005
+  },
+  "sgd_identity_check": {
+    "n": 9,
+    "correlation": 0.9976565439327731,
+    "median_relative_error": 0.02700361881564883
+  },
+  "pooled_recall": {
+    "n": 204,
+    "pearson_dg_cg": [
+      -0.7142063832158911,
+      -0.5939219057617993
+    ],
+    "stratified_n": 199
+  },
+  "noise_sigma_0.1": {
+    "vision": {
+      "mean": 1.898,
+      "sample_sd": 1.8322854581096255
+    },
+    "text": {
+      "mean": 2.4818,
+      "sample_sd": 3.2479803262950964
+    },
+    "vision_over_text": 0.7647675074542671
+  }
+}

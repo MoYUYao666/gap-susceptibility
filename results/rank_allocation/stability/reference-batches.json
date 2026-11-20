@@ -1,0 +1,158 @@
+{
+ "meta": {
+  "script": "tools/_p1509_p3_gamma_batch_sensitivity.py",
+  "task": "R3.4 reference-batch sensitivity",
+  "model": "CLIP ViT-B/32 + LoRA r=8",
+  "sizes": [
+   2,
+   4,
+   8,
+   16
+  ],
+  "n_draws": 3
+ },
+ "conditions": [
+  {
+   "n": 2,
+   "draw": 2,
+   "gamma": {
+    "text_shallow": -228.82455611228943,
+    "text_mid": -51.10156397397319,
+    "text_deep": -6.017722663780053,
+    "vision": -43.47608124379379
+   },
+   "gamma_sd": {
+    "text_shallow": 493.502444367787,
+    "text_mid": 109.20821145029052,
+    "text_deep": 5.53454995395946,
+    "vision": 52.79180690862702
+   },
+   "abs_order": [
+    "text_shallow",
+    "text_mid",
+    "vision",
+    "text_deep"
+   ],
+   "ranks": {
+    "text_shallow": 11,
+    "text_mid": 2,
+    "text_deep": 1,
+    "vision": 2
+   }
+  },
+  {
+   "n": 4,
+   "draw": 2,
+   "gamma": {
+    "text_shallow": -55.079356145734586,
+    "text_mid": -17.00759502314031,
+    "text_deep": -4.289735732289652,
+    "vision": -58.452152216729395
+   },
+   "gamma_sd": {
+    "text_shallow": 417.86208364165503,
+    "text_mid": 101.85513221856792,
+    "text_deep": 0.6533908055993383,
+    "vision": 25.686774002501853
+   },
+   "abs_order": [
+    "vision",
+    "text_shallow",
+    "text_mid",
+    "text_deep"
+   ],
+   "ranks": {
+    "text_shallow": 6,
+    "text_mid": 2,
+    "text_deep": 1,
+    "vision": 7
+   }
+  },
+  {
+   "n": 8,
+   "draw": 2,
+   "gamma": {
+    "text_shallow": -185.59183496671417,
+    "text_mid": -47.515509552011885,
+    "text_deep": -4.609563772256176,
+    "vision": -36.45159271782419
+   },
+   "gamma_sd": {
+    "text_shallow": 285.66144737755315,
+    "text_mid": 64.34612310144749,
+    "text_deep": 2.7562907319001027,
+    "vision": 21.006752812134092
+   },
+   "abs_order": [
+    "text_shallow",
+    "text_mid",
+    "vision",
+    "text_deep"
+   ],
+   "ranks": {
+    "text_shallow": 10,
+    "text_mid": 3,
+    "text_deep": 1,
+    "vision": 2
+   }
+  },
+  {
+   "n": 16,
+   "draw": 1,
+   "gamma": {
+    "text_shallow": -101.35086644557305,
+    "text_mid": -29.67953148856759,
+    "text_deep": -2.5971682989038527,
+    "vision": -26.39852272826829
+   },
+   "gamma_sd": {
+    "text_shallow": 147.8128072848655,
+    "text_mid": 40.40962066913319,
+    "text_deep": 1.3772682599271835,
+    "vision": 3.1028771995425473
+   },
+   "abs_order": [
+    "text_shallow",
+    "text_mid",
+    "vision",
+    "text_deep"
+   ],
+   "ranks": {
+    "text_shallow": 9,
+    "text_mid": 3,
+    "text_deep": 1,
+    "vision": 3
+   }
+  }
+ ],
+ "summary": {
+  "text_shallow": {
+   "mean": -142.71165341757782,
+   "sd": 78.83374109326544,
+   "cv": 0.5523987649599712,
+   "min": -228.82455611228943,
+   "max": -55.079356145734586
+  },
+  "text_mid": {
+   "mean": -36.32605000942324,
+   "sd": 15.925856641292022,
+   "cv": 0.4384142134132596,
+   "min": -51.10156397397319,
+   "max": -17.00759502314031
+  },
+  "text_deep": {
+   "mean": -4.378547616807434,
+   "sd": 1.4049274149438271,
+   "cv": 0.320866081152319,
+   "min": -6.017722663780053,
+   "max": -2.5971682989038527
+  },
+  "vision": {
+   "mean": -41.194587226653915,
+   "sd": 13.47155380654734,
+   "cv": 0.3270224248740842,
+   "min": -58.452152216729395,
+   "max": -26.39852272826829
+  }
+ }
+}

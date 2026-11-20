@@ -1,0 +1,520 @@
+{
+  "calibration_directions": {
+    "CG": -1,
+    "DG": -1,
+    "spec_eff_rank": 1,
+    "spec_top1_share": -1
+  },
+  "seeds": [
+    {
+      "seed": 45,
+      "raw_sha256": "e831876dfbb1fba18d0d25135035edd9d192255641c84a5fdb722eadea4e5b7f",
+      "forward_prefix": {
+        "exact": false,
+        "max_abs_by_field": {
+          "train_loss": 0.0,
+          "classification_top1": 0.0,
+          "R1_i2t": 0.0,
+          "R1_t2i": 0.0,
+          "ARI": 0.0,
+          "CG": 0.0,
+          "DG": 0.0,
+          "spec_eff_rank": 3.0517578125e-05,
+          "spec_top1_share": 0.0
+        }
+      },
+      "classification_and_i2t_equal": true,
+      "windows": {
+        "early": {
+          "steps": [
+            1,
+            2,
+            3
+          ],
+          "last_equal_four": 0.37653221193310626,
+          "oracle_headroom_equal_four": 0.0,
+          "oracle_headroom_equal_distinct": 0.0,
+          "proxy": {
+            "CG": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        },
+        "late": {
+          "steps": [
+            4,
+            5,
+            6
+          ],
+          "last_equal_four": 0.4451042137578266,
+          "oracle_headroom_equal_four": 0.03673281401752915,
+          "oracle_headroom_equal_distinct": 0.03642478410147543,
+          "proxy": {
+            "CG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        },
+        "all": {
+          "steps": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "last_equal_four": 0.4451042137578266,
+          "oracle_headroom_equal_four": 0.03673281401752915,
+          "oracle_headroom_equal_distinct": 0.03642478410147543,
+          "proxy": {
+            "CG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "raw_sha256": "13bd35645230b7340ba4496546035f3c0be8730c1cbb8b88edcfde1aca73fed4",
+      "forward_prefix": {
+        "exact": false,
+        "max_abs_by_field": {
+          "train_loss": 0.0,
+          "classification_top1": 0.0,
+          "R1_i2t": 0.0,
+          "R1_t2i": 0.0,
+          "ARI": 0.0,
+          "CG": 0.0,
+          "DG": 0.0,
+          "spec_eff_rank": 3.0517578125e-05,
+          "spec_top1_share": 0.0
+        }
+      },
+      "classification_and_i2t_equal": true,
+      "windows": {
+        "early": {
+          "steps": [
+            1,
+            2,
+            3
+          ],
+          "last_equal_four": 0.3963079347901784,
+          "oracle_headroom_equal_four": 0.0,
+          "oracle_headroom_equal_distinct": 0.0,
+          "proxy": {
+            "CG": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        },
+        "late": {
+          "steps": [
+            4,
+            5,
+            6
+          ],
+          "last_equal_four": 0.4681194743988908,
+          "oracle_headroom_equal_four": 0.0,
+          "oracle_headroom_equal_distinct": 0.0,
+          "proxy": {
+            "CG": {
+              "chosen": 5,
+              "gain_equal_four": -0.0016317283905101787,
+              "gain_equal_distinct": -0.0035703379934837187
+            },
+            "DG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 5,
+              "gain_equal_four": -0.0016317283905101787,
+              "gain_equal_distinct": -0.0035703379934837187
+            }
+          }
+        },
+        "all": {
+          "steps": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "last_equal_four": 0.4681194743988908,
+          "oracle_headroom_equal_four": 0.0,
+          "oracle_headroom_equal_distinct": 0.0,
+          "proxy": {
+            "CG": {
+              "chosen": 5,
+              "gain_equal_four": -0.0016317283905101787,
+              "gain_equal_distinct": -0.0035703379934837187
+            },
+            "DG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 5,
+              "gain_equal_four": -0.0016317283905101787,
+              "gain_equal_distinct": -0.0035703379934837187
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 47,
+      "raw_sha256": "1cd4e398873068e6c7a833038976190b811701a120b2b0ba8bd2f7044d1ac29f",
+      "forward_prefix": {
+        "exact": true,
+        "max_abs_by_field": {
+          "train_loss": 0.0,
+          "classification_top1": 0.0,
+          "R1_i2t": 0.0,
+          "R1_t2i": 0.0,
+          "ARI": 0.0,
+          "CG": 0.0,
+          "DG": 0.0,
+          "spec_eff_rank": 0.0,
+          "spec_top1_share": 0.0
+        }
+      },
+      "classification_and_i2t_equal": true,
+      "windows": {
+        "early": {
+          "steps": [
+            1,
+            2,
+            3
+          ],
+          "last_equal_four": 0.4232064560518689,
+          "oracle_headroom_equal_four": 0.0,
+          "oracle_headroom_equal_distinct": 0.0,
+          "proxy": {
+            "CG": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        },
+        "late": {
+          "steps": [
+            4,
+            5,
+            6
+          ],
+          "last_equal_four": 0.4838230563156772,
+          "oracle_headroom_equal_four": 0.0,
+          "oracle_headroom_equal_distinct": 0.0,
+          "proxy": {
+            "CG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        },
+        "all": {
+          "steps": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "last_equal_four": 0.4838230563156772,
+          "oracle_headroom_equal_four": 0.0,
+          "oracle_headroom_equal_distinct": 0.0,
+          "proxy": {
+            "CG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 48,
+      "raw_sha256": "d963541132600ce392676af1a5cad3291ca33c5d55e8e6c21e9bb666e492756c",
+      "forward_prefix": {
+        "exact": false,
+        "max_abs_by_field": {
+          "train_loss": 0.0,
+          "classification_top1": 0.0,
+          "R1_i2t": 0.0,
+          "R1_t2i": 0.0,
+          "ARI": 0.0,
+          "CG": 0.0,
+          "DG": 0.0,
+          "spec_eff_rank": 3.0517578125e-05,
+          "spec_top1_share": 0.0
+        }
+      },
+      "classification_and_i2t_equal": true,
+      "windows": {
+        "early": {
+          "steps": [
+            1,
+            2,
+            3
+          ],
+          "last_equal_four": 0.38706708796263944,
+          "oracle_headroom_equal_four": 0.0,
+          "oracle_headroom_equal_distinct": 0.0,
+          "proxy": {
+            "CG": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_eff_rank": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 3,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        },
+        "late": {
+          "steps": [
+            4,
+            5,
+            6
+          ],
+          "last_equal_four": 0.4420721689990609,
+          "oracle_headroom_equal_four": 0.020901281666424798,
+          "oracle_headroom_equal_distinct": 0.026473675415763065,
+          "proxy": {
+            "CG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 5,
+              "gain_equal_four": 0.020901281666424798,
+              "gain_equal_distinct": 0.026473675415763065
+            },
+            "spec_eff_rank": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        },
+        "all": {
+          "steps": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "last_equal_four": 0.4420721689990609,
+          "oracle_headroom_equal_four": 0.020901281666424798,
+          "oracle_headroom_equal_distinct": 0.026473675415763065,
+          "proxy": {
+            "CG": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "DG": {
+              "chosen": 5,
+              "gain_equal_four": 0.020901281666424798,
+              "gain_equal_distinct": 0.026473675415763065
+            },
+            "spec_eff_rank": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            },
+            "spec_top1_share": {
+              "chosen": 6,
+              "gain_equal_four": 0.0,
+              "gain_equal_distinct": 0.0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "eval_seed_count": 2,
+  "eval_means": {
+    "early": {
+      "mean_gain_equal_four": {
+        "CG": 0.0,
+        "DG": 0.0,
+        "spec_eff_rank": 0.0,
+        "spec_top1_share": 0.0
+      },
+      "mean_oracle_headroom_equal_four": 0.0
+    },
+    "late": {
+      "mean_gain_equal_four": {
+        "CG": 0.0,
+        "DG": 0.010450640833212399,
+        "spec_eff_rank": 0.0,
+        "spec_top1_share": 0.0
+      },
+      "mean_oracle_headroom_equal_four": 0.010450640833212399
+    },
+    "all": {
+      "mean_gain_equal_four": {
+        "CG": 0.0,
+        "DG": 0.010450640833212399,
+        "spec_eff_rank": 0.0,
+        "spec_top1_share": 0.0
+      },
+      "mean_oracle_headroom_equal_four": 0.010450640833212399
+    }
+  }
+}

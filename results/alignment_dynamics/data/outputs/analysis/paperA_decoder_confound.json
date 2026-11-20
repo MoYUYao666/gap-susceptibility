@@ -1,0 +1,582 @@
+{
+  "models": {
+    "qwen2_vl_2b": {
+      "model": "Qwen2-VL-2B-Instruct",
+      "archive_dir": "outputs/vlm_clean_cloud",
+      "per_run_glob": "outputs/vlm_clean_cloud/{arm}_seed*.json",
+      "producer_script": "tools/_p1150_qwen_clean_sweep.py",
+      "baseline_producer_script": "tools/_p1163_qwen_frozen_baseline.py",
+      "objective": "symmetric InfoNCE contrastive loss on the unprojected pooled image-text pair",
+      "gap_field": "dg_star (3-element list, one entry per epoch; value used here is index 2 = epoch 3)",
+      "baseline_field": "dg_star",
+      "baseline_file": "outputs/vlm_clean_cloud/frozen_baseline.json",
+      "baseline_value": 0.7778259515762329,
+      "n_pairs_evaluated": 320,
+      "gpu_class": "single 32 GB cloud instance, bfloat16",
+      "arms": {
+        "text_only": {
+          "n": 13,
+          "baseline_value": 0.7778259515762329,
+          "per_seed_after": [
+            0.02409702912,
+            0.023769266903,
+            0.025162328035,
+            0.024057449773,
+            0.024300325662,
+            0.022762473673,
+            0.025240803137,
+            0.026297569275,
+            0.023965377361,
+            0.032166842371,
+            0.026383001357,
+            0.026685154065,
+            0.024381775409
+          ],
+          "mean_after": 0.025328415088,
+          "mean_signed_change_pct": -96.743691,
+          "median_signed_change_pct": -96.865394,
+          "sd_population_pct": 0.291101,
+          "sd_sample_pct": 0.302987,
+          "min_signed_change_pct": -97.073577,
+          "max_signed_change_pct": -95.864519,
+          "n_runs_gap_narrowed": 13,
+          "n_runs_gap_widened": 0,
+          "source_files": [
+            "outputs/vlm_clean_cloud/text_only_seed42.json",
+            "outputs/vlm_clean_cloud/text_only_seed123.json",
+            "outputs/vlm_clean_cloud/text_only_seed456.json",
+            "outputs/vlm_clean_cloud/text_only_seed789.json",
+            "outputs/vlm_clean_cloud/text_only_seed1011.json",
+            "outputs/vlm_clean_cloud/text_only_seed1313.json",
+            "outputs/vlm_clean_cloud/text_only_seed1616.json",
+            "outputs/vlm_clean_cloud/text_only_seed1919.json",
+            "outputs/vlm_clean_cloud/text_only_seed2323.json",
+            "outputs/vlm_clean_cloud/text_only_seed2727.json",
+            "outputs/vlm_clean_cloud/text_only_seed3131.json",
+            "outputs/vlm_clean_cloud/text_only_seed3737.json",
+            "outputs/vlm_clean_cloud/text_only_seed4141.json"
+          ],
+          "seeds": [
+            42,
+            123,
+            456,
+            789,
+            1011,
+            1313,
+            1616,
+            1919,
+            2323,
+            2727,
+            3131,
+            3737,
+            4141
+          ],
+          "legacy_projected_construction": {
+            "field": "legacy_dg_star[2]",
+            "mean_after": 2.010294
+          },
+          "manuscript_reduction_pct": 96.74,
+          "manuscript_sd_pct": 0.29,
+          "manuscript_seed_range_pct": [
+            95.86,
+            97.07
+          ],
+          "reduction_seed_range_pct": [
+            95.86,
+            97.07
+          ]
+        },
+        "vision_only": {
+          "n": 13,
+          "baseline_value": 0.7778259515762329,
+          "per_seed_after": [
+            0.086772255599,
+            0.077706754208,
+            0.083397805691,
+            0.087016873062,
+            0.080344669521,
+            0.073934972286,
+            0.100492931902,
+            0.072063423693,
+            0.07242128998,
+            0.082309313118,
+            0.079151578248,
+            0.081913940609,
+            0.093578159809
+          ],
+          "mean_after": 0.082392612902,
+          "mean_signed_change_pct": -89.40732,
+          "median_signed_change_pct": -89.46886,
+          "sd_population_pct": 1.014102,
+          "sd_sample_pct": 1.055511,
+          "min_signed_change_pct": -90.735277,
+          "max_signed_change_pct": -87.08028,
+          "n_runs_gap_narrowed": 13,
+          "n_runs_gap_widened": 0,
+          "source_files": [
+            "outputs/vlm_clean_cloud/vision_only_seed42.json",
+            "outputs/vlm_clean_cloud/vision_only_seed123.json",
+            "outputs/vlm_clean_cloud/vision_only_seed456.json",
+            "outputs/vlm_clean_cloud/vision_only_seed789.json",
+            "outputs/vlm_clean_cloud/vision_only_seed1011.json",
+            "outputs/vlm_clean_cloud/vision_only_seed1313.json",
+            "outputs/vlm_clean_cloud/vision_only_seed1616.json",
+            "outputs/vlm_clean_cloud/vision_only_seed1919.json",
+            "outputs/vlm_clean_cloud/vision_only_seed2323.json",
+            "outputs/vlm_clean_cloud/vision_only_seed2727.json",
+            "outputs/vlm_clean_cloud/vision_only_seed3131.json",
+            "outputs/vlm_clean_cloud/vision_only_seed3737.json",
+            "outputs/vlm_clean_cloud/vision_only_seed4141.json"
+          ],
+          "seeds": [
+            42,
+            123,
+            456,
+            789,
+            1011,
+            1313,
+            1616,
+            1919,
+            2323,
+            2727,
+            3131,
+            3737,
+            4141
+          ],
+          "legacy_projected_construction": {
+            "field": "legacy_dg_star[2]",
+            "mean_after": 2.03217
+          },
+          "manuscript_reduction_pct": 89.41,
+          "manuscript_sd_pct": 1.01,
+          "manuscript_seed_range_pct": [
+            87.08,
+            90.74
+          ],
+          "reduction_seed_range_pct": [
+            87.08,
+            90.74
+          ]
+        },
+        "both": {
+          "n": 13,
+          "baseline_value": 0.7778259515762329,
+          "per_seed_after": [
+            0.008883091621,
+            0.009064002894,
+            0.014653119259,
+            0.017761290073,
+            0.010404399596,
+            0.013780531473,
+            0.012913572602,
+            0.007663817611,
+            0.004331696779,
+            0.013342919759,
+            0.012077428401,
+            0.007899142802,
+            0.012084464543
+          ],
+          "mean_after": 0.011143036724,
+          "mean_signed_change_pct": -98.567413,
+          "median_signed_change_pct": -98.447284,
+          "sd_population_pct": 0.439335,
+          "sd_sample_pct": 0.457274,
+          "min_signed_change_pct": -99.443102,
+          "max_signed_change_pct": -97.716547,
+          "n_runs_gap_narrowed": 13,
+          "n_runs_gap_widened": 0,
+          "source_files": [
+            "outputs/vlm_clean_cloud/both_seed42.json",
+            "outputs/vlm_clean_cloud/both_seed123.json",
+            "outputs/vlm_clean_cloud/both_seed456.json",
+            "outputs/vlm_clean_cloud/both_seed789.json",
+            "outputs/vlm_clean_cloud/both_seed1011.json",
+            "outputs/vlm_clean_cloud/both_seed1313.json",
+            "outputs/vlm_clean_cloud/both_seed1616.json",
+            "outputs/vlm_clean_cloud/both_seed1919.json",
+            "outputs/vlm_clean_cloud/both_seed2323.json",
+            "outputs/vlm_clean_cloud/both_seed2727.json",
+            "outputs/vlm_clean_cloud/both_seed3131.json",
+            "outputs/vlm_clean_cloud/both_seed3737.json",
+            "outputs/vlm_clean_cloud/both_seed4141.json"
+          ],
+          "seeds": [
+            42,
+            123,
+            456,
+            789,
+            1011,
+            1313,
+            1616,
+            1919,
+            2323,
+            2727,
+            3131,
+            3737,
+            4141
+          ],
+          "legacy_projected_construction": {
+            "field": "legacy_dg_star[2]",
+            "mean_after": 2.01921
+          },
+          "manuscript_reduction_pct": 98.57,
+          "manuscript_sd_pct": 0.44,
+          "manuscript_seed_range_pct": [
+            97.72,
+            99.44
+          ],
+          "reduction_seed_range_pct": [
+            97.72,
+            99.44
+          ]
+        }
+      },
+      "dispersion_convention": null,
+      "derived_summary_check": {
+        "file": "outputs/vlm_clean_summary.json",
+        "n_records": 39,
+        "problems": [],
+        "agrees_with_recomputation": true
+      }
+    },
+    "llava_1_5_7b": {
+      "model": "LLaVA-1.5-7B",
+      "manuscript_table": null,
+      "archive_file": "outputs/canonical_caption_metric.json",
+      "producer_script": "tools/_p1145_clean_gap_measure.py",
+      "adapter_training_script": "tools/_p820_llava_sites.py",
+      "objective": "caption-generation causal-LM cross-entropy (out.loss with labels)",
+      "gap_field": "runs.<tag>.<kind>.dg_star",
+      "baseline_field": "runs.frozen.<kind>.dg_star",
+      "n_eval_pairs": 500,
+      "gpu_class": "single 32 GB cloud instance, bfloat16",
+      "constructions": {
+        "clean": {
+          "text_side": "caption-token positions, labels != -100",
+          "is_manuscript_construction": true,
+          "baseline_value": 0.3565603693326314,
+          "baseline_source": "outputs/canonical_caption_metric.json::runs.frozen.clean.dg_star",
+          "arms": {
+            "text_only": {
+              "n": 3,
+              "baseline_value": 0.3565603693326314,
+              "per_seed_after": [
+                0.597620748338,
+                0.655786006224,
+                0.600020847623
+              ],
+              "mean_after": 0.617809200728,
+              "mean_signed_change_pct": 73.269172,
+              "median_signed_change_pct": 68.280297,
+              "sd_population_pct": 7.536319,
+              "sd_sample_pct": 9.230068,
+              "min_signed_change_pct": 67.607171,
+              "max_signed_change_pct": 83.920049,
+              "n_runs_gap_narrowed": 0,
+              "n_runs_gap_widened": 3,
+              "source_files": [
+                "outputs/canonical_caption_metric.json::runs.text_only_s42.clean.dg_star",
+                "outputs/canonical_caption_metric.json::runs.text_only_s123.clean.dg_star",
+                "outputs/canonical_caption_metric.json::runs.text_only_s456.clean.dg_star"
+              ],
+              "manuscript_change_pct": 73.27,
+              "manuscript_sd_pct": 7.54,
+              "manuscript_spread_range_pct": [
+                67.61,
+                83.92
+              ]
+            },
+            "vision_only": {
+              "n": 3,
+              "baseline_value": 0.3565603693326314,
+              "per_seed_after": [
+                0.711438915086,
+                0.8066100762,
+                0.851031056472
+              ],
+              "mean_after": 0.789693349253,
+              "mean_signed_change_pct": 121.475357,
+              "median_signed_change_pct": 126.219778,
+              "sd_population_pct": 16.331074,
+              "sd_sample_pct": 20.001399,
+              "min_signed_change_pct": 99.52832,
+              "max_signed_change_pct": 138.677971,
+              "n_runs_gap_narrowed": 0,
+              "n_runs_gap_widened": 3,
+              "source_files": [
+                "outputs/canonical_caption_metric.json::runs.vision_only_s42.clean.dg_star",
+                "outputs/canonical_caption_metric.json::runs.vision_only_s123.clean.dg_star",
+                "outputs/canonical_caption_metric.json::runs.vision_only_s456.clean.dg_star"
+              ],
+              "manuscript_change_pct": 121.48,
+              "manuscript_sd_pct": 16.33,
+              "manuscript_spread_range_pct": [
+                99.53,
+                138.68
+              ]
+            },
+            "both": {
+              "n": 3,
+              "baseline_value": 0.3565603693326314,
+              "per_seed_after": [
+                0.663362356405,
+                0.697110845929,
+                0.732477440721
+              ],
+              "mean_after": 0.697650214352,
+              "mean_signed_change_pct": 95.661177,
+              "median_signed_change_pct": 95.509907,
+              "sd_population_pct": 7.914142,
+              "sd_sample_pct": 9.692804,
+              "min_signed_change_pct": 86.044893,
+              "max_signed_change_pct": 105.428731,
+              "n_runs_gap_narrowed": 0,
+              "n_runs_gap_widened": 3,
+              "source_files": [
+                "outputs/canonical_caption_metric.json::runs.both_s42.clean.dg_star",
+                "outputs/canonical_caption_metric.json::runs.both_s123.clean.dg_star",
+                "outputs/canonical_caption_metric.json::runs.both_s456.clean.dg_star"
+              ],
+              "manuscript_change_pct": 95.66,
+              "manuscript_sd_pct": 7.91,
+              "manuscript_spread_range_pct": [
+                86.04,
+                105.43
+              ]
+            }
+          }
+        },
+        "prompt": {
+          "text_side": "instruction prompt (no caption in the sequence)",
+          "is_manuscript_construction": false,
+          "baseline_value": 0.3885019256008996,
+          "baseline_source": "outputs/canonical_caption_metric.json::runs.frozen.prompt.dg_star",
+          "arms": {
+            "text_only": {
+              "n": 3,
+              "baseline_value": 0.3885019256008996,
+              "per_seed_after": [
+                0.600868297002,
+                0.646670553419,
+                0.584970777943
+              ],
+              "mean_after": 0.610836542788,
+              "mean_signed_change_pct": 57.228704,
+              "median_signed_change_pct": 54.662888,
+              "sd_population_pct": 6.732644,
+              "sd_sample_pct": 8.245772,
+              "min_signed_change_pct": 50.570883,
+              "max_signed_change_pct": 66.452342,
+              "n_runs_gap_narrowed": 0,
+              "n_runs_gap_widened": 3,
+              "source_files": [
+                "outputs/canonical_caption_metric.json::runs.text_only_s42.prompt.dg_star",
+                "outputs/canonical_caption_metric.json::runs.text_only_s123.prompt.dg_star",
+                "outputs/canonical_caption_metric.json::runs.text_only_s456.prompt.dg_star"
+              ]
+            },
+            "vision_only": {
+              "n": 3,
+              "baseline_value": 0.3885019256008996,
+              "per_seed_after": [
+                0.665241056965,
+                0.769388761785,
+                0.814197607457
+              ],
+              "mean_after": 0.749609142069,
+              "mean_signed_change_pct": 92.94863,
+              "median_signed_change_pct": 98.039884,
+              "sd_population_pct": 16.061419,
+              "sd_sample_pct": 19.671141,
+              "min_signed_change_pct": 71.232371,
+              "max_signed_change_pct": 109.573635,
+              "n_runs_gap_narrowed": 0,
+              "n_runs_gap_widened": 3,
+              "source_files": [
+                "outputs/canonical_caption_metric.json::runs.vision_only_s42.prompt.dg_star",
+                "outputs/canonical_caption_metric.json::runs.vision_only_s123.prompt.dg_star",
+                "outputs/canonical_caption_metric.json::runs.vision_only_s456.prompt.dg_star"
+              ]
+            },
+            "both": {
+              "n": 3,
+              "baseline_value": 0.3885019256008996,
+              "per_seed_after": [
+                0.649453406296,
+                0.680432458719,
+                0.712559331977
+              ],
+              "mean_after": 0.680815065664,
+              "mean_signed_change_pct": 75.241105,
+              "median_signed_change_pct": 75.142622,
+              "sd_population_pct": 6.631706,
+              "sd_sample_pct": 8.122148,
+              "min_signed_change_pct": 67.168645,
+              "max_signed_change_pct": 83.412046,
+              "n_runs_gap_narrowed": 0,
+              "n_runs_gap_widened": 3,
+              "source_files": [
+                "outputs/canonical_caption_metric.json::runs.both_s42.prompt.dg_star",
+                "outputs/canonical_caption_metric.json::runs.both_s123.prompt.dg_star",
+                "outputs/canonical_caption_metric.json::runs.both_s456.prompt.dg_star"
+              ]
+            }
+          }
+        }
+      },
+      "dispersion_convention": "population sd (ddof=0) of the three per-seed signed changes; the sample sd (ddof=1) is a factor sqrt(3/2)=1.225 larger and does not reproduce Table G",
+      "second_construction_same_adapters": {
+        "manuscript_table": null,
+        "archive_dir": "outputs/llava_canonical_cloud",
+        "producer_script": "tools/_p820_llava_sites.py",
+        "gap_field": "dg_star_rel_change (already a signed relative change; multiplied by 100)",
+        "baseline": "the frozen arm's own drg_star_rel_change is the measurement floor, not a zero point; the untrained value under this construction is dg_star_before = 0.814593874491178 shared by every run",
+        "untrained_dg_star_before": 0.814593874491178,
+        "frozen_arm_floor_pct": 0.649902,
+        "arms": {
+          "text_only": {
+            "n": 3,
+            "per_seed_signed_change_pct": [
+              40.764631,
+              39.097481,
+              27.17258
+            ],
+            "mean_signed_change_pct": 35.678231,
+            "sd_population_pct": 6.052791,
+            "sd_sample_pct": 7.413124,
+            "min_signed_change_pct": 27.17258,
+            "max_signed_change_pct": 40.764631,
+            "n_runs_gap_narrowed": 0,
+            "n_runs_gap_widened": 3,
+            "source_files": [
+              "outputs/llava_canonical_cloud/text_only_s42.json",
+              "outputs/llava_canonical_cloud/text_only_s123.json",
+              "outputs/llava_canonical_cloud/text_only_s456.json"
+            ]
+          },
+          "vision_only": {
+            "n": 3,
+            "per_seed_signed_change_pct": [
+              -1.507789,
+              19.896265,
+              3.322381
+            ],
+            "mean_signed_change_pct": 7.236952,
+            "sd_population_pct": 9.166107,
+            "sd_sample_pct": 11.226143,
+            "min_signed_change_pct": -1.507789,
+            "max_signed_change_pct": 19.896265,
+            "n_runs_gap_narrowed": 1,
+            "n_runs_gap_widened": 2,
+            "source_files": [
+              "outputs/llava_canonical_cloud/vision_only_s42.json",
+              "outputs/llava_canonical_cloud/vision_only_s123.json",
+              "outputs/llava_canonical_cloud/vision_only_s456.json"
+            ]
+          },
+          "both": {
+            "n": 3,
+            "per_seed_signed_change_pct": [
+              31.010911,
+              34.278757,
+              34.760527
+            ],
+            "mean_signed_change_pct": 33.350065,
+            "sd_population_pct": 1.665684,
+            "sd_sample_pct": 2.040038,
+            "min_signed_change_pct": 31.010911,
+            "max_signed_change_pct": 34.760527,
+            "n_runs_gap_narrowed": 0,
+            "n_runs_gap_widened": 3,
+            "source_files": [
+              "outputs/llava_canonical_cloud/both_s42.json",
+              "outputs/llava_canonical_cloud/both_s123.json",
+              "outputs/llava_canonical_cloud/both_s456.json"
+            ]
+          }
+        }
+      },
+      "adapters_present": [
+        "both_s123_ckpt.pt",
+        "both_s42_ckpt.pt",
+        "both_s456_ckpt.pt",
+        "text_only_s123_ckpt.pt",
+        "text_only_s42_ckpt.pt",
+        "text_only_s456_ckpt.pt",
+        "vision_only_s123_ckpt.pt",
+        "vision_only_s42_ckpt.pt",
+        "vision_only_s456_ckpt.pt"
+      ]
+    }
+  },
+  "factor_table": {
+    "controlled_identical": [
+      "arm definition (text_only / vision_only / both, split by tower name)",
+      "strict freezing (only adapter matrices trainable, backbone frozen)",
+      "LoRA rank 8",
+      "epochs 3",
+      "batch size 2",
+      "learning rate 1e-4",
+      "precision bfloat16",
+      "image side of DG* (mean pool over image-token positions, L2, no projection)",
+      "DG* as paired squared distance (mean_i ||I_i - T_i||^2)",
+      "three-arm design reported against an untrained baseline"
+    ],
+    "varies": [
+      {
+        "factor": "training objective / loss",
+        "qwen": "symmetric InfoNCE contrastive on the unprojected pooled pair (tools/_p1150_qwen_clean_sweep.py line 253)",
+        "llava": "caption-generation causal-LM cross-entropy (tools/_p820_llava_sites.py, out.loss with labels)",
+        "separated_by_archive": false
+      },
+      {
+        "factor": "parameter scale",
+        "qwen": "2B (Qwen2-VL-2B-Instruct)",
+        "llava": "7B (LLaVA-1.5-7B)",
+        "separated_by_archive": false
+      },
+      {
+        "factor": "base model family",
+        "qwen": "Qwen2-VL (Qwen vision encoder + Qwen2 language model)",
+        "llava": "LLaVA-1.5 (CLIP ViT-L/14-336 vision tower + Vicuna-7B language model)",
+        "separated_by_archive": false
+      },
+      {
+        "factor": "training dataset",
+        "qwen": "Flickr30k, 400 annotated images yielding 320 image-caption pairs",
+        "llava": "MS-COCO, 1500 training pairs and 500 held-out pairs",
+        "separated_by_archive": false
+      },
+      {
+        "factor": "training-set size (pairs)",
+        "qwen": "320",
+        "llava": "1500",
+        "separated_by_archive": false
+      },
+      {
+        "factor": "evaluation-pair count",
+        "qwen": "320 (outputs/vlm_clean_cloud/frozen_baseline.json:n_pairs)",
+        "llava": "500 (outputs/llava_canonical_cloud/frozen_s42.json:n_eval; read in 63 batches per outputs/canonical_caption_metric.json:runs.frozen.clean.n_batches)",
+        "separated_by_archive": false
+      },
+      {
+        "factor": "seeds per arm",
+        "qwen": "13",
+        "llava": "3",
+        "separated_by_archive": false
+      },
+      {
+        "factor": "adaptation site / target modules",
+        "qwen": "LoRA alpha 16, dropout 0.05, tower-specific target modules (vision attn.qkv/attn.proj/mlp.fc1/fc2; language 7 projections)",
+        "llava": "LoRA on vision_model encoder projections, language_model projections and multi_modal_projector.linear_1/linear_2",
+        "separated_by_archive": false
+      },
+      {
+        "factor": "text-side convention of the DG* measurement",
+        "qwen": "caption positions after the last image token up to <|im_end|> (tools/_p1150_qwen_clean_sweep.py)",
+        "llava": "caption-token positions, labels != -100 (tools/_p1145_clean_gap_measure.py)",
+        "separated_by_archive": true
+      }
+    ]
+  }
+}

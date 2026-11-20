@@ -1,0 +1,129 @@
+{
+  "campaign": {
+    "n_runs": 18,
+    "n_checkpoints": 72,
+    "pair_counts": {
+      "0.01": 254,
+      "0.02": 487,
+      "0.03": 670,
+      "0.05": 945
+    },
+    "widest": {
+      "all": {
+        "dCG": 0.024187684059143066,
+        "dtop1": 48.5,
+        "signed_a_minus_b_ci95": [
+          -50.0,
+          -47.0195
+        ],
+        "oriented_spread_ci95": [
+          47.0195,
+          50.0
+        ]
+      },
+      "within_run": {
+        "dCG": 0.012547194957733154,
+        "dtop1": 19.599999999999998,
+        "signed_a_minus_b_ci95": [
+          18.3995,
+          20.86
+        ],
+        "oriented_spread_ci95": [
+          18.3995,
+          20.86
+        ]
+      }
+    }
+  },
+  "matched_gap": {
+    "0.03": {
+      "spread": 32.68000000000001,
+      "dCG": 0.028249770402908325
+    },
+    "0.05": {
+      "spread": 52.14,
+      "dCG": 0.03796541690826416
+    }
+  },
+  "monitor": {
+    "n_runs": 20,
+    "n_checkpoints": 200,
+    "rules": {
+      "minM": {
+        "mean_regret": 1.7019667392271125,
+        "max_regret": 10.0,
+        "n_runs": 20,
+        "n_checkpoints": 200
+      },
+      "seqM": {
+        "mean_regret": 3.8179493481263003,
+        "max_regret": 27.77777777777777,
+        "n_runs": 20,
+        "n_checkpoints": 200
+      },
+      "minCG": {
+        "mean_regret": 1.8892151183203425,
+        "max_regret": 9.722222222222214,
+        "n_runs": 20,
+        "n_checkpoints": 200
+      },
+      "seqCG": {
+        "mean_regret": 3.1420063548908077,
+        "max_regret": 13.333333333333336,
+        "n_runs": 20,
+        "n_checkpoints": 200
+      },
+      "minEntropy": {
+        "mean_regret": 1.9108267209699683,
+        "max_regret": 5.55555555555555,
+        "n_runs": 8,
+        "n_checkpoints": 80
+      },
+      "maxSoftmax": {
+        "mean_regret": 2.2592265875523703,
+        "max_regret": 5.55555555555555,
+        "n_runs": 8,
+        "n_checkpoints": 80
+      },
+      "maxLogit": {
+        "mean_regret": 3.911922442244226,
+        "max_regret": 13.333333333333336,
+        "n_runs": 8,
+        "n_checkpoints": 80
+      },
+      "minEnergy": {
+        "mean_regret": 3.7411713245792653,
+        "max_regret": 13.333333333333336,
+        "n_runs": 8,
+        "n_checkpoints": 80
+      },
+      "first": {
+        "mean_regret": 7.246022341595862,
+        "max_regret": 36.11111111111111,
+        "n_runs": 20,
+        "n_checkpoints": 200
+      },
+      "last": {
+        "mean_regret": 1.3168989771317545,
+        "max_regret": 5.55555555555555,
+        "n_runs": 20,
+        "n_checkpoints": 200
+      }
+    },
+    "split": {
+      "small": {
+        "n_runs": 4,
+        "mean_regret_minM": 6.180555555555555,
+        "mean_regret_last_epoch": 4.5138888888888875,
+        "mean_regret_first_epoch": 22.04861111111111
+      },
+      "large": {
+        "n_runs": 16,
+        "mean_regret_minM": 0.5823195351450017,
+        "mean_regret_last_epoch": 0.5176514991924712,
+        "mean_regret_first_epoch": 3.54537514921705
+      }
+    },
+    "pooled_M": -0.9766248771730883
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "adapted_modules_count": 60,
+  "adapted_suffixes": [
+    "c_fc",
+    "c_proj",
+    "out_proj"
+  ],
+  "batch": 32,
+  "corpus": "corpora/nwpu_captions/metadata.jsonl",
+  "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "epochs": 2,
+  "eval_pairs": 1024,
+  "final_loss": 0.4861,
+  "generated": "2026-10-29T13:54:46",
+  "images_root": "data/nwpu_captions",
+  "loss_first": 2.6427,
+  "max_pairs": 0,
+  "metrics": {
+    "R@10_i2t": 0.6914,
+    "R@10_t2i": 0.667,
+    "R@1_i2t": 0.1865,
+    "R@1_t2i": 0.1807,
+    "R@5_i2t": 0.5215,
+    "R@5_t2i": 0.5098,
+    "alignment": 1.0987,
+    "modality_gap": 0.7745,
+    "uniformity_image": -1.8034,
+    "uniformity_text": -1.8663
+  },
+  "pairs_used": 25200,
+  "peak_vram_gb": 2.138,
+  "seed": 0,
+  "site": "both",
+  "torch": "2.9.1+cu130",
+  "total_params": 152653569,
+  "trainable_params": 1376256,
+  "trainable_share": 0.009016,
+  "wall_seconds": 356.6
+}

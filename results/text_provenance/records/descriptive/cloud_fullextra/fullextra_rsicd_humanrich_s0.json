@@ -1,0 +1,39 @@
+{
+  "adapted_modules_count": 60,
+  "adapted_suffixes": [
+    "c_fc",
+    "c_proj",
+    "out_proj"
+  ],
+  "batch": 32,
+  "corpus": "corpora/rsicd/humanrich.jsonl",
+  "device": "NVIDIA vGPU-32GB",
+  "epochs": 2,
+  "eval_pairs": 1024,
+  "final_loss": 0.1122,
+  "generated": "2026-10-29T16:54:19",
+  "images_root": "data/rsicd",
+  "loss_first": 0.2161,
+  "max_pairs": 0,
+  "metrics": {
+    "R@10_i2t": 0.6904,
+    "R@10_t2i": 0.71,
+    "R@1_i2t": 0.1992,
+    "R@1_t2i": 0.2188,
+    "R@5_i2t": 0.5049,
+    "R@5_t2i": 0.5244,
+    "alignment": 1.3809,
+    "modality_gap": 0.7788,
+    "uniformity_image": -1.9046,
+    "uniformity_text": -2.5195
+  },
+  "pairs_used": 8734,
+  "peak_vram_gb": 2.134,
+  "seed": 0,
+  "site": "both",
+  "torch": "2.12.1+cu130",
+  "total_params": 152653569,
+  "trainable_params": 1376256,
+  "trainable_share": 0.009016,
+  "wall_seconds": 84.7
+}

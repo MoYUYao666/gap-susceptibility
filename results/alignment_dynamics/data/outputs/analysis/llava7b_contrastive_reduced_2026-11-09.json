@@ -1,0 +1,26 @@
+{
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "protocol": "reduced",
+  "objective": "contrastive",
+  "seed": 42,
+  "rows": [
+    {
+      "arm": "both",
+      "frozen_dg_star": 0.457764,
+      "final_dg_star": 0.3396,
+      "delta_dg_percent": -25.81
+    },
+    {
+      "arm": "text_only",
+      "frozen_dg_star": 0.457764,
+      "final_dg_star": 0.368164,
+      "delta_dg_percent": -19.57
+    },
+    {
+      "arm": "vision_only",
+      "frozen_dg_star": 0.457764,
+      "final_dg_star": 0.431152,
+      "delta_dg_percent": -5.81
+    }
+  ]
+}

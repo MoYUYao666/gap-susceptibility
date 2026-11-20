@@ -1,0 +1,39 @@
+{
+  "adapted_modules_count": 96,
+  "adapted_suffixes": [
+    "c_fc",
+    "c_proj",
+    "out_proj"
+  ],
+  "batch": 8,
+  "corpus": "corpora/rsicd/segmented.jsonl",
+  "device": "NVIDIA vGPU-32GB",
+  "epochs": 2,
+  "eval_pairs": 1024,
+  "final_loss": 0.2112,
+  "generated": "2026-10-29T15:17:29",
+  "images_root": "data/rsicd",
+  "loss_first": 0.5596,
+  "max_pairs": 10000,
+  "metrics": {
+    "R@10_i2t": 0.5078,
+    "R@10_t2i": 0.5059,
+    "R@1_i2t": 0.1045,
+    "R@1_t2i": 0.0957,
+    "R@5_i2t": 0.3369,
+    "R@5_t2i": 0.3467,
+    "alignment": 1.4928,
+    "modality_gap": 1.0053,
+    "uniformity_image": -1.3101,
+    "uniformity_text": -1.6442
+  },
+  "pairs_used": 8734,
+  "peak_vram_gb": 4.737,
+  "seed": 0,
+  "site": "both",
+  "torch": "2.12.1+cu130",
+  "total_params": 430713089,
+  "trainable_params": 3096576,
+  "trainable_share": 0.007189,
+  "wall_seconds": 537.2
+}

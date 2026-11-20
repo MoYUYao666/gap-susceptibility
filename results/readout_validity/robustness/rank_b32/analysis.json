@@ -1,0 +1,94 @@
+{
+  "n_runs": 4,
+  "n_checkpoints": 12,
+  "rho_CG_DG": 1.0,
+  "effects": {
+    "mean_center__classification_top1": {
+      "mean": 0.861899133175727,
+      "sd": 1.4291643610434877,
+      "n": 12
+    },
+    "mean_center__R1_i2t": {
+      "mean": 0.861899133175727,
+      "sd": 1.4291643610434877,
+      "n": 12
+    },
+    "mean_center__R1_t2i": {
+      "mean": -3.1914893617021263,
+      "sd": 3.633670484382839,
+      "n": 12
+    },
+    "mean_center__ARI": {
+      "mean": 0.04589399755966413,
+      "sd": 0.015926486212791052,
+      "n": 12
+    },
+    "gap_project__classification_top1": {
+      "mean": -4.590228526398742,
+      "sd": 3.612245353723064,
+      "n": 12
+    },
+    "gap_project__R1_i2t": {
+      "mean": -4.590228526398742,
+      "sd": 3.612245353723064,
+      "n": 12
+    },
+    "gap_project__R1_t2i": {
+      "mean": -11.879432624113477,
+      "sd": 6.973744836630189,
+      "n": 12
+    },
+    "gap_project__ARI": {
+      "mean": 0.026125714738480247,
+      "sd": 0.020499938661091635,
+      "n": 12
+    },
+    "random_project__classification_top1": {
+      "mean": 0.08372734436564144,
+      "sd": 0.1876083230372445,
+      "n": 12
+    },
+    "random_project__R1_i2t": {
+      "mean": 0.08372734436564144,
+      "sd": 0.1876083230372445,
+      "n": 12
+    },
+    "random_project__R1_t2i": {
+      "mean": 1.1842378929335002e-15,
+      "sd": 0.8686133839656623,
+      "n": 12
+    },
+    "random_project__ARI": {
+      "mean": 0.003507274015888101,
+      "sd": 0.014086390591546743,
+      "n": 12
+    }
+  },
+  "predictive": {
+    "CG__classification_top1": -0.8321678321678322,
+    "CG__R1_i2t": -0.8321678321678322,
+    "CG__R1_t2i": -0.13549842064092715,
+    "CG__ARI": -0.20979020979020982,
+    "DG__classification_top1": -0.8321678321678322,
+    "DG__R1_i2t": -0.8321678321678322,
+    "DG__R1_t2i": -0.13549842064092715,
+    "DG__ARI": -0.20979020979020982,
+    "spec_eff_rank__classification_top1": 0.6993006993006995,
+    "spec_eff_rank__R1_i2t": 0.6993006993006995,
+    "spec_eff_rank__R1_t2i": -0.04278897493924015,
+    "spec_eff_rank__ARI": 0.3076923076923077,
+    "spec_top1_share__classification_top1": -0.1328671328671329,
+    "spec_top1_share__R1_i2t": -0.1328671328671329,
+    "spec_top1_share__R1_t2i": 0.14262991646413387,
+    "spec_top1_share__ARI": -0.2937062937062937
+  },
+  "means": {
+    "original_CG": 0.9504789660374323,
+    "original_DG": 0.9772883433417086,
+    "original_spec_eff_rank": 100.97893778483073,
+    "original_R1_i2t": 68.65149724192277,
+    "original_R1_t2i": 93.79432624113475,
+    "original_classification_top1": 68.65149724192277,
+    "original_ARI": 0.40257754829875636
+  }
+}

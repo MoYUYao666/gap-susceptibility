@@ -1,0 +1,39 @@
+{
+  "adapted_modules_count": 60,
+  "adapted_suffixes": [
+    "c_fc",
+    "c_proj",
+    "out_proj"
+  ],
+  "batch": 32,
+  "corpus": "corpora/nwpu_captions/human.jsonl",
+  "device": "NVIDIA vGPU-32GB",
+  "epochs": 2,
+  "eval_pairs": 1024,
+  "final_loss": 0.3986,
+  "generated": "2026-10-29T16:13:49",
+  "images_root": "data/nwpu_captions",
+  "loss_first": 0.9841,
+  "max_pairs": 0,
+  "metrics": {
+    "R@10_i2t": 0.7529,
+    "R@10_t2i": 0.7236,
+    "R@1_i2t": 0.2139,
+    "R@1_t2i": 0.1797,
+    "R@5_i2t": 0.5547,
+    "R@5_t2i": 0.5234,
+    "alignment": 1.3582,
+    "modality_gap": 0.9952,
+    "uniformity_image": -1.3016,
+    "uniformity_text": -1.2347
+  },
+  "pairs_used": 125721,
+  "peak_vram_gb": 2.134,
+  "seed": 0,
+  "site": "both",
+  "torch": "2.12.1+cu130",
+  "total_params": 152653569,
+  "trainable_params": 1376256,
+  "trainable_share": 0.009016,
+  "wall_seconds": 193.0
+}

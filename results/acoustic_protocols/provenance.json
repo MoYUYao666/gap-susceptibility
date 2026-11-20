@@ -1,0 +1,626 @@
+{
+  "generated": {
+    "README.md": "0d7bc6e0a9c6df89c6bf0007f49bc39660093b3e86f579ab600bccac40f2b35e",
+    "protocols.json": "3e7f0488066d0efbafcf09db15dab2238c85722135392a86ff9bf45af760ffe0",
+    "replay.py": "a7a7c0bf92d6ce0f67b332bb86f60995ea0e975c4993b985cc6f8bb0533984f0"
+  },
+  "sources": [
+    {
+      "destination": "records/benchmark/sonar_protocol.json",
+      "role": "benchmark_dose_records",
+      "sha256": "979dad87bce9a91ba442372bb5e115fb4f03eb8f28f6a3a4b5b82bb5c7b84921",
+      "source": "outputs/sonar_protocol.json",
+      "source_sha256": "979dad87bce9a91ba442372bb5e115fb4f03eb8f28f6a3a4b5b82bb5c7b84921",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/benchmark/sonar_protocol_full.json",
+      "role": "benchmark_dose_records",
+      "sha256": "156477cac57d47ebed49e37c59d493366d6b79fabe522f98be308f63d6ad5079",
+      "source": "outputs/sonar_protocol_full.json",
+      "source_sha256": "156477cac57d47ebed49e37c59d493366d6b79fabe522f98be308f63d6ad5079",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/benchmark/watertank_protocol.json",
+      "role": "benchmark_dose_records",
+      "sha256": "32ea7435c3261bcc22523f15c57d916318061dad7342cebc21f720fefa4d190a",
+      "source": "outputs/watertank_protocol.json",
+      "source_sha256": "32ea7435c3261bcc22523f15c57d916318061dad7342cebc21f720fefa4d190a",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/benchmark/riku_protocol.json",
+      "role": "benchmark_dose_records",
+      "sha256": "a2f38bb401c896f088654e343553120d15901b1ecf3aa433e78a8d82271d4252",
+      "source": "outputs/riku_protocol.json",
+      "source_sha256": "a2f38bb401c896f088654e343553120d15901b1ecf3aa433e78a8d82271d4252",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/benchmark/uatd_protocol.json",
+      "role": "benchmark_dose_records",
+      "sha256": "7de4ecd3ce3e382b46923b74f7647fe449aa3e40b0512975e656d2113dca28c1",
+      "source": "outputs/uatd_protocol.json",
+      "source_sha256": "7de4ecd3ce3e382b46923b74f7647fe449aa3e40b0512975e656d2113dca28c1",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a1_theory_verify.json",
+      "role": "technical_archive",
+      "sha256": "68b4fcb01729ca1508418d4129b9d7f62acdccafbfc8648ed4839aba39e7ed84",
+      "source": "outputs/a1_theory_verify.json",
+      "source_sha256": "68b4fcb01729ca1508418d4129b9d7f62acdccafbfc8648ed4839aba39e7ed84",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/degradation_matrix.json",
+      "role": "technical_archive",
+      "sha256": "616e0050b368463733a64ea6d36e093878cef168db059a45f9b21df67ed56749",
+      "source": "outputs/degradation_matrix.json",
+      "source_sha256": "616e0050b368463733a64ea6d36e093878cef168db059a45f9b21df67ed56749",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/direction_operator.json",
+      "role": "technical_archive",
+      "sha256": "5c1e63a93502ed6b337c6b86b0fe52334ea15d1668ceeb5a6c72264fba774522",
+      "source": "outputs/direction_operator.json",
+      "source_sha256": "5c1e63a93502ed6b337c6b86b0fe52334ea15d1668ceeb5a6c72264fba774522",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/direction_subspace.json",
+      "role": "technical_archive",
+      "sha256": "5ce55e6150caedbcc17394e72aae136ccdcc7db459dbec93892bcdeeb275861d",
+      "source": "outputs/direction_subspace.json",
+      "source_sha256": "5ce55e6150caedbcc17394e72aae136ccdcc7db459dbec93892bcdeeb275861d",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/domain_matrix.json",
+      "role": "technical_archive",
+      "sha256": "1f068fd036ef2a29841d96e84aefd29438a009b39fba72466e0cd2c0d9460771",
+      "source": "outputs/domain_matrix.json",
+      "source_sha256": "1f068fd036ef2a29841d96e84aefd29438a009b39fba72466e0cd2c0d9460771",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/dynamics_matrix.json",
+      "role": "technical_archive",
+      "sha256": "95258ae294e462b503a8cfc058a99c24f9e33302c4a2b08ed07e3914f512e738",
+      "source": "outputs/dynamics_matrix.json",
+      "source_sha256": "95258ae294e462b503a8cfc058a99c24f9e33302c4a2b08ed07e3914f512e738",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/dynamics_seed.json",
+      "role": "technical_archive",
+      "sha256": "ff0840c72d53ad32c0013ba18998fc9d87a489883be6a44b109d396fca14b53b",
+      "source": "outputs/dynamics_seed.json",
+      "source_sha256": "ff0840c72d53ad32c0013ba18998fc9d87a489883be6a44b109d396fca14b53b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/mechanism_summary.json",
+      "role": "technical_archive",
+      "sha256": "6a171e4c5f53bfa88173675b8252962d23b7e52a3b97f21fce43123ec714dbfe",
+      "source": "outputs/mechanism_summary.json",
+      "source_sha256": "6a171e4c5f53bfa88173675b8252962d23b7e52a3b97f21fce43123ec714dbfe",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ml16k_qa_layers.json",
+      "role": "technical_archive",
+      "sha256": "78ca044b3d5de440710ddf1de308490e8ae5f02942dac27ca4c9f49adae73f0f",
+      "source": "outputs/ml16k_qa_layers.json",
+      "source_sha256": "78ca044b3d5de440710ddf1de308490e8ae5f02942dac27ca4c9f49adae73f0f",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_clip2x2.json",
+      "role": "technical_archive",
+      "sha256": "bd1326d7efa7dd888c60c6b4a36f0d4ce3f324f26f80b820fb3ebc7ac9a14710",
+      "source": "outputs/ocean_clip2x2.json",
+      "source_sha256": "bd1326d7efa7dd888c60c6b4a36f0d4ce3f324f26f80b820fb3ebc7ac9a14710",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_degradation.json",
+      "role": "technical_archive",
+      "sha256": "58b532d511a08a1c9c0ae82a3702c45fe42bf7d2c517ba4d7dba7e43b6146bca",
+      "source": "outputs/ocean_degradation.json",
+      "source_sha256": "58b532d511a08a1c9c0ae82a3702c45fe42bf7d2c517ba4d7dba7e43b6146bca",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_fauna_margins.json",
+      "role": "technical_archive",
+      "sha256": "2700bfbff46a628c0f5e9dbe5fe2c1cfe56b988abf80c9fb36059741004beec4",
+      "source": "outputs/ocean_fauna_margins.json",
+      "source_sha256": "0cfb17295732e89a008c97d883c556c527d54e47d78f1251e397dc8e82388efe",
+      "transformation": "Convert non-finite JSON constants to null. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/ocean_flickr_dhat.json",
+      "role": "technical_archive",
+      "sha256": "1c341960c6f5bee841a136f014ae546ce36ca063376258672a245f895fcfb3b2",
+      "source": "outputs/ocean_flickr_dhat.json",
+      "source_sha256": "1c341960c6f5bee841a136f014ae546ce36ca063376258672a245f895fcfb3b2",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_flickrft_sigma.json",
+      "role": "technical_archive",
+      "sha256": "2714c4fb3b9e0be4623351b61d525a6e50279176435b93ddc68a3add26b80d05",
+      "source": "outputs/ocean_flickrft_sigma.json",
+      "source_sha256": "2714c4fb3b9e0be4623351b61d525a6e50279176435b93ddc68a3add26b80d05",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_gap_surgery.json",
+      "role": "technical_archive",
+      "sha256": "b48f300cee7f8ce08f344c5b0cbe791c0535e4ab6538f41595e081d1bcfe4589",
+      "source": "outputs/ocean_gap_surgery.json",
+      "source_sha256": "b48f300cee7f8ce08f344c5b0cbe791c0535e4ab6538f41595e081d1bcfe4589",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_inat_wild.json",
+      "role": "technical_archive",
+      "sha256": "5f8d3a7e8617639c57a4f0752bab3586a20b79aa13b491baf25a1e0e1977d8b1",
+      "source": "outputs/ocean_inat_wild.json",
+      "source_sha256": "5f8d3a7e8617639c57a4f0752bab3586a20b79aa13b491baf25a1e0e1977d8b1",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_margins.json",
+      "role": "technical_archive",
+      "sha256": "cf58955f6fbee597e0ad0469edaa8f21fc67f32d600e624b5613aa9388b761d4",
+      "source": "outputs/ocean_margins.json",
+      "source_sha256": "187d03f09031882692adf679c78e94171fbfc6c183226271153819caa2aa0bf4",
+      "transformation": "Convert non-finite JSON constants to null. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/ocean_margins_x.json",
+      "role": "technical_archive",
+      "sha256": "fb9bd9e2fa8b731ae5dc689c2dcf9106da3a0781d725d7d75fe3b1c66e0100d8",
+      "source": "outputs/ocean_margins_x.json",
+      "source_sha256": "fb9bd9e2fa8b731ae5dc689c2dcf9106da3a0781d725d7d75fe3b1c66e0100d8",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_marineft10_sigma.json",
+      "role": "technical_archive",
+      "sha256": "737398069ee9ba07e7761507d1fba78bea5f027ca2401f2f5104f69ba0d49fb7",
+      "source": "outputs/ocean_marineft10_sigma.json",
+      "source_sha256": "737398069ee9ba07e7761507d1fba78bea5f027ca2401f2f5104f69ba0d49fb7",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_ml16k_retrieval.json",
+      "role": "technical_archive",
+      "sha256": "7bda2fe632b39288463250ed47410a566f200b6b6652818e15ef5f900903acef",
+      "source": "outputs/ocean_ml16k_retrieval.json",
+      "source_sha256": "7bda2fe632b39288463250ed47410a566f200b6b6652818e15ef5f900903acef",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_multiseed.json",
+      "role": "technical_archive",
+      "sha256": "da539aa2efc8b71cd2be061059a85a6618727815ed69f25e2140bc651fa30f5c",
+      "source": "outputs/ocean_multiseed.json",
+      "source_sha256": "da539aa2efc8b71cd2be061059a85a6618727815ed69f25e2140bc651fa30f5c",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_multitemplate.json",
+      "role": "technical_archive",
+      "sha256": "d1d89b5385e6cf2a533f3eb9060a583071a10009b75ffa3f4a017166f1ac8f7b",
+      "source": "outputs/ocean_multitemplate.json",
+      "source_sha256": "d1d89b5385e6cf2a533f3eb9060a583071a10009b75ffa3f4a017166f1ac8f7b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_nsweep.json",
+      "role": "technical_archive",
+      "sha256": "c42faf929e322da157ba25902df55e51b98a23c90790f839046d959cd1114b79",
+      "source": "outputs/ocean_nsweep.json",
+      "source_sha256": "c42faf929e322da157ba25902df55e51b98a23c90790f839046d959cd1114b79",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_peft.json",
+      "role": "technical_archive",
+      "sha256": "2f06ee2f0f30f0eb65c1f5522fa05c3b6797461d53c35a63634c1aad20310ad4",
+      "source": "outputs/ocean_peft.json",
+      "source_sha256": "2f06ee2f0f30f0eb65c1f5522fa05c3b6797461d53c35a63634c1aad20310ad4",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_peft_ms.json",
+      "role": "technical_archive",
+      "sha256": "fcb1623edd630a1ec2f44b6ee7645268f23f1a3b97fb426aac292282d6ef3ea2",
+      "source": "outputs/ocean_peft_ms.json",
+      "source_sha256": "fcb1623edd630a1ec2f44b6ee7645268f23f1a3b97fb426aac292282d6ef3ea2",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_rank1_bound.json",
+      "role": "technical_archive",
+      "sha256": "e7c14f7c388af720f76c14783776d3d99672c7c592fb919d2df5bf8fc3ed7789",
+      "source": "outputs/ocean_rank1_bound.json",
+      "source_sha256": "c5f33f6cfc4c84040b347288c143cabf21df136abaf3aa66b6e22effa0863a89",
+      "transformation": "Convert non-finite JSON constants to null. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/ocean_replica.json",
+      "role": "technical_archive",
+      "sha256": "749f2e5d1aee02279d3cfdd90e37e3fc57179dae2d0c5a47608ee919712d4752",
+      "source": "outputs/ocean_replica.json",
+      "source_sha256": "749f2e5d1aee02279d3cfdd90e37e3fc57179dae2d0c5a47608ee919712d4752",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_sigma_other.json",
+      "role": "technical_archive",
+      "sha256": "eef3385b3032f47b09915ef582db69d4ccc8a99611ea0b80ba36c166c787802b",
+      "source": "outputs/ocean_sigma_other.json",
+      "source_sha256": "eef3385b3032f47b09915ef582db69d4ccc8a99611ea0b80ba36c166c787802b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_spectrum.json",
+      "role": "technical_archive",
+      "sha256": "c2c61f764d5413854c2ad6bdf84aa2fe93771b9f9490ae6722730cf45b19add4",
+      "source": "outputs/ocean_spectrum.json",
+      "source_sha256": "c2c61f764d5413854c2ad6bdf84aa2fe93771b9f9490ae6722730cf45b19add4",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_subset.json",
+      "role": "technical_archive",
+      "sha256": "3df8de0e417af230ea65ef7ce48bc856f5255ae40320656e8d36461d464727c5",
+      "source": "outputs/ocean_subset.json",
+      "source_sha256": "3df8de0e417af230ea65ef7ce48bc856f5255ae40320656e8d36461d464727c5",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_subset_fauna.json",
+      "role": "technical_archive",
+      "sha256": "5921ea75f714aa134ea22772deae7c74652e09c97603052b66185dad748db2a0",
+      "source": "outputs/ocean_subset_fauna.json",
+      "source_sha256": "5921ea75f714aa134ea22772deae7c74652e09c97603052b66185dad748db2a0",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/ocean_tautraj.json",
+      "role": "technical_archive",
+      "sha256": "ed86e035aa84f67a9d687b503707752c81d96211ecea380ae8b8fc87075a2cd2",
+      "source": "outputs/ocean_tautraj.json",
+      "source_sha256": "ed86e035aa84f67a9d687b503707752c81d96211ecea380ae8b8fc87075a2cd2",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/perimage_operator.json",
+      "role": "technical_archive",
+      "sha256": "fa75f8661af590923767d04264f01f4f3cc2db17dae6a6619f90452a03c002d4",
+      "source": "outputs/perimage_operator.json",
+      "source_sha256": "fa75f8661af590923767d04264f01f4f3cc2db17dae6a6619f90452a03c002d4",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/sonar_degradation.json",
+      "role": "technical_archive",
+      "sha256": "a1f3c5d1bf22ad304c0c6e2f1bf157d5c4164a30fbaa51d8af581e781d37df3c",
+      "source": "outputs/sonar_degradation.json",
+      "source_sha256": "a1f3c5d1bf22ad304c0c6e2f1bf157d5c4164a30fbaa51d8af581e781d37df3c",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/sonar_peft.json",
+      "role": "technical_archive",
+      "sha256": "f501051197442c4fdad3efeb2120a1aacfff41f4a59428169cafd50c9543913e",
+      "source": "outputs/sonar_peft.json",
+      "source_sha256": "f501051197442c4fdad3efeb2120a1aacfff41f4a59428169cafd50c9543913e",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/sonar_peft_ms.json",
+      "role": "technical_archive",
+      "sha256": "c87fa881438a7a6b3234e0811c4138442535ddcf522518bb4a5af3a913b9a9db",
+      "source": "outputs/sonar_peft_ms.json",
+      "source_sha256": "c87fa881438a7a6b3234e0811c4138442535ddcf522518bb4a5af3a913b9a9db",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/sonar_spectrum.json",
+      "role": "technical_archive",
+      "sha256": "f71e38bd929c837b847582e19e33b985961e9f69389e8a27e2ede787d6b1d686",
+      "source": "outputs/sonar_spectrum.json",
+      "source_sha256": "f71e38bd929c837b847582e19e33b985961e9f69389e8a27e2ede787d6b1d686",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/threshold_calibration.json",
+      "role": "technical_archive",
+      "sha256": "2400a9a433f08d2967d487aa126b7dcc2a39c7976ba559c8ea966848eea42a52",
+      "source": "outputs/threshold_calibration.json",
+      "source_sha256": "2400a9a433f08d2967d487aa126b7dcc2a39c7976ba559c8ea966848eea42a52",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a23_calib_lodo.json",
+      "role": "technical_archive",
+      "sha256": "8ce959efb233e1b0bccce5b6bb716195b4c87116ec236032e31384f74c39ed22",
+      "source": "outputs/analysis/a23_calib_lodo.json",
+      "source_sha256": "8ce959efb233e1b0bccce5b6bb716195b4c87116ec236032e31384f74c39ed22",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a23_certificate_adapted.json",
+      "role": "technical_archive",
+      "sha256": "f07bcb5d4feca0610007304250ecc4f1a60db33647cbdce47c6b34662e8589f8",
+      "source": "outputs/analysis/a23_certificate_adapted.json",
+      "source_sha256": "f07bcb5d4feca0610007304250ecc4f1a60db33647cbdce47c6b34662e8589f8",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a23_certificate_control.json",
+      "role": "technical_archive",
+      "sha256": "bbd1efa0b26e8a323683883af31d38699b64e5beee873172d95aa5cb699e557d",
+      "source": "outputs/analysis/a23_certificate_control.json",
+      "source_sha256": "385bf66157e3d4a582715ce6ae61710f805c5d0a0b3a70e46cf9c9507c1ecb3a",
+      "transformation": "Convert non-finite JSON constants to null. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/a23_fine_eps_certificate.json",
+      "role": "technical_archive",
+      "sha256": "72837750604c6dd5fdf8324bfd6ef3b1f2b615a984a0679af2fd4b85430c63d6",
+      "source": "outputs/analysis/a23_fine_eps_certificate.json",
+      "source_sha256": "5fd5c2e8a6be2840c2c1f265366380456b02042cb7fec9707aa2ccc1304a12f1",
+      "transformation": "Omit named fields: note. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/a23_margin_negative_control.json",
+      "role": "technical_archive",
+      "sha256": "6750e60849e4c24a1470be8f6267208bdb77fa99f79e8d381da2549de5758083",
+      "source": "outputs/analysis/a23_margin_negative_control.json",
+      "source_sha256": "546860f9aa316c6c7edf253d5679f51ba5211bb09bf77aec10efb55e343c86bc",
+      "transformation": "Omit named fields: conclusion, manuscript_state, note, provenance_gaps, purpose, verdict. Convert non-finite JSON constants to null. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/a23_multiencoder_transfer.json",
+      "role": "technical_archive",
+      "sha256": "9ebc24ff5d118af4742b6044dcb2ffd44e5296624dc7c21ec62e1cf315a3d09c",
+      "source": "outputs/analysis/a23_multiencoder_transfer.json",
+      "source_sha256": "634ef2ef92ef3fcd2a5a9d86b1ad6ca9ca94a834390b756bdbb96cc54074e994",
+      "transformation": "Omit named fields: argv, caches_root, effect_on_a23_text, encode_log, host, paths. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/a23_neval_sensitivity.json",
+      "role": "technical_archive",
+      "sha256": "aca44966d855014d1d2d5b2b5066c0c22b1b65576d5167f34ef0787672d1f72d",
+      "source": "outputs/analysis/a23_neval_sensitivity.json",
+      "source_sha256": "aca44966d855014d1d2d5b2b5066c0c22b1b65576d5167f34ef0787672d1f72d",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a23_tau_calibration.json",
+      "role": "technical_archive",
+      "sha256": "a17e2b0957492d9a6b04cd0ca25079eada8f42dd4d8bbadcb4660fcfdda40e8c",
+      "source": "outputs/analysis/a23_tau_calibration.json",
+      "source_sha256": "a17e2b0957492d9a6b04cd0ca25079eada8f42dd4d8bbadcb4660fcfdda40e8c",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a23_tau_control.json",
+      "role": "technical_archive",
+      "sha256": "c71fa2cb65c2318dbd2bca71f5049ea875524f5f9d9387937e2a6fbbaccf3bab",
+      "source": "outputs/analysis/a23_tau_control.json",
+      "source_sha256": "c71fa2cb65c2318dbd2bca71f5049ea875524f5f9d9387937e2a6fbbaccf3bab",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a23_threshold_transfer_extended.json",
+      "role": "technical_archive",
+      "sha256": "641f3836f810d09ceaaafb8148cb56ecf2ed3afec0e80f8442ffb7f3d77dfb77",
+      "source": "outputs/analysis/a23_threshold_transfer_extended.json",
+      "source_sha256": "641f3836f810d09ceaaafb8148cb56ecf2ed3afec0e80f8442ffb7f3d77dfb77",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a23_threshold_transfer.json",
+      "role": "technical_archive",
+      "sha256": "67890968d6bc363c566cc844d6e65bb4facf486178fc8cffe02c1362c499f982",
+      "source": "outputs/analysis/a23_threshold_transfer.json",
+      "source_sha256": "67890968d6bc363c566cc844d6e65bb4facf486178fc8cffe02c1362c499f982",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a23_uatd_domain.json",
+      "role": "technical_archive",
+      "sha256": "380cb20b8331b33a7a2f27db682dae86dbe0dd13c771d1217090504fd6d753b2",
+      "source": "outputs/analysis/a23_uatd_domain.json",
+      "source_sha256": "380cb20b8331b33a7a2f27db682dae86dbe0dd13c771d1217090504fd6d753b2",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/a23_watertank_domain.json",
+      "role": "technical_archive",
+      "sha256": "e0b62c7e6d23d93faa21dc5e2d632bd979910b044d4ba9294f6e6e2c0dbf5bbd",
+      "source": "outputs/analysis/a23_watertank_domain.json",
+      "source_sha256": "e0b62c7e6d23d93faa21dc5e2d632bd979910b044d4ba9294f6e6e2c0dbf5bbd",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/BiasFieldFigures.json",
+      "role": "numeric_plot_source",
+      "sha256": "08dd54b796b12fa8aaf1d2b607bc03c15adf6f48f8bf2f57d9fd4a9e75c47fe7",
+      "source": "paper_a2/figures/BiasFieldFigures.json",
+      "source_sha256": "6bc5960fb2e1ff7c096a7ca086df243dee6690b10236b60c1e91e40ee97dc601",
+      "transformation": "Omit named fields: pdf_sha256. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/FishDoseResponse.json",
+      "role": "numeric_plot_source",
+      "sha256": "e20444eceba6782012d9379cec135a5bf72594e9ffda2acfdda66f1a5095a616",
+      "source": "paper_a2/figures/FishDoseResponse.json",
+      "source_sha256": "e5305d45f09aad290f07139441bb8f5891a6557204571b64e65cd1d75f44366d",
+      "transformation": "Omit named fields: pdf_sha256. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/OrderFigures.json",
+      "role": "numeric_plot_source",
+      "sha256": "008ea7182674f0d48b1c1855367d12eff82af7dbd99daaecc6f3c9e470016c8b",
+      "source": "paper_a2/figures/OrderFigures.json",
+      "source_sha256": "0384bd17c1b4d9dd745906b4ff15fb8ec06983d04e9b33de6b292c382f729f51",
+      "transformation": "Omit named fields: pdf_sha256. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/sonar_b16_seed_paired_2026-11-08.json",
+      "role": "verified_aggregate",
+      "sha256": "73aeb261ded1fa7d2a7ed7d94c355c02ace6d78ae0ee1ac130aacf5a32c4d8d8",
+      "source": "paper_a2/analysis/sonar_b16_seed_paired_2026-11-08.json",
+      "source_sha256": "73aeb261ded1fa7d2a7ed7d94c355c02ace6d78ae0ee1ac130aacf5a32c4d8d8",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/deployment_operating_points_2026-11-08_recomputed.json",
+      "role": "verified_aggregate",
+      "sha256": "90b4802026941d4fbe9361a3dd1b95f4e09d1f5ca16d2884937f9d76a60a3f13",
+      "source": "paper_a2/analysis/deployment_operating_points_2026-11-08_recomputed.json",
+      "source_sha256": "90b4802026941d4fbe9361a3dd1b95f4e09d1f5ca16d2884937f9d76a60a3f13",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_protocol_b16.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "7ee947a642a6224d91c19b10772b596bd3e1ffe9b9616649e392700ec019246e",
+      "source": "outputs/analysis/sonar_protocol_b16.json",
+      "source_sha256": "7ee947a642a6224d91c19b10772b596bd3e1ffe9b9616649e392700ec019246e",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_protocol_b16_seed43.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "3247ec565cf08ec7386c7c842b9e3074a4631f3e6723be99d197a610b7486f05",
+      "source": "outputs/analysis/sonar_protocol_b16_seed43.json",
+      "source_sha256": "3247ec565cf08ec7386c7c842b9e3074a4631f3e6723be99d197a610b7486f05",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_protocol_b16_seed44.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "dbd963578532a047354609fab17c4483c9c1f1fa530927f01e35bbeb550d8ac5",
+      "source": "outputs/analysis/sonar_protocol_b16_seed44.json",
+      "source_sha256": "dbd963578532a047354609fab17c4483c9c1f1fa530927f01e35bbeb550d8ac5",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_protocol_b32_seed43.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "657f21e69a49e9e9479a380174723b167fc74eb8040a4a55013170b6ae32fc17",
+      "source": "outputs/analysis/sonar_protocol_b32_seed43.json",
+      "source_sha256": "657f21e69a49e9e9479a380174723b167fc74eb8040a4a55013170b6ae32fc17",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_protocol_b32_seed44.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "d06afaa1fa87b420eb53eefaa6cd1bc683aef95a9744b4ef0abde903f115b9bf",
+      "source": "outputs/analysis/sonar_protocol_b32_seed44.json",
+      "source_sha256": "d06afaa1fa87b420eb53eefaa6cd1bc683aef95a9744b4ef0abde903f115b9bf",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_full_vit-b-16_seed42.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "f2a45243dea29c6709af094e2f4014b7c182eec2771ff187841a6018e0dc9f4f",
+      "source": "outputs/analysis/sonar_full_vit-b-16_seed42.json",
+      "source_sha256": "f2a45243dea29c6709af094e2f4014b7c182eec2771ff187841a6018e0dc9f4f",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_full_vit-b-16_seed43.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "1ab851cd2bb99a1da7cb4291370af6e7cf996f1f75cfc6b22125fc84f1c07f96",
+      "source": "outputs/analysis/sonar_full_vit-b-16_seed43.json",
+      "source_sha256": "1ab851cd2bb99a1da7cb4291370af6e7cf996f1f75cfc6b22125fc84f1c07f96",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_full_vit-b-16_seed44.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "dfea288b36ad47c7d3141eb01d68f3992cac94d55c6366f6de31795ccdb5fe74",
+      "source": "outputs/analysis/sonar_full_vit-b-16_seed44.json",
+      "source_sha256": "dfea288b36ad47c7d3141eb01d68f3992cac94d55c6366f6de31795ccdb5fe74",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_full_vit-b-32_seed43.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "caa5c2aed5e9bae64230e0ab05a4a67dc85888e1dc42fc8e7b872f0c6da47e1a",
+      "source": "outputs/analysis/sonar_full_vit-b-32_seed43.json",
+      "source_sha256": "caa5c2aed5e9bae64230e0ab05a4a67dc85888e1dc42fc8e7b872f0c6da47e1a",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/backbone/sonar_full_vit-b-32_seed44.json",
+      "role": "nksid_in_sample_seed",
+      "sha256": "a138665a656dde1e1ce8fec4a9df1bb43323466191bd3770d34930f5afa2adca",
+      "source": "outputs/analysis/sonar_full_vit-b-32_seed44.json",
+      "source_sha256": "a138665a656dde1e1ce8fec4a9df1bb43323466191bd3770d34930f5afa2adca",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/zero_shot/clip_zero_shot_nksid.json",
+      "role": "restored_zero_shot",
+      "sha256": "4e36dcccfb6fa2d815bcc66264bb39b9f7802c8cddc364e8b2c00c5042c92a70",
+      "source": "paper_a2/evidence/sonar_zero_shot/clip_zero_shot_nksid.json",
+      "source_sha256": "4e36dcccfb6fa2d815bcc66264bb39b9f7802c8cddc364e8b2c00c5042c92a70",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/zero_shot/smallvlm_nksid_qwen3vl2b.json",
+      "role": "restored_zero_shot",
+      "sha256": "1f34c614cbb7b6a95ea7677d5a54171d613d29ac326a6f6b0176f519a1f36ba4",
+      "source": "paper_a2/evidence/sonar_zero_shot/smallvlm_nksid_qwen3vl2b.json",
+      "source_sha256": "1f34c614cbb7b6a95ea7677d5a54171d613d29ac326a6f6b0176f519a1f36ba4",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/zero_shot/smallvlm_nksid_smolvlm2.json",
+      "role": "restored_zero_shot",
+      "sha256": "13db4ce71b34b1a09650fcad051184dc7551a9cccdd310a847d5978531008ebd",
+      "source": "paper_a2/evidence/sonar_zero_shot/smallvlm_nksid_smolvlm2.json",
+      "source_sha256": "13db4ce71b34b1a09650fcad051184dc7551a9cccdd310a847d5978531008ebd",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/zero_shot/smallvlm_nksid_internvl35_2b.json",
+      "role": "restored_zero_shot",
+      "sha256": "8f9b2e5db5a2d2066b6f07d8a1317b60dfc1d6e3e72393badee876ab630dcc2b",
+      "source": "paper_a2/evidence/sonar_zero_shot/smallvlm_nksid_internvl35_2b.json",
+      "source_sha256": "8f9b2e5db5a2d2066b6f07d8a1317b60dfc1d6e3e72393badee876ab630dcc2b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "producer/clip_zero_shot_nksid.py",
+      "role": "producer_code",
+      "sha256": "7b166d5e104446cf380d5deb145216d4f3bcbc0913be15ea0c6861f3d1c9500c",
+      "source": "paper_a2/clip_zero_shot_nksid.py",
+      "source_sha256": "c8ba887b272c4371406a71387b6946077e6d149fa1901a3e0eaac29ee318c6d8",
+      "transformation": "Expose explicit local data, checkpoint and output arguments; defer dependencies until after CLI parsing; preserve inference."
+    },
+    {
+      "destination": "producer/small_vlm_zero_shot.py",
+      "role": "producer_code",
+      "sha256": "4f530ca828b94970aaeb62a26c0040cda315793b5547700297f1f35f7fa7fe2d",
+      "source": "paper_a2/small_vlm_zero_shot.py",
+      "source_sha256": "bc4dcfb869125452f732812075a8e9dec8b0db6b3d82f29f28e73ac085737311",
+      "transformation": "Expose explicit local data, checkpoint and output arguments; defer dependencies until after CLI parsing; preserve inference."
+    }
+  ],
+  "track": "a2"
+}

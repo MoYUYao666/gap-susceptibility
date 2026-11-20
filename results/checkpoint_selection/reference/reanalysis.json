@@ -1,0 +1,6954 @@
+{
+ "source": {
+  "runs_dir": "outputs/paper_b/runs",
+  "n_runs": 144,
+  "condition": "original",
+  "epochs": 3
+ },
+ "coverage": {
+  "sites": {
+   "both": 48,
+   "text": 48,
+   "vision": 48
+  },
+  "datasets": {
+   "dtd": 48,
+   "inat": 48,
+   "nksid": 48
+  },
+  "seeds": {
+   "45": 36,
+   "46": 36,
+   "47": 36,
+   "48": 36
+  }
+ },
+ "aggregate": {
+  "gap": {
+   "n": 144,
+   "mean": 0.0069998995494912125,
+   "median": 0.0,
+   "q10": 0.0,
+   "q25": 0.0,
+   "q75": 0.0034589565151196544,
+   "q90": 0.027179491304051322,
+   "min": 0.0,
+   "max": 0.11439587786598593
+  },
+  "nonmonotone_fraction": 0.3680555555555556,
+  "last_is_oracle_fraction": 0.6944444444444444,
+  "n_nonmonotone": 53,
+  "n_monotone": 91,
+  "monotone_last_oracle_fraction": 1.0,
+  "n_last_oracle": 100,
+  "proxy": {
+   "CG": {
+    "spearman_mean": -0.6284722222222222,
+    "spearman_abs_mean": 0.7951388888888888,
+    "best_sign": "lower",
+    "selection_accuracy": 0.6388888888888888,
+    "mean_regret": 0.010924086764356682,
+    "mean_diff_vs_last": -0.003924187214865468,
+    "fraction_better_than_last": 0.04861111111111111
+   },
+   "DG": {
+    "spearman_mean": -0.5868055555555556,
+    "spearman_abs_mean": 0.7743055555555556,
+    "best_sign": "lower",
+    "selection_accuracy": 0.6041666666666666,
+    "mean_regret": 0.012861857762176512,
+    "mean_diff_vs_last": -0.005861958212685298,
+    "fraction_better_than_last": 0.08333333333333333
+   },
+   "spec_eff_rank": {
+    "spearman_mean": 0.2777777777777778,
+    "spearman_abs_mean": 0.6944444444444444,
+    "best_sign": "higher",
+    "selection_accuracy": 0.4236111111111111,
+    "mean_regret": 0.024650963687387742,
+    "mean_diff_vs_last": -0.01765106413789653,
+    "fraction_better_than_last": 0.04861111111111111
+   },
+   "spec_top1_share": {
+    "spearman_mean": -0.3784722222222222,
+    "spearman_abs_mean": 0.7395833333333334,
+    "best_sign": "lower",
+    "selection_accuracy": 0.5208333333333334,
+    "mean_regret": 0.021262182446333402,
+    "mean_diff_vs_last": -0.01426228289684219,
+    "fraction_better_than_last": 0.034722222222222224
+   }
+  },
+  "by_site": {
+   "both": {
+    "n": 48,
+    "mean_gap": 0.0062341134899398624,
+    "last_oracle_fraction": 0.7291666666666666,
+    "nonmonotone_fraction": 0.4375
+   },
+   "text": {
+    "n": 48,
+    "mean_gap": 0.0070667416811771465,
+    "last_oracle_fraction": 0.6041666666666666,
+    "nonmonotone_fraction": 0.4166666666666667
+   },
+   "vision": {
+    "n": 48,
+    "mean_gap": 0.00769884347735663,
+    "last_oracle_fraction": 0.75,
+    "nonmonotone_fraction": 0.25
+   }
+  },
+  "by_dataset": {
+   "dtd": {
+    "n": 48,
+    "mean_gap": 0.004813475550529696,
+    "last_oracle_fraction": 0.625
+   },
+   "inat": {
+    "n": 48,
+    "mean_gap": 0.0011099970858791952,
+    "last_oracle_fraction": 0.8958333333333334
+   },
+   "nksid": {
+    "n": 48,
+    "mean_gap": 0.015076226012064748,
+    "last_oracle_fraction": 0.5625
+   }
+  },
+  "by_rank": {
+   "8": {
+    "n": 36,
+    "mean_gap": 0.004145633864483435,
+    "last_oracle_fraction": 0.6944444444444444
+   },
+   "16": {
+    "n": 36,
+    "mean_gap": 0.00641886456516411,
+    "last_oracle_fraction": 0.7222222222222222
+   },
+   "32": {
+    "n": 36,
+    "mean_gap": 0.006002387256913566,
+    "last_oracle_fraction": 0.75
+   },
+   "64": {
+    "n": 36,
+    "mean_gap": 0.011432712511403743,
+    "last_oracle_fraction": 0.6111111111111112
+   }
+  },
+  "per_readout": {
+   "classification_top1": {
+    "mean_gap": 0.00946805683810663,
+    "median_gap": 0.0,
+    "last_oracle_fraction": 0.6597222222222222
+   },
+   "R1_i2t": {
+    "mean_gap": 0.00946805683810663,
+    "median_gap": 0.0,
+    "last_oracle_fraction": 0.6597222222222222
+   },
+   "R1_t2i": {
+    "mean_gap": 0.015024379432624115,
+    "median_gap": 0.0,
+    "last_oracle_fraction": 0.7430555555555556
+   },
+   "ARI": {
+    "mean_gap": 0.018608141232154235,
+    "median_gap": 0.0017228100869357,
+    "last_oracle_fraction": 0.4861111111111111
+   }
+  }
+ },
+ "hypotheses": {
+  "H1_nonmonotone_at_least_20pct": {
+   "value": 0.3680555555555556,
+   "supported": true
+  },
+  "H2_last_oracle_at_least_50pct_and_median_gap_le_0.01": {
+   "last_oracle_fraction": 0.6944444444444444,
+   "median_gap": 0.0,
+   "supported": true
+  },
+  "H3_best_proxy_alignment_and_regret": {
+   "best_proxy": "CG",
+   "best_proxy_mean_regret": 0.010924086764356682,
+   "last_mean_regret": 0.0069998995494912125,
+   "best_proxy_mean_abs_spearman": 0.7951388888888888,
+   "regret_above_last": true,
+   "alignment_below_0.5": false,
+   "supported": false
+  }
+ },
+ "per_run": [
+  {
+   "run_id": "clip-b32__dtd__r16__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.694688720205867,
+    0.6788532554364426,
+    0.7019634865133789
+   ],
+   "last": 0.7019634865133789,
+   "oracle": 0.7019634865133789,
+   "gap": 0.0,
+   "monotone": false,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.694688720205867,
+     "regret": 0.007274766307511893,
+     "diff_vs_last": -0.007274766307511893
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.694688720205867,
+     "regret": 0.007274766307511893,
+     "diff_vs_last": -0.007274766307511893
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.7019634865133789,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.6788532554364426,
+     "regret": 0.023110231076936327,
+     "diff_vs_last": -0.023110231076936327
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6275517862441155,
+    0.6336964435592465,
+    0.6537961503823921
+   ],
+   "last": 0.6537961503823921,
+   "oracle": 0.6537961503823921,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6275517862441155,
+     "regret": 0.026244364138276688,
+     "diff_vs_last": -0.026244364138276688
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6275517862441155,
+     "regret": 0.026244364138276688,
+     "diff_vs_last": -0.026244364138276688
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6537961503823921,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6275517862441155,
+     "regret": 0.026244364138276688,
+     "diff_vs_last": -0.026244364138276688
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6798931569651661,
+    0.6969973020920879,
+    0.6973698508167667
+   ],
+   "last": 0.6973698508167667,
+   "oracle": 0.6973698508167667,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6798931569651661,
+     "regret": 0.017476693851600666,
+     "diff_vs_last": -0.017476693851600666
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6798931569651661,
+     "regret": 0.017476693851600666,
+     "diff_vs_last": -0.017476693851600666
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6798931569651661,
+     "regret": 0.017476693851600666,
+     "diff_vs_last": -0.017476693851600666
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6969973020920879,
+     "regret": 0.00037254872467884503,
+     "diff_vs_last": -0.00037254872467884503
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6847692551325362,
+    0.6641453832787644,
+    0.6902920965351866
+   ],
+   "last": 0.6902920965351866,
+   "oracle": 0.6902920965351866,
+   "gap": 0.0,
+   "monotone": false,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6847692551325362,
+     "regret": 0.005522841402650469,
+     "diff_vs_last": -0.005522841402650469
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6847692551325362,
+     "regret": 0.005522841402650469,
+     "diff_vs_last": -0.005522841402650469
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6902920965351866,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6847692551325362,
+     "regret": 0.005522841402650469,
+     "diff_vs_last": -0.005522841402650469
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.626051226981936,
+    0.639208409042691,
+    0.6728033741770167
+   ],
+   "last": 0.6728033741770167,
+   "oracle": 0.6728033741770167,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.626051226981936,
+     "regret": 0.046752147195080695,
+     "diff_vs_last": -0.046752147195080695
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.626051226981936,
+     "regret": 0.046752147195080695,
+     "diff_vs_last": -0.046752147195080695
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6728033741770167,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.626051226981936,
+     "regret": 0.046752147195080695,
+     "diff_vs_last": -0.046752147195080695
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6778398391392914,
+    0.6883655632911363,
+    0.7143933697427445
+   ],
+   "last": 0.7143933697427445,
+   "oracle": 0.7143933697427445,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6778398391392914,
+     "regret": 0.03655353060345312,
+     "diff_vs_last": -0.03655353060345312
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6778398391392914,
+     "regret": 0.03655353060345312,
+     "diff_vs_last": -0.03655353060345312
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.7143933697427445,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6778398391392914,
+     "regret": 0.03655353060345312,
+     "diff_vs_last": -0.03655353060345312
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6792744234134686,
+    0.6852292031420942,
+    0.7082162841574697
+   ],
+   "last": 0.7082162841574697,
+   "oracle": 0.7082162841574697,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6792744234134686,
+     "regret": 0.02894186074400118,
+     "diff_vs_last": -0.02894186074400118
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6792744234134686,
+     "regret": 0.02894186074400118,
+     "diff_vs_last": -0.02894186074400118
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6852292031420942,
+     "regret": 0.0229870810153755,
+     "diff_vs_last": -0.0229870810153755
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.7082162841574697,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6222997728357713,
+    0.6388713946067547,
+    0.6672419676545419
+   ],
+   "last": 0.6672419676545419,
+   "oracle": 0.6672419676545419,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6222997728357713,
+     "regret": 0.0449421948187706,
+     "diff_vs_last": -0.0449421948187706
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6222997728357713,
+     "regret": 0.0449421948187706,
+     "diff_vs_last": -0.0449421948187706
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6672419676545419,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6222997728357713,
+     "regret": 0.0449421948187706,
+     "diff_vs_last": -0.0449421948187706
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6754520349179712,
+    0.7046622732762126,
+    0.7214146518492381
+   ],
+   "last": 0.7214146518492381,
+   "oracle": 0.7214146518492381,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6754520349179712,
+     "regret": 0.04596261693126691,
+     "diff_vs_last": -0.04596261693126691
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6754520349179712,
+     "regret": 0.04596261693126691,
+     "diff_vs_last": -0.04596261693126691
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.7214146518492381,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.7046622732762126,
+     "regret": 0.016752378573025584,
+     "diff_vs_last": -0.016752378573025584
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6784200673349715,
+    0.6955369318461648,
+    0.6856011082753379
+   ],
+   "last": 0.6856011082753379,
+   "oracle": 0.6955369318461648,
+   "gap": 0.009935823570826896,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6784200673349715,
+     "regret": 0.01711686451119332,
+     "diff_vs_last": -0.007181040940366423
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6784200673349715,
+     "regret": 0.01711686451119332,
+     "diff_vs_last": -0.007181040940366423
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6856011082753379,
+     "regret": 0.009935823570826896,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6856011082753379,
+     "regret": 0.009935823570826896,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6191214361590779,
+    0.6559576750115794,
+    0.6492645135275229
+   ],
+   "last": 0.6492645135275229,
+   "oracle": 0.6559576750115794,
+   "gap": 0.00669316148405652,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6191214361590779,
+     "regret": 0.036836238852501535,
+     "diff_vs_last": -0.030143077368445015
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6191214361590779,
+     "regret": 0.036836238852501535,
+     "diff_vs_last": -0.030143077368445015
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6492645135275229,
+     "regret": 0.00669316148405652,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6191214361590779,
+     "regret": 0.036836238852501535,
+     "diff_vs_last": -0.030143077368445015
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r16__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 16,
+   "y": [
+    0.6673410290469003,
+    0.6976932618381695,
+    0.7047262520134483
+   ],
+   "last": 0.7047262520134483,
+   "oracle": 0.7047262520134483,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6673410290469003,
+     "regret": 0.037385222966548004,
+     "diff_vs_last": -0.037385222966548004
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6673410290469003,
+     "regret": 0.037385222966548004,
+     "diff_vs_last": -0.037385222966548004
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6976932618381695,
+     "regret": 0.007032990175278808,
+     "diff_vs_last": -0.007032990175278808
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6673410290469003,
+     "regret": 0.037385222966548004,
+     "diff_vs_last": -0.037385222966548004
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6594038338158957,
+    0.6741346178215397,
+    0.6551315099254458
+   ],
+   "last": 0.6551315099254458,
+   "oracle": 0.6741346178215397,
+   "gap": 0.01900310789609394,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.6741346178215397,
+     "regret": 0.0,
+     "diff_vs_last": 0.01900310789609394
+    },
+    "DG": {
+     "rho": 1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.6741346178215397,
+     "regret": 0.0,
+     "diff_vs_last": 0.01900310789609394
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6741346178215397,
+     "regret": 0.0,
+     "diff_vs_last": 0.01900310789609394
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6594038338158957,
+     "regret": 0.014730784005643982,
+     "diff_vs_last": 0.004272323890449958
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6320154891448608,
+    0.6417569148242681,
+    0.6380723705830235
+   ],
+   "last": 0.6380723705830235,
+   "oracle": 0.6417569148242681,
+   "gap": 0.003684544241244647,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6320154891448608,
+     "regret": 0.009741425679407278,
+     "diff_vs_last": -0.006056881438162631
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6320154891448608,
+     "regret": 0.009741425679407278,
+     "diff_vs_last": -0.006056881438162631
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6380723705830235,
+     "regret": 0.003684544241244647,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6320154891448608,
+     "regret": 0.009741425679407278,
+     "diff_vs_last": -0.006056881438162631
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6565727362690066,
+    0.6632226236933211,
+    0.6992445856831523
+   ],
+   "last": 0.6992445856831523,
+   "oracle": 0.6992445856831523,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6565727362690066,
+     "regret": 0.0426718494141457,
+     "diff_vs_last": -0.0426718494141457
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6565727362690066,
+     "regret": 0.0426718494141457,
+     "diff_vs_last": -0.0426718494141457
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6632226236933211,
+     "regret": 0.03602196198983121,
+     "diff_vs_last": -0.03602196198983121
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6565727362690066,
+     "regret": 0.0426718494141457,
+     "diff_vs_last": -0.0426718494141457
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6601853741927368,
+    0.6830054202563405,
+    0.6560724472699754
+   ],
+   "last": 0.6560724472699754,
+   "oracle": 0.6830054202563405,
+   "gap": 0.0269329729863651,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6601853741927368,
+     "regret": 0.02282004606360366,
+     "diff_vs_last": 0.0041129269227614396
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6830054202563405,
+     "regret": 0.0,
+     "diff_vs_last": 0.0269329729863651
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6560724472699754,
+     "regret": 0.0269329729863651,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.6830054202563405,
+     "regret": 0.0,
+     "diff_vs_last": 0.0269329729863651
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6368447329358089,
+    0.6386332090974763,
+    0.6566190773127705
+   ],
+   "last": 0.6566190773127705,
+   "oracle": 0.6566190773127705,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6368447329358089,
+     "regret": 0.019774344376961572,
+     "diff_vs_last": -0.019774344376961572
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6368447329358089,
+     "regret": 0.019774344376961572,
+     "diff_vs_last": -0.019774344376961572
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6566190773127705,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6368447329358089,
+     "regret": 0.019774344376961572,
+     "diff_vs_last": -0.019774344376961572
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6457144402706908,
+    0.6822560386262492,
+    0.6829599814201378
+   ],
+   "last": 0.6829599814201378,
+   "oracle": 0.6829599814201378,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6457144402706908,
+     "regret": 0.037245541149447,
+     "diff_vs_last": -0.037245541149447
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6457144402706908,
+     "regret": 0.037245541149447,
+     "diff_vs_last": -0.037245541149447
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6457144402706908,
+     "regret": 0.037245541149447,
+     "diff_vs_last": -0.037245541149447
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6457144402706908,
+     "regret": 0.037245541149447,
+     "diff_vs_last": -0.037245541149447
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.653363184551102,
+    0.6782953727554015,
+    0.6779178672540895
+   ],
+   "last": 0.6779178672540895,
+   "oracle": 0.6782953727554015,
+   "gap": 0.0003775055013119921,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6782953727554015,
+     "regret": 0.0,
+     "diff_vs_last": 0.0003775055013119921
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6782953727554015,
+     "regret": 0.0,
+     "diff_vs_last": 0.0003775055013119921
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6779178672540895,
+     "regret": 0.0003775055013119921,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6782953727554015,
+     "regret": 0.0,
+     "diff_vs_last": 0.0003775055013119921
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.632620969221499,
+    0.655882377673658,
+    0.6618814451549874
+   ],
+   "last": 0.6618814451549874,
+   "oracle": 0.6618814451549874,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.632620969221499,
+     "regret": 0.02926047593348835,
+     "diff_vs_last": -0.02926047593348835
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.632620969221499,
+     "regret": 0.02926047593348835,
+     "diff_vs_last": -0.02926047593348835
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6618814451549874,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.632620969221499,
+     "regret": 0.02926047593348835,
+     "diff_vs_last": -0.02926047593348835
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6620429260005576,
+    0.679147711282787,
+    0.6942587941340341
+   ],
+   "last": 0.6942587941340341,
+   "oracle": 0.6942587941340341,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6620429260005576,
+     "regret": 0.032215868133476544,
+     "diff_vs_last": -0.032215868133476544
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6620429260005576,
+     "regret": 0.032215868133476544,
+     "diff_vs_last": -0.032215868133476544
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.679147711282787,
+     "regret": 0.015111082851247182,
+     "diff_vs_last": -0.015111082851247182
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6620429260005576,
+     "regret": 0.032215868133476544,
+     "diff_vs_last": -0.032215868133476544
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6633035815185019,
+    0.6264704562943556,
+    0.6560880015103294
+   ],
+   "last": 0.6560880015103294,
+   "oracle": 0.6633035815185019,
+   "gap": 0.007215580008172462,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6560880015103294,
+     "regret": 0.007215580008172462,
+     "diff_vs_last": 0.0
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6560880015103294,
+     "regret": 0.007215580008172462,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6560880015103294,
+     "regret": 0.007215580008172462,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6633035815185019,
+     "regret": 0.0,
+     "diff_vs_last": 0.007215580008172462
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6326719758654641,
+    0.646688260868003,
+    0.6729471197239866
+   ],
+   "last": 0.6729471197239866,
+   "oracle": 0.6729471197239866,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.646688260868003,
+     "regret": 0.026258858855983558,
+     "diff_vs_last": -0.026258858855983558
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.646688260868003,
+     "regret": 0.026258858855983558,
+     "diff_vs_last": -0.026258858855983558
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6729471197239866,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.646688260868003,
+     "regret": 0.026258858855983558,
+     "diff_vs_last": -0.026258858855983558
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r32__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 32,
+   "y": [
+    0.6751529233219894,
+    0.6846557438537916,
+    0.6929488035571614
+   ],
+   "last": 0.6929488035571614,
+   "oracle": 0.6929488035571614,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6751529233219894,
+     "regret": 0.01779588023517198,
+     "diff_vs_last": -0.01779588023517198
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6751529233219894,
+     "regret": 0.01779588023517198,
+     "diff_vs_last": -0.01779588023517198
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6751529233219894,
+     "regret": 0.01779588023517198,
+     "diff_vs_last": -0.01779588023517198
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6751529233219894,
+     "regret": 0.01779588023517198,
+     "diff_vs_last": -0.01779588023517198
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.5920056897773859,
+    0.6167520792826077,
+    0.6189712484909432
+   ],
+   "last": 0.6189712484909432,
+   "oracle": 0.6189712484909432,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6167520792826077,
+     "regret": 0.0022191692083355363,
+     "diff_vs_last": -0.0022191692083355363
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5920056897773859,
+     "regret": 0.026965558713557325,
+     "diff_vs_last": -0.026965558713557325
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.5920056897773859,
+     "regret": 0.026965558713557325,
+     "diff_vs_last": -0.026965558713557325
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5920056897773859,
+     "regret": 0.026965558713557325,
+     "diff_vs_last": -0.026965558713557325
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.6256082004308431,
+    0.6306933968680801,
+    0.6072647492488987
+   ],
+   "last": 0.6072647492488987,
+   "oracle": 0.6306933968680801,
+   "gap": 0.023428647619181397,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6256082004308431,
+     "regret": 0.005085196437237038,
+     "diff_vs_last": 0.01834345118194436
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6256082004308431,
+     "regret": 0.005085196437237038,
+     "diff_vs_last": 0.01834345118194436
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6306933968680801,
+     "regret": 0.0,
+     "diff_vs_last": 0.023428647619181397
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6256082004308431,
+     "regret": 0.005085196437237038,
+     "diff_vs_last": 0.01834345118194436
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.6214427310194229,
+    0.6671247813055726,
+    0.6367392449738895
+   ],
+   "last": 0.6367392449738895,
+   "oracle": 0.6671247813055726,
+   "gap": 0.03038553633168317,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6214427310194229,
+     "regret": 0.04568205028614969,
+     "diff_vs_last": -0.015296513954466517
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6214427310194229,
+     "regret": 0.04568205028614969,
+     "diff_vs_last": -0.015296513954466517
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6367392449738895,
+     "regret": 0.03038553633168317,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6214427310194229,
+     "regret": 0.04568205028614969,
+     "diff_vs_last": -0.015296513954466517
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.615935613652407,
+    0.6044636724930128,
+    0.6433386072996936
+   ],
+   "last": 0.6433386072996936,
+   "oracle": 0.6433386072996936,
+   "gap": 0.0,
+   "monotone": false,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.615935613652407,
+     "regret": 0.0274029936472866,
+     "diff_vs_last": -0.0274029936472866
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.615935613652407,
+     "regret": 0.0274029936472866,
+     "diff_vs_last": -0.0274029936472866
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.615935613652407,
+     "regret": 0.0274029936472866,
+     "diff_vs_last": -0.0274029936472866
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.6044636724930128,
+     "regret": 0.038874934806680805,
+     "diff_vs_last": -0.038874934806680805
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.6163910719871645,
+    0.6527472443114565,
+    0.6603553568879627
+   ],
+   "last": 0.6603553568879627,
+   "oracle": 0.6603553568879627,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6163910719871645,
+     "regret": 0.04396428490079818,
+     "diff_vs_last": -0.04396428490079818
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6163910719871645,
+     "regret": 0.04396428490079818,
+     "diff_vs_last": -0.04396428490079818
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6603553568879627,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6163910719871645,
+     "regret": 0.04396428490079818,
+     "diff_vs_last": -0.04396428490079818
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.6601601512700924,
+    0.6330772545463883,
+    0.6577834269610618
+   ],
+   "last": 0.6577834269610618,
+   "oracle": 0.6601601512700924,
+   "gap": 0.0023767243090305756,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6601601512700924,
+     "regret": 0.0,
+     "diff_vs_last": 0.0023767243090305756
+    },
+    "DG": {
+     "rho": 1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6601601512700924,
+     "regret": 0.0,
+     "diff_vs_last": 0.0023767243090305756
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6601601512700924,
+     "regret": 0.0,
+     "diff_vs_last": 0.0023767243090305756
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6330772545463883,
+     "regret": 0.02708289672370412,
+     "diff_vs_last": -0.024706172414673544
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.6172683106724351,
+    0.5998178206855052,
+    0.625537889610874
+   ],
+   "last": 0.625537889610874,
+   "oracle": 0.625537889610874,
+   "gap": 0.0,
+   "monotone": false,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6172683106724351,
+     "regret": 0.008269578938438826,
+     "diff_vs_last": -0.008269578938438826
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6172683106724351,
+     "regret": 0.008269578938438826,
+     "diff_vs_last": -0.008269578938438826
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6172683106724351,
+     "regret": 0.008269578938438826,
+     "diff_vs_last": -0.008269578938438826
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.5998178206855052,
+     "regret": 0.025720068925368822,
+     "diff_vs_last": -0.025720068925368822
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.6316628690599204,
+    0.6384452043702664,
+    0.615307927988242
+   ],
+   "last": 0.615307927988242,
+   "oracle": 0.6384452043702664,
+   "gap": 0.023137276382024452,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.615307927988242,
+     "regret": 0.023137276382024452,
+     "diff_vs_last": 0.0
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.615307927988242,
+     "regret": 0.023137276382024452,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6316628690599204,
+     "regret": 0.006782335310345999,
+     "diff_vs_last": 0.016354941071678453
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.615307927988242,
+     "regret": 0.023137276382024452,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.635898179040186,
+    0.6425743470947204,
+    0.6246482973913458
+   ],
+   "last": 0.6246482973913458,
+   "oracle": 0.6425743470947204,
+   "gap": 0.017926049703374636,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.635898179040186,
+     "regret": 0.006676168054534415,
+     "diff_vs_last": 0.011249881648840221
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.635898179040186,
+     "regret": 0.006676168054534415,
+     "diff_vs_last": 0.011249881648840221
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.635898179040186,
+     "regret": 0.006676168054534415,
+     "diff_vs_last": 0.011249881648840221
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6425743470947204,
+     "regret": 0.0,
+     "diff_vs_last": 0.017926049703374636
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.596715675102881,
+    0.6142323273102046,
+    0.641405782045599
+   ],
+   "last": 0.641405782045599,
+   "oracle": 0.641405782045599,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.596715675102881,
+     "regret": 0.04469010694271791,
+     "diff_vs_last": -0.04469010694271791
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6142323273102046,
+     "regret": 0.027173454735394342,
+     "diff_vs_last": -0.027173454735394342
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.596715675102881,
+     "regret": 0.04469010694271791,
+     "diff_vs_last": -0.04469010694271791
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6142323273102046,
+     "regret": 0.027173454735394342,
+     "diff_vs_last": -0.027173454735394342
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.6235023977074676,
+    0.6394708665312236,
+    0.6121857245195925
+   ],
+   "last": 0.6121857245195925,
+   "oracle": 0.6394708665312236,
+   "gap": 0.027285142011631125,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6235023977074676,
+     "regret": 0.01596846882375602,
+     "diff_vs_last": 0.011316673187875104
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6121857245195925,
+     "regret": 0.027285142011631125,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.6394708665312236,
+     "regret": 0.0,
+     "diff_vs_last": 0.027285142011631125
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6235023977074676,
+     "regret": 0.01596846882375602,
+     "diff_vs_last": 0.011316673187875104
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r64__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 64,
+   "y": [
+    0.6382859942998685,
+    0.6400785368775466,
+    0.6550312909299305
+   ],
+   "last": 0.6550312909299305,
+   "oracle": 0.6550312909299305,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6382859942998685,
+     "regret": 0.016745296630061968,
+     "diff_vs_last": -0.016745296630061968
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6382859942998685,
+     "regret": 0.016745296630061968,
+     "diff_vs_last": -0.016745296630061968
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6400785368775466,
+     "regret": 0.014952754052383943,
+     "diff_vs_last": -0.014952754052383943
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6382859942998685,
+     "regret": 0.016745296630061968,
+     "diff_vs_last": -0.016745296630061968
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6676224660894446,
+    0.7077935891137103,
+    0.7056138036504647
+   ],
+   "last": 0.7056138036504647,
+   "oracle": 0.7077935891137103,
+   "gap": 0.002179785463245598,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6676224660894446,
+     "regret": 0.04017112302426562,
+     "diff_vs_last": -0.03799133756102002
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6676224660894446,
+     "regret": 0.04017112302426562,
+     "diff_vs_last": -0.03799133756102002
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6676224660894446,
+     "regret": 0.04017112302426562,
+     "diff_vs_last": -0.03799133756102002
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6676224660894446,
+     "regret": 0.04017112302426562,
+     "diff_vs_last": -0.03799133756102002
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6380514238441759,
+    0.6476764446790709,
+    0.638759375979618
+   ],
+   "last": 0.638759375979618,
+   "oracle": 0.6476764446790709,
+   "gap": 0.008917068699452968,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6380514238441759,
+     "regret": 0.009625020834895026,
+     "diff_vs_last": -0.0007079521354420582
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6380514238441759,
+     "regret": 0.009625020834895026,
+     "diff_vs_last": -0.0007079521354420582
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.638759375979618,
+     "regret": 0.008917068699452968,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6380514238441759,
+     "regret": 0.009625020834895026,
+     "diff_vs_last": -0.0007079521354420582
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6755146759147036,
+    0.7049625286065495,
+    0.7073044144059482
+   ],
+   "last": 0.7073044144059482,
+   "oracle": 0.7073044144059482,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6755146759147036,
+     "regret": 0.03178973849124456,
+     "diff_vs_last": -0.03178973849124456
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6755146759147036,
+     "regret": 0.03178973849124456,
+     "diff_vs_last": -0.03178973849124456
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6755146759147036,
+     "regret": 0.03178973849124456,
+     "diff_vs_last": -0.03178973849124456
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.7049625286065495,
+     "regret": 0.0023418857993986464,
+     "diff_vs_last": -0.0023418857993986464
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6990107257520797,
+    0.7076622803701744,
+    0.7289127581154915
+   ],
+   "last": 0.7289127581154915,
+   "oracle": 0.7289127581154915,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6990107257520797,
+     "regret": 0.029902032363411823,
+     "diff_vs_last": -0.029902032363411823
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6990107257520797,
+     "regret": 0.029902032363411823,
+     "diff_vs_last": -0.029902032363411823
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.7289127581154915,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6990107257520797,
+     "regret": 0.029902032363411823,
+     "diff_vs_last": -0.029902032363411823
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6307594822382219,
+    0.6331975849796747,
+    0.6416566317632288
+   ],
+   "last": 0.6416566317632288,
+   "oracle": 0.6416566317632288,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6307594822382219,
+     "regret": 0.010897149525006977,
+     "diff_vs_last": -0.010897149525006977
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6307594822382219,
+     "regret": 0.010897149525006977,
+     "diff_vs_last": -0.010897149525006977
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6416566317632288,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6307594822382219,
+     "regret": 0.010897149525006977,
+     "diff_vs_last": -0.010897149525006977
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6781024588896932,
+    0.6991993935845816,
+    0.7139159133914439
+   ],
+   "last": 0.7139159133914439,
+   "oracle": 0.7139159133914439,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6781024588896932,
+     "regret": 0.03581345450175066,
+     "diff_vs_last": -0.03581345450175066
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6781024588896932,
+     "regret": 0.03581345450175066,
+     "diff_vs_last": -0.03581345450175066
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6781024588896932,
+     "regret": 0.03581345450175066,
+     "diff_vs_last": -0.03581345450175066
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6781024588896932,
+     "regret": 0.03581345450175066,
+     "diff_vs_last": -0.03581345450175066
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6956762403085648,
+    0.6998602107733366,
+    0.7092204449530766
+   ],
+   "last": 0.7092204449530766,
+   "oracle": 0.7092204449530766,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6956762403085648,
+     "regret": 0.013544204644511781,
+     "diff_vs_last": -0.013544204644511781
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6956762403085648,
+     "regret": 0.013544204644511781,
+     "diff_vs_last": -0.013544204644511781
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6998602107733366,
+     "regret": 0.009360234179739968,
+     "diff_vs_last": -0.009360234179739968
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6998602107733366,
+     "regret": 0.009360234179739968,
+     "diff_vs_last": -0.009360234179739968
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6293289072270013,
+    0.639273599205211,
+    0.6663118417069436
+   ],
+   "last": 0.6663118417069436,
+   "oracle": 0.6663118417069436,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6293289072270013,
+     "regret": 0.036982934479942275,
+     "diff_vs_last": -0.036982934479942275
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6293289072270013,
+     "regret": 0.036982934479942275,
+     "diff_vs_last": -0.036982934479942275
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.639273599205211,
+     "regret": 0.02703824250173259,
+     "diff_vs_last": -0.02703824250173259
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6293289072270013,
+     "regret": 0.036982934479942275,
+     "diff_vs_last": -0.036982934479942275
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6704299967082793,
+    0.7000371772496088,
+    0.7256946707439503
+   ],
+   "last": 0.7256946707439503,
+   "oracle": 0.7256946707439503,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6704299967082793,
+     "regret": 0.055264674035671035,
+     "diff_vs_last": -0.055264674035671035
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6704299967082793,
+     "regret": 0.055264674035671035,
+     "diff_vs_last": -0.055264674035671035
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.7256946707439503,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.7000371772496088,
+     "regret": 0.025657493494341543,
+     "diff_vs_last": -0.025657493494341543
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.696709842893577,
+    0.6929613207761662,
+    0.6947595282190356
+   ],
+   "last": 0.6947595282190356,
+   "oracle": 0.696709842893577,
+   "gap": 0.0019503146745413202,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.696709842893577,
+     "regret": 0.0,
+     "diff_vs_last": 0.0019503146745413202
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.696709842893577,
+     "regret": 0.0,
+     "diff_vs_last": 0.0019503146745413202
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6947595282190356,
+     "regret": 0.0019503146745413202,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.696709842893577,
+     "regret": 0.0,
+     "diff_vs_last": 0.0019503146745413202
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6043229842814969,
+    0.6635169919099237,
+    0.6540020605102399
+   ],
+   "last": 0.6540020605102399,
+   "oracle": 0.6635169919099237,
+   "gap": 0.009514931399683846,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6043229842814969,
+     "regret": 0.05919400762842686,
+     "diff_vs_last": -0.04967907622874301
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6043229842814969,
+     "regret": 0.05919400762842686,
+     "diff_vs_last": -0.04967907622874301
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6540020605102399,
+     "regret": 0.009514931399683846,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6043229842814969,
+     "regret": 0.05919400762842686,
+     "diff_vs_last": -0.04967907622874301
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__dtd__r8__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "dtd",
+   "rank": 8,
+   "y": [
+    0.6630685758511391,
+    0.7109491044004118,
+    0.7008464502569071
+   ],
+   "last": 0.7008464502569071,
+   "oracle": 0.7109491044004118,
+   "gap": 0.010102654143504752,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6630685758511391,
+     "regret": 0.047880528549272716,
+     "diff_vs_last": -0.037777874405767964
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6630685758511391,
+     "regret": 0.047880528549272716,
+     "diff_vs_last": -0.037777874405767964
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.7008464502569071,
+     "regret": 0.010102654143504752,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6630685758511391,
+     "regret": 0.047880528549272716,
+     "diff_vs_last": -0.037777874405767964
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.36003323688858896,
+    0.3617844180001034,
+    0.42780321350214573
+   ],
+   "last": 0.42780321350214573,
+   "oracle": 0.42780321350214573,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.36003323688858896,
+     "regret": 0.06776997661355677,
+     "diff_vs_last": -0.06776997661355677
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.36003323688858896,
+     "regret": 0.06776997661355677,
+     "diff_vs_last": -0.06776997661355677
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.42780321350214573,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.36003323688858896,
+     "regret": 0.06776997661355677,
+     "diff_vs_last": -0.06776997661355677
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.2643439900516436,
+    0.3253382377304318,
+    0.400208453069232
+   ],
+   "last": 0.400208453069232,
+   "oracle": 0.400208453069232,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2643439900516436,
+     "regret": 0.13586446301758837,
+     "diff_vs_last": -0.13586446301758837
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2643439900516436,
+     "regret": 0.13586446301758837,
+     "diff_vs_last": -0.13586446301758837
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.400208453069232,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2643439900516436,
+     "regret": 0.13586446301758837,
+     "diff_vs_last": -0.13586446301758837
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.19454705891156607,
+    0.28899380668603103,
+    0.2987763546527977
+   ],
+   "last": 0.2987763546527977,
+   "oracle": 0.2987763546527977,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.19454705891156607,
+     "regret": 0.10422929574123166,
+     "diff_vs_last": -0.10422929574123166
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.19454705891156607,
+     "regret": 0.10422929574123166,
+     "diff_vs_last": -0.10422929574123166
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.19454705891156607,
+     "regret": 0.10422929574123166,
+     "diff_vs_last": -0.10422929574123166
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.28899380668603103,
+     "regret": 0.009782547966766697,
+     "diff_vs_last": -0.009782547966766697
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.38890032739412694,
+    0.3966288918071973,
+    0.4713671993716445
+   ],
+   "last": 0.4713671993716445,
+   "oracle": 0.4713671993716445,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.38890032739412694,
+     "regret": 0.08246687197751756,
+     "diff_vs_last": -0.08246687197751756
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.38890032739412694,
+     "regret": 0.08246687197751756,
+     "diff_vs_last": -0.08246687197751756
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.4713671993716445,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.3966288918071973,
+     "regret": 0.07473830756444722,
+     "diff_vs_last": -0.07473830756444722
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.27663982111853186,
+    0.35623954215802445,
+    0.407825705018632
+   ],
+   "last": 0.407825705018632,
+   "oracle": 0.407825705018632,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.27663982111853186,
+     "regret": 0.13118588390010016,
+     "diff_vs_last": -0.13118588390010016
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.27663982111853186,
+     "regret": 0.13118588390010016,
+     "diff_vs_last": -0.13118588390010016
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.407825705018632,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.27663982111853186,
+     "regret": 0.13118588390010016,
+     "diff_vs_last": -0.13118588390010016
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.1768322148414462,
+    0.28095435367042887,
+    0.37040350583471404
+   ],
+   "last": 0.37040350583471404,
+   "oracle": 0.37040350583471404,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.1768322148414462,
+     "regret": 0.19357129099326784,
+     "diff_vs_last": -0.19357129099326784
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.1768322148414462,
+     "regret": 0.19357129099326784,
+     "diff_vs_last": -0.19357129099326784
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.1768322148414462,
+     "regret": 0.19357129099326784,
+     "diff_vs_last": -0.19357129099326784
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.28095435367042887,
+     "regret": 0.08944915216428517,
+     "diff_vs_last": -0.08944915216428517
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.34165947565439664,
+    0.4509123139501984,
+    0.4696990469462063
+   ],
+   "last": 0.4696990469462063,
+   "oracle": 0.4696990469462063,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.34165947565439664,
+     "regret": 0.12803957129180965,
+     "diff_vs_last": -0.12803957129180965
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.34165947565439664,
+     "regret": 0.12803957129180965,
+     "diff_vs_last": -0.12803957129180965
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.4696990469462063,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.34165947565439664,
+     "regret": 0.12803957129180965,
+     "diff_vs_last": -0.12803957129180965
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.3085152788296522,
+    0.4198411843642714,
+    0.4167934331410015
+   ],
+   "last": 0.4167934331410015,
+   "oracle": 0.4198411843642714,
+   "gap": 0.0030477512232699455,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3085152788296522,
+     "regret": 0.11132590553461924,
+     "diff_vs_last": -0.1082781543113493
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3085152788296522,
+     "regret": 0.11132590553461924,
+     "diff_vs_last": -0.1082781543113493
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.4167934331410015,
+     "regret": 0.0030477512232699455,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3085152788296522,
+     "regret": 0.11132590553461924,
+     "diff_vs_last": -0.1082781543113493
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.20375649550630207,
+    0.3086812953303273,
+    0.30372634178008706
+   ],
+   "last": 0.30372634178008706,
+   "oracle": 0.3086812953303273,
+   "gap": 0.0049549535502402264,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.20375649550630207,
+     "regret": 0.10492479982402522,
+     "diff_vs_last": -0.099969846273785
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.20375649550630207,
+     "regret": 0.10492479982402522,
+     "diff_vs_last": -0.099969846273785
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.30372634178008706,
+     "regret": 0.0049549535502402264,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.3086812953303273,
+     "regret": 0.0,
+     "diff_vs_last": 0.0049549535502402264
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.31633710894568634,
+    0.39821955149826926,
+    0.4738548245248794
+   ],
+   "last": 0.4738548245248794,
+   "oracle": 0.4738548245248794,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.31633710894568634,
+     "regret": 0.15751771557919308,
+     "diff_vs_last": -0.15751771557919308
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.31633710894568634,
+     "regret": 0.15751771557919308,
+     "diff_vs_last": -0.15751771557919308
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.4738548245248794,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.31633710894568634,
+     "regret": 0.15751771557919308,
+     "diff_vs_last": -0.15751771557919308
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.3094060365903691,
+    0.3621348695595951,
+    0.38362817921658593
+   ],
+   "last": 0.38362817921658593,
+   "oracle": 0.38362817921658593,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3094060365903691,
+     "regret": 0.07422214262621685,
+     "diff_vs_last": -0.07422214262621685
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3094060365903691,
+     "regret": 0.07422214262621685,
+     "diff_vs_last": -0.07422214262621685
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.38362817921658593,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3094060365903691,
+     "regret": 0.07422214262621685,
+     "diff_vs_last": -0.07422214262621685
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r16__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 16,
+   "y": [
+    0.19265576916621235,
+    0.27507726586624853,
+    0.3308891674571078
+   ],
+   "last": 0.3308891674571078,
+   "oracle": 0.3308891674571078,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.19265576916621235,
+     "regret": 0.13823339829089543,
+     "diff_vs_last": -0.13823339829089543
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.19265576916621235,
+     "regret": 0.13823339829089543,
+     "diff_vs_last": -0.13823339829089543
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.27507726586624853,
+     "regret": 0.05581190159085925,
+     "diff_vs_last": -0.05581190159085925
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.3308891674571078,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.3735696340942793,
+    0.4115962222149121,
+    0.43850023931400245
+   ],
+   "last": 0.43850023931400245,
+   "oracle": 0.43850023931400245,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3735696340942793,
+     "regret": 0.06493060521972316,
+     "diff_vs_last": -0.06493060521972316
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3735696340942793,
+     "regret": 0.06493060521972316,
+     "diff_vs_last": -0.06493060521972316
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.4115962222149121,
+     "regret": 0.02690401709909035,
+     "diff_vs_last": -0.02690401709909035
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3735696340942793,
+     "regret": 0.06493060521972316,
+     "diff_vs_last": -0.06493060521972316
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.29657674236544784,
+    0.36400797074265534,
+    0.44594155921071726
+   ],
+   "last": 0.44594155921071726,
+   "oracle": 0.44594155921071726,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.29657674236544784,
+     "regret": 0.14936481684526942,
+     "diff_vs_last": -0.14936481684526942
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.29657674236544784,
+     "regret": 0.14936481684526942,
+     "diff_vs_last": -0.14936481684526942
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.44594155921071726,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.29657674236544784,
+     "regret": 0.14936481684526942,
+     "diff_vs_last": -0.14936481684526942
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.2193090341128915,
+    0.35464312477951415,
+    0.37276129673154174
+   ],
+   "last": 0.37276129673154174,
+   "oracle": 0.37276129673154174,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2193090341128915,
+     "regret": 0.15345226261865025,
+     "diff_vs_last": -0.15345226261865025
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2193090341128915,
+     "regret": 0.15345226261865025,
+     "diff_vs_last": -0.15345226261865025
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.2193090341128915,
+     "regret": 0.15345226261865025,
+     "diff_vs_last": -0.15345226261865025
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.35464312477951415,
+     "regret": 0.018118171952027584,
+     "diff_vs_last": -0.018118171952027584
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.34362597411351836,
+    0.4422127944930019,
+    0.465645231390747
+   ],
+   "last": 0.465645231390747,
+   "oracle": 0.465645231390747,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.34362597411351836,
+     "regret": 0.12201925727722862,
+     "diff_vs_last": -0.12201925727722862
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.34362597411351836,
+     "regret": 0.12201925727722862,
+     "diff_vs_last": -0.12201925727722862
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.465645231390747,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.34362597411351836,
+     "regret": 0.12201925727722862,
+     "diff_vs_last": -0.12201925727722862
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.3121365712496523,
+    0.39326117739140803,
+    0.45486793668226266
+   ],
+   "last": 0.45486793668226266,
+   "oracle": 0.45486793668226266,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3121365712496523,
+     "regret": 0.1427313654326104,
+     "diff_vs_last": -0.1427313654326104
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3121365712496523,
+     "regret": 0.1427313654326104,
+     "diff_vs_last": -0.1427313654326104
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.45486793668226266,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3121365712496523,
+     "regret": 0.1427313654326104,
+     "diff_vs_last": -0.1427313654326104
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.24445014612336008,
+    0.330503761332819,
+    0.35003299968316437
+   ],
+   "last": 0.35003299968316437,
+   "oracle": 0.35003299968316437,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.24445014612336008,
+     "regret": 0.10558285355980429,
+     "diff_vs_last": -0.10558285355980429
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.24445014612336008,
+     "regret": 0.10558285355980429,
+     "diff_vs_last": -0.10558285355980429
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.35003299968316437,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.24445014612336008,
+     "regret": 0.10558285355980429,
+     "diff_vs_last": -0.10558285355980429
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.3667862032080365,
+    0.38127139776370333,
+    0.41687379543921316
+   ],
+   "last": 0.41687379543921316,
+   "oracle": 0.41687379543921316,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3667862032080365,
+     "regret": 0.05008759223117665,
+     "diff_vs_last": -0.05008759223117665
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3667862032080365,
+     "regret": 0.05008759223117665,
+     "diff_vs_last": -0.05008759223117665
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.41687379543921316,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3667862032080365,
+     "regret": 0.05008759223117665,
+     "diff_vs_last": -0.05008759223117665
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.3395633139946641,
+    0.3964104284691154,
+    0.43718969763099547
+   ],
+   "last": 0.43718969763099547,
+   "oracle": 0.43718969763099547,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3395633139946641,
+     "regret": 0.09762638363633136,
+     "diff_vs_last": -0.09762638363633136
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3395633139946641,
+     "regret": 0.09762638363633136,
+     "diff_vs_last": -0.09762638363633136
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.43718969763099547,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3395633139946641,
+     "regret": 0.09762638363633136,
+     "diff_vs_last": -0.09762638363633136
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.26327220806719764,
+    0.3042121139024327,
+    0.3619738439504855
+   ],
+   "last": 0.3619738439504855,
+   "oracle": 0.3619738439504855,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.26327220806719764,
+     "regret": 0.09870163588328784,
+     "diff_vs_last": -0.09870163588328784
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.26327220806719764,
+     "regret": 0.09870163588328784,
+     "diff_vs_last": -0.09870163588328784
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.3619738439504855,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.3042121139024327,
+     "regret": 0.057761730048052795,
+     "diff_vs_last": -0.057761730048052795
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.3010121522927192,
+    0.3830397658275783,
+    0.45034078313725273
+   ],
+   "last": 0.45034078313725273,
+   "oracle": 0.45034078313725273,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3010121522927192,
+     "regret": 0.14932863084453352,
+     "diff_vs_last": -0.14932863084453352
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3010121522927192,
+     "regret": 0.14932863084453352,
+     "diff_vs_last": -0.14932863084453352
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.3830397658275783,
+     "regret": 0.06730101730967442,
+     "diff_vs_last": -0.06730101730967442
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3010121522927192,
+     "regret": 0.14932863084453352,
+     "diff_vs_last": -0.14932863084453352
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.2904925306330953,
+    0.3691569078496305,
+    0.39690246002954693
+   ],
+   "last": 0.39690246002954693,
+   "oracle": 0.39690246002954693,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2904925306330953,
+     "regret": 0.10640992939645161,
+     "diff_vs_last": -0.10640992939645161
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2904925306330953,
+     "regret": 0.10640992939645161,
+     "diff_vs_last": -0.10640992939645161
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.3691569078496305,
+     "regret": 0.027745552179916422,
+     "diff_vs_last": -0.027745552179916422
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2904925306330953,
+     "regret": 0.10640992939645161,
+     "diff_vs_last": -0.10640992939645161
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r32__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 32,
+   "y": [
+    0.24721300754785946,
+    0.3355831349387867,
+    0.3672183722527417
+   ],
+   "last": 0.3672183722527417,
+   "oracle": 0.3672183722527417,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.24721300754785946,
+     "regret": 0.12000536470488221,
+     "diff_vs_last": -0.12000536470488221
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.24721300754785946,
+     "regret": 0.12000536470488221,
+     "diff_vs_last": -0.12000536470488221
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.3355831349387867,
+     "regret": 0.031635237313954956,
+     "diff_vs_last": -0.031635237313954956
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.24721300754785946,
+     "regret": 0.12000536470488221,
+     "diff_vs_last": -0.12000536470488221
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.3217278185393976,
+    0.38252205095941494,
+    0.3861232307760083
+   ],
+   "last": 0.3861232307760083,
+   "oracle": 0.3861232307760083,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.3861232307760083,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.3861232307760083,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.3861232307760083,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3217278185393976,
+     "regret": 0.06439541223661072,
+     "diff_vs_last": -0.06439541223661072
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.3533522168051113,
+    0.42346903453515977,
+    0.39233268773661895
+   ],
+   "last": 0.39233268773661895,
+   "oracle": 0.42346903453515977,
+   "gap": 0.031136346798540826,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3533522168051113,
+     "regret": 0.07011681773004846,
+     "diff_vs_last": -0.03898047093150764
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3533522168051113,
+     "regret": 0.07011681773004846,
+     "diff_vs_last": -0.03898047093150764
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.39233268773661895,
+     "regret": 0.031136346798540826,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3533522168051113,
+     "regret": 0.07011681773004846,
+     "diff_vs_last": -0.03898047093150764
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.28067543158902075,
+    0.33587477483653916,
+    0.36803678667303963
+   ],
+   "last": 0.36803678667303963,
+   "oracle": 0.36803678667303963,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.28067543158902075,
+     "regret": 0.08736135508401888,
+     "diff_vs_last": -0.08736135508401888
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.28067543158902075,
+     "regret": 0.08736135508401888,
+     "diff_vs_last": -0.08736135508401888
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.33587477483653916,
+     "regret": 0.03216201183650047,
+     "diff_vs_last": -0.03216201183650047
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.28067543158902075,
+     "regret": 0.08736135508401888,
+     "diff_vs_last": -0.08736135508401888
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.3408352171668815,
+    0.3965739084947948,
+    0.4098455565343916
+   ],
+   "last": 0.4098455565343916,
+   "oracle": 0.4098455565343916,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.3965739084947948,
+     "regret": 0.013271648039596795,
+     "diff_vs_last": -0.013271648039596795
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.3965739084947948,
+     "regret": 0.013271648039596795,
+     "diff_vs_last": -0.013271648039596795
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.4098455565343916,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.3965739084947948,
+     "regret": 0.013271648039596795,
+     "diff_vs_last": -0.013271648039596795
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.349981531340022,
+    0.40146118555045013,
+    0.42426469449304127
+   ],
+   "last": 0.42426469449304127,
+   "oracle": 0.42426469449304127,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.349981531340022,
+     "regret": 0.07428316315301925,
+     "diff_vs_last": -0.07428316315301925
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.349981531340022,
+     "regret": 0.07428316315301925,
+     "diff_vs_last": -0.07428316315301925
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.42426469449304127,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.349981531340022,
+     "regret": 0.07428316315301925,
+     "diff_vs_last": -0.07428316315301925
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.28183233660836376,
+    0.3345331534028141,
+    0.33713898160578604
+   ],
+   "last": 0.33713898160578604,
+   "oracle": 0.33713898160578604,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.28183233660836376,
+     "regret": 0.05530664499742227,
+     "diff_vs_last": -0.05530664499742227
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.28183233660836376,
+     "regret": 0.05530664499742227,
+     "diff_vs_last": -0.05530664499742227
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.33713898160578604,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.28183233660836376,
+     "regret": 0.05530664499742227,
+     "diff_vs_last": -0.05530664499742227
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.31267544442890177,
+    0.3731806507501703,
+    0.38043439654066646
+   ],
+   "last": 0.38043439654066646,
+   "oracle": 0.38043439654066646,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.31267544442890177,
+     "regret": 0.06775895211176469,
+     "diff_vs_last": -0.06775895211176469
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.31267544442890177,
+     "regret": 0.06775895211176469,
+     "diff_vs_last": -0.06775895211176469
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.38043439654066646,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.31267544442890177,
+     "regret": 0.06775895211176469,
+     "diff_vs_last": -0.06775895211176469
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.35556506913308417,
+    0.4021331576768403,
+    0.4278244328662747
+   ],
+   "last": 0.4278244328662747,
+   "oracle": 0.4278244328662747,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.35556506913308417,
+     "regret": 0.07225936373319053,
+     "diff_vs_last": -0.07225936373319053
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.35556506913308417,
+     "regret": 0.07225936373319053,
+     "diff_vs_last": -0.07225936373319053
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.4278244328662747,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.35556506913308417,
+     "regret": 0.07225936373319053,
+     "diff_vs_last": -0.07225936373319053
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.24079593078730335,
+    0.3145757310900832,
+    0.34213105604560246
+   ],
+   "last": 0.34213105604560246,
+   "oracle": 0.34213105604560246,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.24079593078730335,
+     "regret": 0.1013351252582991,
+     "diff_vs_last": -0.1013351252582991
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.24079593078730335,
+     "regret": 0.1013351252582991,
+     "diff_vs_last": -0.1013351252582991
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.34213105604560246,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.24079593078730335,
+     "regret": 0.1013351252582991,
+     "diff_vs_last": -0.1013351252582991
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.3710111020975208,
+    0.36068423386219906,
+    0.4161282889686055
+   ],
+   "last": 0.4161282889686055,
+   "oracle": 0.4161282889686055,
+   "gap": 0.0,
+   "monotone": false,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3710111020975208,
+     "regret": 0.04511718687108468,
+     "diff_vs_last": -0.04511718687108468
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3710111020975208,
+     "regret": 0.04511718687108468,
+     "diff_vs_last": -0.04511718687108468
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.4161282889686055,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3710111020975208,
+     "regret": 0.04511718687108468,
+     "diff_vs_last": -0.04511718687108468
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.29899171538142605,
+    0.3912388546906289,
+    0.38342548146754585
+   ],
+   "last": 0.38342548146754585,
+   "oracle": 0.3912388546906289,
+   "gap": 0.007813373223083064,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.29899171538142605,
+     "regret": 0.09224713930920286,
+     "diff_vs_last": -0.0844337660861198
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.29899171538142605,
+     "regret": 0.09224713930920286,
+     "diff_vs_last": -0.0844337660861198
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.38342548146754585,
+     "regret": 0.007813373223083064,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.29899171538142605,
+     "regret": 0.09224713930920286,
+     "diff_vs_last": -0.0844337660861198
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r64__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 64,
+   "y": [
+    0.29266908615407217,
+    0.3449478329384434,
+    0.40630843343102935
+   ],
+   "last": 0.40630843343102935,
+   "oracle": 0.40630843343102935,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.29266908615407217,
+     "regret": 0.11363934727695718,
+     "diff_vs_last": -0.11363934727695718
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.29266908615407217,
+     "regret": 0.11363934727695718,
+     "diff_vs_last": -0.11363934727695718
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.40630843343102935,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.29266908615407217,
+     "regret": 0.11363934727695718,
+     "diff_vs_last": -0.11363934727695718
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.3126739307885824,
+    0.39853409992425193,
+    0.44058546423055195
+   ],
+   "last": 0.44058546423055195,
+   "oracle": 0.44058546423055195,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3126739307885824,
+     "regret": 0.12791153344196954,
+     "diff_vs_last": -0.12791153344196954
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.3126739307885824,
+     "regret": 0.12791153344196954,
+     "diff_vs_last": -0.12791153344196954
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.44058546423055195,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.39853409992425193,
+     "regret": 0.04205136430630002,
+     "diff_vs_last": -0.04205136430630002
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.2598938181808181,
+    0.33355551255384674,
+    0.37653221193310626
+   ],
+   "last": 0.37653221193310626,
+   "oracle": 0.37653221193310626,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2598938181808181,
+     "regret": 0.11663839375228818,
+     "diff_vs_last": -0.11663839375228818
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2598938181808181,
+     "regret": 0.11663839375228818,
+     "diff_vs_last": -0.11663839375228818
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.37653221193310626,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2598938181808181,
+     "regret": 0.11663839375228818,
+     "diff_vs_last": -0.11663839375228818
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.1603519670283595,
+    0.2659155847484493,
+    0.29897036921304315
+   ],
+   "last": 0.29897036921304315,
+   "oracle": 0.29897036921304315,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.1603519670283595,
+     "regret": 0.13861840218468366,
+     "diff_vs_last": -0.13861840218468366
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.1603519670283595,
+     "regret": 0.13861840218468366,
+     "diff_vs_last": -0.13861840218468366
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.1603519670283595,
+     "regret": 0.13861840218468366,
+     "diff_vs_last": -0.13861840218468366
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.29897036921304315,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.2792917327345831,
+    0.39945960578078377,
+    0.45166377131544877
+   ],
+   "last": 0.45166377131544877,
+   "oracle": 0.45166377131544877,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2792917327345831,
+     "regret": 0.1723720385808657,
+     "diff_vs_last": -0.1723720385808657
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2792917327345831,
+     "regret": 0.1723720385808657,
+     "diff_vs_last": -0.1723720385808657
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.45166377131544877,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2792917327345831,
+     "regret": 0.1723720385808657,
+     "diff_vs_last": -0.1723720385808657
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.2139884053059342,
+    0.3199139643053261,
+    0.3963079347901784
+   ],
+   "last": 0.3963079347901784,
+   "oracle": 0.3963079347901784,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2139884053059342,
+     "regret": 0.1823195294842442,
+     "diff_vs_last": -0.1823195294842442
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2139884053059342,
+     "regret": 0.1823195294842442,
+     "diff_vs_last": -0.1823195294842442
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.3963079347901784,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2139884053059342,
+     "regret": 0.1823195294842442,
+     "diff_vs_last": -0.1823195294842442
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.16725437048350764,
+    0.2552643056667589,
+    0.32142410314979647
+   ],
+   "last": 0.32142410314979647,
+   "oracle": 0.32142410314979647,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.16725437048350764,
+     "regret": 0.15416973266628883,
+     "diff_vs_last": -0.15416973266628883
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.16725437048350764,
+     "regret": 0.15416973266628883,
+     "diff_vs_last": -0.15416973266628883
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.16725437048350764,
+     "regret": 0.15416973266628883,
+     "diff_vs_last": -0.15416973266628883
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.2552643056667589,
+     "regret": 0.06615979748303757,
+     "diff_vs_last": -0.06615979748303757
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.3166055109132899,
+    0.4155403550542638,
+    0.4092129197271965
+   ],
+   "last": 0.4092129197271965,
+   "oracle": 0.4155403550542638,
+   "gap": 0.00632743532706731,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3166055109132899,
+     "regret": 0.09893484414097387,
+     "diff_vs_last": -0.09260740881390656
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3166055109132899,
+     "regret": 0.09893484414097387,
+     "diff_vs_last": -0.09260740881390656
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.4092129197271965,
+     "regret": 0.00632743532706731,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.3166055109132899,
+     "regret": 0.09893484414097387,
+     "diff_vs_last": -0.09260740881390656
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.26792153393734064,
+    0.34970258249548447,
+    0.4232064560518689
+   ],
+   "last": 0.4232064560518689,
+   "oracle": 0.4232064560518689,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.26792153393734064,
+     "regret": 0.15528492211452827,
+     "diff_vs_last": -0.15528492211452827
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.26792153393734064,
+     "regret": 0.15528492211452827,
+     "diff_vs_last": -0.15528492211452827
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.4232064560518689,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.26792153393734064,
+     "regret": 0.15528492211452827,
+     "diff_vs_last": -0.15528492211452827
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.16084911404325694,
+    0.25123484929079454,
+    0.302626016462445
+   ],
+   "last": 0.302626016462445,
+   "oracle": 0.302626016462445,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.16084911404325694,
+     "regret": 0.14177690241918808,
+     "diff_vs_last": -0.14177690241918808
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.16084911404325694,
+     "regret": 0.14177690241918808,
+     "diff_vs_last": -0.14177690241918808
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.16084911404325694,
+     "regret": 0.14177690241918808,
+     "diff_vs_last": -0.14177690241918808
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.25123484929079454,
+     "regret": 0.05139116717165049,
+     "diff_vs_last": -0.05139116717165049
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.2933018858381277,
+    0.3666961861257838,
+    0.42840231537255635
+   ],
+   "last": 0.42840231537255635,
+   "oracle": 0.42840231537255635,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2933018858381277,
+     "regret": 0.13510042953442863,
+     "diff_vs_last": -0.13510042953442863
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2933018858381277,
+     "regret": 0.13510042953442863,
+     "diff_vs_last": -0.13510042953442863
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.42840231537255635,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2933018858381277,
+     "regret": 0.13510042953442863,
+     "diff_vs_last": -0.13510042953442863
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.2220979623800636,
+    0.3210433219233366,
+    0.38706708796263944
+   ],
+   "last": 0.38706708796263944,
+   "oracle": 0.38706708796263944,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2220979623800636,
+     "regret": 0.16496912558257584,
+     "diff_vs_last": -0.16496912558257584
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2220979623800636,
+     "regret": 0.16496912558257584,
+     "diff_vs_last": -0.16496912558257584
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.38706708796263944,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.2220979623800636,
+     "regret": 0.16496912558257584,
+     "diff_vs_last": -0.16496912558257584
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__inat__r8__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "inat",
+   "rank": 8,
+   "y": [
+    0.16083041016191874,
+    0.2591365019094992,
+    0.27457163934797885
+   ],
+   "last": 0.27457163934797885,
+   "oracle": 0.27457163934797885,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.16083041016191874,
+     "regret": 0.11374122918606011,
+     "diff_vs_last": -0.11374122918606011
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.16083041016191874,
+     "regret": 0.11374122918606011,
+     "diff_vs_last": -0.11374122918606011
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.2591365019094992,
+     "regret": 0.01543513743847963,
+     "diff_vs_last": -0.01543513743847963
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.27457163934797885,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.808342492843964,
+    0.8952376063515448,
+    0.837064131826426
+   ],
+   "last": 0.837064131826426,
+   "oracle": 0.8952376063515448,
+   "gap": 0.058173474525118785,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.808342492843964,
+     "regret": 0.08689511350758083,
+     "diff_vs_last": -0.02872163898246205
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.808342492843964,
+     "regret": 0.08689511350758083,
+     "diff_vs_last": -0.02872163898246205
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.837064131826426,
+     "regret": 0.058173474525118785,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.808342492843964,
+     "regret": 0.08689511350758083,
+     "diff_vs_last": -0.02872163898246205
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.5875985643457913,
+    0.6545342350152676,
+    0.7088292432739329
+   ],
+   "last": 0.7088292432739329,
+   "oracle": 0.7088292432739329,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5875985643457913,
+     "regret": 0.12123067892814166,
+     "diff_vs_last": -0.12123067892814166
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5875985643457913,
+     "regret": 0.12123067892814166,
+     "diff_vs_last": -0.12123067892814166
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.7088292432739329,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5875985643457913,
+     "regret": 0.12123067892814166,
+     "diff_vs_last": -0.12123067892814166
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.8237834975697936,
+    0.8376480761586361,
+    0.8580923589927606
+   ],
+   "last": 0.8580923589927606,
+   "oracle": 0.8580923589927606,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8237834975697936,
+     "regret": 0.03430886142296696,
+     "diff_vs_last": -0.03430886142296696
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8237834975697936,
+     "regret": 0.03430886142296696,
+     "diff_vs_last": -0.03430886142296696
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.8580923589927606,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8376480761586361,
+     "regret": 0.020444282834124472,
+     "diff_vs_last": -0.020444282834124472
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.7473110633228879,
+    0.8466626283738985,
+    0.8651182943508214
+   ],
+   "last": 0.8651182943508214,
+   "oracle": 0.8651182943508214,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7473110633228879,
+     "regret": 0.11780723102793356,
+     "diff_vs_last": -0.11780723102793356
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7473110633228879,
+     "regret": 0.11780723102793356,
+     "diff_vs_last": -0.11780723102793356
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8466626283738985,
+     "regret": 0.01845566597692294,
+     "diff_vs_last": -0.01845566597692294
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8466626283738985,
+     "regret": 0.01845566597692294,
+     "diff_vs_last": -0.01845566597692294
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.6353649943093083,
+    0.6761441833642486,
+    0.6362971586135765
+   ],
+   "last": 0.6362971586135765,
+   "oracle": 0.6761441833642486,
+   "gap": 0.039847024750672144,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6353649943093083,
+     "regret": 0.04077918905494038,
+     "diff_vs_last": -0.0009321643042682348
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6353649943093083,
+     "regret": 0.04077918905494038,
+     "diff_vs_last": -0.0009321643042682348
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6362971586135765,
+     "regret": 0.039847024750672144,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6353649943093083,
+     "regret": 0.04077918905494038,
+     "diff_vs_last": -0.0009321643042682348
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.7816758775081079,
+    0.8655591408300967,
+    0.8990392495287718
+   ],
+   "last": 0.8990392495287718,
+   "oracle": 0.8990392495287718,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7816758775081079,
+     "regret": 0.11736337202066394,
+     "diff_vs_last": -0.11736337202066394
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7816758775081079,
+     "regret": 0.11736337202066394,
+     "diff_vs_last": -0.11736337202066394
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7816758775081079,
+     "regret": 0.11736337202066394,
+     "diff_vs_last": -0.11736337202066394
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.8990392495287718,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.8002164758506489,
+    0.8411017959552263,
+    0.8324378516457325
+   ],
+   "last": 0.8324378516457325,
+   "oracle": 0.8411017959552263,
+   "gap": 0.008663944309493798,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8002164758506489,
+     "regret": 0.04088532010457735,
+     "diff_vs_last": -0.03222137579508355
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8002164758506489,
+     "regret": 0.04088532010457735,
+     "diff_vs_last": -0.03222137579508355
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8324378516457325,
+     "regret": 0.008663944309493798,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8411017959552263,
+     "regret": 0.0,
+     "diff_vs_last": 0.008663944309493798
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.6775269082948359,
+    0.7002018858870973,
+    0.6658376888578905
+   ],
+   "last": 0.6658376888578905,
+   "oracle": 0.7002018858870973,
+   "gap": 0.03436419702920679,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6775269082948359,
+     "regret": 0.022674977592261447,
+     "diff_vs_last": 0.011689219436945342
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6775269082948359,
+     "regret": 0.022674977592261447,
+     "diff_vs_last": 0.011689219436945342
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6658376888578905,
+     "regret": 0.03436419702920679,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6775269082948359,
+     "regret": 0.022674977592261447,
+     "diff_vs_last": 0.011689219436945342
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.8767906579665841,
+    0.9085608098617683,
+    0.9163979065051964
+   ],
+   "last": 0.9163979065051964,
+   "oracle": 0.9163979065051964,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8767906579665841,
+     "regret": 0.039607248538612305,
+     "diff_vs_last": -0.039607248538612305
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8767906579665841,
+     "regret": 0.039607248538612305,
+     "diff_vs_last": -0.039607248538612305
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.9163979065051964,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8767906579665841,
+     "regret": 0.039607248538612305,
+     "diff_vs_last": -0.039607248538612305
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.8103578348020776,
+    0.9276803199241566,
+    0.8825152726682574
+   ],
+   "last": 0.8825152726682574,
+   "oracle": 0.9276803199241566,
+   "gap": 0.045165047255899204,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.9276803199241566,
+     "regret": 0.0,
+     "diff_vs_last": 0.045165047255899204
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.9276803199241566,
+     "regret": 0.0,
+     "diff_vs_last": 0.045165047255899204
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8825152726682574,
+     "regret": 0.045165047255899204,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.9276803199241566,
+     "regret": 0.0,
+     "diff_vs_last": 0.045165047255899204
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.6105285006515238,
+    0.6867862807915558,
+    0.6950344936930319
+   ],
+   "last": 0.6950344936930319,
+   "oracle": 0.6950344936930319,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6105285006515238,
+     "regret": 0.08450599304150819,
+     "diff_vs_last": -0.08450599304150819
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6950344936930319,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6950344936930319,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6105285006515238,
+     "regret": 0.08450599304150819,
+     "diff_vs_last": -0.08450599304150819
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r16__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 16,
+   "y": [
+    0.7999205545148335,
+    0.9005415431589794,
+    0.8803077965118558
+   ],
+   "last": 0.8803077965118558,
+   "oracle": 0.9005415431589794,
+   "gap": 0.02023374664712363,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.9005415431589794,
+     "regret": 0.0,
+     "diff_vs_last": 0.02023374664712363
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.9005415431589794,
+     "regret": 0.0,
+     "diff_vs_last": 0.02023374664712363
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7999205545148335,
+     "regret": 0.10062098864414593,
+     "diff_vs_last": -0.0803872419970223
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.9005415431589794,
+     "regret": 0.0,
+     "diff_vs_last": 0.02023374664712363
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.8842660051015734,
+    0.8937322323611814,
+    0.9110568943441737
+   ],
+   "last": 0.9110568943441737,
+   "oracle": 0.9110568943441737,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8842660051015734,
+     "regret": 0.026790889242600313,
+     "diff_vs_last": -0.026790889242600313
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8842660051015734,
+     "regret": 0.026790889242600313,
+     "diff_vs_last": -0.026790889242600313
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8937322323611814,
+     "regret": 0.017324661982992318,
+     "diff_vs_last": -0.017324661982992318
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8842660051015734,
+     "regret": 0.026790889242600313,
+     "diff_vs_last": -0.026790889242600313
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.5920969719891034,
+    0.6537026068043646,
+    0.7040305728012436
+   ],
+   "last": 0.7040305728012436,
+   "oracle": 0.7040305728012436,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5920969719891034,
+     "regret": 0.11193360081214021,
+     "diff_vs_last": -0.11193360081214021
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.5920969719891034,
+     "regret": 0.11193360081214021,
+     "diff_vs_last": -0.11193360081214021
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.7040305728012436,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5920969719891034,
+     "regret": 0.11193360081214021,
+     "diff_vs_last": -0.11193360081214021
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.8129759701962403,
+    0.9049784779701442,
+    0.7905826001041583
+   ],
+   "last": 0.7905826001041583,
+   "oracle": 0.9049784779701442,
+   "gap": 0.11439587786598593,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8129759701962403,
+     "regret": 0.09200250777390384,
+     "diff_vs_last": 0.022393370092082088
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8129759701962403,
+     "regret": 0.09200250777390384,
+     "diff_vs_last": 0.022393370092082088
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.7905826001041583,
+     "regret": 0.11439587786598593,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8129759701962403,
+     "regret": 0.09200250777390384,
+     "diff_vs_last": 0.022393370092082088
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.7633253792672609,
+    0.9046714079313112,
+    0.908022937480227
+   ],
+   "last": 0.908022937480227,
+   "oracle": 0.908022937480227,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7633253792672609,
+     "regret": 0.14469755821296615,
+     "diff_vs_last": -0.14469755821296615
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7633253792672609,
+     "regret": 0.14469755821296615,
+     "diff_vs_last": -0.14469755821296615
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.9046714079313112,
+     "regret": 0.0033515295489158214,
+     "diff_vs_last": -0.0033515295489158214
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.908022937480227,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.6459843206250715,
+    0.6759652861770398,
+    0.6888659694725877
+   ],
+   "last": 0.6888659694725877,
+   "oracle": 0.6888659694725877,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6459843206250715,
+     "regret": 0.04288164884751622,
+     "diff_vs_last": -0.04288164884751622
+    },
+    "DG": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6888659694725877,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6888659694725877,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.6459843206250715,
+     "regret": 0.04288164884751622,
+     "diff_vs_last": -0.04288164884751622
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.824621476462917,
+    0.8488267222440323,
+    0.8796540847450516
+   ],
+   "last": 0.8796540847450516,
+   "oracle": 0.8796540847450516,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.824621476462917,
+     "regret": 0.05503260828213463,
+     "diff_vs_last": -0.05503260828213463
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.824621476462917,
+     "regret": 0.05503260828213463,
+     "diff_vs_last": -0.05503260828213463
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8488267222440323,
+     "regret": 0.03082736250101925,
+     "diff_vs_last": -0.03082736250101925
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.8796540847450516,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.7948480418360914,
+    0.852094186049056,
+    0.9068328617675188
+   ],
+   "last": 0.9068328617675188,
+   "oracle": 0.9068328617675188,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7948480418360914,
+     "regret": 0.11198481993142739,
+     "diff_vs_last": -0.11198481993142739
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7948480418360914,
+     "regret": 0.11198481993142739,
+     "diff_vs_last": -0.11198481993142739
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7948480418360914,
+     "regret": 0.11198481993142739,
+     "diff_vs_last": -0.11198481993142739
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.852094186049056,
+     "regret": 0.054738675718462804,
+     "diff_vs_last": -0.054738675718462804
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.6486638747237592,
+    0.6905284858201476,
+    0.6874700632471035
+   ],
+   "last": 0.6874700632471035,
+   "oracle": 0.6905284858201476,
+   "gap": 0.0030584225730441172,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6486638747237592,
+     "regret": 0.04186461109638839,
+     "diff_vs_last": -0.038806188523344276
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6874700632471035,
+     "regret": 0.0030584225730441172,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6874700632471035,
+     "regret": 0.0030584225730441172,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6486638747237592,
+     "regret": 0.04186461109638839,
+     "diff_vs_last": -0.038806188523344276
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.7652357400097618,
+    0.881658663163076,
+    0.9039312369125257
+   ],
+   "last": 0.9039312369125257,
+   "oracle": 0.9039312369125257,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.881658663163076,
+     "regret": 0.022272573749449798,
+     "diff_vs_last": -0.022272573749449798
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.881658663163076,
+     "regret": 0.022272573749449798,
+     "diff_vs_last": -0.022272573749449798
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7652357400097618,
+     "regret": 0.13869549690276395,
+     "diff_vs_last": -0.13869549690276395
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.881658663163076,
+     "regret": 0.022272573749449798,
+     "diff_vs_last": -0.022272573749449798
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.8542168816262568,
+    0.8049712715502004,
+    0.9263123445694492
+   ],
+   "last": 0.9263123445694492,
+   "oracle": 0.9263123445694492,
+   "gap": 0.0,
+   "monotone": false,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8542168816262568,
+     "regret": 0.07209546294319247,
+     "diff_vs_last": -0.07209546294319247
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8542168816262568,
+     "regret": 0.07209546294319247,
+     "diff_vs_last": -0.07209546294319247
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.8049712715502004,
+     "regret": 0.12134107301924879,
+     "diff_vs_last": -0.12134107301924879
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.9263123445694492,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.6105745365495152,
+    0.6895590501457289,
+    0.687430254329906
+   ],
+   "last": 0.687430254329906,
+   "oracle": 0.6895590501457289,
+   "gap": 0.002128795815822926,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6105745365495152,
+     "regret": 0.07898451359621372,
+     "diff_vs_last": -0.0768557177803908
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.687430254329906,
+     "regret": 0.002128795815822926,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.687430254329906,
+     "regret": 0.002128795815822926,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6105745365495152,
+     "regret": 0.07898451359621372,
+     "diff_vs_last": -0.0768557177803908
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r32__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 32,
+   "y": [
+    0.8673452126135959,
+    0.9508027043649052,
+    0.911513570004058
+   ],
+   "last": 0.911513570004058,
+   "oracle": 0.9508027043649052,
+   "gap": 0.039289134360847244,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8673452126135959,
+     "regret": 0.08345749175130934,
+     "diff_vs_last": -0.0441683573904621
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.9508027043649052,
+     "regret": 0.0,
+     "diff_vs_last": 0.039289134360847244
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8673452126135959,
+     "regret": 0.08345749175130934,
+     "diff_vs_last": -0.0441683573904621
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.9508027043649052,
+     "regret": 0.0,
+     "diff_vs_last": 0.039289134360847244
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.8445919121085553,
+    0.7816068850811928,
+    0.8615522568590162
+   ],
+   "last": 0.8615522568590162,
+   "oracle": 0.8615522568590162,
+   "gap": 0.0,
+   "monotone": false,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.8615522568590162,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8615522568590162,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.7816068850811928,
+     "regret": 0.07994537177782335,
+     "diff_vs_last": -0.07994537177782335
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8445919121085553,
+     "regret": 0.01696034475046082,
+     "diff_vs_last": -0.01696034475046082
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.5635429904151115,
+    0.6237007842560676,
+    0.6832616610942492
+   ],
+   "last": 0.6832616610942492,
+   "oracle": 0.6832616610942492,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.5635429904151115,
+     "regret": 0.11971867067913777,
+     "diff_vs_last": -0.11971867067913777
+    },
+    "DG": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.6832616610942492,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6237007842560676,
+     "regret": 0.059560876838181676,
+     "diff_vs_last": -0.059560876838181676
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5635429904151115,
+     "regret": 0.11971867067913777,
+     "diff_vs_last": -0.11971867067913777
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.8618954340225664,
+    0.7951546715129152,
+    0.7978398504607744
+   ],
+   "last": 0.7978398504607744,
+   "oracle": 0.8618954340225664,
+   "gap": 0.06405558356179197,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.7951546715129152,
+     "regret": 0.06674076250965122,
+     "diff_vs_last": -0.002685178947859246
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.7951546715129152,
+     "regret": 0.06674076250965122,
+     "diff_vs_last": -0.002685178947859246
+    },
+    "spec_eff_rank": {
+     "rho": -1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.7951546715129152,
+     "regret": 0.06674076250965122,
+     "diff_vs_last": -0.002685178947859246
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8618954340225664,
+     "regret": 0.0,
+     "diff_vs_last": 0.06405558356179197
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.8845545682514719,
+    0.8837352668712417,
+    0.8114652773944858
+   ],
+   "last": 0.8114652773944858,
+   "oracle": 0.8845545682514719,
+   "gap": 0.07308929085698612,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8837352668712417,
+     "regret": 0.0008193013802302307,
+     "diff_vs_last": 0.07226998947675589
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8837352668712417,
+     "regret": 0.0008193013802302307,
+     "diff_vs_last": 0.07226998947675589
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8114652773944858,
+     "regret": 0.07308929085698612,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8845545682514719,
+     "regret": 0.0,
+     "diff_vs_last": 0.07308929085698612
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.6485687052489187,
+    0.6580883639473512,
+    0.6318894128054162
+   ],
+   "last": 0.6318894128054162,
+   "oracle": 0.6580883639473512,
+   "gap": 0.026198951141934934,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.6580883639473512,
+     "regret": 0.0,
+     "diff_vs_last": 0.026198951141934934
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6580883639473512,
+     "regret": 0.0,
+     "diff_vs_last": 0.026198951141934934
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6318894128054162,
+     "regret": 0.026198951141934934,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6485687052489187,
+     "regret": 0.00951965869843241,
+     "diff_vs_last": 0.016679292443502525
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.8240045746714042,
+    0.8474634291446621,
+    0.8414788420259159
+   ],
+   "last": 0.8414788420259159,
+   "oracle": 0.8474634291446621,
+   "gap": 0.005984587118746165,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8414788420259159,
+     "regret": 0.005984587118746165,
+     "diff_vs_last": 0.0
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8414788420259159,
+     "regret": 0.005984587118746165,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8414788420259159,
+     "regret": 0.005984587118746165,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8474634291446621,
+     "regret": 0.0,
+     "diff_vs_last": 0.005984587118746165
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.7996995890832779,
+    0.8283867109393199,
+    0.9165348581107268
+   ],
+   "last": 0.9165348581107268,
+   "oracle": 0.9165348581107268,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7996995890832779,
+     "regret": 0.1168352690274489,
+     "diff_vs_last": -0.1168352690274489
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7996995890832779,
+     "regret": 0.1168352690274489,
+     "diff_vs_last": -0.1168352690274489
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8283867109393199,
+     "regret": 0.08814814717140684,
+     "diff_vs_last": -0.08814814717140684
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7996995890832779,
+     "regret": 0.1168352690274489,
+     "diff_vs_last": -0.1168352690274489
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.6484173837295963,
+    0.6606684058735492,
+    0.6325068518596594
+   ],
+   "last": 0.6325068518596594,
+   "oracle": 0.6606684058735492,
+   "gap": 0.028161554013889867,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6484173837295963,
+     "regret": 0.012251022143952905,
+     "diff_vs_last": 0.01591053186993696
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6325068518596594,
+     "regret": 0.028161554013889867,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.6606684058735492,
+     "regret": 0.0,
+     "diff_vs_last": 0.028161554013889867
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6484173837295963,
+     "regret": 0.012251022143952905,
+     "diff_vs_last": 0.01591053186993696
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.7195480842310205,
+    0.8149567290567342,
+    0.8379032239271413
+   ],
+   "last": 0.8379032239271413,
+   "oracle": 0.8379032239271413,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7195480842310205,
+     "regret": 0.11835513969612088,
+     "diff_vs_last": -0.11835513969612088
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7195480842310205,
+     "regret": 0.11835513969612088,
+     "diff_vs_last": -0.11835513969612088
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.8379032239271413,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7195480842310205,
+     "regret": 0.11835513969612088,
+     "diff_vs_last": -0.11835513969612088
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.8255099117157982,
+    0.8085207802771146,
+    0.9114005380329245
+   ],
+   "last": 0.9114005380329245,
+   "oracle": 0.9114005380329245,
+   "gap": 0.0,
+   "monotone": false,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 2,
+     "selected_y": 0.8085207802771146,
+     "regret": 0.10287975775580993,
+     "diff_vs_last": -0.10287975775580993
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8085207802771146,
+     "regret": 0.10287975775580993,
+     "diff_vs_last": -0.10287975775580993
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8085207802771146,
+     "regret": 0.10287975775580993,
+     "diff_vs_last": -0.10287975775580993
+    },
+    "spec_top1_share": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.9114005380329245,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.6540537197695605,
+    0.6515078806134375,
+    0.6787208209959386
+   ],
+   "last": 0.6787208209959386,
+   "oracle": 0.6787208209959386,
+   "gap": 0.0,
+   "monotone": false,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6787208209959386,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "DG": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6787208209959386,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6787208209959386,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6540537197695605,
+     "regret": 0.024667101226378052,
+     "diff_vs_last": -0.024667101226378052
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r64__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 64,
+   "y": [
+    0.807632709549343,
+    0.895580132513061,
+    0.8449815451744246
+   ],
+   "last": 0.8449815451744246,
+   "oracle": 0.895580132513061,
+   "gap": 0.050598587338636425,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.807632709549343,
+     "regret": 0.08794742296371805,
+     "diff_vs_last": -0.03734883562508162
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.807632709549343,
+     "regret": 0.08794742296371805,
+     "diff_vs_last": -0.03734883562508162
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.807632709549343,
+     "regret": 0.08794742296371805,
+     "diff_vs_last": -0.03734883562508162
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8449815451744246,
+     "regret": 0.050598587338636425,
+     "diff_vs_last": 0.0
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s45",
+   "site": "both",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.8185208223212678,
+    0.8299812435421512,
+    0.8541149292880765
+   ],
+   "last": 0.8541149292880765,
+   "oracle": 0.8541149292880765,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8185208223212678,
+     "regret": 0.03559410696680876,
+     "diff_vs_last": -0.03559410696680876
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8185208223212678,
+     "regret": 0.03559410696680876,
+     "diff_vs_last": -0.03559410696680876
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8541149292880765,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8299812435421512,
+     "regret": 0.024133685745925337,
+     "diff_vs_last": -0.024133685745925337
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s45__text",
+   "site": "text",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.5785869508759964,
+    0.66156338116929,
+    0.7027554762634337
+   ],
+   "last": 0.7027554762634337,
+   "oracle": 0.7027554762634337,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5785869508759964,
+     "regret": 0.12416852538743728,
+     "diff_vs_last": -0.12416852538743728
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5785869508759964,
+     "regret": 0.12416852538743728,
+     "diff_vs_last": -0.12416852538743728
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.7027554762634337,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.5785869508759964,
+     "regret": 0.12416852538743728,
+     "diff_vs_last": -0.12416852538743728
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s45__vision",
+   "site": "vision",
+   "seed": 45,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.8087924676991533,
+    0.9136769970058423,
+    0.9219934684890313
+   ],
+   "last": 0.9219934684890313,
+   "oracle": 0.9219934684890313,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8087924676991533,
+     "regret": 0.11320100078987805,
+     "diff_vs_last": -0.11320100078987805
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8087924676991533,
+     "regret": 0.11320100078987805,
+     "diff_vs_last": -0.11320100078987805
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.9136769970058423,
+     "regret": 0.008316471483189036,
+     "diff_vs_last": -0.008316471483189036
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8087924676991533,
+     "regret": 0.11320100078987805,
+     "diff_vs_last": -0.11320100078987805
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s46",
+   "site": "both",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.8214774826896182,
+    0.8525001192324213,
+    0.8729415174271127
+   ],
+   "last": 0.8729415174271127,
+   "oracle": 0.8729415174271127,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8214774826896182,
+     "regret": 0.0514640347374945,
+     "diff_vs_last": -0.0514640347374945
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8214774826896182,
+     "regret": 0.0514640347374945,
+     "diff_vs_last": -0.0514640347374945
+    },
+    "spec_eff_rank": {
+     "rho": 1.0,
+     "selected_epoch": 3,
+     "selected_y": 0.8729415174271127,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8214774826896182,
+     "regret": 0.0514640347374945,
+     "diff_vs_last": -0.0514640347374945
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s46__text",
+   "site": "text",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.6391906103760824,
+    0.707423253780755,
+    0.699189186231044
+   ],
+   "last": 0.699189186231044,
+   "oracle": 0.707423253780755,
+   "gap": 0.00823406754971101,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6391906103760824,
+     "regret": 0.06823264340467261,
+     "diff_vs_last": -0.0599985758549616
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6391906103760824,
+     "regret": 0.06823264340467261,
+     "diff_vs_last": -0.0599985758549616
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.699189186231044,
+     "regret": 0.00823406754971101,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6391906103760824,
+     "regret": 0.06823264340467261,
+     "diff_vs_last": -0.0599985758549616
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s46__vision",
+   "site": "vision",
+   "seed": 46,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.7918563258631837,
+    0.8679380462244906,
+    0.9085156773856848
+   ],
+   "last": 0.9085156773856848,
+   "oracle": 0.9085156773856848,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7918563258631837,
+     "regret": 0.11665935152250118,
+     "diff_vs_last": -0.11665935152250118
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7918563258631837,
+     "regret": 0.11665935152250118,
+     "diff_vs_last": -0.11665935152250118
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8679380462244906,
+     "regret": 0.04057763116119428,
+     "diff_vs_last": -0.04057763116119428
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7918563258631837,
+     "regret": 0.11665935152250118,
+     "diff_vs_last": -0.11665935152250118
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s47",
+   "site": "both",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.7802732573043916,
+    0.8836018446999662,
+    0.8433786795579753
+   ],
+   "last": 0.8433786795579753,
+   "oracle": 0.8836018446999662,
+   "gap": 0.04022316514199087,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7802732573043916,
+     "regret": 0.1033285873955746,
+     "diff_vs_last": -0.06310542225358373
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7802732573043916,
+     "regret": 0.1033285873955746,
+     "diff_vs_last": -0.06310542225358373
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8433786795579753,
+     "regret": 0.04022316514199087,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.7802732573043916,
+     "regret": 0.1033285873955746,
+     "diff_vs_last": -0.06310542225358373
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s47__text",
+   "site": "text",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.6756355877984395,
+    0.7057665917985686,
+    0.6565980076649275
+   ],
+   "last": 0.6565980076649275,
+   "oracle": 0.7057665917985686,
+   "gap": 0.04916858413364111,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6756355877984395,
+     "regret": 0.030131004000129136,
+     "diff_vs_last": 0.019037580133511978
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6756355877984395,
+     "regret": 0.030131004000129136,
+     "diff_vs_last": 0.019037580133511978
+    },
+    "spec_eff_rank": {
+     "rho": -0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6565980076649275,
+     "regret": 0.04916858413364111,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6756355877984395,
+     "regret": 0.030131004000129136,
+     "diff_vs_last": 0.019037580133511978
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s47__vision",
+   "site": "vision",
+   "seed": 47,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.7219336994011037,
+    0.8990576393095274,
+    0.8898165873273739
+   ],
+   "last": 0.8898165873273739,
+   "oracle": 0.8990576393095274,
+   "gap": 0.009241051982153525,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7219336994011037,
+     "regret": 0.17712393990842368,
+     "diff_vs_last": -0.16788288792627015
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7219336994011037,
+     "regret": 0.17712393990842368,
+     "diff_vs_last": -0.16788288792627015
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.8898165873273739,
+     "regret": 0.009241051982153525,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.7219336994011037,
+     "regret": 0.17712393990842368,
+     "diff_vs_last": -0.16788288792627015
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s48",
+   "site": "both",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.8099912203324017,
+    0.8509242104146627,
+    0.8564176006205129
+   ],
+   "last": 0.8564176006205129,
+   "oracle": 0.8564176006205129,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8099912203324017,
+     "regret": 0.04642638028811119,
+     "diff_vs_last": -0.04642638028811119
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8099912203324017,
+     "regret": 0.04642638028811119,
+     "diff_vs_last": -0.04642638028811119
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8509242104146627,
+     "regret": 0.005493390205850157,
+     "diff_vs_last": -0.005493390205850157
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.8099912203324017,
+     "regret": 0.04642638028811119,
+     "diff_vs_last": -0.04642638028811119
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s48__text",
+   "site": "text",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.6600086374589621,
+    0.6954515108496409,
+    0.6920677502432295
+   ],
+   "last": 0.6920677502432295,
+   "oracle": 0.6954515108496409,
+   "gap": 0.0033837606064113235,
+   "monotone": false,
+   "last_is_oracle": false,
+   "proxy": {
+    "CG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6600086374589621,
+     "regret": 0.03544287339067875,
+     "diff_vs_last": -0.03205911278426743
+    },
+    "DG": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6600086374589621,
+     "regret": 0.03544287339067875,
+     "diff_vs_last": -0.03205911278426743
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.6920677502432295,
+     "regret": 0.0033837606064113235,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": -0.5,
+     "selected_epoch": 1,
+     "selected_y": 0.6600086374589621,
+     "regret": 0.03544287339067875,
+     "diff_vs_last": -0.03205911278426743
+    }
+   }
+  },
+  {
+   "run_id": "clip-b32__nksid__r8__s48__vision",
+   "site": "vision",
+   "seed": 48,
+   "dataset": "nksid",
+   "rank": 8,
+   "y": [
+    0.8444138206089927,
+    0.8590113390394662,
+    0.9183363640648289
+   ],
+   "last": 0.9183363640648289,
+   "oracle": 0.9183363640648289,
+   "gap": 0.0,
+   "monotone": true,
+   "last_is_oracle": true,
+   "proxy": {
+    "CG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8444138206089927,
+     "regret": 0.07392254345583615,
+     "diff_vs_last": -0.07392254345583615
+    },
+    "DG": {
+     "rho": -1.0,
+     "selected_epoch": 1,
+     "selected_y": 0.8444138206089927,
+     "regret": 0.07392254345583615,
+     "diff_vs_last": -0.07392254345583615
+    },
+    "spec_eff_rank": {
+     "rho": 0.5,
+     "selected_epoch": 3,
+     "selected_y": 0.9183363640648289,
+     "regret": 0.0,
+     "diff_vs_last": 0.0
+    },
+    "spec_top1_share": {
+     "rho": 0.5,
+     "selected_epoch": 2,
+     "selected_y": 0.8590113390394662,
+     "regret": 0.05932502502536263,
+     "diff_vs_last": -0.05932502502536263
+    }
+   }
+  }
+ ]
+}

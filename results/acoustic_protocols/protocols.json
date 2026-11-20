@@ -1,0 +1,109 @@
+{
+  "benchmark_protocols": {
+    "riku_protocol": {
+      "checkpoints": {
+        "domainft": "within_benchmark_held_out_not_new_independent_field",
+        "flickrft": "flickr_trained_cross_domain_checkpoint",
+        "frozen": "frozen_checkpoint"
+      },
+      "evaluation_images": 206
+    },
+    "sonar_protocol": {
+      "checkpoints": {
+        "clip_flickrft": "flickr_trained_cross_domain_checkpoint",
+        "clip_frozen": "frozen_checkpoint",
+        "sonar_ft": "in_sample_training_images_reused"
+      },
+      "evaluation_images": 650
+    },
+    "sonar_protocol_full": {
+      "checkpoints": {
+        "clip_flickrft": "flickr_trained_cross_domain_checkpoint",
+        "clip_frozen": "frozen_checkpoint",
+        "sonar_ft_full": "in_sample_training_images_reused"
+      },
+      "evaluation_images": 2617
+    },
+    "uatd_protocol": {
+      "checkpoints": {
+        "domainft": "within_benchmark_held_out_not_new_independent_field_collapsed",
+        "flickrft": "flickr_trained_cross_domain_checkpoint",
+        "frozen": "frozen_checkpoint"
+      },
+      "evaluation_images": 1600
+    },
+    "watertank_protocol": {
+      "checkpoints": {
+        "domainft": "within_benchmark_held_out_not_new_independent_field",
+        "flickrft": "flickr_trained_cross_domain_checkpoint",
+        "frozen": "frozen_checkpoint"
+      },
+      "evaluation_images": 352
+    }
+  },
+  "excluded": [
+    "Raw datasets, imagery, model weights, and auxiliary optical/single-harbour studies.",
+    "No prospective site-level transfer or independent capture estimate."
+  ],
+  "field_supplement": {
+    "screened_examples": {
+      "Marine Debris FLS quarry": "Unlabelled quarry split.",
+      "Ping360": "Controlled tank; different task.",
+      "SSST-3K": "Incompatible class roster; linked distribution did not establish access to the required acoustic data.",
+      "SeaClear2.0 Marseille": "Only one observed acoustic annotation class in screened release.",
+      "UATD": "Already used as an archived benchmark."
+    },
+    "separate_auxiliary_results": "Optical and single-harbour sensitivity tests do not certify independent acoustic field generalization and are not pooled with the benchmark records.",
+    "status": "No new qualifying acoustics cohort; feasibility only, not a model result."
+  },
+  "marine_finetune": "in_sample_training_images_reused",
+  "order_scope": "Normalized cosine shift, class-dependent text-side terms; first-order cancellation is conditional. Fixed-list ordering is not an all-class winner-loss guarantee.",
+  "producer_sources": {
+    "a1_theory_verify.json": "tools/clip_a1_theory_verify.py",
+    "degradation_matrix.json": "tools/clip_degradation_matrix.py",
+    "deployment_operating_points_2026-11-08_recomputed.json": "paper_a2/scripts/deployment_operating_points.py",
+    "direction_operator.json": "tools/clip_direction_operator.py",
+    "direction_subspace.json": "tools/clip_direction_subspace.py",
+    "domain_matrix.json": "tools/clip_domain_matrix.py",
+    "dynamics_seed.json": "tools/clip_dynamics_seed.py",
+    "mechanism_summary.json": "tools/clip_mechanism_summary.py",
+    "ml16k_qa_layers.json": "tools/clip_ml16k_qa_layers.py",
+    "ocean_clip2x2.json": "tools/clip_ocean_clip2x2.py",
+    "ocean_degradation.json": "tools/clip_ocean_degradation.py",
+    "ocean_flickr_dhat.json": "tools/clip_ocean_flickr_dhat.py",
+    "ocean_flickrft_sigma.json": "tools/clip_ocean_flickrft_sigma.py",
+    "ocean_gap_surgery.json": "tools/clip_ocean_gap_surgery.py",
+    "ocean_inat_wild.json": "tools/clip_ocean_inat_wild.py",
+    "ocean_margins.json": "tools/clip_ocean_margins.py",
+    "ocean_margins_x.json": "tools/clip_ocean_margins_x.py",
+    "ocean_marineft10_sigma.json": "tools/clip_ocean_marineft10_sigma.py",
+    "ocean_ml16k_retrieval.json": "tools/clip_ocean_ml16k_retrieval.py",
+    "ocean_peft.json": "tools/clip_ocean_peft.py",
+    "ocean_peft_ms.json": "tools/clip_ocean_peft_ms.py",
+    "ocean_rank1_bound.json": "tools/clip_ocean_rank1_bound.py",
+    "ocean_replica.json": "tools/clip_ocean_replica.py",
+    "ocean_sigma_other.json": "tools/clip_ocean_sigma_other.py",
+    "ocean_spectrum.json": "tools/clip_ocean_spectrum.py",
+    "ocean_tautraj.json": "tools/clip_ocean_tautraj.py",
+    "perimage_operator.json": "tools/clip_perimage_operator.py",
+    "riku_protocol.json": "tools/clip_riku_protocol.py",
+    "sonar_degradation.json": "tools/clip_sonar_degradation.py",
+    "sonar_peft": "tools/clip_sonar_peft.py",
+    "sonar_peft.json": "tools/clip_sonar_peft.py",
+    "sonar_peft_ms.json": "tools/clip_sonar_peft_ms.py",
+    "sonar_protocol.json": "tools/clip_sonar_protocol.py",
+    "sonar_protocol_b16.json": "paper_a2/scripts/clip_sonar_protocol_b16.py",
+    "sonar_protocol_full.json": "tools/clip_sonar_protocol_full.py",
+    "sonar_spectrum.json": "tools/clip_sonar_spectrum.py",
+    "threshold_calibration.json": "tools/clip_threshold_calibration.py",
+    "uatd_protocol.json": "tools/clip_uatd_protocol.py",
+    "water_tank_96": "tools/_p1414_a23_watertank.py",
+    "watertank_protocol.json": "tools/clip_watertank_protocol.py"
+  },
+  "riku": "Shares water-tank lineage/labels; not an independently established capture cohort.",
+  "sonar_backbones": "in_sample_training_images_reused",
+  "sonar_peft": "650-image adapted archive; training image reuse. Do not relabel as 2,617-image runs.",
+  "uatd": "The domain adaptation collapsed; preserve the failed run, not as a successful model. Archived external benchmark with held-out rows and majority-instance image labels; not newly collected.",
+  "water_tank_96": "Separate 395-image held-out preprocessing protocol; not the 352-image water-tank benchmark.",
+  "zero_shot": "One CLIP reference and three small VLMs; seven classes, frozen zero-shot evaluation."
+}

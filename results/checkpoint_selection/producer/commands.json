@@ -1,0 +1,75 @@
+{
+  "workspace": "Set GS_WORKSPACE to your authorized datasets and cached models root; GS_VQA_DATA overrides the VQA shard root",
+  "blocks": {
+    "b32_primary": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b32 --datasets dtd,inat,nksid --ranks 8,16,32,64 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b32_primary"
+    },
+    "b16_r8": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b16 --datasets dtd,inat,nksid --ranks 8 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b16_r8"
+    },
+    "b16_r16": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b16 --datasets dtd,inat,nksid --ranks 16 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b16_r16"
+    },
+    "b16_r32": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b16 --datasets dtd,inat,nksid --ranks 32 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b16_r32"
+    },
+    "b16_r64": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b16 --datasets dtd,inat,nksid --ranks 64 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b16_r64"
+    },
+    "b32_r6": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b32 --datasets dtd,inat,nksid --ranks 6 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b32_r6"
+    },
+    "b32_r12": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b32 --datasets dtd,inat,nksid --ranks 12 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b32_r12"
+    },
+    "b32_r24": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b32 --datasets dtd,inat,nksid --ranks 24 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b32_r24"
+    },
+    "b32_r48": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b32 --datasets dtd,inat,nksid --ranks 48 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b32_r48"
+    },
+    "b32_split2_r16": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_cifar.py --apply --backbones clip-b32 --datasets dtd,inat,nksid --ranks 16 --seeds 49,50,51,52 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/b32_split2_r16"
+    },
+    "siglip_r8": {
+      "binding": "reconstructed from per-run metadata; exact historical block-to-producer assignment not archived",
+      "command": "python producer/run_matrix_siglip.py --apply --backbones siglip-b16 --datasets dtd,inat,nksid --ranks 8 --seeds 45,46,47,48 --towers both,text,vision --epochs 3 --outdir NEW_OUTPUT/siglip_r8"
+    },
+    "schedule": {
+      "binding": "exact frozen producer version; portable changes listed in provenance",
+      "original_producer_sha256": "7b6cc88f145c666cf21766ee2ebed2333da596daa0b928d644f7fbb8e66834f2",
+      "command": "python producer/run_matrix_schedule.py --apply --backbones clip-b32 --datasets inat --ranks 8 --seeds 45,46,47,48 --towers text --epochs 6 --outdir NEW_OUTPUT/schedule"
+    },
+    "vqa": {
+      "binding": "historical producer with explicit output isolation; datasets remain the archived small same-shard checks",
+      "command_template": "python producer/run_qwen_vqa.py --apply --dataset TASK --rank RANK --seed SEED --train 80 --test 12 --epochs 3 --tower both --outdir NEW_OUTPUT/TASK",
+      "tasks": [
+        "chartqa",
+        "textvqa",
+        "vqav2"
+      ],
+      "ranks": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "seeds": [
+        45,
+        46,
+        47,
+        48
+      ]
+    }
+  }
+}

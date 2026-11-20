@@ -1,0 +1,127 @@
+{
+ "meta": {
+  "dataset": "NKSID (Bohai Bay, Oculus M750d), FULL 2617",
+  "n_classes": 8,
+  "n_images": 2617,
+  "per_class": {
+   "big propeller": 203,
+   "cylinder": 288,
+   "fishing net": 20,
+   "floats": 951,
+   "iron pipeline": 112,
+   "small propeller": 94,
+   "soft pipeline": 115,
+   "tire": 834
+  }
+ },
+ "clip_frozen": {
+  "gap_norm": 1.0924,
+  "sigma_m": 0.0122,
+  "mean_m": 0.5115,
+  "top1_0": 32.747,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 24.952,
+    "tau_meas": 0.3268,
+    "tau_pred": 0.3268,
+    "CG": 1.4504
+   },
+   {
+    "lambda": -0.5,
+    "top1": 26.977,
+    "tau_meas": 0.5058,
+    "tau_pred": 0.5058,
+    "CG": 1.3378
+   },
+   {
+    "lambda": 0.0,
+    "top1": 32.747,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.0924
+   },
+   {
+    "lambda": 0.5,
+    "top1": 26.901,
+    "tau_meas": 0.4625,
+    "tau_pred": 0.4625,
+    "CG": 0.5791
+   },
+   {
+    "lambda": 1.0,
+    "top1": 15.208,
+    "tau_meas": 0.2525,
+    "tau_pred": 0.2525,
+    "CG": 0.037
+   },
+   {
+    "lambda": 2.0,
+    "top1": 5.12,
+    "tau_meas": 0.1518,
+    "tau_pred": 0.1518,
+    "CG": 0.4989
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.3042,
+    "CG": 0.0333
+   }
+  ]
+ },
+ "sonar_ft_full": {
+  "gap_norm": 1.1528,
+  "sigma_m": 0.0138,
+  "mean_m": 0.656,
+  "top1_0": 100.0,
+  "rows": [
+   {
+    "lambda": -1.0,
+    "top1": 99.427,
+    "tau_meas": 0.7751,
+    "tau_pred": 0.7751,
+    "CG": 1.5755
+   },
+   {
+    "lambda": -0.5,
+    "top1": 99.771,
+    "tau_meas": 0.8592,
+    "tau_pred": 0.8592,
+    "CG": 1.4465
+   },
+   {
+    "lambda": 0.0,
+    "top1": 100.0,
+    "tau_meas": 1.0,
+    "tau_pred": 1.0,
+    "CG": 1.1528
+   },
+   {
+    "lambda": 0.5,
+    "top1": 99.962,
+    "tau_meas": 0.8704,
+    "tau_pred": 0.8704,
+    "CG": 0.5775
+   },
+   {
+    "lambda": 1.0,
+    "top1": 99.924,
+    "tau_meas": 0.6754,
+    "tau_pred": 0.6754,
+    "CG": 0.0756
+   },
+   {
+    "lambda": 2.0,
+    "top1": 93.542,
+    "tau_meas": 0.4358,
+    "tau_pred": 0.4358,
+    "CG": 0.4309
+   },
+   {
+    "lambda": "text1.0",
+    "tau_meas": 0.6864,
+    "CG": 0.0924
+   }
+  ]
+ }
+}

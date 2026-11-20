@@ -1,0 +1,137 @@
+{
+ "meta": {
+  "script": "tools/a1_h_e4_seed.py",
+  "experiment": "A1 hardening item 2 -- seed spread for the non-Flickr30k LoRA checkpoints",
+  "derived_from": "tools/a1_rr_e4_train.py (verbatim trainer/evaluator; the ONLY change is that checkpoints are written to outputs/a1_rr_ckpt/seed<seed>/<dataset>/ so the pre-existing seed-42 checkpoints are preserved)",
+  "model": "openai/clip-vit-base-patch32",
+  "dataset": "coco",
+  "epochs": 10,
+  "seed": 44,
+  "batch": 64,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "lora": {
+   "rank": 8,
+   "alpha": 16.0,
+   "vision": true,
+   "text": true,
+   "trainable_selection": "named_parameters() with requires_grad and 'lora_' in name"
+  },
+  "n_trainable_lora_params": 491520,
+  "n_total_params": 151768833,
+  "n_steps": 320,
+  "data": {
+   "source": "coco/train2014 + annotations/captions_train2014.json (src.dataset.COCODataset)",
+   "split": "train",
+   "n_pairs_total": 414113,
+   "sampling": "uniform without replacement over (image, caption) rows, seed 44",
+   "caption_construction": "real COCO captions",
+   "dataset": "coco",
+   "n_pairs_used": 2000,
+   "n_unique_images": 1976,
+   "ckpt_dir": "outputs/a1_rr_ckpt\\seed44\\coco"
+  },
+  "eval_protocol": "tools/clip_a1_tau_trajectory.py evaluator; frozen top-5 sets; checkpoint scores image x text with its OWN text tower",
+  "checkpoint": "outputs/a1_rr_ckpt\\seed44\\coco\\epoch10.pt",
+  "shard_sig": "d13718e47e9e41c2",
+  "n_tau_images": 5000,
+  "placeholder_class_index": 1000,
+  "runtime_s": 710.6
+ },
+ "frozen": {
+  "tag": "frozen",
+  "CG_flickr_val": 0.81565,
+  "image_only": {
+   "legacy1001": {
+    "top1_5k": 59.1,
+    "tau_by_k": {
+     "1": null,
+     "3": 1.0,
+     "5": 1.0,
+     "10": 1.0,
+     "20": 1.0
+    }
+   },
+   "clean1000": {
+    "top1_5k": 59.1,
+    "tau_by_k": {
+     "1": null,
+     "3": 1.0,
+     "5": 1.0,
+     "10": 1.0,
+     "20": 1.0
+    }
+   }
+  }
+ },
+ "history": [
+  {
+   "epoch": 1,
+   "train_loss": 0.3392678939271718
+  },
+  {
+   "epoch": 2,
+   "train_loss": 0.17541829671245068
+  },
+  {
+   "epoch": 3,
+   "train_loss": 0.13092947301629465
+  },
+  {
+   "epoch": 4,
+   "train_loss": 0.10902404627995566
+  },
+  {
+   "epoch": 5,
+   "train_loss": 0.08559611644159304
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.0702408790239133
+  },
+  {
+   "epoch": 7,
+   "train_loss": 0.07024033334164415
+  },
+  {
+   "epoch": 8,
+   "train_loss": 0.05866983835767314
+  },
+  {
+   "epoch": 9,
+   "train_loss": 0.07028202392393723
+  },
+  {
+   "epoch": 10,
+   "train_loss": 0.05510604502001115
+  }
+ ],
+ "result": {
+  "tag": "coco_r8_both",
+  "image_only": {
+   "legacy1001": {
+    "top1_5k": 57.56,
+    "tau_by_k": {
+     "1": null,
+     "3": 0.604133,
+     "5": 0.575929,
+     "10": 0.547295,
+     "20": 0.536108
+    }
+   },
+   "clean1000": {
+    "top1_5k": 57.56,
+    "tau_by_k": {
+     "1": null,
+     "3": 0.604133,
+     "5": 0.576009,
+     "10": 0.54748,
+     "20": 0.536596
+    }
+   }
+  },
+  "CG_flickr_val": 0.768462,
+  "top1_50k_legacy1001": 57.298,
+  "top1_50k_clean1000": 57.302
+ }
+}

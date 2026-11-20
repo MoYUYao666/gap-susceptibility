@@ -1,0 +1,3194 @@
+{
+  "generated": {
+    "README.md": "4df6b7ad4b43459a225258fb4c375ac0f30888e3dee63bd18f2514a018647c15",
+    "protocols.json": "59e998506e6cf8dab017f4d95caf34bd58c58d9b6f8a226699d525563d109c7d",
+    "replay.py": "dcc655468b06915800d2827f96c8f6c35f552db098ea4d648c0dce6218e4f45a"
+  },
+  "sources": [
+    {
+      "destination": "records/paired_rsicd/schedule_lock.json",
+      "role": "paired_record_binding",
+      "sha256": "b87baef91a533c6a7563006c827c90378ed514bcfc02fe794c321c07fa14980e",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/Plan.json",
+      "source_sha256": "b87baef91a533c6a7563006c827c90378ed514bcfc02fe794c321c07fa14980e",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/ScheduleResults.json",
+      "role": "paired_record_binding",
+      "sha256": "792422e667b21ffde218a35efbc4c69d81bb4ddaf16ac502931cf6bfbf6d5ba1",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/ScheduleResults.json",
+      "source_sha256": "792422e667b21ffde218a35efbc4c69d81bb4ddaf16ac502931cf6bfbf6d5ba1",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e2_s0.json",
+      "role": "common_reference_held_out",
+      "sha256": "636bcf344173ce2d176e6334bb0789fe8ab153b071bf9936621728fe613b183d",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e2_s0.json",
+      "source_sha256": "4700ecdf5aec247caea164641de1b0719a776715027806c3f456bad934688520",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e2_s0.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "f88082495706c4b881122350b2bd7adb32dbd4f88644f1cc3ea88d6ba43fadb5",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e2_s0.receipt.json",
+      "source_sha256": "f88082495706c4b881122350b2bd7adb32dbd4f88644f1cc3ea88d6ba43fadb5",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e2_s0.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e2_s0.pre-eval.json",
+      "source_sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e2_s1.json",
+      "role": "common_reference_held_out",
+      "sha256": "ce4aecf0ca9ce542f0471a73af73db772fe862ffd1f15e0071c18ce83bf07927",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e2_s1.json",
+      "source_sha256": "7e7d48ccdf9adf6bd8cbf7cd2dbcb1ecf943f26cab0c542c6b25ee2bb6f7c326",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e2_s1.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "2a604f691e2fc6b562a564906fd5e14aabf003beaa914f995580b7f4ab9af5eb",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e2_s1.receipt.json",
+      "source_sha256": "2a604f691e2fc6b562a564906fd5e14aabf003beaa914f995580b7f4ab9af5eb",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e2_s1.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e2_s1.pre-eval.json",
+      "source_sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e2_s2.json",
+      "role": "common_reference_held_out",
+      "sha256": "5e7c40bbef9fbba4207f5bbdea9526cbfe59840959c5ff33f2480ded609f6e6d",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e2_s2.json",
+      "source_sha256": "65abdc69a4fccd5a802b92c3466f3fe2c6443c99057d0c101c37b1381eec93c8",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e2_s2.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "8e89c0b91379e5439fa400459b4822d40b8dcb6522b8fbb0ed61c116ddd286d2",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e2_s2.receipt.json",
+      "source_sha256": "8e89c0b91379e5439fa400459b4822d40b8dcb6522b8fbb0ed61c116ddd286d2",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e2_s2.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e2_s2.pre-eval.json",
+      "source_sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e6_s0.json",
+      "role": "common_reference_held_out",
+      "sha256": "1ba719ee4f96ef8398d946dc6a23cac1c7b372e20160d24d7c737b1bc5cd37bc",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e6_s0.json",
+      "source_sha256": "3ef2818d143f12ced531c59273ee200d1776e16c465066d19475aa0758bf35a9",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e6_s0.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "a15ca5fed0b51399d7b0d01e504310d9972b29e0a59068e11159df9869951920",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e6_s0.receipt.json",
+      "source_sha256": "a15ca5fed0b51399d7b0d01e504310d9972b29e0a59068e11159df9869951920",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e6_s0.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e6_s0.pre-eval.json",
+      "source_sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e6_s1.json",
+      "role": "common_reference_held_out",
+      "sha256": "53581d8cbb5f0dc990016cc4f56a3f9c3ae4ef767b9500154a721620109c099f",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e6_s1.json",
+      "source_sha256": "8d96fd3f16f28a2c1593033c658038a5a898b2de8f60b01e6926ac123cc5c6a5",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e6_s1.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "171fc905e12fcf9948fe7c7153392ab51b972b075b3cf5abe42127deb341df0f",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e6_s1.receipt.json",
+      "source_sha256": "171fc905e12fcf9948fe7c7153392ab51b972b075b3cf5abe42127deb341df0f",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e6_s1.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e6_s1.pre-eval.json",
+      "source_sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e6_s2.json",
+      "role": "common_reference_held_out",
+      "sha256": "67452c2420cb3ca855f7969cce40a62c0c7ea7399733d446f58b642e5356c5aa",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e6_s2.json",
+      "source_sha256": "d8acee7c9a776f4eef0105694f9400bfa0e3990c43592b6207d35303752f1b2c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e6_s2.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "2cdfb50bc0d77f16b4af30355f6a74f4222dd33e5562276b20ee7fbf5ccfb7d4",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e6_s2.receipt.json",
+      "source_sha256": "2cdfb50bc0d77f16b4af30355f6a74f4222dd33e5562276b20ee7fbf5ccfb7d4",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/human_8000_e6_s2.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/human_8000_e6_s2.pre-eval.json",
+      "source_sha256": "0d209285dc6f5498b9c8777dd828408b7c7bf3d43c8d33c5febe050fff53615b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e2_s0.json",
+      "role": "common_reference_held_out",
+      "sha256": "3d9d7bf578de385d8cde181cb6d6f541c99ef61ca19339793adcfbfa9d988b72",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e2_s0.json",
+      "source_sha256": "a0da0c4d04b1dc3816464b03c2a1cb0c13faeb0628c3062ec2b1c8b69697592b",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e2_s0.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "3d3ab450e532e59b105df888371d2ae5b5100768984be26f50676aa5c0a8c576",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e2_s0.receipt.json",
+      "source_sha256": "3d3ab450e532e59b105df888371d2ae5b5100768984be26f50676aa5c0a8c576",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e2_s0.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e2_s0.pre-eval.json",
+      "source_sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e2_s1.json",
+      "role": "common_reference_held_out",
+      "sha256": "a345078977f3e6c11ae9ffb82313516d9a1cf177296520cadb9b390e9d208b91",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e2_s1.json",
+      "source_sha256": "f46bcd8ae144dad4e844d58f6d729bee0eae6df2cc45ede2f4d256991362760d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e2_s1.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "d2e25403e276c58bf8c6e0da0ef1e648d349feda04e65c1c076220cbd64d48c4",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e2_s1.receipt.json",
+      "source_sha256": "d2e25403e276c58bf8c6e0da0ef1e648d349feda04e65c1c076220cbd64d48c4",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e2_s1.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e2_s1.pre-eval.json",
+      "source_sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e2_s2.json",
+      "role": "common_reference_held_out",
+      "sha256": "14ee7014e832ca2e8996ed52f7998fd8d56af71eafb5498ff20747aa193c9c14",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e2_s2.json",
+      "source_sha256": "2ba8148c1fcc89a1be8fe8a3ee78a77574afeb17faaa21466dfab6ded6f3223a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e2_s2.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "310582bb059124274b8e010c6a9cd171eabb27bd30a544ec4369c00dd3b781b3",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e2_s2.receipt.json",
+      "source_sha256": "310582bb059124274b8e010c6a9cd171eabb27bd30a544ec4369c00dd3b781b3",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e2_s2.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e2_s2.pre-eval.json",
+      "source_sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e6_s0.json",
+      "role": "common_reference_held_out",
+      "sha256": "6019b61184ba0819cd99b00758491c2c962f1e30fc9035b8fe1125721b3b74af",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e6_s0.json",
+      "source_sha256": "b2d703fdae558b2632d61d4a81d120e04ffaf667e08cfce71ad72a78d592cbe9",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e6_s0.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "ae80b06dd2f7dfddc60708b2c81c59fd6b9fdb70d694096a1529759aca53448d",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e6_s0.receipt.json",
+      "source_sha256": "ae80b06dd2f7dfddc60708b2c81c59fd6b9fdb70d694096a1529759aca53448d",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e6_s0.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e6_s0.pre-eval.json",
+      "source_sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e6_s1.json",
+      "role": "common_reference_held_out",
+      "sha256": "6f1e3c4ac68085435019f95ede9f9dc1a95543d869108be322335588c6df05f0",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e6_s1.json",
+      "source_sha256": "68a9f6c0522ddad0402a170ad250d11470c05098dfce7bc45980426760577d23",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e6_s1.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "205cbdd330401f9df5907de8dcf90def1260f25a51ff5e92e45607e1732c3ce5",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e6_s1.receipt.json",
+      "source_sha256": "205cbdd330401f9df5907de8dcf90def1260f25a51ff5e92e45607e1732c3ce5",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e6_s1.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e6_s1.pre-eval.json",
+      "source_sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e6_s2.json",
+      "role": "common_reference_held_out",
+      "sha256": "10def766325d9071847c8a3f16ecda187b5266e15fc5762310d18445ab479c06",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e6_s2.json",
+      "source_sha256": "12d47eb5845affdc32ed7a22d20ebc7e1cda06723576610fd22a80eca774e0c7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e6_s2.receipt.json",
+      "role": "common_reference_held_out",
+      "sha256": "e11a78671279e166aea76a30b7d1d6f4627ec7d7531c762f3bf8d7e28e162064",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e6_s2.receipt.json",
+      "source_sha256": "e11a78671279e166aea76a30b7d1d6f4627ec7d7531c762f3bf8d7e28e162064",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/paired_rsicd/metadata_8000_e6_s2.pre-eval.json",
+      "role": "common_reference_held_out",
+      "sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "source": "paper_a3/runs/matched_rsicd_schedules_2026-11-18/metadata_8000_e6_s2.pre-eval.json",
+      "source_sha256": "4345bb0f8e87f8ee2527a726401110cb0300f977ba67611aacc05038710a6001",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/site_grid.json",
+      "role": "descriptive_site_grid",
+      "sha256": "ec4a41678068b3b8799183a57d37b47c17695add6ab63f1860e109cf2a05f057",
+      "source": "docs/audits/A3_RETRIEVAL_COMPARABILITY_2026-11-18.json",
+      "source_sha256": "3cb63adfc4bf15502415547f7b1c606769482d630dcb8de1cb3c1ffed2df25e8",
+      "transformation": "Select technical fields for the descriptive grid; omit unmatched scaling audit and status fields."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_human_s0.json",
+      "role": "held_out",
+      "sha256": "243bf90ac3c012a1ab948448c9c2764c6fc04e2c40f6b881ca670dd1f4cc2d55",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_human_s0.json",
+      "source_sha256": "dc3376430fb847a310f19ba3f7930e56d3ee4b8cc6ced7bbefac151accd6e663",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_human_s1.json",
+      "role": "held_out",
+      "sha256": "cc385e7f847d35cd2bc5e930d7343df518d55e0a9dc9de635e5eb7b7843067ca",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_human_s1.json",
+      "source_sha256": "c0be885fc602e408332295087132cc43d6f936de76a5c96582228c6cb5e44386",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_llm7b_s0.json",
+      "role": "held_out",
+      "sha256": "3d6db595b579d192ac6b325d20dd06913ac7504919ccf091891aeeb5fe00283b",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_llm7b_s0.json",
+      "source_sha256": "92ec58953457adb3f4237de2f1e89928389b5db5eb800763a301ccc62f48bfe1",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_llm7b_s1.json",
+      "role": "held_out",
+      "sha256": "78742816ad69ffe7caba634a90ffc7a6b9aadc64f09373f9254fcb7b7e17405d",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_llm7b_s1.json",
+      "source_sha256": "207eedf3fe41752d19f7c1ed50e38d861c88974fb5a5bdb576d3f39a95d36e86",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_llmcaption2b_s0.json",
+      "role": "held_out",
+      "sha256": "219d8bf1095194aa1fc7a22fd04d16d16ebd6aa9add4c0bef3e9215361eecf46",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_llmcaption2b_s0.json",
+      "source_sha256": "dc23f7da8389dd27d0f1f91908cd7d371deef81551565ea5f6784f45efff1609",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_llmcaption2b_s1.json",
+      "role": "held_out",
+      "sha256": "f72bbce1b2a4685dbbb320b6a16e396f443f804c481a3ab0c1247fbd8a41310c",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_llmcaption2b_s1.json",
+      "source_sha256": "2ff3270f8546a97f8dcbf1748cd1f31506a18465710405a1b0b8e24a9b2994dc",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_llmcaption_s0.json",
+      "role": "held_out",
+      "sha256": "b20ee3b6c0de5f64897473f83f32e4a3d2dee7a6f7e0ae48eb1656f240dfabe2",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_llmcaption_s0.json",
+      "source_sha256": "78004d9abe997e5877a5236fa11f340cebd28dd521b20e384786091aa75db021",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_llmcaption_s1.json",
+      "role": "held_out",
+      "sha256": "4909e669724faf1641864e67cf76e8550a68f8428f273318b1b6cb323da5162b",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_llmcaption_s1.json",
+      "source_sha256": "b70e52581a3563fd42dba576a956d85061f0be40c8254fa615ae6b888cba21f1",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_metadata_s0.json",
+      "role": "held_out",
+      "sha256": "fad8e8877178390c763830b7f96d20afdd1a8639488ff5f45e2bd0585ce5087a",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_metadata_s0.json",
+      "source_sha256": "f0e209179a5fddafc243119552f814c7e7ba6d7391811620533d1ad4195373ed",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_metadata_s1.json",
+      "role": "held_out",
+      "sha256": "8f67523c3d2dbf5dde62ccb426e58677aebdb90a58dac02add6750404eb80d8e",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_metadata_s1.json",
+      "source_sha256": "b47cb2b023218bc9ebde332664908acb5d37326dc68183346ef9edea7c141542",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_templated_s0.json",
+      "role": "held_out",
+      "sha256": "f2bf99553bd289db436a2006f4e5d533fa63cdf62042096c41dbe5caf1ddddc3",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_templated_s0.json",
+      "source_sha256": "27760aafcf74c64f8515dc71e8ed580cf5c5afe66ffb06b097552a10a4bc3c2a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/nwpu_captions_templated_s1.json",
+      "role": "held_out",
+      "sha256": "4cf8d7a7b33f5089a6e8b0f0f45e4a43804e7b48fa2c18dbf7a4b7ad75022727",
+      "source": "paper_a3/runs_fixed/b32_fixed/nwpu_captions_templated_s1.json",
+      "source_sha256": "554d923715467c1589ccbcc34793f01fd637f3f62c168cadf3651c43ede85622",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_human_s0.json",
+      "role": "held_out",
+      "sha256": "8c45ed1248e1e31b870647cc39f295fb4223e097bac678c087e37fd9545ecfaf",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_human_s0.json",
+      "source_sha256": "04831ec0bcba4a719a20862abeecda0d8b4fe1a0071ece9faa1fe1d00e85c5a9",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_human_s1.json",
+      "role": "held_out",
+      "sha256": "2e545f13780dd57f4811d819e83c2bf387873ff0759b8f50f7a504cd6ffcc8be",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_human_s1.json",
+      "source_sha256": "2faf16f65f05ab7c851234d92a34719e08322cf08de97e5e0437166daf3cab4f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_llm7b_s0.json",
+      "role": "held_out",
+      "sha256": "f3057b58d74cab231721c2d98f5016a92675cd2194261c0a4c951bce26d8cc0f",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_llm7b_s0.json",
+      "source_sha256": "369a47ee519a96f9b700626f9d65692d1f3db9afa501646fb434d00dc70bf8d0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_llm7b_s1.json",
+      "role": "held_out",
+      "sha256": "7c1168d815b2da30757878d594718f1345aacc21633ea5f1a091d517e8b8c91c",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_llm7b_s1.json",
+      "source_sha256": "a0031717f65b4919f1cebfe80a0a1ca68106377372e55f5d85900d88887433f6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_llmcaption2b_s0.json",
+      "role": "held_out",
+      "sha256": "129431d2d8b4a2e8b89ff008e4ae2cb0ef060b161e088af0ddc3e4d46be44269",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_llmcaption2b_s0.json",
+      "source_sha256": "af067b6e6b5fa23b28662ea42d5967b3a3e2099b8754a21b9e5033edcb1c6db1",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_llmcaption2b_s1.json",
+      "role": "held_out",
+      "sha256": "c09148fbcbd55e8a9c7a90fcdc4949107773bdc70a93e782a025feb31fd2cea3",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_llmcaption2b_s1.json",
+      "source_sha256": "3b0543e95f60f43e27e06d03181d903011200e5a40b83408348f757ddbbc6118",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_llmcaption_s0.json",
+      "role": "held_out",
+      "sha256": "a5669c2e9ad3c4db635207be7b02639af5b8d8fc8ed77f160fb001d33fd4bb0c",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_llmcaption_s0.json",
+      "source_sha256": "143619c8bab07d7932550067bc4f03517b96cef61b046391af422fbfec549daa",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_llmcaption_s1.json",
+      "role": "held_out",
+      "sha256": "72f67aebb152566d79b34c73740e4dac381c27a818b321a447e0e82bd80dace1",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_llmcaption_s1.json",
+      "source_sha256": "2615c958a3b0cfa30a6e406cb60ae6ce11356d6a2bb372c7ee3f154775fafa12",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_metadata_s0.json",
+      "role": "held_out",
+      "sha256": "3d6536812a59a783c2fa0097211f2cbc11949989c7ad11816127668f668655a4",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_metadata_s0.json",
+      "source_sha256": "465ad336f3c49be7b4b4a2e373d479c91d5634878e5c2ccfedada16050012c7e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_metadata_s1.json",
+      "role": "held_out",
+      "sha256": "9aec6a2a5037b1c5e2d4963e313fef16bba649554e69bcb96c5a5acdded03af4",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_metadata_s1.json",
+      "source_sha256": "e67823ef99868b16877175ccc641b26303abd395aed134d8c4d16a461b0ab6fa",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_templated_s0.json",
+      "role": "held_out",
+      "sha256": "ffed8b5334bebf28d9660e595a0637bf4e9a13c4f5cc46d7cd106d1fb1b37a7b",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_templated_s0.json",
+      "source_sha256": "65e58f615fe53068e4f587538d49fb3588a00310d40fff95a23a4021c371529a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_fixed/rsicd_templated_s1.json",
+      "role": "held_out",
+      "sha256": "d1408bd845f80efac2077cb1691533f842d0fe616fa52f20f589fa5c4ab85405",
+      "source": "paper_a3/runs_fixed/b32_fixed/rsicd_templated_s1.json",
+      "source_sha256": "5d297c47a299b0b9a7733f5d36c62cd17b164e50f56d363241172468a4c21b6a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_human_s0.json",
+      "role": "held_out",
+      "sha256": "57fef1cdfeb4d3702fb2c1ec5d8bdaf72bae83cfdc60ff7541170b7d66e61ab4",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_human_s0.json",
+      "source_sha256": "a349989db62b820931b31fd344cf8870aff8ba194a1268644d7733f8ca1bd011",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_human_s1.json",
+      "role": "held_out",
+      "sha256": "6f2283c924b3847febe79b360badb5c77f84e6b7f2939e2572ef9a52d4aa50f2",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_human_s1.json",
+      "source_sha256": "aaf0fefc816adafacd360c4d0cadb624985ffbb38ea5d6cec58d1651270130f3",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_human_s2.json",
+      "role": "held_out",
+      "sha256": "f3f64cea20f064d08ab8389c1d5073a4b24ba379000e6251db5be3788e36f93c",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_human_s2.json",
+      "source_sha256": "9d69b9eca2bad85f50c0c8c5058487df0802abefe339db34ad10632908ad5610",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_llmcaption_s0.json",
+      "role": "held_out",
+      "sha256": "bf73fd1435b0026439f0803d860cc3a7819f1dddc4d4fa4b2456c7c2eab0aaa0",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_llmcaption_s0.json",
+      "source_sha256": "e6729750610433d13ac625e1f19ff409b2635a70c35eccc6a0db0f40f986dec2",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_llmcaption_s1.json",
+      "role": "held_out",
+      "sha256": "21cdddfd01898ba5ec96ef8bdab0113e981fb7f022f1b24d7942c5ecab88df9a",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_llmcaption_s1.json",
+      "source_sha256": "13d24d24151a48c5e9b7f2e379a690134c254a67b444a5afacc711e45c8266ac",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_llmcaption_s2.json",
+      "role": "held_out",
+      "sha256": "649226e675ce54680ada6ecdf9ef164bd24d68de7794c9ad42dc03b5c4b267f0",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_llmcaption_s2.json",
+      "source_sha256": "43d97aba96dcb7851827256093fe7999f503964b1b58155540ade350df87454c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_metadata_s0.json",
+      "role": "held_out",
+      "sha256": "645feeee1c98186704d259ceaa05cd4bca7eeca1f0504909f047ec24f4463057",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_metadata_s0.json",
+      "source_sha256": "06c0e952ce8b9af1588238c2a55931c65bb778cee3886df3c5ba9c0c40bd8761",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_metadata_s1.json",
+      "role": "held_out",
+      "sha256": "6ac3af78b1c25e6175a405f07fbca63a50bc42dec3f27ac895b3e3094cd01aa8",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_metadata_s1.json",
+      "source_sha256": "63eff7d6b8bc6f74247fb389f988d56e69b5c07d0bdf05997dd84700d0691f86",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_metadata_s2.json",
+      "role": "held_out",
+      "sha256": "630276ef8cb22e99911d52a07edade5f35910ff6fe68826285248c5a290001ec",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_metadata_s2.json",
+      "source_sha256": "17ea6d71552ee045b4f43f41a3df1d4d7a4542a28fbfeeb8d82e91601b1da7cd",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_templated_s0.json",
+      "role": "held_out",
+      "sha256": "35ed063717f79f33f06980f3d9269b999393cffc8d5e9fd69c9b458251cec279",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_templated_s0.json",
+      "source_sha256": "5c6fd974a72094d46c87cc4d772bbde2bc56ba918a6d2a24bc855b581045a696",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_templated_s1.json",
+      "role": "held_out",
+      "sha256": "09259b58a4c94c2a75076393fa99f8e74fd50980bfe80a1948fbf705691997f4",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_templated_s1.json",
+      "source_sha256": "1cbd2c6dd2bbf76be8e1855ecab6c826d9fdc7092127e3178d42fd34c3fe80f8",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/b32_3k_fixed/rsicd_templated_s2.json",
+      "role": "held_out",
+      "sha256": "f32a0e00ecdbe458cc3b3c5d1e730566d9a3acdf0467ad27f273cf67d500eff7",
+      "source": "paper_a3/runs_fixed/b32_3k_fixed/rsicd_templated_s2.json",
+      "source_sha256": "d887ab8beba39e5e92ef87738f073fe80915be6ca7b2d595a9a6538c01dcfa9f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/nwpu_captions_human_s0.json",
+      "role": "held_out",
+      "sha256": "3403293738d097eb27d385b54f75e490efe36d2f2b1f9b795a04cf590ee7bc8e",
+      "source": "paper_a3/runs_fixed/l14_fixed/nwpu_captions_human_s0.json",
+      "source_sha256": "f54effe565d09fcced7a4f085dff060175d1f765a2689e5ace600166ce5cdbd8",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/nwpu_captions_human_s1.json",
+      "role": "held_out",
+      "sha256": "47d243fb5da3bad212c378c78689899e2c507396b18b11be888ad3e06c7ab7c9",
+      "source": "paper_a3/runs_fixed/l14_fixed/nwpu_captions_human_s1.json",
+      "source_sha256": "aa6fbdf5849bad7971e45386e43e8c805391aea1147b735e22a707a86b989958",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/nwpu_captions_llm7b_s0.json",
+      "role": "held_out",
+      "sha256": "188b8871760dbe1cdf926bce82ed6dcd1505bfe42f35f6f6163ecf34dc048d7c",
+      "source": "paper_a3/runs_fixed/l14_fixed/nwpu_captions_llm7b_s0.json",
+      "source_sha256": "d27c75a81d020bb8734ab2f9d170bdcbe13772f37a4b95373cc4f13a77b3db2e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/nwpu_captions_llm7b_s1.json",
+      "role": "held_out",
+      "sha256": "0064b7bccd700496a7717107a2eef71fe8ef50311597d7a547da689bbd4943d6",
+      "source": "paper_a3/runs_fixed/l14_fixed/nwpu_captions_llm7b_s1.json",
+      "source_sha256": "bd973b97db2018ccb293ade5e54d753b20cb279d71074ff5753b07dd53c341e7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/nwpu_captions_llmcaption2b_s0.json",
+      "role": "held_out",
+      "sha256": "65d5b47b6fa64017bcb5338f6136ed9f186401c36fb62649f97c2ff86cebfe97",
+      "source": "paper_a3/runs_fixed/l14_fixed/nwpu_captions_llmcaption2b_s0.json",
+      "source_sha256": "ab3ce8ec603ec71ad152f02ee673de03da7ee6beaa0ab8f3d3c59b1674aee2f0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/nwpu_captions_llmcaption2b_s1.json",
+      "role": "held_out",
+      "sha256": "5dc2ead664665dab9626360b5bfc697171b98f6e70d5bd1ccf482ef42a7c3536",
+      "source": "paper_a3/runs_fixed/l14_fixed/nwpu_captions_llmcaption2b_s1.json",
+      "source_sha256": "300041edd9357740a5fb233e5485d2a76236ff2f894409c46364f4d608d271eb",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/rsicd_human_s0.json",
+      "role": "held_out",
+      "sha256": "089c06d05597099b70c57a3d412ea68159ae86ef4ccd1944c02ee24b3846f2ac",
+      "source": "paper_a3/runs_fixed/l14_fixed/rsicd_human_s0.json",
+      "source_sha256": "c6fd577ee019d1461b3931774c7b30217b0921f9cb6ba8554f5ab9283281f783",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/rsicd_human_s1.json",
+      "role": "held_out",
+      "sha256": "90f69e00a94a20f64584dc63955839cad372a0db04e2e18f6c7338316c9a32b8",
+      "source": "paper_a3/runs_fixed/l14_fixed/rsicd_human_s1.json",
+      "source_sha256": "b439edd7e9791931b633f7b3df0ea9c420b455b61e43d0f275d2684a27fc3458",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/rsicd_llm7b_s0.json",
+      "role": "held_out",
+      "sha256": "b89bb69974eb73aa106a9858e8b0df3fbfdccbd88411ab3503a8fc0cceba3e5e",
+      "source": "paper_a3/runs_fixed/l14_fixed/rsicd_llm7b_s0.json",
+      "source_sha256": "9710322165faf40073a97c0cb4826bea317fefc55256af7b4015dfc4f5209619",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/rsicd_llm7b_s1.json",
+      "role": "held_out",
+      "sha256": "a6b115a1924dde2a330c5ce66ddfee825738c7b7fb09a83cafc123fb698b2816",
+      "source": "paper_a3/runs_fixed/l14_fixed/rsicd_llm7b_s1.json",
+      "source_sha256": "93d463e70407abe5d0946d2cb20c12d206c716c1fe0a85f71a33a6f3673ce639",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/rsicd_llmcaption2b_s0.json",
+      "role": "held_out",
+      "sha256": "56d42c0aa9fc241dd94f105953cacfe6d6861a1350b556999d6a78ec2b5631e6",
+      "source": "paper_a3/runs_fixed/l14_fixed/rsicd_llmcaption2b_s0.json",
+      "source_sha256": "bcf2557ffada7c2bd129cd903f46d4f53fbe0102bf5fc13838e8ee44124c52c6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/l14_fixed/rsicd_llmcaption2b_s1.json",
+      "role": "held_out",
+      "sha256": "08a83b48f18f7c59824c6857fdff8f6116b5643772468cb862a83c097e1839fa",
+      "source": "paper_a3/runs_fixed/l14_fixed/rsicd_llmcaption2b_s1.json",
+      "source_sha256": "33bce9b63e0e7fd4b389b9a48961c13e33082611b39ee7210075582b95ac1b7a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_human_s0.json",
+      "role": "held_out",
+      "sha256": "56ed33571621fe78061ae0c9cff83702e6caa8660818bb0a81906b9be9330b7b",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_human_s0.json",
+      "source_sha256": "948ce45f54370c32ad3f63e525f1d35f45c8f4a61569af06f9fbaba7e40b3a3a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_human_s1.json",
+      "role": "held_out",
+      "sha256": "6e76d826c30f714931999aa1f94ab65f87e21412e355216f02d1cb2a7bb5b335",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_human_s1.json",
+      "source_sha256": "b7adda38548b902257513d8e1a24b4a8dce84c614937aa482a81659ad55cd588",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_llmcaption2b_s0.json",
+      "role": "held_out",
+      "sha256": "881d0f784fdaf4947181a9bd1ffa5331f1341a919cb4a2d39de38cf37e2ab4ae",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_llmcaption2b_s0.json",
+      "source_sha256": "c5cd820d779a8b40342940da7668953a889a27e048bd8541caae938b8ab5356f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_llmcaption2b_s1.json",
+      "role": "held_out",
+      "sha256": "6c3f02fe32bd5d006803a3485885bd84c341977df57db2b8ae0ee25f38e01a2c",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_llmcaption2b_s1.json",
+      "source_sha256": "cce7ee82769df232c531410154799278ade4a0ac7a537148836f93e7a46ff91f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_llmcaption_s0.json",
+      "role": "held_out",
+      "sha256": "df43a135adc026ec7f0bf42485f96e2be411343950f293244debceef56434cbd",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_llmcaption_s0.json",
+      "source_sha256": "19525a5796907b6b198fe4b97853b17595e6cfca496a7843543831d240e5aa60",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_llmcaption_s1.json",
+      "role": "held_out",
+      "sha256": "6985515afeaf25fd6965824c3750a939114eca5628356838a1f1ead9b6a47d27",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_llmcaption_s1.json",
+      "source_sha256": "11ec5dfe3a89f07a0d94dd3956b103f645c29effb438f870bf2b943dd52db6fb",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_metadata_s0.json",
+      "role": "held_out",
+      "sha256": "5a77448ab1606fc76c314c6ac9892e2291d2a8babf372f8095ffbfc92d80d2eb",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_metadata_s0.json",
+      "source_sha256": "2b0788e8a81f8cff201e48cbd72b350f7255c2b73f9aee2f20cbbc76d3aea9b6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_metadata_s1.json",
+      "role": "held_out",
+      "sha256": "0570c0b7c1ff88b4412df78a6a68387aaef9e2347c6bfa01db833763730cf07e",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_metadata_s1.json",
+      "source_sha256": "91a7c9f9df1dcb78b2419c5b350d61770e3ad7cca8d9b46f875178e7a96fba8d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_templated_s0.json",
+      "role": "held_out",
+      "sha256": "ecae724f42f51d704e7621fa7e93b91c847d8529e11300c2b6132c88cf9e753d",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_templated_s0.json",
+      "source_sha256": "bae746b71998db835b357ae9eb9721adeb4c75522744a699459340eb7809ebc0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/siglip_fixed2/rsicd_templated_s1.json",
+      "role": "held_out",
+      "sha256": "54baedb290296872ef6d766d388231f798edd8c352680a5647a8ac5cf7ae482a",
+      "source": "paper_a3/runs_fixed/siglip_fixed2/rsicd_templated_s1.json",
+      "source_sha256": "f291d7a05001d90b62c3086f098098f6da4e85a23e72794553dae7cecc3eff8c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/flickr_fixed/human_s0.json",
+      "role": "held_out",
+      "sha256": "5b7d44cfaf3ed7d6771b65d2559e10e2279b06c7800dc591228fc647903c8a0f",
+      "source": "paper_a3/runs_fixed/flickr_fixed/human_s0.json",
+      "source_sha256": "a683722ee25549cc0a2196b15c7a7fef6f824a9db4cae57e0a61507004f5d384",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/flickr_fixed/human_s1.json",
+      "role": "held_out",
+      "sha256": "3bce6105b16406b423e9be20e7f9f57072c1eb4da95fce3ec51b92e232fb59cd",
+      "source": "paper_a3/runs_fixed/flickr_fixed/human_s1.json",
+      "source_sha256": "6340b135d431a3de433ef6d16651f88830892524be84be8aa51f2cf9947973a4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/flickr_fixed/shuffled_s0.json",
+      "role": "held_out",
+      "sha256": "9cdd93ec3a314af7a53d15703bc5e230ad597cd39c851538cd956773a7d4179d",
+      "source": "paper_a3/runs_fixed/flickr_fixed/shuffled_s0.json",
+      "source_sha256": "f499a8d2b9599c08a83c026a885628cbcc4518648098c98970d42c584d8cc728",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/held_out/flickr_fixed/shuffled_s1.json",
+      "role": "held_out",
+      "sha256": "06a75405cdef165226cbf20868355c05560880567cd5f23ce72a8fe20cd03dd2",
+      "source": "paper_a3/runs_fixed/flickr_fixed/shuffled_s1.json",
+      "source_sha256": "c68778000e1b34d27d8ba4ebea8ddd4e913a7d645589b49755c9c50c8d6fc8da",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "3f5422d33b6156cfecd584b653dceb0f7e579e401cfb3fbc648e79bbcdf15297",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_human_10000_both_s0.json",
+      "source_sha256": "42fbb236e85a6422b51656f73396ebc8728c3f81c51e128abc6a6b16f903949a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_human_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "6cb8f47fe3e3e2494139fb0c0f046afc18895d0ce4beeb32cd03417c8cea67e9",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_human_10000_both_s1.json",
+      "source_sha256": "9306008ea9f4116ee92b13b48a0119ea36e78c6913d0587714ebcb7215060bc7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_human_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "0b6af1a7e5419a943b79ca20d746ed38a907c2beae16a2e896733e759178a39d",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_human_10000_both_s2.json",
+      "source_sha256": "3147baa817ec88aa245bbc143c1e546379b766b3989edf40fe5ec820c1cdf3b7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_human_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "eb6d51eb3933ec36db7928ad924757063b86f741dca6aa1f16972eddb0890a25",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_human_10000_text_s0.json",
+      "source_sha256": "8e21c63d81911e13d19257be254aa7e5e74c7ed11286ccc115a4c65f0a576d1d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_human_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "4685b06e573a8367e3f07b1b0189acacaf148d37a337d148a5e5c56d11e3b61d",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_human_10000_text_s1.json",
+      "source_sha256": "90c01724d08d295717df7c634167dbb0691ee50aed365441e3483fefd987a200",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_human_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "3aeb727418e0fe383c58b585f85312f3d3fd94af206bc3d62af5ae908f53f8bf",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_human_10000_text_s2.json",
+      "source_sha256": "a7cff5dccfd680d182555c7da83b5556cef7c4aeba7829fc21733c60f215b52a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_human_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "557296f966f753b8c1999c0c286d3751674985f996a8242e3d89ce6851034fa8",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_human_10000_vision_s0.json",
+      "source_sha256": "a8d4764afc8fe93b31e2beb3aca2d78d8b3f20d5b5087a2323f8201ff47a5911",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_human_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "e8547ef51682b9c2dcaca0d1b0ad31a975f9e21d18fede2e9edd18292702ea34",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_human_10000_vision_s1.json",
+      "source_sha256": "97a7df1c4a45a6a43a3c0c01b531b881e5ecd79287dd10a53725300dba9d842a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_human_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "0cf32339989c7314371b9f3537fd003161b3ae276297c7beb7cc5c1f62effa5d",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_human_10000_vision_s2.json",
+      "source_sha256": "1854855fcd58a5d36709d75635356b91435b6d6e8a688cfa30de07228d776bb6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "d79ed8dd15983b88cb6da16df47e18a7e75728060183e8223dc6499a4cae1b2d",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_metadata_10000_both_s0.json",
+      "source_sha256": "cd92ea6e2cb36c9efc251e0472c037fb7f00da37f82637f906c67e33297c312e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_metadata_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "cf4ba2bb0f052e033069e3cd5e40296d739eaf0197c56037e65fab92ed9ab44a",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_metadata_10000_both_s1.json",
+      "source_sha256": "c9e67dce03b5a686fbe10fe337e3e2726b436fe59f763df8b48767290bf0a7c4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_metadata_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "909bbc5642cfbad6461d5f102754104a87d4d2c13b169699161b4c3b291f5e46",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_metadata_10000_both_s2.json",
+      "source_sha256": "3db678b0e523573003fceab82a9b34346652c9cb9ea86a9cd66f099ba7225d90",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_metadata_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "d15cc3bb21e09609d67132689ddaace6f2536d586502921f3ede56395d6894a4",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_metadata_10000_text_s0.json",
+      "source_sha256": "279d5cc8a5b3c77908ab1ec1fc936f3cbf117519683bf8cc2dd2c46684073564",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_metadata_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "bebc660ced75e746b6d5cec3924dff45f91ec9587d9c85e5da84fd17e9e7d2ca",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_metadata_10000_text_s1.json",
+      "source_sha256": "d041dfbfc71cd121b2783b96129f80a333069fe057a82044d7bab4c934bedbdf",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_metadata_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "31e2fa76f1b7fb2fd776adfb18e0d6040b1e831edcc8eddcb98b762707896e4a",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_metadata_10000_text_s2.json",
+      "source_sha256": "b52273ed162ea9b3cd5745321f5b2c56dcd6ea46ea64094b0c6bc79190b316e6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_metadata_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "5b5d0a16de9fc1f9d786bc6d832eaf02896dd9fdb568dc53ede69dcc68662afb",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_metadata_10000_vision_s0.json",
+      "source_sha256": "9cf33e5678b27eea59a73dfb0f3c0644c42e5041a9d58667a5602fa7efc1f0d9",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_metadata_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "d7abf6e323da7b25d961d86268821251167096ab39484ce6e90d69ed1132011b",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_metadata_10000_vision_s1.json",
+      "source_sha256": "08a9de1b2243d8b4c432419c9a0f15ee6e8780944db0fc49c9d9eefccffa974f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_metadata_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "2d81bcd52f20b2207a6c8dc4b5d4592eeab3688a2f685510c1475436a9cce5a7",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_metadata_10000_vision_s2.json",
+      "source_sha256": "88c93f23ae32fd784cb953a1525969077099ad2e66f7de17a44a5864191c2532",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_segmented_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "7cc7e81abac5388368016c8f3b7a884d001b6746457f5f1abf527c372e611912",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_segmented_10000_both_s0.json",
+      "source_sha256": "6d5be2591dc6040a042b188d36cccc3cea955ed45ab8983e7288e603d36bfa65",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_segmented_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "77e3cf506dae06852d52403b79d1d40d9d1dd72458913068cfda2b4a6839694a",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_segmented_10000_both_s1.json",
+      "source_sha256": "2ea8090c1012059c1c54aa0b0822b95d86865082b5fdb022878e546fb1ef606c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_segmented_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "4c797003bccd410fa06b30fb5af0fd756a05189865d2932288e22ee911e7b677",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_segmented_10000_both_s2.json",
+      "source_sha256": "beddb2248ed0092beab10251a37bc7cc62e7c0d1529a0551c1f7cd2bce3892c0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_segmented_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "9ad3047198245cc19bb1e2044c25952d4992dcf81192e6a8e80be844abf7f21c",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_segmented_10000_text_s0.json",
+      "source_sha256": "db828a86f4df55970ba1ffc7ad72344825af5f4fcf858e47c2e6ce830776efe1",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_segmented_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "c75f4d95e3b59ed7240273cfead7a6bc25ab6150cf950dfde536523f0b879c9e",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_segmented_10000_text_s1.json",
+      "source_sha256": "c462ddfd7f0f411e127f00620bb528bda68e53cad36c421c7368e10c352da742",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_segmented_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "3d8e315ab7fe334c58f9b1b9c5e8b7038a5e2055fe300c236c37f5de40adb795",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_segmented_10000_text_s2.json",
+      "source_sha256": "363af833a90900c9368bd76097fa0d9e9b16a6f7e1f61169ebcc3309243a4a59",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_segmented_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "21ced0ad233de760d530f2aa91724ead5fd0e094ac5f7c0f9c35797ac2bc1bb1",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_segmented_10000_vision_s0.json",
+      "source_sha256": "14dabf644fcf003376a801fe267caa539c4671ff05bb24fb0987e35cb687e9e4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_segmented_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "c5fb7dadae5bba713f03b9126afc19edec303dda97bdb2e9d74766e5b01fe6f6",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_segmented_10000_vision_s1.json",
+      "source_sha256": "246328faf6ca593d908c54c53f4aec437bcd2050dd3e50df84b8bb4e3b01510a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_segmented_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "2a09d8e3017becebfc7d21f2653f148757ffedd366b38dce0a012250d26c87ac",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_segmented_10000_vision_s2.json",
+      "source_sha256": "df11b5df76b4a47a87e254bebddf277ab322b310c32ee2f3fdccca4e08e1331a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_templated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "1307b5f891597acd15203f9f9b8ee837216829e9152bb83a05fddf4d720d8ee4",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_templated_10000_both_s0.json",
+      "source_sha256": "b06d07066cd42f51824215a8ccca9622cc41f537ee9d3f594ede44f523b86204",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_templated_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "371f3bf4bec083896fe2082a1e25f988ab1059aeeb8761201d4d71da101ae24b",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_templated_10000_both_s1.json",
+      "source_sha256": "279f4b665c71dd961e443d977bfcbd1d579d9e85990f718790d19cc010f0c6a3",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_templated_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "79b54ba91dfec47f8f87e1ccc3b00b1d16142fa199d4ab794f6f5773c823a9c9",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_templated_10000_both_s2.json",
+      "source_sha256": "9ce95cc9fc03bc12f085771ec3cb7b40372a7aa394d20b1fd1c6502ed465e609",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_templated_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "f21fe22670a076180af770988b2f1a31f7c3519a0348933fbf17ef3a654a5e33",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_templated_10000_text_s0.json",
+      "source_sha256": "aef7b6407a71198b7c5ef2edb90d2eadd86e399a3023125c43639d28d31d395f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_templated_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "bc6ae2928e19d027111c352081cd515a796b064bc8e2091472d85949f4c2bb6c",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_templated_10000_text_s1.json",
+      "source_sha256": "700dfbe0481ea20f5aee8cad3bb9201315f1a9224e0c2af58fac947cfcd4a757",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_templated_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "08ec06a275133182d69567d06f1d245eca033987fb2d7cbdcb0f004999473f8e",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_templated_10000_text_s2.json",
+      "source_sha256": "927a3b0e51ed3290e18169977205c97d240105c22c4dae902ebc31d2dd6e977e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_templated_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "45a960fb272e30f128ba681c1dd3f2b2b3312ea725038a14c4d5bde5ce2dce88",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_templated_10000_vision_s0.json",
+      "source_sha256": "7d6960af3e2ea0ee4a8dd63f0f2bc40f68ec4dccbfdf0ac33b6f8e8d7283066c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_templated_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "a527ace03e189233a9ad129e2ddea2be0e8581eaf65eb0c72e8595b81222ee83",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_templated_10000_vision_s1.json",
+      "source_sha256": "341b978eeef1edfcc8cf5eb8d381aed455a29d4ad25d2f9f6f3db311c858cfec",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/dior_rsvg_templated_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "9063f3106aac1a53ac1f63dc625a5f8cc260bb60919f5240e99e9b59e6e33ee2",
+      "source": "paper_a3/runs/full_10k/dior_rsvg_templated_10000_vision_s2.json",
+      "source_sha256": "4b060c7e968a423a9eec37aea53959622c3d8455247eb537fa9209aa5d81ffb2",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "63d38a734deb66854dccb92468ef22c6b29e37fc90f9892bb81ff8adcd5a8adc",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_human_10000_both_s0.json",
+      "source_sha256": "aead8e01b2e02b350417ce8a4cf8964da8ed42f21911d64873c1c6b291147a81",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_human_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "d4361b386f390e2388d1188142d304ced224524d2e07b64383d61402f2f49174",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_human_10000_both_s1.json",
+      "source_sha256": "3e7e09b55f3450433d8c4b1d902533bf049cb1dbf379d7fbb5cdafa110c483cd",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_human_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "fe20f46169fc0ce86be0bd01cedcc7d488bc6dcb5b22ba5ab1240ce63f4c2408",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_human_10000_both_s2.json",
+      "source_sha256": "bff5a180e45e1a0f3c466df7ac00090ec342019fe522e08f0b356664cb55953c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_human_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "6629a6db041cd5e40cf0a545616ebe61c9d1dab17b19d3eed1e8db0739367c58",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_human_10000_text_s0.json",
+      "source_sha256": "cab00ad6cce21e42df61c99aba42dd03e8efeeee3030d64b7bab29533513b0d9",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_human_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "dcad302f9508a938b70dbab2f4b9a85839892e3ee9274885599c6b2c5ad0b8a8",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_human_10000_text_s1.json",
+      "source_sha256": "f203c5889ff830f9d125808f8f610387a0fe517e333c0cdca775b83e19721273",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_human_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "aad9afafa32743aeaafbb5441b9c07d3ee3095aab27c12356e184dd18aa2e214",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_human_10000_text_s2.json",
+      "source_sha256": "883fb91f031ef9adb88039b073e5eb385644971b039fbdb748606c93fbca6bf3",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_human_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "1e16cb25344e88e19a5c33c4ce95c5d2c13a287b6cd41abbc411279af62f12c5",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_human_10000_vision_s0.json",
+      "source_sha256": "08e556154152e91494a165537a6bba97a07c40f007add3e29ba6df9aa3282816",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_human_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "6657988213834f435cf89ec73d2b2068325b9ad435fa5431a4d6859ab2d7d0d5",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_human_10000_vision_s1.json",
+      "source_sha256": "5280d1356ccf7616842b387318314089b14cf48763d40e2bc0690641bf468c1d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_human_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "bc285b6cf3063aaf16f55cd8b08a67bc244ca7528f8450db506eff3f52ab2bf9",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_human_10000_vision_s2.json",
+      "source_sha256": "043a0aa1208e206d835e362a97852b866e7818a6f0ecc07b40801acd5f022606",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "1218132939699a6d426674d216a5d14a53d46d19fbc14066effa4003b913e1e7",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_metadata_10000_both_s0.json",
+      "source_sha256": "4a74e5c2777a8153fee7f4b02217802618aa548e572ae3d2a815436cdfc443ce",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_metadata_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "b98ca874105c5e74228f8c6647b183e6afc378e1ae1a181bc495ce978688c55c",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_metadata_10000_both_s1.json",
+      "source_sha256": "c7fc34b04a7a6355c1d5aac8b2eb9427b2ab13a0ec128385d56d16f171bd6b52",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_metadata_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "e35addaca6aad238378ebe75756736a5d860b02aab19bac0f8f103d3cb17a0c1",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_metadata_10000_both_s2.json",
+      "source_sha256": "655fd9a2fa10a0c0e6c9f55434afd63e7e141c4bd34f7c22757fec0906b7012d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_metadata_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "103d2a42eb77101ae86ee9b343749dc06586c7b729c5ee8f75097e5d24084036",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_metadata_10000_text_s0.json",
+      "source_sha256": "8aacee08c01378365ec3360a37b2a051b28d38dfb632f94068669cbac06bc956",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_metadata_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "2a6d6e2cad5b8ae657c068ba47ce17257543181d86ad1d55150722c7b6521ae6",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_metadata_10000_text_s1.json",
+      "source_sha256": "4624b7b5e1a7ef1134d84468a23e5132bcbcd538b4cb0b6a6e0a4aa4eb226e83",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_metadata_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "cd0143b7704e9c22e2929f516f4c681b47843426167e58584e3bd1e04b936ddf",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_metadata_10000_text_s2.json",
+      "source_sha256": "6f54b9547307354482a3f4ebe5a30daabc9c9d2ab1be50dd281900f79f0b0cad",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_metadata_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "fec73713f03f64e86528fd24c4df92d6572923263c88d8a9cb9ea4301d5f6802",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_metadata_10000_vision_s0.json",
+      "source_sha256": "3c608313d242b0375f131694c24027ae631dbe7408985d17c8290b85e2799c02",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_metadata_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "dc76418d8c9164ce0af180772fbe0360e8e2a735505915fb7019ae5afbace042",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_metadata_10000_vision_s1.json",
+      "source_sha256": "848317883749e6f5a168c5a339222258f26953c42298f74f49afca67cb8ae296",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_metadata_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "749cee522c2cec6a3eae05e8048fa952c8b0902afffe3fc16a7e8d7c907b4704",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_metadata_10000_vision_s2.json",
+      "source_sha256": "99232b615e8b483c8006f90e488baf97b51dedb277998d046ad67c5b68bfcefb",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_segmented_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "3db1bceee0845b983ff953e2d3baccf6b1c54650529784f16548bf10bda58f2d",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_segmented_10000_both_s0.json",
+      "source_sha256": "00c72e90fc5bdf9d06f44269f0b2f6dfa20f754185b574769dbeb50c753c0372",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_segmented_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "d0bf52a4fb06da65824e06d7b2a9e80ba8bc7b3e3df6f710537b878f8fd5d16e",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_segmented_10000_both_s1.json",
+      "source_sha256": "0d441ea90be787575e8ea40c9a8a8fd9359d218de0a28d1e8357353f0144a26b",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_segmented_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "7770b89c47c1a1bce32e8cf07196a75af6acc67877a652f5bdac5bd52306e2f0",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_segmented_10000_both_s2.json",
+      "source_sha256": "4baddf4fc5760ddc9b57fefa5cc1308d79090b54df2b27cca8edd1ea2a9a599e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_segmented_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "52df69715f9c89c397468d4e73d3693dbcfa3a9471d87cb7da9993a01d01187b",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_segmented_10000_text_s0.json",
+      "source_sha256": "f0413f396162cdb6a3a93ee4ee8a2aa1cee16d0371c5bd497216dbf2255df409",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_segmented_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "968389332368c2f5310b37f0a03c1bcc598846d221422a3befa3add1c2f6e498",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_segmented_10000_text_s1.json",
+      "source_sha256": "3588621cbdf8c900cd8ac4259cfe2b3c521d90211c8d6a5998f626a11c05dde7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_segmented_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "fc22b7c7d35af8497516eff449665fd813006fc0c8266f9c19456bf31a2513c6",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_segmented_10000_text_s2.json",
+      "source_sha256": "1a2df89c3002fbe7f5161ac37471989df2dd972ce6a2457fd8fa2720690d2afd",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_segmented_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "93f3d51d9eb78e3a739fa67cfb6c6960f7d0fb1b84c4675729052cf16ee18d29",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_segmented_10000_vision_s0.json",
+      "source_sha256": "bb5d347591059f68add3c230df18af270cc2f75087fae69be9a5dfcafcf9b023",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_segmented_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "390de9757733923352ed22caaa183a605f67add20b650ab1869142b19ec0504e",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_segmented_10000_vision_s1.json",
+      "source_sha256": "70d40f7bfd8b08c817c24ea84b3a396ee28c24e7e54b317c1b08f2ad564d8f8e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_segmented_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "863b6eef6434d8c1bde6028bdd5ec2e6a904403df1adc83f7d2bdc7974707993",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_segmented_10000_vision_s2.json",
+      "source_sha256": "de12fabacebf295ff4ede6bf6f741ef67f7e8b258716d7e767d870eb2bc03dec",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_templated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "f3eae8ebbb38673db8c339ac221e564a98ffcfcaf6b468c74450beef668da1d2",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_templated_10000_both_s0.json",
+      "source_sha256": "18ac519c81b2ac83d087bae3bdede2b0644650e3014847d8a12cd4b994275ffb",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_templated_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "64783c48da425906a3eb3001bfc6bd1321dd62b61a6520bcc285dd6d6a8dcc5b",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_templated_10000_both_s1.json",
+      "source_sha256": "454f68d77a7477e8f233583d5df64d084a3665cdbdaa4569da9eff7c3bd58b76",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_templated_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "dcd9471d23e4306c57c2e00370cd85acc50bde848c6c0e85c88d7ab6d210b0e0",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_templated_10000_both_s2.json",
+      "source_sha256": "bb1bf27f780a1659c12cbdb99ce31c87847ec16fbecde9b7ae32faef0d843b97",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_templated_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "982c638897b8dff625ec42936a45208e88bd5528a125fb74fe5848542afa9559",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_templated_10000_text_s0.json",
+      "source_sha256": "f21f97568f23389dd5144b193f4fb02e4b6934c207f1551ed59069de33f84f86",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_templated_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "578bc20b9bb4a6e3c72cce1fdbdb5cf4637831c16072d61daf81c6442abb6a44",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_templated_10000_text_s1.json",
+      "source_sha256": "c4b441ea233657b7bed4db175abed4a52f647d9ac3256e71f6d523167d705692",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_templated_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "4156fd7b82b8079ecc432ad76b24f0beaee427735b08c5d28a5fab046ebb0d0d",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_templated_10000_text_s2.json",
+      "source_sha256": "06f6c05b2b1bb18f311bb7c817912f9a1613be626eebb1196f5c6713010b32b6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_templated_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "3b2d754b95e416f665ad2bd3e3c4126d7b0fb705682429c54fb1ee759a5359a0",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_templated_10000_vision_s0.json",
+      "source_sha256": "db10f78fef71c7e624eea3f75f5de1aac0a9d99bbbe0d508b8f9e373a6a2bb55",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_templated_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "0f178086c479b9f27d3fe373ca85512e22f0e441f6f057f0051a9e4bebb1cc88",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_templated_10000_vision_s1.json",
+      "source_sha256": "c9aa5db70e2579b16145fd27ab74a3f97e89b8736f3e2007d52cd88b39b96730",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/nwpu_captions_templated_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "5f36a0c5b478f39833ef536d1c5026aa14a1db43bddac9814c7e269b308c1450",
+      "source": "paper_a3/runs/full_10k/nwpu_captions_templated_10000_vision_s2.json",
+      "source_sha256": "cbe0b2e286f5ccbd6acc547d0d9c55d87bdca073abae8f6cd900339ab796c646",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "9a4d04500550f83962214a7c93e0ffc9d659b7d4180772cf68e6a9cc9e89ac75",
+      "source": "paper_a3/runs/full_10k/rsicd_human_10000_both_s0.json",
+      "source_sha256": "810a2bd1bdc2f1385cda2f6c8b37fb90d36e0c703333d45f25a5156ac9c03d56",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_human_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "13de269071a8ea2548533f0fb6e328738089cdd7306ca360982b7c26788e82c2",
+      "source": "paper_a3/runs/full_10k/rsicd_human_10000_both_s1.json",
+      "source_sha256": "45de5cad974efdb6884ee9f452fecdd79917edc33ad97c00926d588f2190d280",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_human_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "06a1d3418724ef8b2180717fdc907f8fb0a351417fe7c8a050af4cb4e58160e8",
+      "source": "paper_a3/runs/full_10k/rsicd_human_10000_both_s2.json",
+      "source_sha256": "bb037b5b8c183ae28df7fe7fecbaaf64f5acb36b265d949f666b8a2eb0d9b7a5",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_human_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "01350e36391e71e6f27863e181785a92c72738983b5a6f39564e8cf5ae573229",
+      "source": "paper_a3/runs/full_10k/rsicd_human_10000_text_s0.json",
+      "source_sha256": "2b678c9b0d2a0c0f759623db549425f30955ababec1633baf135e6830a399c7a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_human_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "09f8f987155c988d883f1b79c89810bb3903c299bb3b7879398c659c04263ffb",
+      "source": "paper_a3/runs/full_10k/rsicd_human_10000_text_s1.json",
+      "source_sha256": "13be82edeef885f335e1c6a9bb5d60078ea6d8d923dc229259bc32e9a8754ba1",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_human_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "01802548e52a9471caea5b1db43dc5c87943bfaf068ed9d2c10a58ddf1ded59e",
+      "source": "paper_a3/runs/full_10k/rsicd_human_10000_text_s2.json",
+      "source_sha256": "9dba1ae26855ce8b551c747fcce34d54cdb53e14686dd3f30b6a1f31408916ae",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_human_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "33e49551319d553f44a9a77e0f81d0a1c7cd5b2c95c789947ca433417c9629d8",
+      "source": "paper_a3/runs/full_10k/rsicd_human_10000_vision_s0.json",
+      "source_sha256": "ad24975a5059018864bc62f343e5d4446d9101e3e3d4f71dc745f1c3fbc4e386",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_human_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "8c772bc0c9996f99a71dd1fda06ba1e581037943a2519fbb7513aabfb7349fad",
+      "source": "paper_a3/runs/full_10k/rsicd_human_10000_vision_s1.json",
+      "source_sha256": "7750d9b28d93fd0e708849b95157c7bdb9c5117fa609571bf2721b4c32f4314e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_human_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "647b75f93d58d4db7221d4e3b27ecd0626a25802b861c274345c76192d9dfc7a",
+      "source": "paper_a3/runs/full_10k/rsicd_human_10000_vision_s2.json",
+      "source_sha256": "afebdaa5931cd93c5bdc93ebd013b136f3ab850d47e5a724d10339913c1c28c5",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "c43545ccc0332f8b74b90a72db2812ac1b569903b0f526ce66e39cfb62bbe8fc",
+      "source": "paper_a3/runs/full_10k/rsicd_metadata_10000_both_s0.json",
+      "source_sha256": "41b808a64e47dc92a5fb25c30ec92f3bae681c881c28827d63d729b7eb407871",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_metadata_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "3a7aacd7eddfa97e803fdf842c08004feeb521cce763918c246d3797e4022bd5",
+      "source": "paper_a3/runs/full_10k/rsicd_metadata_10000_both_s1.json",
+      "source_sha256": "d282992f907c69b91d3f4b88911e6581a8555dd80321bf2e908c500c77d2818f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_metadata_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "e0119118cbb56542359e67980779456ea6a0373081ef7bac5f1f38e62f468a08",
+      "source": "paper_a3/runs/full_10k/rsicd_metadata_10000_both_s2.json",
+      "source_sha256": "754ffde83c5b4422a641be73cbbf70c731d4563515e338428fbf3a27f30656e0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_metadata_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "a235860ba47fcfa4d8ad8a2eed0f96c55554ff118716ffb8592cef3471805919",
+      "source": "paper_a3/runs/full_10k/rsicd_metadata_10000_text_s0.json",
+      "source_sha256": "ff31d8300319970f3d30cb3ad1dc03b9c28dcab8ded26d287b5120dba8bfa962",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_metadata_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "a728b4bdebd750a08d84d890b4d79f533d8c6ecc9ca8ed258a3f6d6ab41c53b4",
+      "source": "paper_a3/runs/full_10k/rsicd_metadata_10000_text_s1.json",
+      "source_sha256": "6c648db377ccf8a983dd73a7fb344203e4a80287c8e7ef951eeece495d01b541",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_metadata_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "6aeae84887dbce181ba6def270bad56e657acdcb7e69259d2551a650b075d6c8",
+      "source": "paper_a3/runs/full_10k/rsicd_metadata_10000_text_s2.json",
+      "source_sha256": "b8bdd9f490c8b180f87eb7fe7a8a3cbe33fdfe3a660f31b2abf5e223153667da",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_metadata_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "b222dec500f0226c7cd7b2a13fc075bde6aeb6016cf9dec698df79018cd7aa6c",
+      "source": "paper_a3/runs/full_10k/rsicd_metadata_10000_vision_s0.json",
+      "source_sha256": "3847e3f8bbdce3ba3cb48182c512d7195210a7174d12231a98f1095afb1a4b47",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_metadata_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "2255aa3a8a0b058a4e2c6c932f80180c6f9093c5a6df9cf33f964724a21c1db7",
+      "source": "paper_a3/runs/full_10k/rsicd_metadata_10000_vision_s1.json",
+      "source_sha256": "ec49bc33361991fa400efd5b1c8d1a43c73e45d3fc0b7c14c9533cacbb02eafe",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_metadata_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "287ac2ed75012c9406d8e0acc8722fbe29f627faea7d51ce1f299772967e8a19",
+      "source": "paper_a3/runs/full_10k/rsicd_metadata_10000_vision_s2.json",
+      "source_sha256": "a905e1770ef8e5d7f58ab84189da5f144870adda454201135c0db7dac4e38cf0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_segmented_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "9de645f0924089a7f37453f353edc6c8cb8dbdc79d37b06a3f7f7239a48747e5",
+      "source": "paper_a3/runs/full_10k/rsicd_segmented_10000_both_s0.json",
+      "source_sha256": "d94329ec59a7c95cb72df60b012441c947d61be41bddbe7c8dd2fbd17026486e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_segmented_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "2134ca890f8537db6bd30e38ed86d67fbe46265844790e133db1be3b20b4e2a0",
+      "source": "paper_a3/runs/full_10k/rsicd_segmented_10000_both_s1.json",
+      "source_sha256": "294449759aed62a0bfad086ae268b5c120a986856f2e9962bad68956b4470071",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_segmented_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "b76ac1be61b06a2be49a5a08757e6d509c7d99bfd3d91690368d7c32093a15da",
+      "source": "paper_a3/runs/full_10k/rsicd_segmented_10000_both_s2.json",
+      "source_sha256": "eac4d48685e23dbf11220b6762e504e53dad23176110eacbe66b222291bcbc97",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_segmented_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "2cfcb6956b58dca1cd307be4730a110f611b927f6f9d86d2d6644e8060dfdfd8",
+      "source": "paper_a3/runs/full_10k/rsicd_segmented_10000_text_s0.json",
+      "source_sha256": "a42f39a619f21c887345e8e273d48c51b56cff074e2a73106e6e93c326ab01fa",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_segmented_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "1c879a8a19e4e6d1586851e4155810ca520458ebb16dd592e475dde61942be45",
+      "source": "paper_a3/runs/full_10k/rsicd_segmented_10000_text_s1.json",
+      "source_sha256": "c0289c5a41a3a88f4c1cfb8e2711f84d04e8f74a212e8c7dd6e652229325a8c7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_segmented_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "13ad534cc65ef2490643322751fc614634eac387a3cc1fa5862f1ce144c131bd",
+      "source": "paper_a3/runs/full_10k/rsicd_segmented_10000_text_s2.json",
+      "source_sha256": "7738aaad268a84d0c484f18de968a9b274365c68064ba6df57241afad5b06ecb",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_segmented_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "677842eb9045c06549fa29c731e581a59dff1e1e6083a8f5ba6e2ea2a05f236e",
+      "source": "paper_a3/runs/full_10k/rsicd_segmented_10000_vision_s0.json",
+      "source_sha256": "5b14f7c0eda273713b8ba4ebd3f1c70ad9fd85595d44e39380f55ddfb16d272f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_segmented_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "1abbea04528b2d6b7eacc5f3c65d15f89a41d81dd064503a23f54b2e37ecc447",
+      "source": "paper_a3/runs/full_10k/rsicd_segmented_10000_vision_s1.json",
+      "source_sha256": "46d773d6e0c50413b4bdbae5e09e654aadac0d96a31f54ce881f3b5d8094875d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_segmented_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "e293a73b7d0c09e20442ea2ae824fbb4d213030123387ad579a5e439a99b6281",
+      "source": "paper_a3/runs/full_10k/rsicd_segmented_10000_vision_s2.json",
+      "source_sha256": "8aa239c08f31880579ff007177a16b4ade0ca8b57404674689364bbd1196b8cc",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_templated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "8321e74f4a243f9d6c68b64c726395b31c00131705606594a72d969d4628fc71",
+      "source": "paper_a3/runs/full_10k/rsicd_templated_10000_both_s0.json",
+      "source_sha256": "83d5bfd072e35f33793c88973e2c05c8baf63ceaf93601713a7c2ad8f56b593d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_templated_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "edd04a703a7d97196e978647e03aaff688735f02338e3d440d424465acb2388f",
+      "source": "paper_a3/runs/full_10k/rsicd_templated_10000_both_s1.json",
+      "source_sha256": "e54d84ab8bceb494f7dffc34b8c1e1b9fe10f21cf45c6b3a35a933272f10a5f2",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_templated_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "a6f4b781105d49ca791626430d2a3647bc7bb444048b9159643564d2e2ea0cbc",
+      "source": "paper_a3/runs/full_10k/rsicd_templated_10000_both_s2.json",
+      "source_sha256": "1022caf693f25627ac1089458591bf53562fb81cc53cb9b5295240c6b9b4575d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_templated_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "e3efae67d1e5dcee317704cda0024bf68d1b213e161e113953675d5caa12da0c",
+      "source": "paper_a3/runs/full_10k/rsicd_templated_10000_text_s0.json",
+      "source_sha256": "ab0dd1ba66b70683eb14c6a6fa5d78566af0ff3195f60dd9be1dddd70af6b530",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_templated_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "d39cd50c19d1c3cbbb7e7c1689c91736d5000d7e99b3bd9fa075f44754ab9834",
+      "source": "paper_a3/runs/full_10k/rsicd_templated_10000_text_s1.json",
+      "source_sha256": "c9ae6e0b008d499a2e0cd4ca5dc476d550dd126ce348f9f4e74e287ed67ef1a5",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_templated_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "4624d4966bc54f0ce4452c673c392ac67d7cc4420951b0b59979e83bd0d85aef",
+      "source": "paper_a3/runs/full_10k/rsicd_templated_10000_text_s2.json",
+      "source_sha256": "9839fe45a06f334770c1a0559977b56be0ac4152bb0b260e5a5aa008471da53e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_templated_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "71e3bb6de1bf9f682576f0e457f6acea7c20e2afa45fae6892af67607eb0a3b1",
+      "source": "paper_a3/runs/full_10k/rsicd_templated_10000_vision_s0.json",
+      "source_sha256": "d918792fd571fd4a9aa0f7839c68ef8c362e2e213c8963af7a7746ff0a818deb",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_templated_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "c51cf4caf877642bda8acbd2df8f05cf83526d3c89f11969fc768b133bad3c59",
+      "source": "paper_a3/runs/full_10k/rsicd_templated_10000_vision_s1.json",
+      "source_sha256": "5cdd4f57cb11bc7b982ad0327b8ad6b6c64a44e8a58695dc7f9f89a96307ecf8",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsicd_templated_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "e86dbbee0292a0c2f8a045320a677a366fa5f27cc885b8ed24127e1e9937f200",
+      "source": "paper_a3/runs/full_10k/rsicd_templated_10000_vision_s2.json",
+      "source_sha256": "7d0d2bf55df97e93e0261a06750d6d5aee2ab6dd5b6af771b44b4810b1586a12",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "a2e5b630837a164f223653410db18c2d2370efcc190f45ac3a4086ad78204a4a",
+      "source": "paper_a3/runs/full_10k/rsitmd_human_10000_both_s0.json",
+      "source_sha256": "c79d85a82d337a6df25e96ab85f02f34f0e2d6c00d89147672f011ae15bad851",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_human_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "b6bd55c0147316d3bd6a8cc12193fd642dd8f072b331a41668c90cb37f6a7e26",
+      "source": "paper_a3/runs/full_10k/rsitmd_human_10000_both_s1.json",
+      "source_sha256": "a4286ebf90e3b22722a832c9f2af2fe219c4ea09f4688941b6a82f3493d0dd6f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_human_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "4ad2e4ac025e13b8352f665e6853eeaff898c9e48a9f3ab1f780bcb37090e3e6",
+      "source": "paper_a3/runs/full_10k/rsitmd_human_10000_both_s2.json",
+      "source_sha256": "642c088b211e1214dcb9268b4886e841547096e5d7675b4be7c23aa110c9cf6e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_human_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "bb778aa85208e6a52bfe804214a38e88d7c0ca7adae2b7e34b1834b07c40ef94",
+      "source": "paper_a3/runs/full_10k/rsitmd_human_10000_text_s0.json",
+      "source_sha256": "f67cafc39e0f6b9c35d95ff05384d6275552ebecc5708c881a0f26d6425c786b",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_human_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "3b968003c28f85f30a2bd4522bbab9ecfc47b8ba0848ce21a641662513fa1c59",
+      "source": "paper_a3/runs/full_10k/rsitmd_human_10000_text_s1.json",
+      "source_sha256": "252d771e07806ba9bd701326d01c85280eec5bfd7065382c459ca454a3902e71",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_human_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "644fc45db89313462fe39c8e9290d799fb9909b3e0109a58551afc364e5b7a55",
+      "source": "paper_a3/runs/full_10k/rsitmd_human_10000_text_s2.json",
+      "source_sha256": "aab4fdfe6154d777121689d755d201e6b289b7e624882ba4ffa4235046f61cc9",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_human_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "ef2246e46b8ccaa91210036e66f7c066b79211909a6d7ac7250118325675da1d",
+      "source": "paper_a3/runs/full_10k/rsitmd_human_10000_vision_s0.json",
+      "source_sha256": "a544a485c665c494d22bc7da4008984d676e72382b03bc2d7c01bdd500e3c5d7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_human_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "18300edb2ef78a5abea94455ea19f4c05c31d92591a9db7ff955d91a0f5c7927",
+      "source": "paper_a3/runs/full_10k/rsitmd_human_10000_vision_s1.json",
+      "source_sha256": "6f9412e7a9b58bfba8076374b105a15bc26eb1820e575755f71e0b50032c736f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_human_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "0910203f9855233d2a782e0b3b029923e94e7803be96d5a3c612eb2f0b98264f",
+      "source": "paper_a3/runs/full_10k/rsitmd_human_10000_vision_s2.json",
+      "source_sha256": "19652b51290e8f5cd1f3cda6508c924c32b1d6c930ad84e4e627e15f03e28ba4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "e77a396dfb724fb2d81fa286a256f44641a8ea928cb99ef85270181494d6e0f0",
+      "source": "paper_a3/runs/full_10k/rsitmd_metadata_10000_both_s0.json",
+      "source_sha256": "b86abb13066d05bc91a895f408496582b6179b5113ea8bac432acac6f4a8801b",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_metadata_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "205f14411030da509d8a453e47c392e8d7a77cec31494ddb6bb240202e352289",
+      "source": "paper_a3/runs/full_10k/rsitmd_metadata_10000_both_s1.json",
+      "source_sha256": "e6d47e1b34c1ff8b66b0f4e725d348c4f205fcfd8c18d579f1d6099c554c3bb0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_metadata_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "738833dd1f4a37913a0e22da24ec375e297b18a102220489cf6aec0f3bf34f48",
+      "source": "paper_a3/runs/full_10k/rsitmd_metadata_10000_both_s2.json",
+      "source_sha256": "ab34d6154dc0d225c56e118009d5f81bcb1ee7dbc56b6007c7d17980f57a5978",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_metadata_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "5455424444669da06ea228eefd226114bcdb8b85e659f05f8206096f18bcb996",
+      "source": "paper_a3/runs/full_10k/rsitmd_metadata_10000_text_s0.json",
+      "source_sha256": "240027f0baacca70ec36dc69d79905302ec3ee8b98d68e62e436f516c122b650",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_metadata_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "301641b48daf34cc528d16dd90a9b9741c07e8ee29442f2953c740c1dd82451a",
+      "source": "paper_a3/runs/full_10k/rsitmd_metadata_10000_text_s1.json",
+      "source_sha256": "19a7b8aa735aef118ce300e6703a5e12d0998743649bcebf12cc70018b508133",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_metadata_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "7823198ce6ce852e549cac6bd32112bdfd4de7565c540b1d1ec14dd231870323",
+      "source": "paper_a3/runs/full_10k/rsitmd_metadata_10000_text_s2.json",
+      "source_sha256": "8eb6d3a96a901092985a982fb460ea0d21e6f2f807c7d15055809c15409cb96c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_metadata_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "96d6a9044c4c3c7c552ce37c4a386906fda740e1e241d8fde6e62a67fc70813b",
+      "source": "paper_a3/runs/full_10k/rsitmd_metadata_10000_vision_s0.json",
+      "source_sha256": "c442557b220b2b6fddc0957f0ae93627f3f70166f7f48bb36bb42be2d208ac3f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_metadata_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "a6af04ee929e803e501b41efe28ac385af8839b3638e289fdfd04df60079ec58",
+      "source": "paper_a3/runs/full_10k/rsitmd_metadata_10000_vision_s1.json",
+      "source_sha256": "2a5cff1cda014a57f971bffb074f0dccdf9da8be0c09376911119a08aa21e9c5",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_metadata_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "be2cb169001f9fd398b38cdf2868284865dbaffd8b638291648a9a84811bb586",
+      "source": "paper_a3/runs/full_10k/rsitmd_metadata_10000_vision_s2.json",
+      "source_sha256": "cc2d031c64364175d6ab6cd51d3a65330a874bf643b96457b21a33e14fde7f48",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_segmented_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "8f821289dd8bd14d91df72f7249afc19d9422d9de862b722c8c40bd79be564b1",
+      "source": "paper_a3/runs/full_10k/rsitmd_segmented_10000_both_s0.json",
+      "source_sha256": "9832343a3334668def7915d5e5a6e46a082fc0dfd9c7eb5392439a99d5e80072",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_segmented_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "c96c4104488c8a0f622ff8877aab5d28a10581a63584979aedf0e8fd484f50f4",
+      "source": "paper_a3/runs/full_10k/rsitmd_segmented_10000_both_s1.json",
+      "source_sha256": "6490a9ae2118af92fb4912d4864cd14f48507a2482e61d4556e347706944ebdc",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_segmented_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "37fbb06c32fb02a13bc18972f565386f6dd552402f5b7ed1312c5141b538c39d",
+      "source": "paper_a3/runs/full_10k/rsitmd_segmented_10000_both_s2.json",
+      "source_sha256": "83358c815b74ac5de686e0a9a2768a228a85f1a8e5d1f1bb195ff9767fb22ff9",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_segmented_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "b077c8a747fc138a7c88078bef374539a5937710280c599b9b60ae8e98dac7fa",
+      "source": "paper_a3/runs/full_10k/rsitmd_segmented_10000_text_s0.json",
+      "source_sha256": "32be05702fdf4fd59a05129fa5fe1a81ff3dc222889cff799ada4b9580558458",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_segmented_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "e59abc66a406975f16f2dff3099ad2f8279798d3d3ba35acb391e75db0b80f95",
+      "source": "paper_a3/runs/full_10k/rsitmd_segmented_10000_text_s1.json",
+      "source_sha256": "0e151f433ed53be5cfd65055333c47cc6d258ecb26f7b2626ce53dfdb2408d82",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_segmented_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "ed3a514b51bbea13c15f63a7867c5c1887c41fbdae9fcf2dcf5b7a7e8ad9b9e0",
+      "source": "paper_a3/runs/full_10k/rsitmd_segmented_10000_text_s2.json",
+      "source_sha256": "18bd3aea3df62ae54b580b41fab48720017b97fa13421ba24b82d7f9111ffdfc",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_segmented_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "6495d864f561dd2382a4c4fb74b94da00268cc4a92d35806e0f9801ed93b9bd3",
+      "source": "paper_a3/runs/full_10k/rsitmd_segmented_10000_vision_s0.json",
+      "source_sha256": "b07de1efc80e93ca73deaedc1c142ec6c1a2fa01e1e892abc0f95c890079fa7d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_segmented_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "a8610458567f7b5f8d884bcb8f9b5aa43455ebcd0ce5e358783da7a1ec7d9f16",
+      "source": "paper_a3/runs/full_10k/rsitmd_segmented_10000_vision_s1.json",
+      "source_sha256": "bdc21029a47b5d8808bd10852afbc5a57cfb7da7feaafebc016ea6cdef3acf79",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_segmented_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "fa51ff6fbdb265f6acb7e6ff6da2a501536ec300951089f3bc74c4011b382535",
+      "source": "paper_a3/runs/full_10k/rsitmd_segmented_10000_vision_s2.json",
+      "source_sha256": "f367473c18c9bf489b7ce6a8a8fb50ba93b14635c5733b9e96371f5a716abc0e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_templated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "1de987e04ba5bd04e8fb9f6a0f8a17c1388451a18d02c11bc246eaaf4d1d9792",
+      "source": "paper_a3/runs/full_10k/rsitmd_templated_10000_both_s0.json",
+      "source_sha256": "f90051454a16ba1fb80233dd4f9f236008a2d3fed9123d5c27fd632332136fab",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_templated_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "0bac82c348d725d1f0c0d601abf7531f2a5c3ea0fe68c2177158d145b36e6ab7",
+      "source": "paper_a3/runs/full_10k/rsitmd_templated_10000_both_s1.json",
+      "source_sha256": "53cc972295cb30126ca32529c166f4de97089e7a5568c7ba5a23ba4faf09449e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_templated_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "2b86f073138bc0005c1f1e50870195180ce197c5fe9d343bec941d5c27a2782b",
+      "source": "paper_a3/runs/full_10k/rsitmd_templated_10000_both_s2.json",
+      "source_sha256": "06110deeeb1cdd6392e1f69f231585951c52d0475ee155de0a583bc0d45b8ed0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_templated_10000_text_s0.json",
+      "role": "descriptive",
+      "sha256": "b89e43df0fff9eec6830a20383e425fe7dd0c53a59c86b6afd50f19f2f6811c1",
+      "source": "paper_a3/runs/full_10k/rsitmd_templated_10000_text_s0.json",
+      "source_sha256": "5c98d691950eea424c2ea39b06c6d4c837d4fd5e2943d609be40ef35cc4ff1f9",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_templated_10000_text_s1.json",
+      "role": "descriptive",
+      "sha256": "f532ee987e139b9f7a3d9fb41b98f84f789abcb88c07ff4b1ac7d0d760cbab61",
+      "source": "paper_a3/runs/full_10k/rsitmd_templated_10000_text_s1.json",
+      "source_sha256": "ac5bf208509498d08582877cdd217b4353ab4fa09b1935116fc1d567d2e8fffe",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_templated_10000_text_s2.json",
+      "role": "descriptive",
+      "sha256": "12c663448dca99adf44b8165c78104c66aea102c9b572d2f09a7e59aec99b176",
+      "source": "paper_a3/runs/full_10k/rsitmd_templated_10000_text_s2.json",
+      "source_sha256": "c15194f39a48314f08c987171a1887528a2b71f83b64e803dee24e30a19b1372",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_templated_10000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "2f50bec37cb196e026225d46e42395165ea1864f16ef5823b96cd59d2ea8850b",
+      "source": "paper_a3/runs/full_10k/rsitmd_templated_10000_vision_s0.json",
+      "source_sha256": "d8e01fd795e9f4b5a79cb1204649a218097c0ab087a4bf45de8333b35ea675e3",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_templated_10000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "c5838718f5a16cce60c219be9d508db6eff89f671bf158e28d0745b1f0106b9a",
+      "source": "paper_a3/runs/full_10k/rsitmd_templated_10000_vision_s1.json",
+      "source_sha256": "bbf5429394d2a7587d981493ee634478ad2d50a039356491fd34aa2ea4e59742",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/full_10k/rsitmd_templated_10000_vision_s2.json",
+      "role": "descriptive",
+      "sha256": "7452d0603c8bc5b7852183d3ec3fe4f38f169076f35988caa50bf3e507b7aee1",
+      "source": "paper_a3/runs/full_10k/rsitmd_templated_10000_vision_s2.json",
+      "source_sha256": "078b6b755489fa8972d87ee68103e20b60f32df8f6fcdff209c413d8f162aebf",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/nwpu_captions_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "8569367734dc7973ae83ee12b16bcc1e7cfef8b159200f91f7bd0a886f1b5c79",
+      "source": "paper_a3/runs/georsclip_10k/nwpu_captions_human_10000_both_s0.json",
+      "source_sha256": "376434816aefb04c880c8602ef7d08ff4153da4de54468cb34740a7c5a6880fc",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/nwpu_captions_human_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "b625433200c9007a65d39d2676dc64928501e1825b866069b8f2dd53f7866585",
+      "source": "paper_a3/runs/georsclip_10k/nwpu_captions_human_10000_both_s1.json",
+      "source_sha256": "7a30d8bb21a1d35ed9e21857d92a83d5b5f2c4fd087ba76dc5463530866ca764",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/nwpu_captions_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "642e37dbe2de5f8f78353521b9a7bbc0bfdfcebc7c8754f14f6488e029c6751e",
+      "source": "paper_a3/runs/georsclip_10k/nwpu_captions_metadata_10000_both_s0.json",
+      "source_sha256": "1d9d39ab5ae4908127a8700f49418161244566799837ecacad23545bb03ef715",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/nwpu_captions_metadata_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "ebd5f8a12335211d0c8ddfef61585720dfbef0cf2903dacc6f4454d2c5c79cb9",
+      "source": "paper_a3/runs/georsclip_10k/nwpu_captions_metadata_10000_both_s1.json",
+      "source_sha256": "ead2a6ca12f751a8c32fd5200978aa5d42800fa4573e9587acab30d531c16655",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/nwpu_captions_segmented_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "4986396b17bf96ba2d30246c7bf3d23621163b00ac65f83e21c3a634650ae451",
+      "source": "paper_a3/runs/georsclip_10k/nwpu_captions_segmented_10000_both_s0.json",
+      "source_sha256": "a8f16a96bcc43409750475b0fa364dcb28ca97981905f79c50d69499f23c433a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/nwpu_captions_segmented_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "0ed28eade4fa73e69d3cbb7597596de67eea92dfb93df7568f2e16118114dae4",
+      "source": "paper_a3/runs/georsclip_10k/nwpu_captions_segmented_10000_both_s1.json",
+      "source_sha256": "0a031451decdb5b7da68c6ef8289e50b53ef4539ac483bf1ae1f5a172261aa97",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/nwpu_captions_templated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "47c333bc69353a118abfe0d026f93286afda3ab48ed9b772a7f498d9cae67ade",
+      "source": "paper_a3/runs/georsclip_10k/nwpu_captions_templated_10000_both_s0.json",
+      "source_sha256": "ca85324237f9a0a7641482fac9a540eb93d3a6b0d0089338860b3813ea7d1494",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/nwpu_captions_templated_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "096af24d84ff805be2282087347a0dc65fcc23bfd7b0d82aa0ec59259b45701b",
+      "source": "paper_a3/runs/georsclip_10k/nwpu_captions_templated_10000_both_s1.json",
+      "source_sha256": "658c5e52e4dd5ddc5cef14127839016a5ac739dc2de1183d0911fa1051a6fc40",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/rsicd_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "53b44b929e82091820ecc3ff72b225e95104ba6c7cda667c157d7ac5bee90a97",
+      "source": "paper_a3/runs/georsclip_10k/rsicd_human_10000_both_s0.json",
+      "source_sha256": "74acad1a1505ad5e17aea34acb162d6b21c0103de585ddf5a1c116d22fb3e1fe",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/rsicd_human_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "f3284c290af0c47848edc733043e9157b2ce2ea91a3999136509d31aabef72b0",
+      "source": "paper_a3/runs/georsclip_10k/rsicd_human_10000_both_s1.json",
+      "source_sha256": "3459a9b14626973a448b86a773a439cee6a5c98895edb6c37247da2fbbaa9632",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/rsicd_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "0cfa1b14f9539652f0f2bd2b27187e94836661b78fe1b3c449d753d4af5d2c64",
+      "source": "paper_a3/runs/georsclip_10k/rsicd_metadata_10000_both_s0.json",
+      "source_sha256": "1a2435b8ba2432793c9e6ec69f28db0f9777fd1c6d54729942a0837ab3d2e3bd",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/rsicd_metadata_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "ce13f9637faa3e49a2d838b70549c95d470732b829023e6b4fd638c887897784",
+      "source": "paper_a3/runs/georsclip_10k/rsicd_metadata_10000_both_s1.json",
+      "source_sha256": "c1e87ca94a45bd7c32961d8717ebf756882bbc923f688d4c3098d7e4fe94067a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/rsicd_segmented_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "1991b8c28beb3651c6ce528343aa96f70556eb494f755c93b1d26d93dcd6add6",
+      "source": "paper_a3/runs/georsclip_10k/rsicd_segmented_10000_both_s0.json",
+      "source_sha256": "20126e55fb608c1a90cfa2d54bf422327e1c3b206c7f91e5e422fc43365a64f3",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/rsicd_segmented_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "1bbec53e60504e66bc5e2bafdfe6b618140f363a437da2101a110e1d95c7b634",
+      "source": "paper_a3/runs/georsclip_10k/rsicd_segmented_10000_both_s1.json",
+      "source_sha256": "1493ceb854505d77a1aca18dbefc30c50e7a2bdc73a70e75b1454fa3060e3ffd",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/rsicd_templated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "cba873bab5e5bb6e0635b591f0f94a676124df2c4868b33b0c3ebedbff8b55c1",
+      "source": "paper_a3/runs/georsclip_10k/rsicd_templated_10000_both_s0.json",
+      "source_sha256": "dc9f99fe1e349b0e8aef3e21d5f2560e9b528f4588c706230276623849d75d1d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/georsclip_10k/rsicd_templated_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "0ea0c3a166661de2e273fd0cf6c4d9edd10c71cbeae73af5df444644cdfd7083",
+      "source": "paper_a3/runs/georsclip_10k/rsicd_templated_10000_both_s1.json",
+      "source_sha256": "8a4b04322202f402d9c4d766879c22132f15da4e43f4034ee15e92683cc55564",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/humanrich_10k/nwpu_captions_humanrich_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "f59c603d702367a8826928062507feb60f379696bc8177180dcd02dd5ab00ae0",
+      "source": "paper_a3/runs/humanrich_10k/nwpu_captions_humanrich_10000_both_s0.json",
+      "source_sha256": "da86f1755190878372f9be2c659202589d3fd5940ea1e33d8a3c00f9044802ad",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/humanrich_10k/nwpu_captions_humanrich_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "aa9fa50cc764a65232fe0c21dd63a63f3d543a06169c6ebe784ab5e0cacf8244",
+      "source": "paper_a3/runs/humanrich_10k/nwpu_captions_humanrich_10000_both_s1.json",
+      "source_sha256": "b283a1c1515f07ca516fc77b5cf171bae927bc81536591d48f7aa3fbd0ed2790",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/humanrich_10k/rsicd_humanrich_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "80ca01a56120722054895d0504bbbb15ca4609ea409bb3bb498789fd893c62fb",
+      "source": "paper_a3/runs/humanrich_10k/rsicd_humanrich_10000_both_s0.json",
+      "source_sha256": "d6499c716aa8f7f9e5c6186d42433c950cb9266f7b95185eed76735f07c5ffe4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/humanrich_10k/rsicd_humanrich_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "4b78f430e18de0dca4528d477f8114de6d31a73069fb108e1d1fa022663528cf",
+      "source": "paper_a3/runs/humanrich_10k/rsicd_humanrich_10000_both_s1.json",
+      "source_sha256": "06fb92321db495b51e7b778ab3cf0af524e1cca9dfe8a8944d8231b7cad27e90",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/l14_subset/nwpu_captions_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "c658c53ede09734b1de742c8e1c8e09a7a1187b9d5c4ce109dccdcdb5b113521",
+      "source": "paper_a3/runs/l14_subset/nwpu_captions_human_10000_both_s0.json",
+      "source_sha256": "b36e4d81b4fb18b4a6ce849b6f344ab8d998d639648bf708c623eaf395e8098f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/l14_subset/nwpu_captions_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "d8c28da3c3e48c4b8a85989a16e797c1c5bcbb449aa5dee36fd875a16144afc3",
+      "source": "paper_a3/runs/l14_subset/nwpu_captions_metadata_10000_both_s0.json",
+      "source_sha256": "abaa976be8085f226ace67b72349cc018a3165a0b7b248c42e1706aedc8a743b",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/l14_subset/rsicd_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "9d2d69f74cde377559beb6b4ec187a41b16af4032076199d127bacc3939184cd",
+      "source": "paper_a3/runs/l14_subset/rsicd_human_10000_both_s0.json",
+      "source_sha256": "a592018b185e475655b94007f76f792d0766813b11b33f73c66264eb0cc35487",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/l14_subset/rsicd_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "2d8761fe97af6b49ddc076919240764773d847c70d720e62a88d40c27d0e91e6",
+      "source": "paper_a3/runs/l14_subset/rsicd_metadata_10000_both_s0.json",
+      "source_sha256": "a4be3a10eb65245268c0161517f3eb5cec96d7a70a398d927317a10f4b917f5a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/repeated_10k/nwpu_captions_repeated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "19cb4e601ae42d4000f6dee513621071b7575de1606acdf174089649e25e8472",
+      "source": "paper_a3/runs/repeated_10k/nwpu_captions_repeated_10000_both_s0.json",
+      "source_sha256": "93951e09b9959f71f360eeb25eb489a443f8f2737d706b93fbb21b05a85f9a15",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/repeated_10k/nwpu_captions_repeated_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "45f6920ca68dd6700bd4524d10fa40dd36cec3ce4b0e22be41e034d50c72daba",
+      "source": "paper_a3/runs/repeated_10k/nwpu_captions_repeated_10000_both_s1.json",
+      "source_sha256": "f200c2c8185124a8b55f89d5d57c70a66e54e85f4acce04f6cc402285fd9be95",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/repeated_10k/nwpu_captions_repeated_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "920e2cc55a695b620cd170c08c41ae39af2e20d302dabb88972dc7b57985b131",
+      "source": "paper_a3/runs/repeated_10k/nwpu_captions_repeated_10000_both_s2.json",
+      "source_sha256": "f786a04fa43748b34bd9517c9bea7977d33ce3ec69629318ea7adbd21e1ff22c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/repeated_10k/rsicd_repeated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "77afd363aa552f8a61329fcaa7602b80884d705b566934e6dfe403f000921cb5",
+      "source": "paper_a3/runs/repeated_10k/rsicd_repeated_10000_both_s0.json",
+      "source_sha256": "dd39d34a0d1e64f18fed048a5993aeb23f682f2bea4e87862cc67d9a48880aa2",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/repeated_10k/rsicd_repeated_10000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "6f908616ed1ff88814e37f80ad1173db831e13c7faaf69b404d134990d464f81",
+      "source": "paper_a3/runs/repeated_10k/rsicd_repeated_10000_both_s1.json",
+      "source_sha256": "a6ea8818f5b38b92e0bdffc77386092137404b3ba52c6a6999587ef770e972cd",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/repeated_10k/rsicd_repeated_10000_both_s2.json",
+      "role": "descriptive",
+      "sha256": "332b32d9de587c4e5e7c115a7f544c7f133f1081bf4a9d74d7155077e906df94",
+      "source": "paper_a3/runs/repeated_10k/rsicd_repeated_10000_both_s2.json",
+      "source_sha256": "ff6f9d38aee8a68972223e3f3a04e7f3f505dc6e07a541300ac77e3b0411dfd3",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_nwpu_captions_human_both_s0.json",
+      "role": "descriptive",
+      "sha256": "12d4399875a29a04c0371fa7ae3c8d323f7413633d8ddee760af166a04c7e646",
+      "source": "paper_a3/runs/cloud_l14/l14_nwpu_captions_human_both_s0.json",
+      "source_sha256": "7506b7a6efd93bd0d1ad0bac3d0a8f46250bdb033dca55c669b69b9e8f6f64ca",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_nwpu_captions_metadata_both_s0.json",
+      "role": "descriptive",
+      "sha256": "783da63ab93f16d775f78a4ee10f5bada3fce51f2f504e11f2ec59cbc3eee3f5",
+      "source": "paper_a3/runs/cloud_l14/l14_nwpu_captions_metadata_both_s0.json",
+      "source_sha256": "4e812cd6a81297792ffc1abcb0175249953febbd100cddc8333d5737517542fb",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_nwpu_captions_segmented_both_s0.json",
+      "role": "descriptive",
+      "sha256": "01f1b544911eb9be14812a15a508907eba0caa6d406e9da61c187a98dc53cd3c",
+      "source": "paper_a3/runs/cloud_l14/l14_nwpu_captions_segmented_both_s0.json",
+      "source_sha256": "e976df61efe582a4273496a6bf7c6fb02ded4082d251ca4d0cefebbb0b161ca3",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_nwpu_captions_templated_both_s0.json",
+      "role": "descriptive",
+      "sha256": "e6b3c51ff19f92a060b3337ab42297271902d5a67a17fd580b159d1f138a772a",
+      "source": "paper_a3/runs/cloud_l14/l14_nwpu_captions_templated_both_s0.json",
+      "source_sha256": "aa13e7f5f5136c5c48e19a4d3d97c7d1cf3131a3076176a27c6c1faecc20d83e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_human_both_s0.json",
+      "role": "descriptive",
+      "sha256": "ac3ff110eb00d59272e7e76e136c010faad0d20a3eee6702588f8c621d41cf49",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_human_both_s0.json",
+      "source_sha256": "9080fdb88503e0d8137323a2264360b150f86aff310bfaaba4e1f134c6409f83",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_human_text_s0.json",
+      "role": "descriptive",
+      "sha256": "7e076164d8d0fd5565286a9f0a60392e2618baefe6f278fc3ec87cb38eabbfcd",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_human_text_s0.json",
+      "source_sha256": "67e3ef40f703fa20bb3f788db19ef7ed701beded9768d0b2f7af97fc735aea00",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_human_text_s1.json",
+      "role": "descriptive",
+      "sha256": "779f06c199f3cfdeff273867bacafcd6f52d7d1485ee5752c4b4a10958fce2b4",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_human_text_s1.json",
+      "source_sha256": "7059ae03e22a672e6c7f96a8b617d46d73416085cc80b6071d0f897db0632a42",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_human_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "b2ba311804c0f2eb71127fbbc030313bb81b49d377287000c68a71b3a7478cf1",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_human_vision_s0.json",
+      "source_sha256": "7297409459ffea370e92890fda79b1867d8e37ea5e266f5756fedce9c51f5479",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_human_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "a76ac8557d1f7d985da6b7863b0f5a4a567bd3f34c9aade9049a43685ce12745",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_human_vision_s1.json",
+      "source_sha256": "5e05f874c041f0fca00f45a1bd3f72692f8c9254ee8dc2947c55b7f975e8b945",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_metadata_both_s0.json",
+      "role": "descriptive",
+      "sha256": "0fdda80f287c60c1ceb79d2c5ec166b7e2c972b5f3bf60494c6171189d562262",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_metadata_both_s0.json",
+      "source_sha256": "67dc69389019aa782176866a4cff869e16e346cd87b2af56129ce080fa63ae8f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_metadata_text_s0.json",
+      "role": "descriptive",
+      "sha256": "9e88c01ed7c24b7095bda68d87cf3154e56f040149564998e055993c5ef17b7a",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_metadata_text_s0.json",
+      "source_sha256": "1987f08180f93ad53b192f8b82c94a35d0ad49298d98eec8d325c55061c16277",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_metadata_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "68585bf0fb32267a222474d4567803c8e65e8502384df118a81ac33d39f1a4e0",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_metadata_vision_s0.json",
+      "source_sha256": "d952e1cae81e383ba1fdc191e08d3585d710b3a93ae1154884def6c2eeb5dfa6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_segmented_both_s0.json",
+      "role": "descriptive",
+      "sha256": "dbed9391ca17c755273266f2f628975aa8d376871a103f9258e0055767eafb11",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_segmented_both_s0.json",
+      "source_sha256": "f89256db83bedeada8db1108afdc588c0fca7d171cd38d5fc1a4daf903a4a179",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_segmented_text_s0.json",
+      "role": "descriptive",
+      "sha256": "69d412d73b564b4a2b75741b2fdab893708b68f9a510392227f6cf907d8a2337",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_segmented_text_s0.json",
+      "source_sha256": "11d4a16677fa236e5561950e76a1984ccfa0a3ed7bb5d6205b6f21bc8bd66f1e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_segmented_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "0d399a9511bbf9e8cc823e8053459869900027d1111c48ddbd4c74b1668e3df7",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_segmented_vision_s0.json",
+      "source_sha256": "530d632992c7cd089c18d0f992f0c526e0575a93a1dc15c2baac351b8771f1d9",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_templated_both_s0.json",
+      "role": "descriptive",
+      "sha256": "15313b940d69a5465205eb68b7299c056bcb3db79a25d57afffff4e131d46fba",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_templated_both_s0.json",
+      "source_sha256": "4a42dda345972158841c92896dd3b6d3cb2be5386aaec6d19fab3561c784b5cc",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_templated_text_s0.json",
+      "role": "descriptive",
+      "sha256": "558ff5849bedb7f3619b0fc204cd32ac87f85263e8506e4f2e8069a735e62d6a",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_templated_text_s0.json",
+      "source_sha256": "cddcb65e0afef1db7886d027f3e06f5c069f6282da4e875f7e9a22a5fdbaae05",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14/l14_rsicd_templated_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "59cf66482c013125d6dcf80ef52cd4e0a2eb9680813875918cf52eaf0537099e",
+      "source": "paper_a3/runs/cloud_l14/l14_rsicd_templated_vision_s0.json",
+      "source_sha256": "53339a0e068e5df70500d9aad1e651fd0e0f7d28a942a36ae9b1e8cf45b4b328",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14_nwpu/l14_nwpu_human_text_s0.json",
+      "role": "descriptive",
+      "sha256": "14c01a02e0785613e4abd8f94f98c80f8cc662f054d3e79238a9b2f87eca1a74",
+      "source": "paper_a3/runs/cloud_l14_nwpu/l14_nwpu_human_text_s0.json",
+      "source_sha256": "133c68bd033c50865b3128529602fec23210141b0bf7a3a22da7b15bd69c34ab",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14_nwpu/l14_nwpu_human_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "5611f9e9f94084cb9aba118d42a5e8d4c87ba55b8e3770c6a429d3bb74b98b3c",
+      "source": "paper_a3/runs/cloud_l14_nwpu/l14_nwpu_human_vision_s0.json",
+      "source_sha256": "fe17963d37b80b7672e34660679d05dad7cde612b22a85f893f83b8c6935cda6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14_nwpu/l14_nwpu_metadata_text_s0.json",
+      "role": "descriptive",
+      "sha256": "82df473c928731ec69606380d6a8f37a2e4f765abfef5b8b554ee307f932a6da",
+      "source": "paper_a3/runs/cloud_l14_nwpu/l14_nwpu_metadata_text_s0.json",
+      "source_sha256": "3d678dd53c50732cda199da0ede983c518e7baaa1f50bfb056550c7c8361eede",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14_nwpu/l14_nwpu_metadata_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "4c3211fc2ca06097996c7f3062912209c0d28a0b8560681e3c45f3115d6f7d93",
+      "source": "paper_a3/runs/cloud_l14_nwpu/l14_nwpu_metadata_vision_s0.json",
+      "source_sha256": "e1cc367c35134957125b20c156fac33f4c50a1b002d1a8213f962c8438a6e3a8",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14_nwpu/l14_nwpu_segmented_text_s0.json",
+      "role": "descriptive",
+      "sha256": "2132f1b07c4a0451b2ef46900adecc9e56c61bd07ec7bf98acff6e164dbeb968",
+      "source": "paper_a3/runs/cloud_l14_nwpu/l14_nwpu_segmented_text_s0.json",
+      "source_sha256": "e256fdf523780da757d64864691cc586f29f1313083c17650edefcec1c95a660",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14_nwpu/l14_nwpu_segmented_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "f1c8ef41f7028f3df650b4eb7442d400cd446c670de1e928e27bd272c29a116f",
+      "source": "paper_a3/runs/cloud_l14_nwpu/l14_nwpu_segmented_vision_s0.json",
+      "source_sha256": "08d51c4015b46d3255b1e2c24c12eaaa656f306cbd5cfd046820b841ef4edb43",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14_nwpu/l14_nwpu_templated_text_s0.json",
+      "role": "descriptive",
+      "sha256": "02d107ddf4e1e0ea0be4daebeab1900efaea3755f24c825ae53294298f18c8a0",
+      "source": "paper_a3/runs/cloud_l14_nwpu/l14_nwpu_templated_text_s0.json",
+      "source_sha256": "1750e62b22a573a1e37883fe0672d391fa60f0a482958d37e0d212be25690fb1",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_l14_nwpu/l14_nwpu_templated_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "109d49c8e308437c54dffdeda13996c22742b3ac5dd659c613ab162a7c7eff7c",
+      "source": "paper_a3/runs/cloud_l14_nwpu/l14_nwpu_templated_vision_s0.json",
+      "source_sha256": "91826ff3106011ee21aef27c2d5e71826ef4c5c2c81eae4c367ced65ed47fda2",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_nwpu_captions_human_s0.json",
+      "role": "descriptive",
+      "sha256": "dcb1f75acd99dd7bc2a234760cba33a87d0a22a240a172fc8aa7caf330fc4049",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_nwpu_captions_human_s0.json",
+      "source_sha256": "f9132f4430219d98a4fc2dcd3f3aae2e53c0fa2c6fc50a320dde97c080a1cb09",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_nwpu_captions_human_s1.json",
+      "role": "descriptive",
+      "sha256": "957cb68a1d95208faee484bb36a62e118955b7d5933ab13871038c26ff8a39db",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_nwpu_captions_human_s1.json",
+      "source_sha256": "4eefc85ad5437086e4a5ccfc411be921891bd94140f0b135949d3418cfb0dd4d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_nwpu_captions_human_s2.json",
+      "role": "descriptive",
+      "sha256": "0ce08e17721161d9a06983e93d3444c683c156b76ff2f358754af33d324bcd64",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_nwpu_captions_human_s2.json",
+      "source_sha256": "e9f024a3919708ddfd3b0dbeb82821773834e6d7a0c42653760f53f9273260f4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_nwpu_captions_metadata_s0.json",
+      "role": "descriptive",
+      "sha256": "8313f247e61f913fbe5ba1d286f5a88c4aaa97890974261c3c5abf892bb780ce",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_nwpu_captions_metadata_s0.json",
+      "source_sha256": "950059ec5415bdb77d50703e91ad76dade55818baecb33d628cc60046ef9aec5",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_nwpu_captions_metadata_s1.json",
+      "role": "descriptive",
+      "sha256": "b1cd70dd81910d8555c08a1cace9122b423bcd97facc045f33fdd656afe8a0df",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_nwpu_captions_metadata_s1.json",
+      "source_sha256": "f652368438e690886e8119f104e35f4aac40f3da9b08f61d917bda9299a286d6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_nwpu_captions_metadata_s2.json",
+      "role": "descriptive",
+      "sha256": "76d1e555e28c09a1f7ef106d864daff9228421f5eba8f845cdbe84b5288ac5c1",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_nwpu_captions_metadata_s2.json",
+      "source_sha256": "4912757d887fc0b1b25c7fcdb27f295e2c1b79517ba90b675d803384468f58f7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_rsicd_human_s0.json",
+      "role": "descriptive",
+      "sha256": "e50da6ebef8a044a506d9f11a21e91182b0dbd6b542f037048dbc035c512b5e2",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_rsicd_human_s0.json",
+      "source_sha256": "5d590fd1b0a9998e29855660e0a5468c2ccd80e6c5ba973f150e5c4b85ccfbb4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_rsicd_human_s1.json",
+      "role": "descriptive",
+      "sha256": "9a08b88b91fc547c3d72127dc3cad8a4cd80afa2baed5fbf7a900f26d4b9c907",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_rsicd_human_s1.json",
+      "source_sha256": "83f432fc78bd889fcbdc974fdca782bebe3107338bab5ddb5ddd8ea1a34755af",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_rsicd_human_s2.json",
+      "role": "descriptive",
+      "sha256": "3fdf78ddd181303d32a0d18a9cc04a17fb5ca9c3b514ce21b008d7d0af0554b9",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_rsicd_human_s2.json",
+      "source_sha256": "67dc735d94ae5fd2a5d1ffda3faf4fa00fabb73dab7d15f1afaf00e8510e7625",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_rsicd_metadata_s0.json",
+      "role": "descriptive",
+      "sha256": "84859f73e0047fd19a531ea480902127c387cd08d22ae2cc379f1fafbe14547c",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_rsicd_metadata_s0.json",
+      "source_sha256": "e10139fe17145a84c1b1384211dd70fa1e76e8251b85dd8a07f79436e65dda12",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_rsicd_metadata_s1.json",
+      "role": "descriptive",
+      "sha256": "401baf3d1efa9fa6ecb23ddd1295b5f6996c93af12432cd26c15d522cd98a1ca",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_rsicd_metadata_s1.json",
+      "source_sha256": "13a869496d48f90584e4d7016617bc225ecec57a3a35fe87d480615376f5cdb0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullcorpus/full_rsicd_metadata_s2.json",
+      "role": "descriptive",
+      "sha256": "7a4a707b052c1147620b132080fcb9eaad83799c8ba0b9674ccdb732c33623b6",
+      "source": "paper_a3/runs/cloud_fullcorpus/full_rsicd_metadata_s2.json",
+      "source_sha256": "daa8ac3fba0fb29d3bc6746fff83a00be692e1d14628e095ae6c133ce0c428fb",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_nwpu_captions_humanrich_s0.json",
+      "role": "descriptive",
+      "sha256": "368f302a2e03af7a6d1d3b884e4f50568b324f5b5b5e8af79c048a0ab808e014",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_nwpu_captions_humanrich_s0.json",
+      "source_sha256": "ebc52de5af4a7baa3b52ff02ab4d4734f5d1ccdf906101c430230a24bf0551b2",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_nwpu_captions_humanrich_s1.json",
+      "role": "descriptive",
+      "sha256": "b31c538c1913750276200aafc8264fd241444943c228e3bcb33d687cb388a8a8",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_nwpu_captions_humanrich_s1.json",
+      "source_sha256": "5379bbaf7ca2404b2d6060210b92028450bd9efea1665de426a64974449704ca",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_nwpu_captions_humanrich_s2.json",
+      "role": "descriptive",
+      "sha256": "fb68af90d28ade5bc6e821c2a891dd002a7476ea5c745097282db35fcdbe1458",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_nwpu_captions_humanrich_s2.json",
+      "source_sha256": "f9f3bb822440fa6e84f6cda6853d603f5af825cc1258a440ecc6571cd773ed7f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_nwpu_captions_segmented_s0.json",
+      "role": "descriptive",
+      "sha256": "6022a278d1c7418eac9510843576117053eba4676ca63c70d844e34ff1b68dc1",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_nwpu_captions_segmented_s0.json",
+      "source_sha256": "dd5776f116c32e5c68aa0a3ee0f348b9a835d394b2f3988ea979e1b8534aff05",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_nwpu_captions_segmented_s1.json",
+      "role": "descriptive",
+      "sha256": "c22b80df13b283c96ed824d19bdefd7bce4d2d7bf182c934866e70e108c2eff7",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_nwpu_captions_segmented_s1.json",
+      "source_sha256": "5ce42a637b6305401fdceb0f437804d1a879c2eb97f6bdd07f46c9d3b64dca0e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_nwpu_captions_segmented_s2.json",
+      "role": "descriptive",
+      "sha256": "5110ec67a1ee967423de0eae053348daa5fc127aac3075391e8cab186758250a",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_nwpu_captions_segmented_s2.json",
+      "source_sha256": "1b4285659691f3359130a60203ed6eeebb108a7cc7106096d9aaf91cb0612dd4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_nwpu_captions_templated_s0.json",
+      "role": "descriptive",
+      "sha256": "06be97c24781c7c078df5245b8931f452df83d4ba16942d3c796cc827e7ed45b",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_nwpu_captions_templated_s0.json",
+      "source_sha256": "e3c89cb2a6b7633c738127ecd04bc9684e22372d43931ed1f412e9229b52dea3",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_nwpu_captions_templated_s1.json",
+      "role": "descriptive",
+      "sha256": "200fcda7672e3beeeea2cb6194f227ed0caaa5684c8cad0c3e2d0eaf99679a68",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_nwpu_captions_templated_s1.json",
+      "source_sha256": "13b779802fa4b7b8c324ef17063e04ff3afc13a264e9a640478069616b7d7b27",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_nwpu_captions_templated_s2.json",
+      "role": "descriptive",
+      "sha256": "9d442c9cd1fd13d207b6f65662445770bdbb228218918cd3bbab1a26720ac671",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_nwpu_captions_templated_s2.json",
+      "source_sha256": "4ab000b0692a82e604ec11e98c7270bc36db7c15c9adb180c73ed6bd23eb2305",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_rsicd_humanrich_s0.json",
+      "role": "descriptive",
+      "sha256": "5bdaaddb521841124b236c08b3ffb03027dd4eefd165782526e14169ad4c856e",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_rsicd_humanrich_s0.json",
+      "source_sha256": "1a56dc6325c64ea11df0a0b8dc8eed5abd5131a5ad57ebac2ebbf1c59a0af322",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_rsicd_humanrich_s1.json",
+      "role": "descriptive",
+      "sha256": "3534c6d8456a8521f72c2aebe4bbfec73604b4465494dc0176be64ed62027d89",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_rsicd_humanrich_s1.json",
+      "source_sha256": "67441272a0f78351ec67e02ad566e60fcd8d4d00cc4e65c76fafea173b0b517b",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_rsicd_humanrich_s2.json",
+      "role": "descriptive",
+      "sha256": "7d7c40cd7840798936f0f6033972a35cb7824d4acbebe75796f36ffd75add399",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_rsicd_humanrich_s2.json",
+      "source_sha256": "87da51ae0124e113769ea5494fab9d31c8ce1c8bffa32453d4b33bd998ef8d45",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_rsicd_segmented_s0.json",
+      "role": "descriptive",
+      "sha256": "3d2dcb4f8ef92f608137675c10f1ddc7999edd014d5f5c6fb57dd9ebf5bb70fe",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_rsicd_segmented_s0.json",
+      "source_sha256": "d2a35d23216bd3dce1410194ed04b1edad7c3038fe5a23aff6b01798a1839a4c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_rsicd_segmented_s1.json",
+      "role": "descriptive",
+      "sha256": "85e366cc4516263046c27e6dfafda60e2658f9a3a043687e3762ad0b6ea93892",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_rsicd_segmented_s1.json",
+      "source_sha256": "136a4ef69b4a4b4fb7fc307bc1d5f5f6758c59875675e21f669bb78cc154142e",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_rsicd_segmented_s2.json",
+      "role": "descriptive",
+      "sha256": "ba207e350dcf87e77865ffedf3b3f78809569081fcdde072f882c8ed8df8143b",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_rsicd_segmented_s2.json",
+      "source_sha256": "69b7293f07bc2872c8b61f6561a3394c62269d8675cf320ce7fcb374e8c273ee",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_rsicd_templated_s0.json",
+      "role": "descriptive",
+      "sha256": "36518c096c307d2ad4939e17fea20b6cee6148754639364a6215209e1e0982d7",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_rsicd_templated_s0.json",
+      "source_sha256": "8000fdfe2c2a8145fb73c2f86d4f26ecd6656eec72cd6cb1c49ed6b3297e6978",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_rsicd_templated_s1.json",
+      "role": "descriptive",
+      "sha256": "eec9bcd6aab8bddb62cece0cd4913d09adacb34e2a201271781101423c11fdc1",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_rsicd_templated_s1.json",
+      "source_sha256": "743bec4bd2e8a4f8d58bb85c9e5d1ce1217afe40028daa5c05afec650907e89f",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/cloud_fullextra/fullextra_rsicd_templated_s2.json",
+      "role": "descriptive",
+      "sha256": "cf62c65c8075090e9cee62cd85abecc1dff7236120b641d31b6fd72135f4a553",
+      "source": "paper_a3/runs/cloud_fullextra/fullextra_rsicd_templated_s2.json",
+      "source_sha256": "0c2a539d86896c8b7e250bfb38bb2d065d07a37891fc5c5d74e78a1fb5244f01",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_human_s0.json",
+      "role": "descriptive",
+      "sha256": "0cf5f8acd4cd0f72c93def28d7e113de1d8405a1e4009459e7028f3f02b18004",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_human_s0.json",
+      "source_sha256": "71f276a081fac6594e70a445fa0097cdc5868a39f90cfd873583ebc34859a961",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_human_s1.json",
+      "role": "descriptive",
+      "sha256": "1c2ee12d8aa96c6f32ce39fe3d69298687a01618a396f22ae8c7657917f7de0c",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_human_s1.json",
+      "source_sha256": "33c34517782acf158d8f633eb37d1523fc7bf7a1ba112ebc593ea144962bf8f4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_humanrich_s0.json",
+      "role": "descriptive",
+      "sha256": "bb5404e8ed117f12113ada6f35454fc9e14739cf3347f5b7cb08bd0fcd416fe5",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_humanrich_s0.json",
+      "source_sha256": "defa753ff40ba672c492bf956b502db5d4f078aec5ec0ed0d2d07a51c4de61b4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_humanrich_s1.json",
+      "role": "descriptive",
+      "sha256": "e7f1a04453c50e839a00a2c651096247acb8ff0a4361014ba0e504d552298dad",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_humanrich_s1.json",
+      "source_sha256": "bb3db0771e35b461922e156978a09225739bbc5d0567d183b3624319ea9785d0",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_llmcaption_s0.json",
+      "role": "descriptive",
+      "sha256": "dd8dcfecbc262079569330faa355d283334ac5f72802bb428d6536dfa0a2c330",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_llmcaption_s0.json",
+      "source_sha256": "c96bd9ec03ec85653d3249e3cce8594e96c5ed572f90791474544a5abb6e4abc",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_llmcaption_s1.json",
+      "role": "descriptive",
+      "sha256": "3d67ed6b199087935071e5f1e29460bb5af0d0e4b1aef3fab5703ad78036421d",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_llmcaption_s1.json",
+      "source_sha256": "61db5cfcb7143a56fea7d0682f6af6205333974598e00d12f7622fab3c078e6b",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_metadata_s0.json",
+      "role": "descriptive",
+      "sha256": "589606664e5fb011c1494345e57367e055571f527626f6bce38e9ef4de114a7c",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_metadata_s0.json",
+      "source_sha256": "4dabb49fca95e2d5511d885f8cc9b642f22c9fa81b77f9065f142e02b2239b00",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_metadata_s1.json",
+      "role": "descriptive",
+      "sha256": "3698b3cd5a7085cd85add3b8f552ce1ac1fadf35267543023533351621f81620",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_metadata_s1.json",
+      "source_sha256": "44f1695163f7c1ffeed5d6b04a25581dd0432186c678f1c194461bb10762d9df",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_templated_s0.json",
+      "role": "descriptive",
+      "sha256": "c02771e27601eade0ac23c678209cc2327396b52aae63952a03f7eb3f16a1b17",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_templated_s0.json",
+      "source_sha256": "e54525b79ad53f27f28ad53158ab8a5dc132cb05e02db337f206093d735f1e3d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm/rsicd_templated_s1.json",
+      "role": "descriptive",
+      "sha256": "95d3c39c97b0537f18dc6dad0530cc22ddde032b1f9ecda2a4e6ee153c29f2dc",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm/rsicd_templated_s1.json",
+      "source_sha256": "10d025561d879014945d016f3ab2f0aec193158513b97fdf43b57d29c523f7de",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm2/rsicd_human_s0.json",
+      "role": "descriptive",
+      "sha256": "57d2cc5eea808bc089e9e563838922d366255c8869ce606a4aa32e2f9bf3c64f",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm2/rsicd_human_s0.json",
+      "source_sha256": "0b61a24941f2b902424eeae812b6db65c161a0b7aa2effe9f5a33c49c586b053",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm2/rsicd_human_s1.json",
+      "role": "descriptive",
+      "sha256": "047482352a7f5b1dada7478d2bb9bdfc70091dac1b0e22bac1d3615c6e7826ba",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm2/rsicd_human_s1.json",
+      "source_sha256": "7d18eb27282c9586fe28fd2f6774ddcc71830429ccffa18a8113c2555175e7d5",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm2/rsicd_llmcaption2_s0.json",
+      "role": "descriptive",
+      "sha256": "c1d76af581c398ee2626134ed948d12deee6f3f9f850e1f93948065f239be169",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm2/rsicd_llmcaption2_s0.json",
+      "source_sha256": "f6019c31cbb454cd7ac268a4401a9676f20aaee3d4fc877cc3a9b147da8169fa",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm2/rsicd_llmcaption2_s1.json",
+      "role": "descriptive",
+      "sha256": "34ec0cb718c8604d54b343ffa5270e608aae6351ff10695e79addd9779d919b0",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm2/rsicd_llmcaption2_s1.json",
+      "source_sha256": "c4ad01a5880c536bae2dd929adf0bac7416ef87c6bef6d3916c80c7b8e34a06a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm2/rsicd_metadata_s0.json",
+      "role": "descriptive",
+      "sha256": "b800335e479e2834b6849bb7047b13242bc1bed00fa74ba46cfe7ff36c8701dc",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm2/rsicd_metadata_s0.json",
+      "source_sha256": "733497b90ffb34bba44409f82dbca5984e910452796526c7b57e186a3e6e6266",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm2/rsicd_metadata_s1.json",
+      "role": "descriptive",
+      "sha256": "ca278497ead5496cdc97f2ebf13a12aa6865fcd49af7854711b4f4074b5eb12c",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm2/rsicd_metadata_s1.json",
+      "source_sha256": "f588c48c4599684f5238cb79cc3a9b72181ff6f93022b1c6c2d55aa79c11a0e7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm2/rsicd_templated_s0.json",
+      "role": "descriptive",
+      "sha256": "41cda688502a0031f576f3d7dd4d7e85d415ff43a736a8eaee28939f72270a35",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm2/rsicd_templated_s0.json",
+      "source_sha256": "a578b39cb4ef59e0ccccdfa425e74cd854edd5803e7a631da3ebeb34959bc1e7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullarm_rsicd_rsicd_llm2/rsicd_templated_s1.json",
+      "role": "descriptive",
+      "sha256": "358064a622d633e8fa105310d7785f593d2438930d40c9a606033bbf7de4fa83",
+      "source": "paper_a3/runs/fullarm_rsicd_rsicd_llm2/rsicd_templated_s1.json",
+      "source_sha256": "0ded9ad82988432aa5d28fb1623ceeab285b92370b045cff1447f897cc26c168",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullcorpus/nwpu_captions_human_0_both_s0.json",
+      "role": "descriptive",
+      "sha256": "9648646b09fc6f01aec80687c413dc24ec86445800a072eb308ec3bf635c279c",
+      "source": "paper_a3/runs/fullcorpus/nwpu_captions_human_0_both_s0.json",
+      "source_sha256": "60a56c7c9da47f6d121ebd1307df172086c0e344a60e7441a0c07cea10c8e028",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullcorpus/nwpu_captions_metadata_0_both_s0.json",
+      "role": "descriptive",
+      "sha256": "edae0d320c318dbc1149840a32ae1052c07691716576c948fa8c02e82d240ec8",
+      "source": "paper_a3/runs/fullcorpus/nwpu_captions_metadata_0_both_s0.json",
+      "source_sha256": "128babd1b391fbb73ae961a57a588393df29c905bdcf566c2d09065dbbc8d377",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullcorpus/rsicd_human_0_both_s0.json",
+      "role": "descriptive",
+      "sha256": "9e0061695c9bc3813961ad5f09bde61066421f420a09502fb998d03eb7c62eda",
+      "source": "paper_a3/runs/fullcorpus/rsicd_human_0_both_s0.json",
+      "source_sha256": "fd5fdd8c9dc8d43040f50ca0afe85248582a6947d4a0fe9cd34f239ebdda62ed",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/fullcorpus/rsicd_metadata_0_both_s0.json",
+      "role": "descriptive",
+      "sha256": "9ee6cf8d5627c042f83e9b5294932f2ad6eea15b515d713005f05ceea3e4f275",
+      "source": "paper_a3/runs/fullcorpus/rsicd_metadata_0_both_s0.json",
+      "source_sha256": "c7afc2699fcb00afe2f2375c5479bdc583724bf55567e5ccef808ba1937fac73",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/epoch_ablation/nwpu_captions_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "7718a1f195ea640d68ab64a0ae0245031d6e3c9be18172cef249d1feaacc8fcb",
+      "source": "paper_a3/runs/epoch_ablation/nwpu_captions_human_10000_both_s0.json",
+      "source_sha256": "38bf0ac44b7be1e8ba3ce5351bfb30236ca70752bb930458d6c1ff0aebf73a92",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/epoch_ablation/nwpu_captions_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "b338d0e00f28f4399f96f92dad579c6918a9bdd8fdb831db7fd5ebececd06f15",
+      "source": "paper_a3/runs/epoch_ablation/nwpu_captions_metadata_10000_both_s0.json",
+      "source_sha256": "a559d48fe3f5c9466457c68912272296e1dc0a31e4b294691ee84f4faf1d11f6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/epoch_ablation/nwpu_captions_templated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "9a538ae9090938895b8f58ee9e3b9a199abb0798762bb60d56b5e4a7eff98aa7",
+      "source": "paper_a3/runs/epoch_ablation/nwpu_captions_templated_10000_both_s0.json",
+      "source_sha256": "1f51770b029c8f4a46970638fbf8933fb5d3ccc2907e1af2077f403e706bd488",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/epoch_ablation/rsicd_human_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "c149f03d27e345a9d13c5fbc86a0894b4e4807b020cdd0761218df2b00f1cb92",
+      "source": "paper_a3/runs/epoch_ablation/rsicd_human_10000_both_s0.json",
+      "source_sha256": "935e29e9ab84a9d718c04ec427f0bf2284a56a4bb1413f089f7cfa6361fb01ff",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/epoch_ablation/rsicd_metadata_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "aefac8d0d8f0b4af183309df192e9862ddfb62ed98955bc9b2230402fe937dc9",
+      "source": "paper_a3/runs/epoch_ablation/rsicd_metadata_10000_both_s0.json",
+      "source_sha256": "45aec11475db54ba3a2c13ec10026d1fe9f8fd803951052f3310954bfca3a252",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/epoch_ablation/rsicd_templated_10000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "cf4188bf1e373159deb4f323d91284a680736abb36243af290d54c1a66873760",
+      "source": "paper_a3/runs/epoch_ablation/rsicd_templated_10000_both_s0.json",
+      "source_sha256": "82bd9b3dd8ee5a805e08cd9dcf5f4f00b26f055fe0015b7f3e18080a0b587f1c",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_human_50000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "245c77d51fd4cff13c9cccadee6cfe0bd5a3f5a8b13166341339a4df95fa98b4",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_human_50000_both_s0.json",
+      "source_sha256": "183657acf4febdbc0a9b7b1340348f9da9d5bd6c963c7eeebdc4dbc14624d938",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_human_50000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "448bdbc59a95394957cd2d8d7e45f647439dcb168fae173bb1ee1f7fe35d1150",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_human_50000_both_s1.json",
+      "source_sha256": "8fed960e679738024d9f2c506bedf5e33f076b4b9d4fee715d4c2f5c8dd425b6",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_human_50000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "eff22779cd32c1ef6df81144673b573776cb8b7b64f2d002768e783866b3d3eb",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_human_50000_vision_s0.json",
+      "source_sha256": "a1e3376f9b4f36f6d59e92d4f6fbfba6082ac834ac86016f969bc06f9e58c5eb",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_human_50000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "30f49ab229a01b7308929c7a345d5a5678ba2f54308d02b11be3e3b039e80d04",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_human_50000_vision_s1.json",
+      "source_sha256": "d4ec64bb7aa6e311888351374c53b1cce4d75f3a49225597046cf84a766da48d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_metadata_50000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "dba8a9a44d78bb97ad03435780b611a460a86d733cf75b9c7c1120219af4656c",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_metadata_50000_both_s0.json",
+      "source_sha256": "060e290aa83e0e7ac6654fac56ad9b98d24f59533c9edfafac87ac24b9c45b38",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_metadata_50000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "34b9d2e19b62efbf6bc5c615250343c3adbe142effde77258ffb759ec1e58c1d",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_metadata_50000_both_s1.json",
+      "source_sha256": "e5ecd884610d36caefd46b529a169bb3f2514e4f180543e3db578748ddef3aad",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_metadata_50000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "170682c199ef33cf096a88f83bea9e690dc94e5c7b630277b4a4638b38ce50f5",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_metadata_50000_vision_s0.json",
+      "source_sha256": "3ab814466aaab807f8d4de3c4040215b2410167bfd10c4647c69fbfc157e3c00",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_metadata_50000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "ae54087effb91d1e60f1863c0f635ac5912c850f5403400feedfbcab170778d3",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_metadata_50000_vision_s1.json",
+      "source_sha256": "4a4d7435f8f9295c03f474dc83703825d47e518c980ac0e91188a4e4566d922d",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_segmented_50000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "912b9b1990845167f36b17aaa06863a31e44f342e90109de7527214812273b66",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_segmented_50000_both_s0.json",
+      "source_sha256": "bf2d45bd9d75c7a1baab859a12501c324f0b86c2176f2cc5798a086c308ddcd4",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_segmented_50000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "f479140a27ee5bdcdf9fa5f28315dc375588cb4d429fd1ccfe35f00e6cef87ab",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_segmented_50000_both_s1.json",
+      "source_sha256": "c9b1f73ae991932d4da31cf6144431c67a0a582458be8d9428adf356b1c67ac3",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_segmented_50000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "f633031c27e0e2c92da8a1c13e451ed86b5b0fdcd3fa60b390253a99193b37ad",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_segmented_50000_vision_s0.json",
+      "source_sha256": "0317347995c89dbb9a021b84aaf50596aebfa545fb0e30f39b21fece028883cf",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_segmented_50000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "e414717b1eb4b996407c52f7201405392a6dc1ab116594a2f8271b5b89b68e65",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_segmented_50000_vision_s1.json",
+      "source_sha256": "bb437c6c3b15a7c7cf67fe433dbf8e8f43784159f3627a1154414675bf912efa",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_templated_50000_both_s0.json",
+      "role": "descriptive",
+      "sha256": "798af89d550f0a19e8836e0e429fa9c21164838fc26970fb27afa42fa358929d",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_templated_50000_both_s0.json",
+      "source_sha256": "773b63fb9391ca5c661cead4bcd86d3f35cbe848389ff532d8a96fd5dfb90fc2",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_templated_50000_both_s1.json",
+      "role": "descriptive",
+      "sha256": "923190f125710ed64b0cb9f6622da653373f2529d90f5d305979cefb45ffd68f",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_templated_50000_both_s1.json",
+      "source_sha256": "874af4a988acbede1bdd86fc1d985c0f920f4bc15be92bdd12e87ffbe6cadd5a",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_templated_50000_vision_s0.json",
+      "role": "descriptive",
+      "sha256": "f06c83ca03e216d721faf4c6a1be50eb26f1b0c759fb3c31acff9de28b1f65d8",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_templated_50000_vision_s0.json",
+      "source_sha256": "35ecbd186e53b5f3fe2bfa884a5b8d34ef3f8a436bc4467367a4305ae7920246",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/descriptive/scale_50k/nwpu_captions_templated_50000_vision_s1.json",
+      "role": "descriptive",
+      "sha256": "1c6515e2948616ecafc3b74191e18856f2d59efb87634295f48f7f909ddfd8a6",
+      "source": "paper_a3/runs/scale_50k/nwpu_captions_templated_50000_vision_s1.json",
+      "source_sha256": "71138836979777b0c807d0cac298c8e1d6d1ce9c81cad0082d81dca7e1048be7",
+      "transformation": "Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/captioning_rsicd.json",
+      "role": "technical_aggregate",
+      "sha256": "6bbf1ef31c1157777a5e150f7943db1f5f7d41074dcc0be32a180f878db1d0ba",
+      "source": "paper_a3/analysis/captioning_rsicd.json",
+      "source_sha256": "72d2e611efa0b958c09bf9a9091f8414911a9b1ef9d5d04cac1e1b906aec2ef1",
+      "transformation": "Omit named fields: sample_captions. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/aggregate/cloud_summary.json",
+      "role": "technical_aggregate",
+      "sha256": "a533b5fa7cddee0466d4668714e89bf72f76672f645a28de1eb9d3e026c9d4ea",
+      "source": "paper_a3/analysis/cloud_summary.json",
+      "source_sha256": "a533b5fa7cddee0466d4668714e89bf72f76672f645a28de1eb9d3e026c9d4ea",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/fullarm.json",
+      "role": "technical_aggregate",
+      "sha256": "4a56d72c71ecc30ba0ddcd645896279071aa603e797db5a27765abcaab59319d",
+      "source": "paper_a3/analysis/fullarm.json",
+      "source_sha256": "4a56d72c71ecc30ba0ddcd645896279071aa603e797db5a27765abcaab59319d",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/near_duplicates.json",
+      "role": "technical_aggregate",
+      "sha256": "7c35e89cd5c862e32e8ce748e9b625a55e085108b62e913d87348c655477986d",
+      "source": "paper_a3/analysis/near_duplicates.json",
+      "source_sha256": "7c35e89cd5c862e32e8ce748e9b625a55e085108b62e913d87348c655477986d",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/repeated.json",
+      "role": "technical_aggregate",
+      "sha256": "846d5141f7ff34a0941271aeb94c393a93e7e9a4f391dccbb130e22953ff70d4",
+      "source": "paper_a3/analysis/repeated.json",
+      "source_sha256": "846d5141f7ff34a0941271aeb94c393a93e7e9a4f391dccbb130e22953ff70d4",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/text_stats.json",
+      "role": "technical_aggregate",
+      "sha256": "d15e7ea5dd0c4bc884db9d867a072ba167d7bd53f1cd618b37a066ec19ad6d92",
+      "source": "paper_a3/analysis/text_stats.json",
+      "source_sha256": "d15e7ea5dd0c4bc884db9d867a072ba167d7bd53f1cd618b37a066ec19ad6d92",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/transfer_matrix.json",
+      "role": "technical_aggregate",
+      "sha256": "7e4e9f9fcf194c64f07895ee701d68f50c5d3a7f78fb00459cbb26f84dead94c",
+      "source": "paper_a3/analysis/transfer_matrix.json",
+      "source_sha256": "7e4e9f9fcf194c64f07895ee701d68f50c5d3a7f78fb00459cbb26f84dead94c",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/frozen_family_probe.json",
+      "role": "technical_aggregate",
+      "sha256": "88291eeb7d2d19f1eee590d7a2828d0dc397a057278a7f2e8cb411108445cd10",
+      "source": "paper_a3/analysis/frozen_family_probe.json",
+      "source_sha256": "88291eeb7d2d19f1eee590d7a2828d0dc397a057278a7f2e8cb411108445cd10",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/captioning/human.json",
+      "role": "technical_record",
+      "sha256": "7efe6ccd544fa9b8bd2ad73abc6d2f044c8fbe600912498d1d5ef1ba3e4b8a36",
+      "source": "paper_a3/runs/captioning/rsicd/human.json",
+      "source_sha256": "b6d77b46eb232ff7151b618b89cf9776dae7f2bd1ed6452c745571d5c9121761",
+      "transformation": "Omit named fields: sample_captions. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/captioning/metadata.json",
+      "role": "technical_record",
+      "sha256": "7a95e9c017b632ed74c55bb40c30b34e6ada47c001309f4c15ada209ff034667",
+      "source": "paper_a3/runs/captioning/rsicd/metadata.json",
+      "source_sha256": "2289ae6f2aaa358af7ddf72918aa55d38e0c6d9c776d0f04ae323d3402e9dfbc",
+      "transformation": "Omit named fields: sample_captions. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/captioning/segmented.json",
+      "role": "technical_record",
+      "sha256": "b7f8b2160570f765b244687011a61312bdfe7b52aca65a164ab527f5fe4e2a0d",
+      "source": "paper_a3/runs/captioning/rsicd/segmented.json",
+      "source_sha256": "bec140728db75dbe7a79059ba781f735b82402b5f8a1470ec07deff34d002e87",
+      "transformation": "Omit named fields: sample_captions. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/captioning/templated.json",
+      "role": "technical_record",
+      "sha256": "ce35d1de3c75d8a9a0f4b28b3cce075e721765b4cbb95c82fca086e6e7023e47",
+      "source": "paper_a3/runs/captioning/rsicd/templated.json",
+      "source_sha256": "44e1b841646cd41113f86b975cada452381d4e205d16992aacceeeee7efc5066",
+      "transformation": "Omit named fields: sample_captions. Normalize private filesystem paths and administrative phrasing where present."
+    },
+    {
+      "destination": "records/classification/classification_rsicd_both_s0.json",
+      "role": "technical_record",
+      "sha256": "d29fb15367209851c845a37bcc6d4ae74e901b4e2a56c1eb0ba78edcfcaf0aef",
+      "source": "paper_a3/runs/classification_probe/classification_rsicd_both_s0.json",
+      "source_sha256": "d29fb15367209851c845a37bcc6d4ae74e901b4e2a56c1eb0ba78edcfcaf0aef",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "records/aggregate/fixed_eval_comparison.json",
+      "role": "held_out_archive_comparison",
+      "sha256": "0ccedd3db2698d7986ab2aee6609d24f682046d28c5650fa5891c2af53d6dc5a",
+      "source": "paper_a3/analysis/fixed_eval_comparison.json",
+      "source_sha256": "61d4b701dafbbc02b6e5cb17983d821a4f18ea7e23a54f6e8bb561af37a8025a",
+      "transformation": "Select only populated held-out summaries; derive all five fixed groups in replay."
+    },
+    {
+      "destination": "producer/train_lora_provenance.py",
+      "role": "producer_code",
+      "sha256": "a95664b77380f582dbe9a4c8d981d61eec54a6805d30dc916e24c67e8a6da244",
+      "source": "paper_a3/scripts/train_lora_provenance.py",
+      "source_sha256": "a95664b77380f582dbe9a4c8d981d61eec54a6805d30dc916e24c67e8a6da244",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "producer/train_lora_siglip2.py",
+      "role": "producer_code",
+      "sha256": "636a6a9a78977408413bcef4fcc8ba3e3287a9861915a209fccb30bb8355b6ba",
+      "source": "paper_a3/scripts/train_lora_siglip2.py",
+      "source_sha256": "636a6a9a78977408413bcef4fcc8ba3e3287a9861915a209fccb30bb8355b6ba",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "producer/build_text_provenance.py",
+      "role": "producer_code",
+      "sha256": "d53b68eb6b083559ccdd43928637777842b579550bf55d4a2e4df69255c4f396",
+      "source": "paper_a3/scripts/build_text_provenance.py",
+      "source_sha256": "d53b68eb6b083559ccdd43928637777842b579550bf55d4a2e4df69255c4f396",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "producer/match_budgets.py",
+      "role": "producer_code",
+      "sha256": "e42679e5c0a55e4b21b65e9bcfddd053ed808896a5e518eedf8c59c577f8861b",
+      "source": "paper_a3/scripts/match_budgets.py",
+      "source_sha256": "e42679e5c0a55e4b21b65e9bcfddd053ed808896a5e518eedf8c59c577f8861b",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "producer/make_llm_caption_corpus.py",
+      "role": "producer_code",
+      "sha256": "e76966d338e161d1345727f070629174a1f64260b3b9d4daac4d10206728c411",
+      "source": "paper_a3/scripts/make_llm_caption_corpus.py",
+      "source_sha256": "e76966d338e161d1345727f070629174a1f64260b3b9d4daac4d10206728c411",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "producer/make_llm_caption_corpus_local.py",
+      "role": "producer_code",
+      "sha256": "81c6d059d1ccd5aad9a4742ef39f190a17ee7ea4c7305a00a49af847c083fe1a",
+      "source": "paper_a3/scripts/make_llm_caption_corpus_local.py",
+      "source_sha256": "81c6d059d1ccd5aad9a4742ef39f190a17ee7ea4c7305a00a49af847c083fe1a",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "producer/run_captioning.py",
+      "role": "producer_code",
+      "sha256": "d6871dbe96d16f0c4fde9e4e1d3f6a71e4eeb4b54d2c18f9edd73c68fec50105",
+      "source": "paper_a3/scripts/run_captioning.py",
+      "source_sha256": "d6871dbe96d16f0c4fde9e4e1d3f6a71e4eeb4b54d2c18f9edd73c68fec50105",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "producer/run_transfer_eval.py",
+      "role": "producer_code",
+      "sha256": "a8b42b7c4e8140815a195fd0470cf3b289043f4d2c66aa14cfc965b242742ae1",
+      "source": "paper_a3/scripts/run_transfer_eval.py",
+      "source_sha256": "a8b42b7c4e8140815a195fd0470cf3b289043f4d2c66aa14cfc965b242742ae1",
+      "transformation": "byte_copy"
+    },
+    {
+      "destination": "producer/audit_near_duplicates.py",
+      "role": "producer_code",
+      "sha256": "420ab545eac0aaef1165cb0ebaa21077f9d28b751263ef4d14c0b60f28616bda",
+      "source": "paper_a3/scripts/audit_near_duplicates.py",
+      "source_sha256": "420ab545eac0aaef1165cb0ebaa21077f9d28b751263ef4d14c0b60f28616bda",
+      "transformation": "byte_copy"
+    }
+  ],
+  "track": "a3"
+}

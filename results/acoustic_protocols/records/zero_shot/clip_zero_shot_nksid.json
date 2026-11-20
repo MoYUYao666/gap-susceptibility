@@ -1,0 +1,92 @@
+{
+ "model": "remoteclip_vit_b32_frozen",
+ "images": 380,
+ "per_class_cap": 60,
+ "correct": 74,
+ "accuracy": 0.1947,
+ "macro_accuracy": 0.181,
+ "chance": 0.1429,
+ "per_class": {
+  "big_propeller": 0.0,
+  "cylinder": 1.0,
+  "fishing_net": 0.05,
+  "floats": 0.0167,
+  "iron_pipeline": 0.0167,
+  "small_propeller": 0.0,
+  "soft_pipeline": 0.1833
+ },
+ "confusion": {
+  "big_propeller": {
+   "big_propeller": 0,
+   "cylinder": 56,
+   "fishing_net": 0,
+   "floats": 3,
+   "iron_pipeline": 0,
+   "small_propeller": 0,
+   "soft_pipeline": 1
+  },
+  "cylinder": {
+   "big_propeller": 0,
+   "cylinder": 60,
+   "fishing_net": 0,
+   "floats": 0,
+   "iron_pipeline": 0,
+   "small_propeller": 0,
+   "soft_pipeline": 0
+  },
+  "fishing_net": {
+   "big_propeller": 0,
+   "cylinder": 9,
+   "fishing_net": 1,
+   "floats": 6,
+   "iron_pipeline": 0,
+   "small_propeller": 0,
+   "soft_pipeline": 4
+  },
+  "floats": {
+   "big_propeller": 0,
+   "cylinder": 54,
+   "fishing_net": 0,
+   "floats": 1,
+   "iron_pipeline": 0,
+   "small_propeller": 0,
+   "soft_pipeline": 5
+  },
+  "iron_pipeline": {
+   "big_propeller": 1,
+   "cylinder": 36,
+   "fishing_net": 7,
+   "floats": 6,
+   "iron_pipeline": 1,
+   "small_propeller": 0,
+   "soft_pipeline": 9
+  },
+  "small_propeller": {
+   "big_propeller": 0,
+   "cylinder": 54,
+   "fishing_net": 0,
+   "floats": 5,
+   "iron_pipeline": 0,
+   "small_propeller": 0,
+   "soft_pipeline": 1
+  },
+  "soft_pipeline": {
+   "big_propeller": 0,
+   "cylinder": 49,
+   "fishing_net": 0,
+   "floats": 0,
+   "iron_pipeline": 0,
+   "small_propeller": 0,
+   "soft_pipeline": 11
+  }
+ },
+ "prompts": [
+  "a forward-looking sonar image of a big propeller",
+  "a forward-looking sonar image of a cylinder",
+  "a forward-looking sonar image of a fishing net",
+  "a forward-looking sonar image of a floats",
+  "a forward-looking sonar image of a iron pipeline",
+  "a forward-looking sonar image of a small propeller",
+  "a forward-looking sonar image of a soft pipeline"
+ ]
+}

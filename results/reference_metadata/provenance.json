@@ -1,0 +1,861 @@
+{
+  "schema": "bibliography-evidence/1",
+  "sources": [
+    {
+      "source_path": "docs/audits/manuscript_recheck_2026-11-19/MarylandOpenAlex.json",
+      "sha256": "41d45b804efa2f7aa1cb2bb8bc7fbb1336c0d1690a0286e233fea240481ff967",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/manuscript_recheck_2026-11-19/ReviewEligibility.json",
+      "sha256": "a39e37fe20289bc43f504a0ed1c104f7f18628fe35539a58bc12952ff1edaafa",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Apply final indexed-record exclusion; retain related DOI without substitution."
+      ]
+    },
+    {
+      "source_path": "docs/audits/remaining_figures_2026-11-19/GRSMReplay.json",
+      "sha256": "912e1f12bfbf735c26e07308fa911f130658a02b5a19b7fe2d02d49eaa0eca6d",
+      "destinations": [
+        "summary.json"
+      ],
+      "transform": [
+        "Cross-check corrected year/theme stacks, totals and name-hit aggregates only."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_desktop_batch_evidence_2026-11-18.json",
+      "sha256": "68a8219537930d17c7d508bc6251a3196351e31c3ba20812a74b28841c912a31",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_desktop_followup_evidence_2026-11-18.json",
+      "sha256": "c59de470e12032c55d65cf9d9050d4bb2bb1425fe93ff9fc99fe2850580ff0aa",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_desktop_method_evidence_2026-11-18.json",
+      "sha256": "bd6cf026b6f457346bde6f3cb5846191b98c129bb7245eb6ea853cef0180f4cc",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_fixed_sample_2026-11-19/Evidence.json",
+      "sha256": "e42af5b53c8b433547a78a66748a687f3f14ac0ffb7e57f1bd5a5563a4601471",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Keep ordered IDs and decision locators; omit field coding and source text.",
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_pmc12699743_2026-11-18.xml",
+      "sha256": "c5ead58440f9b8ad0ca31794d9c1f4be95ecb371d91deab40df1e0913eab5bca",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check publication-type source digest only."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_qualitative_2026-11-19/Evidence.json",
+      "sha256": "ae2950c1313afaddd053b909b6b94b2eb69934eca35d1714ca63859035b04651",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Require final qualitative rate block; omit examples and administrative details."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/AfClipCrossref.body",
+      "sha256": "0de2062e00ae98ef060c5c667fe10c54ae98fda3f9e8f5d8f25ba91edbc8aa27",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/AfClipCrossref.json",
+      "sha256": "5ed07c41fed9093171dbcf3a41ef9e5772e50f52e4c9db3deb9013bdfe99b40b",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/AfClipKci.body",
+      "sha256": "39cdaf118cfca410211b97440f32d0a5b8450e54a9dbdea9b64a1301a61917de",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/AfClipKci.json",
+      "sha256": "a07ffe29781a44831f70567da2cc3b820762d245b9f1652adbb550c1039fb35e",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/ClipSltCrossref.body",
+      "sha256": "7057e4e280bcbf8dd62950682b4b6141d836b3eacac0c14387700a0ce8bf217f",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/ClipSltCrossref.json",
+      "sha256": "2d710449641a19b507c0995e8ddf1635e30f001ec8274bd0af031b6ea77785ed",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/ClipSltKci.body",
+      "sha256": "cd7fb313bcc3af060958cf6831d582af4aac2aee8d5cb534ea41ba2671474de4",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/ClipSltKci.json",
+      "sha256": "c311c2b4c9da9d3e7b8b2443d7a67b0f157cbd6ecb18fcd52963d4e7fa80692a",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/LinkedDataCite.body",
+      "sha256": "22cbc98d6cc35a0745c2b37c75318b83215f3ed402a264276d0f558a7b872038",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/LinkedDataCite.json",
+      "sha256": "9dda8aa5631702024923923b89fa42a96c58203bafd70cb9401b895ffa05474f",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/MarylandCrossrefTitle.body",
+      "sha256": "78c891494ca7cec30eb8f6bd0c8d648b866d19ed7ce953f8cc5e5b8d530312a0",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/MarylandCrossrefTitle.json",
+      "sha256": "8e3217b92c77f5d300a0e08f247509064b9eebb3c3e116d4fe3c7a548e2e55ab",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/MarylandDataCite.body",
+      "sha256": "0b9d002e152747fdd78735b5ce53d2e31bd4d7fee2ee99e5c01441071b4c5d97",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_registry_2026-11-19/MarylandDataCite.json",
+      "sha256": "6cdf34d4ea547aec6269e8e9ad661bd4fba3e9520dd8236ef90ee5de7c8b7ddb",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_source_reconciliation_2026-11-18.json",
+      "sha256": "d018a6f83b9d52b5918c05605df7793bfe2ec5def0e1da2aa315388cbbd9b12f",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_third_intake_evidence_2026-11-18.json",
+      "sha256": "7c72e4ab3d318631e7ef5dbb1dd26184a57f663ecc820e3617b21e5acf4e97c9",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "docs/audits/review_uyghur_intake_2026-11-18.json",
+      "sha256": "dcde331868ad16e7e0b358fc1c719587c612084276e5286d0edb9379ec98fdac",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W4386212341-JournalVersion.pdf",
+      "sha256": "5f5c6940cd9a90f1c86486505686a48f52ba716154f4772ffc4e4b20930eed69",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W4386415485-JournalVersion.pdf",
+      "sha256": "9f60b7bae5fcc682d3281f7af415afb9536301ad6a05f7f37343dc7fc44a5e6b",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W4386523254-Publisher.pdf",
+      "sha256": "11c46374b069464c98112e3f2cf44fbc703ae22681f2be8b4722975954d27ec4",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W4402299662-Publisher.pdf",
+      "sha256": "9bbf8c092356f18ba013c2b50af6899654dbb029b1b8c350a2ef3ebf3e036aec",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W4405754391-Publisher.pdf",
+      "sha256": "f4bf896ca3a1c5f219180de3d060452702db6539c9455971c467881a84f30733",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W4407829787-Publisher.pdf",
+      "sha256": "21372dc9386c3e365bc535914da37bce89b3166ce18e4b091f153d32f94f2534",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W4410809513-JournalVersion.pdf",
+      "sha256": "1520f8f6b8ad5e6dd775c1fdecc02d63c3232012098b5bc56c39ef7e0ebe4ebf",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W4413120455-SampledOriginal.pdf",
+      "sha256": "cfdb79f598b96c8e4959573a5dfc64aae44eacb0724088ced441d6db342b7332",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W4413298899-Publisher.pdf",
+      "sha256": "477e3c172e54150ecf43ee7810ebde65de9325804897a7858930de1bcf095a3c",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7117538602-Publisher.pdf",
+      "sha256": "3210370fe7eee5ddb4d6154c60c99afc2a175d4cd98e6af424169d596624aab1",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7124957330-Publisher.pdf",
+      "sha256": "6149d114b2d91f6a46318ef45344f09c644c72297931ef587bdb60c6e9378e3d",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7134280550-JournalVersion.pdf",
+      "sha256": "175aaee573145638711278c89ef8b15a13ace97367e3fa015dbd285ec7fac155",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7146993862-Publisher.pdf",
+      "sha256": "b3f73fc0b4b74298b1369fa3fbf963608eefb58435be1c4fb028d4a1187c4b11",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7154700415-Publisher.pdf",
+      "sha256": "956303b5782d0ae2b1794d2ef4fd92dc984274d1669906e3b7eae81ec685fbb7",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7155912092-Publisher.pdf",
+      "sha256": "7117342cea16af7e1a29a40b3a490c4928d7e08e12c862c3fd06544e14fbfd26",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7162289496-Publisher.pdf",
+      "sha256": "ad0f8af4cd70b2e5e367bd2cdc027f407e1544bcedc3687c77abbb32aeb1ea45",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7164822190-SampledOriginal.pdf",
+      "sha256": "b46d73c94c64ba478f0a6b23d49a3e179dca4ad48ab6dbc671fbccd043132b91",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7165807763-Publisher.pdf",
+      "sha256": "0d64d32f97a66e666a6a858cbd392378d980af5a3abc83bae4efcb246ddcedb3",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7167211688-Publisher.pdf",
+      "sha256": "d2c076cc6ea9b8c8e649f9b720076994489376e6231d7db060fee52010d66eee",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7167784462-JournalVersion.pdf",
+      "sha256": "6f98c45f75b199dee92884177da16af636e32ed36f59ee93abc578b4f263a8bd",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7202073291-Publisher.pdf",
+      "sha256": "840744e5a8371801cc32bbaf1592c83eef211266d65cb4b4a71be788734200fa",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7202266189-Publisher.pdf",
+      "sha256": "7514811b261398e3ce80cd94919dee21c1280c83daddfb8579c69421247f7479",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7204005328-Publisher.pdf",
+      "sha256": "a278e45e3f054e5e24ad9a1fb2ab5c464228dd41c360093a9979f10cd3ee4ff7",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7204173714-Publisher.pdf",
+      "sha256": "2ecdc69fcd6b60a37ac323c787c9c0a256805d14f957da6c365c5d2e4df64cfc",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7204444546-Publisher.pdf",
+      "sha256": "3117896ded26274523fa6c72d835dd475bafab34f5e88ddd938da3d3d5b94bd8",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7208746691-Publisher.pdf",
+      "sha256": "7284c06ca19c2e9775fbbbcf4032c9446a43437236acff4f29c39974ec4134bd",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7213885098-Publisher.pdf",
+      "sha256": "e5c4f9ffce82540fd34b4379bc76ff9efe3979a7f427ceaada481addaac534e6",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/incoming/W7222394121-Publisher.pdf",
+      "sha256": "163fc20ea45603f7ee2c5e358d42aa652293a64d650ec64e321e148e8455cf61",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/pdf/W4405887239.pdf",
+      "sha256": "2e89e7093faa6dec168f2c6cb931244d064604f47650ce0f166a3998dfd43f13",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/pdf/W4408703454.pdf",
+      "sha256": "e86c1de75bf18e17a57bc032f6025f70422dc0ae0238c1bc1457736f0ba1000e",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/pdf/W4415397576.pdf",
+      "sha256": "bac2d758e030b02dcb32acdc372c54ecccaf167f664624f81ae0a120836a9237",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/pdf/W4415600409.pdf",
+      "sha256": "13b831af047237d2f5e25ed3edc2169378bfd8c44bd0332a4b1353fb77f7e47a",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/pdf/W4416070421.pdf",
+      "sha256": "397c7b43c06d642dda10cd1a860ed09ad5bf076b35a829c241a78b2a19b4ed69",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/pdf/W7142875041.pdf",
+      "sha256": "cd806e333e9cc68b4b16d4c4fa5dcd8229d14dc043151480f4f487d3c5b6cbcc",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported.",
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/pdf/W7160856645.pdf",
+      "sha256": "55c1425f1be25dab66ed89ebe69dd338ec380ce662c2969546f2db3e72fe4c87",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "local_runs/review_fulltext/pdf/W7204908659.pdf",
+      "sha256": "f2d277825f6672596f4f03a81271941fd6fd0aafbdf295ba6fd9c04316f8e8ca",
+      "destinations": [
+        "fixed_sample.json"
+      ],
+      "transform": [
+        "Check edition digest only; no PDF bytes exported."
+      ]
+    },
+    {
+      "source_path": "paper_review_prl/pr_review/audit_corpus_2026-11-06.json",
+      "sha256": "9d5093a5cce6c44c7f5b1f10ab1583e3d3d46a95663ef334a258490a94650dbd",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "paper_review_prl/pr_review/build_audit_corpus.py",
+      "sha256": "64d8019b7ad75138b3f40034f17628e7fb7a94441181794be3d3a1e93f9c2e33",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "paper_review_prl/pr_review/fulltext_desktop_priority_2026-11-18.json",
+      "sha256": "00e66c607f7c5407284646b76ee144d064a9bed6e6e3fbdb5cfa26ce2288977b",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "paper_review_prl/pr_review/fulltext_journal_comparison_2026-11-18.json",
+      "sha256": "fb526ba36177ae1a3c19938fe220328d58f8a198d32e69d8d214a2cd0a7f2a67",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "paper_review_prl/pr_review/fulltext_ledger_2026-11-18.json",
+      "sha256": "3cc510447b9aecc01ecc714610e5b8c98ab6862a1629264bd4cae37bed00892e",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Byte-check upstream decision evidence only; no raw content exported."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/PUBLISHING_MANIFEST.json",
+      "sha256": "fb0a93c804d9c5a8f0845163cd1615407740360892824665ea896d7bf6abf9f1",
+      "destinations": [
+        "summary.json"
+      ],
+      "transform": [
+        "Cross-check only harvest/dedup/DOI counts; omit all audit and publication claims."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/analysis/trends_2026-11.json",
+      "sha256": "259af0fead74469f7529bca8ece3026361fcdadda75b0b8fc8dc30692383f440",
+      "destinations": [
+        "summary.json"
+      ],
+      "transform": [
+        "Validate only replayable metadata and dataset-name aggregates; discard disclosure."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/literature/abstracts_2026-10-27.json",
+      "sha256": "5aca1cf2fff25375404280ab381aeb30f2862ca6643708e6fc860b59db2efb2d",
+      "destinations": [
+        "dataset_mentions.json"
+      ],
+      "transform": [
+        "Project metadata and regex name-hit labels only; omit text and inverted index."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/literature/dedup_2026-10-27.json",
+      "sha256": "9d8288262f5c49718a4650603fa3ac91a63f2b66f5a17183b8c6634ba59983b0",
+      "destinations": [
+        "deduplicated.json"
+      ],
+      "transform": [
+        "Keep every keyed record and allowlisted bibliographic field."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/literature/raw_2026-10-27.json",
+      "sha256": "ffe015b804a902d7e1b26e219936f7cec856b4c4923667dc5ef24e8ae73be153",
+      "destinations": [
+        "harvest.json"
+      ],
+      "transform": [
+        "Keep every query hit and allowlisted bibliographic field."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/literature/summary_2026-10-27.json",
+      "sha256": "4a82828220729818b7c3e15d0f6529bc432f88608925c0586a85d3a650b849e2",
+      "destinations": [
+        "summary.json"
+      ],
+      "transform": [
+        "Validate every archived harvest count and ordered-query novelty count."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/literature/verified_2026-10-27.json",
+      "sha256": "d40f7daa2fef921b4a7360d407f802e0818ba17387bf0cbe8f107f359ce0477e",
+      "destinations": [
+        "doi_screen.json"
+      ],
+      "transform": [
+        "Keep passing registry title evidence and bibkey; join to deduplicated metadata."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/literature/verify_summary_2026-10-27.json",
+      "sha256": "88c194b080f59fb83e76d64fa593b35bf9bf5d909cd2676c4b3b007ee0a5d5c2",
+      "destinations": [
+        "doi_screen.json"
+      ],
+      "transform": [
+        "Keep DOI failure ledger and title threshold; validate screen counts."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/screening/core_2026-10-27.json",
+      "sha256": "a3412df7205933a830a22aea1fdcbff52cd79e2ae9d4a2c04a58c939524259c4",
+      "destinations": [
+        "selection.json"
+      ],
+      "transform": [
+        "Keep keyed group membership and matched terms; strip ordinal labels."
+      ]
+    },
+    {
+      "source_path": "paper_rsvlm_survey/scripts/analyse_corpus_trends.py",
+      "sha256": "ff12ff4cfdcbd19c9da50f64e66563fce1b194b407bd4a220707a72c8d28c5d1",
+      "destinations": [
+        "replay.py"
+      ],
+      "transform": [
+        "Historical theme, citation and name-hit algorithms; ported without plots or disclosure."
+      ]
+    },
+    {
+      "source_path": "tools/_p1790_rsvlm_lit_harvest.py",
+      "sha256": "31dc5d85f69c802555490f68138e2cffbfb5a8d93648610ba4e4113b3bb92910",
+      "destinations": [
+        "replay.py"
+      ],
+      "transform": [
+        "Historical first-hit merge and query tracking; not executed."
+      ]
+    },
+    {
+      "source_path": "tools/_p1791_rsvlm_verify_bib.py",
+      "sha256": "ca3476bf3a9215fae69a6c76fa5473af2bce5ddcb7d5c3009ddfb7b0eebcac2f",
+      "destinations": [
+        "replay.py"
+      ],
+      "transform": [
+        "Historical registry routing and title screen; replayed without requests."
+      ]
+    },
+    {
+      "source_path": "tools/_review_fixed_sample_closure_2026_11_19.py",
+      "sha256": "8f836ee767c65de91284769384fed86bc7b859d4c0ec2a4f310e3cbd0d12fe7e",
+      "destinations": [
+        "fixed_sample.json",
+        "summary.json"
+      ],
+      "transform": [
+        "Historical closure calculation inspected, not run; corrected eligibility supersedes its pending case."
+      ]
+    },
+    {
+      "source_path": "tools/release_v33/bibliography.py",
+      "sha256": "b0438f44d647164936b1dabe29bfb2a96cdbbdb39ba49080c2d070e52c64e407",
+      "destinations": [
+        "README.md",
+        "replay.py",
+        "summary.json"
+      ],
+      "transform": [
+        "Extract the standalone replay section and generate the technical README and exact summary."
+      ]
+    }
+  ],
+  "public_sha256": {
+    "harvest.json": "d3d1883130fbc03967aee69e5f7dcdacd49078caf5b288f65c9496d38aee532e",
+    "deduplicated.json": "8bef62886ad74db66ff411fa89fb3281c9395e1782509ea62f346a8c2c8d22f8",
+    "doi_screen.json": "b71c30c41f4cec8cdb12a01b35b3e1aa16fe0ebe29120d76fa8e7f662cf382bf",
+    "selection.json": "0a1fb65ca27190dfc8b551812fa84dc197d4fc5d9e60e00a33d8c19f7ec8559b",
+    "dataset_mentions.json": "9aeb5bdad01bc034af7a12aa937d5dbeef49a9701b0b9aa2cf8a6093a92e73a4",
+    "fixed_sample.json": "983c250d9091aaa7b4a90a58a275363bd9373dc5f12cab082f2a12deaabe22af",
+    "summary.json": "80d1ccbca9e62de4b6c2c6f896a458299cbde04a64fc8e54f50c6e2c104e4832",
+    "README.md": "2577bfdc1cf8c95fe43b25a9d12c0168594f8eb461421cc028377ae008d29a11",
+    "replay.py": "03bb6a8095b931e52b63c923d1f91097bf64d915fdf3a81afa30a75be4342de7"
+  }
+}

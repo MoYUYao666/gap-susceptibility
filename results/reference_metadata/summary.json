@@ -1,0 +1,365 @@
+{
+  "harvest": {
+    "n_queries": 24,
+    "n_raw": 960,
+    "n_dedup": 833,
+    "n_with_doi": 826,
+    "n_without_doi": 7,
+    "n_retracted": 0,
+    "overlap_ge2_queries": 92,
+    "per_theme": {
+      "remote sensing image-text retrieval": {
+        "n": 40,
+        "new": 40
+      },
+      "remote sensing image captioning": {
+        "n": 40,
+        "new": 40
+      },
+      "remote sensing visual question answering": {
+        "n": 40,
+        "new": 40
+      },
+      "remote sensing vision-language model": {
+        "n": 40,
+        "new": 38
+      },
+      "CLIP remote sensing": {
+        "n": 40,
+        "new": 36
+      },
+      "vision-language pretraining remote sensing": {
+        "n": 40,
+        "new": 21
+      },
+      "foundation model earth observation": {
+        "n": 40,
+        "new": 39
+      },
+      "parameter-efficient fine-tuning remote sensing": {
+        "n": 40,
+        "new": 37
+      },
+      "Low-Rank Adaptation remote sensing": {
+        "n": 40,
+        "new": 29
+      },
+      "prompt learning remote sensing classification": {
+        "n": 40,
+        "new": 34
+      },
+      "multimodal large language model remote sensing": {
+        "n": 40,
+        "new": 30
+      },
+      "remote sensing benchmark multimodal": {
+        "n": 40,
+        "new": 35
+      },
+      "text-to-image generation remote sensing": {
+        "n": 40,
+        "new": 29
+      },
+      "zero-shot scene classification remote sensing": {
+        "n": 40,
+        "new": 33
+      },
+      "cross-modal retrieval satellite imagery": {
+        "n": 40,
+        "new": 38
+      },
+      "instruction tuning remote sensing": {
+        "n": 40,
+        "new": 23
+      },
+      "learning transferable visual models from natural language supervision": {
+        "n": 40,
+        "new": 38
+      },
+      "sigmoid loss for language image pre-training": {
+        "n": 40,
+        "new": 38
+      },
+      "reproducible scaling of contrastive language-image pretraining": {
+        "n": 40,
+        "new": 40
+      },
+      "BLIP-2 bootstrapping language-image pre-training": {
+        "n": 40,
+        "new": 37
+      },
+      "visual instruction tuning multimodal large language model": {
+        "n": 40,
+        "new": 37
+      },
+      "Flamingo visual language model few-shot": {
+        "n": 40,
+        "new": 31
+      },
+      "modality gap contrastive representation learning": {
+        "n": 40,
+        "new": 39
+      },
+      "image-text retrieval benchmark recall": {
+        "n": 40,
+        "new": 31
+      }
+    }
+  },
+  "doi_screen": {
+    "checked": 826,
+    "verified": 821,
+    "failed": 5,
+    "title_similarity_threshold": 0.8,
+    "failures": {
+      "10.1016/j.cviu.2024.104254": {
+        "doi": "10.1016/j.cviu.2024.104254",
+        "title": "RS 3 Lip: Consistency for remote sensing image classification on part embeddings using self-supervised learning and CLIP",
+        "error": "title mismatch"
+      },
+      "10.11947/j.agcs.2020.20200139": {
+        "doi": "10.11947/j.agcs.2020.20200139",
+        "title": "Zero-shot remote sensing image scene classification based on robust cross-domain mapping and gradual refinement of semantic space",
+        "error": "HTTP Error 404: Not Found"
+      },
+      "10.16356/j.1005-1120.2025.01.008": {
+        "doi": "10.16356/j.1005-1120.2025.01.008",
+        "title": "Efficient Reconstruction of Spatial Features for Remote Sensing Image⁃Text Retrieval",
+        "error": "HTTP Error 404: Not Found"
+      },
+      "10.71465/csb165": {
+        "doi": "10.71465/csb165",
+        "title": "Cross-Modal Index Alignment: Bridging Vision and Language in Neural Retrieval Architectures",
+        "error": "HTTP Error 404: Not Found"
+      },
+      "10.3778/j.issn.1673-9418.2505064": {
+        "doi": "10.3778/j.issn.1673-9418.2505064",
+        "title": "Cross-Modal Knowledge Introduction and Prompt Inference Framework for Remote Sensing Visual Question Answering",
+        "error": "HTTP Error 404: Not Found"
+      }
+    }
+  },
+  "trends": {
+    "source_records": {
+      "verified": 821,
+      "deduplicated": 833,
+      "abstracts": 149
+    },
+    "volume_by_year_theme": {
+      "2019": {
+        "other": 8,
+        "pretraining": 4,
+        "retrieval": 3,
+        "captioning": 4,
+        "general VLM": 2,
+        "datasets/benchmarks": 1
+      },
+      "2020": {
+        "datasets/benchmarks": 2,
+        "other": 8,
+        "vqa/instruction": 3,
+        "retrieval": 4,
+        "captioning": 9,
+        "pretraining": 1
+      },
+      "2021": {
+        "other": 16,
+        "pretraining": 6,
+        "datasets/benchmarks": 3,
+        "retrieval": 4,
+        "vqa/instruction": 1,
+        "captioning": 6,
+        "general VLM": 2
+      },
+      "2022": {
+        "datasets/benchmarks": 7,
+        "pretraining": 19,
+        "other": 10,
+        "retrieval": 7,
+        "captioning": 9,
+        "vqa/instruction": 3,
+        "general VLM": 1
+      },
+      "2023": {
+        "general VLM": 4,
+        "other": 26,
+        "datasets/benchmarks": 4,
+        "vqa/instruction": 10,
+        "retrieval": 17,
+        "pretraining": 14,
+        "captioning": 5
+      },
+      "2024": {
+        "pretraining": 40,
+        "vqa/instruction": 26,
+        "other": 37,
+        "general VLM": 17,
+        "retrieval": 24,
+        "captioning": 7,
+        "datasets/benchmarks": 6
+      },
+      "2025": {
+        "vqa/instruction": 36,
+        "general VLM": 43,
+        "pretraining": 63,
+        "datasets/benchmarks": 7,
+        "other": 52,
+        "retrieval": 34
+      },
+      "2026": {
+        "pretraining": 58,
+        "vqa/instruction": 30,
+        "general VLM": 33,
+        "other": 58,
+        "retrieval": 22,
+        "datasets/benchmarks": 5
+      }
+    },
+    "year_totals": {
+      "2019": 22,
+      "2020": 27,
+      "2021": 38,
+      "2022": 56,
+      "2023": 80,
+      "2024": 157,
+      "2025": 235,
+      "2026": 206
+    },
+    "top_venues": [
+      {
+        "venue": "IEEE Transactions on Geoscience and Remote Sensing",
+        "records": 124
+      },
+      {
+        "venue": "Remote Sensing",
+        "records": 71
+      },
+      {
+        "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+        "records": 52
+      },
+      {
+        "venue": "IEEE Geoscience and Remote Sensing Letters",
+        "records": 32
+      },
+      {
+        "venue": "ISPRS Journal of Photogrammetry and Remote Sensing",
+        "records": 28
+      },
+      {
+        "venue": "IEEE Geoscience and Remote Sensing Magazine",
+        "records": 19
+      },
+      {
+        "venue": "Applied Sciences",
+        "records": 19
+      },
+      {
+        "venue": "IEEE Access",
+        "records": 17
+      },
+      {
+        "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+        "records": 14
+      },
+      {
+        "venue": "IEEE Transactions on Multimedia",
+        "records": 14
+      }
+    ],
+    "citations": {
+      "median_by_year": {
+        "2019": 62.5,
+        "2020": 100,
+        "2021": 84.0,
+        "2022": 59.5,
+        "2023": 33.5,
+        "2024": 22,
+        "2025": 5,
+        "2026": 0.0
+      },
+      "top10_share_of_citations": 0.701,
+      "records": 821,
+      "total_citations": 52200
+    },
+    "dataset_name_mentions": {
+      "n_abstracts": 149,
+      "n_with_dataset_mention": 16,
+      "counts": {
+        "RSICD": 8,
+        "RSITMD": 4,
+        "NWPU-Captions": 2,
+        "UCM-Captions": 3,
+        "Sydney-Captions": 2,
+        "AID": 4,
+        "DIOR": 1,
+        "RS5M": 1,
+        "RSICap": 1,
+        "LEVIR-CC": 0
+      }
+    },
+    "screened_core": {
+      "foundations": 34,
+      "datasets": 34,
+      "pretraining": 34,
+      "adaptation": 34,
+      "evaluation": 34
+    },
+    "screened_core_unique": 170,
+    "mention_records_outside_verified": 10
+  },
+  "fixed_sample": {
+    "fixed_sample_n": 40,
+    "sample_seed": 20261106,
+    "eligibility_counts": {
+      "eligible": 30,
+      "outside_scope": 10
+    },
+    "eligible_ids": [
+      "W4405754391",
+      "W4415600409",
+      "W7160856645",
+      "W4386523254",
+      "W7146993862",
+      "W7208746691",
+      "W7117538602",
+      "W4407829787",
+      "W7213885098",
+      "W4413120455",
+      "W7222394121",
+      "W7134280550",
+      "W7202266189",
+      "W4386212341",
+      "W7167211688",
+      "W7155912092",
+      "W4386415485",
+      "W7204908659",
+      "W7204173714",
+      "W7202073291",
+      "W4416070421",
+      "W7124957330",
+      "W7164822190",
+      "W7162289496",
+      "W4413298899",
+      "W7165807763",
+      "W7154700415",
+      "W7204005328",
+      "W4410809513",
+      "W7167784462"
+    ],
+    "outside_scope_ids": [
+      "W4402299662",
+      "W4405887239",
+      "W4407182975",
+      "W4408703454",
+      "W4415397576",
+      "W4417277128",
+      "W7142875041",
+      "W7163673823",
+      "W7203720228",
+      "W7204444546"
+    ],
+    "unresolved_ids": [],
+    "rates_authorized": false
+  }
+}

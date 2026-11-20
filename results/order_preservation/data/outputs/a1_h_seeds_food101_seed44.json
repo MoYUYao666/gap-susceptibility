@@ -1,0 +1,138 @@
+{
+ "meta": {
+  "script": "tools/a1_h_e4_seed.py",
+  "experiment": "A1 hardening item 2 -- seed spread for the non-Flickr30k LoRA checkpoints",
+  "derived_from": "tools/a1_rr_e4_train.py (verbatim trainer/evaluator; the ONLY change is that checkpoints are written to outputs/a1_rr_ckpt/seed<seed>/<dataset>/ so the pre-existing seed-42 checkpoints are preserved)",
+  "model": "openai/clip-vit-base-patch32",
+  "dataset": "food101",
+  "epochs": 10,
+  "seed": 44,
+  "batch": 64,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "lora": {
+   "rank": 8,
+   "alpha": 16.0,
+   "vision": true,
+   "text": true,
+   "trainable_selection": "named_parameters() with requires_grad and 'lora_' in name"
+  },
+  "n_trainable_lora_params": 491520,
+  "n_total_params": 151768833,
+  "n_steps": 320,
+  "data": {
+   "source": "food101 train split via torchvision (root=\"data\")",
+   "split": "train",
+   "n_pairs_total": 75750,
+   "n_classes": 101,
+   "sampling": "uniform without replacement over images, seed 44",
+   "caption_construction": "'a photo of a {class name}' (class-name protocol)",
+   "dataset": "food101",
+   "n_pairs_used": 2000,
+   "n_unique_images": 2000,
+   "ckpt_dir": "outputs/a1_rr_ckpt\\seed44\\food101"
+  },
+  "eval_protocol": "tools/clip_a1_tau_trajectory.py evaluator; frozen top-5 sets; checkpoint scores image x text with its OWN text tower",
+  "checkpoint": "outputs/a1_rr_ckpt\\seed44\\food101\\epoch10.pt",
+  "shard_sig": "d13718e47e9e41c2",
+  "n_tau_images": 5000,
+  "placeholder_class_index": 1000,
+  "runtime_s": 894.9
+ },
+ "frozen": {
+  "tag": "frozen",
+  "CG_flickr_val": 0.81565,
+  "image_only": {
+   "legacy1001": {
+    "top1_5k": 59.1,
+    "tau_by_k": {
+     "1": null,
+     "3": 1.0,
+     "5": 1.0,
+     "10": 1.0,
+     "20": 1.0
+    }
+   },
+   "clean1000": {
+    "top1_5k": 59.1,
+    "tau_by_k": {
+     "1": null,
+     "3": 1.0,
+     "5": 1.0,
+     "10": 1.0,
+     "20": 1.0
+    }
+   }
+  }
+ },
+ "history": [
+  {
+   "epoch": 1,
+   "train_loss": 0.9456365844234824
+  },
+  {
+   "epoch": 2,
+   "train_loss": 0.7417745813727379
+  },
+  {
+   "epoch": 3,
+   "train_loss": 0.6173577669542283
+  },
+  {
+   "epoch": 4,
+   "train_loss": 0.5399399697780609
+  },
+  {
+   "epoch": 5,
+   "train_loss": 0.4902454959228635
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.5118013909086585
+  },
+  {
+   "epoch": 7,
+   "train_loss": 0.4527110541239381
+  },
+  {
+   "epoch": 8,
+   "train_loss": 0.4568128725513816
+  },
+  {
+   "epoch": 9,
+   "train_loss": 0.4270623947959393
+  },
+  {
+   "epoch": 10,
+   "train_loss": 0.47131514982902445
+  }
+ ],
+ "result": {
+  "tag": "food101_r8_both",
+  "image_only": {
+   "legacy1001": {
+    "top1_5k": 58.34,
+    "tau_by_k": {
+     "1": null,
+     "3": 0.5968,
+     "5": 0.564444,
+     "10": 0.528934,
+     "20": 0.507022
+    }
+   },
+   "clean1000": {
+    "top1_5k": 58.34,
+    "tau_by_k": {
+     "1": null,
+     "3": 0.596667,
+     "5": 0.564444,
+     "10": 0.528916,
+     "20": 0.507135
+    }
+   }
+  },
+  "CG_flickr_val": 0.837577,
+  "top1_50k_legacy1001": 57.766,
+  "top1_50k_clean1000": 57.766
+ }
+}

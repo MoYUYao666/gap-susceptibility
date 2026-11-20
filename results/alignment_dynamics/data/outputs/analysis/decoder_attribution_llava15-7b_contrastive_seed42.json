@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "script": "tools/_p1612_objective_control_multimodel.py",
+    "mode": "apply",
+    "model": "llava15-7b",
+    "model_repo": "llava-hf/llava-1.5-7b-hf",
+    "model_family": "llava-1.5",
+    "model_class": "LlavaForConditionalGeneration",
+    "model_source": "models/llava-hf",
+    "revision": "local snapshot (llava-hf); no hash recorded",
+    "protocol": "reduced",
+    "protocol_note": "local 2B control protocol (tools/_p1595_qwen_objective_control.py, seed 42)",
+    "nonfinite_steps_skipped": 0,
+    "epochs_reported": 1,
+    "epochs_requested": 1,
+    "final_epoch_truncated": false,
+    "objective": "contrastive",
+    "arm": "text_only",
+    "seed": 42,
+    "epochs": 1,
+    "num_samples": 160,
+    "batch": 4,
+    "batch_origin": "protocol default",
+    "lr": 0.0001,
+    "precision": "4-bit nf4",
+    "max_image_tokens": 144,
+    "image_tokens_realised": 2304,
+    "image_token_budget_applied_via": "not applied (fixed-crop image processor)",
+    "image_token_id": 32000,
+    "backbone_path": "model",
+    "lm_head_called": false,
+    "dataset": "data/marine_captions (536 image-caption pairs; first --num-samples used)",
+    "lora": {
+      "r": 8,
+      "alpha": 16,
+      "dropout": 0.05
+    },
+    "lora_targets": 224,
+    "n_trainable": 19988480,
+    "n_vision_adapters": 0,
+    "n_language_adapters": 448,
+    "n_projector_adapters": 0,
+    "gradient_checkpointing": true,
+    "measurement": {
+      "I": "mean pool of final hidden state over image-token positions",
+      "T": "mean pool over caption positions (after last image token, before <|im_end|>)",
+      "normalisation": "L2 per side, no projection",
+      "DG*": "mean_i ||I_i - T_i||^2",
+      "scope": "whole evaluation set, measured once before training and once per epoch"
+    },
+    "elapsed_sec": 633.3,
+    "versions": {
+      "torch": "2.9.1+cu130",
+      "cuda": "13.0",
+      "transformers": "5.16.1",
+      "peft": "0.20.0",
+      "python": "3.12.14"
+    },
+    "hostname": "Wan",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "contrastive_protocol": {
+      "loss": "symmetric cross-entropy over I @ T.T within the batch",
+      "eval": "image+caption forward pass"
+    },
+    "frozen_signature": {
+      "model": "llava15-7b",
+      "model_repo": "llava-hf/llava-1.5-7b-hf",
+      "protocol": "reduced",
+      "num_samples": 160,
+      "image_tokens": 144,
+      "batch": 4,
+      "seed": 42,
+      "precision": "4-bit nf4",
+      "arm": "text_only",
+      "mode": "apply"
+    },
+    "ab_check": {
+      "problems": "A/B mismatch between the two objectives of llava15-7b seed 42: protocol: 'reduced' vs 'match'; num_samples: 160 vs 320; epochs: 1 vs 3; max_image_tokens: 144 vs 196; batch: 4 vs 2; arm: 'text_only' vs 'both'; frozen_signature: {'model': 'llava15-7b', 'model_repo': 'llava-hf/llava-1.5-7b-hf', 'protocol': 'reduced', 'num_samples': 160, 'image_tokens': 144, 'batch': 4, 'seed': 42, 'precision': '4-bit nf4', 'arm': 'text_only', 'mode': 'apply'} vs {'model': 'llava15-7b', 'model_repo': 'llava-hf/llava-1.5-7b-hf', 'protocol': 'match', 'num_samples': 320, 'image_tokens': 196, 'batch': 2, 'seed': 42, 'precision': '4-bit nf4', 'arm': 'both', 'mode': 'apply'}\nBoth objectives must share protocol and adaptation setup."
+    }
+  },
+  "frozen_dg_star": 0.457763671875,
+  "frozen_cg": 0.572265625,
+  "dg_star": [
+    0.3681640625
+  ],
+  "cg": [
+    0.396484375
+  ],
+  "loss": [
+    1.2811767578125
+  ],
+  "delta_DG_percent": -19.573333333333334
+}

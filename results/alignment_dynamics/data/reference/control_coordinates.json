@@ -1,0 +1,632 @@
+{
+  "fig1": {
+    "curves": {
+      "Full FT": {
+        "archive": "outputs/flickr30k/baseline_full_ft/gap_history.json",
+        "epoch": [
+          0,
+          1,
+          2,
+          4,
+          6,
+          8,
+          10
+        ],
+        "centroid_gap": [
+          0.8185699582099915,
+          1.0523297786712646,
+          1.019913911819458,
+          0.9966039061546326,
+          1.0065339803695679,
+          1.0116689205169678,
+          1.017950415611267
+        ]
+      },
+      "text-only": {
+        "archive": "outputs/flickr30k/rq2_text_only/gap_history.json",
+        "epoch": [
+          0,
+          1,
+          2,
+          4,
+          6,
+          8,
+          10
+        ],
+        "centroid_gap": [
+          0.8183847665786743,
+          0.80234295129776,
+          0.8065677881240845,
+          0.7764647006988525,
+          0.7615624070167542,
+          0.7547605633735657,
+          0.7548404335975647
+        ]
+      },
+      "both": {
+        "archive": "outputs/flickr30k/rq2_both/gap_history.json",
+        "epoch": [
+          0,
+          1,
+          2,
+          4,
+          6,
+          8,
+          10
+        ],
+        "centroid_gap": [
+          0.818446159362793,
+          0.8354383707046509,
+          0.8248369097709656,
+          0.8077656030654907,
+          0.7887701988220215,
+          0.7873081564903259,
+          0.7860590219497681
+        ]
+      }
+    },
+    "text_only_band": {
+      "sources": [
+        "outputs/flickr30k_seeds/rq2_text_only/seed1024/gap_history.json",
+        "outputs/flickr30k_seeds/rq2_text_only/seed123/gap_history.json",
+        "outputs/flickr30k_seeds/rq2_text_only/seed42/gap_history.json",
+        "outputs/flickr30k_seeds/rq2_text_only/seed456/gap_history.json",
+        "outputs/flickr30k_seeds/rq2_text_only/seed789/gap_history.json"
+      ],
+      "lower": [
+        0.818308413028717,
+        0.8017075657844543,
+        0.8043022155761719,
+        0.7891935110092163,
+        0.7722938656806946,
+        0.7707814574241638,
+        0.7704600691795349
+      ],
+      "upper": [
+        0.8185413479804993,
+        0.8240765929222107,
+        0.8202465176582336,
+        0.796739935874939,
+        0.7841912508010864,
+        0.7768227458000183,
+        0.7757079005241394
+      ],
+      "meaning": "Range across stored seeds, not a confidence interval"
+    }
+  },
+  "fig3": [
+    {
+      "archive": "outputs/flickr30k/alpha_16/gap_history.json",
+      "alpha": 16,
+      "delta_cg": -0.04473644495010376
+    },
+    {
+      "archive": "outputs/flickr30k/alpha_32/gap_history.json",
+      "alpha": 32,
+      "delta_cg": -0.07076150178909302
+    },
+    {
+      "archive": "outputs/flickr30k/alpha_4/gap_history.json",
+      "alpha": 4,
+      "delta_cg": -0.016932785511016846
+    },
+    {
+      "archive": "outputs/flickr30k/alpha_64/gap_history.json",
+      "alpha": 64,
+      "delta_cg": -0.08076262474060059
+    },
+    {
+      "archive": "outputs/flickr30k/alpha_8/gap_history.json",
+      "alpha": 8,
+      "delta_cg": -0.02276557683944702
+    }
+  ],
+  "fig4": {
+    "LoRA": {
+      "text_only": {
+        "records": [
+          {
+            "archive": "outputs/strict_freeze/text_only/seed1024/results.json",
+            "value": -0.04271531105041504
+          },
+          {
+            "archive": "outputs/strict_freeze/text_only/seed123/results.json",
+            "value": -0.04964923858642578
+          },
+          {
+            "archive": "outputs/strict_freeze/text_only/seed42/results.json",
+            "value": -0.04429280757904053
+          },
+          {
+            "archive": "outputs/strict_freeze/text_only/seed456/results.json",
+            "value": -0.049181997776031494
+          },
+          {
+            "archive": "outputs/strict_freeze/text_only/seed789/results.json",
+            "value": -0.046685218811035156
+          }
+        ],
+        "mean": -0.0465049147605896,
+        "sample_sd": 0.003014157005147766
+      },
+      "both": {
+        "records": [
+          {
+            "archive": "outputs/strict_freeze/both/seed1024/results.json",
+            "value": -0.025286316871643066
+          },
+          {
+            "archive": "outputs/strict_freeze/both/seed123/results.json",
+            "value": -0.029033422470092773
+          },
+          {
+            "archive": "outputs/strict_freeze/both/seed42/results.json",
+            "value": -0.025294363498687744
+          },
+          {
+            "archive": "outputs/strict_freeze/both/seed456/results.json",
+            "value": -0.020528137683868408
+          },
+          {
+            "archive": "outputs/strict_freeze/both/seed789/results.json",
+            "value": -0.028982818126678467
+          }
+        ],
+        "mean": -0.02582501173019409,
+        "sample_sd": 0.0034962227858234226
+      },
+      "vision_only": {
+        "records": [
+          {
+            "archive": "outputs/strict_freeze/vision_only/seed1024/results.json",
+            "value": 0.004869282245635986
+          },
+          {
+            "archive": "outputs/strict_freeze/vision_only/seed123/results.json",
+            "value": 0.01260298490524292
+          },
+          {
+            "archive": "outputs/strict_freeze/vision_only/seed42/results.json",
+            "value": 0.010769128799438477
+          },
+          {
+            "archive": "outputs/strict_freeze/vision_only/seed456/results.json",
+            "value": 0.016422271728515625
+          },
+          {
+            "archive": "outputs/strict_freeze/vision_only/seed789/results.json",
+            "value": 0.008198201656341553
+          }
+        ],
+        "mean": 0.010572373867034912,
+        "sample_sd": 0.0043745098699675255
+      }
+    },
+    "Adapter": {
+      "adapter_text_only": {
+        "dCG_common_mean": 0.1848,
+        "n": 5
+      },
+      "adapter_all_7": {
+        "dCG_common_mean": 0.2293,
+        "n": 7
+      }
+    }
+  },
+  "fig2_v5_falsification": {
+    "ranks": [
+      1,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "measured_norms": [
+      13.036840528346644,
+      12.754158144576259,
+      13.36903743945607,
+      13.126799395749458,
+      14.093260333999085,
+      13.814544017699363
+    ],
+    "sqrt_reference": [
+      13.036840528346644,
+      26.07368105669329,
+      36.87375337136611,
+      52.14736211338658,
+      73.74750674273221,
+      104.29472422677316
+    ]
+  },
+  "fig4_effective_rank": {
+    "ranks": [
+      1,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "normalized_measured": [
+      1.0,
+      0.9783166494093615,
+      1.025481397151949,
+      1.006900358043593,
+      1.0810334224274214,
+      1.0596542918249034
+    ],
+    "sqrt_reference": [
+      1.0,
+      2.0,
+      2.8284271247461903,
+      4.0,
+      5.656854249492381,
+      8.0
+    ],
+    "illustrative_band": [
+      0.95,
+      1.05
+    ]
+  },
+  "fig8a_rank_delta": {
+    "text_only": {
+      "vision_rank_delta_mean": 0.0,
+      "text_rank_delta_mean": 0.4611843327681221
+    },
+    "both": {
+      "vision_rank_delta_mean": -0.04213943481445277,
+      "text_rank_delta_mean": 0.3672326564788815
+    },
+    "vision_only": {
+      "vision_rank_delta_mean": -0.058771816889445105,
+      "text_rank_delta_mean": 0.0
+    }
+  },
+  "fig8b_budget": {
+    "text_only": {
+      "n_trainable_params": 196608
+    },
+    "both": {
+      "n_trainable_params": 491520
+    },
+    "vision_only": {
+      "n_trainable_params": 294912
+    },
+    "legacy": 145170177
+  },
+  "fig12_zeroshot_more": {
+    "archive": "outputs/zeroshot_extra.json",
+    "values": {
+      "DTD": {
+        "Frozen": 43.27,
+        "Text-only": 43.33,
+        "Both": 42.53
+      },
+      "Food101": {
+        "Frozen": 80.6,
+        "Text-only": 80.67,
+        "Both": 79.73
+      }
+    },
+    "status": "Exact input coordinates extracted; current PDF geometry not independently matched to each numeric vertex."
+  },
+  "fig10_layered_ft": {
+    "archive": "outputs/layered_ft_results.json",
+    "values": {
+      "Frozen": [
+        [
+          0,
+          0.8137204647064209,
+          0.6166666746139526
+        ]
+      ],
+      "Text-only": [
+        [
+          0,
+          0.8136703372001648,
+          0.6233333349227905
+        ],
+        [
+          1,
+          1.286501407623291,
+          0.009999999776482582
+        ],
+        [
+          2,
+          1.2140452861785889,
+          0.04333333298563957
+        ],
+        [
+          3,
+          1.1177430152893066,
+          0.2433333396911621
+        ],
+        [
+          4,
+          1.0603349208831787,
+          0.3566666543483734
+        ],
+        [
+          5,
+          1.0508248805999756,
+          0.4266666769981384
+        ]
+      ],
+      "Text + Vis-L1": [
+        [
+          0,
+          0.8133974075317383,
+          0.6266666650772095
+        ],
+        [
+          1,
+          0.8249919414520264,
+          0.6766666769981384
+        ],
+        [
+          2,
+          0.8369300961494446,
+          0.6899999976158142
+        ],
+        [
+          3,
+          0.8216284513473511,
+          0.6700000166893005
+        ],
+        [
+          4,
+          0.8293391466140747,
+          0.6833333373069763
+        ],
+        [
+          5,
+          0.8143396377563477,
+          0.699999988079071
+        ]
+      ],
+      "Text + Vis-L2": [
+        [
+          0,
+          0.8141664862632751,
+          0.6299999952316284
+        ],
+        [
+          1,
+          0.8189256191253662,
+          0.6800000071525574
+        ],
+        [
+          2,
+          0.8328666687011719,
+          0.6933333277702332
+        ],
+        [
+          3,
+          0.8301783800125122,
+          0.7066666483879089
+        ],
+        [
+          4,
+          0.8279411792755127,
+          0.6766666769981384
+        ],
+        [
+          5,
+          0.8050541281700134,
+          0.6800000071525574
+        ]
+      ],
+      "Text + Vis-L4": [
+        [
+          0,
+          0.814067006111145,
+          0.6200000047683716
+        ],
+        [
+          1,
+          0.830926239490509,
+          0.6800000071525574
+        ],
+        [
+          2,
+          0.8423084616661072,
+          0.6733333468437195
+        ],
+        [
+          3,
+          0.8320574164390564,
+          0.7200000286102295
+        ],
+        [
+          4,
+          0.8290805816650391,
+          0.7233333587646484
+        ],
+        [
+          5,
+          0.8121274709701538,
+          0.7133333086967468
+        ]
+      ],
+      "Both (all Vis)": [
+        [
+          0,
+          0.815149188041687,
+          0.6233333349227905
+        ],
+        [
+          1,
+          1.2639023065567017,
+          0.05999999865889549
+        ],
+        [
+          2,
+          1.1176484823226929,
+          0.28333333134651184
+        ],
+        [
+          3,
+          1.076124906539917,
+          0.4233333468437195
+        ],
+        [
+          4,
+          1.0293128490447998,
+          0.4699999988079071
+        ],
+        [
+          5,
+          1.0242146253585815,
+          0.5099999904632568
+        ]
+      ]
+    },
+    "status": "Exact input coordinates extracted; current PDF geometry not independently matched to each numeric vertex."
+  },
+  "fig14_adapter_layered": {
+    "archive": "outputs/adapter_layered_results.json",
+    "values": {
+      "Frozen": [
+        [
+          0,
+          0.8142648935317993,
+          0.6850000023841858
+        ]
+      ],
+      "Adapter Text-only": [
+        [
+          0,
+          1.1092407703399658,
+          0.014999999664723873
+        ],
+        [
+          1,
+          1.0956193208694458,
+          0.009999999776482582
+        ],
+        [
+          2,
+          1.0769323110580444,
+          0.03500000014901161
+        ],
+        [
+          3,
+          1.0643963813781738,
+          0.05999999865889549
+        ]
+      ],
+      "Adapter Text+Vis": [
+        [
+          0,
+          1.36082923412323,
+          0.009999999776482582
+        ],
+        [
+          1,
+          1.3407169580459595,
+          0.004999999888241291
+        ],
+        [
+          2,
+          1.3272171020507812,
+          0.0
+        ],
+        [
+          3,
+          1.3167502880096436,
+          0.004999999888241291
+        ]
+      ]
+    },
+    "status": "Exact input coordinates extracted; current PDF geometry not independently matched to each numeric vertex."
+  },
+  "fig9a_noise_sweep": {
+    "vision": {
+      "0.0": {
+        "raw_drop_pct": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "sample_sd": 0.0
+      },
+      "0.03": {
+        "raw_drop_pct": [
+          -2.92,
+          1.46,
+          -2.19,
+          0.0,
+          -1.46
+        ],
+        "mean": -1.0219999999999998,
+        "sample_sd": 1.758072808503675
+      },
+      "0.1": {
+        "raw_drop_pct": [
+          -0.73,
+          2.92,
+          2.92,
+          0.73,
+          3.65
+        ],
+        "mean": 1.8980000000000001,
+        "sample_sd": 1.8322854581096253
+      }
+    },
+    "text": {
+      "0.0": {
+        "raw_drop_pct": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "sample_sd": 0.0
+      },
+      "0.03": {
+        "raw_drop_pct": [
+          -2.19,
+          -2.92,
+          -2.19,
+          -1.46,
+          -2.19
+        ],
+        "mean": -2.1899999999999995,
+        "sample_sd": 0.5161879502661797
+      },
+      "0.1": {
+        "raw_drop_pct": [
+          2.92,
+          -1.46,
+          6.569,
+          4.38,
+          0.0
+        ],
+        "mean": 2.4818,
+        "sample_sd": 3.2479803262950964
+      }
+    }
+  },
+  "fig9b_sigma0_control": {
+    "vision": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "text": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}

@@ -1,0 +1,156 @@
+{
+ "source": "outputs\\a1_epoch_sweep.json",
+ "frozen_top1_5k": 59.06,
+ "n_trajectories": 10,
+ "D1_earlier_detection": {
+  "coco|seed42": {
+   "tau_break_epoch": 3,
+   "top1_break_epoch": null,
+   "tau_threshold": 0.6193,
+   "tau_earlier": true
+  },
+  "coco|seed43": {
+   "tau_break_epoch": 4,
+   "top1_break_epoch": 3,
+   "tau_threshold": 0.6089,
+   "tau_earlier": false
+  },
+  "coco|seed44": {
+   "tau_break_epoch": 4,
+   "top1_break_epoch": 4,
+   "tau_threshold": 0.5996,
+   "tau_earlier": false
+  },
+  "dtd|seed42": {
+   "tau_break_epoch": 5,
+   "top1_break_epoch": 2,
+   "tau_threshold": 0.5562,
+   "tau_earlier": false
+  },
+  "dtd|seed43": {
+   "tau_break_epoch": 4,
+   "top1_break_epoch": 3,
+   "tau_threshold": 0.5601,
+   "tau_earlier": false
+  },
+  "dtd|seed44": {
+   "tau_break_epoch": 5,
+   "top1_break_epoch": 2,
+   "tau_threshold": 0.5317,
+   "tau_earlier": false
+  },
+  "flickr30k_ref|seed42": {
+   "tau_break_epoch": 5,
+   "top1_break_epoch": 6,
+   "tau_threshold": 0.632,
+   "tau_earlier": true
+  },
+  "food101|seed42": {
+   "tau_break_epoch": null,
+   "top1_break_epoch": null,
+   "tau_threshold": 0.57,
+   "tau_earlier": false
+  },
+  "food101|seed43": {
+   "tau_break_epoch": null,
+   "top1_break_epoch": null,
+   "tau_threshold": 0.5794,
+   "tau_earlier": false
+  },
+  "food101|seed44": {
+   "tau_break_epoch": null,
+   "top1_break_epoch": null,
+   "tau_threshold": 0.5443,
+   "tau_earlier": false
+  }
+ },
+ "D1_tau_earlier_count": 2,
+ "D2_stopping_point": {
+  "coco|seed42": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 2,
+   "top1_at_tau_choice": 60.14,
+   "top1_at_own_best": 60.18,
+   "gap": 0.04
+  },
+  "coco|seed43": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 1,
+   "top1_at_tau_choice": 59.52,
+   "top1_at_own_best": 59.52,
+   "gap": 0.0
+  },
+  "coco|seed44": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 1,
+   "top1_at_tau_choice": 60.02,
+   "top1_at_own_best": 60.02,
+   "gap": 0.0
+  },
+  "dtd|seed42": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 1,
+   "top1_at_tau_choice": 58.96,
+   "top1_at_own_best": 58.96,
+   "gap": 0.0
+  },
+  "dtd|seed43": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 1,
+   "top1_at_tau_choice": 59.44,
+   "top1_at_own_best": 59.44,
+   "gap": 0.0
+  },
+  "dtd|seed44": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 1,
+   "top1_at_tau_choice": 58.06,
+   "top1_at_own_best": 58.06,
+   "gap": 0.0
+  },
+  "flickr30k_ref|seed42": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 1,
+   "top1_at_tau_choice": 59.28,
+   "top1_at_own_best": 59.28,
+   "gap": 0.0
+  },
+  "food101|seed42": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 2,
+   "top1_at_tau_choice": 58.96,
+   "top1_at_own_best": 59.42,
+   "gap": 0.46
+  },
+  "food101|seed43": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 1,
+   "top1_at_tau_choice": 60.72,
+   "top1_at_own_best": 60.72,
+   "gap": 0.0
+  },
+  "food101|seed44": {
+   "tau_best_epoch": 1,
+   "top1_best_epoch": 1,
+   "top1_at_tau_choice": 59.3,
+   "top1_at_own_best": 59.3,
+   "gap": 0.0
+  }
+ },
+ "D2_mean_gap": 0.05,
+ "D3_gain_if_stop_at_tau_peak": 2.298,
+ "D4_per_trajectory_pearson": [
+  0.869,
+  0.9683,
+  0.9634,
+  0.992,
+  0.9757,
+  0.986,
+  0.9688,
+  0.821,
+  0.9001,
+  0.8871
+ ],
+ "D4_mean_pearson": 0.9331,
+ "limitation": "no per-epoch validation loss in this archive; top-1 is the only downstream signal available for the comparison"
+}

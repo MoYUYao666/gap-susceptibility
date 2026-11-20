@@ -1,0 +1,74 @@
+{
+  "fields": [
+    "rows[].{path,dg_final,cg_final,r1}",
+    "results.json::final_gap.{centroid_gap,distribution_gap}",
+    "results.json::final_task_metrics.R@1"
+  ],
+  "pooled_n": 204,
+  "pearson_dg_cg": [
+    -0.7142063832158914,
+    -0.593921905761799
+  ],
+  "stratified_n": 199,
+  "datasets": {
+    "flickr30k": {
+      "n": 183,
+      "r": -0.7808776023292965
+    },
+    "coco": {
+      "n": 16,
+      "r": -0.5983634390606652
+    }
+  },
+  "models": {
+    "CLIP ViT-B/32": {
+      "n": 189,
+      "r": -0.7496975604426326
+    },
+    "BLIP": {
+      "n": 5,
+      "r": -0.9765334127708619
+    },
+    "SigLIP": {
+      "n": 5,
+      "r": 0.8083250629518525
+    }
+  },
+  "stratified_omissions": [
+    {
+      "path": "imagenet_zs/both_r8",
+      "dg": 0.9531120950343144,
+      "r1": 0.7179999947547913,
+      "dataset": "DISPUTED",
+      "model": "CLIP ViT-B/32"
+    },
+    {
+      "path": "imagenet_zs/full_ft",
+      "dg": 1.0476431936822022,
+      "r1": 0.6469999849796295,
+      "dataset": "DISPUTED",
+      "model": "CLIP ViT-B/32"
+    },
+    {
+      "path": "imagenet_zs/text_only_r8",
+      "dg": 0.8264790098409136,
+      "r1": 0.6710000038146973,
+      "dataset": "DISPUTED",
+      "model": "CLIP ViT-B/32"
+    },
+    {
+      "path": "vitl/vitl_rank4",
+      "dg": 1.305193687286706,
+      "r1": 0.0024999999441206455,
+      "dataset": "UNDOCUMENTED",
+      "model": "ViT-L"
+    },
+    {
+      "path": "vitl/vitl_text_only",
+      "dg": 1.325732644899266,
+      "r1": 0.004999999888241291,
+      "dataset": "UNDOCUMENTED",
+      "model": "ViT-L"
+    }
+  ]
+}

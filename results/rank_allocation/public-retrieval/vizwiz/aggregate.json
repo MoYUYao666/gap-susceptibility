@@ -1,0 +1,224 @@
+{
+  "scope": "VIZWIZ_PUBLIC_CASE_NOT_INDEPENDENT_OR_BLIND",
+  "fit_freeze_sha256": "0c89622954053bc32c65e4bd24c331226fa15c7418f863ba1f68432e6ee4d794",
+  "test_manifest_sha256": "9a9106069dd3107b38fa7b432dd0c4ec8cee04a1e101a98f6362c0fa2c4c3ae0",
+  "scorer_sha256": "433c6590230687be61157537fc2774fe0dc36d64b551cd87872da0b3b1b48aef",
+  "corpus_units": 1,
+  "query_count": 256,
+  "caption_count": 1154,
+  "predictor_threshold": null,
+  "cross_target_association": null,
+  "runtime": {
+    "device": "cuda",
+    "torch": "2.9.1+cu130",
+    "transformers": "5.16.1"
+  },
+  "cells": [
+    {
+      "seed": 0,
+      "arm": "gamma_n2",
+      "hits": 186,
+      "r1": 0.7265625
+    },
+    {
+      "seed": 0,
+      "arm": "gamma_n4",
+      "hits": 186,
+      "r1": 0.7265625
+    },
+    {
+      "seed": 0,
+      "arm": "gamma_n8",
+      "hits": 186,
+      "r1": 0.7265625
+    },
+    {
+      "seed": 0,
+      "arm": "gamma_n16",
+      "hits": 186,
+      "r1": 0.7265625
+    },
+    {
+      "seed": 0,
+      "arm": "uniform",
+      "hits": 186,
+      "r1": 0.7265625
+    },
+    {
+      "seed": 0,
+      "arm": "random",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 0,
+      "arm": "target_calibrated",
+      "hits": 186,
+      "r1": 0.7265625
+    },
+    {
+      "seed": 1,
+      "arm": "gamma_n2",
+      "hits": 184,
+      "r1": 0.71875
+    },
+    {
+      "seed": 1,
+      "arm": "gamma_n4",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 1,
+      "arm": "gamma_n8",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 1,
+      "arm": "gamma_n16",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 1,
+      "arm": "uniform",
+      "hits": 184,
+      "r1": 0.71875
+    },
+    {
+      "seed": 1,
+      "arm": "random",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 1,
+      "arm": "target_calibrated",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 2,
+      "arm": "gamma_n2",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 2,
+      "arm": "gamma_n4",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 2,
+      "arm": "gamma_n8",
+      "hits": 184,
+      "r1": 0.71875
+    },
+    {
+      "seed": 2,
+      "arm": "gamma_n16",
+      "hits": 184,
+      "r1": 0.71875
+    },
+    {
+      "seed": 2,
+      "arm": "uniform",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 2,
+      "arm": "random",
+      "hits": 185,
+      "r1": 0.72265625
+    },
+    {
+      "seed": 2,
+      "arm": "target_calibrated",
+      "hits": 184,
+      "r1": 0.71875
+    }
+  ],
+  "by_seed": [
+    {
+      "seed": 0,
+      "gamma_deltas": {
+        "gamma_n2": {
+          "uniform": 0.0,
+          "random": 0.00390625,
+          "target_calibrated": 0.0
+        },
+        "gamma_n4": {
+          "uniform": 0.0,
+          "random": 0.00390625,
+          "target_calibrated": 0.0
+        },
+        "gamma_n8": {
+          "uniform": 0.0,
+          "random": 0.00390625,
+          "target_calibrated": 0.0
+        },
+        "gamma_n16": {
+          "uniform": 0.0,
+          "random": 0.00390625,
+          "target_calibrated": 0.0
+        }
+      },
+      "worst_gamma_delta_vs_uniform": 0.0
+    },
+    {
+      "seed": 1,
+      "gamma_deltas": {
+        "gamma_n2": {
+          "uniform": 0.0,
+          "random": -0.00390625,
+          "target_calibrated": -0.00390625
+        },
+        "gamma_n4": {
+          "uniform": 0.00390625,
+          "random": 0.0,
+          "target_calibrated": 0.0
+        },
+        "gamma_n8": {
+          "uniform": 0.00390625,
+          "random": 0.0,
+          "target_calibrated": 0.0
+        },
+        "gamma_n16": {
+          "uniform": 0.00390625,
+          "random": 0.0,
+          "target_calibrated": 0.0
+        }
+      },
+      "worst_gamma_delta_vs_uniform": 0.0
+    },
+    {
+      "seed": 2,
+      "gamma_deltas": {
+        "gamma_n2": {
+          "uniform": 0.0,
+          "random": 0.0,
+          "target_calibrated": 0.00390625
+        },
+        "gamma_n4": {
+          "uniform": 0.0,
+          "random": 0.0,
+          "target_calibrated": 0.00390625
+        },
+        "gamma_n8": {
+          "uniform": -0.00390625,
+          "random": -0.00390625,
+          "target_calibrated": 0.0
+        },
+        "gamma_n16": {
+          "uniform": -0.00390625,
+          "random": -0.00390625,
+          "target_calibrated": 0.0
+        }
+      },
+      "worst_gamma_delta_vs_uniform": -0.00390625
+    }
+  ]
+}

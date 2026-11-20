@@ -1,0 +1,871 @@
+{
+ "meta": {
+  "script": "tools/a1_rr_e3_benchmarks.py",
+  "experiment": "E3 additional zero-shot / fine-grained benchmarks (reviewer R2.3)",
+  "model": "openai/clip-vit-base-patch32 (frozen)",
+  "template": "a photo of a {}",
+  "surgery_grid": [
+   -2.0,
+   -1.0,
+   -0.5,
+   0.0,
+   0.25,
+   0.5,
+   1.0,
+   2.0,
+   4.0
+  ],
+  "topk_for_tau": 5,
+  "class_contraction_a": [
+   0.1,
+   0.25,
+   0.5
+  ],
+  "flickr30k_gap_norm": 0.815402,
+  "gap_variants": {
+   "flickr30k": "g = mu_T - mu_I from Flickr30k rows 2000..3000 (same as the ImageNet experiment); applied to the benchmark image embeddings",
+   "self": "g = mean(class-name text embeddings) - mean(benchmark image embeddings); class-name protocol of tools/clip_ocean_margins.py"
+  },
+  "shards": 14,
+  "shard_sig": "d13718e47e9e41c2",
+  "runtime_s": 565.1
+ },
+ "benchmarks": {
+  "dtd": {
+   "benchmark": "dtd",
+   "loaded": true,
+   "dataset": {
+    "source": "torchvision DTD(root=\"data\", split=\"test\")",
+    "n_raw": 1880,
+    "n_classes": 47
+   },
+   "class_list_len": 47,
+   "class_names_head": [
+    "banded",
+    "blotchy",
+    "braided",
+    "bubbly",
+    "bumpy",
+    "chequered",
+    "cobwebbed",
+    "cracked",
+    "crosshatched",
+    "crystalline"
+   ],
+   "variants": {
+    "flickr30k": {
+     "gap_variant": "flickr30k",
+     "gap_norm": 0.815402,
+     "n_images": 1880,
+     "n_classes": 47,
+     "sigma_m": 0.021557362750172615,
+     "mean_m": 0.40393367409706116,
+     "top1_frozen": 43.1383,
+     "surgery": {
+      "-2.0": {
+       "top1": 12.7128,
+       "tau": 0.251596,
+       "tau_pred_exact": 0.251596
+      },
+      "-1.0": {
+       "top1": 26.5957,
+       "tau": 0.389255,
+       "tau_pred_exact": 0.389255
+      },
+      "-0.5": {
+       "top1": 35.6915,
+       "tau": 0.570106,
+       "tau_pred_exact": 0.570106
+      },
+      "0.0": {
+       "top1": 43.1383,
+       "tau": 1.0,
+       "tau_pred_exact": 1.0
+      },
+      "0.25": {
+       "top1": 43.4043,
+       "tau": 0.734043,
+       "tau_pred_exact": 0.734043
+      },
+      "0.5": {
+       "top1": 40.9043,
+       "tau": 0.564468,
+       "tau_pred_exact": 0.564468
+      },
+      "1.0": {
+       "top1": 31.9149,
+       "tau": 0.352979,
+       "tau_pred_exact": 0.352979
+      },
+      "2.0": {
+       "top1": 16.7021,
+       "tau": 0.159149,
+       "tau_pred_exact": 0.159149
+      },
+      "4.0": {
+       "top1": 9.7872,
+       "tau": 0.051809,
+       "tau_pred_exact": 0.051809
+      }
+     },
+     "exact_predictor_error": {
+      "per_lambda": {
+       "-2.0": 0.0,
+       "-1.0": 0.0,
+       "-0.5": 0.0,
+       "0.0": 0.0,
+       "0.25": 0.0,
+       "0.5": 0.0,
+       "1.0": 0.0,
+       "2.0": 0.0,
+       "4.0": 0.0
+      },
+      "mae": 0.0,
+      "max_abs_err": 0.0
+     },
+     "class_contraction": {
+      "0.1": {
+       "top1": 45.5851,
+       "tau": 0.888192
+      },
+      "0.25": {
+       "top1": 49.4681,
+       "tau": 0.747766
+      },
+      "0.5": {
+       "top1": 58.4574,
+       "tau": 0.580745
+      }
+     }
+    },
+    "self": {
+     "gap_variant": "self",
+     "gap_norm": 0.998434,
+     "n_images": 1880,
+     "n_classes": 47,
+     "sigma_m": 0.023135516792535782,
+     "mean_m": 0.5706416964530945,
+     "top1_frozen": 43.1383,
+     "surgery": {
+      "-2.0": {
+       "top1": 12.5,
+       "tau": 0.258298,
+       "tau_pred_exact": 0.258298
+      },
+      "-1.0": {
+       "top1": 25.0,
+       "tau": 0.364574,
+       "tau_pred_exact": 0.364574
+      },
+      "-0.5": {
+       "top1": 33.3511,
+       "tau": 0.519894,
+       "tau_pred_exact": 0.519894
+      },
+      "0.0": {
+       "top1": 43.1383,
+       "tau": 1.0,
+       "tau_pred_exact": 1.0
+      },
+      "0.25": {
+       "top1": 44.3085,
+       "tau": 0.667766,
+       "tau_pred_exact": 0.667766
+      },
+      "0.5": {
+       "top1": 41.4894,
+       "tau": 0.462979,
+       "tau_pred_exact": 0.462979
+      },
+      "1.0": {
+       "top1": 29.0957,
+       "tau": 0.232553,
+       "tau_pred_exact": 0.232553
+      },
+      "2.0": {
+       "top1": 13.5106,
+       "tau": 0.048191,
+       "tau_pred_exact": 0.048191
+      },
+      "4.0": {
+       "top1": 6.7553,
+       "tau": -0.048511,
+       "tau_pred_exact": -0.048511
+      }
+     },
+     "exact_predictor_error": {
+      "per_lambda": {
+       "-2.0": 0.0,
+       "-1.0": 0.0,
+       "-0.5": 0.0,
+       "0.0": 0.0,
+       "0.25": 0.0,
+       "0.5": 0.0,
+       "1.0": 0.0,
+       "2.0": 0.0,
+       "4.0": 0.0
+      },
+      "mae": 0.0,
+      "max_abs_err": 0.0
+     },
+     "class_contraction": {
+      "0.1": {
+       "top1": 45.5851,
+       "tau": 0.888192
+      },
+      "0.25": {
+       "top1": 49.4681,
+       "tau": 0.747766
+      },
+      "0.5": {
+       "top1": 58.4574,
+       "tau": 0.580745
+      }
+     }
+    }
+   }
+  },
+  "food101": {
+   "benchmark": "food101",
+   "loaded": true,
+   "dataset": {
+    "source": "torchvision Food101(root=\"data\", split=\"test\")",
+    "n_raw": 25250,
+    "n_classes": 101
+   },
+   "class_list_len": 101,
+   "class_names_head": [
+    "apple_pie",
+    "baby_back_ribs",
+    "baklava",
+    "beef_carpaccio",
+    "beef_tartare",
+    "beet_salad",
+    "beignets",
+    "bibimbap",
+    "bread_pudding",
+    "breakfast_burrito"
+   ],
+   "variants": {
+    "flickr30k": {
+     "gap_variant": "flickr30k",
+     "gap_norm": 0.815402,
+     "n_images": 25250,
+     "n_classes": 101,
+     "sigma_m": 0.034725867211818695,
+     "mean_m": 0.38052958250045776,
+     "top1_frozen": 82.0594,
+     "surgery": {
+      "-2.0": {
+       "top1": 20.7604,
+       "tau": 0.246495,
+       "tau_pred_exact": 0.246495
+      },
+      "-1.0": {
+       "top1": 49.2515,
+       "tau": 0.424539,
+       "tau_pred_exact": 0.424539
+      },
+      "-0.5": {
+       "top1": 72.1465,
+       "tau": 0.612673,
+       "tau_pred_exact": 0.612673
+      },
+      "0.0": {
+       "top1": 82.0594,
+       "tau": 1.0,
+       "tau_pred_exact": 1.0
+      },
+      "0.25": {
+       "top1": 80.5743,
+       "tau": 0.769608,
+       "tau_pred_exact": 0.769608
+      },
+      "0.5": {
+       "top1": 75.798,
+       "tau": 0.621061,
+       "tau_pred_exact": 0.621061
+      },
+      "1.0": {
+       "top1": 60.4554,
+       "tau": 0.440404,
+       "tau_pred_exact": 0.440404
+      },
+      "2.0": {
+       "top1": 30.0436,
+       "tau": 0.260412,
+       "tau_pred_exact": 0.260412
+      },
+      "4.0": {
+       "top1": 11.8416,
+       "tau": 0.13699,
+       "tau_pred_exact": 0.13699
+      }
+     },
+     "exact_predictor_error": {
+      "per_lambda": {
+       "-2.0": 0.0,
+       "-1.0": 0.0,
+       "-0.5": 0.0,
+       "0.0": 0.0,
+       "0.25": 0.0,
+       "0.5": 0.0,
+       "1.0": 0.0,
+       "2.0": 0.0,
+       "4.0": 0.0
+      },
+      "mae": 0.0,
+      "max_abs_err": 0.0
+     },
+     "class_contraction": {
+      "0.1": {
+       "top1": 86.598,
+       "tau": 0.906715
+      },
+      "0.25": {
+       "top1": 92.5347,
+       "tau": 0.800404
+      },
+      "0.5": {
+       "top1": 98.5901,
+       "tau": 0.676436
+      }
+     }
+    },
+    "self": {
+     "gap_variant": "self",
+     "gap_norm": 0.969873,
+     "n_images": 25250,
+     "n_classes": 101,
+     "sigma_m": 0.03566843643784523,
+     "mean_m": 0.5124827027320862,
+     "top1_frozen": 82.0594,
+     "surgery": {
+      "-2.0": {
+       "top1": 19.1881,
+       "tau": 0.196863,
+       "tau_pred_exact": 0.196863
+      },
+      "-1.0": {
+       "top1": 42.0,
+       "tau": 0.359152,
+       "tau_pred_exact": 0.359152
+      },
+      "-0.5": {
+       "top1": 66.2059,
+       "tau": 0.554828,
+       "tau_pred_exact": 0.55482
+      },
+      "0.0": {
+       "top1": 82.0594,
+       "tau": 1.0,
+       "tau_pred_exact": 1.0
+      },
+      "0.25": {
+       "top1": 81.3901,
+       "tau": 0.730012,
+       "tau_pred_exact": 0.730012
+      },
+      "0.5": {
+       "top1": 75.9129,
+       "tau": 0.573244,
+       "tau_pred_exact": 0.573251
+      },
+      "1.0": {
+       "top1": 56.7881,
+       "tau": 0.391192,
+       "tau_pred_exact": 0.391192
+      },
+      "2.0": {
+       "top1": 28.6416,
+       "tau": 0.230479,
+       "tau_pred_exact": 0.230479
+      },
+      "4.0": {
+       "top1": 11.7624,
+       "tau": 0.128451,
+       "tau_pred_exact": 0.128444
+      }
+     },
+     "exact_predictor_error": {
+      "per_lambda": {
+       "-2.0": 0.0,
+       "-1.0": 0.0,
+       "-0.5": 8e-06,
+       "0.0": 0.0,
+       "0.25": 0.0,
+       "0.5": 8e-06,
+       "1.0": 0.0,
+       "2.0": 0.0,
+       "4.0": 8e-06
+      },
+      "mae": 3e-06,
+      "max_abs_err": 8e-06
+     },
+     "class_contraction": {
+      "0.1": {
+       "top1": 86.598,
+       "tau": 0.906715
+      },
+      "0.25": {
+       "top1": 92.5347,
+       "tau": 0.800404
+      },
+      "0.5": {
+       "top1": 98.5901,
+       "tau": 0.676436
+      }
+     }
+    }
+   }
+  },
+  "inat_wild": {
+   "benchmark": "inat_wild",
+   "loaded": true,
+   "dataset": {
+    "source": "data/inat_wild (iNaturalist research-grade wild photos, CC, from tools/clip_ocean_inat_wild.py)",
+    "n_raw": 718,
+    "n_classes": 48,
+    "skipped_dirs_lt_8_images": {
+     "Acipenser_sturio": 2,
+     "Acropora_acuminata": 0
+    }
+   },
+   "class_list_len": 48,
+   "class_names_head": [
+    "Acropora cervicornis",
+    "Acropora digitifera",
+    "Acropora echinata",
+    "Acropora florida",
+    "Acropora millepora",
+    "Agaricia humilis",
+    "Agaricia lamarcki",
+    "Albula vulpes",
+    "Alopias pelagicus",
+    "Alopias vulpinus"
+   ],
+   "variants": {
+    "flickr30k": {
+     "gap_variant": "flickr30k",
+     "gap_norm": 0.815402,
+     "n_images": 718,
+     "n_classes": 48,
+     "sigma_m": 0.048148564994335175,
+     "mean_m": 0.38095760345458984,
+     "top1_frozen": 11.1421,
+     "surgery": {
+      "-2.0": {
+       "top1": 2.0891,
+       "tau": 0.277994,
+       "tau_pred_exact": 0.277994
+      },
+      "-1.0": {
+       "top1": 7.2423,
+       "tau": 0.359053,
+       "tau_pred_exact": 0.359053
+      },
+      "-0.5": {
+       "top1": 10.0279,
+       "tau": 0.506685,
+       "tau_pred_exact": 0.506685
+      },
+      "0.0": {
+       "top1": 11.1421,
+       "tau": 1.0,
+       "tau_pred_exact": 1.0
+      },
+      "0.25": {
+       "top1": 11.1421,
+       "tau": 0.599164,
+       "tau_pred_exact": 0.599164
+      },
+      "0.5": {
+       "top1": 9.61,
+       "tau": 0.366017,
+       "tau_pred_exact": 0.366017
+      },
+      "1.0": {
+       "top1": 8.9136,
+       "tau": 0.144011,
+       "tau_pred_exact": 0.144011
+      },
+      "2.0": {
+       "top1": 7.2423,
+       "tau": -0.003343,
+       "tau_pred_exact": -0.003343
+      },
+      "4.0": {
+       "top1": 5.0139,
+       "tau": -0.072145,
+       "tau_pred_exact": -0.072145
+      }
+     },
+     "exact_predictor_error": {
+      "per_lambda": {
+       "-2.0": 0.0,
+       "-1.0": 0.0,
+       "-0.5": 0.0,
+       "0.0": 0.0,
+       "0.25": 0.0,
+       "0.5": 0.0,
+       "1.0": 0.0,
+       "2.0": 0.0,
+       "4.0": 0.0
+      },
+      "mae": 0.0,
+      "max_abs_err": 0.0
+     },
+     "class_contraction": {
+      "0.1": {
+       "top1": 11.8384,
+       "tau": 0.90195
+      },
+      "0.25": {
+       "top1": 12.9526,
+       "tau": 0.784958
+      },
+      "0.5": {
+       "top1": 14.7632,
+       "tau": 0.625348
+      }
+     }
+    },
+    "self": {
+     "gap_variant": "self",
+     "gap_norm": 0.981622,
+     "n_images": 718,
+     "n_classes": 48,
+     "sigma_m": 0.05687452480196953,
+     "mean_m": 0.5408536195755005,
+     "top1_frozen": 11.1421,
+     "surgery": {
+      "-2.0": {
+       "top1": 2.0891,
+       "tau": 0.196936,
+       "tau_pred_exact": 0.196936
+      },
+      "-1.0": {
+       "top1": 4.5961,
+       "tau": 0.283565,
+       "tau_pred_exact": 0.283565
+      },
+      "-0.5": {
+       "top1": 9.4708,
+       "tau": 0.406407,
+       "tau_pred_exact": 0.406407
+      },
+      "0.0": {
+       "top1": 11.1421,
+       "tau": 1.0,
+       "tau_pred_exact": 1.0
+      },
+      "0.25": {
+       "top1": 11.1421,
+       "tau": 0.469081,
+       "tau_pred_exact": 0.469081
+      },
+      "0.5": {
+       "top1": 8.7744,
+       "tau": 0.233426,
+       "tau_pred_exact": 0.233426
+      },
+      "1.0": {
+       "top1": 5.7103,
+       "tau": 0.054039,
+       "tau_pred_exact": 0.054039
+      },
+      "2.0": {
+       "top1": 2.507,
+       "tau": -0.043733,
+       "tau_pred_exact": -0.043733
+      },
+      "4.0": {
+       "top1": 2.0891,
+       "tau": -0.092479,
+       "tau_pred_exact": -0.092479
+      }
+     },
+     "exact_predictor_error": {
+      "per_lambda": {
+       "-2.0": 0.0,
+       "-1.0": 0.0,
+       "-0.5": 0.0,
+       "0.0": 0.0,
+       "0.25": 0.0,
+       "0.5": 0.0,
+       "1.0": 0.0,
+       "2.0": 0.0,
+       "4.0": 0.0
+      },
+      "mae": 0.0,
+      "max_abs_err": 0.0
+     },
+     "class_contraction": {
+      "0.1": {
+       "top1": 11.8384,
+       "tau": 0.90195
+      },
+      "0.25": {
+       "top1": 12.9526,
+       "tau": 0.784958
+      },
+      "0.5": {
+       "top1": 14.7632,
+       "tau": 0.625348
+      }
+     }
+    }
+   }
+  },
+  "rare_species": {
+   "benchmark": "rare_species",
+   "loaded": true,
+   "dataset": {
+    "source": "data/rare-species parquet shards (BioCLIP / IUCN rare-species benchmark)",
+    "n_raw": 11983,
+    "n_classes_total": 400,
+    "n_classes": 50,
+    "class_selection": "top 50 species by image count (ties broken by name)",
+    "max_images_per_class": 20,
+    "n_images": 1000,
+    "class_counts_selected": {
+     "Abronia deppii": 30,
+     "Abronia graminea": 30,
+     "Aceros nipalensis": 30,
+     "Acipenser sturio": 30,
+     "Acropora acuminata": 30,
+     "Acropora cervicornis": 30,
+     "Acropora digitifera": 30,
+     "Acropora echinata": 30,
+     "Acropora florida": 30,
+     "Acropora millepora": 30,
+     "Addax nasomaculatus": 30,
+     "Adetomyrma venatrix": 30,
+     "Agalychnis lemur": 30,
+     "Agaricia humilis": 30,
+     "Agaricia lamarcki": 30,
+     "Ailuropoda melanoleuca": 30,
+     "Albula vulpes": 30,
+     "Allochrocebus lhoesti": 30,
+     "Alopias pelagicus": 30,
+     "Alopias vulpinus": 30,
+     "Alouatta belzebul": 30,
+     "Alouatta caraya": 30,
+     "Amazona collaria": 30,
+     "Amazona vinacea": 30,
+     "Ambystoma barbouri": 30,
+     "Ambystoma mexicanum": 30,
+     "Anaxyrus californicus": 30,
+     "Andigena laminirostris": 30,
+     "Andrias davidianus": 30,
+     "Andrias japonicus": 30,
+     "Aneuretus simoni": 30,
+     "Anolis baracoae": 30,
+     "Anolis barbouri": 30,
+     "Anolis bitectus": 30,
+     "Anolis bonairensis": 30,
+     "Anolis cooki": 30,
+     "Anolis koopmani": 30,
+     "Anolis luciae": 30,
+     "Anolis macrolepis": 30,
+     "Anolis marcanoi": 30,
+     "Anolis monteverde": 30,
+     "Anorrhinus austeni": 30,
+     "Anser canagicus": 30,
+     "Anthracoceros coronatus": 30,
+     "Anthus nilghiriensis": 30,
+     "Antrostomus vociferus": 30,
+     "Aonyx capensis": 30,
+     "Aotus griseimembra": 30,
+     "Aotus lemurinus": 30,
+     "Arctocephalus galapagoensis": 30
+    }
+   },
+   "class_list_len": 50,
+   "class_names_head": [
+    "Abronia deppii",
+    "Abronia graminea",
+    "Aceros nipalensis",
+    "Acipenser sturio",
+    "Acropora acuminata",
+    "Acropora cervicornis",
+    "Acropora digitifera",
+    "Acropora echinata",
+    "Acropora florida",
+    "Acropora millepora"
+   ],
+   "variants": {
+    "flickr30k": {
+     "gap_variant": "flickr30k",
+     "gap_norm": 0.815402,
+     "n_images": 1000,
+     "n_classes": 50,
+     "sigma_m": 0.052546992897987366,
+     "mean_m": 0.35054638981819153,
+     "top1_frozen": 16.4,
+     "surgery": {
+      "-2.0": {
+       "top1": 9.8,
+       "tau": 0.2158,
+       "tau_pred_exact": 0.2158
+      },
+      "-1.0": {
+       "top1": 14.4,
+       "tau": 0.2944,
+       "tau_pred_exact": 0.2944
+      },
+      "-0.5": {
+       "top1": 17.0,
+       "tau": 0.4276,
+       "tau_pred_exact": 0.4276
+      },
+      "0.0": {
+       "top1": 16.4,
+       "tau": 1.0,
+       "tau_pred_exact": 1.0
+      },
+      "0.25": {
+       "top1": 12.6,
+       "tau": 0.618,
+       "tau_pred_exact": 0.618
+      },
+      "0.5": {
+       "top1": 8.3,
+       "tau": 0.383,
+       "tau_pred_exact": 0.383
+      },
+      "1.0": {
+       "top1": 5.7,
+       "tau": 0.1598,
+       "tau_pred_exact": 0.1598
+      },
+      "2.0": {
+       "top1": 3.1,
+       "tau": 0.0202,
+       "tau_pred_exact": 0.0202
+      },
+      "4.0": {
+       "top1": 2.1,
+       "tau": -0.047,
+       "tau_pred_exact": -0.047
+      }
+     },
+     "exact_predictor_error": {
+      "per_lambda": {
+       "-2.0": 0.0,
+       "-1.0": 0.0,
+       "-0.5": 0.0,
+       "0.0": 0.0,
+       "0.25": 0.0,
+       "0.5": 0.0,
+       "1.0": 0.0,
+       "2.0": 0.0,
+       "4.0": 0.0
+      },
+      "mae": 0.0,
+      "max_abs_err": 0.0
+     },
+     "class_contraction": {
+      "0.1": {
+       "top1": 17.3,
+       "tau": 0.9016
+      },
+      "0.25": {
+       "top1": 18.6,
+       "tau": 0.7722
+      },
+      "0.5": {
+       "top1": 21.2,
+       "tau": 0.5816
+      }
+     }
+    },
+    "self": {
+     "gap_variant": "self",
+     "gap_norm": 0.919927,
+     "n_images": 1000,
+     "n_classes": 50,
+     "sigma_m": 0.041131243109703064,
+     "mean_m": 0.5106886029243469,
+     "top1_frozen": 16.4,
+     "surgery": {
+      "-2.0": {
+       "top1": 7.1,
+       "tau": 0.2048,
+       "tau_pred_exact": 0.2048
+      },
+      "-1.0": {
+       "top1": 12.3,
+       "tau": 0.2766,
+       "tau_pred_exact": 0.2766
+      },
+      "-0.5": {
+       "top1": 15.5,
+       "tau": 0.4,
+       "tau_pred_exact": 0.4
+      },
+      "0.0": {
+       "top1": 16.4,
+       "tau": 1.0,
+       "tau_pred_exact": 1.0
+      },
+      "0.25": {
+       "top1": 12.7,
+       "tau": 0.5218,
+       "tau_pred_exact": 0.5218
+      },
+      "0.5": {
+       "top1": 9.6,
+       "tau": 0.2752,
+       "tau_pred_exact": 0.2752
+      },
+      "1.0": {
+       "top1": 5.7,
+       "tau": 0.0824,
+       "tau_pred_exact": 0.0824
+      },
+      "2.0": {
+       "top1": 3.5,
+       "tau": -0.0348,
+       "tau_pred_exact": -0.0348
+      },
+      "4.0": {
+       "top1": 1.9,
+       "tau": -0.089,
+       "tau_pred_exact": -0.089
+      }
+     },
+     "exact_predictor_error": {
+      "per_lambda": {
+       "-2.0": 0.0,
+       "-1.0": 0.0,
+       "-0.5": 0.0,
+       "0.0": 0.0,
+       "0.25": 0.0,
+       "0.5": 0.0,
+       "1.0": 0.0,
+       "2.0": 0.0,
+       "4.0": 0.0
+      },
+      "mae": 0.0,
+      "max_abs_err": 0.0
+     },
+     "class_contraction": {
+      "0.1": {
+       "top1": 17.3,
+       "tau": 0.9016
+      },
+      "0.25": {
+       "top1": 18.6,
+       "tau": 0.7722
+      },
+      "0.5": {
+       "top1": 21.2,
+       "tau": 0.5816
+      }
+     }
+    }
+   }
+  }
+ }
+}

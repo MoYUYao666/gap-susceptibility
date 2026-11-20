@@ -1,0 +1,318 @@
+{
+  "archive_sha256": {
+    "outputs/ocean_clip2x2.json": "bd1326d7efa7dd888c60c6b4a36f0d4ce3f324f26f80b820fb3ebc7ac9a14710",
+    "outputs/ocean_flickrft_sigma.json": "2714c4fb3b9e0be4623351b61d525a6e50279176435b93ddc68a3add26b80d05",
+    "outputs/ocean_margins.json": "187d03f09031882692adf679c78e94171fbfc6c183226271153819caa2aa0bf4",
+    "outputs/ocean_marineft10_sigma.json": "737398069ee9ba07e7761507d1fba78bea5f027ca2401f2f5104f69ba0d49fb7",
+    "outputs/ocean_sigma_other.json": "eef3385b3032f47b09915ef582db69d4ccc8a99611ea0b80ba36c166c787802b",
+    "outputs/sonar_protocol.json": "979dad87bce9a91ba442372bb5e115fb4f03eb8f28f6a3a4b5b82bb5c7b84921",
+    "outputs/sonar_protocol_full.json": "156477cac57d47ebed49e37c59d493366d6b79fabe522f98be308f63d6ad5079"
+  },
+  "marks": [
+    {
+      "arm": "frozen",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "",
+      "label": "OpenCLIP",
+      "numerator": {
+        "field": "openclip_tf.sigma_m",
+        "path": "outputs/ocean_sigma_other.json",
+        "value": 0.0739
+      },
+      "panel": "a",
+      "value": 0.0739
+    },
+    {
+      "arm": "frozen",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "",
+      "label": "BioCLIP",
+      "numerator": {
+        "field": "bioclip.sigma_m",
+        "path": "outputs/ocean_margins.json",
+        "value": 0.05348037928342819
+      },
+      "panel": "a",
+      "value": 0.05348037928342819
+    },
+    {
+      "arm": "frozen",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "",
+      "label": "SigLIP",
+      "numerator": {
+        "field": "siglip.sigma_m",
+        "path": "outputs/ocean_sigma_other.json",
+        "value": 0.0299
+      },
+      "panel": "a",
+      "value": 0.0299
+    },
+    {
+      "arm": "adapted",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "",
+      "label": "OceanCLIP",
+      "numerator": {
+        "field": "oceanclip.sigma_m",
+        "path": "outputs/ocean_margins.json",
+        "value": 0.00782577320933342
+      },
+      "panel": "a",
+      "value": 0.00782577320933342
+    },
+    {
+      "arm": "adapted",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "BioCLIP",
+      "label": "Marine",
+      "numerator": {
+        "field": "sigma_m",
+        "path": "outputs/ocean_marineft10_sigma.json",
+        "value": 0.0064
+      },
+      "panel": "b",
+      "value": 0.0064
+    },
+    {
+      "arm": "flickr",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "BioCLIP",
+      "label": "Flickr",
+      "numerator": {
+        "field": "sigma_m",
+        "path": "outputs/ocean_flickrft_sigma.json",
+        "value": 0.0233
+      },
+      "panel": "b",
+      "value": 0.0233
+    },
+    {
+      "arm": "frozen",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "BioCLIP",
+      "label": "Frozen",
+      "numerator": {
+        "field": "bioclip.sigma_m",
+        "path": "outputs/ocean_margins.json",
+        "value": 0.05348037928342819
+      },
+      "panel": "b",
+      "value": 0.05348037928342819
+    },
+    {
+      "arm": "adapted",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "CLIP",
+      "label": "Marine",
+      "numerator": {
+        "field": "clip_marineft.sigma_m",
+        "path": "outputs/ocean_clip2x2.json",
+        "value": 0.0092
+      },
+      "panel": "b",
+      "value": 0.0092
+    },
+    {
+      "arm": "flickr",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "CLIP",
+      "label": "Flickr",
+      "numerator": {
+        "field": "clip_flickrft.sigma_m",
+        "path": "outputs/ocean_clip2x2.json",
+        "value": 0.0203
+      },
+      "panel": "b",
+      "value": 0.0203
+    },
+    {
+      "arm": "frozen",
+      "denominator": null,
+      "figure": "FishBiasField",
+      "group": "CLIP",
+      "label": "Frozen",
+      "numerator": {
+        "field": "clip_frozen.sigma_m",
+        "path": "outputs/ocean_clip2x2.json",
+        "value": 0.0333
+      },
+      "panel": "b",
+      "value": 0.0333
+    },
+    {
+      "arm": "adapted",
+      "denominator": null,
+      "figure": "SonarBiasField",
+      "group": "Balanced (650)",
+      "label": "Sonar",
+      "numerator": {
+        "field": "sonar_ft.sigma_m",
+        "path": "outputs/sonar_protocol.json",
+        "value": 0.0063
+      },
+      "panel": "a",
+      "value": 0.0063
+    },
+    {
+      "arm": "adapted",
+      "denominator": {
+        "field": "sonar_ft.sigma_m",
+        "path": "outputs/sonar_protocol.json",
+        "value": 0.0063
+      },
+      "figure": "SonarBiasField",
+      "group": "Balanced (650)",
+      "label": "Sonar",
+      "numerator": {
+        "field": "clip_frozen.sigma_m",
+        "path": "outputs/sonar_protocol.json",
+        "value": 0.0239
+      },
+      "panel": "b",
+      "value": 3.793650793650794
+    },
+    {
+      "arm": "flickr",
+      "denominator": null,
+      "figure": "SonarBiasField",
+      "group": "Balanced (650)",
+      "label": "Flickr",
+      "numerator": {
+        "field": "clip_flickrft.sigma_m",
+        "path": "outputs/sonar_protocol.json",
+        "value": 0.0216
+      },
+      "panel": "a",
+      "value": 0.0216
+    },
+    {
+      "arm": "flickr",
+      "denominator": {
+        "field": "clip_flickrft.sigma_m",
+        "path": "outputs/sonar_protocol.json",
+        "value": 0.0216
+      },
+      "figure": "SonarBiasField",
+      "group": "Balanced (650)",
+      "label": "Flickr",
+      "numerator": {
+        "field": "clip_frozen.sigma_m",
+        "path": "outputs/sonar_protocol.json",
+        "value": 0.0239
+      },
+      "panel": "b",
+      "value": 1.1064814814814814
+    },
+    {
+      "arm": "frozen",
+      "denominator": null,
+      "figure": "SonarBiasField",
+      "group": "Balanced (650)",
+      "label": "Frozen",
+      "numerator": {
+        "field": "clip_frozen.sigma_m",
+        "path": "outputs/sonar_protocol.json",
+        "value": 0.0239
+      },
+      "panel": "a",
+      "value": 0.0239
+    },
+    {
+      "arm": "adapted",
+      "denominator": null,
+      "figure": "SonarBiasField",
+      "group": "Full (2,617)",
+      "label": "Sonar",
+      "numerator": {
+        "field": "sonar_ft_full.sigma_m",
+        "path": "outputs/sonar_protocol_full.json",
+        "value": 0.0136
+      },
+      "panel": "a",
+      "value": 0.0136
+    },
+    {
+      "arm": "adapted",
+      "denominator": {
+        "field": "sonar_ft_full.sigma_m",
+        "path": "outputs/sonar_protocol_full.json",
+        "value": 0.0136
+      },
+      "figure": "SonarBiasField",
+      "group": "Full (2,617)",
+      "label": "Sonar",
+      "numerator": {
+        "field": "clip_frozen.sigma_m",
+        "path": "outputs/sonar_protocol_full.json",
+        "value": 0.0247
+      },
+      "panel": "b",
+      "value": 1.8161764705882353
+    },
+    {
+      "arm": "flickr",
+      "denominator": null,
+      "figure": "SonarBiasField",
+      "group": "Full (2,617)",
+      "label": "Flickr",
+      "numerator": {
+        "field": "clip_flickrft.sigma_m",
+        "path": "outputs/sonar_protocol_full.json",
+        "value": 0.0222
+      },
+      "panel": "a",
+      "value": 0.0222
+    },
+    {
+      "arm": "flickr",
+      "denominator": {
+        "field": "clip_flickrft.sigma_m",
+        "path": "outputs/sonar_protocol_full.json",
+        "value": 0.0222
+      },
+      "figure": "SonarBiasField",
+      "group": "Full (2,617)",
+      "label": "Flickr",
+      "numerator": {
+        "field": "clip_frozen.sigma_m",
+        "path": "outputs/sonar_protocol_full.json",
+        "value": 0.0247
+      },
+      "panel": "b",
+      "value": 1.1126126126126126
+    },
+    {
+      "arm": "frozen",
+      "denominator": null,
+      "figure": "SonarBiasField",
+      "group": "Full (2,617)",
+      "label": "Frozen",
+      "numerator": {
+        "field": "clip_frozen.sigma_m",
+        "path": "outputs/sonar_protocol_full.json",
+        "value": 0.0247
+      },
+      "panel": "a",
+      "value": 0.0247
+    }
+  ],
+  "producer_scripts": [
+    "tools/clip_ocean_margins.py",
+    "tools/clip_ocean_sigma_other.py",
+    "tools/clip_ocean_flickrft_sigma.py",
+    "tools/clip_ocean_marineft10_sigma.py",
+    "tools/clip_ocean_clip2x2.py",
+    "tools/clip_sonar_protocol.py",
+    "tools/clip_sonar_protocol_full.py"
+  ]
+}

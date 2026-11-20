@@ -1,0 +1,38 @@
+{
+  "adapted_modules_count": 24,
+  "adapted_suffixes": [
+    "c_fc",
+    "c_proj"
+  ],
+  "batch": 32,
+  "corpus": "corpora/rsitmd/budgets/human_10000_pairs.jsonl",
+  "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "epochs": 2,
+  "eval_pairs": 965,
+  "final_loss": 0.3269,
+  "generated": "2026-10-29T00:23:29",
+  "images_root": "data/rsitmd",
+  "loss_first": 0.4447,
+  "max_pairs": 10000,
+  "metrics": {
+    "R@10_i2t": 0.543,
+    "R@10_t2i": 0.5285,
+    "R@1_i2t": 0.1285,
+    "R@1_t2i": 0.1026,
+    "R@5_i2t": 0.3741,
+    "R@5_t2i": 0.3606,
+    "alignment": 1.3673,
+    "modality_gap": 0.8063,
+    "uniformity_image": -1.8105,
+    "uniformity_text": -1.8815
+  },
+  "pairs_used": 7252,
+  "peak_vram_gb": 1.389,
+  "seed": 1,
+  "site": "text",
+  "torch": "2.9.1+cu130",
+  "total_params": 151768833,
+  "trainable_params": 491520,
+  "trainable_share": 0.003239,
+  "wall_seconds": 102.1
+}
