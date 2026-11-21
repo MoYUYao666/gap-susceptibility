@@ -25,3 +25,7 @@ Source datasets, model weights, and manuscript materials are not distributed. Tr
 ## Version
 
 **v3.3** replaces superseded and unverified legacy files in the current tree with audited bundles. Earlier tags remain unchanged. Removing an unverified file is not a finding that its contents are false.
+
+## License
+
+MIT applies only to the project-authored Python files listed in `LICENSE_SCOPE.json`; see `LICENSE` and `LICENSE_SCOPE.md`. Data, result records, unlisted code and third-party materials are not relicensed by this notice. Existing version tags and archived snapshots remain unchanged.
