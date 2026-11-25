@@ -9,7 +9,7 @@ import urllib.request
 import zipfile
 
 HERE=Path(__file__).resolve().parent
-RELEASE='https://github.com/MoYUYao666/gap-susceptibility/releases/download/v3.5/'
+RELEASE='https://github.com/MoYUYao666/gap-susceptibility/releases/download/v3.5.1/'
 
 
 def require(ok, message):

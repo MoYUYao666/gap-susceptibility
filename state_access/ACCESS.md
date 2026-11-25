@@ -1,6 +1,6 @@
-# Version 3.5 state assets
+# Version 3.5.1 state assets
 
-The GitHub v3.5 release assets contain 12 independently hashed ZIP shards.
+The GitHub v3.5.1 release assets contain 12 independently hashed ZIP shards.
 StateIndex.json binds every shard/member and maps the recorded logical states to
 SHA-addressed native files. State binaries are release assets, not Git blobs.
 
@@ -24,7 +24,7 @@ see results/order_preservation/ScalarRecords.zip. RecordedRecipes.zip contains
 the locked spectral recipes; InputIdentities.zip supplies legitimate input
 acquisition/identity checks. These unchanged v3.4 components remain scoped as
 recorded there. Their historical payload_included=false flags are not claims
-about the separate v3.5 state assets. All eight statistical replay groups remain
+about the separate v3.5.1 state assets. All eight statistical replay groups remain
 available through python -B verify_release.py.
 
 Parameter restoration is supported; optimizer/RNG tensors are preserved but the
@@ -37,5 +37,5 @@ arrays, prove cross-hardware parity, or reproduce all training from scratch.
 Use matching final epoch states rather than unpublished latest aliases.
 
 GitHub source archives and any later DOI source snapshot may not contain these
-separate release assets. Use the v3.5 asset index and SHA checksums for state
+separate release assets. Use the v3.5.1 asset index and SHA checksums for state
 access; do not claim that a DOI includes binaries without checking its inventory.

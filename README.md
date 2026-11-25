@@ -10,7 +10,7 @@ python -B verify_release.py
 Python 3.12; the check validates hashes and replays eight recorded result groups
 without training or model loading. See each group README for its scope.
 
-Version **v3.5** adds versioned project state assets and CPU restoration support.
+Version **v3.5.1** adds versioned project state assets and CPU restoration support.
 See `state_access/ACCESS.md` for download, verification and restoration commands.
 States are separate release assets; source datasets and foundation weights are
 not supplied. Manuscript and editorial materials are not distributed.
