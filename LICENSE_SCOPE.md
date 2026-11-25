@@ -13,3 +13,6 @@ records, model states, figures and other non-software assets are not covered by
 this software license. Dependencies retain their own licenses; no dependency
 packages are bundled or relicensed. No dataset or model access right, institutional
 ownership certification, trademark or endorsement is implied.
+
+Version 3.5 additionally grants MIT for the exact listed project restoration
+and transport software. Separate state assets are not relicensed as software.

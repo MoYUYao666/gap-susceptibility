@@ -2,31 +2,20 @@
 
 Experiment code, recorded results and offline reproducibility checks.
 
-## Quick check
-
-Use Python 3.12:
-
-```bash
+```sh
 python -m pip install -r requirements.txt
 python -B verify_release.py
 ```
 
-The check validates file hashes and recomputes eight result groups. It does not
-download data, load models or run training. See each group README for scope.
+Python 3.12; the check validates hashes and replays eight recorded result groups
+without training or model loading. See each group README for its scope.
 
-## Contents
+Version **v3.5** adds versioned project state assets and CPU restoration support.
+See `state_access/ACCESS.md` for download, verification and restoration commands.
+States are separate release assets; source datasets and foundation weights are
+not supplied. Manuscript and editorial materials are not distributed.
 
-- `results/`: records, configurations, provenance and replay scripts.
-- `MANIFEST.json`: exact file inventory and SHA-256 checksums.
-- `MIGRATION_v3.4.json`: replacement of the older order-diagnostics group.
-
-Source datasets, model weights and manuscript materials are not distributed.
-State metadata is not a downloadable checkpoint. Recorded numerical failures and
-protocol limitations remain documented.
-
-## Version and license
-
-**v3.4** updates the order-diagnostics evidence and portable replay. Earlier tags
-remain unchanged. MIT applies only to project-authored software listed by content
-hash in `LICENSE_SCOPE.json`, including named archive members. Data and third-party
-materials retain their own rights. See `LICENSE_SCOPE.md`.
+`MANIFEST.json` binds repository files; `state_access/StateIndex.json` binds the
+state shards and logical mapping. Earlier tags and releases remain unchanged.
+MIT applies only to named project software in `LICENSE_SCOPE.json`; data and
+checkpoints retain separate terms. See `LICENSE_SCOPE.md` and the state notice.
