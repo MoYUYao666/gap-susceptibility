@@ -1,31 +1,32 @@
 # Cross-modal alignment: code and results
 
-This repository contains experiment code, corrected derived results, and offline reproducibility checks.
+Experiment code, recorded results and offline reproducibility checks.
 
 ## Quick check
 
-Use Python 3.12 or newer (the release was checked with Python 3.14):
+Use Python 3.12:
 
 ```bash
 python -m pip install -r requirements.txt
 python -B verify_release.py
 ```
 
-The check validates file hashes and recomputes the published summaries. It does not download data, load models, or run training.
+The check validates file hashes and recomputes eight result groups. It does not
+download data, load models or run training. See each group README for scope.
 
 ## Contents
 
-- `results/`: versioned records, summaries, provenance, and replay scripts.
-- Each result group documents its scope and contains available producer code.
-- `MIGRATION.json`: the disposition of files from the previous main snapshot.
-- `MANIFEST.json`: the exact file inventory and SHA-256 checksums.
+- `results/`: records, configurations, provenance and replay scripts.
+- `MANIFEST.json`: exact file inventory and SHA-256 checksums.
+- `MIGRATION_v3.4.json`: replacement of the older order-diagnostics group.
 
-Source datasets, model weights, and manuscript materials are not distributed. Training dependencies are separate from the offline check; see the relevant group README. Results retain their documented protocol limitations.
+Source datasets, model weights and manuscript materials are not distributed.
+State metadata is not a downloadable checkpoint. Recorded numerical failures and
+protocol limitations remain documented.
 
-## Version
+## Version and license
 
-**v3.3** replaces superseded and unverified legacy files in the current tree with audited bundles. Earlier tags remain unchanged. Removing an unverified file is not a finding that its contents are false.
-
-## License
-
-MIT applies only to the project-authored Python files listed in `LICENSE_SCOPE.json`; see `LICENSE` and `LICENSE_SCOPE.md`. Data, result records, unlisted code and third-party materials are not relicensed by this notice. Existing version tags and archived snapshots remain unchanged.
+**v3.4** updates the order-diagnostics evidence and portable replay. Earlier tags
+remain unchanged. MIT applies only to project-authored software listed by content
+hash in `LICENSE_SCOPE.json`, including named archive members. Data and third-party
+materials retain their own rights. See `LICENSE_SCOPE.md`.

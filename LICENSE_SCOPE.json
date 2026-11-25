@@ -1,9 +1,9 @@
 {
   "license": "MIT",
   "copyright_notice": "Copyright (c) 2026 Hongrui Wan",
-  "effective_date": "2026-11-21",
-  "base_commit": "4db98b73bc025fe8ae5624d383a4470e0b7b4056",
-  "scope": "Only the project-authored Python files explicitly listed below, at the recorded content hashes.",
+  "effective_date": "2026-11-25",
+  "base_commit": "a348bb32b2be35db6fd23792f88151aee706b7a2",
+  "scope": "MIT covers only named project-authored software at the recorded hashes, including explicit nested archive members.",
   "files": {
     "results/acoustic_protocols/replay.py": {
       "sha256": "a7a7c0bf92d6ce0f67b332bb86f60995ea0e975c4993b985cc6f8bb0533984f0"
@@ -15,7 +15,7 @@
       "sha256": "d8e45cb273f8da961ec171f0185aad609c6f56addd0848694f24e14ad7983eb2"
     },
     "results/order_preservation/replay.py": {
-      "sha256": "e45438821218b9d77a6661c3944670ad833d06ac40db8c8e7cfbbad89056feb6"
+      "sha256": "dd2849eb2dfb16bb4135e671aae902699ef48bf7fbb88d81fcb74ba946ace6b4"
     },
     "results/rank_allocation/replay.py": {
       "sha256": "0f8cddef1fb644c97503a49f2bd8329a13f6edeff5269a65ebee404701789697"
@@ -34,8 +34,141 @@
     },
     "verify_release.py": {
       "sha256": "4953467d0dab2fb67b6ba4cf90e3824f013972b349ea8457cb65f02dafd24dc1"
+    },
+    "results/order_preservation/safe_archive.py": {
+      "sha256": "e517392319191690ffefdb11b54fa467ab3c35f75fb1c67027eb34fcc05150da"
     }
   },
   "unlisted_files": "No additional license grant is made for unlisted files by this notice. Existing third-party permissions and obligations remain applicable.",
-  "archived_versions": "Existing tags, release assets and archived snapshots are not republished or modified by this main-branch notice."
+  "archived_versions": "Earlier tags, release assets and archived snapshots remain byte-identical; this scope applies to v3.4 only.",
+  "archive_files": {
+    "results/order_preservation/InputIdentities.zip!test_portable_v3.py": {
+      "sha256": "21e87e0f2fc64f86fc5a4303908d4ef77988aec40573191c09bcd448b3586e7c"
+    },
+    "results/order_preservation/InputIdentities.zip!validate_inputs_v3.py": {
+      "sha256": "13b659f32f898c0fa5eb7a56cd5c51e29b89ef2a1fc7037a475b3b21f76e4d60"
+    },
+    "results/order_preservation/RecordedRecipes.zip!portable.py": {
+      "sha256": "9a406082c38ad0114a58f0e59acb68c2f5d2a98265ba4a11937bde84e3030c28"
+    },
+    "results/order_preservation/RecordedRecipes.zip!test_portable.py": {
+      "sha256": "4b6cc8b86679cb3bf5deff2cfba7197f6638b9e0d254bcd550d57fcdbf202a30"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/bridge.py": {
+      "sha256": "98e795f98f58ea2ded6ef19913bc5a5e7df24d8c4675757a572aace6b9dade6d"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_cells.py": {
+      "sha256": "7a2a8abdc7ecfac8999cdeca2b8cc0f7051a9affb2a300316c4ffa75761919c0"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_spectral_archival/extensions/hooks.py": {
+      "sha256": "40c482e5c8f4943be3b6332ec674972a6df14d96e7476e23a0d81951ebb24f1b"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_spectral_archival/extensions/runner.py": {
+      "sha256": "95691c2d3de2466f76f700b218e0430a0b364237ae0cae17fda334161afef418"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_spectral_archival/extensions/spectral.py": {
+      "sha256": "b1092f302e5b1fcbdaee3d88945ed5ec3644b96d6df1725b0d0ac641e58e3b08"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_spectral_archival/extensions/verify_extension.py": {
+      "sha256": "18918070cb2661a08065381e542d173254508b33e9af2d51f48ead534500032b"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_spectral_archival/runtime/model.py": {
+      "sha256": "f56a2917edccbc1180f64322aa20781f31737635425cfed780a5c18420ba577f"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_spectral_archival/runtime/records.py": {
+      "sha256": "c5979c3b6dcb28602cf35f07ad2ba6cabc0e9de98bf746895e6f734bc831f376"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_spectral_archival/runtime/state.py": {
+      "sha256": "2e75b0d8821426e5fd127f2bc6b5edfc1111b32afd6ebd1221a4ec5b768ad1f9"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_spectral_archival/runtime/trainer.py": {
+      "sha256": "40f35f029ae3cdf27e0659edb817fd219b06a1778c2fef0f09f0931c5fdd9f2b"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/core_spectral_archival/runtime/verify_records.py": {
+      "sha256": "a65edb0f3a434fff2eaaa019cefb163f8d01a272ef10ec20c89e3a7825c4ec80"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/gradient.py": {
+      "sha256": "0f0aa18fba59d55145ae87f1c9d10fdb3bf551b33314e05fe07ed85f5767a5ef"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/method_archival/runner.py": {
+      "sha256": "e8bfe8ea436bd7c1db78f0544fa7baeda11b5f10fb7c4e402d818e82c42809aa"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/method_archival/runtime.py": {
+      "sha256": "d8162f7241d728795e1a0f05addb75ce1279aa2e8de7670d25a4c3ea25d751bc"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/ordinary_lora_bridge_source.py": {
+      "sha256": "ef1be7bd18f00265c8ce69c0ea9f234e9b883116b63551553c8504c516dde539"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/posthoc.py": {
+      "sha256": "40f10acd50b7a02781800231df7e3db9465c879180001f92870c742ddb5b420c"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/posthoc_reducer_source_sanitized.py": {
+      "sha256": "aab5f81fb1d6e7472fb14d87f295af16103e6edd1882f81d52dfd991037d5ddd"
+    },
+    "results/order_preservation/ScalarRecords.zip!code/sampling.py": {
+      "sha256": "a218a7d53cf68634faa931b02cd1afd4cf09eaafc171486532e83ccc15ef1cac"
+    },
+    "results/order_preservation/ScalarRecords.zip!config_validate.py": {
+      "sha256": "263d2e8b6262d730344e1f6bea44a83c63eaa9f84f4f4b0f1ba51c388b0d83ad"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!replay.py": {
+      "sha256": "bcc22a4926a41a5b919eefc591b42f48061416d5c322cccb4c24b852b4f7720a"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!run_canonical_scalar.py": {
+      "sha256": "71398c4c5318f764fda397e3edb5a607fae1582dede2cb05982ae97579c95301"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!run_scalar.py": {
+      "sha256": "0e9bf4ab345a5ddf5dbd92e2a7977e5073e46aa60503766fbd5369601e84fc6b"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/analysis/collect.py": {
+      "sha256": "5cf035bbb8e69809ad70eb58873ce0426737edef5ce7d5e6e76a91316478efe2"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/analysis/extension_collect.py": {
+      "sha256": "e7f6c6de96fd2c71db820fc70f471ee6231658e81c477e6c11a8c8cb7a78101b"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/analysis/metrics.py": {
+      "sha256": "e666d60819cfc52aa24ab24e135a01d08b3fa07f89c656992628f796d20dc6a4"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/analysis/statistics.py": {
+      "sha256": "477649aeb0b9ede57acfce7cec5899a952810e984a60ee9dd96512faeeed181f"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/diagnostics_batch32_v3/intervention_collect.py": {
+      "sha256": "5f628b8c8849540e91c208e4ac48a0935877e6a32c42a78af07b52af9a4b6c98"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/tools/_a1_canonical_cg_reference_20261124.py": {
+      "sha256": "a01bdd21997b6d11c968269e662c007919cc1a37d9c6eaaa2a10468d80844259"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/tools/_a1_canonical_cg_revision_20261124.py": {
+      "sha256": "85b32ba9bbe036d6c9fa283e104c0b07b4239c762d59129eb3683ede2ed10696"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/tools/_a1_replacement_prompt_depth_analysis_v1.py": {
+      "sha256": "ded4f83077b351e9c95e74e20cc0f18a9c1490559d3561b97513933e3ef8ed0d"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/tools/_a1_replacement_sampled_cost_v1.py": {
+      "sha256": "6fe3358de5272202f913cfc89e23455b221bb65d19e537b74fb2104fa243cf30"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!source/tools/_a1_replacement_sampled_cost_v2.py": {
+      "sha256": "93d2f518cf21aad6801876274953368e579e2f8ebd0ac0265420affe755b94b7"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/EditorialCodeScalar_v4.zip!verify_identity.py": {
+      "sha256": "3d72e85246ddd9efbac1c838ef40176fa76585c4e3e2bd9dae15cf2e0ec31257"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/PortableAcquisition_v3.zip!test_portable_v3.py": {
+      "sha256": "21e87e0f2fc64f86fc5a4303908d4ef77988aec40573191c09bcd448b3586e7c"
+    },
+    "results/order_preservation/ScalarRecords.zip!dependencies/PortableAcquisition_v3.zip!validate_inputs_v3.py": {
+      "sha256": "13b659f32f898c0fa5eb7a56cd5c51e29b89ef2a1fc7037a475b3b21f76e4d60"
+    },
+    "results/order_preservation/ScalarRecords.zip!replay_current.py": {
+      "sha256": "a85fb70b9c0885c5355737a976513c5519891feff947a646480e32651c04891c"
+    },
+    "results/order_preservation/ScalarRecords.zip!safe_archive.py": {
+      "sha256": "e517392319191690ffefdb11b54fa467ab3c35f75fb1c67027eb34fcc05150da"
+    },
+    "results/order_preservation/ScalarRecords.zip!test_current.py": {
+      "sha256": "05e84bf5272aaee611697d43d5aaad643d08bf1e7823f406e823a501f06c2ebc"
+    }
+  },
+  "archive_path_syntax": "outer.zip!member or outer.zip!nested.zip!member; hashes apply to the final uncompressed Python bytes.",
+  "ownership_basis": "Author-created project code identified in source provenance; user authorized scoped MIT and publication. No dependency source code is bundled or relicensed."
 }

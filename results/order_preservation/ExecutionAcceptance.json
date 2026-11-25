@@ -1,0 +1,52 @@
+{
+  "status": "PASS_PARENT_TERMINAL_NATIVE_BACKEND_252_42",
+  "observed": {
+    "utc": "2026-11-24T16:42:34.653375+00:00",
+    "asia_shanghai": "2026-11-25T00:42:34.653375+08:00"
+  },
+  "scope": "Fixed 42 core/spectral trajectories; 252 native-backend GPU-forward logical states and 42 epoch3-to4 resume jobs. Not full retraining, cross-hardware validation, public release or universal scientific review acceptance.",
+  "coverage": {
+    "gpu-forward": {
+      "completed": 252,
+      "expected": 252
+    },
+    "resume": {
+      "completed": 42,
+      "expected": 42
+    }
+  },
+  "coverage_sha256": "3ff690b1ee28c587f450a8228ef15b9ad10d521362d9bc3569c6c9894ec5238a",
+  "files_hashed": 22744,
+  "bytes_hashed": 17619608477,
+  "second_force_replay_performed": false,
+  "trajectories": 42,
+  "core_trajectories": 18,
+  "spectral_trajectories": 24,
+  "queue_terminal_status": "ALL_PHASES_COMPLETE",
+  "batches": 24,
+  "lock_release_status": "OWNED_LOCK_RELEASED_AFTER_CONFIRMED_EMPTY_JOB",
+  "finished_utc": "2026-11-24T16:40:28.407763+00:00",
+  "audit_status": "PASS_FRESH_CPU_SOURCE_AND_294_STRICT_RECEIPTS",
+  "original_records": {
+    "parent_acceptance": {
+      "bytes": 1748,
+      "sha256": "6db0556c1efbf11934ebfc56055e65e5bb4d7f510ab6057396119e119c2f8492"
+    },
+    "parent_audit": {
+      "bytes": 242588,
+      "sha256": "ae484919beeb4135916c6eeda0c428dd15a8f06ad92cbc3fdc62db2a6503489b"
+    },
+    "completion": {
+      "bytes": 666,
+      "sha256": "eaa130eaaa6485d091320fc3a8174a49f70fc8da57a3ca32facfe6699bd75b48"
+    },
+    "lock_release": {
+      "bytes": 223,
+      "sha256": "30ecdab22806ccf9f36481c0fa7b6bb7ee0854fe255aeec08c6c6ea37795aa7a"
+    }
+  },
+  "this_packaging_task_new_gpu_runs": 0,
+  "current_finalized_small_evidence_verified": "PASS_SMALL_FINALIZED_EVIDENCE_REAUTHENTICATED_NO_BULK_REHASH",
+  "internal_paths_removed": true,
+  "original_full_receipts_included": false
+}
